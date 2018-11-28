@@ -1,0 +1,29 @@
+<svg width="583" height="203" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="205" width="585" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="165" width="161" y="21.333208" x="14.5" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <rect rx="8" id="svg_2" height="41" width="138" y="81.333208" x="26" stroke-width="1.5" stroke="#000" fill="#D1FFB4"/>
+  <rect rx="8" id="svg_7" height="41" width="138" y="135.333208" x="26" stroke-width="1.5" stroke="#000" fill="#D1FFB4"/>
+  <text stroke="#000" transform="matrix(0.9220199189007872,0,0,0.8860334157943724,-11.990255606912378,11.08881258702695) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_8" y="38.758152" x="31.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">Stream&lt;String&gt;</text>
+  <rect id="svg_9" height="165" width="161" y="22.333208" x="406.5" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <rect rx="8" id="svg_10" height="41" width="138" y="82.333208" x="418" stroke-width="1.5" stroke="#000" fill="#D1FFB4"/>
+  <rect rx="8" id="svg_11" height="41" width="138" y="136.333208" x="418" stroke-width="1.5" stroke="#000" fill="#D1FFB4"/>
+  <text transform="matrix(0.9220199189007872,0,0,0.914525032043457,-11.990255606912378,7.738758905899886) " stroke="#000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_12" y="41.347021" x="456.653505" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">Stream&lt;String&gt;</text>
+  <path id="svg_13" d="m176.5,96.333208" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000"/>
+  <path id="svg_14" d="m391.03693,106.427349l3.646614,-4.199997l-7.05055,0l-7.050535,0l0,-2.599997l0,-2.6l6.969651,0c3.833303,0 6.969645,-0.13178 6.969645,-0.292846c0,-0.161062 -1.526026,-2.051062 -3.391164,-4.199996l-3.391175,-3.907155l3.134482,0l3.13447,0l4.787046,5.505266l4.787044,5.505264l-4.796227,5.49473l-4.796225,5.49473l-3.299847,0l-3.299855,0l3.646624,-4.199999l0.000002,0.000001z" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000"/>
+  <rect stroke="#000" id="svg_16" height="4.467273" width="218.78867" y="97.408328" x="177.605034" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <text stroke="#000" transform="matrix(0.8050371924824516,0,0,0.7151697653765581,31.563841576063016,43.416702813574794) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_17" y="54.962892" x="180.45286" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">map(String::toUpperCase)</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_18" y="108.571263" x="67.618625" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Hello</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_19" y="163.809463" x="54.285265" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Lambda</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_20" y="111.428411" x="445.714582" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">HELLO</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_21" y="165.714229" x="437.143137" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">LAMBDA</text>
+ </g>
+</svg>

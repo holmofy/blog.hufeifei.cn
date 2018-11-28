@@ -1,0 +1,12 @@
+https://spring.io/blog/2013/08/06/spring-boot-simplifying-spring-for-everyone
+https://spring.io/blog/2016/02/07/orchestrating-work-with-activiti-and-spring-integration
+https://spring.io/blog/2015/03/08/getting-started-with-activiti-and-spring-boot
+https://spring.io/blog/2014/03/07/deploying-spring-boot-applications
+https://spring.io/blog/2015/02/11/java-doesn-t-suck-rockin-the-jvm
+https://spring.io/blog/2013/09/20/contributing-to-spring-boot-with-a-pull-request
+https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot
+https://spring.io/blog/2014/06/26/introducing-the-spring-io-platform
+https://spring.io/blog/2015/02/23/better-dependency-management-for-gradle
+https://spring.io/blog/2015/12/10/spring-boot-memory-performance
+https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot
+https://spring.io/blog/2015/06/17/devtools-in-spring-boot-1-3
