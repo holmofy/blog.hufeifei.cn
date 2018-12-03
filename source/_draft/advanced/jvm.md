@@ -222,7 +222,7 @@ window.onload = function() {
 };
 ```
 
-> 现在[最主流的V8引擎也已经不再用引用计数算法了，V8和Hotspot一样用分代收集算法](https://github.com/thlorenz/v8-perf/blob/master/gc.md)
+> 现在主流的JS引擎早已不再用引用计数算法了，[V8和Hotspot一样用分代收集算法](https://github.com/thlorenz/v8-perf/blob/master/gc.md)，值得一提的是V8的核心开发成员[Lars_Bak](https://en.wikipedia.org/wiki/Lars_Bak_%28computer_programmer%29)也是Hotspot团队的技术负责人。
 
 # 4、可达性分析——引用树遍历
 
@@ -528,7 +528,7 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 * 并发收集器和并行收集器不同的是：并发收集器允许应用线程与GC线程并发执行。这也意味着并发标记过程会存在GC线程和应用线程切换CPU的损耗。它适用于具有中型到大型数据集的应用程序，并且响应时间比吞吐量更重要（因为用于最小化暂停的技术会降低应用程序性能）。
 
-  ![Concurrent GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrckc4ds1j20f905c0sx.jpg)
+  ![Concurrent GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxtz1cj37vj20m105cab2.jpg)
 
   Java HotSpot VM提供两个并发垃圾回收器：CMS和G1。
 
@@ -536,6 +536,12 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
   使用`-XX:+UseG1GC`选项可以启用G1收集器。
 
+  > CMS整个过程中只有初始标记和重新标记阶段需要StopTheWorld，相对ParallelOldGC停顿时间较短。
+  >
+  > 但由于CMS使用标记清除算法，所以会产生大量内存碎片，当无法找到连续的内存空间分配时，不得不提前出发一次FullGC。针对这点CMS提供了`-XX:+UseCMSCompactAtFullCollection`选项(默认开启，Java8中已弃用)，当内存分配失败时使用Serial Old运行Compact对内存进行整理。这样解决了内存碎片的问题，但相应地STW时间变得更长。
+  >
+  > 另外CMS无法处理浮动垃圾(Floating Garbage，清除阶段新产生的垃圾)，可能出现浮动垃圾在完成清除之前又把老年代塞满了，导致“Concurrent Mode Failure”从而触发另一次Full GC。很明显CMS需要在老年代塞满之前就开始初始标记，CMS提供了`-XX:CMSInitiatingOccupancyFraction`和`-XX:CMSTriggerRatio`选项来指定这个阈值。
+  >
   > G1就是为了替代CMS的，并且G1使用分区方式管理内存，所以G1会同时管理年轻代和老年代。
   >
   > Hotspot团队对[G1](https://www.youtube.com/watch?v=6JcV7T9Z8SY)进行了许多性能上的优化，[G1已经成为Java9默认的垃圾回收器](http://blog.mgm-tp.com/2018/01/g1-mature-in-java9/)。
@@ -544,7 +550,32 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 ![Valid GC combinations](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrakmsv9vj20ko0fnjtq.jpg)
 
-## 11.5、选择垃圾回收器
+## 11.5、G1回收器
+
+原来的垃圾回收器(Serial、Parallel、CMS)将内存分成三部分：新生代、老年代和固定大小的永久代。
+
+G1将Java堆分成大小相等的区块(Region)，原来的Eden，Survivor，OldGen可以在不连续的区块上。这些区块的大小在1M~32M之间，默认情况下JVM会根据栈内存大小动态计算。
+
+![G1 Heap Allocation](http://ww1.sinaimg.cn/large/bda5cd74ly1fxtzjxdbvmj20jp0d5jrk.jpg)
+
+新生代GC仍使用拷贝算法：
+
+![Young Generation GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxu08iimyyg20mi0cmgm2.gif)
+
+老年代分成以下几个阶段：
+
+| 阶段          | 描述 |
+| ------------- | ---- |
+| 初始标记(STW) |      |
+| Root区扫描    |      |
+| 并发标记      |      |
+| 重新标记(STW) |      |
+| 清理(STW)     |      |
+| 复制(STW)     |      |
+
+![](http://ww1.sinaimg.cn/large/bda5cd74ly1fxu0kj27zvg20ml0evt9e.gif)
+
+## 11.6、选择垃圾回收器
 
 除非应用程序具有相当严格的暂停时间要求，否则应该让JVM自行选择垃圾回收器。如有必要，可以通过调整堆大小以提高性能。如果性能仍不符合目标，请使用以下指南作为选择收集器的起点。
 
@@ -576,11 +607,15 @@ https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/java.html
 
 https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
 
+https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html
+
 https://www.oracle.com/technetwork/java/javase/tech/index-jsp-136373.html
 
 https://www.oracle.com/technetwork/cn/community/developer-day/2-jvm-tuning-1866448-zhs.pdf
 
 https://www.stechies.com/difference-between-permgen-metaspace/
+
+https://www.sczyh30.com/posts/Java/jvm-gc-hotspot-implements/
 
 https://en.wikipedia.org/wiki/Garbage-first_collector
 
