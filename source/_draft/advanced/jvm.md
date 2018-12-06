@@ -588,36 +588,11 @@ CMS整个过程中只有初始标记和重新标记阶段需要StopTheWorld，�
 >
 > Hotspot团队对[G1](https://www.youtube.com/watch?v=6JcV7T9Z8SY)进行了许多性能上的优化，[G1已经成为Java9默认的垃圾回收器](http://blog.mgm-tp.com/2018/01/g1-mature-in-java9/)。
 
-下图Hotspot可用的收集器组合，其中连线上的选项参数是针对Java7，Java8参数有部分改动，详请参考[官方文档](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)。
+下图是Hotspot可用收集器的组合，其中连线上的选项参数是针对Java7，Java8参数有部分改动，详请参考[官方文档](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)。
 
 ![Valid GC combinations](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrakmsv9vj20ko0fnjtq.jpg)
 
-## 11.5、G1回收器
-
-原来的垃圾回收器(Serial、Parallel、CMS)将内存分成三部分：新生代、老年代和固定大小的永久代。
-
-G1将Java堆分成大小相等的区块(Region)，原来概念上的Eden，Survivor，OldGen可以分布在不连续的区块上。这些区块的大小在1M~32M之间，默认情况下JVM会根据栈内存大小动态计算，可以通过`-XX:G1HeapRegionSize`参数调节。
-
-![G1 Heap Allocation](http://ww1.sinaimg.cn/large/bda5cd74ly1fxtzjxdbvmj20jp0d5jrk.jpg)
-
-新生代GC仍使用拷贝算法：
-
-![Young Generation GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxu08iimyyg20mi0cmgm2.gif)
-
-老年代分成以下几个阶段：
-
-| 阶段          | 描述 |
-| ------------- | ---- |
-| 初始标记(STW) |      |
-| Root区扫描    |      |
-| 并发标记      |      |
-| 重新标记(STW) |      |
-| 清理(STW)     |      |
-| 复制(STW)     |      |
-
-![](http://ww1.sinaimg.cn/large/bda5cd74ly1fxu0kj27zvg20ml0evt9e.gif)
-
-## 11.6、选择垃圾回收器
+## 11.5、选择垃圾回收器
 
 除非应用程序具有相当严格的暂停时间要求，否则应该让JVM自行选择垃圾回收器。如有必要，可以通过调整堆大小以提高性能。如果性能仍不符合目标，请使用以下指南作为选择收集器的起点。
 
@@ -646,6 +621,10 @@ Java7虚拟机参数：https://docs.oracle.com/javase/7/docs/technotes/tools/sol
 GC基础教程：https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
 
 G1收集器入门：https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html
+
+G1收集器调优：https://www.oracle.com/technetwork/articles/java/g1gc-1984535.html
+
+Java6虚拟机GC调优：https://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html
 
 https://www.oracle.com/technetwork/java/javase/tech/index-jsp-136373.html
 
