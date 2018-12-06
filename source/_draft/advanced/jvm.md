@@ -403,16 +403,16 @@ public class ConstantPoolTest
   major version: 52
   flags: ACC_PUBLIC, ACC_SUPER
 Constant pool:
-   #1 = Methodref          #6.#17   // java/lang/Object."<init>":()V
-   #2 = Fieldref           #18.#19  // java/lang/System.out:Ljava/io/PrintStream;
-   #3 = String             #20      // Hello Java
-   #4 = Methodref          #21.#22  // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #1 = Methodref          #6.#17
+   #2 = Fieldref           #18.#19  // System.out
+   #3 = String             #20      // “Hello Java”
+   #4 = Methodref          #21.#22  // PrintStream.println
    ...
-   #18 = Class              #25     // java/lang/System
-   #19 = NameAndType        #26:#27 // out:Ljava/io/PrintStream;
-   #20 = Utf8               Hello Java
-   #21 = Class              #28     // java/io/PrintStream
-   #22 = NameAndType        #29:#30 // println:(Ljava/lang/String;)V
+   #18 = Class              #25     // System
+   #19 = NameAndType        #26:#27 // out:PrintStream;
+   #20 = Utf8               Hello Java 
+   #21 = Class              #28     // PrintStream
+   #22 = NameAndType        #29:#30 // println:String
    #23 = Utf8               ConstantPoolTest
    #24 = Utf8               java/lang/Object
    #25 = Utf8               java/lang/System
