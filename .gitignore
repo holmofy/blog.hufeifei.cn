@@ -2,8 +2,10 @@
 Thumbs.db
 db.json
 *.log
+*.iml
 node_modules/
 public/
+.idea/
 .deploy*/node_modules/
 .vs/
 public/
