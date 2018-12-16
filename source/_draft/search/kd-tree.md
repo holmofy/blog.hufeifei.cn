@@ -1,0 +1,9 @@
+https://www.elastic.co/cn/blog/lucene-points-6.0
+https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/KDtree.html
+https://lucene.apache.org/core/7_1_0/core/org/apache/lucene/util/bkd/package-summary.html
+https://en.wikipedia.org/wiki/K-D-B-tree
+https://en.wikipedia.org/wiki/K-d_tree
+https://medium.com/@nickgerleman/the-bkd-tree-da19cf9493fb
+https://www.slideshare.net/lucidworks/the-evolution-of-lucene-solr-numerics-from-strings-to-points-presented-by-steve-rowe-lucidworks
+https://blog.csdn.net/njpjsoftdev/article/details/54015485
+https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/kdtrees.pdf

@@ -277,7 +277,7 @@ public class ThreadPoolTest {
 
 **ThreadPoolExecutor默认使用AbortPolicy**
 
-> DiscardPolicy和DiscardOldestPolicy两种策略看上去都不怎么靠谱，除非真有这种特别的需求，大多数情况还是使用默认的拒绝策略。
+> DiscardPolicy和DiscardOldestPolicy两种策略看上去都不怎么靠谱，除非真有这种特别的需求，比如客户端应用中网络请求拥堵(服务端宕机或网络不通畅)的话可以选择抛弃最老的请求，大多数情况还是使用默认的拒绝策略。
 
 我们的第二种做法就是写一个自己的RejectedExecutionHandler。这种方式相对“温柔”一些，在线程池提交任务的最后一步——被线程池拒绝的任务，可以在拒绝后调用队列的`put()`方法，让任务的提交者阻塞，直到队列中任务被被线程池执行后，队列有了多余空间，调用方才返回。
 
