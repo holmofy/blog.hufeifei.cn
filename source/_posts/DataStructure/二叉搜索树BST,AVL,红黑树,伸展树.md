@@ -57,7 +57,7 @@ mathjax: true
 
 ## 1. AVL树
 
-AVL树是**A**delson-**V**elsky和**L**andis在1962年的论文中发表的。
+AVL树是**A**delson - **V**elsky和**L**andis在1962年的论文中发表的。
 
 AVL树在二叉搜索树的基础上再增加了一个限制：**左右子树的高度差不能大于一**。
 

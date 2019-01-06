@@ -38,6 +38,10 @@ MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_M
 
 ![InnoDB索引存储结构](http://ww1.sinaimg.cn/large/bda5cd74gy1frp7kvqfwgj20lr09y76c.jpg)
 
+
+
+![B+树索引](http://ww1.sinaimg.cn/large/bda5cd74ly1fyrfmroao8j20ry0k379y.jpg)
+
 ### 聚簇索引的优点
 
 1. 聚簇索引将索引和数据行保存在同一个B-Tree中，查询通过聚簇索引可以直接获取数据，而非聚簇索引要进行多次I/O，所以聚簇索引通常比非聚簇索引查找更快。
