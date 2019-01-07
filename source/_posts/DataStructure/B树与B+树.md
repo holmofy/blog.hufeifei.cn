@@ -113,7 +113,11 @@ typedef struct {
 
 我们比较的时候只需要Key而已，但是却**把Value也取了出来，从而造成了不必要的I/O**，虽然只是取出了value的引用，但是当数据库数据量越来越大的时候，对性能的影响也会随之累积而变得十分可观。
 
-为了解决这个问题，[B+树](https://en.wikipedia.org/wiki/B%2B_tree)被发明出来了。
+另外，B树进行范围查询时需要[回溯](https://en.wikipedia.org/wiki/Backtracking)，对于硬盘中的数据结构而言，一次回溯意味着一次随机IO，而且回溯一般需要一个额外的栈结构实现，操作也相对复杂。
+
+![回溯](http://ww1.sinaimg.cn/large/bda5cd74ly1fyy0cmozmkj20d30cx74u.jpg)
+
+为了解决这些问题，[B+树](https://en.wikipedia.org/wiki/B%2B_tree)被发明出来了。
 
 B+树中有几个小规则：
 
