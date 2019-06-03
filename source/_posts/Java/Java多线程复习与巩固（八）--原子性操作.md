@@ -158,7 +158,8 @@ public class AtomicFloat extends Number {
     }
 }
 ```
-
+>  Guava的`com.google.common.util.concurrent.AtomicDouble`包有这些扩展类的实现，
+>  如[AtomicDouble](https://github.com/google/guava/blob/master/guava/src/com/google/common/util/concurrent/AtomicDouble.java)、[AtomicDoubleArray](https://github.com/google/guava/blob/master/guava/src/com/google/common/util/concurrent/AtomicDoubleArray.java)
 ## 2. 数组值原子性封装
 
  `AtomicIntegerArray`、`AtomicLongArray`、`AtomicReferenceArray`是对数组类型的值进行原子性操作的封装。

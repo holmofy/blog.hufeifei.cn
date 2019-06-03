@@ -14,7 +14,7 @@ categories: JAVA
 
 ![中国移动验证码](https://login.10086.cn/captchazh.htm?type=06)
 
-现在比较流行的是行为式验证码
+这些诡异的验证码反而降低了用户体验，所以现在比较流行的是行为式验证码
 
 ![用户点击](http://ww1.sinaimg.cn/large/bda5cd74gy1frwvdew2okj20d707kjuz.jpg)
 

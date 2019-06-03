@@ -4,6 +4,7 @@ date: 2017-08-14 20:30
 categories: JAVA
 ---
 
+
 # 1. 为什么要使用线程池
 
 线程创建与销毁都耗费时间，对于**大量的短暂任务**如果仍使用“创建->执行任务->销毁”的简单模式，将极大地降低线程的使用效率(一个线程仅仅处理一个短暂的任务就被销毁了)。在这种情况下，为了提高线程的使用效率，我们使用缓存池的策略让线程执行任务后不立即销毁而是等待着处理下一个任务。
@@ -442,11 +443,87 @@ ExecutorService中定义了两组invoke方法：
 - invokeAny取得率先完成的任务的返回值，当第一个任务结束后，会调用cancel方法取消其它任务。
 - invokeAll等所有任务执行完毕后，取得全部任务的结果值。
 
+**invokeAll存在的问题**
+
+invokeAll有个严重的问题是，任务执行后不会抛出任务执行的异常。调用方需要手动调用`Future.get()`方法触发异常，而且FutureTask的异常是被ExecutionException包裹过的，所以调用`get`方法的时候是无法捕获到内部抛出的异常类型，要么通过捕获ExecutionException异常拿到它内部包装的异常，要么直接捕获所有的Exception。
+
+```java
+// AbstractExecutorService#invokeAll
+public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
+    throws InterruptedException {
+    if (tasks == null)
+        throw new NullPointerException();
+    ArrayList<Future<T>> futures = new ArrayList<Future<T>>(tasks.size());
+    boolean done = false;
+    try {
+        for (Callable<T> t : tasks) {
+            RunnableFuture<T> f = newTaskFor(t);
+            futures.add(f);
+            execute(f);
+        }
+        for (int i = 0, size = futures.size(); i < size; i++) {
+            Future<T> f = futures.get(i);
+            if (!f.isDone()) {
+                try {
+                    f.get();
+                // invokeAll把这个异常给忽略了。
+                // 之所以要忽略，是要让所有的任务都执行完
+                // 所以外部调用者仍需要调用get()方法触发这个异常。
+                } catch (CancellationException ignore) {
+                } catch (ExecutionException ignore) {
+                }
+            }
+        }
+        done = true;
+        return futures;
+    } finally {
+        if (!done) // 这部分只可能在execute抛异常的时候执行
+            for (int i = 0, size = futures.size(); i < size; i++)
+                futures.get(i).cancel(true);
+    }
+}
+```
+
 ### 5.3.1 等待任务完成
 
 invokeAll方式会导致调用线程阻塞直到所有任务完成，由于不知道哪个任务先执行完毕，使用这种方式效率不是很高。所以Java5还提供了一个`CompletionService `接口给我们用。`CompletionService`目前只有一个实现类——`ExecutorCompletionService`。
 
 ![ExecutorCompletionService架构图](http://ww1.sinaimg.cn/large/bda5cd74gy1ftaj3nepevj219a0fyn7o.jpg)
+
+ExecutorCompletionService实际只是维护了一个队列，然后将完成的任务往队列里放，这个实现主要是依赖FutureTask的一个钩子方法done：
+
+```java
+
+public class ExecutorCompletionService<V> implements CompletionService<V> {
+    private final Executor executor;
+    private final AbstractExecutorService aes;
+    private final BlockingQueue<Future<V>> completionQueue;
+
+    private class QueueingFuture extends FutureTask<Void> {
+        QueueingFuture(RunnableFuture<V> task) {
+            super(task, null);
+            this.task = task;
+        }
+        // 任务执行完后会执行该钩子方法
+        protected void done() { completionQueue.add(task); }
+        private final Future<V> task;
+    }
+  ...
+    // 提交任务时再用QueueingFuture包装
+    public Future<V> submit(Callable<V> task) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<V> f = newTaskFor(task);
+        executor.execute(new QueueingFuture(f));
+        return f;
+    }
+
+    public Future<V> submit(Runnable task, V result) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<V> f = newTaskFor(task, result);
+        executor.execute(new QueueingFuture(f));
+        return f;
+    }
+```
 
 示例：
 
@@ -897,6 +974,8 @@ public static ListeningExecutorService listeningDecorator(ExecutorService delega
 public static ListeningScheduledExecutorService listeningDecorator(ScheduledExecutorService delegate)
 ```
 
+> 实际上`ListenableFutureTask`和上面的ExecutorComletionService一样也是通过实现FutureTask的done方法实现。
+
 使用示例：
 
 ```java
@@ -908,13 +987,13 @@ final ListenableFuture future = executor.submit(new Callable<Integer>() {
     public Integer call() throws Exception {
         int result = 0;
         Thread.sleep(1000);
-    	return result;
+      return result;
     }
 });
 future.addListener(new Runable() {
-	public void run() {
-    	System.out.println("result:" + future.get());
-	}
+  public void run() {
+      System.out.println("result:" + future.get());
+  }
 }, MoreExecutors.directExecutor());
 // Futures工具类提供了工具方法用于任务正常或异常情况的处理。
 Futures.addCallback(future, new FutureCallback<Integer>() {

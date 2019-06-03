@@ -3,20 +3,52 @@ title: Java多线程复习与巩固(一)--线程基本使用
 date: 2017-06-14 15:54
 categories: JAVA
 ---
-# 进程与线程
+# 1、进程与线程
 
 在并发编程中，有两个基本的执行单元：进程和线程。在Java中，并发编程主要关心的是线程。当然，进程也很重要。
 
 
-## 进程(Process)
+## 1.1、进程(Process)
 
 进程有独立的执行环境，一个进程有一套私有的、完整的运行时资源，比如：每个进程都有自己的内存空间。
 
 进程通常会被认为是一个应用程序的代名词。但实际上一个应用程序可能会包含多个协同工作的进程。比如你电脑里的360打开后肯定有两个或两个以上的进程：一个管理是后台服务模块，一个是主程序控制模块。而为了促进进程之间的通信，操作系统都会支持进程间通信(Inter-Process Communication IPC)的机制，例如：套接字、管道机制。IPC不仅可以用于同一系统上进程之间的通信，还可以用于不同系统上进程之间的通信，比如Java的RMI(Remote Method Invoke)就是不同系统间IPC的体现。
 
-Java虚拟机的大多数实现都是作为一个进程运行的。Java应用程序可以使用ProcessBuilder对象来创建进程。多进程的应用程序不在本文的讨论范围之内。
+Java虚拟机的大多数实现都是作为一个进程运行的。Java应用程序可以使用`Runtime.exec()`执行指定命定来创建新进程，Java1.5之后还提供了更灵活的[ProcessBuilder](https://docs.oracle.com/javase/8/docs/api/java/lang/ProcessBuilder.htm)来创建进程，Java中以[Process](https://docs.oracle.com/javase/8/docs/api/java/lang/Process.html)对象表示创建的进程。
 
-## 线程(Thread)
+下面是用ProcessBuilder调用`unzip`命令执行解压的逻辑：
+
+```java
+@Slf4j
+public class HadesTradeSyncScheduler {
+    public void invokeUnzip(String password, Path targetDir, Path zipFile) {
+        ProcessBuilder pb = new ProcessBuilder("unzip", 
+                                               "-P", password, 
+                                               "-d", targetDir.toAbsolutePath().toString(), 
+                                               zipFile.toAbsolutePath().toString());
+        try {
+            FileUtils.deleteDirectory(targetDir.toFile());
+            pb.redirectErrorStream(true);
+            if (log.isDebugEnabled()) {
+                log.debug("invoke unzip, command:" + String.join(" ", pb.command()));
+            }
+
+            Process unzipProcess = pb.start();
+            try (BufferedReader stdOutReader = new BufferedReader(new InputStreamReader(unzipProcess.getInputStream()))) {
+                stdOutReader.lines().forEach(log::info);
+            }
+            unzipProcess.waitFor();
+        } catch (Exception e) {
+            log.error("unzip file failed");
+            ExceptionUtils.rethrow(e);
+        }
+    }
+}
+```
+
+> 需要注意的是，由于创建的子进程没有终端控制台，所以它的标准IO流(stdin,stdout,stderr)都会被交由父进程处理(即我们的写的Java程序)。一方面这让我们能更灵活的控制子进程的IO，但如果我们没有对IO流进行处理将会导致子进程阻塞(子进程等待输入或输出导致进入sleep状态)。比如上面的例子中如果我们没有将子进程的输出消费掉(打印到日志中)，会导致子进程的阻塞；`FileUtils.deleteDirectory(targetDir.toFile())`这句也是为了防止程序运行时解压出来的文件已经存在在目录中，unzip命令会询问是否覆盖原文件而等待用户输入，这也会导致程序阻塞。
+
+## 1.2、线程(Thread)
 
 线程有个更形象的名字——“轻量级进程”。进程和线程都提供一个执行环境，但创建线程消耗的资源比创建进程少的多。
 
@@ -24,7 +56,7 @@ Java虚拟机的大多数实现都是作为一个进程运行的。Java应用程
 
 > 正因为线程与进程有很多的相似之处，所以线程出现的问题以及解决方法和进程是类似的。在接下来的文章中我们会提到线程同步和线程死锁的问题，这和操作系统中的进程同步、进程死锁问题相似。进程同步已经由操作系统实现了，而线程同步需要我们程序员自己实现。
 
-# 并发与并行
+# 2、并发与并行
 
 计算机系统通常有很多的活动进程和线程。但在单核处理器的系统中，任何**时刻**实际只有一个进程(或线程)执行。单核系统通过时间分片的方式处理进程(或线程)之间的共享。这就是早期的分时系统(Time Sharing System)。
 
@@ -34,21 +66,21 @@ Java虚拟机的大多数实现都是作为一个进程运行的。Java应用程
 
 比如下面这个前趋图中：任务3的输入执行操作的同时($I_3$)，可以执行任务2的计算($C_2$)和任务1的打印操作($P_1$)。
 
-![CPU并发工作的前趋图](http://img.blog.csdn.net/20170614152304343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![CPU并发工作的前趋图](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h85n3imgj20rm0d8423.jpg)
 
 **并行(Parallel)**是由于有多核处理器，有多套处理设备，它可以**真正的同时**处理多个任务。
 
 比如下面这个前趋图中，有4个处理机的CPU，在一号处理机处理一号任务输入的同时($I_1$)，二号处理机可以处理二号任务的输入($I_2$)...
 
-![多核CPU并行的前趋图](http://img.blog.csdn.net/20170614152411360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![多核CPU并行的前趋图](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h862ck7vj20ic0cs3yh.jpg)
 
 而且多核处理器的每个处理机又可以使用流水线并发处理多个任务，这就大大加强了计算机系统的处理能力。
 
-# Thread类
+# 3、Thread类
 
 Java是纯面向对象的语言，所以线程也有与之对应的类——Thread。
 
-## Java中创建线程的两种方式
+## 3.1、Java中创建线程的两种方式
 
 创建线程必须提供在该线程运行的代码，这在Java中有两种方式实现。
 
@@ -94,17 +126,17 @@ Java是纯面向对象的语言，所以线程也有与之对应的类——Thre
    }
    ```
 
-   ## 应该使用哪种方式创建线程呢？
+## 3.2、应该使用哪种方式创建线程呢？
 
    因为Java是单继承的，如果使用第二种方式重写run方法，那么意味着你就不能继承其他的类来扩展类的功能了。而如果使用第一种方式实现Runnable接口，对你的类没有什么影响，你想继承哪个类就继承哪个类，想继续实现哪个接口可以继续实现。
 
    所以一般使用实现Runnable接口的方式来创建线程。
 
-   # Thread类的相关方法与线程的状态
+   # 4、Thread类的相关方法与线程的状态
 
    先来看一张神图：
 
-   ![java线程的生命周期](http://img.blog.csdn.net/20170614152518435?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+   ![java线程的生命周期](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h885pwmlj20qo0l140e.jpg)
 
 上面这张图中涉及到了`Object.wait`和`Object.notify`这一对方法，这个放在[生产者与消费者](http://blog.csdn.net/holmofy/article/details/76553437)中讨论，我们先把Thread类中的常用方法解决掉！
 
@@ -113,7 +145,7 @@ Thread类和所有类一样有两种方法：类静态方法，实例成员方�
 * 静态方法都是在本线程中执行，如：sleep()，yield()，interrupted()。
 * 实例成员方法可以在其他线程执行，当然也可以在本线程中执行(但通常由其他线程调用)，如：interrupt()， join()， ~~destroy()~~， ~~resume()~~， ~~stop()~~， ~~suspend()~~ 。
 
-## 暂停执行与sleep方法
+## 4.1、暂停执行与sleep方法
 
 `Thread.sleep`方法会导致当前线程在指定的时间内暂停执行，这使得处理器可以处理其他的线程任务。
 
@@ -160,11 +192,11 @@ try{
 }
 ```
 
-## sleep与被弃用的suspend的区别
+## 4.2、sleep与被弃用的suspend的区别
 
 `Thread.suspend`方法也是暂停本线程的执行，也会导致线程的挂起，但`Thread.suspend`挂起必须要`Thread.resume`方法来唤醒。而`Thread.sleep`方法是定时挂起，它会在一段时间后自动还原成就绪态。而且使用`Thread.suspend`和`Thread.resume`方法非常容易造成死锁，因为`Thread.suspend`和`Thread.sleep`方法一样不会释放已经获取的锁。而后面要讲到的`Object.wait`方法在挂起后会释放锁。这也是`Thread.suspend`和`Thread.resume`方法被弃用的原因。
 
-## 线程中断机制
+## 4.3、线程中断机制
 
 通常我们会使用一个标志位来控制线程的终止：
 
@@ -211,7 +243,7 @@ Thread execute for 4803    # 执行时间超过4000毫秒
 
 可以看出这种方式有个小问题，如果while循环中有`Thread.sleep`这样的阻塞方法，那么这个线程必须等到该方法返回后才能终止，所以这种方法有时候并不能达到立马终止线程的目的。
 
-其实Thread类在底层已经提供了一个类似的标志——中断标志，我们可以通过以下三个方法来对中断标志位进行操作。
+Thread类在底层已经提供了一个类似的标志——中断标志，我们可以通过以下三个方法来对中断标志位进行操作。
 
 |                 方法                  |                   方法描述                   |
 | :---------------------------------: | :--------------------------------------: |
@@ -290,27 +322,28 @@ Thread execute for 4001  # 基本能在4000毫秒后结束
 public void run() {
 	System.out.println("Thread start");
 	while (!Thread.interrupted()) {
-        // 不推荐这种写法：循环中可能有多个会抛出中断异常的方法，应该放在外面统一处理
 		try {
 			Thread.sleep(1000);
-		} catch (InterruptedException e) {
+		} catch (InterruptedException e) {   // 当我们捕获异常时中断标志位已经为false
 			System.out.println("Thread interrupt");
-			Thread.currentThread().interrupt();
+			Thread.currentThread().interrupt();// 还原中断标志位
 		}
 	}
 	System.out.println("Thread finish");
 }
 ```
 
-## join方法
+> Java的中断机制让程序有更高的响应性，但需要我们正确理解的是，它并不会真正地中断一个正在运行的线程，只是发出中断请求，然后由线程自己在何时的时刻中断自己，这样的好处是线程能在结束任务前进行相应的收尾工作，比如关闭文件释放资源等。
+
+## 4.4、join方法
 
 thread.join把指定的线程加入到当前线程来执行。你可以用“并线(join)”这个词来进行理解：让调用该方法的线程等待thread线程执行完。
 
-![Thread.join](http://img.blog.csdn.net/20170614152642582?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Thread.join](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h88w76uoj20pq0gowfi.jpg)
 
 和sleep方法一样，这个方法会也会抛出InterruptedException中断异常。
 
-## Java守护线程和setDaemon方法
+## 4.5、Java守护线程和setDaemon方法
 
 看到“守护线程”这个概念，你可能会联想到Linux中的守护进程。Java程序由于运行在虚拟机上，虚拟机一般作为一个进程运行的，所以这里所说的守护线程和Linux中说的守护进程没什么关系，但在概念上也有很多与之类似的地方。
 
@@ -318,7 +351,7 @@ thread.join把指定的线程加入到当前线程来执行。你可以用“并
 
 **如果一个程序主线程结束了，非守护线程也结束了，但还有守护线程没有结束，主线程不会等待守护线程。**
 
-Java里面最典型的守护线程就是垃圾回收器线程(GC，garbage collector)。
+Java里面最典型的守护线程就是垃圾回收线程(GC，garbage collector)。
 
 我们先来写一个简单的例子：
 
@@ -414,7 +447,7 @@ main: finish!
 	}
 ```
 
-## 总结性的小例子
+# 5、总结性的小例子
 
 ```java
 public class SimpleThreads {
@@ -469,3 +502,11 @@ public class SimpleThreads {
 	}
 }
 ```
+
+
+
+参考链接：
+
+《[Java并发编程实战](https://book.douban.com/subject/10484692/)》
+
+https://www.baeldung.com/java-process-api

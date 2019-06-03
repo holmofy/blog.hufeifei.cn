@@ -1,0 +1,1 @@
+https://community.oracle.com/docs/DOC-1006738

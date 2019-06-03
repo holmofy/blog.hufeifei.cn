@@ -12,9 +12,15 @@ categories: JAVA
 
 > 解决生产者消费者问题的方法有很多，这里先介绍最简单的一种，后续的文章中会陆续给出其他的解决方案
 
-## Object的`wait`和`notify`方法
+## 1、Object的`wait`和`notify`方法
 
-`Object.wait()`和`Thread.sleep()`方法在功能上很相似，它们都会导致线程挂起，但是`Thread.sleep()`可以指定线程被挂起的时间，当然`Object.wait()`也有一个重载的方法也可以指定被挂起的时间，可`Thread.sleep()`挂起时不会释放线程占有的资源(不会释放锁)，而`Object.wait()`会暂时释放线程所占有的资源(会释放锁)。因此`Object.wait()`调用后其他线程就可以进入`synchronized`同步代码块执行了。
+`Object.wait()`和`Thread.sleep()`方法在功能上很相似，它们都会导致线程挂起。
+
+但是`Thread.sleep()`可以指定线程被挂起的时间，当然`Object.wait()`也有一个重载的方法也可以指定被挂起的时间。
+
+可`Thread.sleep()`挂起时不会释放线程占有的资源(不会释放锁)，而`Object.wait()`会暂时释放线程所占有的资源(会释放锁)。
+
+因此`Object.wait()`调用后其他线程就可以进入`synchronized`同步代码块执行了。
 
 而`Object.notify()`就是用来唤醒因调用`Object.wait()`而挂起的一个线程，另外还有一个`Object.notifyAll()`方法用来唤醒所有因调用`Object.wait()`而挂起的线程。
 
@@ -89,11 +95,7 @@ public class ProducerConsumer {
 }
 ```
 
-## 对共享缓冲区进行封装
-
-> 操作系统中有个概念叫管程(Monitors)，它是这么定义的：一个管程定义了一个数据结构和能为并发进程所执行（在该数据结构上）的一组操作，这组操作能同步进程和改变管程中的数据。
-
-管程这个概念仿佛与我们下面的封装不谋而合。
+## 2、对共享缓冲区进行封装
 
 ```java
 import java.util.Random;
@@ -170,9 +172,15 @@ public class ProducerConsumer {
 }
 ```
 
-在`java.util.concurrent`包中有很多类似于上面的Buffer的数据结构，不同的是它们大都使用并发库中的`ReentrantLock`实现线程的互斥访问。通常它们都是`BlockingQueue`接口的实现类，`BlockingQueue.put()`和`BlockingQueue.take()`方法和上面的我写的例子中的`Buffer.put()`和`Buffer.take()`方法基本类似，不同之处是`BlockingQueue.put()`和`BlockingQueue.take()`把`InterruptedException`抛出来交给外部处理。
+## 3、BlockingQueue
 
-在后续的文章中我们会对ReentrantLock和这一系列BlockingQueue进行简单的使用和原理分析。
+在`java.util.concurrent`包中有很多类似于上面的Buffer的数据结构，不同的是它们大都使用并发库中的`ReentrantLock`实现线程的互斥访问。通常它们都是`BlockingQueue`接口的实现类:
 
-> 关于java.util.concurrent包中的集合类可以参考我的这篇文章[Java 集合框架总结与巩固](http://blog.csdn.net/holmofy/article/details/71215548)
+![BlockingQueue](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAp2j9BKfBJ4vLSCh9JyxEp4iFB4qjJUNYGk4gsEZgAZWM5ILMeWXZKHHScPUSKPIVbrzQZ4k9JsPUTceA8ODSKdCIAt591XHbvXTbbbIYkTaXDIy5w2i0)
+
+`BlockingQueue.put()`和`BlockingQueue.take()`方法和上面的我写的例子中的`Buffer.put()`和`Buffer.take()`方法基本类似，不同之处是`BlockingQueue.put()`和`BlockingQueue.take()`把`InterruptedException`抛出来交给外部处理。
+
+在后续的文章中我会对ReentrantLock和这一系列[BlockingQueue进行简单的使用和原理分析](https://blog.csdn.net/Holmofy/article/details/81610481)。
+
+> 关于java.util.concurrent包中的集合类页可以参考我的这篇文章[Java 集合框架总结与巩固](http://blog.csdn.net/holmofy/article/details/71215548)
 

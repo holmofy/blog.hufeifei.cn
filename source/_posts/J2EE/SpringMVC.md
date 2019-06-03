@@ -393,7 +393,7 @@ protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletExcepti
 
 * SimpleServletHandlerAdapter适配`javax.servlet.Servlet`接口
 * SimpleControllerHandlerAdapter适配`org.springframework.web.servlet.mvc.Controller`接口(这是Spring2.5之前的控制器需要实现的接口)
-* HttpRequestHandlerAdapter适配`org.springframework.web.HttpRequestHandler`接口
+* HttpRequestHandlerAdapter适配`org.springframework.web.HttpRequestHandler`接口，包括ResourceHttpRequestHandler处理ResourceResolver解析出的静态资源，以及通过Http协议暴露的HTTP invoker。
 * AnnotationMethodHandlerAdapter是Spring 3.2之前处理@Controller注解类中的@RequestMapping注解方法的适配器。
 * RequestMappingHandlerAdapter是Spring3.2之后处理@Controller注解类中的@RequestMapping注解方法的适配器。
 
@@ -524,7 +524,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 ***HandlerMethod***
 
-HandlerMethod就代表了我们处理请求的方法，也就是我们写在Controller里面的方法。
+[HandlerMethod](https://docs.spring.io/spring/docs/5.1.4.RELEASE/spring-framework-reference/web.html#mvc-ann-methods)就代表了我们处理请求的方法，也就是我们写在Controller里面有@RequestMapping注解的方法。
 
 ![HandlerMethod](http://ww1.sinaimg.cn/large/bda5cd74gy1fskes4ypjgj20eb0etjrl.jpg)
 
@@ -549,6 +549,10 @@ ServletInvocableHandlerMethod也有一个重要的参数：
 # 请求处理方法的参数解析和返回值处理
 
 ***HandlerMethodArgumentResolver***和***HandlerMethodReturnValueHandler***
+
+HandlerMethodArgumentResolver用于解析请求并注入到方法的参数重，可以通过[官方文档](https://docs.spring.io/spring/docs/5.1.4.RELEASE/spring-framework-reference/web.html#mvc-ann-arguments)查看SpringMVC支持什么类型的参数。
+
+HandlerMethodReturnValueHandler用于处理Controller方法的返回值，可以通过[官方文档](https://docs.spring.io/spring/docs/5.1.4.RELEASE/spring-framework-reference/web.html#mvc-ann-return-types)查看SpringMVC支持什么类型的返回值。
 
 *RequestMappingHandlerAdapter*中有定义了默认的参数解析器和返回值处理器
 

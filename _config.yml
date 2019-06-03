@@ -78,7 +78,7 @@ theme: next
 ## 这里使用git部署网站
 deploy:
   type: git
-  repo: git@www.hufeifei.cn:/home/git/www/html.git
+  repo: git@www.hufeifei.cn:/home/git/blog.hufeifei.cn.git
   branch: master
   message: "hexo deployment: {{ now('YYYY-MM-DD HH:mm:ss') }}"
 

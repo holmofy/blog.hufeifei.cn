@@ -1,0 +1,40 @@
+@startuml
+
+interface Channel
+interface ReadableByteChannel
+interface WritableByteChannel
+
+interface ScatteringByteChannel
+interface GatheringByteChannel
+
+interface ByteChannel
+interface SeekableByteChannel
+
+'interface InterruptibleChannel
+'
+'interface NetworkChannel
+'interface MulticastChannel
+'
+'interface AsynchronousChannel
+'interface AsynchronousByteChannel
+
+Channel <|-- ReadableByteChannel
+Channel <|-- WritableByteChannel
+
+ReadableByteChannel <|-- ScatteringByteChannel
+WritableByteChannel <|-- GatheringByteChannel
+
+ReadableByteChannel <|-- ByteChannel
+WritableByteChannel <|-- ByteChannel
+ByteChannel <|-- SeekableByteChannel
+
+'Channel <|-- InterruptibleChannel
+'
+'Channel <|-- NetworkChannel
+'NetworkChannel <|-- MulticastChannel
+'
+'Channel <|-- AsynchronousChannel
+'AsynchronousChannel <|-- AsynchronousByteChannel
+
+
+@enduml
