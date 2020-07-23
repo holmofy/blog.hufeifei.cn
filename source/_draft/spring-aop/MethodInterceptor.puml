@@ -1,0 +1,10 @@
+@startuml
+
+interface MethodInterceptor
+MethodInterceptor <|.left. CacheInterceptor
+MethodInterceptor <|.. TransactionInterceptor
+MethodInterceptor <|.. AsyncExecutionInterceptor
+MethodInterceptor <|.. MethodSecurityInterceptor
+MethodInterceptor <|.right. MethodValidationInterceptor
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+
+AspectJProxyFactory --> ReflectiveAspectJAdvisorFactory
+ReflectiveAspectJAdvisorFactory --> AspectJExpressionPointcut
+ReflectiveAspectJAdvisorFactory --> AbstractAspectJAdvice
+AbstractAspectJAdvice <|-- AspectJMethodBeforeAdvice
+AbstractAspectJAdvice <|--- AspectJAfterReturningAdvice
+AbstractAspectJAdvice <|--- AspectJAfterAdvice
+AbstractAspectJAdvice <|--- AspectJAfterThrowingAdvice
+AbstractAspectJAdvice <|-- AspectJAroundAdvice
+
+@enduml

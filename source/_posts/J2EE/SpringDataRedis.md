@@ -330,3 +330,69 @@ System.out.println(obj.getClass()); // com.example.demo.Person
 **Jackson2JsonRedisSerializer与GenericToStringSerializer**
 
 这两种序列化器是针对特定对象类型，前者用的是Jackson，后者用Spring的ConversionService。
+
+# 7、JedisConnection的选择db问题
+
+SpringBoot使用Jedis作为Redis的默认Client，可是`1.8.11.RELEASE`之前的版本中，发现如果redis的database不是0的话，JedisConnection每次创建的时候执行`select n`，并在关闭的时候执行重置`select 0`。
+
+下面是测试代码：
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = RedisConnectionTest.Config.class)
+public class RedisConnectionTest {
+
+    @Configuration
+    public static class Config {
+        @Bean
+        public RedisConnectionFactory db0ConnectionFactory() {
+            JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+            connectionFactory.setHostName("localhost");
+            connectionFactory.setPort(6379);
+            connectionFactory.setDatabase(0);
+            return connectionFactory;
+        }
+
+        @Bean
+        public StringRedisTemplate redis0Template(RedisConnectionFactory db0ConnectionFactory) {
+            return new StringRedisTemplate(db0ConnectionFactory);
+        }
+
+        @Bean
+        public RedisConnectionFactory db1ConnectionFactory() {
+            JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+            connectionFactory.setHostName("localhost");
+            connectionFactory.setPort(6379);
+            connectionFactory.setDatabase(1);
+            return connectionFactory;
+        }
+
+        @Bean
+        public StringRedisTemplate redis1Template(RedisConnectionFactory db1ConnectionFactory) {
+            return new StringRedisTemplate(db1ConnectionFactory);
+        }
+
+    }
+
+    @Autowired
+    private StringRedisTemplate redis0Template;
+
+    @Autowired
+    private StringRedisTemplate redis1Template;
+
+    @Test
+    public void test() {
+        redis0Template.opsForValue().set("0", "0");
+
+        redis1Template.opsForValue().set("1", "1");
+    }
+
+}
+```
+
+以下是执行过程中，redis monitor监控到的redis请求。
+
+![image.png](http://ww1.sinaimg.cn/large/bda5cd74ly1g7an1irry0j20re08caf4.jpg)
+
+社区已经向[Spring官方](https://jira.spring.io/browse/DATAREDIS-714)提出了这个bug，并在[新版本](https://github.com/spring-projects/spring-data-redis/pull/318)中解决。
+

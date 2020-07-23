@@ -1,0 +1,6 @@
+@startuml
+
+interface BeanExpressionResolver
+BeanExpressionResolver <|.right. StandardBeanExpressionResolver
+
+@enduml

@@ -524,65 +524,55 @@ public class MergeSort implements SortAlgorithm {
 接下来要讲的所有排序算法和上面的排序算法思想完全不同，没有交换、选择，插入等操作，都是使用统计计数来实现的。
 **注意**：由于网上的很多资料与书籍都没有将计数排序，基数排序，鸽巢排序，桶排序划分清楚，大多数算法都只是伪代码（图书馆里找了很多书籍，也在网上查了很多资料，很难找到一个准确的说法，或者是长篇大论，未明所云，或者大篇幅的伪代码解释，无法上机验证），所以下面的排序算法名称和算法的真正实现原理可能不吻合，如果您对以下算法有不同的看法，还望指点一二，笔者不胜感激。
 # 计数排序（CountingSort）
-因为后面的基数排序是从计数排序优化得到的，所以我们先讲讲计数排序。计数排序其实是通过统计小于某个值的个数从而确定一个值的存放位置，这样说可能还不好理解，看看下面的图吧。
-![计数排序](http://img.blog.csdn.net/20170419215218220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-
-上面的图可能画的有点乱，如果还不理解可以看看下面的实现代码。
-
-##优化前的代码
+因为后面的基数排序是从计数排序优化得到的，所以我们先讲讲计数排序。
+计数排序有两种实现，先来看第一种比较直观的：
+![计数排序](https://img-blog.csdnimg.cn/2020020916320935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=,size_16,color_FFFFFF,t_70)
+实现代码如下：
 ```java
 import java.util.Arrays;
+
 import org.junit.Test;
 
 /**
  * 简单计数排序
  *
  * @author Holmofy
- *
  */
 public class CountingSort {
 
-	public int[] countingSort(int[] items, int max) {
-		int[] result = new int[items.length];
-		// 前提是数组中的数据满足 item[n]>=0 && item[n]<=k
-		int k = max + 1;// 索引从0开始
-		countingSort(items, result, k);
-		return result;
-	}
+    public int[] countingSort(int[] items, int max) {
+        // 前提是数组中的数据满足 item[n]>=0 && item[n]<=k
+        int[] counter = new int[max + 1]; // 索引从0开始，所以这里计数器数组长度为max+1
 
-	private void countingSort(int[] items, int[] result, int k) {
-		int[] counter = new int[k];
+        // 计数
+        for (int item : items) {
+            counter[item] += 1;
+        }
 
-		// 计数
-		for (int j = 0; j < items.length; j++) {
-			int a = items[j];
-			counter[a] += 1;
-		}
+        int index = 0;
+        for (int i = 0; i < counter.length; i++) {
+            for (int j = 0; j < counter[i]; j++) {
+                items[index++] = i;
+            }
+        }
 
-		// 求计数和
-		for (int i = 1; i < k; i++) {
-			counter[i] = counter[i] + counter[i - 1];
-		}
+        return items;
+    }
 
-		// 整理出新序列
-		// 注意这里需要从后开始读取
-		for (int j = items.length - 1; j >= 0; j--) {
-			int a = items[j];
-			result[--counter[a]] = a;
-		}
-	}
+    // 测试代码
+    private final int[] testItems = new int[]{16, 2, 10, 14, 7, 9, 3, 2, 8, 1};
 
-	// 测试代码
-	private final int[] testItems = new int[] { 16, 2, 10, 14, 7, 9, 3, 2, 8, 1 };
-
-	@Test
-	public void testCountSort() {
-		System.out.println("排序前：" + Arrays.toString(testItems));
-		System.out.println("排序后：" + Arrays.toString(countingSort(testItems, 16)));
-	}
+    @Test
+    public void testCountSort() {
+        System.out.println("排序前：" + Arrays.toString(testItems));
+        System.out.println("排序后：" + Arrays.toString(countingSort(testItems, 16)));
+    }
 }
 ```
-运行结果
+
+还有一种实现通过统计小于某个值的个数从而确定一个值的存放位置，这中实现方式可能不是很好理解：
+![计数排序](https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNDE5MjE1MjE4MjIw?x-oss-process=image/format,png)运行结果
+
 ```java
 排序前：[16, 2, 10, 14, 7, 9, 3, 2, 8, 1]
 排序后：[1, 2, 2, 3, 7, 8, 9, 10, 14, 16]

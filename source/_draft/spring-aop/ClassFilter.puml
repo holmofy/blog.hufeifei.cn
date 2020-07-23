@@ -1,0 +1,9 @@
+@startuml
+
+interface ClassFilter
+
+ClassFilter <|.. RootClassFilter
+ClassFilter <|.. AnnotationClassFilter
+ClassFilter <|.. TypePatternClassFilter
+
+@enduml

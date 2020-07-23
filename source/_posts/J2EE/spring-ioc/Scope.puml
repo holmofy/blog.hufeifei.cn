@@ -1,0 +1,16 @@
+@startuml
+
+interface Scope
+
+Scope <|.left. NoOpScope
+Scope <|.. ServletContextScope
+abstract AbstractRequestAttributesScope
+Scope <|.. AbstractRequestAttributesScope
+Scope <|.. SimpleThreadScope
+Scope <|.. SimpleTransactionScope
+Scope <|.right. SimpSessionScope
+
+AbstractRequestAttributesScope <|-- RequestScope
+AbstractRequestAttributesScope <|-- SessionScope
+
+@enduml

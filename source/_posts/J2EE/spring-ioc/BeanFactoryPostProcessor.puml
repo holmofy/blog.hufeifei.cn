@@ -1,0 +1,10 @@
+@startuml
+
+interface BeanFactoryPostProcessor
+interface BeanDefinitionRegistryPostProcessor
+
+BeanFactoryPostProcessor <|-- BeanDefinitionRegistryPostProcessor
+BeanFactoryPostProcessor <|.right. EventListenerMethodProcessor
+BeanDefinitionRegistryPostProcessor <|.right. ConfigurationClassPostProcessor
+
+@enduml

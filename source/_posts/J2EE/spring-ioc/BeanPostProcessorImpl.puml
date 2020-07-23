@@ -1,0 +1,16 @@
+@startuml
+
+interface BeanPostProcessor
+abstract AbstractAdvisingBeanPostProcessor
+abstract AbstractBeanFactoryAwareAdvisingPostProcessor
+
+BeanPostProcessor <|.left. ApplicationContextAwareProcessor
+BeanPostProcessor <|.. ServletContextAwareProcessor
+BeanPostProcessor <|.. LoadTimeWeaverAwareProcessor
+BeanPostProcessor <|.right. AbstractAdvisingBeanPostProcessor
+AbstractAdvisingBeanPostProcessor <|-- AbstractBeanFactoryAwareAdvisingPostProcessor
+AbstractBeanFactoryAwareAdvisingPostProcessor <|-- MethodValidationPostProcessor
+AbstractBeanFactoryAwareAdvisingPostProcessor <|-- AsyncAnnotationBeanPostProcessor
+AbstractBeanFactoryAwareAdvisingPostProcessor <|-- PersistenceExceptionTranslationPostProcessor
+
+@enduml

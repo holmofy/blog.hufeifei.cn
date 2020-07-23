@@ -1,0 +1,53 @@
+@startuml
+
+title: ApplicationContext继承图
+
+interface BeanFactory
+
+interface MessageSource
+note top {
+用于解析msg的策略接口
+并支持此类msg的参数化和国际化
+}
+interface ListableBeanFactory
+interface HierarchicalBeanFactory
+interface ApplicationEventPublisher
+note bottom {
+提供了发布事件的功能
+}
+interface EnvironmentCapable
+note top{
+提供了应用环境变量的获取
+}
+interface ResourcePatternResolver
+note bottom {
+根据location pattern解析资源
+比如Ant Path模式的路径
+}
+
+interface ApplicationContext
+interface ConfigurableApplicationContext
+
+BeanFactory <|-- ListableBeanFactory
+BeanFactory <|-- HierarchicalBeanFactory
+
+ResourcePatternResolver <|-left- ApplicationContext
+EnvironmentCapable <|-- ApplicationContext
+MessageSource <|-- ApplicationContext
+ListableBeanFactory <|-- ApplicationContext
+HierarchicalBeanFactory <|-- ApplicationContext
+ApplicationEventPublisher <|-right- ApplicationContext
+
+ApplicationContext <|-- ConfigurableApplicationContext
+
+abstract class AbstractApplicationContext
+abstract class AbstractRefreshableApplicationContext
+abstract class AbstractRefreshableConfigApplicationContext
+
+ConfigurableApplicationContext <|.. AbstractApplicationContext
+AbstractApplicationContext <|-- AbstractRefreshableApplicationContext
+AbstractRefreshableApplicationContext <|-- AbstractRefreshableConfigApplicationContext
+AbstractApplicationContext <|-- GenericApplicationContext
+
+
+@enduml

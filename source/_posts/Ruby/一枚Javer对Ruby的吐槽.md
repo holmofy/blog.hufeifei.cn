@@ -2,6 +2,7 @@
 title: 一枚Javer对Ruby的吐槽
 date: 2019-01-13 14:26
 categories: Ruby
+mathjax: true
 ---
 > 公司收购了个项目，技术都很老，Web用的Ruby on Rails，前端还在用jQuery，后台定时任务用Java(用的技术也都很老)。自己以前没有接触过Ruby，只是听几个朋友大学里玩过这玩意儿，所以对我来说Ruby就是一门全新的语言。我个人是非常抵触学一门新语言的，Java都还没吃透就并行学Ruby，只会分散深入学习Java的精力。但没办法谁让公司抽到我，还是好好学吧！
 

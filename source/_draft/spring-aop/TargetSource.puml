@@ -1,0 +1,29 @@
+@startuml
+
+interface TargetSource
+abstract AbstractRefreshableTargetSource
+abstract AbstractLazyCreationTargetSource
+abstract AbstractBeanFactoryBasedTargetSource
+abstract AbstractPoolingTargetSource
+abstract AbstractPrototypeBasedTargetSource
+
+TargetSource <|.right. HotSwappableTargetSource
+TargetSource <|.up. EmptyTargetSource
+TargetSource <|.up. JndiObjectTargetSource
+TargetSource <|.up. SingletonTargetSource
+TargetSource <|.. AbstractRefreshableTargetSource
+TargetSource <|.. AbstractBeanFactoryBasedTargetSource
+TargetSource <|.. AbstractLazyCreationTargetSource
+
+AbstractRefreshableTargetSource <|.. BeanFactoryRefreshableTargetSource
+BeanFactoryRefreshableTargetSource <|.. RefreshableScriptTargetSource
+
+AbstractBeanFactoryBasedTargetSource <|.up. SimpleBeanTargetSource
+AbstractBeanFactoryBasedTargetSource <|.up. LazyInitTargetSource
+AbstractPrototypeBasedTargetSource <|.. PrototypeTargetSource
+AbstractPrototypeBasedTargetSource <|.. ThreadLocalTargetSource
+AbstractBeanFactoryBasedTargetSource <|.. AbstractPrototypeBasedTargetSource
+AbstractBeanFactoryBasedTargetSource <|.. AbstractPoolingTargetSource
+AbstractPoolingTargetSource <|.. CommonsPool2TargetSource
+
+@enduml

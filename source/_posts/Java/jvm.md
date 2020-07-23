@@ -552,11 +552,11 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 ![串行GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrar3t3u9j20ev04hglm.jpg)
 
-> 串行收集器在新生代使用复制算法，老年代使用压缩整理算法。
+> 串行收集器(Serial)在新生代使用复制算法，老年代(Serial Old)使用压缩整理算法。
 
 ### 11.4.2、并行收集器
 
-并行收集器（也称为[吞吐量](https://translate.google.cn/#view=home&op=translate&sl=en&tl=zh-CN&text=throughput)收集器）并行执行垃圾回收，这可以显着减少垃圾收集开销。它适用于在多处理器硬件上运行的具有中型到大型数据集的应用程序。默认情况下，JVM会根据硬件、操作系统以及JVM配置(-server)选用串行收集器，或者可以使用`-XX:+UseParallelGC`选项显式启用并行收集器。
+并行收集器（也称为[吞吐量](https://translate.google.cn/#view=home&op=translate&sl=en&tl=zh-CN&text=throughput)收集器）并行执行垃圾回收，这可以显着减少垃圾收集开销。它适用于在多处理器硬件上运行的具有中型到大型数据集的应用程序。默认情况下，JVM会根据硬件、操作系统以及JVM配置(-server)选用并行收集器，或者可以使用`-XX:+UseParallelGC`选项显式启用并行收集器。
 
 ![ParallelGC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrbbp2cdxj20hj04kaa4.jpg)
 
@@ -568,7 +568,7 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 新生代并行GC默认使用**Parallel Scavenge**收集器，另外还有一个**ParNewGC**回收器。
 
-ParNewGC主要配合CMS收集器使用，因为ParNewGC有CMS并发阶段所需要的一些同步操作。`-XX:+UseParNewGC`选项可以开启新生代的ParNewGC，此时老年代使用Serial Old。ParNewGC不能和ParallelOldGC一起使用（原因[在这](https://blogs.oracle.com/jonthecollector/our-collectors)，我也没怎么看明白)。在Java8中UseParNewGC只能和CMS配合使用。
+ParNewGC主要配合CMS收集器使用，因为ParNewGC有CMS并发阶段所需要的一些同步操作。`-XX:+UseParNewGC`选项可以开启新生代的ParNewGC，此时老年代使用Serial Old。ParNewGC不能和ParallelOldGC一起使用（原因[在这](https://blogs.oracle.com/jonthecollector/our-collectors)，我也没怎么看明白，貌似是因为接口不兼容导致的)。在Java8中ParNewGC只能和CMS配合使用。
 
 ### 11.4.3、并发收集器
 
@@ -580,9 +580,11 @@ ParNewGC主要配合CMS收集器使用，因为ParNewGC有CMS并发阶段所需�
 
 Java HotSpot VM提供两个并发垃圾回收器：CMS和G1。
 
-使用`-XX:+UseConcMarkSweepGC`选项可以启用CMS收集器。
+分别可以使用`-XX:+UseConcMarkSweepGC`和`-XX:+UseG1GC`选项进行开启。
 
-使用`-XX:+UseG1GC`选项可以启用G1收集器。
+CMS收集器运作分为四个过程：初识标记、并发标记、重新标记、并发清理
+
+初始标记、重新标记这两个步骤仍然需要“stop the world”。初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快；并发标记阶段就是并发进行GC Roots Tracing；而重新标记阶段则是为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段稍长点，但远比并发标记的时间短。
 
 **CMS优缺点：**
 

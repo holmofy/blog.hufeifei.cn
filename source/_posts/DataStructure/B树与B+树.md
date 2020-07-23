@@ -24,13 +24,21 @@ mathjax: true
 
 ![硬盘](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbibmlhotj208c08caa3.jpg)
 
-上图中间的那个原型磁盘被分为被分成若干个扇形区域，这个区域被称为“[扇区(sector)](https://en.wikipedia.org/wiki/Disk_sector)”，**硬盘中每个扇区大小固定位512个字节**
+上图中间的那个原型磁盘被分为被分成若干个扇形区域，这个区域被称为“[扇区(sector)](https://en.wikipedia.org/wiki/Disk_sector)”，**硬盘中每个扇区大小固定位512个字节，新型磁盘一个扇区4KB**。
 
 ![扇区](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbicdwfx1j20i40eo7a7.jpg)
 
 为了降低磁头来回寻道的时间，通常我们建议程序员在**执行IO操作时，使用连续顺序读写而不是随机读写**。
 
 > 理解顺序IO与随机IO：https://flashdba.com/2013/04/15/understanding-io-random-vs-sequential/
+
+磁盘的性质总结就是：
+
+1、吞吐量大：以扇区为基本读写单位；
+
+2、速度慢：机械式寻址，寻道依赖机械臂，寻扇区依赖磁盘的旋转；
+
+3、顺序IO显著快于随机IO：不连续的扇区，需要更长的寻址时间。
 
 # 二叉搜索树的磁盘IO
 
@@ -82,13 +90,13 @@ B树也是一种自平衡的树状数据结构，它通常用作文件系统、�
 
 ## 高阶B树
 
-当m越来越大的时候，B树就成了一个“又胖又矮”的小胖子了。这棵矮胖的树每个节点都存储了很多数据，每次取其中一个节点并使用二分查找，就能立马知道下一个节点的位置了，节点数量以及树的层数的降低使得I/O次数随之降低。
+当m越来越大的时候，B树就成了一个“又胖又矮”的小胖子了。这棵矮胖的树每个节点都存储了很多数据，每次取其中一个节点并使用二分查找，就能立马知道下一个节点的位置了，节点数量以及树的层数的降低，使得I/O次数随之减少。
 
 ![高阶B树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbig4c8olj20n306f3yr.jpg)
 
 那是不是B树的阶数越高越好呢？
 
-B树的节点是一个数据块，因为节点块子节点数k满足$\frac{m}{2} <= k <= m$，所以最坏的情况会浪费块内一半的空间，**阶数m越大意味着空间浪费也越大**。这个需要应用程序在空间和时间上进行权衡，一般将块大小设计成磁盘块的大小（磁盘最小存储单位是扇区，磁盘一个扇区512字节，新型磁盘一个扇区有4K）。
+B树的节点是一个数据块，因为节点块子节点数k满足$\frac{m}{2} <= k <= m$，所以最坏的情况会浪费块内一半的空间，**阶数m越大意味着空间浪费也越大**。这个需要应用程序在空间和时间上进行权衡，一般将块大小设计成磁盘块的大小的整数倍，因为磁盘读写是以扇区作为基本单位（磁盘一个扇区512字节，新型磁盘一个扇区有4K）。比如[InnoDB的默认页面大小](https://dev.mysql.com/doc/refman/5.7/en/innodb-init-startup-configuration.html#innodb-startup-page-size)为16K。
 
 ```c
 /* 定义key的类型,根据具体需要比较的类型定义 */
@@ -106,13 +114,15 @@ typedef struct {
 } BTNode;
 ```
 
+对于一个$m=500\approx2^{9}$的4K磁盘块来说，1层树(根节点作为0层)能存储$2^{9}\times4K=2M$的数据，2层树能存储$2^{18}\times4K=1G$的数据，3层树能存储$2^{27}\times4K=512G$的数据，4层树能存储$2^{36}\times4K=256T$的数据。
+
 > 关于B树的阶数该如何选择可以参考https://stackoverflow.com/questions/28677734/how-to-decide-order-of-b-tree
 
 # B树的变体B+树
 
 通常B树的节点中同时存储了Key和Value，更准确的说应该是**Value的引用(存储数据的物理地址)**。
 
-我们比较的时候只需要Key而已，但是却**把Value也取了出来，从而造成了不必要的I/O**，虽然只是取出了value的引用，但是当数据库数据量越来越大的时候，对性能的影响也会随之累积而变得十分可观。
+我们比较的时候只需要Key而已，但是却**把Value也取了出来，从而造成了不必要的I/O**。虽然只是取出了value的引用，但是当数据库数据量越来越大的时候，对性能的影响也会随之累积而变得十分可观。
 
 另外，B树进行范围查询时需要[回溯](https://en.wikipedia.org/wiki/Backtracking)，对于硬盘中的数据结构而言，一次回溯意味着一次随机IO。
 
@@ -121,25 +131,21 @@ typedef struct {
 为了解决这些问题，[B+树](https://en.wikipedia.org/wiki/B%2B_tree)被发明出来了。
 
 
-B+树中有几个小规则：
+B+树中有两个小规则：
 
-**内部的非叶子节点只存储Key，用来索引，不保存Value数据**
+**1、内部的非叶子节点只存储Key，用来索引，不保存Value数据，所有的Value数据都保存在叶子节点中**
 
-**所有的Value数据都保存在叶子节点中**
+> 非叶子节点只存储Key，对于同样大小的节点来说，可以**让节点存储更多的Key**，这变相的降低了树的深度，从而让B树索引更多数据。同时**对内存的索引缓存更友好**，内存中就能缓存更多层级的数据了。所有的查找最终都会到叶子节点，从而**保证了查询性能的稳定**。
 
-**叶子节点之间用指针串联起来**
+**2、叶子节点之间用指针串联起来**
+
+> 所有叶子节点形成有序链表，**便于范围查询**。
 
 ![B+树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbigvay08j20ns05o0sw.jpg)
 
-当然它的分裂方式也有所不同：中间值在分裂的时候不仅会成为父节点，还会在叶子节点中保留一份。
+因为它的内部节点只存储Key，所以它的分裂方式与B树也略有不同。
 
 ![B+树的分裂](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbihhh74hg20j605z17a.gif)
-
-B+树还有另外几个好处：
-
-* 所有的查找最终都会到叶子节点，从而**保证了查询性能的稳定**。
-* 所有叶子节点形成有序链表，**便于范围查询**。
-* 内部节点只存储key，**节点会更小，意味着内存中可以缓存更多的节点**。
 
 > 由于B+树的这些优秀特性，各大数据库的索引都是基于B+实现的。比如[MySQL](https://dev.mysql.com/doc/refman/5.7/en/create-index.html#create-index-storage-engine-index-types)，[Oracle](https://docs.oracle.com/cloud/latest/db112/CNCPT/indexiot.htm#CNCPT1170)等。
 
@@ -152,3 +158,5 @@ https://www.cs.cornell.edu/courses/cs3110/2012sp/recitations/rec25-B-trees/rec25
 http://cis.stvincent.edu/html/tutorials/swd/btree/btree.html
 
 https://cstack.github.io/db_tutorial/parts/part7.html
+
+https://blog.jcole.us/2013/01/10/btree-index-structures-in-innodb/

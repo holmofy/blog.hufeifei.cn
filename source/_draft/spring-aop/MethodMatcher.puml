@@ -1,0 +1,27 @@
+@startuml
+
+interface MethodMatcher
+interface Pointcut
+abstract StaticMethodMatcher
+abstract DynamicMethodMatcher
+abstract StaticMethodMatcherPointcut
+abstract DynamicMethodMatcherPointcut
+abstract AbstractRegexpMethodPointcut
+
+MethodMatcher <-- Pointcut
+
+MethodMatcher <|-left- StaticMethodMatcher
+MethodMatcher <|-right- DynamicMethodMatcher
+Pointcut <|-left- StaticMethodMatcherPointcut
+Pointcut <|-right- DynamicMethodMatcherPointcut
+Pointcut <|-- AnnotationMatchingPointcut
+Pointcut <|-- ComposablePointcut
+
+StaticMethodMatcher <|-- StaticMethodMatcherPointcut
+DynamicMethodMatcher <|-- DynamicMethodMatcherPointcut
+
+StaticMethodMatcherPointcut <|-- AbstractRegexpMethodPointcut
+AbstractRegexpMethodPointcut <|.. NameMatchMethodPointcut
+AbstractRegexpMethodPointcut <|.. JdkRegexpMethodPointcut
+
+@enduml

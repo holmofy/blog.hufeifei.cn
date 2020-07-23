@@ -21,7 +21,8 @@ Executors是线程池框架提供给我们的创建线程池的工具类，Fixed
 ```java
 // 创建(可计划的)任务延时执行线程池
 public static ScheduledExecutorService newScheduledThreadPool();
-// 单线程版的任务计划执行的线程池，
+// 单线程版的任务计划执行的线程池
+// 和Timer有点类似，但区别在于出现异常后SingleThreadScheduledExecutor会重新创建一个工作线程
 public static ScheduledExecutorService newSingleThreadScheduledExecutor();
 ```
 
@@ -194,10 +195,6 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
         }
         private int indexOf(Object x) {
             if (x != null) {
-                // 这里的ScheduledFutureTask不是静态内部类
-                // 所以ScheduledFutureTask会与外部的线程池对象关联(保存外部线程池的引用)
-                // 这里的instanceof操作的如果是其他线程池中的ScheduledFutureTask对象
-                // 将会返回false
                 if (x instanceof ScheduledFutureTask) {
                     // 如果是ScheduledFutureTask，可用heapIndex直接索引
                     int i = ((ScheduledFutureTask) x).heapIndex;
@@ -243,7 +240,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
 
 > 下面的几个方法也是`ScheduledExecutorService`接口扩展的几个方法
 
-下面**需要注意的主要是`scheduleAtFixedRate`和`scheduleWithFixedDelay`两个方法的区别**。
+下面**需要注意的主要是`scheduleAtFixedRate`和`scheduleWithFixedDelay`两个方法的区别**：
 
 ```java
     // 触发时间
@@ -348,6 +345,8 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
 ```
 
 ![fixRate与fixDelay的区别](http://ww1.sinaimg.cn/large/bda5cd74gy1ftalspuvhpj20t10h9q87.jpg)
+
+总结来说就是**fixRate是以任务开始时间计算间隔，而fixDelay是以任务结束时间计算间隔**。
 
 # 9. delayedExecute
 

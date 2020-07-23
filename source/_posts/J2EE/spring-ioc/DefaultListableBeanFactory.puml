@@ -1,0 +1,20 @@
+@startuml
+
+interface AutowireCapableBeanFactory
+interface ConfigurableBeanFactory
+
+interface ConfigurableListableBeanFactory
+interface BeanDefinitionRegistry
+
+class FactoryBeanRegistrySupport
+
+FactoryBeanRegistrySupport <-up- AbstractBeanFactory
+AbstractBeanFactory <-up- AbstractAutowireCapableBeanFactory
+AbstractAutowireCapableBeanFactory <-up- DefaultListableBeanFactory
+
+ConfigurableBeanFactory <|-right- AbstractBeanFactory
+AutowireCapableBeanFactory <|-right- AbstractAutowireCapableBeanFactory
+ConfigurableListableBeanFactory <|-right- DefaultListableBeanFactory
+BeanDefinitionRegistry <|-left- DefaultListableBeanFactory
+
+@enduml

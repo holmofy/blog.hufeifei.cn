@@ -1,0 +1,12 @@
+@startuml
+
+interface BeanDefinitionReader
+
+abstract class AbstractBeanDefinitionReader
+
+BeanDefinitionReader <|.. AbstractBeanDefinitionReader
+AbstractBeanDefinitionReader <|-- PropertiesBeanDefinitionReader
+AbstractBeanDefinitionReader <|-- GroovyBeanDefinitionReader
+AbstractBeanDefinitionReader <|-- XmlBeanDefinitionReader
+
+@enduml

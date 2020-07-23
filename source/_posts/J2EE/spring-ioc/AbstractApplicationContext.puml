@@ -1,0 +1,26 @@
+@startuml
+
+interface ConfigurableApplicationContext
+abstract class AbstractApplicationContext
+abstract class AbstractRefreshableApplicationContext
+abstract class AbstractRefreshableConfigApplicationContext
+abstract class AbstractXmlApplicationContext
+
+ConfigurableApplicationContext <-- AbstractApplicationContext
+AbstractApplicationContext <-- GenericApplicationContext
+AbstractApplicationContext <-- AbstractRefreshableApplicationContext
+AbstractRefreshableApplicationContext <-- AbstractRefreshableConfigApplicationContext
+AbstractRefreshableConfigApplicationContext <-- AbstractXmlApplicationContext
+AbstractXmlApplicationContext <-- FileSystemXmlApplicationContext
+AbstractXmlApplicationContext <-- ClassPathXmlApplicationContext
+
+GenericApplicationContext <-- StaticApplicationContext
+note bottom: 以编程方式注册Bean\n不用加载外部配置\n主要用于测试
+GenericApplicationContext <-- GenericXmlApplicationContext
+note bottom: 以XML方式配置Bean\n比ClassPathXmlApplicationContext\n和FileSystemXmlApplicationContext更灵活
+GenericApplicationContext <-- GenericGroovyApplicationContext
+note bottom: 以Groovy方式配置Bean
+GenericApplicationContext <-- AnnotationConfigApplicationContext
+note bottom: 以Java注解方式配置Bean
+
+@enduml

@@ -26,8 +26,9 @@ public class PeriodTask implements Runnable{
     }
     public void run(){
         while(running){
+            // 周期循环执行某个任务
             try{ Thread.sleep(period); }catch(InterruptException e){}
-            task...
+            doTask();
         }
     }
 }
@@ -46,13 +47,14 @@ public class TimeTask implements Runnable{
         return this.delay;
     }
     public void run(){
+        // 延迟执行某个定时任务
         try{ Thread.sleep(delay); }catch(InterruptException e){}
-        task...
+        doTask();
     }
 }
 ```
 
-这就像Linux中的`crontab`命令(指定的时间周期执行若干次)和`at`命令(定时执行一次)一样。
+这两者的功能就像Linux中的`crontab`命令(指定的时间周期执行若干次)和`at`命令(定时执行一次)一样。
 
 其实Java中已经将这些功能封装在一个Timer中。
 
@@ -135,7 +137,9 @@ public class TimerTest {
 
 # 2、线程局部变量(ThreadLocal类)
 
-线程局部变量用于为每个线程维护一个变量的副本，使得每个线程都可以访问自己线程中的副本对象，而不会对其他线程中的副本造成影响，而且在访问这些变量时为我们提供了统一的访问方式。线程局部变量ThreadLocal有一个子类：InheritableThreadLocal。InheritableThreadLocal类会继承父线程的已经存储的副本，也就是说子线程会和父线程共享父线程中已有的副本，但这也使得子线程访问父线程要考虑同步问题，所以这个类实际上也不常用。
+**线程局部变量用于为每个线程维护一个变量的副本，使得每个线程都可以访问自己线程中的副本对象，而不会对其他线程中的副本造成影响，而且在访问这些变量时为我们提供了统一的访问方式**。
+
+线程局部变量ThreadLocal有一个子类：InheritableThreadLocal。InheritableThreadLocal类会继承父线程的已经存储的副本，也就是说子线程会和父线程共享父线程中已有的副本，但这也使得子线程访问父线程要考虑同步问题，而且现在大多数系统会使用线程池技术，这已经不仅仅是InheritableThreadLocal能够解决的了，所以这个类实际上也不常用。
 
 ThreadLocal可以简单的看作`Map<Thread,Value>`的结构，但实际上是Thread对象内部维护了一个`Map<ThreadLocal,Value>`的字段(`ThreadLocalMap`)来保存这个线程拥有的局部变量，这样做的原因是线程在销毁时，这个线程对象及其相应的局部变量都能被GC回收。这从Entry继承自WeakReference也能看得出来。
 
@@ -234,38 +238,7 @@ public class ThreadLocal<T> {
 
 示例一：
 
-```java
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class ThreadLocalTest {
-	static class ClientIdGenerator extends ThreadLocal<Integer> {
-		AtomicInteger clientCount = new AtomicInteger();
-
-		@Override
-		protected Integer initialValue() {
-			return clientCount.incrementAndGet();
-		}
-	}
-
-	public static void main(String[] args) {
-		ClientIdGenerator clientId = new ClientIdGenerator();
-		for (int i = 0; i < 10; i++) {
-			new Thread(new Runnable() {
-				public void run() {
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {}
-					System.out.println(Thread.currentThread().getName() + ": I am client" + clientId.get());
-				}
-			}).start();
-		}
-	}
-}
-```
-
-示例二：
-
-Spring中日期转换工具：因为SimpleDateFormat不是线程安全的，多线程同时解析可能会出现问题，所以使用ThreadLocal为每个线程创建一个副本，让每个线程使用不同的SimpleDateFormat从而保证线程安全性。
+Spring中日期转换工具：因为[SimpleDateFormat不是线程安全的](https://www.javacodegeeks.com/2010/07/java-best-practices-dateformat-in.html)，多线程同时解析可能会出现问题，所以使用ThreadLocal为每个线程创建一个副本，让每个线程使用不同的SimpleDateFormat从而保证线程安全性。
 
 ```java
 public class DateConverter implements Converter<String, Date> {
@@ -291,7 +264,7 @@ public class DateConverter implements Converter<String, Date> {
 }
 ```
 
-示例三：
+示例二：
 
 Spring提供的[动态数据源](https://spring.io/blog/2007/01/23/dynamic-datasource-routing/)能让我们方便的在多个数据库连接中随意切换，而不影响代码结构，这也需要我们使用ThreadLocal对象。
 
@@ -351,3 +324,11 @@ public class User {
    }
 }
 ```
+
+
+
+参考链接：
+
+https://www.javacodegeeks.com/2010/07/java-best-practices-dateformat-in.html
+
+https://spring.io/blog/2007/01/23/dynamic-datasource-routing/

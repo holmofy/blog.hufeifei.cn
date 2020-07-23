@@ -89,10 +89,10 @@ public class ThreadCommunicate {
     Code:
        0: aload_0
        1: dup
-       2: getfield      #2                  // Field c:I
-       5: iconst_1
-       6: isub
-       7: putfield      #2                  // Field c:I
+       2: getfield      #2                  // 获取字段c的值
+       5: iconst_1      #                   // 获取常量1的值
+       6: isub          #                   // 执行减操作
+       7: putfield      #2                  // 把相加的结果放回字段c
       10: return
 ```
 
@@ -160,7 +160,7 @@ public class ThreadCommunicate {
 
 - 首先，同一对象上的两个`synchronized`方法的调用不可能交织。当一个线程正在执行一个对象的`synchronized`方法时，调用同一个对象的`synchronized`方法的所有其他线程都会阻塞(挂起)，直到第一个线程执行完同步方法。（解决了线程干扰问题）
 
-- 第二，当一个`synchronized`方法退出时，会与后续的`synchronized`方法自动建立[happens-before](https://en.wikipedia.org/wiki/Happened-before)关联，在这一点上`synchronized`与`volatile`关键字功能有些类似：确保CPU寄存器或高速缓存内的数据能够及时写回内存，从而保证了对象状态的改变对所有线程是可见的。（解决了内存一致性问题）
+- 第二，当一个`synchronized`方法退出时，会与后续的`synchronized`方法自动建立[happens-before](https://en.wikipedia.org/wiki/Happened-before)关联，在这一点上`synchronized`与`volatile`关键字功能有些类似：确保CPU寄存器或Cache高速缓存内的数据能够及时写回内存，从而保证了对象状态的改变对所有线程是可见的。（解决了内存一致性问题）
 
 - 第三，`synchronized`对实例方法(非static方法)加同步锁，锁住的是实例对象(this)。`synchronized`对类静态方法(static方法)加同步锁，锁住的是Class实例(Xxx.class)。
 
@@ -179,7 +179,7 @@ public class ThreadCommunicate {
 
 ## 4.2、同步代码块
 
-还有一种方式是使用同步代码块的方式，这种方法与`synchronized`方法在功能上基本一致。不同之处在于：同步代码块可以通过`synchronized (xxx)`锁住任意对象，另外这种方法能有效的减小同步锁的粒度，避免了对大范围的代码加锁。代码如下：
+还有一种方式是使用同步代码块的方式，这种方法与`synchronized`方法在功能上基本一致。不同之处在于：同步代码块可以通过`synchronized (xxx)`锁住任意对象，另外这种方法能有效的控制同步锁的粒度，避免了对大范围的代码加锁。代码如下：
 
 ```java
     static class Counter {
@@ -239,4 +239,6 @@ public class ThreadCommunicate {
 * 如果要锁定一个类对象，请谨慎考虑使用synchronized(Xxx.class)显式锁定，还是synchronized(obj.getClass())，两种方式对子类的影响不同；
 * 内部类的同步是独立于外部类的，因为内部类本质上就是加了外部类的类名作为前缀OutClass$InnerClass，不论是成员内部类还是静态内部类，成员内部类之所以能访问外部类对象的属性和方法，主要是因为它持有外部类对象的引用；
 * synchronized不是方法签名的组成部分，所以不能出现在接口的方法声明中；
-* Java的synchronized线程锁是可重入的，也就是说持有锁的线程遇到同一个锁的同步点时是能继续的（比如一个同步方法调用同一个类中的另一个同步方法）。
+* Java的synchronized线程锁是可重入的，也就是说持有锁的线程遇到同一个锁的同步点时是能继续的（比如一个同步方法调用同一个类中的另一个同步方法，或者递归调用同一个方法）。
+
+> 关于synchronized的实现原理参考[下一篇文章](https://blog.csdn.net/Holmofy/article/details/73302423)

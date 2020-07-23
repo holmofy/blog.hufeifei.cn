@@ -1,0 +1,42 @@
+@startuml
+
+interface Advice<org.aopalliance.aop>
+interface BeforeAdvice
+interface DynamicIntroductionAdvice {
+boolean implementsInterface(Class<?> intf)
+}
+interface Interceptor<org.aopalliance.aop>
+interface MethodInterceptor<org.aopalliance.aop> {
+Object invoke(MethodInvocation invocation)
+}
+interface ConstructorInterceptor<org.aopalliance.aop> {
+Object construct(ConstructorInvocation invocation)
+}
+interface MethodBeforeAdvice {
+void before(Method method,
+\t Object[] args, Object target)
+}
+interface IntroductionInterceptor
+interface AfterAdvice
+interface ThrowsAdvice
+interface AfterReturningAdvice {
+void afterReturning(Object returnValue,
+\t Method method, Object[] args, Object target)
+}
+
+Advice <|-down- Interceptor
+Interceptor <|-- MethodInterceptor
+Interceptor <|-- ConstructorInterceptor
+
+Advice <|-left- BeforeAdvice
+BeforeAdvice <|-left- MethodBeforeAdvice
+
+Advice <|-right- AfterAdvice
+AfterAdvice <|-right- ThrowsAdvice
+AfterAdvice <|-- AfterReturningAdvice
+
+Advice <|-- DynamicIntroductionAdvice
+DynamicIntroductionAdvice <|-- IntroductionInterceptor
+MethodInterceptor <|-left- IntroductionInterceptor
+
+@enduml

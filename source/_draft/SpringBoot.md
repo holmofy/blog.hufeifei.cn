@@ -1,3 +1,6 @@
+https://www.baeldung.com/springbootconfiguration-annotation
+https://www.baeldung.com/configuration-properties-in-spring-boot
+https://www.baeldung.com/spring-boot-custom-starter
 https://spring.io/blog/2013/08/06/spring-boot-simplifying-spring-for-everyone
 https://spring.io/blog/2016/02/07/orchestrating-work-with-activiti-and-spring-integration
 https://spring.io/blog/2015/03/08/getting-started-with-activiti-and-spring-boot

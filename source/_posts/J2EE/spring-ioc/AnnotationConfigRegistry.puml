@@ -1,0 +1,9 @@
+@startuml
+
+interface AnnotationConfigRegistry{
+void register(Class<?>... annotatedClasses)
+void scan(String... basePackages)
+}
+AnnotationConfigRegistry <|.. AnnotationConfigApplicationContext
+
+@enduml

@@ -185,6 +185,8 @@ DelayQueue和PriorityBlockingQueue底层都是使用**二叉堆实现**的**优�
 * 后者对元素没有要求，可以实现Comparable接口也可以提供Comparator来对队列中的元素进行比较，跟时间没有任何关系，仅仅是按照优先级取任务。
 
 > 当我们提交的任务有优先顺序时可以考虑选用这两种队列
+>
+> 事实上[ScheduledThreadPoolExecutor内部实现了一个类似于DelayQueue的队列](https://blog.csdn.net/Holmofy/article/details/79344914)。
 
 除了这两个，BlockingQueue还有两个子接口BlockingDeque(双端阻塞队列)，TransferQueue(传输队列)
 
@@ -193,7 +195,7 @@ DelayQueue和PriorityBlockingQueue底层都是使用**二叉堆实现**的**优�
 ![其他类型的队列](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuShCAqajIajCJbLmoibFpixCImyiJIrDnIBkabg88XvIb9XNd9PQ156Febl1HbSNLH-cFBf-X6gGV0rGWKzcNdPg2genI9fGbQ6Qvf2QbmBq7G00)
 
 * LinkedBlockingDeque：使用双向队列实现的双端阻塞队列，双端意味着可以像普通队列一样FIFO(先进先出)，可以以像栈一样FILO(先进后出)
-* LinkedTransferQueue：它是ConcurrentLinkedQueue、LinkedBlockingQueue和SynchronousQueue的结合体，但是把它用在ThreadPoolExecutor中，和LinkedBlockingQueue行为一致。
+* LinkedTransferQueue：[它是ConcurrentLinkedQueue、LinkedBlockingQueue和SynchronousQueue的结合体](http://cs.oswego.edu/pipermail/concurrency-interest/2009-February/005888.html)，但是把它用在ThreadPoolExecutor中，和无限制的LinkedBlockingQueue行为一致。
 
 ![LinkedTransferQueue](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAp2j9BKfBJ4vL22nDBKr5uZlbv2TdP-Qbeuk752Nc5QUb5a74kS2KWeskBfe660ykZwOHAbu3b73EpqikBIfApIlnoSpBJar1Cm2X42ADQW-AgKYgq9pfa9gN0lGm0000)
 
@@ -468,6 +470,8 @@ Tomcat的线程池扩展了JDK线程池的功能，主要体现在两点：
 * Tomcat的ThreadPoolExecutor改写了execute方法，当任务被reject时，捕获异常，并强制入队。
 
 <!--
+
+限流：
 
 [Tomcat](https://tomcat.apache.org/)，[Jetty](https://eclipse.org/jetty/)等应用服务器会为每个请求分配一个线程，为了避免线程资源的浪费，肯定会使用线程池进行管理。可以预想当服务器负载过重的时候，没有空余线程，新来的请求肯定得排队。但是前面说过排队任务过多可能导致内存溢出，Tomcat作为一个性能稳定的服务器肯定不会让这种事儿发生，而且Http服务器不同于普通的应用软件，**请求排队时间过长久久得不到处理，用户可等不了这么久**。所以Tomcat会拒绝在一定时间内处理不了的请求，这样服务器可以容易地向客户端响应一个错误，比如[HTTP的503错误“Service unavailable”](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4) 。
 

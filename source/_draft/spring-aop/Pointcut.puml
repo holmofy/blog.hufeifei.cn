@@ -1,0 +1,11 @@
+@startuml
+
+interface Pointcut
+interface ClassFilter
+interface MethodMatcher
+
+Pointcut <-- Pointcuts
+ClassFilter <-- ClassFilters
+MethodMatcher <-- MethodMatchers
+
+@enduml

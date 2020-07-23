@@ -199,7 +199,7 @@ static class Counter {
 
 通过看底层字节码，可以看出以下几点：
 
-1. 普通方法和`synchronized`方法在方法内部没有任何区别，仅仅是`synchronized`方法比普通方法多了一个`ACC_SYNCHRONIZED`标志位，该标志位表示访问该方法需要同步访问(synchronized access)
+1. 普通方法和`synchronized`方法在方法内部没有任何区别，仅仅是`synchronized`方法比普通方法多了一个[`ACC_SYNCHRONIZED`标志位](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.6)，该标志位表示访问该方法需要同步访问(synchronized access)
 2. `synchronized`同步代码块中由于要加载this引用，多了很多指令，而关键的两个指令是`monitorenter`，`monitorexit`。
 
 # 3、JVM规范中的Monitor
@@ -208,20 +208,20 @@ Oracle官网提供的[JVM规范](http://docs.oracle.com/javase/specs/jvms/se8/ht
 
 **monitorenter**指令用于进入对象的`monitor`监视器，该指令的操作数是栈中的对象引用(*objectref*)，这个对象引用必须是引用类型，不能是基本类型。每个对象都关联着一个`monitor`监视器，当且仅当`monitor`监视器有线程所有者(owner)才会被锁住，线程通过执行`monitorenter`指令尝试获取对象关联的`monitor`监视器的所有权：
 
-* 如果一个对象(*objectref*)关联的`monitor`监视器的`entry`进入次数为0，该线程进入`monitor`监视器并将它的`entry`进入次数设置为1。该线程则是`monitor`的所有者。
-* 如果一个线程已经拥有对象(*objectref*)关联的`monitor`监视器，就让它再次进入该`monitor`监视器，并将`entry`进入次数加1(可重入锁)。
-* 如果另一个线程已经拥有了对象(*objectref*)关联的`monitor`监视器，那么该线程将会阻塞，直到`monitor`监视器的`entry`进入次数为0时再次尝试获取所有权。
+* 如果一个对象(*objectref*)关联的`monitor`监视器的`entry`为0，该线程进入`monitor`监视器并将它的`entry`设置为1。该线程则是`monitor`的所有者。
+* 如果一个线程已经拥有对象(*objectref*)关联的`monitor`监视器，就让它再次进入该`monitor`监视器，并将`entry`加1(可重入锁)。
+* 如果另一个线程已经拥有了对象(*objectref*)关联的`monitor`监视器，那么该线程将会阻塞，直到`monitor`监视器的`entry`为0时再次尝试获取所有权。
 
 注意：
 
 * 如果引用对象为null，`monitorenter`指令将会抛出空指针异常。
-* `monitorenter`指令可以配合一个或多个`monitorexit`指令来实现`synchronized`代码块。虽然它们提供了锁定语义，但在`synchronized`方法中并不会执行这两个指令，而是在调用`synchronized`方法时`monitor`进入，在方法返回时`monitor`退出，这个将由JVM方法调用和返回指令隐式地处理。
+* `monitorenter`指令可以配合一个或多个`monitorexit`指令来实现`synchronized`代码块。虽然它们提供了锁定语义，但在`synchronized`**方法中**并不会执行这两个指令，而是在调用`synchronized`方法时`monitor`进入，在方法返回时`monitor`退出，这个将由JVM方法调用和返回指令隐式地处理。
 * Java的同步机制除了要实现`monitorenter`和`monitorexit`这样的操作，还应该包括等待`monitor`监视器(Object.wait)，通知等待`monitor`监视器的其他线程(Object.notify和Object.notifyAll)。JVM指令中不会提供这些操作的支持。
 * JVM规范并没有规定如何实现`monitor`与对象的关联。
 
 **monitorexit**用于退出对象的`monitor`监视器：
 
-* 执行`monitorexit`指令的线程必须是该`monitor`监视器的所有者。执行该指令时，该线程会将`monitor`的`entry`进入次数减一。如果`entry`进入次数的结果为0，该线程将退出`monitor`不再是它的所有者。其他进入`monitor`的阻塞线程可以尝试获取该`monitor`监视器。
+* 执行`monitorexit`指令的线程必须是该`monitor`监视器的所有者。执行该指令时，该线程会将`monitor`的`entry`减一。如果`entry`进入次数的结果为0，该线程将退出`monitor`不再是它的所有者。其他进入`monitor`的阻塞线程可以尝试获取该`monitor`监视器。
 
 JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`监视器实现的。
 
@@ -230,10 +230,12 @@ JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`
 > Hotspot介绍可以参考[Wiki](https://en.wikipedia.org/wiki/HotSpot)
 >
 > Hotspot源码可以从[官网](http://download.java.net/openjdk/jdk8/)或[这里](http://download.csdn.net/detail/holmofy/9873419)下载
+>
+> Hotspot偏向锁的介绍可参考[这里](https://wiki.openjdk.java.net/display/HotSpot/Synchronization)
 
 ## 4.1、轻量级锁、重量级锁、偏向锁
 
-在Java Hotspot中，每一个对象前面都有一个类指针和一个头字段。头字段中存储了一个哈希码(HashCode)标识值以及一个标志位，该标志位用于标识对象的年龄(新生代，老年代等)，同时它也被用来实现轻量锁。下面这张图展示了头字段的位置以及不同对象状态下的字段值。
+在Java Hotspot中，每一个对象前面都有一个类指针和一个头字段。头字段中存储了一个哈希码(HashCode)以及一个标志位，该标志位用于标识对象的年龄(新生代，老年代等)，同时它也被用来实现轻量锁。下面这张图展示了头字段的位置以及不同对象状态下的字段值。
 
 ![object header](http://ww1.sinaimg.cn/large/bda5cd74ly1g2jjj6iyfqg20h707xwey.gif)
 
@@ -247,7 +249,7 @@ JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`
 
 在Java6中，这个问题被所谓的免存储偏向锁技术解决了。由于大部分对象大多数情况最多由一个线程锁定，**为了避免过多无谓的CAS操作**，我们允许线程偏向某个线程，这也是"偏向锁"(`Biased Lock`)这个名字的来由。
 
-只有第一次获取锁时会执行一次`compare-and-swap`将上锁线程的ID存入对象头字段中，这时我们称**这个对象偏向这个线程**。将来同一线程的加解锁操作都不再需要任何原子操作或头字段修改操作，执行栈中的`lock record`也不会被初始化为0了，因为线程不会再去检查偏向锁的对象。
+只有第一次获取锁时会执行一次`compare-and-swap`将上锁线程的ID存入对象头字段中，这时我们称**这个对象偏向这个线程**。将来同一线程的加解锁操作都不再需要任何原子操作或头字段修改操作，执行栈中的`lock record`也不会被初始化为0了，因为线程不会再去检查偏向锁的对象。 
 
 当线程在偏向另一个线程的对象上同步时(产生多线程竞争同一个锁的情况)，偏向锁将会被撤销，使对象看上去是以常规方式锁定的一样。遍历拥有偏向锁线程的堆栈，关联的`lock record`将会按照`thin lock`的策略进行调整，并将`lock record`的指针置入对象头字段。当访问对象的哈希码时，偏向锁也被撤销，因为哈希码位与线程ID共享。
 
@@ -588,6 +590,8 @@ https://wiki.openjdk.java.net/display/HotSpot/Synchronization
 http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html#jvms-6.5.monitorenter
 
 https://blogs.oracle.com/dave/biased-locking-in-hotspot
+
+http://www.spring4all.com/article/16805
 
 https://www.oracle.com/technetwork/java/6-performance-137236.html#2.1.1
 

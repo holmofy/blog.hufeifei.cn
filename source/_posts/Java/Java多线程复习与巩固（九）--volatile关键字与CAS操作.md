@@ -268,7 +268,7 @@ inline jint Atomic::cmpxchg    (jint exchange_value, volatile jint* dest, jint c
 * `cmpxchg`同时需要一个accumulator寄存器，如果是`x86_64`架构CPU的就是64位的RAX寄存器，如果是`x86`架构的CPU就是32位的EAX寄存器(`x86_64`是向下兼容的，RAX的低32位就是EAX)，该寄存器中存储进行比较的预期值。`cmpxchg`指令可以对8位(AL)、16位(AX)、32位(EAX)、64位(RAX)进行CAS操作。上图红框就是操作对应的伪代码。
 ![x86_64 累计计数寄存器](http://img.blog.csdn.net/20170627231331542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-* `cmpxchg`指令可以加LOCK前缀(0xF0)来锁住处理器的总线接口，来保证`cmpxchg`指令原子性执行。
+* `cmpxchg`指令可以加LOCK前缀(0xF0)来保证`cmpxchg`指令原子性执行。
 
 # CAS操作的[ABA问题](https://en.wikipedia.org/wiki/ABA_problem)
 

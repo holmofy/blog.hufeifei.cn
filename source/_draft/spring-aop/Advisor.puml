@@ -1,0 +1,28 @@
+@startuml
+
+interface Advisor
+interface IntroductionAdvisor
+interface PointcutAdvisor
+abstract StaticMethodMatcherPointcutAdvisor
+abstract AbstractPointcutAdvisor
+abstract AbstractGenericPointcutAdvisor
+abstract AbstractBeanFactoryPointcutAdvisor
+
+Advisor <|-right- PointcutAdvisor
+Advisor <|-left- IntroductionAdvisor
+PointcutAdvisor <|.right. StaticMethodMatcherPointcutAdvisor
+IntroductionAdvisor <|.. DefaultIntroductionAdvisor
+
+PointcutAdvisor <|.. AbstractPointcutAdvisor
+AbstractPointcutAdvisor <|-left- AsyncAnnotationAdvisor
+AbstractPointcutAdvisor <|-right- TransactionAttributeSourceAdvisor
+AbstractPointcutAdvisor <|-- AbstractBeanFactoryPointcutAdvisor
+AbstractPointcutAdvisor <|-- AbstractGenericPointcutAdvisor
+AbstractBeanFactoryPointcutAdvisor <|-- DefaultBeanFactoryPointcutAdvisor
+AbstractBeanFactoryPointcutAdvisor <|-- DefaultBeanFactoryPointcutAdvisor
+AbstractGenericPointcutAdvisor <|-- RegexpMethodPointcutAdvisor
+AbstractGenericPointcutAdvisor <|--- NameMatchMethodPointcutAdvisor
+AbstractGenericPointcutAdvisor <|--- AspectJExpressionPointcutAdvisor
+AbstractGenericPointcutAdvisor <|-left- DefaultPointcutAdvisor
+
+@enduml

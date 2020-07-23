@@ -1,0 +1,10 @@
+@startuml
+
+interface Advised
+Advised <|.. AdvisedSupport
+AdvisedSupport <|.. ProxyCreatorSupport
+ProxyCreatorSupport <|.. ProxyFactoryBean
+ProxyCreatorSupport <|.. ProxyFactory
+ProxyCreatorSupport <|.. AspectJProxyFactory
+
+@enduml

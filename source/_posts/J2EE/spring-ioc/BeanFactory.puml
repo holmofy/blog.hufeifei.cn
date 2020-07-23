@@ -1,0 +1,38 @@
+@startuml
+title: BeanFactory继承图
+
+interface BeanFactory
+note top: SpringBean容器继承层次的根\n每个Bean都有自己唯一的名字
+interface AutowireCapableBeanFactory
+note bottom: 定义了Spring Bean的装配规则
+interface ListableBeanFactory
+note bottom: 提供了列举容器中所有Bean的方法\n可以结合BeanFactoryUtils使用
+interface ConfigurableBeanFactory
+note bottom {
+定义了Spring容器的可配置的功能
+提供了BeanFactoryPostProcessor、
+PropertyEditorRegistrar、
+BeanExpressionResolve、
+ConversionService
+等接口以便对容器进行功能扩展
+}
+interface HierarchicalBeanFactory
+note bottom: 为Spring容器提供了继承层次\n支持父子容器
+interface ConfigurableListableBeanFactory
+
+BeanFactory <-- AutowireCapableBeanFactory
+BeanFactory <-- HierarchicalBeanFactory
+BeanFactory <-- ListableBeanFactory
+
+HierarchicalBeanFactory <-- ConfigurableBeanFactory
+
+AutowireCapableBeanFactory <-- ConfigurableListableBeanFactory
+ConfigurableBeanFactory <-- ConfigurableListableBeanFactory
+ListableBeanFactory <-- ConfigurableListableBeanFactory
+
+
+ConfigurableListableBeanFactory <|-- DefaultListableBeanFactory
+ListableBeanFactory <|-- StaticListableBeanFactory
+
+DefaultListableBeanFactory <-- XmlBeanFactory
+@enduml

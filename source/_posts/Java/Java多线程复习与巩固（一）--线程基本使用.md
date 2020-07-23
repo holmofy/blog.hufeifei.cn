@@ -20,7 +20,7 @@ Java虚拟机的大多数实现都是作为一个进程运行的。Java应用程
 
 ```java
 @Slf4j
-public class HadesTradeSyncScheduler {
+public class Demo {
     public void invokeUnzip(String password, Path targetDir, Path zipFile) {
         ProcessBuilder pb = new ProcessBuilder("unzip", 
                                                "-P", password, 
@@ -46,7 +46,7 @@ public class HadesTradeSyncScheduler {
 }
 ```
 
-> 需要注意的是，由于创建的子进程没有终端控制台，所以它的标准IO流(stdin,stdout,stderr)都会被交由父进程处理(即我们的写的Java程序)。一方面这让我们能更灵活的控制子进程的IO，但如果我们没有对IO流进行处理将会导致子进程阻塞(子进程等待输入或输出导致进入sleep状态)。比如上面的例子中如果我们没有将子进程的输出消费掉(打印到日志中)，会导致子进程的阻塞；`FileUtils.deleteDirectory(targetDir.toFile())`这句也是为了防止程序运行时解压出来的文件已经存在在目录中，unzip命令会询问是否覆盖原文件而等待用户输入，这也会导致程序阻塞。
+> 需要注意的是，由于创建的子进程没有终端控制台，所以它的标准IO流(stdin,stdout,stderr)都会被交由父进程处理(即我们的写的Java程序)。一方面这让我们能更灵活的控制子进程的IO，但如果我们没有对IO流进行处理将会导致子进程阻塞(子进程等待输入或输出导致进入sleep状态)。比如上面的例子中如果我们没有将子进程的输出消费掉(打印到日志中)，会导致子进程的阻塞；`FileUtils.deleteDirectory(targetDir.toFile())`这句也是为了防止程序运行时解压出来的文件已经存在在目录中，`unzip`命令会询问是否覆盖原文件而等待用户输入，这也会导致程序阻塞。
 
 ## 1.2、线程(Thread)
 
@@ -194,7 +194,7 @@ try{
 
 ## 4.2、sleep与被弃用的suspend的区别
 
-`Thread.suspend`方法也是暂停本线程的执行，也会导致线程的挂起，但`Thread.suspend`挂起必须要`Thread.resume`方法来唤醒。而`Thread.sleep`方法是定时挂起，它会在一段时间后自动还原成就绪态。而且使用`Thread.suspend`和`Thread.resume`方法非常容易造成死锁，因为`Thread.suspend`和`Thread.sleep`方法一样不会释放已经获取的锁。而后面要讲到的`Object.wait`方法在挂起后会释放锁。这也是`Thread.suspend`和`Thread.resume`方法被弃用的原因。
+`Thread.suspend`方法也是暂停本线程的执行，会导致线程的挂起，`Thread.suspend`挂起必须要`Thread.resume`方法来唤醒。而`Thread.sleep`方法是定时挂起，它会在一段时间后自动还原成就绪态。而且使用`Thread.suspend`和`Thread.resume`方法非常容易造成死锁，因为`Thread.suspend`和`Thread.sleep`方法一样不会释放已经获取的锁。而后面要讲到的`Object.wait`方法在挂起后会释放锁。这也是`Thread.suspend`和`Thread.resume`方法被弃用的原因。
 
 ## 4.3、线程中断机制
 
@@ -241,7 +241,7 @@ Thread finish at 1502876265234
 Thread execute for 4803    # 执行时间超过4000毫秒
 ```
 
-可以看出这种方式有个小问题，如果while循环中有`Thread.sleep`这样的阻塞方法，那么这个线程必须等到该方法返回后才能终止，所以这种方法有时候并不能达到立马终止线程的目的。
+可以看出这种方式有个小问题，如果while循环中有`Thread.sleep`这样的阻塞方法，那么这个线程必须等到该方法返回后才能终止，所以这种自定义标志位的方法有时候并不能达到立马终止线程的目的。
 
 Thread类在底层已经提供了一个类似的标志——中断标志，我们可以通过以下三个方法来对中断标志位进行操作。
 
@@ -266,7 +266,9 @@ public boolean isInterrupted() {
 private native boolean isInterrupted(boolean ClearInterrupted);
 ```
 
-第二个方法一般由其他线程调用，该方法会将中断标志设为true。但是如果调用`interrupt`方法时，线程正阻塞在某些阻塞方法时，这些阻塞方法将会立即抛出InterruptedException异常，并将中断状态清空(置为false)，这些方法包括前面提到的`Thread.sleep`还有后面要讲到的`Thread.join`和`Object.wait`等方法。
+第二个方法一般由其他线程调用，该方法会将中断标志设为`true`。
+
+如果调用`interrupt`方法时，线程正阻塞在某些阻塞方法时，这些阻塞方法将会立即抛出InterruptedException异常，并将中断状态清空(置为`false`)，这些方法包括前面提到的`Thread.sleep`还有后面要讲到的`Thread.join`和`Object.wait`等方法。
 
 来个例子演示一下：
 
@@ -334,6 +336,8 @@ public void run() {
 ```
 
 > Java的中断机制让程序有更高的响应性，但需要我们正确理解的是，它并不会真正地中断一个正在运行的线程，只是发出中断请求，然后由线程自己在何时的时刻中断自己，这样的好处是线程能在结束任务前进行相应的收尾工作，比如关闭文件释放资源等。
+>
+> Java的中断机制[令初学者非常反感](https://www.yegor256.com/2015/10/20/interrupted-exception.html)，因为每次都try_catch会令代码不整洁，而且我们还不能简单的try_catch吞掉异常就不管了，还需要把异常标志位设回去，Guava提供了一个简单处理阻塞方法的工具类——[Uninterruptibles](https://github.com/google/guava/blob/master/guava/src/com/google/common/util/concurrent/Uninterruptibles.java)
 
 ## 4.4、join方法
 
@@ -510,3 +514,5 @@ public class SimpleThreads {
 《[Java并发编程实战](https://book.douban.com/subject/10484692/)》
 
 https://www.baeldung.com/java-process-api
+
+https://www.yegor256.com/2015/10/20/interrupted-exception.html

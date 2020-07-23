@@ -1,0 +1,11 @@
+@startuml
+
+interface AopProxy{
+Object getProxy();
+Object getProxy(ClassLoader classLoader);
+}
+AopProxy <|.. JdkDynamicAopProxy
+AopProxy <|.. CglibAopProxy
+CglibAopProxy <|-- ObjenesisCglibAopProxy
+
+@enduml

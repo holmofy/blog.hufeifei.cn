@@ -2,6 +2,7 @@
 title: ThreadPoolExecutor最佳实践--如何选择线程数
 date: 2018-07-29 15:44
 categories: JAVA
+mathjax: true
 ---
 
 去年的一篇《[ThreadPoolExecutor详解](https://blog.csdn.net/holmofy/article/details/77411854)》大致讲了ThreadPoolExecutor内部的代码实现。
@@ -146,6 +147,8 @@ IO操作包括读写磁盘文件、读写数据库、网络请求等阻塞操作
 | 从磁盘顺序读取1MB                      | 20,000,000.0  | 20000  | 20   | 80X 内存，20X SSD           |
 | 发送一个数据包<br />美国加州→荷兰→加州 | 150,000,000.0 | 150000 | 150  | -                           |
 
+
+
 # 4. IO密集型任务
 
 这里用sleep方式模拟IO阻塞：
@@ -173,7 +176,7 @@ public class IOThreadPoolTest {
         @Override
         public void run() {
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -234,7 +237,7 @@ $$
 > $$
 > N_{threads}=N_{cpu}*U_{cpu}*(1+\frac{W}{C})
 > $$
-> $N_{cpu}$代表CPU的个数，$U_{cpu}$代表CPU利用率的期望值($0<U_{cpu}<1$)，$\frac{W}{C}$仍然是等待时间与计算时间的比例。
+>  $N_{cpu}$代表CPU的个数，$U_{cpu}$代表CPU利用率的期望值($0<U_{cpu}<1$)，$\frac{W}{C}$仍然是等待时间与计算时间的比例。
 >
 > 我上面提供的公式相当于目标CPU利用率为100%。
 >
@@ -244,7 +247,7 @@ $$
 
 线程池的大小取决于任务的类型以及系统的特性，避免“过大”和“过小”两种极端。线程池过大，大量的线程将在相对更少的CPU和有限的内存资源上竞争，这不仅影响并发性能，还会因过高的内存消耗导致OOM；线程池过小，将导致处理器得不到充分利用，降低吞吐率。
 
-要想正确的设置线程池大小，需要了解部署的系统中有多少个CPU，多大的内存，提交的任务是计算密集型、IO密集型还是两者兼有。
+要想正确的设置线程池大小，需要了解部署的系统中有多少个CPU，多大的内存，提交的任务是计算密集型、IO密集型还是两者兼有，甚至还要考虑JDBC连接池的数量。比如，如果工作线程依赖于数据库，则线程池受数据库连接池大小的限制。在只有100个连接的数据库连接池里1000个正在运行的线程是否有意义。
 
 虽然线程池和JDBC连接池的目的都是对稀缺资源的重复利用，但通常一个应用只需要一个JDBC连接池，而线程池通常不止一个。如果一个系统要执行不同类型的任务，并且它们的行为差异较大，那么应该考虑使用多个线程池，使每个线程池可以根据各自的任务类型以及工作负载来调整。
 
@@ -252,10 +255,11 @@ $$
 
 ---
 
-> 参考链接：
->
-> * https://stackoverflow.com/questions/868568/what-do-the-terms-cpu-bound-and-i-o-bound-mean
-> * https://people.eecs.berkeley.edu/~rcs/research/interactive_latency.html
-> * https://en.wikipedia.org/wiki/Amdahl%27s_law
-> * http://baddotrobot.com/blog/2013/06/01/optimum-number-of-threads/
-> * 《并发编程实战》：[java concurrent in practice](http://jcip.net/)
+参考链接：
+
+* https://stackoverflow.com/questions/868568/what-do-the-terms-cpu-bound-and-i-o-bound-mean
+* https://people.eecs.berkeley.edu/~rcs/research/interactive_latency.html
+* https://en.wikipedia.org/wiki/Amdahl%27s_law
+* https://jobs.zalando.com/tech/blog/how-to-set-an-ideal-thread-pool-size/
+* http://baddotrobot.com/blog/2013/06/01/optimum-number-of-threads/
+* 《并发编程实战》：[java concurrent in practice](http://jcip.net/)

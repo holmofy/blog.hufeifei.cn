@@ -1,0 +1,38 @@
+@startuml
+'
+'interface BeforeAdvice
+'interface AfterAdvice
+'interface MethodInterceptor
+'
+'BeforeAdvice <|.. MethodBeforeAdviceInterceptor
+'MethodInterceptor <|.. MethodBeforeAdviceInterceptor
+'
+'AfterAdvice <|.. AfterReturningAdviceInterceptor
+'MethodInterceptor <|.. AfterReturningAdviceInterceptor
+'
+'AfterAdvice <|.. ThrowsAdviceInterceptor
+'MethodInterceptor <|.. ThrowsAdviceInterceptor
+
+interface Advice
+interface MethodBeforeAdvice
+interface AfterAdvice
+interface AfterReturningAdvice
+interface MethodInterceptor
+abstract AbstractAspectJAdvice
+AfterAdvice <|-left- AfterReturningAdvice
+Advice <|.. AbstractAspectJAdvice
+AfterAdvice <|.. AspectJAfterAdvice
+AfterAdvice <|.. AspectJAfterReturningAdvice
+AfterAdvice <|.. AspectJAfterThrowingAdvice
+AfterReturningAdvice <|.. AspectJAfterReturningAdvice
+MethodBeforeAdvice <|.. AspectJMethodBeforeAdvice
+MethodInterceptor <|.. AspectJAfterAdvice
+MethodInterceptor <|.. AspectJAfterThrowingAdvice
+MethodInterceptor <|.. AspectJAroundAdvice
+AbstractAspectJAdvice <|-- AspectJAfterReturningAdvice
+AbstractAspectJAdvice <|-- AspectJAfterAdvice
+AbstractAspectJAdvice <|-- AspectJMethodBeforeAdvice
+AbstractAspectJAdvice <|-- AspectJAfterThrowingAdvice
+AbstractAspectJAdvice <|-- AspectJAroundAdvice
+
+@enduml

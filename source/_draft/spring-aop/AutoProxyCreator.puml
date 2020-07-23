@@ -1,0 +1,31 @@
+@startuml
+
+interface BeanPostProcessor
+interface InstantiationAwareBeanPostProcessor
+interface SmartInstantiationAwareBeanPostProcessor
+BeanPostProcessor <|-- InstantiationAwareBeanPostProcessor
+InstantiationAwareBeanPostProcessor <|-- SmartInstantiationAwareBeanPostProcessor
+abstract AbstractAutoProxyCreator
+abstract AbstractAdvisorAutoProxyCreator
+SmartInstantiationAwareBeanPostProcessor <|.. AbstractAutoProxyCreator
+AbstractAutoProxyCreator <|-- AbstractAdvisorAutoProxyCreator
+AbstractAutoProxyCreator <|-right- BeanNameAutoProxyCreator
+AbstractAdvisorAutoProxyCreator <|-left- DefaultAdvisorAutoProxyCreator
+AbstractAdvisorAutoProxyCreator <|-- AspectJAwareAdvisorAutoProxyCreator
+note left{
+XML配置<aop:config/>方式
+创建的自动代理
+}
+AspectJAwareAdvisorAutoProxyCreator <|-- AnnotationAwareAspectJAutoProxyCreator
+note left{
+@Aspect注解方式
+创建的自动代理
+}
+AbstractAdvisorAutoProxyCreator <|-- InfrastructureAdvisorAutoProxyCreator
+note right{
+基础设施用到的自动代理，
+如@EnableCaching,
+@EnableTransactionManagement
+}
+
+@enduml
