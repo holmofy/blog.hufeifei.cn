@@ -46,7 +46,7 @@ A~E分别表示五个服务，用户发起一次请求到前端系统A，然后A
 
 # 3、阿里的鹰眼
 
-业界已有很多链路追踪技术的实现了，Twitter基于Google的Dapper论文开发了[Zipkin](https://github.com/openzipkin/zipkin)并提供了开源版本。Zipkin提供了Java版本的链路追踪库[Brave](https://github.com/openzipkin/brave)，[Spring Cloud Seluth](https://github.com/spring-cloud/spring-cloud-sleuth)通过自动化配置可以很方便地将Brave整合进Java应用以提供链路追踪功能。Uber公司的技术团队受[Dapper](https://research.google.com/pubs/pub36356.html) 和 [OpenZipkin](https://zipkin.io/)启发用Go语言也开发了一款链路追踪平台[Jaeger](https://github.com/jaegertracing/jaeger)。开源社区也启动了[OpenTracing计划](https://github.com/opentracing)，旨在将各种语言和平台间的链路追踪名词和概念进行[标准化](https://opentracing.io/specification/)。
+业界已有很多链路追踪技术的实现了，Twitter基于Google的Dapper论文开发了[Zipkin](https://github.com/openzipkin/zipkin)并提供了开源版本。Zipkin提供了Java版本的埋点库[Brave](https://github.com/openzipkin/brave)，[Spring Cloud Seluth](https://github.com/spring-cloud/spring-cloud-sleuth)通过自动化配置可以很方便地将Brave整合进Java应用以提供链路追踪功能。Uber公司的技术团队受[Dapper](https://research.google.com/pubs/pub36356.html) 和 [OpenZipkin](https://zipkin.io/)启发用Go语言也开发了一款链路追踪平台[Jaeger](https://github.com/jaegertracing/jaeger)。开源社区也启动了[OpenTracing计划](https://github.com/opentracing)，旨在将各种语言和平台间的链路追踪名词和概念进行[标准化](https://opentracing.io/specification/)。
 
 EagleEye （鹰眼）是Google 的分布式调用跟踪系统 Dapper 在淘宝的Java实现，现在已经被作为中间件平台应用到阿里内部的各个业务线了。
 
@@ -60,7 +60,7 @@ HSF服务端收到这个请求之后，会从请求附件里取出调用上下�
 
 访问日志里面，一般会记录调用时间、远端IP地址、结果状态码、调用耗时之类，也会记录与这次调用类型相关的一些信息，如URL、服务名、消息topic等。很多调用场景会比上面说的完全同步的调用更为复杂，比如会遇到异步、单向、广播、并发、批处理等等，这时候需要妥善处理好ThreadLocal上的调用上下文，避免调用上下文混乱和无法正确释放。另外，采用多级序号的RpcId设计方案会比单级序号递增更容易准确还原当时的调用情况。
 
-最后，EagleEye实时集群把调用链相关的所有访问日志都收集上来存储在HDFS和HBase中，EagleEye分析系统按TraceId汇总在一起之后，生成统计数据并生成报表，在鹰眼的控制台可以准确看到调用当时的情况了。
+最后，EagleEye实时集群把调用链相关的所有访问日志都收集上来存储在HDFS和HBase中，EagleEye分析系统按TraceId汇总在一起，生成统计数据并生成报表，在鹰眼的控制台可以准确看到当时的调用情况了。
 
 ![Alibaba Eagleeye](http://ww1.sinaimg.cn/large/bda5cd74ly1gh0p1t1ioxj20ez09ajsr.jpg)
 
