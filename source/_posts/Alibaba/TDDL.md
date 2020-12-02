@@ -15,7 +15,7 @@ mathjax: true
 
 随着业务发展，数据量和访问量都不断增长，但大多数业务都是读多写少。比如新闻网站的新闻、购物网站的商品，运营人员在后台编辑好后，所有的互联网用户都可能会去读取这些数据，因此数据库面临的读压力远大于写压力。这个时候**在原来数据库(Master)基础上增加一个备用数据库(Slave)，备库和主库存储相同的数据，但只提供读服务，不提供写服务。写操作以及事务中的读操作走主库，其他读操作走备库，这样就实现了读写分离。**在实现读写分离的基础上也能避免单机故障，导致无法对外提供服务。主数据库宕机，可以自动切换到备库，以实现系统容灾。
 
-![读写分离](http://ww1.sinaimg.cn/large/bda5cd74ly1ghsq86dgyaj20el06omxs.jpg)
+![读写分离](https://img.alicdn.com/tfs/TB1SDaqk9slXu8jSZFuXXXg7FXa-525-240.png)
 
 读写分离带来的问题：
 
@@ -26,7 +26,7 @@ mathjax: true
 
 数据量和访问量仍在持续上升，主备库的压力都在上升。这时可以根据业务特点考虑将数据库进行**功能性拆分**，也就是**把数据库中不同业务单元的数据表划分到不同的数据库中**。
 
-![垂直分库](http://ww1.sinaimg.cn/large/bda5cd74ly1gdqav82va5j20cv06cdhc.jpg)
+![垂直分库](https://img.alicdn.com/tfs/TB1koU3ZEH1gK0jSZSyXXXtlpXa-463-228.png)
 
 比如新闻网站中，注册用户的信息与新闻数据是没有多大关系的，数据库访问压力大时可以尝试把用户注册信息的表放在一个数据库，新闻相关的表放在另一个数据库中，这样减小了数据库的访问压力，同时便于对每个单独的业务按需进行水平扩展。这就与微服务的思想逐渐靠近，但具体业务拆分如何拆分，怎么控制拆分粒度，这需要根据业务进行仔细考量了。因为垂直分库会带来以下几个问题：
 
@@ -40,7 +40,7 @@ mathjax: true
 
 
 
-![垂直分表](http://ww1.sinaimg.cn/large/bda5cd74ly1gdqaybw4v4j20fg05qwg3.jpg)
+![垂直分表](https://img.alicdn.com/tfs/TB1RaJcZUT1gK0jSZFrXXcNCXXa-556-206.png)
 
 比如用户表数据，用户的用户名、密码、年龄、性别、手机号等字段会被经常查询，而用户的家庭住址、个人介绍等字段又长而且不常访问，所以将这些字段拆分出来单独存一张表，可以让数据库的缓存更高效。
 
@@ -110,7 +110,7 @@ $$
 
 **水平分表**——以字段为依据，按照一定策略（hash、range等），将一个表中的数据拆分到多个表中。
 
-![水平分表](http://ww1.sinaimg.cn/large/bda5cd74ly1gdqbp0abofj209307yjs4.jpg)
+![水平分表](https://img.alicdn.com/tfs/TB1JWI3ZuH2gK0jSZJnXXaT1FXa-327-286.png)
 
 其实MySQL的[分区表](https://dev.mysql.com/doc/refman/5.7/en/partitioning.html)能提供类似的功能。区别在于MySQL底层会自动分成多个文件存储，而手动分表需要在代码层改写SQL，根据分表字段映射到真正的表名。显然后者成本有点高。
 
@@ -120,7 +120,7 @@ $$
 
 ## 5.2、水平分库
 
-![水平分库](http://ww1.sinaimg.cn/large/bda5cd74ly1gdqauc6b7wj20j807stad.jpg)
+![水平分库](https://img.alicdn.com/tfs/TB19AhdZRr0gK0jSZFnXXbRRXXa-692-280.png)
 
 这种方式明显更容易扩展——库多了，io和cpu的压力自然可以成倍缓解。
 
@@ -138,11 +138,11 @@ $$
 
 通常为了保证数据平均分配在多个分库中大多会采用hash的方式进行水平分库。
 
-![hash](http://ww1.sinaimg.cn/large/bda5cd74ly1gdqe24hkczj20c7074q3c.jpg)
+![hash](https://img.alicdn.com/tfs/TB1h5Q.Zxv1gK0jSZFFXXb0sXXa-439-256.png)
 
 当数据量上涨后，容量无法支撑需要扩容，在原来的基础上再加一个库。
 
-![hash扩容策略](http://ww1.sinaimg.cn/large/bda5cd74ly1gdqe33qi8vj20g30883z5.jpg)
+![hash扩容策略](https://img.alicdn.com/tfs/TB1NqllplBh1e4jSZFhXXcC9VXa-579-296.png)
 
 不过此时由于分片规则进行了变化(uid%3 变为uid%4)，大部分的数据，无法命中在原有的数据库上了，需要重新分配，大量数据需要迁移。
 
@@ -152,17 +152,17 @@ $$
 
 简单来说，一致性哈希将整个哈希值空间组织成一个虚拟的圆环，如假设某哈希函数H的值空间为$0\sim2^{32}-1$（即哈希值是一个32位无符号整形），整个哈希空间环如下：
 
-![Hash环](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr2ivk91pj20ex0elt8i.jpg)
+![Hash环](https://img.alicdn.com/tfs/TB16M.6Zrr1gK0jSZFDXXb9yVXa-537-525.png)
 
 下一步将各个服务器使用Hash进行一个哈希，具体可以选择服务器的ip或主机名作为关键字进行哈希，这样每台机器就能确定其在哈希环上的位置，这里假设将上文中四台服务器使用ip地址哈希后在环空间的位置如下：
 
-![一致性Hash](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr2khxhysj20md0m3weh.jpg)
+![一致性Hash](https://img.alicdn.com/tfs/TB1dkheZKL2gK0jSZFmXXc7iXXa-805-795.png)
 
 将数据key使用相同的函数Hash计算出哈希值，并确定此数据在环上的位置，从此位置沿环顺时针“行走”，第一台遇到的服务器就是其应该定位到的服务器。
 
 例如我们有Object A、Object B、Object C、Object D四个数据对象，经过哈希计算后，在环空间上的位置如下：
 
-![一致性Hash](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr2mcn0qoj20kq0ljwen.jpg)
+![一致性Hash](https://img.alicdn.com/tfs/TB1eeg4ZEH1gK0jSZSyXXXtlpXa-746-775.png)
 
 **一致性哈希算法的容错性**：
 
@@ -172,17 +172,17 @@ $$
 
 如果在系统中增加一台服务器Node X，如下图所示：
 
-![扩展性](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr2pwclytj20kl0l3jrl.jpg)
+![扩展性](https://img.alicdn.com/tfs/TB1Pk.VZpY7gK0jSZKzXXaikpXa-741-759.png)
 
 此时对象Object A、B、D不受影响，只有对象C需要重定位到新的Node X 。
 
 另外，一致性哈希算法在服务节点太少时，容易因为节点分部不均匀而造成数据倾斜问题。例如系统中只有两台服务器，其环分布如下：
 
-![Hash环](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr34vgmgbj20f40lc746.jpg)
+![Hash环](https://img.alicdn.com/tfs/TB1T1w3ZuH2gK0jSZJnXXaT1FXa-544-768.png)
 
 此时必然造成大量数据集中到Node A上，而只有极少量会定位到Node B上。为了解决这种数据倾斜问题，一致性哈希算法引入了虚拟节点机制，即对每一个服务节点计算多个哈希，每个计算结果位置都放置一个此服务节点，称为虚拟节点。具体做法可以在服务器ip或主机名的后面增加编号来实现。例如上面的情况，可以为每台服务器计算三个虚拟节点，于是可以分别计算 “Node A#1”、“Node A#2”、“Node A#3”、“Node B#1”、“Node B#2”、“Node B#3”的哈希值，于是形成六个虚拟节点：
 
-![虚拟节点](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr35nqgn0j20l40lgmx9.jpg)
+![虚拟节点](https://img.alicdn.com/tfs/TB1bb5nmwgP7K4jSZFqXXamhVXa-760-772.png)
 
 下面是Java语言的实现代码（[Wikipedia](https://en.wikipedia.org/wiki/Consistent_hashing#External_links)上还有其他语言的实现）：
 
@@ -242,13 +242,13 @@ public class ConsistentHash<T> {
 
 TDDL基于JDBC Driver之上，所以下层可以支持多种数据库类型。整个中间件实现了 JDBC规范，开发可以和往常一样使用JDBC Tempalte、MyBatis、Hibernate ORM等各种持久层技术。
 
-![TDDL架构图](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr5lasu9lj20q10fjwf2.jpg)
+![TDDL架构图](https://img.alicdn.com/tfs/TB1ml.ZZxD1gK0jSZFsXXbldVXa-937-559.png)
 
 ## 7.1、TDDL基本架构
 
 TDDL主要分成三层：Matrix层、Group层、Atom层，分别对应TDataSource、TGroupDataSource、TAtomDataSource。
 
-![TDDL架构图](http://ww1.sinaimg.cn/large/bda5cd74ly1gdr66tgeb6j216p0mztcg.jpg)
+![TDDL架构图](https://img.alicdn.com/tfs/TB1KNE_ZAY2gK0jSZFgXXc5OFXa-1537-827.png)
 
 **1、Matrix层(TDataSource)**
 

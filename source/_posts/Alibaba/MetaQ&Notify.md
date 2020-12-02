@@ -46,7 +46,7 @@ void createTrade(...) {
 }
 ```
 
-![消息队列](http://www.plantuml.com/plantuml/svg/LOrD2W8n34RtFKKlq9v0XX4lCA8NY3IWCFrXaYoylP1OmkpUznRVMudXOAbxQBrWV1vGq723hy6jo-ZjB_kdiU6Zai5rZ4te7Geml80mtWK5Wrx5b9RpNlHOLRoaDDzTQCAtTdpDc9kSSrYn5Qdx3m00)
+![消息队列](https://img.alicdn.com/tfs/TB142BPYpT7gK0jSZFpXXaTkpXa-1064-584.svg)
 
 ## 1.2、异步
 
@@ -186,7 +186,7 @@ MetaQ存储的核心是实现一个持久化的分布式队列，重新设计后
 
 根据[阿里云团队的压测结果](https://www.alibabacloud.com/blog/kafka-vs-rocketmq--multiple-topic-stress-test-results_69781)可以看出，在Topic较多的情况下，Kafka的性能有大幅下降，而RocketMQ相对受影响较小。
 
-![Kafka与RocketMQ在多Topic的压测结果](http://ww1.sinaimg.cn/large/bda5cd74ly1ge7dlvfa3lj20eo07y3yz.jpg)
+![Kafka与RocketMQ在多Topic的压测结果](https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/5309aa4b95d8e462dbe4f3f90bc0da63.png)
 
 
 
