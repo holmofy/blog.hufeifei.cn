@@ -1,6 +1,7 @@
 .DS_Store
 Thumbs.db
 db.json
+package-lock.json
 *.log
 *.iml
 node_modules/
@@ -8,7 +9,9 @@ public/
 .idea/
 .deploy*/node_modules/
 .vs/
+.vscode/
 public/
 ssl/
 .deploy_git/
 RefDocument/
+themes/next/

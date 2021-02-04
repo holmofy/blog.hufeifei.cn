@@ -6,7 +6,7 @@
 ## 网站标题
 title: holmofy
 ## 子标题
-subtitle:
+subtitle: 
 description:  &nbsp; 胡飞飞的个人博客
 author: 胡飞飞
 language: zh-Hans
@@ -37,7 +37,10 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # 新标签页中打开外链
+external_link:
+  enable: true # 新标签页中打开外链
+  exclude: ""
+  field: site
 filename_case: 0
 render_drafts: false
 post_asset_folder: true # 建立资源(图片)文件，安装hexo-assert-image插件
@@ -102,3 +105,9 @@ githubEmojis:
   inject: true
   styles:
   customEmojis:
+
+excerpt:
+  depth: 3
+  excerpt_excludes: []
+  more_excludes: []
+  hideWholePostExcerpts: true
