@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: CentOS6上搭建Tomcat环境
 date: 2017-08-15 16:50:23
 tags:

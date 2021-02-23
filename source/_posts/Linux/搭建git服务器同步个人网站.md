@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: 搭建git服务器同步个人网站
 date: 2017-06-15 14:49:23
 tags:

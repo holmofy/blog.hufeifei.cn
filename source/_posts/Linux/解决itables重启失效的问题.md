@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: 解决itables重启失效的问题
 date: 2017-09-16 16:50:23
 tags:

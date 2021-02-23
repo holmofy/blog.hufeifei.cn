@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: 远程连接Oracle的配置
 date: 2017-08-17 14:49:23
 tags:

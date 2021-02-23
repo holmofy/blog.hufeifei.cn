@@ -11,6 +11,10 @@ broker：
 1. 存储问题，基于数据库，基于文件，或其他存储
 2. 高可用问题，replica
 
+kafka consumer
+https://www.oreilly.com/library/view/kafka-the-definitive/9781491936153/ch04.html
+
+
 
 https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq
 https://www.zhihu.com/question/54152397

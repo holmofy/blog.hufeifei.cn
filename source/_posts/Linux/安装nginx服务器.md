@@ -1,5 +1,4 @@
 ---
-layout: blog
 title: 源码安装nginx服务器并配置服务自启动
 date: 2017-09-16 16:50:23
 tags:
