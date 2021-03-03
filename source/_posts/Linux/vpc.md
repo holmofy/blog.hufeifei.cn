@@ -13,7 +13,7 @@ tags: Linux
 
 所以新弄了台2G的机器，单独做日志分析。
 
-![server](https://ae02.alicdn.com/kf/U8ea835ad1320403cb6085cb6cfebc46cW.jpg)
+![server](https://p.pstatp.com/origin/pgc-image/9038b52b19b64847a62f6312c6335a7f)
 
 # 2、公网不行，用内网，可是内网也不通
 
@@ -23,24 +23,24 @@ tags: Linux
 
 同一私有网络下，不同子网内网不通。公网ping没有问题，但是内网无法连接。
 
-![ping](https://ae04.alicdn.com/kf/Uf52e9ddc7da8447587575389c318b5b1H.jpg)
-![ping](https://ae02.alicdn.com/kf/U355b84ab66f94f3490d276dad38f5e83P.jpg)
+![ping](https://p.pstatp.com/origin/pgc-image/219f414e43da43ffa61094e25d75d13e)
+![ping](https://p.pstatp.com/origin/pgc-image/128055bc6f9b4221beaee61ea6a76281)
 
 # 3、安全组策略的问题？
 
 因为刚开始安全组入站规则，我是把ICMP的ping给禁用了的，所以专门把ICMP开放了
 
-![安全组策略](https://ae02.alicdn.com/kf/U3d757b1d24904a50b70a016541145dbbs.jpg)
+![安全组策略](https://p.pstatp.com/origin/pgc-image/7ea5195936d4441c9892d4a388afb777)
 
 # 4、原来是路由问题
 
 我装了个telent尝试用别的协议连一下，这个报错让我发现了问题的关键: 路由配置有问题
 
-![telnet](https://ae04.alicdn.com/kf/U669e8c665a4740a2aa99dcf1849b5660G.jpg)
+![telnet](https://p.pstatp.com/origin/pgc-image/0be08b7079e34d68ad676a16e509a55f)
 
 我看了下路由表
 
-![路由表](https://ae04.alicdn.com/kf/U3556d0ecac074e8dace2fc2bf8834a996.jpg)
+![路由表](https://p.pstatp.com/origin/pgc-image/8e7751c8623b4d2eaf7ff1cbf76f49ac)
 
 可以看到docker网络与内网网段冲突了——docker的网段正好覆盖了内网网段
 
