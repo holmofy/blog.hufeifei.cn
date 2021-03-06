@@ -83,6 +83,11 @@ tar czv src | ssh user@example.com 'tar xz'
 ssh user@example.com 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 ```
 
+还可以远程执行一段脚本，无需拷贝脚本到远程服务器
+```sh
+ssh user@example.com bash < /path/to/local/script.sh
+```
+
 远程执行交互式命令
 ```sh
 ssh user@example.com python
@@ -182,7 +187,26 @@ Host *
 ```
 更多的配置选项可以通过`man ssh_config`命令查看手册
 
-# 6. ssh多路复用
+# 6. 连接保活
+
+TCP连接有[超时时间](https://tools.ietf.org/html/rfc5482)，防火墙也可以[配置空闲连接的超时关闭](https://www.google.com/search?q=firewall+timeout)。
+
+所以经常看到我们ssh连上服务器，放着几分钟后，连接就断开了，这个时候就需要我们配置一下[连接保活](https://patrickmn.com/aside/how-to-keep-alive-ssh-sessions/)
+
+```
+Host *
+  # 是否开启TCP保活，开启后会自动发送TCP保活消息
+  # 默认yes
+  TCPKeepAlive yes
+  # 间隔多少秒发送一次保活消息
+  # 默认为0，不发送
+  ServerAliveInterval 60
+  # 最多发送多少次保活消息
+  # 默认为3，超过3次还是会断开连接
+  ServerAliveCountMax 10
+```
+
+# 7. ssh多路复用
 
 通常来说，[多路复用(Multiplexing)](https://en.wikipedia.org/wiki/Multiplexing)就是在单个连接上处理多个请求的功能。这和Java中的NIO解决的问题一样。
 
@@ -232,8 +256,10 @@ ssh -O exit example.com  # 强制关闭socket连接
 
 refs:
 
-^ https://jeremyxu2010.github.io/2018/12/ssh%E7%9A%84%E4%B8%89%E7%A7%8D%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91
+^ https://jeremyxu2010.github.io/2018/12/ssh的三种端口转发
 ^ http://daemon369.github.io/ssh/2015/03/21/using-ssh-config-file
 ^ https://blog.scottlowe.org/2015/12/11/using-ssh-multiplexing/
+^ https://patrickmn.com/aside/how-to-keep-alive-ssh-sessions/
 ^ https://vqiu.cn/ssh-multiplexing/
+^ https://www.redhat.com/sysadmin/ssh-proxy-bastion-proxyjump
 ^ https://zhuanlan.zhihu.com/p/74193910
