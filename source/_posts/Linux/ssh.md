@@ -187,6 +187,35 @@ Host *
 ```
 更多的配置选项可以通过`man ssh_config`命令查看手册
 
+# 6. 穿越跳板机
+
+![跳板机](https://p.pstatp.com/origin/pgc-image/8af6c15e283d43e0a4921d1f8033f750)
+
+[跳板机](https://en.wikipedia.org/wiki/Bastion_host)在企业网络安全方面经常使用，为了避免多次`ssh`跳转多次，可以使用ssh的跳板机功能。
+
+```sh
+ssh -J <bastion-host> <remote-host>
+或者
+ssh -J user@<bastion:port> <user@remote:port>
+```
+如果跳板机有多层，可以直接用逗号分隔
+```sh
+ssh -J <bastion1>,<bastion2> <remote>
+```
+
+`-J`选项提供了灵活性，当然我们也可以直接在`.ssh/config`文件中进行配置
+```
+### The Bastion Host
+Host bastion-host-nickname
+  HostName bastion-hostname
+
+### The Remote Host
+Host remote-host-nickname
+  HostName remote-hostname
+  ProxyJump bastion-host-nickname
+```
+这样就可以直接使用`ssh remote-host-nickname`命令穿越跳板机登录远程主机了
+
 # 6. 连接保活
 
 TCP连接有[超时时间](https://tools.ietf.org/html/rfc5482)，防火墙也可以[配置空闲连接的超时关闭](https://www.google.com/search?q=firewall+timeout)。
