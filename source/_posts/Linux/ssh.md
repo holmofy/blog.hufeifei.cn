@@ -82,6 +82,8 @@ tar czv src | ssh user@example.com 'tar xz'
 ```sh
 ssh user@example.com 'mkdir -p .ssh && cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 ```
+> 也可以用`ssh-copy-id <user>@<host>`实现上面的功能，当然如果是用其他端口或其他公钥，可以另外用参数指定：
+> `ssh-copy-id -i ~/.ssh/otherkey -p 2222 username@host`
 
 还可以远程执行一段脚本，无需拷贝脚本到远程服务器
 ```sh
