@@ -1,11 +1,11 @@
 ---
 title: 新人对TDDL分库分表的一些思考
 date: 2020-04-13 1:26
-categories: JAVA
+categories: JAVA,DB
 mathjax: true
 ---
 
-分库分表这个技术在之前一家公司其实也有接触。上一家公司在业务上按照用户水平分库的，所以避免了很多业务上的问题，但也只是基于Spring的[AbstractRoutingDataSource](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/datasource/lookup/AbstractRoutingDataSource.html)，根据userId做了简单的路由。之前也在网上听说过sharding-jdbc等中间件，也仅限于了解。所以结合我从内网看到的关于TDDL中间件的文章和外网看到的一些文章，在这篇文章中整理一下我这个新人对分库分表的认识。
+分库分表这个技术在之前一家公司其实也有接触。上一家公司在业务上按照用户水平分库的，所以避免了很多业务上的问题，但也只是基于Spring的[AbstractRoutingDataSource](https://spring.io/blog/2007/01/23/dynamic-datasource-routing)，根据userId做了简单的路由。之前也在网上听说过sharding-jdbc等中间件，也仅限于了解。所以结合我从内网看到的关于TDDL中间件的文章和外网看到的一些文章，在这篇文章中整理一下我这个新人对分库分表的认识。
 
 # 1、单库单表
 

@@ -1,1 +1,0 @@
-https://www.atatech.org/articles/16423

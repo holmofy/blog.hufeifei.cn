@@ -1,4 +1,4 @@
-Structured log
+Structured log: https://nxlog.co/whitepapers/structured-logging
 
 Java的日志框架梳理：https://www.atatech.org/articles/105600
 

@@ -1,1 +1,0 @@
-https://github.com/jvantuyl/sublime_diagram_plugin

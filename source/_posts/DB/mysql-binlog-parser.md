@@ -16,6 +16,8 @@ categories: 数据库
 
 这就是我毕业入职的第一家公司的报表统计逻辑。这个设计在订单量小的时候是看不出问题的，而一旦某一时刻订单量增多。基于MySQL的队列表由于B+树的写入吞吐量不够，导致MySQL CPU经常飙升。比如双十一，618这样的大促，程序员就得在颤颤巍巍中度过。
 
+其次，从MySQL同步到ElaticSearch是根据`last_modify_time`时间扫索引增量同步的，这就要求表上必须创建`last_modify_time`索引，Scheduler一多也会无形地增加MySQL的读取负担。
+
 > B+的写入性能肯定是不如直接顺序写文件的，B+树的本质就是牺牲写性能，换取磁盘上的随机读的查找结构，所以大部分数据库都会设计[Buffer Pool](https://dev.mysql.com/doc/refman/8.0/en/innodb-buffer-pool.html)来管理B+树脏页，以避免频繁的随机IO。
 > 同时为了防止Buffer数据丢失同时为了保证事务的ACID，所以就有了[Redo-log](https://dev.mysql.com/doc/refman/8.0/en/innodb-redo-log.html)来进行崩溃恢复，[Undo-log](https://dev.mysql.com/doc/refman/5.6/en/innodb-undo-logs.html)来做未提交事务的撤销。这些日志都是顺序写入，远比B+树的随机写性能高。
 
@@ -29,7 +31,7 @@ categories: 数据库
 
 与InnoDB中的[redo-log](https://dev.mysql.com/doc/refman/8.0/en/innodb-redo-log.html)、[undo-log](https://dev.mysql.com/doc/refman/8.0/en/innodb-undo-logs.html)不同，binlog和[slow_query_log](https://dev.mysql.com/doc/refman/8.0/en/slow-query-log.html)一样是server层的日志，所以InnoDB和MyISAM等各种存储引擎的数据修改都会记录到这个日志中。
 
-> MySQL拥有分层架构，支持可插拔的存储引擎，所以服务层的binlog与[InnoDB引擎的redo-log](https://mysqlserverteam.com/mysql-8-0-new-lock-free-scalable-wal-design/)是不同的两个事物，这也是为什么MySQL支持以[`STATEMENT`格式](https://dev.mysql.com/doc/refman/5.7/en/binary-log-setting.html)直接将sql语句存入binlog。而像PostgreSQL这样的数据库，[WAL日志](https://www.postgresql.org/docs/8.1/wal-intro.html)除了作为redo-log用于保证事务的持久性外，WAL日志在Replica过程中也扮演着与MySQL的binlog相同的角色。
+> MySQL拥有分层架构，支持可插拔的存储引擎，所以服务层的binlog与[InnoDB引擎的redo-log](https://mysqlserverteam.com/mysql-8-0-new-lock-free-scalable-wal-design/)是不同的两个事物，这也是为什么MySQL支持以[`STATEMENT`格式](https://dev.mysql.com/doc/refman/5.7/en/binary-log-setting.html)直接将sql语句存入binlog。而像PostgreSQL这样的数据库，[WAL日志](https://www.postgresql.org/docs/8.1/wal-intro.html)除了作为redo-log用于保证事务的持久性外，WAL日志在Replica过程中也扮演着与MySQL的binlog相同的角色, 但是需要用[Logical Decoding](https://www.postgresql.org/docs/9.4/logicaldecoding-explanation.html)将WAL日志解析成数据流或SQL语句。
 
 ![CDC architecture](https://debezium.io/documentation/reference/1.4/_images/debezium-architecture.png)
 
@@ -88,7 +90,7 @@ categories: 数据库
 
 缺点：
 
-* 文档大多数是中文，得多花点耐心
+* 文档大多数是英文的，得多花点耐心
 
 > 有意思的是阿里开源的[Flink流处理](https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/connectors/formats/debezium.html)系统也是使用Debezium来做CDC，当然它还支持Canel、Maxwell
 >
@@ -229,11 +231,48 @@ Kafka-connect可以用[单机版(`standalone`)和分布式版(`distributed`)](ht
 >
 > Debezium-Connector的所有配置：https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-connector-properties
 
-# 5、Debezium踩坑记录
+# 5、binlog解析的难点与Debezium工作原理
+
+binlog的[ROW模式](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_format)下类似于csv是没有shema的，我们将[row_image](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_row_image)设置成full模式，不管update操作只涉及几列，都会把完整的行数据写入到binlog。
+
+## 5.1、表结构随时都会修改，需要解析ddl并维护一份schema用于事件的生成
+
+数据库客户端查询数据库的时候，客户端拿到的都是数据库当前的schema。因为schema随时可以改变，这意味着主从备份的时候，debezium不能只使用当前的schema，因为debezium可能正在处理较旧的事件。
+
+比如，有一张trade_info表，在某个时间点T添加了payment字段，在T之前的binlog是没有payment字段的，T之后的binlog才有payment。那Debezium生成事件也应该是在T之前有payment字段，T之后没有payment字段。
+
+> MySQL在binlog中不仅包含行级修改，还包括了数据库的DDL语句。当Debezium的Connector读取binlog并遇到这些DDL语句时，它会解析这些DDL并更新内存中每个表shema。Debezium使用这个shema就能标识每次增删改操作的结构从而生成事件。
+
+## 5.2、内存里的schema维护存在问题
+
+崩溃或正常重启后，怎么还原schema，如果使用数据库当前的schema会怎样呢：
+
+1. 假如在T0~T1的时间内，表结构A发生过增加列的DDL操作，那在处理T0时间段A表的binlog时，拿到的表结构为T1的schema，就会出现列不匹配的情况. 比如之前的异常: column size is not match for table: xx , 12 vs 13
+2. 假如在T0~T1发生了增加 C1列、删除了C2列，此时拿到的列的总数还是和T0时保持一致，但是对应的列会错位
+3. 假如在T0~T1发生了drop table的DDL，此时拿表结构时会出现无法找到表的异常，一直阻塞整个binlog处理，比如not found [xx] in db
+
+很明显，不能直接查数据库当前的schema来为之前的binlog生成事件。Debezium和Canal都有自己的解决方案：
+
+Debezium会把所有DDL语句以及DDL在binlog的位置单独存在一个[history的topic](https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-schema-history-topic)中，这个topic可以用[database.history.kafka.topic](https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-property-database-history-kafka-topic)进行配置。
+当Debezium的Connector崩溃或正常停止重启后，Connector重新从原来的位置读取binlog。但是存在内存里的schema已经没有了，所以它会重新解析history中的DDL语句重建表结构。
+
+[alibaba/canal](https://github.com/alibaba/canal)提供了[TableMetaTSDB](https://github.com/alibaba/canal/wiki/TableMetaTSDB)的功能可以存储表结构的时序数据。
+
+## 5.3、Kafka无法保证多个partition的消费顺序
+
+因为Debezium会重新解析history topic的DDL语句，我们希望DDL语句能按正常顺序解析，但是Kafka无法保证多个partition的消费顺序，所以history的topic的partition个数必须设置成1。
+
+## 5.4、消费DDL
+
+Debezium不希望用户直接使用history topic。因为里面包含了binlog中的所有ddl语句。
+
+如果用户想要消费自己关心的表的DDL语句，Debezium提供了[schema change topic](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-schema-change-topic)，这个topic名字被命名为`serverName`，这个serverName通过[`database.server.name`](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-property-database-server-name)配置。
+
+# 6、Debezium踩坑记录
 
 debezium配置起来还是比较简单的，但是这么复杂的项目，坑还是比较多的。
 
-### 5.1、关闭快照初始化
+### 6.1、关闭快照初始化
 
 Debezium的Connector第一次启动时，会给你的数据库执行一次[快照初始化](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-snapshots)。
 
@@ -256,9 +295,13 @@ snapshot只适合在备份从库上执行，否则可能会影响正常用户的
 
 `schema_only` - Connector初始化时只读取表的`schame`而不读取数据。如果你只需要Connector启动后的数据库变更，那这个配置很有用。
 
-`schema_only_recovery` - 这个配置是用来恢复丢失的历史数据。
+`schema_only_recovery` - 用于恢复重启后丢失的schema，[但是这个只能用在自上次提交binlog-offset后](https://debezium.io/blog/2018/03/16/note-on-database-history-topic-configuration/)，schema没有发生任何变更。
 
-### 5.2、修改topic
+`initial_only` - 这个配置在文档里没有，[代码里](https://github.com/debezium/debezium/blob/1.5/debezium-connector-mysql/src/main/java/io/debezium/connector/mysql/MySqlConnectorConfig.java#L169)可以看到，这个是只用来执行快照的。
+
+> 用一句话总结一下：`initial`先全量后增量同步，`schema_only`和`never`是只增量同步，`initial_only`是只全量同步。
+
+### 6.2、修改topic
 
 Debezium默认的行为是将一张表上的`INSERT`、`UPDATE`、`DELETE`操作记录到一个topic。Topic命名规则是`<serverName>.<databaseName>.<tableName>`
 
@@ -275,7 +318,7 @@ transforms.route.replacement=$3
 
 Kafka-Connect提供了一个[`RegexRouter`](https://docs.confluent.io/platform/current/connect/transforms/regexrouter.html)、[`TimestampRouter`](https://docs.confluent.io/platform/current/connect/transforms/timestamprouter.html)、[MessageTimestampRouter](https://docs.confluent.io/platform/current/connect/transforms/messagetimestamprouter.html)几个SMT让我们修改数据存入的topic。这里的RegexRouter，允许我们用正则表达式来对`Debezium`默认的topic进行修改。
 
-### 5.3、Decimal数据的处理
+### 6.3、Decimal数据的处理
 
 对于MySQL中的[`decimal`](https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html)类型的数据，Java里会转成`BigDecimal`，但是以json格式存入kafka的时候就会丢失精度。
 
@@ -283,14 +326,14 @@ Kafka-Connect提供了一个[`RegexRouter`](https://docs.confluent.io/platform/c
 
 Debezium支持[`decimal.handling.mode`](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-property-decimal-handling-mode)选项可以将decimal配置成`string`类型。
 
-### 5.4、时间类型数据的处理
+### 6.4、时间类型数据的处理
 
 Debezium底层的binlog解析用的是[shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)。这中间做了很多转换：
 
-| mysql                           | binlog-connector                     | debezium                      | debezium schema                 |
+| mysql(Asia/Shanghai)            | binlog-connector                     | debezium                      | debezium schema                 |
 | ------------------------------- | ------------------------------------ | ----------------------------- | ------------------------------- |
 | date (2021-01-28)               | LocalDate (2021-01-28)               | Integer (18655)               | io.debezium.time.Date           |
-| time (17:29:04)                 | Duration (PT17H29M4S)                | Long (62944000000)            | io.debezium.time.Time           |
+| time (17:29:04)                 | Duration (PT17H29M4S)                | Long (62944000000)            | io.debezium.time.MicroTime      |
 | timestamp (2021-01-28 17:29:04) | ZonedDateTime (2021-01-28T09:29:04Z) | String (2021-01-28T09:29:04Z) | io.debezium.time.ZonedTimestamp |
 | datetime (2021-01-28 17:29:04)  | LocalDateTime (2021-01-28T17:29:04)  | Long (1611854944000)          | io.debezium.time.Timestamp      |
 
@@ -302,19 +345,21 @@ Debezium底层的binlog解析用的是[shyiko/mysql-binlog-connector-java](https
 
 `datetime`类型，最后在Debezium中被转成了一个long类型，时区是写死的UTC时区。
 
+> [文档里](https://debezium.io/documentation/reference/connectors/mysql.html#mysql-temporal-types)有MySQL时间类型与存入Kafka类型的映射表
+
 总之，Debezium时间的处理混乱不堪。所以我为Debezium写了一个[`datetime-converter`的补丁](https://github.com/holmofy/debezium-datetime-converter)可以将这四种类型转成字符串。配置如下：
 
 ```properties
 converters=datetime
 datetime.type=com.darcytech.debezium.converter.MySqlDateTimeConverter
-datetime.format.date=YYYY-MM-dd
+datetime.format.date=yyyy-MM-dd
 datetime.format.time=HH:mm:ss
-datetime.format.datetime=YYYY-MM-dd HH:mm:ss
-datetime.format.timestamp=YYYY-MM-dd HH:mm:ss
+datetime.format.datetime=yyyy-MM-dd HH:mm:ss
+datetime.format.timestamp=yyyy-MM-dd HH:mm:ss
 datetime.format.timestamp.zone=UTC+8
 ```
 
-### 5.5、墓碑事件
+### 6.5、墓碑事件
 
 Debezium会生成5种事件：
 
@@ -440,7 +485,7 @@ Debezium会生成5种事件：
 
 需要特别注意，墓碑事件的消息value为null，需要为这个事件做特殊处理。
 
-### 5.6、禁用Kafka-Connect的Schema配置
+### 6.6、禁用Kafka-Connect的Schema配置
 
 Kafka-Connect为了保证每条消息是可以自我描述的，所以都会带schema。如果我们使用了[`JsonConverter`](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/)进行序列化，默认情况下，kafka中的消息格式是这样的：
 
@@ -474,11 +519,13 @@ key.converter.schemas.enable=false
 value.converter.schemas.enable=false
 ```
 
-> 更好的解决方案是使用集中式的Schema Registry。Debezium也推荐使用这种方式。
->
-> 在github搜索[`schema registry`](https://github.com/search?q=Schema+registry)关键词查找相关项目。[Debezium在文档中](https://debezium.io/documentation/faq/#avro-converter)推荐[Apicurio API and Schema Registry](https://github.com/Apicurio/apicurio-registry) 和 [Confluent Schema Registry](https://github.com/confluentinc/schema-registry)这两种SchemaRegistry。
+更好的解决方案是使用中心化的Schema Registry。Debezium也推荐使用这种方式。
 
-### 5.5、对Debezium生成的消息进行处理
+![schema registry](https://docs.confluent.io/platform/current/_images/schema-registry-and-kafka.png)
+
+在github搜索[`schema registry`](https://github.com/search?q=Schema+registry)关键词查找相关项目。[Debezium在文档中](https://debezium.io/documentation/faq/#avro-converter)推荐[Apicurio API and Schema Registry](https://github.com/Apicurio/apicurio-registry) 和 [Confluent Schema Registry](https://github.com/confluentinc/schema-registry)这两种SchemaRegistry。
+
+### 6.7、对Debezium生成的消息进行处理
 
 没有shema的时候，Debezium默认生成的数据格式是这样的：
 
@@ -523,6 +570,27 @@ transforms.unwrap.add.fields=table,lsn
 
 这个时候ExtractNewRecordState会把重写delete事件的消息体，将删除的主键等信息存入`value`字段，以备后续处理。
 
+### 6.8、kafka-connect的坑
+
+kafka broker本身有个配置[auto.create.topics.enable](https://kafka.apache.org/documentation/#brokerconfigs_auto.create.topics.enable)默认为true——当发送消息到一个不存在的topic时，kafka会自动创建这个topic，这些自动创建的topic会使用[num.partitions](http://kafka.apache.org/documentation.html#brokerconfigs_num.partitions)和[default.replication.factor](http://kafka.apache.org/documentation.html#brokerconfigs_default.replication.factor)指定的partition数和replicas数创建topic。生产环境一般是不建议使用kafka broker中的自动创建主题的，因为这可能会带来很大的维护成本，我们希望不同情况使用不同的主题配置。
+
+另外，kafka-connect启动时默认会创建三个[connect内部使用的topic](https://docs.confluent.io/home/connect/userguide.html#kconnect-internal-topics)，这三个topic名字由`config.storage.topic`、`offset.storage.topic`、`status.storage.topic`三个配置指定，它们分别存储connector的配置和offset以及当前的状态。
+
+如果想要对这三个自动创建的topic进行一些配置，可以参考[connect的文档](https://docs.confluent.io/home/connect/userguide.html#using-ak-broker-default-topic-settings)
+
+如果你是手动创建需要注意：
+
+[config的partition必须为1](https://docs.confluent.io/platform/current/connect/references/allconfigs.html#distributed-worker-configuration)；
+
+offset和kafka内建的`__consumer_offsets`类似，如果要支持更大的kafka-connect集群，可以把partition设大一点。
+
+这三个topic的`cleanup.policy`都必须设置成compacted模式。
+
+如果是source connector内部要自动创建topic，可以使用connector的一些配置，具体可以参考：
+
+[Configuring Auto Topic Creation for Source Connectors](https://docs.confluent.io/home/connect/userguide.html#configuring-auto-topic-creation-for-source-connectors)
+
+[Customization of Kafka Connect automatic topic creation](https://debezium.io/documentation/reference/configuration/topic-auto-create-config.html)
 
 
 Refs:
@@ -532,3 +600,7 @@ Refs:
 ^ Debezium FAQ: https://debezium.io/documentation/faq/
 
 ^ Confluent Document: https://docs.confluent.io/platform/current/overview.html
+
+^ Aliyun DTS服务原理: https://www.alibabacloud.com/help/zh/doc-detail/176085.htm
+
+^ Aliyun DTS应用场景: https://www.alibabacloud.com/help/zh/doc-detail/176086.htm
