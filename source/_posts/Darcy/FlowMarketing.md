@@ -10,13 +10,13 @@ categories: JAVA
 
 流程化营销：店铺根据需要在前端绘制一张执行流程图，校验连通性与数据合法性后交由后端服务执行。
 
-![](./FlowMarketing-Img/flow-graph.png)
+![](./flow-graph.png)
 
 # 节点类型
 
 ##### 数据源节点
 
-![起始节点](./FlowMarketing-Img/start-nodes.png)
+![起始节点](./start-nodes.png)
 
 数据源节点中有动态数据节点和静态数据节点：
 
@@ -25,19 +25,19 @@ categories: JAVA
 
 ##### 逻辑节点
 
-![逻辑节点](./FlowMarketing-Img/logic-nodes.png)
+![逻辑节点](./logic-nodes.png)
 
 可以对数据节点进行逻辑操作，还可以对逻辑操作的结果再进行逻辑操作。
 
 ##### 动作节点
 
-![](./FlowMarketing-Img/action-nodes.png)
+![](./action-nodes.png)
 
 动作节点都有执行时间，用户在这个节点里配置短信内容，选择发放的优惠券，或者赠送积分的数量。
 
 ##### 分析节点
 
-![](./FlowMarketing-Img/analysis-nodes.png)
+![](./analysis-nodes.png)
 
 对短信、优惠券等节点的营销效果进行分析。
 
