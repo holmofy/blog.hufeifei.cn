@@ -9,7 +9,7 @@ mathjax: true
 
 **线性查找**是最基础(野蛮)的查找算法，最坏的情况从头遍历到位，最好的情况比较一次，**平均时间复杂度为$\frac{N}{2}$**。
 
-![线性查找](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiiyfojcg20c60503yp.gif)
+![线性查找](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiiyfojcg20c60503yp.gif)
 
 **二分查找能达到$O(log_2N)$的时间复杂度，但是前提是列表中的数据必须是有序的**。
 
@@ -33,7 +33,7 @@ mathjax: true
 
 插入的时候和父节点比较一下，就知道应该插入左子树还是右子树了：
 
-![BST](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbijpr9vhg20iu05nadf.gif)
+![BST](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbijpr9vhg20iu05nadf.gif)
 
 查找的时候和父节点比较一下，就知道应该从左子树里面找还是从右子树里面找了。
 
@@ -41,7 +41,7 @@ mathjax: true
 
 二叉搜索树看似无懈可击，但是仍有致命的**缺点**：**可能退化成链表**
 
-![BST退化成链表](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbikmqc8fg20g109udmr.gif)
+![BST退化成链表](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbikmqc8fg20g109udmr.gif)
 
 即使没有退化成严格意义上的链表，左右子树不平衡，也仍然难以达到时间复杂度为$O(log_2N)$的理想状态。
 
@@ -76,15 +76,15 @@ $$
 
 > 下图是一张AVL树左右旋转的例子
 
-![AVL树旋转的例子](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbilbbimyg208w050dm1.gif)
+![AVL树旋转的例子](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbilbbimyg208w050dm1.gif)
 
 
 
 > 我这里也录了两张稍微慢一点的动画
 
-![AVL树旋转](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbilvjygog20j809i47q.gif)
+![AVL树旋转](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbilvjygog20j809i47q.gif)
 
-![AVL树旋转](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbimdctf8g20j809i47q.gif)
+![AVL树旋转](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbimdctf8g20j809i47q.gif)
 
 > [这个链接](http://rosettacode.org/wiki/AVL_tree)中有AVL树在各语言中的实现
 
@@ -106,17 +106,17 @@ $$
 
 > 对于一颗红黑树Tree，根据第五条特性设B为路径中黑色节点的数量且为最短路径，根据第四条特性不可能有多个连续的红色节点，也就是最长路径只能由红色和黑色交替出现，即最长路径为2B。
 
-![红黑树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbin2lperj20mb0armxz.jpg)
+![红黑树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbin2lperj20mb0armxz.jpg)
 
 红黑树通过左旋、右旋实现平衡：
 
-![左旋右旋](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbinjj5olg206y06ywlt.gif)
+![左旋右旋](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbinjj5olg206y06ywlt.gif)
 
 这里有两张红黑树插入过程中进行旋转整个过程的动态图：
 
-![带叶子节点的红黑树示例](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbinym1hwg20nu090tqq.gif)
+![带叶子节点的红黑树示例](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbinym1hwg20nu090tqq.gif)
 
-![不带叶子节点的红黑树示例](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbioc68s0g20nu090qeu.gif)
+![不带叶子节点的红黑树示例](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbioc68s0g20nu090qeu.gif)
 
 > 因为红黑树在整体上性能较佳，所以在各大编程语言中都有它的身影，如C++[标准模板库中的`std::map`](http://en.cppreference.com/w/cpp/container/map)，Java[集合中的`java.util.TreeMap`](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html)。
 
@@ -126,15 +126,15 @@ $$
 
 所以它在插入或访问一个元素后，会**把这个最近使用的元素通过一次或多次旋转最终放到根节点的位置**，以便下次访问。
 
-![伸展树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiovv6jag20o909vtpc.gif)
+![伸展树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiovv6jag20o909vtpc.gif)
 
 > 在某些特性上SplayTree和[LruCache](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU)有点相似。猜的没错，SplayTree比较适合用来做缓存或GC。
 
 伸展树的优点就是不需要存储任何附加信息(AVL需要存储平衡因子，红黑树需要存储节点的红黑属性)，它的平均性能也能达到$O(log_2N)$。但是它的缺点也很明显，顺序插入或访问元素将会导致二叉树退化成链表。
 
-![伸展树顺序插入元素](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbipdxb61g20k90cm7cl.gif)
+![伸展树顺序插入元素](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbipdxb61g20k90cm7cl.gif)
 
-![伸展树顺序查找元素](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbipuofdug20n90cw1ca.gif)
+![伸展树顺序查找元素](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbipuofdug20n90cw1ca.gif)
 
 > [这个链接](http://www.link.cs.cmu.edu/link/ftp-site/splaying/)是CMU大学CS专业提供的伸展树实现。
 

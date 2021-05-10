@@ -344,7 +344,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
     }
 ```
 
-![fixRate与fixDelay的区别](http://ww1.sinaimg.cn/large/bda5cd74gy1ftalspuvhpj20t10h9q87.jpg)
+![fixRate与fixDelay的区别](http://tva1.sinaimg.cn/large/bda5cd74gy1ftalspuvhpj20t10h9q87.jpg)
 
 总结来说就是**fixRate是以任务开始时间计算间隔，而fixDelay是以任务结束时间计算间隔**。
 

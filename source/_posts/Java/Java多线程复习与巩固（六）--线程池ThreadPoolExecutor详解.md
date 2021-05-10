@@ -488,7 +488,7 @@ public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
 
 invokeAll方式会导致调用线程阻塞直到所有任务完成，由于不知道哪个任务先执行完毕，使用这种方式效率不是很高。所以Java5还提供了一个`CompletionService `接口给我们用。`CompletionService`目前只有一个实现类——`ExecutorCompletionService`。
 
-![ExecutorCompletionService架构图](http://ww1.sinaimg.cn/large/bda5cd74gy1ftaj3nepevj219a0fyn7o.jpg)
+![ExecutorCompletionService架构图](http://tva1.sinaimg.cn/large/bda5cd74gy1ftaj3nepevj219a0fyn7o.jpg)
 
 ExecutorCompletionService实际只是维护了一个队列，然后将完成的任务往队列里放，这个实现主要是依赖FutureTask的一个钩子方法done：
 

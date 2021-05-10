@@ -11,14 +11,14 @@ categories: 计算机组成
 
 [ASCII](https://en.wikipedia.org/wiki/ASCII)全称：American Standard Code for Information Interchange，美国信息交换标准码。直至1986年最后一次修订，ASCII共定义了128个字符：
 
-![ASCII编码速查表](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wvfjtf7yj21g011swhx.jpg)
+![ASCII编码速查表](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wvfjtf7yj21g011swhx.jpg)
 
 ## 1.1、控制字符
 
 其中0x00~0x1F这32个属于[控制字符](https://en.wikipedia.org/wiki/Control_character)，这些控制字符用于控制通信设备，比如0x07(BEL，bell)表示蜂鸣器响铃，0x08(BS，backspace)表示退格，0x0A(LF，line feed)表示换行，0x0D(carriage return)表示回车，0x0C(FF，form feed)表示换页...
 
 回车和换行被分为两个字符是有一定的历史原因的。早期的打字机回车、换行是两个动作。回车就是打字机把纸张重置到行首位置，换行就是把纸张上移一行。
-![老式打字机](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wvg5fjrfj20jg0gqh0l.jpg)
+![老式打字机](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wvg5fjrfj20jg0gqh0l.jpg)
 
 这些控制字符在打印设备与字符屏幕等终端上无法显示，一些终端设备为这些控制字符提供了拓展，使这些字符显示笑脸、扑克牌花色等符号。
 
@@ -30,7 +30,7 @@ categories: 计算机组成
 
 > 94这个特殊的数字对于在后面GB2312中会再次出现。
 
-![控制字符的拓展](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wvghyn7kj20r00hlds7.jpg)
+![控制字符的拓展](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wvghyn7kj20r00hlds7.jpg)
 
 ## 1.3、ASCII编码的国际化
 
@@ -44,7 +44,7 @@ categories: 计算机组成
 
 很多欧洲国家觉得ASCII码中的95个可显示字符并不能表示本国语言的所有字符。而ASCII码使用7位编码，第8位作为校验纠错位，对于计算机内存而言，校验纠错变得不是那么必要了，使用8位编排256个字符明显不需要额外的编程成本和存储成本。于是许多的制造商在ASCII的基础上添加了128个扩展字符，其中比较流行的是IBM和微软共同制定并在MS-DOS上使用的[CP437](https://en.wikipedia.org/wiki/Code_page_437)编码（Code Page 437）。
 
-![扩展ASCII编码](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wvgv8rutj20fx08ytb1.jpg)
+![扩展ASCII编码](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wvgv8rutj20fx08ytb1.jpg)
 
 # 3、ISO-8859编码
 
@@ -85,13 +85,13 @@ GB2312，全称信息交换用汉字编码字符集，代号：GB 2312—1980，
 
 前面提到ASCII码中`0x00~0x20`是控制字符的范围，`0x20~0x7F`是打印字符的范围，而且`0x20`是空格符，`0x7F`是DEL控制字符，所以实际可显示字符去掉一个头一个尾剩下0x21~0x7E共94个字符。
 
-![ASCII分区](http://ww1.sinaimg.cn/large/bda5cd74ly1g0ww9b2jygj20ho0ayq3b.jpg)
+![ASCII分区](http://tva1.sinaimg.cn/large/bda5cd74ly1g0ww9b2jygj20ho0ayq3b.jpg)
 
 GB2312双字节编码与之对应：`0x80~0x9F`是预留的控制字符区，`0xA0~0xFF`中`0xA0`和`0xFF`不可用，实际可编码区为`0xA1~0xFE`，共94个可编码区。两个字节也就是94×94。
 
 > ”0xA0~0xFF不可用“是为了遵守当时的[ISO-2022](https://en.wikipedia.org/wiki/ISO/IEC_2022)国际标准。
 
-![GB2312编码区](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwcbai9qj20ho0ayweo.jpg)
+![GB2312编码区](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwcbai9qj20ho0ayweo.jpg)
 
 GB2312编码空间为94 x 94，即有94个区，每个区有94个位，这些区分别是记录了那些字符呢：
 
@@ -119,15 +119,15 @@ GB2312编码空间为94 x 94，即有94个区，每个区有94个位，这些区
 
 画成图表示：
 
-![GB2312编码分布](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwemvet6j20fa0faagj.jpg)
+![GB2312编码分布](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwemvet6j20fa0faagj.jpg)
 
 第一区从A1A1开始编码，第一个字符是全角空格符。
 
-![GB2312第一区](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwf30w5ej20nf06p0t6.jpg)
+![GB2312第一区](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwf30w5ej20nf06p0t6.jpg)
 
 下图是GB2312的16区中的汉字编码，第一个汉字是“啊”。
 
-![GB2312的16区](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwffiuiyj20ni06n3z8.jpg)
+![GB2312的16区](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwffiuiyj20ni06n3z8.jpg)
 
 > 点击这里查看[GB2312的编码表](http://www.qqxiuzi.cn/zh/hanzi-gb2312-bianma.php)。
 
@@ -173,7 +173,7 @@ GBK编码支持国际标准[ISO/IEC10646-1](https://en.wikipedia.org/wiki/Univer
 * GBK/5是对原来的GB2312的符号区的扩展。
 * 三个用户定义区，包括原来GB2312的两个空白区，再加一个A1~A7的空白区。
 
-![GBK编码分布](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwo37aasj20i30hb76y.jpg)
+![GBK编码分布](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwo37aasj20i30hb76y.jpg)
 
 > 点击这里查看[GBK编码表](http://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php)。
 >
@@ -183,15 +183,15 @@ GBK编码支持国际标准[ISO/IEC10646-1](https://en.wikipedia.org/wiki/Univer
 
 我们在Windows下的记事本中写下`啊　亍`。“啊”是GB2312第一个中文字符，中间全角空格是GB2312是第一个编码字符，“亍”是二级汉字中的第一个字符。用GB2312保存，理论上应该会得到`B0A1 A1A1 D8A1`
 
-![保存为GB2312编码](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwp81u7kj209l06jdg3.jpg)
+![保存为GB2312编码](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwp81u7kj209l06jdg3.jpg)
 
 选择ANSI保存中文。[ANSI](https://baike.baidu.com/item/ANSI)代表当前国家或地区编码实现，不同国家的ANSI编码之间互不兼容。
 
-![这里的以ANSI保存中文就是以GB2312编码保存](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwpzyio9j20ha0en0uj.jpg)
+![这里的以ANSI保存中文就是以GB2312编码保存](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwpzyio9j20ha0en0uj.jpg)
 
 以16进制编辑器打开这个文本：
 
-![GB2312十六进制编码](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wwsnllcmj207q02xaa0.jpg)
+![GB2312十六进制编码](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwsnllcmj207q02xaa0.jpg)
 
 # 6、统一编码字符集
 
@@ -229,7 +229,7 @@ Unicode中每个字符对应的编码值被叫做**Code Point**(翻译成“码�
 
 下图便是BMP平面中字符分布图：
 
-![BMP字符分布](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wx30do5dj20l20eraca.jpg)
+![BMP字符分布](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx30do5dj20l20eraca.jpg)
 
 > 中间粉红色以及紫红色区域都是我们的汉字
 
@@ -237,8 +237,8 @@ Unicode中每个字符对应的编码值被叫做**Code Point**(翻译成“码�
 
 <table><tbody><tr><th>平面</th><th>始末字符值</th><th>中文名称</th><th>英文名称</th></tr><tr><td>0号平面</td><td>U+0000 ~ U+FFFF</td><td><b>基本多文种平面</b></td><td>Basic Multilingual Plane，简称<b>BMP</b></td></tr><tr><td>1号平面</td><td>U+10000 ~ U+1FFFF</td><td><b>多文种补充平面</b></td><td>Supplementary Multilingual Plane，简称<b>SMP</b></td></tr><tr><td>2号平面</td><td>U+20000 ~ U+2FFFF</td><td><b>表意文字补充平面</b></td><td>Supplementary Ideographic Plane，简称<b>SIP</b></td></tr><tr><td>3号平面</td><td>U+30000 ~ U+3FFFF</td><td><b>表意文字第三平面</b>（未正式使用）</td><td>Tertiary Ideographic Plane，简称<b>TIP</b></td></tr><tr><td>4号平面至13号平面</td><td>U+40000 ~ U+DFFFF</td><td>（尚未使用）</td><td></td></tr><tr><td>14号平面</td><td>U+E0000 ~ U+EFFFF</td><td><b>特别用途补充平面</b></td><td>Supplementary Special-purpose Plane，简称<b>SSP</b></td></tr><tr><td>15号平面</td><td>U+F0000 ~ U+FFFFF</td><td>保留作为<b>私人使用区（A区）</b></td><td>Private Use Area-A，简称<b>PUA-A</b></td></tr><tr><td>16号平面</td><td>U+100000 ~ U+10FFFF</td><td>保留作为<b>私人使用区（B区）</b></td><td>Private Use Area-B，简称<b>PUA-B</b></td></tr></tbody></table>
 
-![第一辅助平面SMP](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wx4g95afj20ks0ea40d.jpg)
-![第二辅助平面SIP](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wx4qe4hxj20js0erjsx.jpg)
+![第一辅助平面SMP](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx4g95afj20ks0ea40d.jpg)
+![第二辅助平面SIP](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx4qe4hxj20js0erjsx.jpg)
 
 # 7、UTF编码体系
 
@@ -299,11 +299,11 @@ UTF-8是一种变长Unicode编码方式：
 
 * 由于CPU对数据进行运算是以字节为单位，将数据从内存读取到CPU的算术逻辑单元(ALU)中：**先读低位字节，后读高位字节**。所以数据按照**低字节存放在低地址，高字节存放在高地址**的原则存储在内存中的，CPU从低地址向高地址读取数据的时候就会先读取到低位字节的数据。这就是所谓的**“小端存储”**(little-endian，缩写为LE)，为了方便记忆也可以叫做“低尾端(低字节在后的意思)”。
 
-  ![小端存储](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wx9cyf5aj20dg06dt8o.jpg)
+  ![小端存储](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx9cyf5aj20dg06dt8o.jpg)
 
 * 显然小端存储不符合人类的直观读取顺序，所以对于文件存储以及网络传输这种与CPU接触较少的情况一般都是使用**大端存储(big-endian，缩写为BE)**：**高字节存放在低地址，低字节存放在高地址**。为了方便记忆也可以叫做“高尾端(高位字节在后的意思)”。
 
-  ![大端序](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wx9uex86j20dg06dgll.jpg)
+  ![大端序](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx9uex86j20dg06dgll.jpg)
 
 ### 7.3.2、BOM字节序标记
 
@@ -319,27 +319,27 @@ Unicode中第一个汉字为“一”，码点值为U+4E00。
 
 1. 我们用记事本写下“一”。
 
-![记事本](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wxbaclaoj208d0573yp.jpg)
+![记事本](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wxbaclaoj208d0573yp.jpg)
 
 2. 选择保存格式
 
-   ![保存格式](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wxbi45p8j20gs05sjrl.jpg)
+   ![保存格式](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wxbi45p8j20gs05sjrl.jpg)
 
 3. 保存为UTF-8后，以二进制方式打开
 
-   ![UTF-8](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wxbqu2skj208l02kjr7.jpg)
+   ![UTF-8](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wxbqu2skj208l02kjr7.jpg)
 
    `EF BB BF`为UTF-8文件的BOM标记，`E4 B8 80`的二进制表示方式为`11100100 10111000 10000000`。去掉UTF-8的标识信息就剩下：`00100 111000 000000`，这个二进制对应十六进制为4E00。
 
 4. 保存为Unicode，也就是UTF-16LE小端存储方式，然后以二进制方式打开
 
-   ![UTF-16LE](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wxbzua9ej208402mdfp.jpg)
+   ![UTF-16LE](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wxbzua9ej208402mdfp.jpg)
 
    `FF FE`标识该文件是UTF-16小端存储。`00 4E`对应4E00
 
 5. 保存为Unicode big endian，也就是UTF-16BE大端存储方式，然后以二进制方式打开
 
-   ![UTF-16BE](http://ww1.sinaimg.cn/large/bda5cd74ly1g0wxcd5tzlj207i0293ya.jpg)
+   ![UTF-16BE](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wxcd5tzlj207i0293ya.jpg)
 
    `FE FF`标识该文件是UTF-16大端存储。`4E00`就是“一”的码点值。
 

@@ -66,13 +66,13 @@ public class Demo {
 
 比如下面这个前趋图中：任务3的输入执行操作的同时($I_3$)，可以执行任务2的计算($C_2$)和任务1的打印操作($P_1$)。
 
-![CPU并发工作的前趋图](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h85n3imgj20rm0d8423.jpg)
+![CPU并发工作的前趋图](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h85n3imgj20rm0d8423.jpg)
 
 **并行(Parallel)**是由于有多核处理器，有多套处理设备，它可以**真正的同时**处理多个任务。
 
 比如下面这个前趋图中，有4个处理机的CPU，在一号处理机处理一号任务输入的同时($I_1$)，二号处理机可以处理二号任务的输入($I_2$)...
 
-![多核CPU并行的前趋图](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h862ck7vj20ic0cs3yh.jpg)
+![多核CPU并行的前趋图](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h862ck7vj20ic0cs3yh.jpg)
 
 而且多核处理器的每个处理机又可以使用流水线并发处理多个任务，这就大大加强了计算机系统的处理能力。
 
@@ -136,7 +136,7 @@ Java是纯面向对象的语言，所以线程也有与之对应的类——Thre
 
    先来看一张神图：
 
-   ![java线程的生命周期](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h885pwmlj20qo0l140e.jpg)
+   ![java线程的生命周期](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h885pwmlj20qo0l140e.jpg)
 
 上面这张图中涉及到了`Object.wait`和`Object.notify`这一对方法，这个放在[生产者与消费者](http://blog.csdn.net/holmofy/article/details/76553437)中讨论，我们先把Thread类中的常用方法解决掉！
 
@@ -343,7 +343,7 @@ public void run() {
 
 thread.join把指定的线程加入到当前线程来执行。你可以用“并线(join)”这个词来进行理解：让调用该方法的线程等待thread线程执行完。
 
-![Thread.join](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h88w76uoj20pq0gowfi.jpg)
+![Thread.join](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h88w76uoj20pq0gowfi.jpg)
 
 和sleep方法一样，这个方法会也会抛出InterruptedException中断异常。
 

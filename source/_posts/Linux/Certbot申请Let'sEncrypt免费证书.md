@@ -7,17 +7,17 @@ categories: Linux运维
 
 半年前[在自己的网站上配了个SSL证书](https://blog.csdn.net/holmofy/article/details/79261123)，当时是用[ZeroSSL](https://zerossl.com/)进行证书申请的。但是证书三个月就会过期，每次都去手动申请，着实让人头痛。后来到[Let's Encrypt官网](https://letsencrypt.org)看了下，在它提供的[ACME协议](https://letsencrypt.org/docs/acme-protocol-updates/)客户端列表中，最推荐使用[Certbot](https://certbot.eff.org/)。
 
-![官方给出的ACME客户端列表](http://ww1.sinaimg.cn/large/bda5cd74gy1fr7vee3qb5j211y0k70us.jpg)
+![官方给出的ACME客户端列表](http://tva1.sinaimg.cn/large/bda5cd74gy1fr7vee3qb5j211y0k70us.jpg)
 
 Certbot是有个最大的好处是，能自动化部署[Let's Encrypt](https://letsencrypt.org/)证书。
 
 到[Certbot官网](https://certbot.eff.org/)，你可以根据自己的服务器操作系统以及使用的WebServer进行选择。
 
-![](http://ww1.sinaimg.cn/large/bda5cd74gy1fr7vjvmtnjj211y0kgtab.jpg)
+![](http://tva1.sinaimg.cn/large/bda5cd74gy1fr7vjvmtnjj211y0kgtab.jpg)
 
 它会给出相应的certbot的安装和配置命令。连nginx都帮你配好！
 
-![CentOS7下Nginx配置ssl证书](http://ww1.sinaimg.cn/large/bda5cd74gy1fr7vmwiw7ej211y0kgdhu.jpg)
+![CentOS7下Nginx配置ssl证书](http://tva1.sinaimg.cn/large/bda5cd74gy1fr7vmwiw7ej211y0kgdhu.jpg)
 
 # 独立申请证书
 
@@ -29,7 +29,7 @@ certbot提供的全自动化的配置是挺不错的，但是个人总觉得全�
 certbot certonly --standalone --email 1938304905@qq.com -d www.hufeifei.cn -d blog.hufeifei.cn
 ```
 
-![命令执行详情](http://ww1.sinaimg.cn/large/bda5cd74gy1fu7b1noepuj20oc0k4wg3.jpg)
+![命令执行详情](http://tva1.sinaimg.cn/large/bda5cd74gy1fu7b1noepuj20oc0k4wg3.jpg)
 
 生成证书和私钥后在nginx的配置文件中手动配置上面的两个文件，具体可以参考[nginx文档](https://nginx.org/en/docs/http/configuring_https_servers.html)
 
@@ -45,7 +45,7 @@ certbot renew --pre-hook "/usr/local/nginx/sbin/nginx -s stop" --post-hook "/usr
 
 正常没过期的时候执行这个命令：
 
-![没过期的时候执行该命令](http://ww1.sinaimg.cn/large/bda5cd74gy1fu7bi6exc7j20qm06cwei.jpg)
+![没过期的时候执行该命令](http://tva1.sinaimg.cn/large/bda5cd74gy1fu7bi6exc7j20qm06cwei.jpg)
 
 # 定期重申
 
@@ -53,7 +53,7 @@ certbot renew --pre-hook "/usr/local/nginx/sbin/nginx -s stop" --post-hook "/usr
 
 每个月的1号执行一次重申命令。
 
-![crontab](http://ww1.sinaimg.cn/large/bda5cd74gy1fu7bvwiz4jj20o906ggln.jpg)
+![crontab](http://tva1.sinaimg.cn/large/bda5cd74gy1fu7bvwiz4jj20o906ggln.jpg)
 
 
 

@@ -19,6 +19,6 @@ categories: 生活
   * 对线程池等并发编程技术有深入了解
   * 有Dubbo、RocketMQ等中间件的使用经验
 
-![image.png](http://ww1.sinaimg.cn/large/bda5cd74ly1gf0fm1n5w3j20ku11wjx3.jpg)
+![image.png](http://tva1.sinaimg.cn/large/bda5cd74ly1gf0fm1n5w3j20ku11wjx3.jpg)
 
-![IMG_0003.PNG](http://ww1.sinaimg.cn/large/bda5cd74ly1gf0fk9v6yaj20ku112qbc.jpg)
+![IMG_0003.PNG](http://tva1.sinaimg.cn/large/bda5cd74ly1gf0fk9v6yaj20ku112qbc.jpg)

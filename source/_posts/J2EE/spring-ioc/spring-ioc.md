@@ -478,7 +478,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 用一张图总结一下：
 
-![initializeBean](http://ww1.sinaimg.cn/large/bda5cd74gy1gbdyhiplcxj21bc0bewgp.jpg)
+![initializeBean](http://tva1.sinaimg.cn/large/bda5cd74gy1gbdyhiplcxj21bc0bewgp.jpg)
 
 ## 5.5、BeanPostProceesor的常见实现
 
@@ -671,7 +671,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 至此，创建Bean的整个过程可以总结为下图：
 
-![CreateBean](http://ww1.sinaimg.cn/large/bda5cd74gy1gbdz16c5wuj21gk0tu7b3.jpg)
+![CreateBean](http://tva1.sinaimg.cn/large/bda5cd74gy1gbdz16c5wuj21gk0tu7b3.jpg)
 
 
 

@@ -12,7 +12,7 @@ categories: 数据库
 
 下图是《高性能MySQL》聚簇索引的截图，其中，叶子结点包含了数据行的完整数据，非叶子节点只包含索引列数据。
 
-![聚簇索引](http://ww1.sinaimg.cn/large/bda5cd74gy1frp2q4d6i3j21200r0jx5.jpg)
+![聚簇索引](http://tva1.sinaimg.cn/large/bda5cd74gy1frp2q4d6i3j21200r0jx5.jpg)
 
 数据行的逻辑顺序与聚簇索引的顺序一致。B+树中叶子结点以链表的形式串联的，叶子节点中数据行的逻辑顺序只有一种，所以**一张表只能有一个聚簇索引**。
 
@@ -36,11 +36,11 @@ MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_M
 
 当通过二级索引查找时，**InnoDB需要通过二级索引的叶子结点获得对应的主键，然后根据主键从主键索引中找对应的行**。也就是说**InnoDB查找数据行会经过两个B树**。这样做有个好处就是**减少了数据行移动或数据页分裂时二级索引的维护工作**，但是查找速度会略微变慢，有一种解决方法是实现**索引覆盖，让二级索引直接覆盖所需的查询字段**，这样就没必要查找数据行，也就没必要走主键索引了。
 
-![InnoDB索引存储结构](http://ww1.sinaimg.cn/large/bda5cd74gy1frp7kvqfwgj20lr09y76c.jpg)
+![InnoDB索引存储结构](http://tva1.sinaimg.cn/large/bda5cd74gy1frp7kvqfwgj20lr09y76c.jpg)
 
 
 
-![B+树索引](http://ww1.sinaimg.cn/large/bda5cd74ly1fyrfmroao8j20ry0k379y.jpg)
+![B+树索引](http://tva1.sinaimg.cn/large/bda5cd74ly1fyrfmroao8j20ry0k379y.jpg)
 
 ### 聚簇索引的优点
 
@@ -66,7 +66,7 @@ MyISAM([ISAM，indexed sequential access method](https://en.wikipedia.org/wiki/I
 
 **MyISAM没有聚簇索引，主键索引和二级索引工作方式是一样的：叶子结点存储数据行在数据文件中的物理偏移量(行指针)**
 
-![MyISAM索引存储结构](http://ww1.sinaimg.cn/large/bda5cd74gy1frp7htdkc2j20fn0cxabx.jpg)
+![MyISAM索引存储结构](http://tva1.sinaimg.cn/large/bda5cd74gy1frp7htdkc2j20fn0cxabx.jpg)
 
 ### MyISAM优点
 

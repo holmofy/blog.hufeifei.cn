@@ -215,7 +215,7 @@ void func() {
 
 > C++11中提供了[`std::weak_ptr`](https://en.cppreference.com/w/cpp/memory/weak_ptr)可以用来解决循环引用的问题，[python有个分代垃圾收集器辅助引用计数回收垃圾](https://rushter.com/blog/python-garbage-collector/)。
 
-![循环引用问题](http://ww1.sinaimg.cn/large/bda5cd74ly1fww39kcsqxj20p00av3yi.jpg)
+![循环引用问题](http://tva1.sinaimg.cn/large/bda5cd74ly1fww39kcsqxj20p00av3yi.jpg)
 
 [饱受诟病的IE6,IE7](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)中也使用引用计数进行垃圾回收，所以下面这样的代码就会导致内存泄漏，浏览器直接崩溃。
 
@@ -238,7 +238,7 @@ window.onload = function() {
 
 GC从根引用开始，顺着引用链遍历，找到所有的存活对象，同时把它们**标记(Mark)**下来，未标记的不可达对象就是垃圾对象。
 
-![GC root](http://ww1.sinaimg.cn/large/bda5cd74ly1fww2bbjky3j20fc0bxgn1.jpg)
+![GC root](http://tva1.sinaimg.cn/large/bda5cd74ly1fww2bbjky3j20fc0bxgn1.jpg)
 
 这些根引用被称为**GC Root**，在不同的编程语言和不同的场景下GC Root的定义也是不一样的。
 
@@ -250,11 +250,11 @@ GC从根引用开始，顺着引用链遍历，找到所有的存活对象，同
 
 标记清除算法是基于可达性分析最简单的一种回收策略。
 
-![引用树遍历](http://ww1.sinaimg.cn/large/bda5cd74ly1fx8iwx1571g20bo08xtcf.gif)
+![引用树遍历](http://tva1.sinaimg.cn/large/bda5cd74ly1fx8iwx1571g20bo08xtcf.gif)
 
 Mark-Sweep算法的清除阶段很简单：遍历堆中的对象，把没标记的垃圾对象内存回收利用。这些回收的内存会被记录在一个[空闲列表(free list)](https://en.wikipedia.org/wiki/Free_list)中，下次创建对象申请内存的时候再从空闲列表中找到合适大小的内存块进行分配。
 
-![标记清除](http://ww1.sinaimg.cn/large/bda5cd74ly1fww3xuvtzhj20k00ayjrm.jpg)
+![标记清除](http://tva1.sinaimg.cn/large/bda5cd74ly1fww3xuvtzhj20k00ayjrm.jpg)
 
 这种方式的缺点很明显：
 
@@ -268,11 +268,11 @@ GC拷贝算法解决了Mark-Sweep算法的内存碎片的问题。
 
 它将堆内存划分为From、To两个大小相等的区域，创建对象时只在其中一个区域内分配内存，等From区内存用完了，把标记存活的对象拷贝到To区，后续的对象内存就在To区分配(From，To转变身份)，下次内存用完再进行一次这样的过程。
 
-![拷贝算法](http://ww1.sinaimg.cn/large/bda5cd74ly1fxewv4et6hj20ks0as0tt.jpg)
+![拷贝算法](http://tva1.sinaimg.cn/large/bda5cd74ly1fxewv4et6hj20ks0as0tt.jpg)
 
 拷贝算法中内存块的状态是这样变化的：
 
-![Copying](http://ww1.sinaimg.cn/large/bda5cd74ly1fww4eyhhd5j20k00b0wf1.jpg)
+![Copying](http://tva1.sinaimg.cn/large/bda5cd74ly1fww4eyhhd5j20k00b0wf1.jpg)
 
 这样做的优点是不再有内存碎片，缺点也显而易见：
 
@@ -290,7 +290,7 @@ GC拷贝算法解决了Mark-Sweep算法的内存碎片的问题。
 
 Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端后续的内存就全部记作空闲内存。
 
-![Mark-Compact](http://ww1.sinaimg.cn/large/bda5cd74ly1fww488wqoyj20w00h8aaw.jpg)
+![Mark-Compact](http://tva1.sinaimg.cn/large/bda5cd74ly1fww488wqoyj20w00h8aaw.jpg)
 
 这个算法缺点也很明显：前面有一块内存是垃圾对象，后续的对象都需要移动，存活对象较多时，移动耗时基本与内存大小成正比。
 
@@ -316,13 +316,13 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 
 > 注：论文中各空间名字并非如此，这样写只是为了贴合Hotspot VM
 
-![David Ungar分代](http://ww1.sinaimg.cn/large/bda5cd74ly1fxb8p2gs6lj20ke06qaa4.jpg)
+![David Ungar分代](http://tva1.sinaimg.cn/large/bda5cd74ly1fxb8p2gs6lj20ke06qaa4.jpg)
 
 > Eden是伊甸园的意思，对象初生的地方——起这个名字的肯定是耶稣的虔诚信徒😂。
 
 新创建的对象将在Eden上分配空间，Eden区满了，新生代GC将会被触发，存活的对象将被复制进Survivor-To区，上次GC存活对象存储在Survivor-From区，如果对象仍存活也会被复制进Survivor-To区。经历一次GC后，对象的年龄将会增大一岁。
 
-![David Ungar](http://ww1.sinaimg.cn/large/bda5cd74ly1fxb7nmi8lwj20cl0ghwem.jpg)
+![David Ungar](http://tva1.sinaimg.cn/large/bda5cd74ly1fxb7nmi8lwj20cl0ghwem.jpg)
 
 当新生代对象年龄增长到一个指定的值后，对象将会晋升到老年代。当老年代满了就会触发老年代GC，Ungar在论文中使用标记清除算法回收老年代对象。在新生代晋升的对象把老年代填满之前，老年代GC都不会触发，所以老年代GC执行频率比新生代低。
 
@@ -348,7 +348,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 
 Java虚拟机规范中定义了程序执行期间使用的各种运行时数据区。其中一些数据区域是虚拟机启动时创建的，只在虚拟机退出时销毁。其他的数据区域归属于特定线程，线程数据区域是线程创建时创建退出时销毁。
 
-![HotSpot JVM Architecture](http://ww1.sinaimg.cn/large/bda5cd74ly1fxpcdwwmmij20qo0k0wf3.jpg)
+![HotSpot JVM Architecture](http://tva1.sinaimg.cn/large/bda5cd74ly1fxpcdwwmmij20qo0k0wf3.jpg)
 
 ## 10.1、pc寄存器
 
@@ -371,19 +371,19 @@ JVM规范里并没有规定Java堆的管理方式，所以不同的虚拟机实�
 
 比如说在Oracle的JRockit虚拟机中，Java堆是这样划分的：
 
-![JRockit](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo4pda6wqj20kt05c3yh.jpg)
+![JRockit](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo4pda6wqj20kt05c3yh.jpg)
 
 IBM的J9虚拟机堆结构如下：
 
-![IBM J9](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo4z0khvdj20jm056q2v.jpg)
+![IBM J9](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo4z0khvdj20jm056q2v.jpg)
 
 Hotspot堆结构：
 
-![HotSpot](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo51thjgxj20k80500sq.jpg)
+![HotSpot](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo51thjgxj20k80500sq.jpg)
 
 因为CMS等垃圾回收器的GC时间与Java堆大小成正比，为了解决大内存的GC耗时问题，JDK7开始Hotspot引入了新垃圾回收器——Garbage First（G1）。G1的堆结构如下：
 
-![Hotspot G1](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo5auekqmj20mj05dt8q.jpg)
+![Hotspot G1](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo5auekqmj20mj05dt8q.jpg)
 
 > 收购Sun公司后，[Oracle致力于将JRockit的功能引入Hotspot](https://stackoverflow.com/questions/8068717/jrockit-jvm-versus-hotspot-jvm)。
 >
@@ -465,7 +465,7 @@ JVM可以使用传统的C堆栈以支持native方法的执行，另外本地方�
 
 [Hotspot](https://en.wikipedia.org/wiki/HotSpot)虚拟机中最关键的三个组件是：Java堆、JIT即时编译器、垃圾回收器。
 
-![Heapspot key Component](http://ww1.sinaimg.cn/large/bda5cd74ly1fxpcf1jowfj20qo0k074w.jpg)
+![Heapspot key Component](http://tva1.sinaimg.cn/large/bda5cd74ly1fxpcf1jowfj20qo0k074w.jpg)
 
 ## 11.1、JIT编译器
 
@@ -479,7 +479,7 @@ JIT及时编译器支持三种模式：`interpreted-only`、`compilation `、`mi
 
 Hotspot默认使用混合模式：
 
-![JVM](http://ww1.sinaimg.cn/large/bda5cd74ly1fxv3yl9hx3j20fi0290sm.jpg)
+![JVM](http://tva1.sinaimg.cn/large/bda5cd74ly1fxv3yl9hx3j20fi0290sm.jpg)
 
 对比解释执行，编译的好处是会对方法中的代码进行优化：消除不必要的变量、循环外提、删除无用赋值等。在这个过程中会进行指令重排，在单线程环境下能保证原有语义，但是多线程环境下会影响程序的正常逻辑。
 
@@ -499,7 +499,7 @@ JIT的内容不是本文的核心，有兴趣的可以自行谷歌或[参考官�
 
 Hotspot使用Ungar分代策略管理Java堆，并提供了相应的参数设置各个分代的大小：
 
-![JVM分代](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo5teibzaj20nb0c7wfs.jpg)
+![JVM分代](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo5teibzaj20nb0c7wfs.jpg)
 
 上图中`reserved`是操作系统保留的虚拟地址空间，在虚拟机刚运行时只会分配`-Xms`大小的物理内存，而且Java堆会通过以下策略尽可能的减少物理内存的消耗。
 
@@ -522,11 +522,11 @@ Hotspot使用Ungar分代策略管理Java堆，并提供了相应的参数设置�
 
 `-XX:SurvivorRatio`可以设置新生代中Eden区域Survivor区的比例（默认8）。
 
-![survivorRatio](http://ww1.sinaimg.cn/large/bda5cd74ly1fxyadfxdtcj20sq06vq42.jpg)
+![survivorRatio](http://tva1.sinaimg.cn/large/bda5cd74ly1fxyadfxdtcj20sq06vq42.jpg)
 
 `-XX:MaxTenuringThreshold`可以设置新生代到老年代的老化年龄（最大值是15，并行收集器默认15，CMS默认6）。
 
-![对象生命周期](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo88x0s41g20qa0d5wg3.gif)
+![对象生命周期](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo88x0s41g20qa0d5wg3.gif)
 
 > 更多的JVM参数以及参数的默认值可以参考[官方文档](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)。
 
@@ -540,7 +540,7 @@ Hotspot使用Ungar分代策略管理Java堆，并提供了相应的参数设置�
 
 所以Java8中用Metaspace取代了PermGen。
 
-![Metaspace](http://ww1.sinaimg.cn/large/bda5cd74ly1fxo9oiczhbj20e908cwep.jpg)
+![Metaspace](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo9oiczhbj20e908cwep.jpg)
 
 ## 11.4、可选的垃圾回收器
 
@@ -550,7 +550,7 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 串行收集器使用单个线程来执行所有垃圾收集工作。因为线程之间没有通信开销，所以回收效率较高。它最适合单处理器机器，因为它无法利用多处理器硬件。它对于具有小数据集（最大约100 MB）的多处理器应用程序也非常有效。默认情况下，JVM会根据硬件、操作系统以及JVM配置(-client)选用串行收集器，或者可以使用`-XX:+UseSerialGC`选项显式启用串行收集器。
 
-![串行GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrar3t3u9j20ev04hglm.jpg)
+![串行GC](http://tva1.sinaimg.cn/large/bda5cd74ly1fxrar3t3u9j20ev04hglm.jpg)
 
 > 串行收集器(Serial)在新生代使用复制算法，老年代(Serial Old)使用压缩整理算法。
 
@@ -558,7 +558,7 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 并行收集器（也称为[吞吐量](https://translate.google.cn/#view=home&op=translate&sl=en&tl=zh-CN&text=throughput)收集器）并行执行垃圾回收，这可以显着减少垃圾收集开销。它适用于在多处理器硬件上运行的具有中型到大型数据集的应用程序。默认情况下，JVM会根据硬件、操作系统以及JVM配置(-server)选用并行收集器，或者可以使用`-XX:+UseParallelGC`选项显式启用并行收集器。
 
-![ParallelGC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrbbp2cdxj20hj04kaa4.jpg)
+![ParallelGC](http://tva1.sinaimg.cn/large/bda5cd74ly1fxrbbp2cdxj20hj04kaa4.jpg)
 
 
 
@@ -576,7 +576,7 @@ ParNewGC主要配合CMS收集器使用，因为ParNewGC有CMS并发阶段所需�
 
 **并发收集器允许应用线程与GC线程并发执行**。这也意味着并发标记过程会存在GC线程和应用线程切换CPU的损耗。它适用于具有中型到大型数据集，并且响应时间比吞吐量更重要的应用程序。
 
-![Concurrent GC](http://ww1.sinaimg.cn/large/bda5cd74ly1fxtz1cj37vj20m105cab2.jpg)
+![Concurrent GC](http://tva1.sinaimg.cn/large/bda5cd74ly1fxtz1cj37vj20m105cab2.jpg)
 
 Java HotSpot VM提供两个并发垃圾回收器：CMS和G1。
 
@@ -604,7 +604,7 @@ CMS整个过程中只有初始标记和重新标记阶段需要StopTheWorld，�
 
 下图是Hotspot可用收集器的组合，其中连线上的选项参数是针对Java7，Java8参数有部分改动，详请参考[官方文档](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)。
 
-![Valid GC combinations](http://ww1.sinaimg.cn/large/bda5cd74ly1fxrakmsv9vj20ko0fnjtq.jpg)
+![Valid GC combinations](http://tva1.sinaimg.cn/large/bda5cd74ly1fxrakmsv9vj20ko0fnjtq.jpg)
 
 ## 11.5、选择垃圾回收器
 

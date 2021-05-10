@@ -18,13 +18,13 @@ categories: 前端
 
 > 不过[frameset在HTML5标准中被弃用了](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frameset)，只剩下一个[iframe还可以用](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)。
 
-![frameset布局](http://ww1.sinaimg.cn/large/bda5cd74gy1fqq374epnej211x0hv0xf.jpg)
+![frameset布局](http://tva1.sinaimg.cn/large/bda5cd74gy1fqq374epnej211x0hv0xf.jpg)
 
 # ajax带来的web2.0时代
 
 IE5 通过 ActiveX 来实现了Ajax后， Mozilia，Safari，Opera 相继以 XMLHttpRequest 来实现 Ajax。有了Ajax，用户交互再也不用刷新整个页面了，单页面应用(SPA:single page web application)也初具雏形。
 
-![ajax](http://ww1.sinaimg.cn/large/bda5cd74gy1fqq3m7qa9hg20mn09wade.gif)
+![ajax](http://tva1.sinaimg.cn/large/bda5cd74gy1fqq3m7qa9hg20mn09wade.gif)
 
 有了ajax技术，但是关于“怎么用好ajax”这个问题，很长一段时间都是在探索中。
 
@@ -113,7 +113,7 @@ IE5 通过 ActiveX 来实现了Ajax后， Mozilia，Safari，Opera 相继以 XML
 
 当应用变得越来越大的时候，页面中就会出现一大堆模板片段以及ajax的代码，很明显不利于维护，所以很有必要将页面中的元素抽成模块化的组件，组件内部可以嵌套组件。然后就形成了一棵组件树：
 
-![组件树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj6arz3vj21320f4t8v.jpg)
+![组件树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj6arz3vj21320f4t8v.jpg)
 
 ```JSX
 import React from "react";
@@ -172,7 +172,7 @@ const ListItem = ({item}) => {
 
 > jQuery-EasyUI会以tab的方式展示ajax请求HTML片段。EasyUI体积也比较大(加上所有控件)，比较适合做公司内部的一些管理系统。拿来做后台系统，像上面说的分享url的情况应该会很少。
 
-![jQuery-EasyUI](http://ww1.sinaimg.cn/large/bda5cd74gy1fqqbdky9yjg20zy0j8te6.gif)
+![jQuery-EasyUI](http://tva1.sinaimg.cn/large/bda5cd74gy1fqqbdky9yjg20zy0j8te6.gif)
 
 
 简单的说，**路由就是把页面的状态保存在url中**。
@@ -181,7 +181,7 @@ const ListItem = ({item}) => {
 
 我们知道`window.location`可以操作地址栏修改url，但是修改了[Location](https://developer.mozilla.org/en-US/docs/Web/API/Location)就会向服务器发送请求并发生页面跳转。好在[Location里面有个hash属性](https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/hash)修改了并不会发生页面跳转。这个hash就是我们常说的**锚点**。通常我们用锚点来实现页面内的跳转(比如[回到顶部](#_top_))：`<a href='#top'>回到顶部</a>`。现在我们用它表示页面当前的状态：`https://example.com#/entry/path`。比如阿里云就是用hash路由。
 
-![hash路由](http://ww1.sinaimg.cn/large/bda5cd74gy1fqqd5oeltng21020j610d.gif)
+![hash路由](http://tva1.sinaimg.cn/large/bda5cd74gy1fqqd5oeltng21020j610d.gif)
 
 ### 2. history.push带来的新路由
 
@@ -193,7 +193,7 @@ pushState方法可以让url改变，但是并不会导致浏览器跳转。
 
 腾讯云用的就是push路由。
 
-![push路由](http://ww1.sinaimg.cn/large/bda5cd74gy1fqqdw8tm5hg21020j7qd2.gif)
+![push路由](http://tva1.sinaimg.cn/large/bda5cd74gy1fqqdw8tm5hg21020j7qd2.gif)
 
 > jQuery有一个插件[jQuery-pjax](https://github.com/defunkt/jquery-pjax)（pjax=pushState+ajax）就通过ajax请求html片段，并使用pushState修改地址栏。
 

@@ -35,7 +35,7 @@ babel6之后将默认的转换功能做成了可插拔的插件，默认不携�
 - es2015-for-of
 - es2015-spread
 
-![Babel官网列出ES2015的诸多特性](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj4r2aszj20eq09j0t7.jpg)
+![Babel官网列出ES2015的诸多特性](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj4r2aszj20eq09j0t7.jpg)
 
 > 这么多插件一个一个地安装，明显很不合理，所以大部分情况下我们都是用presets(预设)
 
@@ -66,7 +66,7 @@ babel6之后将默认的转换功能做成了可插拔的插件，默认不携�
 
 Babel官网提供了每一种环境下的配置文档：https://babeljs.io/docs/setup
 
-![Using Babel](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj5l51iuj211x0lbgmw.jpg)
+![Using Babel](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj5l51iuj211x0lbgmw.jpg)
 
 > **注意**：上面的`In the browser`是将babel转换工作放在浏览器端执行，转换工作会花费大量的时间，所以这种方式只适合开发环境(实际上开发环境我们基本也不用它)，并不适用于生产环境。
 

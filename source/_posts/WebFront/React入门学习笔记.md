@@ -119,7 +119,7 @@ module.exports = {
 
 组件系统react的重要概念，因为它是一种抽象，允许我们使用小型、自包含和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树：
 
-![组件树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj6arz3vj21320f4t8v.jpg)
+![组件树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj6arz3vj21320f4t8v.jpg)
 
 ## 定义react组件
 

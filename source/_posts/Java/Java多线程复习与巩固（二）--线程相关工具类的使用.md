@@ -58,7 +58,7 @@ public class TimeTask implements Runnable{
 
 其实Java中已经将这些功能封装在一个Timer中。
 
-![Timer相关类之间的关系](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h945u9dbj20j10et3z6.jpg)
+![Timer相关类之间的关系](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h945u9dbj20j10et3z6.jpg)
 
 但是`TaskQueue`和`TimerThread`是包内私有的，无法直接使用，我们能用的只有`Timer`和`TimerTask`这两个类。
 
@@ -74,7 +74,7 @@ public class TimeTask implements Runnable{
 
 状态之间的转换图如下：
 
-![TimerTask的状态转换](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h95jwmmhj20g70ch0tc.jpg)
+![TimerTask的状态转换](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h95jwmmhj20g70ch0tc.jpg)
 
 > 除了上图出现的三个可用的方法，Timer中还有一个Timer.purge方法，它负责将TimerQueue中已经取消的任务清除掉，也就是把Cancelled状态的任务清除。另外如果你没调用这个方法清除Cancelled状态的任务，TimerThread会自动帮你把Cancelled和Executed状态的TimerTask任务清除掉。
 
@@ -171,7 +171,7 @@ public class ThreadLocal<T> {
 
 下面具体看看ThreadLocal怎么实现的。先看一张Thread与ThreadLocal之间的关系图。
 
-![ThreadLocal与Thread的关系](http://ww1.sinaimg.cn/large/bda5cd74ly1g2h97s5mioj20qk0is40j.jpg)
+![ThreadLocal与Thread的关系](http://tva1.sinaimg.cn/large/bda5cd74ly1g2h97s5mioj20qk0is40j.jpg)
 
 ThreadLocalMap以ThreadLocal对象作为Key，将线程要存的副本作为Value（ThreadLocalMap是本质上是一个哈希表，不过它比HashMap简单多了，它以“再哈希法”来解决哈希碰撞的问题，并以2倍增长的方式扩容）：
 

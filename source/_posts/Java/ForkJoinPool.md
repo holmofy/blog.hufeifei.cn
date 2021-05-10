@@ -6,7 +6,7 @@ categories: JAVA
 
 《[线程池ThreadPoolExecutor详解](https://blog.csdn.net/holmofy/article/details/77411854)》和《[任务调度线程池ScheduledThreadPoolExecutor](https://blog.csdn.net/holmofy/article/details/79344914)》两篇文章已经将[ThreadPoolExecutor](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ThreadPoolExecutor.html)和[ScheduledThreadPoolExecutor](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html)两个核心线程池详细介绍过了，它们整体的工作结构如下图所示。
 
-![ExecutorService](http://ww1.sinaimg.cn/large/bda5cd74gy1ft9rdddpi7j20sg0fwgno.jpg)
+![ExecutorService](http://tva1.sinaimg.cn/large/bda5cd74gy1ft9rdddpi7j20sg0fwgno.jpg)
 
 这篇文章将介绍最后一个线程池——Java7中最引人瞩目的[ForkJoinPool](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ForkJoinPool.html)线程池。
 
@@ -16,7 +16,7 @@ ThreadPoolExecutor中每个任务都是由单个线程独立处理的，如果�
 
 ForkJoinPool就是用来解决这种问题的：将一个大任务拆分成多个小任务后，使用*fork*可以将小任务分发给其他线程同时处理，使用*join*可以将多个线程处理的结果进行汇总；**这实际上就是分治思想的并行版本**。
 
-![Fork/Join框架原理](http://ww1.sinaimg.cn/large/bda5cd74gy1ft9simzhklj20cc0etgm1.jpg)
+![Fork/Join框架原理](http://tva1.sinaimg.cn/large/bda5cd74gy1ft9simzhklj20cc0etgm1.jpg)
 
 # 2. ForkJoinPool的基本原理
 
@@ -51,7 +51,7 @@ Fork/Join框架中使用的*work stealing*灵感来源于[Cilk](https://en.wikip
 * 默认情况下，工作线程从自己的双端队列获出任务并执行。
 * 当自己的队列为空时，线程**随机**从另一个线程的**队列末尾**调用poll方法窃取任务。
 
-![Work Stealing算法](http://ww1.sinaimg.cn/large/bda5cd74gy1fvadx7bjxzj20di08p0t6.jpg)
+![Work Stealing算法](http://tva1.sinaimg.cn/large/bda5cd74gy1fvadx7bjxzj20di08p0t6.jpg)
 
 # 3. 创建ForkJoinPool对象
 
@@ -144,7 +144,7 @@ public ForkJoinPool(int parallelism,
   }
   ```
 
-![async模式](http://ww1.sinaimg.cn/large/bda5cd74gy1fvbdlabm6qj20zk0k0wfc.jpg)
+![async模式](http://tva1.sinaimg.cn/large/bda5cd74gy1fvbdlabm6qj20zk0k0wfc.jpg)
 
 > Java9中提供的构造参数更复杂了，可以在[JSR166 Concurrency论坛](http://jsr166-concurrency.10961.n7.nabble.com/Customized-ForkJoinPool-constructor-td13321.html)看看作者Doug Lea是怎么想的。
 
@@ -433,7 +433,7 @@ public class DirectoryTask extends RecursiveTask {
 
 表面上看上去两个子任务都`fork()`，然后`join()`两次似乎更自然。但事实证明，直接调用`compute()`效率更高。因为直接调用子任务的`compute()`方法实际上就是在当前的工作线程进行了计算(线程重用)，这比“将子任务提交到工作队列，线程又从工作队列中拿任务”快得多。
 
-![ForkJoin](http://ww1.sinaimg.cn/large/bda5cd74gy1fuixyr4pcfj20bw0fa74h.jpg)
+![ForkJoin](http://tva1.sinaimg.cn/large/bda5cd74gy1fuixyr4pcfj20bw0fa74h.jpg)
 
 > 当一个大任务被划分成两个以上的子任务时，尽可能使用前面说到的三个衍生的`invokeAll`方法，因为使用它们能避免不必要的fork()。
 

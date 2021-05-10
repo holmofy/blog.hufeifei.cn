@@ -142,7 +142,7 @@ Windows界面程序是基于事件驱动的，在启动一个进程后，操作�
 
 > 注意：整个过程都是在主线程处理的，`WndProc`也会在主线程中回调，所以`WndProc`中不要执行一些耗时的操作，比如网络请求、耗时的计算，否则主线程阻塞在这，处理不了其他的消息，将会导致窗口“假死”。
 
-![Windows消息循环机制](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbjz8mccij20fs0oa0so.jpg)
+![Windows消息循环机制](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjz8mccij20fs0oa0so.jpg)
 
 > 消息循环机制不仅存在Windows程序中，其实安卓、Web这些带UI界面的程序本质上都是基于消息循环机制。
 

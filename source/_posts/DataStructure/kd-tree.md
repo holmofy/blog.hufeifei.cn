@@ -16,23 +16,23 @@ K-D树在[维基百科](https://en.wikipedia.org/wiki/K-d_tree)上定义是将K�
 
 如果把BST中的所有元素看成一维线段上的所有点，从树的根节点开始每个节点都会把线段分成两段。
 
-![BST](http://ww1.sinaimg.cn/large/bda5cd74ly1fyh4bu7lfzj20j409bdgg.jpg)
+![BST](http://tva1.sinaimg.cn/large/bda5cd74ly1fyh4bu7lfzj20j409bdgg.jpg)
 
 > 所以BST本质上就是一维K-D树(或者叫做1-D树)
 
 现在将树中的元素推广到二维平面上的点，树的每一层按照维度轮流划分。比如，奇数层按x轴划分，偶数层按y轴划分，这样就得到一棵二维K-D树(2-d树)
 
-![KD-Tree](http://ww1.sinaimg.cn/large/bda5cd74ly1fyh5gpy8hgj221a0vs79r.jpg)
+![KD-Tree](http://tva1.sinaimg.cn/large/bda5cd74ly1fyh5gpy8hgj221a0vs79r.jpg)
 
 同样我们可以将元素推广到三维空间中的点，那样我们可以得到一棵3d-tree。
 
-![3d-tree](http://ww1.sinaimg.cn/large/bda5cd74ly1fyh6jc4tmpj20f80eh752.jpg)
+![3d-tree](http://tva1.sinaimg.cn/large/bda5cd74ly1fyh6jc4tmpj20f80eh752.jpg)
 
 > 理论上k-d树可以继续到4维，5维… 作为一个三维空间里的生物，就没法用图来展示这样的元素了:sweat_smile:
 
 [这里有一个二维K-D树的模拟程序](http://bl.ocks.org/ludwigschubert/raw/0a300d8a41d9e6b49144fff8b62637f8/)能帮助我们更好的理解K-D树：
 
-![](http://ww1.sinaimg.cn/large/bda5cd74ly1fyq46dzx9lg20jg09s43v.gif)
+![](http://tva1.sinaimg.cn/large/bda5cd74ly1fyq46dzx9lg20jg09s43v.gif)
 
 任何事物都有好坏的地方，K-D树也是如此。
 
@@ -46,7 +46,7 @@ Person1(age:18,hight:176)，Person2(age:19,height:181) ... Person10(age:23,heigh
 
 想要查找年龄在20岁以上并且身高在170到180之间的所有人，用K-D树就能很好的解决。
 
-![k-d-tree range search](http://ww1.sinaimg.cn/large/bda5cd74ly1fz0l8w5prlj208d08d3yg.jpg)
+![k-d-tree range search](http://tva1.sinaimg.cn/large/bda5cd74ly1fz0l8w5prlj208d08d3yg.jpg)
 
 > 由于K-D树的结构要求，上面的例子中要求每个人的年龄和身高各项数据必须齐全，如果某个人只有年龄或只有身高，就无法使用K-D树索引了。所以实际上K-D树更常见的应用是经纬度定位，或者三维空间定位(某个维度数据缺失，其他维度数据也就没有意义了)
 
@@ -60,7 +60,7 @@ Person1(age:18,hight:176)，Person2(age:19,height:181) ... Person10(age:23,heigh
 
 既然K-D树是BST在k维空间的推广，那K-D树自然也有[BST存在的平衡性问题——二叉树退化成链表](https://blog.csdn.net/Holmofy/article/details/79692613)。
 
-![平衡性问题](http://ww1.sinaimg.cn/large/bda5cd74ly1fyq5ity4e2g21hs0r0gq9.gif)
+![平衡性问题](http://tva1.sinaimg.cn/large/bda5cd74ly1fyq5ity4e2g21hs0r0gq9.gif)
 
 但是由于K-D树按多个维度划分子树，相邻的层级之间不在同一个维度，因此AVL、RB-Tree等平衡二叉搜索树的[旋转技术](https://en.wikipedia.org/wiki/Tree_rotation)对于K-D树并不适用。
 
@@ -97,7 +97,7 @@ K-D-B树汲取了B树的优点：**提供平衡K-D树的搜索效率，同时提
 
 以二维K-D-B树为例，如果最大子节点个数为4的话，数据结构图如下：
 
-![k-d-b tree](http://ww1.sinaimg.cn/large/bda5cd74ly1fz0fck5as8j20dw07iaa7.jpg)
+![k-d-b tree](http://tva1.sinaimg.cn/large/bda5cd74ly1fz0fck5as8j20dw07iaa7.jpg)
 
 
 
@@ -105,7 +105,7 @@ K-D-B树汲取了B树的优点：**提供平衡K-D树的搜索效率，同时提
 
 B树如果节点中的子节点树超过规定的阶数，就会发生节点分裂（数据库中经常称之为“页”分裂）。
 
-![B树的页分裂](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiffgiumg20e1065asg.gif)
+![B树的页分裂](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiffgiumg20e1065asg.gif)
 
 B树属于一维数据（数据只按一种规则排序），而K-D-B树数据有多个维度，所以页分裂的时候不能以B树“一刀切”的方式解决。
 
@@ -113,7 +113,7 @@ B树属于一维数据（数据只按一种规则排序），而K-D-B树数据�
 
 
 
-![](http://ww1.sinaimg.cn/large/bda5cd74ly1fz0fd8nkcjj20hg0eqaa1.jpg)
+![](http://tva1.sinaimg.cn/large/bda5cd74ly1fz0fd8nkcjj20hg0eqaa1.jpg)
 
 K-D-B树的这个操作修改的节点比较多，由于写入磁盘的速度比较慢，这个操作会相对耗时。而且K-D-B树对节点有多满没有约束，递归拆分子节点的时候可能会导致几乎空的叶节点，存储效率也不好。这是K-D-B树最主要的缺点。
 
@@ -133,7 +133,7 @@ B-K-D树是基于K-D-B树设计的，并结合一种名曰[“logarithmic method
 
 > 说实话我到现在都不是很理解，我看论文的意思B-K-D树有点像K-D-B树和LSM-Tree算法的结合，多个K-D-B树分段，一定时机将两颗小K-D-B树合并成大的K-D-B树以保证K-D-B树本身是静态的。但看谷歌出来的这篇文章我又懵逼了。所以如果有看懂这篇论文的大神，还请不吝赐教。
 
-![BKD-tree](http://ww1.sinaimg.cn/large/bda5cd74gy1gbuvvw0djej20na072mxn.jpg)
+![BKD-tree](http://tva1.sinaimg.cn/large/bda5cd74gy1gbuvvw0djej20na072mxn.jpg)
 
 B-K-D树结合了二叉树和B+树的特性。比较特殊的是，**内部节点必须形成一个完全二叉树**，而叶子节点存储方式和K-D-B树叶子相同。
 
@@ -145,7 +145,7 @@ B-K-D树结合了二叉树和B+树的特性。比较特殊的是，**内部节�
 
 首先，有一个大小为$M$的Buffer。在那片论文里，它是被保存在内存的。这个Buffer, 可能仅仅是一个数组或者性能更好的一些数据结构，毕竟是有查询需求的。论文并没有指明这个Buffer的最优大小，但是直觉上来说，至少应该和K-D树节点一样大。
 
-![BKD-Tree](http://ww1.sinaimg.cn/large/bda5cd74gy1gbuw7clq1rj222g0v2wgs.jpg)
+![BKD-Tree](http://tva1.sinaimg.cn/large/bda5cd74gy1gbuw7clq1rj222g0v2wgs.jpg)
 
 假设B-K-D树有$N$个数据，那么它有$ log_2(\frac{N}{M})$个K-D树。每一个树都是前一个树的2倍。数据首先被插入到内存里的Buffer里，一旦Buffer满了，先定位到第1个为空的树。这个Buffer的数据，以及空树之前所有节点的数据一起生成一个满的平衡树。在论文里，有对这个算法的详细描述。
 

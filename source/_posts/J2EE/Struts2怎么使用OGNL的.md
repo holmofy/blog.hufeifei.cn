@@ -24,21 +24,21 @@ Struts2框架就是使用OGNL完成数据的设置与访问的：
 
 > 先来看一张图，本文会逐步分析源码来解释这张图包含的意义。
 
-![ValueStack原理图](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp39gtbwj20mb0ch0tg.jpg)
+![ValueStack原理图](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp39gtbwj20mb0ch0tg.jpg)
 
 # 一、官方文档导致的错误理解
 
 [官方文档](http://struts.apache.org/core-developers/)中对OGNL有一段描述：Struts2框架将OGNL的上下文context设置为ActionContext，并将ValueStack设置为OGNL的root对象，而且还给出了一个树状图。
 
-![contextMap](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp493ypuj20t50dqgmf.jpg)
+![contextMap](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp493ypuj20t50dqgmf.jpg)
 
 看完这文档，按照[前一篇文章](http://blog.csdn.net/holmofy/article/details/78385677)的介绍的OGNL取值方式去思考，会发现ActionContext和ValueStack(唯一实现类OgnlValueStack)完全不符合OGNL对context和root的要求：context必须是Map类型的映射，root可以是任意Object类型(但是根据调用`actionContext.get("root")`并不能获取到ValueStack对象)。
 
 经过查看源码发现：ActionContext虽然没有实现Map，但是内部有一个名为context的Map对象；OgnlValueStack也并没有实现所谓的值栈功能，而是由内部的CompoundRoot实现，而且OgnlValueStack也有一个名为context的Map对象。
 
-![ActionContext](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp5b1jwkj20hy088gma.jpg)
+![ActionContext](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp5b1jwkj20hy088gma.jpg)
 
-![ValueStack](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp5qp61zj20q8090t9w.jpg)
+![ValueStack](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp5qp61zj20q8090t9w.jpg)
 
 # 二、ActionContext和ValueStack中真正的context
 
@@ -72,7 +72,7 @@ public class OgnlTestAction extends ActionSupport {
 
 再仔细看看下面OgnlValueStack中的setRoot方法，发现里面调用了`Ognl.createDefaultContext`创建了一个OgnlContext对象，这才是真正的context。
 
-![OgnlValueStack](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp68p6nsj20vz0f7mzl.jpg)
+![OgnlValueStack](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp68p6nsj20vz0f7mzl.jpg)
 
 # 三、CompoundRoot才是真正的值栈实现
 
@@ -80,7 +80,7 @@ CompoundRoot源码很简单，就是使用List模拟了一个栈的数据结构�
 
 > CompoundRoot：2.3版本中继承自ArrayList，在2.5之后换成了CopyOnWriteArrayList。
 
-![ComponentRoot](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp74fwxqj20hm0gq3zm.jpg)
+![ComponentRoot](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp74fwxqj20hm0gq3zm.jpg)
 
 >从上面的代码可以看出CompoundRoot效率很低下，push和pop操作分别使用`add(0,o)`和`remove(0)`实现，对于使用数组实现的List而言，这两个操作都伴随着大数据量的拷贝操作。
 >
@@ -94,7 +94,7 @@ CompoundRoot源码很简单，就是使用List模拟了一个栈的数据结构�
 
 然后再看一下刚刚的OgnlValueStack中创建OgnlContext的方法，发现该方法调用时传入了一个CompoundRootAccessor对象，这个**CompoundRootAccessor**是解密的关键。
 
-![root](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp7rjk50j20uf05adgn.jpg)
+![root](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp7rjk50j20uf05adgn.jpg)
 
 # 五、CompoundRootAccessor让OGNL总是能直接访问栈顶元素
 
@@ -196,7 +196,7 @@ struts.xml文件中的action配置这里就不贴了。
 
 测试结果：
 
-![top](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp8faz5jj207103qaa0.jpg)
+![top](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp8faz5jj207103qaa0.jpg)
 
 # 六、为什么通过EL表达式能访问值栈中的数据
 
@@ -234,7 +234,7 @@ public class LoginAction extends ActionSupport {
 
 测试结果：
 
-![actionTest](http://ww1.sinaimg.cn/large/bda5cd74gy1fqdp90if5uj207d03eq2y.jpg)
+![actionTest](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp90if5uj207d03eq2y.jpg)
 
 为什么能在EL表达式中访问Action中的属性呢，Struts2是如何实现的。
 

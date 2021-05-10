@@ -27,7 +27,7 @@ callback = callback || () => {};
 callback = callback || (() => {});    // ok
 ```
 
-![最基础的lambda](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbjespwloj208n020t8m.jpg)
+![最基础的lambda](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjespwloj208n020t8m.jpg)
 
 ##### 2. 如果函数体只有一条语句，可以省略函数体的大括号
 
@@ -39,7 +39,7 @@ callback = callback || (() => {});    // ok
 }
 ```
 
-![省略函数体的大括号](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbjfbv04fj209h04oq2z.jpg)
+![省略函数体的大括号](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjfbv04fj209h04oq2z.jpg)
 
 ##### 3. 如果参数只有一个，可以省略参数列表的小括号
 
@@ -62,7 +62,7 @@ singleParam => { statements }
 params => ({foo: bar})
 ```
 
-![返回对象字面量](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbjfyvhfrj207702zweg.jpg)
+![返回对象字面量](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjfyvhfrj207702zweg.jpg)
 
 ##### 6. 使用可变参数
 
@@ -70,7 +70,7 @@ params => ({foo: bar})
 (param1, param2, ...rest) => { statements }
 ```
 
-![lambda可变参数](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbjgnglifj20a8023t8n.jpg)
+![lambda可变参数](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjgnglifj20a8023t8n.jpg)
 
 ##### 7. 参数默认值
 

@@ -100,15 +100,15 @@ public class ThreadCommunicate {
 
 不论是在单处理机CPU还是多处理机CPU中，两个线程执行指令的前后顺序是不确定的，如果出现下面的这种情况：
 
-![CPU执行顺序](http://ww1.sinaimg.cn/large/bda5cd74ly1g2hdq1y4pxj20qx0l4whn.jpg)
+![CPU执行顺序](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdq1y4pxj20qx0l4whn.jpg)
 
 通过上图可以看出，两个线程同时执行一轮后，c的值结果等于-1。用一张动态图来形象描述一下这种情况：
 
-![线程竞争共享资源的坏情况](http://ww1.sinaimg.cn/large/bda5cd74ly1g2hdqqf2pfg20hj09ngvd.gif)
+![线程竞争共享资源的坏情况](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdqqf2pfg20hj09ngvd.gif)
 
 很显然下面这张图才是我们想要的结果：
 
-![线程竞争共享资源的好情况](http://ww1.sinaimg.cn/large/bda5cd74ly1g2hdr2zxkeg20hj09nqd9.gif)
+![线程竞争共享资源的好情况](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdr2zxkeg20hj09nqd9.gif)
 
 所以真正能得到等于0的序列只有两种：
 
@@ -120,13 +120,13 @@ public class ThreadCommunicate {
 
 # 3、同步与异步
 
-![同步和异步](http://ww1.sinaimg.cn/large/bda5cd74ly1g2hdtzz8kzj20ma0gl74i.jpg)
+![同步和异步](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdtzz8kzj20ma0gl74i.jpg)
 
 “同步”和“异步”，在各个领域中都有这两个词的出现。通俗的讲：**同步就是在一条线上执行，异步就是分成多条线执行。**
 
 很显然对于上面的问题，我们应该要将两个线程并成一条线，让它按次序执行，这就是我们要讲的“线程同步”。先来看一张动态图来初步了解线程同步的基本原理：
 
-![线程同步的原理图](http://ww1.sinaimg.cn/large/bda5cd74ly1g2hdugsxjng20hj09nx6p.gif)
+![线程同步的原理图](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdugsxjng20hj09nx6p.gif)
 
 # 4、使用线程同步解决问题
 

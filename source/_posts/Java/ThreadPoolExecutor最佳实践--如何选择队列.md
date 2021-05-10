@@ -58,7 +58,7 @@ categories: JAVA
 * 当队列满了，生产者调用的put()方法会阻塞，直到队列有空间可入队；
 * 当队列为空，消费者调用的get()方法会阻塞，直到队列有元素可消费；
 
-![生产者消费者模型](http://ww1.sinaimg.cn/large/bda5cd74gy1fu62gsnpioj20jw06zaa5.jpg)
+![生产者消费者模型](http://tva1.sinaimg.cn/large/bda5cd74gy1fu62gsnpioj20jw06zaa5.jpg)
 
 但是需要十分注意的是：**ThreadPoolExecutor提交任务时使用offer方法(不阻塞)，工作线程从队列取任务使用take方法(阻塞)**。正是因为ThreadPoolExecutor使用了不阻塞的offer方法，所以当队列容量已满，线程池会去创建新的临时线程；同样因为工作线程使用take()方法取任务，所以当没有任务可取的时候线程池的线程将会空闲阻塞。
 
@@ -100,11 +100,11 @@ private E dequeue() {
 
 通过简单的指针循环实现了一个环形队列：
 
-![环形队列](http://ww1.sinaimg.cn/large/bda5cd74gy1fu66bwa1vqj20f307i0u3.jpg)
+![环形队列](http://tva1.sinaimg.cn/large/bda5cd74gy1fu66bwa1vqj20f307i0u3.jpg)
 
 下面有一张维基百科关于环形缓冲区的的动画，虽然动画描述内容与ArrayBlockingQueue实现有所差异，但贵在生动形象(着实找不到更好的动画了)。
 
-![环形缓冲区](http://ww1.sinaimg.cn/large/bda5cd74gy1fu6688jbd2g20m80goe7i.gif)
+![环形缓冲区](http://tva1.sinaimg.cn/large/bda5cd74gy1fu6688jbd2g20m80goe7i.gif)
 
 > ArrayBlockingQueue主要复杂在迭代，允许迭代中修改队列(删除元素时会更新迭代器)，并不会抛出ConcurrentModificationException；好在大多数场景中我们不会迭代阻塞队列。
 

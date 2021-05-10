@@ -16,11 +16,11 @@ categories: JAVA
 
 这些诡异的验证码反而降低了用户体验，所以现在比较流行的是行为式验证码
 
-![用户点击](http://ww1.sinaimg.cn/large/bda5cd74gy1frwvdew2okj20d707kjuz.jpg)
+![用户点击](http://tva1.sinaimg.cn/large/bda5cd74gy1frwvdew2okj20d707kjuz.jpg)
 
-![用户滑动](http://ww1.sinaimg.cn/large/bda5cd74gy1frwvgc9uapj20bi023743.jpg)
+![用户滑动](http://tva1.sinaimg.cn/large/bda5cd74gy1frwvgc9uapj20bi023743.jpg)
 
-![用户滑动](http://ww1.sinaimg.cn/large/bda5cd74gy1frww3y1hk4j20a805ut8w.jpg)
+![用户滑动](http://tva1.sinaimg.cn/large/bda5cd74gy1frww3y1hk4j20a805ut8w.jpg)
 
 这篇文章主要讨论入门级的传统文字型验证码的识别。
 
@@ -40,11 +40,11 @@ Windows下载地址：https://github.com/tesseract-ocr/tesseract/wiki/Downloads
 
 我们需要设置`TESSDATA_PREFIX`变量为训练数据所在的目录。
 
-![验证码](http://ww1.sinaimg.cn/large/bda5cd74gy1fssflvy51vj201g00p741.jpg)
+![验证码](http://tva1.sinaimg.cn/large/bda5cd74gy1fssflvy51vj201g00p741.jpg)
 
 将Tesseract安装目录配置到环境变量后，我们可以直接用`tesseract`命令来对上面的验证码进行识别：
 
-![tesseract命令识别验证码](http://ww1.sinaimg.cn/large/bda5cd74gy1fssg03d4buj209n01p0sj.jpg)
+![tesseract命令识别验证码](http://tva1.sinaimg.cn/large/bda5cd74gy1fssg03d4buj209n01p0sj.jpg)
 
 > `--psm`选项用于是`page segmentation mode`，用于设置分页模式，tesseract有13中分页模式，因为验证码中字符基本在一行显示，所以选用`7`单行文本模式。
 >
@@ -109,11 +109,11 @@ public void testImageProcess() throws IOException {
 
 经过处理后的图片变成这个样子：
 
-![处理后的图片效果](http://ww1.sinaimg.cn/large/bda5cd74gy1fssgvwtrysj201e00n0sh.jpg)
+![处理后的图片效果](http://tva1.sinaimg.cn/large/bda5cd74gy1fssgvwtrysj201e00n0sh.jpg)
 
 再去用`tesseract`命令进行识别：
 
-![处理后识别](http://ww1.sinaimg.cn/large/bda5cd74gy1fssgzl33wxj20cb02hdfo.jpg)
+![处理后识别](http://tva1.sinaimg.cn/large/bda5cd74gy1fssgzl33wxj20cb02hdfo.jpg)
 
 识别率仍然很低(这么清晰的字还是别不出来，艹)。
 
@@ -125,25 +125,25 @@ public void testImageProcess() throws IOException {
 
 1、首先准备一个`chars.txt`文件，文件中包含验证码中可能出现的字符。
 
-![所有可能出现的字符](http://ww1.sinaimg.cn/large/bda5cd74gy1fsshv48cr5j20i202zmx2.jpg)
+![所有可能出现的字符](http://tva1.sinaimg.cn/large/bda5cd74gy1fsshv48cr5j20i202zmx2.jpg)
 
 2、使用[jTessBoxEditor](https://sourceforge.net/projects/vietocr/files/jTessBoxEditor/)可视化工具或者使用tesseract自带的`text2image`命令生成训练图片(tif格式)与字符定位文件(box后缀)
 
-![jTessBoxEditor生成字体训练图片](http://ww1.sinaimg.cn/large/bda5cd74gy1fssi0dzyzij210u05vwen.jpg)
+![jTessBoxEditor生成字体训练图片](http://tva1.sinaimg.cn/large/bda5cd74gy1fssi0dzyzij210u05vwen.jpg)
 
 > 同样地，`text2image --text=chars.txt --outputbase=myeng.consolas.exp0 --font="Consolas" --fonts_dir=C:\Windows\Fonts`命令可以生成tif与box文件。
 
 这里用`BellMT`、`Consolas`、`仿宋`、`华文楷体`、`微软雅黑`字体以及它们加粗的样式生成了一下几个文件。
 
-![生成的字体文件和字符定位文件](http://ww1.sinaimg.cn/large/bda5cd74gy1fssic3kzoaj207s0dl0ss.jpg)
+![生成的字体文件和字符定位文件](http://tva1.sinaimg.cn/large/bda5cd74gy1fssic3kzoaj207s0dl0ss.jpg)
 
 使用jTessBoxEditor工具可以更直观地查看tif文件与关联的box文件中的字符定位信息：
 
-![box定位](http://ww1.sinaimg.cn/large/bda5cd74gy1fssixirx32j211x0k5ab3.jpg)
+![box定位](http://tva1.sinaimg.cn/large/bda5cd74gy1fssixirx32j211x0k5ab3.jpg)
 
 同时生成了一个`font_properties`后缀的文件：
 
-![字体属性文件](http://ww1.sinaimg.cn/large/bda5cd74gy1fssigcq9rhj2066056745.jpg)
+![字体属性文件](http://tva1.sinaimg.cn/large/bda5cd74gy1fssigcq9rhj2066056745.jpg)
 
 ```
 <font name> <italic?> <bold?> <fixed?> <serif?> <fraktur?>
@@ -155,7 +155,7 @@ public void testImageProcess() throws IOException {
 
 可以直接使用jTessBoxEditor工具进行训练。
 
-![使用jTessBoxEditor训练](http://ww1.sinaimg.cn/large/bda5cd74gy1fssj7idl4ij211y0jymy7.jpg)
+![使用jTessBoxEditor训练](http://tva1.sinaimg.cn/large/bda5cd74gy1fssj7idl4ij211y0jymy7.jpg)
 
 这里面主要执行了一下几个步骤：
 
@@ -212,7 +212,7 @@ v1
 tesseract output.jpg --tessdata-dir /training/tessdata -l myeng --psm 7 stdout
 ```
 
-![训练后的数据进行识别](http://ww1.sinaimg.cn/large/bda5cd74gy1fssmbiqst5j20ib01zdfq.jpg)
+![训练后的数据进行识别](http://tva1.sinaimg.cn/large/bda5cd74gy1fssmbiqst5j20ib01zdfq.jpg)
 
 你会发现识别率高了很多，不过仍然有错。
 
@@ -220,11 +220,11 @@ tesseract output.jpg --tessdata-dir /training/tessdata -l myeng --psm 7 stdout
 
 我们采集一些验证码的样本，特别是那些容易识别错的验证码。
 
-![采集验证码](http://ww1.sinaimg.cn/large/bda5cd74gy1fssmfkvr5bj20ib0a8dgd.jpg)
+![采集验证码](http://tva1.sinaimg.cn/large/bda5cd74gy1fssmfkvr5bj20ib0a8dgd.jpg)
 
 使用jTessBoxEditor生成样本的box文件，注意语言包选用之前生成的训练数据
 
-![使用jTessBoxEditor生成box文件](http://ww1.sinaimg.cn/large/bda5cd74gy1fssmi82e0zj211f0ildh6.jpg)
+![使用jTessBoxEditor生成box文件](http://tva1.sinaimg.cn/large/bda5cd74gy1fssmi82e0zj211f0ildh6.jpg)
 
 用jTessBoxEditor对生成的box进行矫正。
 

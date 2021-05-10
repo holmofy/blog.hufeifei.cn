@@ -386,7 +386,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 
 如果真出现了`LibA`和`LibB`依赖的版本差别大无法兼容，`NoClassDefFoundError`、`NoSuchMethodError`等各种错误就会接踵而至，那怎么办呢？
 
-![NoSuchMethodError](http://ww1.sinaimg.cn/large/bda5cd74ly1gf5v05pz5hj20m00sytdk.jpg)
+![NoSuchMethodError](http://tva1.sinaimg.cn/large/bda5cd74ly1gf5v05pz5hj20m00sytdk.jpg)
 
 一种方式是直接把别人的代码拷过来，换个包名。这种方式简单粗暴，也许会觉得这个方式很low逼，但其实用的人挺多的，而且不乏业界名流，`spring-framework`就是这样[把`cglib`的代码](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/cglib/package-summary.html)拷过来的。但这种方式仅局限于cglib这样没有其他依赖的短小精悍的库。
 
@@ -400,7 +400,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 
 由于线上大量启动脚本已经写死了`taobao-hsf.sar`，为了降低风险，所以[Pandora](http://gitlab.alibaba-inc.com/middleware-container/pandora/tree/develop)独立成隔离容器后，仍然沿用了原有的名字。
 
-![pandora](http://ww1.sinaimg.cn/large/bda5cd74ly1gf2a9cfdfdj20gw0a3abm.jpg)
+![pandora](http://tva1.sinaimg.cn/large/bda5cd74ly1gf2a9cfdfdj20gw0a3abm.jpg)
 
 和Tomcat类似，每个Pandora Plugin模块都有自己的[ModuleClassLoader](http://gitlab.alibaba-inc.com/middleware-container/pandora/blob/develop/pandora.container/src/main/java/com/taobao/pandora/service/loader/ModuleClassLoader.java)，这样就能保证每个中间件Plugin相互隔离。
 
@@ -422,11 +422,11 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 
 SpringBoot会将应用以及相关的依赖打包成一个[FatJar](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-executable-jar-format.html)，只需要`java -jar`命令即可启动应用，这是因为SpringBoot的maven构建插件会将`MANIFEST.MF`中的`Main-Class`替换成[JarLauncher](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/loader/JarLauncher.html)，SpringBoot定义好针对FatJar的类加载器后，再去调SpringBoot的`Start-Class`的入口方法。
 
-![SpringBoot FatJar](http://ww1.sinaimg.cn/large/bda5cd74ly1gf5yu47atmj20mc0ncwh7.jpg)
+![SpringBoot FatJar](http://tva1.sinaimg.cn/large/bda5cd74ly1gf5yu47atmj20mc0ncwh7.jpg)
 
 但SpringBoot不同的是，PandoraBoot加载的不是简单的jar包，有一些二方包是支持依赖隔离的Pandora插件，这些插件包中包含了自己的依赖jar包。
 
-![Plugin结构](http://ww1.sinaimg.cn/large/bda5cd74ly1gf8cbpg52qj20qg0fy11d.jpg)
+![Plugin结构](http://tva1.sinaimg.cn/large/bda5cd74ly1gf8cbpg52qj20qg0fy11d.jpg)
 
 这些插件需要和`taobao-hsf.sar`中的插件一样进行依赖隔离。所以PandoraBoot基于SpringBoot的JarLauncher扩展了SarLauncher，再由[SarLoaderUtils](http://gitlab.alibaba-inc.com/middleware-container/pandora-boot/blob/develop/pandora-boot-loader/src/main/java/com/taobao/pandora/boot/loader/SarLoaderUtils.java)加载`sar`包和外部的插件。
 

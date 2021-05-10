@@ -237,11 +237,11 @@ JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`
 
 在Java Hotspot中，每一个对象前面都有一个类指针和一个头字段。头字段中存储了一个哈希码(HashCode)以及一个标志位，该标志位用于标识对象的年龄(新生代，老年代等)，同时它也被用来实现轻量锁。下面这张图展示了头字段的位置以及不同对象状态下的字段值。
 
-![object header](http://ww1.sinaimg.cn/large/bda5cd74ly1g2jjj6iyfqg20h707xwey.gif)
+![object header](http://tva1.sinaimg.cn/large/bda5cd74ly1g2jjj6iyfqg20h707xwey.gif)
 
 图的右侧描述了标准的对象锁定过程。只要对象没被锁住，头字段的后两位将会置为01。当一个方法在对象上同步时，头字段和对象指针会被存储到当前线程栈帧的`lock record`上。然后VM通过`compare-and-swap`操作尝试**将`lock record`的指针存入对象头字段**中。如果成功（对象头字段与预期的`hash～age～01`相等），那么当前线程就获取了锁。由于`lcok record`总是按字边界对齐，头字段最后两位为00并以此标记对象被锁定。
 
-![](http://ww1.sinaimg.cn/large/bda5cd74ly1g2jm0udbqvj20bx0gdt9m.jpg)
+![](http://tva1.sinaimg.cn/large/bda5cd74ly1g2jm0udbqvj20bx0gdt9m.jpg)
 
 如果由于对象之前已经锁住导致`compare-and-swap`操作失败，虚拟机首先会测试对象头字段是否指向当前线程的方法堆栈。这种情况下，说明当前线程已经拥有对象锁，然后能安全地继续接下来的执行逻辑。对于这种递归锁住一个对象的情况，`lock record`会被初始化为0而非对象的头字段。除非两个不同的线程并发竞争同一个对象的锁，`thin lock`才必须升级膨胀成重量级的`monitor`去管理等待的线程。
 
@@ -288,7 +288,7 @@ class oopDesc {
 
 每个对象头部都有一个markOop类型的4字节头字段。
 
-![Mark Word](http://ww1.sinaimg.cn/large/bda5cd74ly1g3djka7cboj20f509p3z2.jpg)
+![Mark Word](http://tva1.sinaimg.cn/large/bda5cd74ly1g3djka7cboj20f509p3z2.jpg)
 
 这个头字段里就记录着前面说到的轻量级锁、重量级锁、偏向锁等信息。
 

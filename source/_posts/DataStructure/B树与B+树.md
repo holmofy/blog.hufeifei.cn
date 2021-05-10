@@ -10,7 +10,7 @@ mathjax: true
 
 其实[上一篇文章](https://blog.csdn.net/holmofy/article/details/79692613)已经对BST进行过讨论，并对AVL，红黑树这样的自平衡二叉查找树分别解决了什么问题进行了讨论。
 
-![BST](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiag1z25g20iu05nadf.gif)
+![BST](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiag1z25g20iu05nadf.gif)
 
 上面这些数据结构理论上能达到$O(log_2N)$的平均时间复杂度。
 
@@ -22,11 +22,11 @@ mathjax: true
 
 我们知道传统的机械硬盘(不考虑SSD)的磁盘通过电磁性来保存数据的，磁头在高速旋转的磁盘上扫描寻道来读取或改变特定位置的磁性，从而实现数据的读写。
 
-![硬盘](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbibmlhotj208c08caa3.jpg)
+![硬盘](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbibmlhotj208c08caa3.jpg)
 
 上图中间的那个原型磁盘被分为被分成若干个扇形区域，这个区域被称为“[扇区(sector)](https://en.wikipedia.org/wiki/Disk_sector)”，**硬盘中每个扇区大小固定位512个字节，新型磁盘一个扇区4KB**。
 
-![扇区](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbicdwfx1j20i40eo7a7.jpg)
+![扇区](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbicdwfx1j20i40eo7a7.jpg)
 
 为了降低磁头来回寻道的时间，通常我们建议程序员在**执行IO操作时，使用连续顺序读写而不是随机读写**。
 
@@ -44,7 +44,7 @@ mathjax: true
 
 树这种数据结构每个节点空间一般都是临时分配的，也就是说**每个节点存储的物理位置都是随机的**。
 
-![BST磁盘IO问题](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbid9cts2g209107paaj.gif)
+![BST磁盘IO问题](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbid9cts2g209107paaj.gif)
 
 **那么每次访问一个节点都可能造成一次随机的磁盘IO**
 
@@ -80,11 +80,11 @@ B树也是一种自平衡的树状数据结构，它通常用作文件系统、�
 
 下图就是2-3Tree的存储结构。
 
-![2-3Tree](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbieoftqnj20cl04s74j.jpg)
+![2-3Tree](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbieoftqnj20cl04s74j.jpg)
 
 插入数据时，当节点中的数据达到3个，就会发生分裂：中间的值将会升级成父节点，比中间值小的将会成为左子节点，比中间值大的将会成为右子节点。
 
-![2-3Tree插入操作](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiffgiumg20e1065asg.gif)
+![2-3Tree插入操作](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiffgiumg20e1065asg.gif)
 
 > 同样的当m等于4的时候，就有[2-3-4Tree](https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree)
 
@@ -92,7 +92,7 @@ B树也是一种自平衡的树状数据结构，它通常用作文件系统、�
 
 当m越来越大的时候，B树就成了一个“又胖又矮”的小胖子了。这棵矮胖的树每个节点都存储了很多数据，每次取其中一个节点并使用二分查找，就能立马知道下一个节点的位置了，节点数量以及树的层数的降低，使得I/O次数随之减少。
 
-![高阶B树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbig4c8olj20n306f3yr.jpg)
+![高阶B树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbig4c8olj20n306f3yr.jpg)
 
 那是不是B树的阶数越高越好呢？
 
@@ -126,7 +126,7 @@ typedef struct {
 
 另外，B树进行范围查询时需要[回溯](https://en.wikipedia.org/wiki/Backtracking)，对于硬盘中的数据结构而言，一次回溯意味着一次随机IO。
 
-![回溯](http://ww1.sinaimg.cn/large/bda5cd74ly1fyy0cmozmkj20d30cx74u.jpg)
+![回溯](http://tva1.sinaimg.cn/large/bda5cd74ly1fyy0cmozmkj20d30cx74u.jpg)
 
 为了解决这些问题，[B+树](https://en.wikipedia.org/wiki/B%2B_tree)被发明出来了。
 
@@ -141,11 +141,11 @@ B+树中有两个小规则：
 
 > 所有叶子节点形成有序链表，**便于范围查询**。
 
-![B+树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbigvay08j20ns05o0sw.jpg)
+![B+树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbigvay08j20ns05o0sw.jpg)
 
 因为它的内部节点只存储Key，所以它的分裂方式与B树也略有不同。
 
-![B+树的分裂](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbihhh74hg20j605z17a.gif)
+![B+树的分裂](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbihhh74hg20j605z17a.gif)
 
 > 由于B+树的这些优秀特性，各大数据库的索引都是基于B+实现的。比如[MySQL](https://dev.mysql.com/doc/refman/5.7/en/create-index.html#create-index-storage-engine-index-types)，[Oracle](https://docs.oracle.com/cloud/latest/db112/CNCPT/indexiot.htm#CNCPT1170)等。
 

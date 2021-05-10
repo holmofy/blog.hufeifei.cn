@@ -41,9 +41,9 @@ Hadoop1.0时期使用JobTracker和TaskTracker的架构来实现MapReduce任务�
 >
 > Refs: http://blog.sina.com.cn/s/blog_829a682d0101lc9d.html
 
-![image.png](http://ww1.sinaimg.cn/large/bda5cd74ly1ghstnrsrk1j216k0sgqr0.jpg)
+![image.png](http://tva1.sinaimg.cn/large/bda5cd74ly1ghstnrsrk1j216k0sgqr0.jpg)
 
-![Yarn架构](http://ww1.sinaimg.cn/large/bda5cd74ly1gi6slp7p14j216o0o0mza.jpg)
+![Yarn架构](http://tva1.sinaimg.cn/large/bda5cd74ly1gi6slp7p14j216o0o0mza.jpg)
 
 > 分布式文件系统完美地解决了海量数据存储的问题，但是一个优秀的数据存储系统需要同时考虑数据存储和访问两方面的问题，比如你希望能够对数据进行随机访问，这是传统的关系型数据库所擅长的，但却不是分布式文件系统所擅长的，那么有没有一种存储方案能够同时兼具分布式文件系统和关系型数据库的优点，基于这种需求，就产生了 HBase。
 >
@@ -69,7 +69,7 @@ Hive则是SQL On Hadoop，Hive提供了SQL接口，开发人员只需要编写�
 
 目前认知中的大数据平台应该是这样的：
 
-![Hive](http://ww1.sinaimg.cn/large/bda5cd74ly1ghszuc5a6tj211y096776.jpg)
+![Hive](http://tva1.sinaimg.cn/large/bda5cd74ly1ghszuc5a6tj211y096776.jpg)
 
 那么问题来了，海量数据如何存到HDFS上的呢？
 
@@ -99,7 +99,7 @@ Sqoop将Sql表同步到Hive表，涉及到存储格式与数据类型的兼容�
 
 和Sqoop类似，[DataX](https://github.com/alibaba/datax)是阿里开源的一款离线数据同步工具，DataX有更[丰富的数据源支持](https://github.com/alibaba/DataX#support-data-channels)。
 
-![Data Collector](http://ww1.sinaimg.cn/large/bda5cd74ly1ghszvbp25cj21fy0iadpk.jpg)
+![Data Collector](http://tva1.sinaimg.cn/large/bda5cd74ly1ghszvbp25cj21fy0iadpk.jpg)
 
 # 5、数据导出
 
@@ -109,7 +109,7 @@ Sqoop将Sql表同步到Hive表，涉及到存储格式与数据类型的兼容�
 
 至此，大数据平台已初具雏形。
 
-![BigData](http://ww1.sinaimg.cn/large/bda5cd74ly1ghszwh3y59j21gk0ritmt.jpg)
+![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1ghszwh3y59j21gk0ritmt.jpg)
 
 
 
@@ -117,15 +117,15 @@ Sqoop将Sql表同步到Hive表，涉及到存储格式与数据类型的兼容�
 
 MapReduce编程模型非常通用，但是运算太慢——因为中间的计算结果需要落盘。
 
-![Hive](http://ww1.sinaimg.cn/large/bda5cd74ly1ght0ysiqa9j20ad0ajdh0.jpg)
+![Hive](http://tva1.sinaimg.cn/large/bda5cd74ly1ght0ysiqa9j20ad0ajdh0.jpg)
 
 因此诞生了很多基于内存或半内存的计算引擎，大大加快了计算速度。
 
-![Tez](http://ww1.sinaimg.cn/large/bda5cd74ly1ght102dtzbj20b50a6mxw.jpg)
+![Tez](http://tva1.sinaimg.cn/large/bda5cd74ly1ght102dtzbj20b50a6mxw.jpg)
 
 其中就包括Tez，Spark。Spark号称比传统Hadoop的MapReduce快百倍以上。基于Spark的SQL项目[Shark](https://databricks.com/blog/2014/07/01/shark-spark-sql-hive-on-spark-and-the-future-of-sql-on-spark.html)也演变成了Spark下的子项目Spark SQL，为了兼容已有的Hive仓库，[SparkSQL也支持HiveQL](https://spark.apache.org/sql/)。Hive也吸收了Tez和Spark的思想，逐渐发展起[Hive On Spark](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Getting+Started)、[Hive On Tez](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez)等项目。与此同时，各种OLAP的数据仓库引擎百花齐放——[Impala](https://impala.apache.org/)、[Presto](https://prestodb.io/)、[Drill](https://drill.apache.org/)、[Hawq](http://hawq.apache.org/)、[Druid](https://druid.apache.org/)、[Pinot](https://pinot.apache.org/)、[Kylin](http://kylin.apache.org/)......
 
-![BigData](http://ww1.sinaimg.cn/large/bda5cd74ly1ght14ok1twj21gg0rgas4.jpg)
+![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1ght14ok1twj21gg0rgas4.jpg)
 
 # 7、日志数据的订阅
 
@@ -133,7 +133,7 @@ MapReduce编程模型非常通用，但是运算太慢——因为中间的计�
 
 Flume只能采集应用日志，对于数据库的变更(增删改)操作也可能需要做一些处理，比如将数据库的变更同步到ElasticSearch搜索引擎中。阿里开源了一款MySQL的binlog订阅组件[Canal](https://github.com/alibaba/canal)。
 
-![日志订阅](http://ww1.sinaimg.cn/large/bda5cd74ly1ght37lwu4oj217o0k4wsn.jpg)
+![日志订阅](http://tva1.sinaimg.cn/large/bda5cd74ly1ght37lwu4oj217o0k4wsn.jpg)
 
 # 8、Hadoop上的任务的调度
 
@@ -141,7 +141,7 @@ Flume只能采集应用日志，对于数据库的变更(增删改)操作也可�
 
 有两个现成的工作流引擎可以完成这件事儿：[oozie](https://oozie.apache.org/)、[Azkaban](https://azkaban.github.io/)
 
-![实时监控](http://ww1.sinaimg.cn/large/bda5cd74ly1ghwdrpo58uj211q0ipgvp.jpg)
+![实时监控](http://tva1.sinaimg.cn/large/bda5cd74ly1ghwdrpo58uj211q0ipgvp.jpg)
 
 # 9、数据要实时--批处理vs.流处理
 
@@ -151,13 +151,13 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 但是很多时候，即使是海量数据，我们也希望及时查看一些数据指标。比如每年双十一的天猫交易大屏需要实时统计交易额，类似的还有股市实时交易数据，高德地图实时路况分析，未来自动驾驶技术和城市大脑都有非常高的实时性要求。
 
-![双十一实时交易额](http://ww1.sinaimg.cn/large/bda5cd74ly1ghznlosp3hj20hs09yaap.jpg)
+![双十一实时交易额](http://tva1.sinaimg.cn/large/bda5cd74ly1ghznlosp3hj20hs09yaap.jpg)
 
 为了让数据更实时，很明显就不能再使用原来定时调度任务的方式了。所以市面上就出现了[Storm](https://storm.apache.org/index.html)、[Samza](http://samza.apache.org/)实时流计算框架和[Spark Streaming](https://spark.apache.org/streaming/)这样基于微批处理的准实时框架，正是Spark Streaming让Spark成为了流批一体的框架淘汰了原有的MapReduce。15年社区开源了新的流处理框架[Flink](https://flink.apache.org/)，并通过有界流的策略来实现批处理，18年年底Flink母公司被阿里收购，Flink便在中国开始了大规模的技术推广，国内已有[很多大厂在用Flink替代Storm和Spark了](https://zhuanlan.zhihu.com/p/71318235)。
 
 阿里早期基于社区Storm自己实现了一套[JStorm](https://github.com/alibaba/jstorm)，后面又基于Flink定制了适用于企业内部的Blink，并作为16年后的双十一的技术支持，18年年底干脆就直接收购了Flink的母公司Data Artisans，次年便开源了Blink。
 
-![实时计算](http://ww1.sinaimg.cn/large/bda5cd74ly1ghzte72nvdj21ks0u21kx.jpg)
+![实时计算](http://tva1.sinaimg.cn/large/bda5cd74ly1ghzte72nvdj21ks0u21kx.jpg)
 
 # 10、数据查询与可视化
 
@@ -167,7 +167,7 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 基于这些存储方案，我们可以通过各种手段将其透出，比如：提供HTTP数据接口给第三方查询；使用DataV、AntV、HighChart等各种前端可视化框架作出可视化报表（自行谷歌数据可视化:smirk_cat:）。
 
-![BigData](http://ww1.sinaimg.cn/large/bda5cd74ly1ghzwqb0lsdj21l60xsb29.jpg)
+![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1ghzwqb0lsdj21l60xsb29.jpg)
 
 # 11、高大上的大数据算法与机器学习
 
@@ -179,7 +179,7 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 大数据算法和机器学习对微积分、线性代数、数理统计要求特别高，我大学里大部分时间都花在应用开发，这几门课学完就丢了，所以这块也没有深入研究。值得一提的是Spark有提供相应平台的机器学习框架[Spark ML](https://spark.apache.org/mllib/)，还有谷歌鼎鼎大名的[Tensorflow](https://www.tensorflow.org/)，打败世界第一围棋冠军柯洁的AlphaGo就是基于Tensorflow。
 
-![BigData](http://ww1.sinaimg.cn/large/bda5cd74ly1gi7pfbc3iqj21ku0xob29.jpg)
+![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1gi7pfbc3iqj21ku0xob29.jpg)
 
 
 

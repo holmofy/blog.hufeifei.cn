@@ -176,7 +176,7 @@ public class Example {
 
 RedisTemplate按照Redis的命令分组为我们提供了相应的操作视图：
 
-![RedisTemplate操作视图](http://ww1.sinaimg.cn/large/bda5cd74ly1g0c5ifo75aj218a17ugt9.jpg)
+![RedisTemplate操作视图](http://tva1.sinaimg.cn/large/bda5cd74ly1g0c5ifo75aj218a17ugt9.jpg)
 
 ```java
 @Component
@@ -251,7 +251,7 @@ public class Example {
 }
 ```
 
-![Redis](http://ww1.sinaimg.cn/large/bda5cd74ly1g0dbwd5xfqj21em0e8n6f.jpg)
+![Redis](http://tva1.sinaimg.cn/large/bda5cd74ly1g0dbwd5xfqj21em0e8n6f.jpg)
 
 经过不同的序列化器保存到Redis中的内容是不一样的，StringRedisTemplate直接转成字符串保存到Redis里面，但RedisTemplate默认使用JdkSerializer会将对象信息存储到Redis中。
 
@@ -392,7 +392,7 @@ public class RedisConnectionTest {
 
 以下是执行过程中，redis monitor监控到的redis请求。
 
-![image.png](http://ww1.sinaimg.cn/large/bda5cd74ly1g7an1irry0j20re08caf4.jpg)
+![image.png](http://tva1.sinaimg.cn/large/bda5cd74ly1g7an1irry0j20re08caf4.jpg)
 
 社区已经向[Spring官方](https://jira.spring.io/browse/DATAREDIS-714)提出了这个bug，并在[新版本](https://github.com/spring-projects/spring-data-redis/pull/318)中解决。
 

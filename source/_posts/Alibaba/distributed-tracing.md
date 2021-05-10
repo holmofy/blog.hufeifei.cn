@@ -14,7 +14,7 @@ mathjax: true
 * 当需要了解系统的整体表现或系统瓶颈时，需要知道整个调用链路的每个部分的耗时情况。
 * 当一次链路过程调用出错了，需要知道具体是哪个服务的哪一台机器出错，而不是到每一台机器上去看日志。
 
-![image.png](http://ww1.sinaimg.cn/large/bda5cd74ly1gh03y8q74cj21aq0pykcr.jpg)
+![image.png](http://tva1.sinaimg.cn/large/bda5cd74ly1gh03y8q74cj21aq0pykcr.jpg)
 
 # 2、Google的Dapper
 
@@ -30,7 +30,7 @@ Dapper论文中对实现一个分布式跟踪系统提出了如下几个需求�
 
 在论文中举了个例子：
 
-![Google Dapper](http://ww1.sinaimg.cn/large/bda5cd74ly1gh049xp5d1j20cl0auwf1.jpg)
+![Google Dapper](http://tva1.sinaimg.cn/large/bda5cd74ly1gh049xp5d1j20cl0auwf1.jpg)
 
 A~E分别表示五个服务，用户发起一次请求到前端系统A，然后A分别发送RPC请求到中间层的B和C，B处理请求后返回，C还要发起两个RPC请求到两个后台系统D和E。
 
@@ -42,7 +42,7 @@ A~E分别表示五个服务，用户发起一次请求到前端系统A，然后A
 
 每个服务将自己直接关联的Span数据记录到一个日志文件中，会有一个`Dapper Collectors`集群实时去收集这些日志数据并进行处理，处理完成后每一个调用链路都会被作为一行Trace记录会写入到BigTable中。最后由监控平台展示这些数据。
 
-![Dapper架构图](http://ww1.sinaimg.cn/large/bda5cd74ly1gh059qtux4j20jg0d10uy.jpg)
+![Dapper架构图](http://tva1.sinaimg.cn/large/bda5cd74ly1gh059qtux4j20jg0d10uy.jpg)
 
 # 3、阿里的鹰眼
 
@@ -52,7 +52,7 @@ EagleEye （鹰眼）是Google 的分布式调用跟踪系统 Dapper 在淘宝�
 
 在前端请求到达服务器时，应用容器在执行实际业务处理之前，会先执行EagleEye的埋点逻辑（基于Servlet的Filter的机制），埋点逻辑为这个前端请求分配一个全局唯一的调用链ID。这个ID在EagleEye 里面被称为 TraceId，埋点逻辑把TraceId 放在一个调用上下文对象里面，而调用上下文对象会存储在ThreadLocal里面。调用上下文里还有一个ID非常重要，在EagleEye里面被称作RpcId（等价于Dapper论文中的SpanID）。RpcId用于区分同一个调用链下的多个网络调用的发生顺序和嵌套层次关系。对于前端收到请求，生成的RpcId固定都是0。
 
-![鹰眼](http://ww1.sinaimg.cn/large/bda5cd74ly1gh0qqmzynnj20fk0c7tan.jpg)
+![鹰眼](http://tva1.sinaimg.cn/large/bda5cd74ly1gh0qqmzynnj20fk0c7tan.jpg)
 
 当这个前端执行业务处理需要发起RPC调用时，淘宝的RPC调用客户端HSF会首先从当前线程ThreadLocal上面获取之前EagleEye设置的调用上下文。然后，把RpcId递增一个序号。在EagleEye里使用多级序号来表示RpcId，比如前端刚接到请求之后的RpcId是0，那么它第一次调用RPC服务A时，会把RpcId改成0.1。之后，调用上下文会作为附件随这次请求一起发送到远程的HSF服务器。
 
@@ -62,7 +62,7 @@ HSF服务端收到这个请求之后，会从请求附件里取出调用上下�
 
 最后，EagleEye实时集群把调用链相关的所有访问日志都收集上来存储在HDFS和HBase中，EagleEye分析系统按TraceId汇总在一起，生成统计数据并生成报表，在鹰眼的控制台可以准确看到当时的调用情况了。
 
-![Alibaba Eagleeye](http://ww1.sinaimg.cn/large/bda5cd74ly1gh0p1t1ioxj20ez09ajsr.jpg)
+![Alibaba Eagleeye](http://tva1.sinaimg.cn/large/bda5cd74ly1gh0p1t1ioxj20ez09ajsr.jpg)
 
 # 4、源码导读
 
@@ -90,10 +90,13 @@ Google Dapper：https://static.googleusercontent.com/media/research.google.com/z
 
 Google Dapper中文翻译：https://bigbully.github.io/Dapper-translation/
 
+分布式追踪系统概述及主流开源系统对比: https://zhuanlan.zhihu.com/p/71024024
+
+Distributed Systems Observability by Cindy Sridharan: https://www.oreilly.com/library/view/distributed-systems-observability/9781492033431/ch04.html
+
 https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin
 
 http://jm.taobao.org/2014/03/04/3465/
 
 http://mw.alibaba-inc.com/products/eagleeye/_book/middle-insert-eagleEye-sunhua.html
 
-https://zhuanlan.zhihu.com/p/41047837

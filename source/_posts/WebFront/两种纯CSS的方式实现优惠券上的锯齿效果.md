@@ -20,7 +20,7 @@ categories: 前端
 
 先看一张效果图
 
-![效果图](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiuzdjmfj20dd06cwec.jpg)
+![效果图](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiuzdjmfj20dd06cwec.jpg)
 
 先定义一下最基本的html：
 
@@ -66,7 +66,7 @@ categories: 前端
 
 得到下面这样的效果：
 
-![1](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbivveosnj20c405m0sl.jpg)
+![1](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbivveosnj20c405m0sl.jpg)
 
 ## 2. 微调边框位置
 
@@ -80,12 +80,12 @@ categories: 前端
 }
 ```
 
-![效果图](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiwlea3bj20dd06cwec.jpg)
+![效果图](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiwlea3bj20dd06cwec.jpg)
 
 
 这样虽然已经出效果了，但是在实际应用中，由于背景色的不同导致，我们border圆点露馅了：
 
-![3](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbix3cohyj20d906s746.jpg)
+![3](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbix3cohyj20d906s746.jpg)
 
 ## 3. 隐藏多余的部分
 
@@ -100,13 +100,13 @@ categories: 前端
 }
 ```
 
-![4](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbixo93urj20ch05n0sl.jpg)
+![4](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbixo93urj20ch05n0sl.jpg)
 
 因为border的颜色(白色)和背景色(青绿色)不同，导致优惠券看上去很突兀。
 
 对于这个问题，最开始相到的解决办法是让把border设置为`transparent`(透明)，可惜透明的结果是显示后面div的红色。所以暂时只能用最笨的方法：把border的颜色设置成背景色。
 
-![5](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiyf1904j20cb060jr8.jpg)
+![5](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiyf1904j20cb060jr8.jpg)
 
 **整理以下CSS**
 
@@ -150,7 +150,7 @@ categories: 前端
 
 所以这次我们就直接用透明的背景。透明的背景当然不是指全透明，全透明那就是没背景了。看一下下面这张图你就知道我们要怎么干了。
 
-![1](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiywxmi9j20d705wglg.jpg)
+![1](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiywxmi9j20d705wglg.jpg)
 
 哇塞，这么多洞！密集恐惧症患者，看了估计有点闹心。
 
@@ -183,7 +183,7 @@ categories: 前端
 
 上面简单的三句话就生成了这张网：
 
-![1](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbiywxmi9j20d705wglg.jpg)
+![1](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbiywxmi9j20d705wglg.jpg)
 
 也许你看到样式上面的注释会很纳闷，这样就生成了一张网？你把sawtooth类改成下面的样式看一下，估计你就会明白了：
 
@@ -195,7 +195,7 @@ categories: 前端
 }
 ```
 
-![2](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj0dtoeej207j05da9u.jpg)
+![2](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj0dtoeej207j05da9u.jpg)
 
 ## 2. 找一个元素把多余的洞覆盖掉
 
@@ -227,7 +227,7 @@ categories: 前端
 
 完成的效果图如下：
 
-![3](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj10ocfnj20d505zq2r.jpg)
+![3](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj10ocfnj20d505zq2r.jpg)
 
 ## 3. 让遮罩层下移，让它成为背景
 
@@ -251,7 +251,7 @@ categories: 前端
 
 发现它不仅把洞给遮住了，还把我们的内容给遮住了：
 
-![4](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj1oa891j20dh068jr9.jpg)
+![4](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj1oa891j20dh068jr9.jpg)
 
 出现上面这种现象的原因就是：绝对定位脱离文档流后，会浮在文档的上面。
 
@@ -268,19 +268,19 @@ categories: 前端
 
 > 让“遮罩层”到负一楼去。
 
-![5](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj2836ysj20d705v3yf.jpg)
+![5](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj2836ysj20d705v3yf.jpg)
 
 OK，我们想要的效果有了。
 
 而且不管背景换成什么颜色，我们的“优惠券”都不会“露馅”。
 
-![6](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj2p9r0tj20di062q2r.jpg)
+![6](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj2p9r0tj20di062q2r.jpg)
 
 ## 4. 双层背景实现遮罩
 
 使用伪元素实现遮罩除了要使用`z-index`改变层级外，代码也显得冗长，我们还可以用双层背景来实现遮罩。为了让两个背景大小不一样我们还要用到[background-clip](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip)来设置背景的裁剪区域，`background-clip`支持四种属性值(text兼容性不好)：
 
-![](http://ww1.sinaimg.cn/large/bda5cd74gy1frdjsv0d2lj216s0a0q6e.jpg)
+![](http://tva1.sinaimg.cn/large/bda5cd74gy1frdjsv0d2lj216s0a0q6e.jpg)
 
 下面用将网装背景剪裁区域设置为`border-box`，纯色背景裁剪区域设置为`padding-box`用来遮罩。
 
@@ -327,4 +327,4 @@ OK，我们想要的效果有了。
 }
 ```
 
-![7](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj3cwgvxj20cr063q2q.jpg)
+![7](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj3cwgvxj20cr063q2q.jpg)

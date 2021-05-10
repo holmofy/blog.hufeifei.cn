@@ -20,7 +20,7 @@ mathjax: true
 >
 > BlockingQueue使用没有容量的同步队列(如SynchronousQueue)时，任务不会入队，而是直接创建临时线程去执行任务。
 
-![线程池基本模型](http://ww1.sinaimg.cn/large/bda5cd74gy1ft9rdddpi7j20sg0fwgno.jpg)
+![线程池基本模型](http://tva1.sinaimg.cn/large/bda5cd74gy1ft9rdddpi7j20sg0fwgno.jpg)
 
 虽然线程池的模型被剖析的非常清晰，但是如何最高性能地使用线程池一直是一个令人纠结的问题，其中最主要的问题就是**如何决定线程池的大小**。
 
@@ -107,13 +107,13 @@ public class ComputeThreadPoolTest {
 
 > 注意如果相同的线程数两次执行的时间相差比较大，说明测试的结果不准确。
 
-![测试生成数据](http://ww1.sinaimg.cn/large/bda5cd74gy1ftq4ch1cqhj20lm0cfgm4.jpg)
+![测试生成数据](http://tva1.sinaimg.cn/large/bda5cd74gy1ftq4ch1cqhj20lm0cfgm4.jpg)
 
 > 测试程序生成的数据可以[从这下载](https://gitee.com/holmofy/ThreadPool/blob/master/%E8%AE%A1%E7%AE%97%E5%AF%86%E9%9B%86%E5%9E%8B%E4%BB%BB%E5%8A%A1%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE.xlsx)
 
 对数据生成折线图
 
-![线程池线程数与计算密集型任务执行时间关系图](http://ww1.sinaimg.cn/large/bda5cd74gy1ftq4isw7a7j20lv0az74c.jpg)
+![线程池线程数与计算密集型任务执行时间关系图](http://tva1.sinaimg.cn/large/bda5cd74gy1ftq4isw7a7j20lv0az74c.jpg)
 
 由于我笔记本的CPU有四个处理器，所以会发现当线程数达到4之后，5000个任务的执行时间并没有变得更少，基本上是在600毫秒左右徘徊。
 
@@ -209,7 +209,7 @@ public class IOThreadPoolTest {
 
 但是打开任务管理器你会发现执行任务的同时内存会飙升到接近400M，因为每个线程都消耗了一部分内存，在5000个线程创建之后，内存消耗达到了峰值。
 
-![内存飙升](http://ww1.sinaimg.cn/large/bda5cd74gy1fu68um9r1wj20jp0bi41f.jpg)
+![内存飙升](http://tva1.sinaimg.cn/large/bda5cd74gy1fu68um9r1wj20jp0bi41f.jpg)
 
 所以使用CacheThreadPool的时候应该**避免提交大量长时间阻塞的任务**，以防止内存溢出；另一种替代方案是，使用固定大小的线程池，并给一个较大的线程数(不会内存溢出)，同时为了在空闲时节省内存资源，调用`allowCoreThreadTimeOut`允许核心线程超时。
 
@@ -229,7 +229,7 @@ $$
 
 线程数与阻塞比例的关系图大致如下：
 
-![线程数与阻塞比例关系图](http://ww1.sinaimg.cn/large/bda5cd74gy1ftqrtn3ppnj20sd0gujru.jpg)
+![线程数与阻塞比例关系图](http://tva1.sinaimg.cn/large/bda5cd74gy1ftqrtn3ppnj20sd0gujru.jpg)
 
 当阻塞比例为0，也就是纯计算任务，线程数等于核心数(这里是4)；**阻塞比例越大，线程池的线程数应该更多**。
 

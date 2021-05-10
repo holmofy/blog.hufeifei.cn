@@ -55,9 +55,9 @@ categories: 数据库
 
 红黑树比较适合用在内存中(所以各种编程语言都提供了红黑树给程序员用啊)。红黑树到了磁盘上速度就不行了，B树就是专门用在磁盘上的数据结构：**对于相同的数据量，B树的深度更低，经过的节点更少，所以造成的随机磁盘IO次数也就更少**。(文件索引数据库索引用的都是B树)
 
-![红黑树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqic287p4eg20fq06qmxn.gif)
+![红黑树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqic287p4eg20fq06qmxn.gif)
 
-![B树](http://ww1.sinaimg.cn/large/bda5cd74gy1fqic4i8n8xg20eu04vmxk.gif)
+![B树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqic4i8n8xg20eu04vmxk.gif)
 
 ## 为什么使用B+树
 
@@ -74,7 +74,7 @@ B+树是B树的变体，它的**完整数据全部存储在叶子结点，非叶
 
 而且由于B+树索引本身的**有序性**，所以在很多情况下**可以避免对数据的排序**(对磁盘排序要用到文件外排序，而且数据量很大很耗时)。
 
-![B+树](http://ww1.sinaimg.cn/large/bda5cd74gy1ftod7o55hkj20ry0k379y.jpg)
+![B+树](http://tva1.sinaimg.cn/large/bda5cd74gy1ftod7o55hkj20ry0k379y.jpg)
 
 总结起来，使用B+树作为数据库索引的存储结构有以下原因：
 1. 减少磁盘I/O，并尽量避免不必要的磁盘I/O
@@ -88,7 +88,7 @@ B+树是B树的变体，它的**完整数据全部存储在叶子结点，非叶
 
 hash在很多编程语言中都能见到，因为它查找速度非常快，理论上平均时间复杂度能达到`O(1)`。
 
-![hash索引](http://ww1.sinaimg.cn/large/bda5cd74gy1fqieqgqbarg20gr08hglm.jpg)
+![hash索引](http://tva1.sinaimg.cn/large/bda5cd74gy1fqieqgqbarg20gr08hglm.jpg)
 
 
 

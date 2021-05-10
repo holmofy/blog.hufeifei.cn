@@ -558,17 +558,18 @@ transforms=unwrap,...
 transforms.unwrap.type=io.debezium.transforms.ExtractNewRecordState
 ```
 
-那如果是删除操作呢，ExtractNewRecordState默认的行为是假删除(`tombstones`)，我们需要添加一下几个配置：
+那如果是删除操作呢，删除操作会生成两个事件，一个delete事件有before没有after，还有一个和delete事件key相同的墓碑事件消息体为null。ExtractNewRecordState可以配置怎么处理`delete`记录：
 
 ```properties
 transforms=unwrap,...
 transforms.unwrap.type=io.debezium.transforms.ExtractNewRecordState
-transforms.unwrap.drop.tombstones=false
-transforms.unwrap.delete.handling.mode=rewrite
-transforms.unwrap.add.fields=table,lsn
+transforms.unwrap.drop.tombstones=true
+transforms.unwrap.delete.handling.mode=drop
 ```
 
-这个时候ExtractNewRecordState会把重写delete事件的消息体，将删除的主键等信息存入`value`字段，以备后续处理。
+`delete.handling.mode`指定delete记录的处理模式，默认为`drop`也就是delete记录将会被ExtractNewRecordState丢弃。`drop.tombstones`指定要不要丢弃墓碑事件。
+
+更多配置可以参考[官方文档](https://debezium.io/documentation/reference/configuration/event-flattening.html#configuration-options)
 
 ### 6.8、kafka-connect的坑
 

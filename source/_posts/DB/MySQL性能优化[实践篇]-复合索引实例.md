@@ -20,17 +20,17 @@ categories: 数据库
 
 **建表测试**
 
-![create table](http://ww1.sinaimg.cn/large/bda5cd74gy1fro2c2mibzj209s03xa9y.jpg)
+![create table](http://tva1.sinaimg.cn/large/bda5cd74gy1fro2c2mibzj209s03xa9y.jpg)
 
 测试表中有五个列(c1,c2,c3,c4,c5)，均为char(1)类型且不为空。字符集为utf8(**索引长度以字节数计算**)
 
 **创建复合索引**
 
-![add index](http://ww1.sinaimg.cn/large/bda5cd74gy1fro2im49q2j20fp01j3yd.jpg)
+![add index](http://tva1.sinaimg.cn/large/bda5cd74gy1fro2im49q2j20fp01j3yd.jpg)
 
 **插入几条测试数据**
 
-![insert into](http://ww1.sinaimg.cn/large/bda5cd74gy1fro2mn7j5gj20i406r3yj.jpg)
+![insert into](http://tva1.sinaimg.cn/large/bda5cd74gy1fro2mn7j5gj20i406r3yj.jpg)
 
 > 这里插几条数据，主要是为了防止空表对SQL优化器的影响
 
@@ -38,7 +38,7 @@ categories: 数据库
 
 用到了索引的所有部分，其中c1,c2,c3精确匹配，c4范围查询：
 
-![explain](http://ww1.sinaimg.cn/large/bda5cd74gy1fro32xo8iij20k106z3yq.jpg)
+![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1fro32xo8iij20k106z3yq.jpg)
 
 这里**key_len=12**，因为每个utf8字符占3个字节（BMP平面字符）。
 
@@ -58,13 +58,13 @@ categories: 数据库
 
 出现ICP主要是因为我们用了`select *`。我们把SQL稍微改动一下，让它能达到**索引覆盖**
 
-![索引覆盖](http://ww1.sinaimg.cn/large/bda5cd74gy1fro3m5i6a9j20lh071wet.jpg)
+![索引覆盖](http://tva1.sinaimg.cn/large/bda5cd74gy1fro3m5i6a9j20lh071wet.jpg)
 
 # where c1=x and c2=x and c4=x order by c3
 
 用到了索引的c1,c2,c3列，其中c1、c2列用于查询，c3用于排序。由于c3列没有精确匹配，导致c4列无法用到索引。
 
-![explain](http://ww1.sinaimg.cn/large/bda5cd74gy1fro40gcgebj20jl0760t2.jpg)
+![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1fro40gcgebj20jl0760t2.jpg)
 
 [**type: ref**](https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#jointype_ref)
 
@@ -76,31 +76,31 @@ ref指的是从表中读取匹配索引值的所有行。type=ref说明使用了
 
 #  where c1=x and c4=x group by c3,c2
 
-![explain](http://ww1.sinaimg.cn/large/bda5cd74gy1froty4ypchj20kl07amxh.jpg)
+![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1froty4ypchj20kl07amxh.jpg)
 
 group by子句执行时会先排序，再分组。这条语句由于group by的顺序为c3,c2与索引顺序不匹配，所以没用到索引。
 
-![group by](http://ww1.sinaimg.cn/large/bda5cd74gy1frhxeblz75j20ud0gg3zp.jpg)
+![group by](http://tva1.sinaimg.cn/large/bda5cd74gy1frhxeblz75j20ud0gg3zp.jpg)
 
 我们把group by的顺序调换一下就能然c2和c3列能用上索引进行排序分组。
 
-![优化](http://ww1.sinaimg.cn/large/bda5cd74gy1frou412zw6j20jy075aae.jpg)
+![优化](http://tva1.sinaimg.cn/large/bda5cd74gy1frou412zw6j20jy075aae.jpg)
 
 # where c1=? and c5=? order by c2,c3
 
 因为group by本质上也会执行order by操作，所以这条语句原理上和上面的差不多。
 
-![explain](http://ww1.sinaimg.cn/large/bda5cd74gy1frou877wxfj20jk0723yr.jpg)
+![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1frou877wxfj20jk0723yr.jpg)
 
 # where c1=? and c2=? and c5=? order by c2,c3
 
 这条查询和上条略有不同c1列和c2列已经使用索引精确匹配了，而order by再对c2进行排序已经没有意义了，因为过滤后的数据c2都是相等的，所以实际上只有c3列才用到排序。
 
-![explain](http://ww1.sinaimg.cn/large/bda5cd74gy1frouaplzopj20kg06zt8y.jpg)
+![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1frouaplzopj20kg06zt8y.jpg)
 
 这个时候的修改order by中c2、c3列的顺序没有任何关系，因为c2列已经精确匹配了。
 
-![explain](http://ww1.sinaimg.cn/large/bda5cd74gy1frouf4qnxlj20kh076q3d.jpg)
+![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1frouf4qnxlj20kh076q3d.jpg)
 
 
 

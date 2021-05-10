@@ -526,13 +526,13 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 
 [HandlerMethod](https://docs.spring.io/spring/docs/5.1.4.RELEASE/spring-framework-reference/web.html#mvc-ann-methods)就代表了我们处理请求的方法，也就是我们写在Controller里面有@RequestMapping注解的方法。
 
-![HandlerMethod](http://ww1.sinaimg.cn/large/bda5cd74gy1fskes4ypjgj20eb0etjrl.jpg)
+![HandlerMethod](http://tva1.sinaimg.cn/large/bda5cd74gy1fskes4ypjgj20eb0etjrl.jpg)
 
 有`bean`和`method`两个属性就能调用这个方法了。
 
 从上面的RequestMappingHandlerAdapter的代码可以看到我们用的是它的子类`ServletInvocableHandlerMethod`，它的继承关系也很简单：
 
-![HandlerMethod](http://ww1.sinaimg.cn/large/bda5cd74gy1fskeub07z5j20d80c0q2y.jpg)
+![HandlerMethod](http://tva1.sinaimg.cn/large/bda5cd74gy1fskeub07z5j20d80c0q2y.jpg)
 
 子类InvocableHandlerMethod中有几个重要字段：
 
@@ -540,7 +540,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 * HandlerMethodArgumentResolverComposite是一组`HandlerMethodArgumentResolver`，用于解析handler方法的参数，比如参数有@PathVariable注解就把请求uri中携带的参数注入进去，如果有@CookieValue注解就把请求Cookie注入，如果有@RequestParam注解就把请求`?`后的参数注入进去...
 * ParameterNameDiscoverer负责把handler方法的参数名取出来，方便在没有@RequestParam等任何注解的时候和请求参数的名字匹配。
 
-![HandlerMethod子类的字段](http://ww1.sinaimg.cn/large/bda5cd74gy1fskf4oli68j20nf0bsjrn.jpg)
+![HandlerMethod子类的字段](http://tva1.sinaimg.cn/large/bda5cd74gy1fskf4oli68j20nf0bsjrn.jpg)
 
 ServletInvocableHandlerMethod也有一个重要的参数：
 
@@ -556,9 +556,9 @@ HandlerMethodReturnValueHandler用于处理Controller方法的返回值，可以
 
 *RequestMappingHandlerAdapter*中有定义了默认的参数解析器和返回值处理器
 
-![默认HandlerMethodArgumentResolver](http://ww1.sinaimg.cn/large/bda5cd74gy1fskghh9aeoj20nr0hl75f.jpg)
+![默认HandlerMethodArgumentResolver](http://tva1.sinaimg.cn/large/bda5cd74gy1fskghh9aeoj20nr0hl75f.jpg)
 
-![默认HandlerMethodReturnValueHandler](http://ww1.sinaimg.cn/large/bda5cd74gy1fskglkiu9dj20mp0h9dgo.jpg)
+![默认HandlerMethodReturnValueHandler](http://tva1.sinaimg.cn/large/bda5cd74gy1fskglkiu9dj20mp0h9dgo.jpg)
 
 # 处理请求分发结果
 

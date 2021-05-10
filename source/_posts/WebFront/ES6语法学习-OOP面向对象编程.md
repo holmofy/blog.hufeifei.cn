@@ -31,7 +31,7 @@ console.log(window.x) // 1
 console.log(window.y) // 2
 ```
 
-![OOP](http://ww1.sinaimg.cn/large/bda5cd74gy1fqbj7lgif8j208h05jaa2.jpg)
+![OOP](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj7lgif8j208h05jaa2.jpg)
 
 ## 1. 防止构造函数被当成普通函数调用
 

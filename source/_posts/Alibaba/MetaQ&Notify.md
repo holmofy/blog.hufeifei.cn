@@ -166,7 +166,7 @@ ActiveMQ中还支持[LevelDB的持久化方式](https://activemq.apache.org/leve
 
 notify可以对标ActiveMQ。最早notify也确实是参考ActiveMQ的kaha实现的kv存储，到后来为了保证可靠性使用关系型数据库Oracle存储消息，随着集团的去IOE化战略，才全面迁移到MySQL集群存储。notify的[Message模型](http://gitlab.alibaba-inc.com/messaging/notify1/blob/master/notify-server/src/main/java/com/taobao/notify/server/domain/MessageEntity.java)设计如下：
 
-![Notify模型设计](http://ww1.sinaimg.cn/large/bda5cd74ly1ge5xq5b8s0j20v007o3zx.jpg)
+![Notify模型设计](http://tva1.sinaimg.cn/large/bda5cd74ly1ge5xq5b8s0j20v007o3zx.jpg)
 
 而MetaQ则是受Kafka的影响开发的，最早第一版的名字["metamorphosis"](https://github.com/killme2008/Metamorphosis)，是奥地利作家卡夫卡的名作——《变形记》，这算是对Kafka的致敬吧。
 
@@ -178,7 +178,7 @@ notify可以对标ActiveMQ。最早notify也确实是参考ActiveMQ的kaha实现
 
 所以MetaQ2.0时就对存储层进行了重新设计，结构如下图所示：
 
-![](http://ww1.sinaimg.cn/large/bda5cd74ly1ge5xmeu2m3j20sz0d5q5w.jpg)
+![](http://tva1.sinaimg.cn/large/bda5cd74ly1ge5xmeu2m3j20sz0d5q5w.jpg)
 
 MetaQ存储的核心是实现一个持久化的分布式队列，重新设计后的MetaQ抽象出了CommitLog和Consume queue。其中CommitLog属于物理队列，存储完整的消息数据，不定长记录，也起到了类似redo log的功能，一旦CommitLog落盘成功，消息就不会丢失；所有Topic的消息都会写入到同一个CommitLog，哪怕单机一万个topic，还是能保持顺序写，保障吞吐量。Consume queue可以认为是逻辑队列、索引队列，每个topic的消息在写完CommitLog之后，都会写到独立的Consume queue；队列里的每个元素为定长记录，元素内容包含该消息在对应CommitLog的`offset`和`size`。基于这样的存储结构，MetaQ对客户端暴露的主要是Consume queue逻辑视图，提供队列访问接口。消费者通过指定Consume queue的位点来读取消息，通过提交Consume queue的位点来维护消费进度。
 

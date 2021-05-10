@@ -336,7 +336,7 @@ possible_keys: idx_c1_c2_c4_c3
 
 没有索引的情况下，`group by`子句执行`filesort`对数据进行排序，然后在进行分组。这个过程中**可能会导致全表扫描并且创建中间临时表**。
 
-![Group By原理](http://ww1.sinaimg.cn/large/bda5cd74gy1frhxeblz75j20ud0gg3zp.jpg)
+![Group By原理](http://tva1.sinaimg.cn/large/bda5cd74gy1frhxeblz75j20ud0gg3zp.jpg)
 
 和`order by`子句相比，`group by`多了创建中间表和分组的操作，`group by`子句也是需要排序的。
 
