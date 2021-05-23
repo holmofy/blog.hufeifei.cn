@@ -6,6 +6,8 @@ categories: JAVA
 
 Vector作为JDK1.0开始就已经存在的元老级数据结构，在JDK的版本升级过程中可谓是修修补补，与JAVA1.2中新增的ArrayList这个后起之秀相比，Vector就显得有点赘余了。但是对于新手来说就很有可能将这两个类混淆使用，这里对这两个类进行区别(主要体现在扩容策略和线程安全上)。
 
+<!-- more -->
+
 # 相同点
 1. 都使用数组实现，提供的操作也基本一致
   在ArrayList与Vector中都有一个`` Object[] elementData``用来保存数据

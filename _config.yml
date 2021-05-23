@@ -7,7 +7,13 @@
 title: holmofy
 ## 子标题
 subtitle: 
-description:  &nbsp; 胡飞飞的个人博客
+description: 胡飞飞的个人博客
+keywords: 
+  - Java
+  - DB
+  - Alibaba
+  - Holmofy
+  - 胡飞飞
 author: 胡飞飞
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -52,10 +58,22 @@ highlight:
   auto_detect: false
   tab_replace:
 
+# https://github.com/hexojs/hexo-generator-index
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+# https://github.com/hexojs/hexo-generator-archive
+archive_generator:
+  per_page: 50
+  yearly: true
+  monthly: true
 # Category & Tag
 default_category: uncategorized
 category_map:
 tag_map:
+
+meta_generator: true
 
 # 配置Math.js
 mathjax:
@@ -80,7 +98,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next 
+theme: paper
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -96,11 +114,13 @@ plugins: hexo-generator-feed
          hexo-generator-sitemap
          hexo-generator-baidu-sitemap
 
+# https://github.com/hexojs/hexo-generator-feed
 feed:
   type: atom ##feed类型 atom或者rss2
   path: atom.xml ##feed路径
   limit: 20  ##feed文章最小数量
 
+# https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
   path: sitemap.xml
 baidusitemap:
@@ -112,6 +132,7 @@ githubEmojis:
   styles:
   customEmojis:
 
+# https://github.com/chekun/hexo-excerpt
 excerpt:
   depth: 3
   excerpt_excludes: []
