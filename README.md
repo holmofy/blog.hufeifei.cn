@@ -1,4 +1,4 @@
-# [Holmofy Blog](blog.hufeifei.cn)
+# [Holmofy Blog](https://blog.hufeifei.cn)
 
 ## Install
 
