@@ -13,7 +13,7 @@ categories: JAVA
 * 在Server内创建一个远程对象(CalcServiceImpl)，并生成存根，注册到Registry中。
 * 客户端请求远程对象，并调用对象的方法。
 
-![RMI架构图](http://img.blog.csdn.net/20171223200249869?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![RMI架构图](http://img-blog.csdn.net/20171223200249869?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * Transport Layer：RMI传输层实现网络连接与通信的数据传递。
 * Stub：存根是远程对象在客户端的代理，它驻留在客户端系统中，充当客户端程序的网关。
@@ -33,9 +33,9 @@ categories: JAVA
 
 事实上这两个过程使用的使我们非常熟悉的ObjectOutputStream和ObjectInputStream。只不过，RMI进一步包装了这两个类：
 
-![Output](http://img.blog.csdn.net/20171223200349973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Output](http://img-blog.csdn.net/20171223200349973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![Input](http://img.blog.csdn.net/20171223200405206?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Input](http://img-blog.csdn.net/20171223200405206?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 这两个过程之间涉及到的消息通信协议，也被称为[JRMP协议](https://en.wikipedia.org/wiki/Java_Remote_Method_Protocol)，Java Remote Message Protocol
 
@@ -47,7 +47,7 @@ RmiRegistry用于管理所有的远程服务。
 
 客户端调用远程对象时，客户端需要远程对象的引用。客户端可以根据服务名调用`Registry.lookup`方法从RmiRegistry中获取对象。
 
-![RmiRegistry](http://img.blog.csdn.net/20171223200420058?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![RmiRegistry](http://img-blog.csdn.net/20171223200420058?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 分析Stub中的源代码
 
@@ -62,7 +62,7 @@ RmiRegistry用于管理所有的远程服务。
 rmic -keep cn.hff.service.CalcServiceImpl
 ```
 
-![RMIC](http://img.blog.csdn.net/20171223200441356?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![RMIC](http://img-blog.csdn.net/20171223200441356?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 生成源码的Stub对象如下：
 

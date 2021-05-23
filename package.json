@@ -16,6 +16,7 @@
     "hexo-deployer-git": "^2.1.0",
     "hexo-excerpt": "^1.1.6",
     "hexo-filter-mathjax": "^0.7.0",
+    "hexo-filter-nofollow": "github:holmofy/hexo-filter-nofollow",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-feed": "^3.0.0",

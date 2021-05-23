@@ -37,14 +37,14 @@ description: 下文摘自H3C攻击防范指导手册
 ## 2. TCP Proxy功能简介
 TCP Proxy 功能用来防止服务器受到 SYN Flood 攻击。客户端通过 TCP 代理请求与受保护的服务器建立连接时，TCP 代理首先验证客户端的请求是否为 SYN Flood 攻击，验证通过后客户端和服务器之间才能建立 TCP 连接，从而避免服务器受到攻击。
 TCP Proxy 支持两种代理方式：单向代理和双向代理。单向代理方式是指仅对 TCP 连接的正向报文进行处理；双向代理是指对 TCP 连接的正向和反向报文都进行处理。用户可以根据实际的组网情况进行选择。
-![单向代理组网](http://img.blog.csdn.net/20170329121627238?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)![双向代理组网](http://img.blog.csdn.net/20170329121922772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![单向代理组网](http://img-blog.csdn.net/20170329121627238?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)![双向代理组网](http://img-blog.csdn.net/20170329121922772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 例如：在如 图 1-1 所示的组网中，从客户端发出的报文经过TCP代理，而从服务器端发出的报文不经过TCP代理，此时只能使用单向代理方式；在如 图 1-2 所示的组网中，从客户端发出的报文经和从服务器端发出的报文都经过TCP代理，此时可以使用单向代理方式，也可以使用双向代理方式。
 ## 3. TCP Proxy处理流程
 ### 3.1. 单向代理
 单向代理方式下，TCP Proxy的处理流程如 图 1-3 所示。
-![单向代理方式的TCP Proxy处理流程](http://img.blog.csdn.net/20170329122039115?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![单向代理方式的TCP Proxy处理流程](http://img-blog.csdn.net/20170329122039115?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 TCP 代理收到某客户端发来的与受保护服务器（匹配某个受保护 IP 表项）建立 TCP 连接的请求（SYN 报文）后，先代替服务器向客户端回应序号错误的 SYN ACK 报文。如果收到客户端回应的RST 报文，则认为该 TCP 连接请求通过 TCP 代理的验证。一定时间内，TCP 代理收到客户端重发的 SYN 报文后，直接向服务器转发，在客户端和服务器之间建立 TCP 连接。TCP 连接建立后，TCP代理直接转发后续的报文，不对报文进行处理。
 ### 3.2. 双向代理
 双向代理方式下，TCP Proxy的处理流程如 图 1-4 所示。
-![双向代理方式的TCP Proxy处理流程](http://img.blog.csdn.net/20170329123426294?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![双向代理方式的TCP Proxy处理流程](http://img-blog.csdn.net/20170329123426294?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 TCP 代理收到某客户端发来的与受保护服务器建立 TCP 连接的请求（SYN 报文）后，先代替服务器向客户端回应正常的 SYN ACK 报文（窗口值为 0）。如果收到客户端回应的 ACK 报文，则认为该 TCP 连接请求通过 TCP 代理的验证。TCP 代理再向服务器发送同样的 SYN 报文，并通过三次握手与服务器建立 TCP 连接。双向代理方式中，在客户端和 TCP 代理、TCP 代理和服务器之间建立两个 TCP 连接。由于两个 TCP 连接使用的序号不同，TCP 报文交互过程中，TCP 代理接收到客户端或服务器发送的报文后，需要修改报文序号，再转发给对端，这样才能保证通信正常。

@@ -32,7 +32,7 @@ mkdir -p /usr/local/java
 tar -xzvf jdk-8u151-linux-i586.tar.gz -C /usr/local/java
 ```
 
-![解压后的JDK目录](http://img.blog.csdn.net/20171128143021657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![解压后的JDK目录](http://img-blog.csdn.net/20171128143021657?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **配置JAVA环境变量：**
 
@@ -48,7 +48,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/tool.jar:$JAVA_HOME/lib/dt.jar
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 
-![JAVA环境设置](http://img.blog.csdn.net/20171128143120386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![JAVA环境设置](http://img-blog.csdn.net/20171128143120386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 使用source命令让配置生效
 
@@ -56,7 +56,7 @@ export PATH=$PATH:$JAVA_HOME/bin
 source /etc/profile
 ```
 
-![测试JDK环境是否安装成功](http://img.blog.csdn.net/20171128143347441?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![测试JDK环境是否安装成功](http://img-blog.csdn.net/20171128143347441?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 下载并安装Tomcat
 
@@ -72,7 +72,7 @@ https://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v8.5.23/bin/apache-t
 tar -xzvf apache-tomcat-8.5.23.tar.gz -C /usr/local/java
 ```
 
-![解压Tomcat](http://img.blog.csdn.net/20171128143448805?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![解压Tomcat](http://img-blog.csdn.net/20171128143448805?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **配置Tomcat的环境变量**
 
@@ -85,7 +85,7 @@ export CATALINA_HOME=/usr/local/java/apache-tomcat-8.5.23
 
 > [CATALINA](http://tomcat.apache.org/tomcat-8.0-doc/api/org/apache/catalina/startup/Catalina.html)是Tomcat的启动程序，Tomcat的启动脚本都是使用`CATALINA_HOME`作为变量，所以这里我们要设置`CATALINA_HOME`
 
-![配置Tomcat环境变量](http://img.blog.csdn.net/20171128143533299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![配置Tomcat环境变量](http://img-blog.csdn.net/20171128143533299?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 使用`source`命令完成是配置生效
 
@@ -129,7 +129,7 @@ export CATALINA_HOME=/usr/local/java/apache-tomcat-8.5.23
 >
 > 前面在`/etc/profile`文件配置中的环境变量只会在shell登录后执行，开机的过程中并不会加载`/etc/profile`，但是tomcat的启动脚本中需要这两个变量，所以需要在启动脚本中加入这两个变量。
 
-![配置Tomcat服务](http://img.blog.csdn.net/20171128143715873?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![配置Tomcat服务](http://img-blog.csdn.net/20171128143715873?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 使用`chkconfig --add`命令添加服务
 
@@ -141,7 +141,7 @@ export CATALINA_HOME=/usr/local/java/apache-tomcat-8.5.23
 >
 > 同时还可以使用`service tomcat8 start`和`service tomcat8 stop`命令来启动和停止tomcat服务。
 
-![检查服务是否安装成功](http://img.blog.csdn.net/20171128143801312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![检查服务是否安装成功](http://img-blog.csdn.net/20171128143801312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 配置防火墙打开8080端口并访问测试
 
@@ -154,4 +154,4 @@ iptables -I INPUT -s 192.168.10.0/24 -p tcp --dport 8080 -j ACCEPT
 
 物理机访问测试：
 
-![物理机访问测试](http://img.blog.csdn.net/20171128143833074?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![物理机访问测试](http://img-blog.csdn.net/20171128143833074?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)

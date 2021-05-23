@@ -16,13 +16,13 @@ categories: Linux运维
 
   它长这个样子
 
-  ![私钥](http://img.blog.csdn.net/20180205155616129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  ![私钥](http://img-blog.csdn.net/20180205155616129?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * csr： Certificate Signing Request,即证书签名请求。这个文件是我们在申请数字证书的过程中使用[CSP(Cryptographic Service Provider,加密服务提供程序)](https://baike.baidu.com/item/CSP/10991199)生成私钥的时候一起生成的。
 
   它一般张这样：
 
-  ![证书签名请求](http://img.blog.csdn.net/20180205155635667?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  ![证书签名请求](http://img-blog.csdn.net/20180205155635667?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * crt：Certificate的缩写，这就是我们想要的证书。我们只要把CSR文件提交给[证书颁发机构(CA)](https://baike.baidu.com/item/CA/20721560)后，证书颁发机构使用其根证书私钥签名就生成了证书公钥文件，也就是颁发给用户的证书。
 
@@ -44,7 +44,7 @@ openssl genrsa -out server.key -des3 -passout pass:123456 2048
 openssl req -new -key server.key -out server.csr
 ```
 
-![生成CSR请求](http://img.blog.csdn.net/20180205155708122?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![生成CSR请求](http://img-blog.csdn.net/20180205155708122?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **3.**生成CA证书
 
@@ -68,7 +68,7 @@ openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcrea
 
 要在nginx中使用ssl需要在编译时安装ssl模块。可以用`nginx -V`命令检查当前nginx安装的模块
 
-![查看Nginx安装的模块](http://img.blog.csdn.net/20180205155728971?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![查看Nginx安装的模块](http://img-blog.csdn.net/20180205155728971?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 如果没有安装过nginx，可以参考http://blog.csdn.net/holmofy/article/details/78639670
 
@@ -121,11 +121,11 @@ server {
 
 如果启动的时候有类似于下面的报错信息，请检查证书和私钥文件路径有没有写错。
 
-![证书配置错误启动失败的情况](http://img.blog.csdn.net/20180205155759510?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![证书配置错误启动失败的情况](http://img-blog.csdn.net/20180205155759510?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 浏览器打开网站看看
 
-![自己申请的证书，不受浏览器信任](http://img.blog.csdn.net/20180205155831257?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![自己申请的证书，不受浏览器信任](http://img-blog.csdn.net/20180205155831257?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这是因为我们的证书是我们自己颁发的，浏览器不信任自己颁发的证书，如果要信任该证书需要在Internet选项中添加信任的证书。自己颁发的证书玩玩就行，实际上我们并不会用自己颁发的证书。
 
@@ -133,25 +133,25 @@ server {
 
 我们要向获得受信任的证书，我们的csr必须得交给受信任的CA签名才行。要想获取这样的证书也很简单，国内有很多CA代理，不过一般需要请毛爷爷帮忙才行。
 
-![CA代理商](http://img.blog.csdn.net/20180205155902945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![CA代理商](http://img-blog.csdn.net/20180205155902945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 用不起花钱的，也有免费的给你用：https://letsencrypt.org/
 
 letsencrypt有很多第三方工具提供了向(sha)导(gua)式的证书生成工具，这里介绍一个[zerossl](https://zerossl.com/)
 
-![ZeroSSL](http://img.blog.csdn.net/20180205155925766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![ZeroSSL](http://img-blog.csdn.net/20180205155925766?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 开始制作免费证书：
 
-![开始制作免费证书](http://img.blog.csdn.net/20180205155942312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![开始制作免费证书](http://img-blog.csdn.net/20180205155942312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![生成证书签名请求](http://img.blog.csdn.net/20180205160000094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![生成证书签名请求](http://img-blog.csdn.net/20180205160000094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 在网站上添加相应的文件，验证网站是受你管理。
 
-![验证网站的真实性](http://img.blog.csdn.net/20180205160024463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![验证网站的真实性](http://img-blog.csdn.net/20180205160024463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![证书申请成功](http://img.blog.csdn.net/20180205160042124?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![证书申请成功](http://img-blog.csdn.net/20180205160042124?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 证书申请成功，可以在nginx中配置证书了。
 

@@ -30,7 +30,7 @@ trouble writing output : Too many field references : 131000 ;max is 65536. You m
 
 **MultiDex的原理**：将MultiDex支持库的代码放在主Dex文件中，把超额的方法放在附加Dex文件中，MultiDex支持库负责管理附加Dex文件中的方法，主Dex的函数通过MultiDex支持库去间接调用附加Dex文件中的方法。
 
-![MultiDex原理图](http://img.blog.csdn.net/20170709135951416?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![MultiDex原理图](http://img-blog.csdn.net/20170709135951416?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # Android5.0及以上版本的MultiDex
 

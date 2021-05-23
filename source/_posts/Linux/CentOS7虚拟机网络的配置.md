@@ -17,27 +17,27 @@ tags: Linux
 
 高级安全Windows防火墙==> 入站规则 ==>ICMPv4回显
 
-![高级防火墙](http://img.blog.csdn.net/20171122145106264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![高级防火墙](http://img-blog.csdn.net/20171122145106264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## 配置VMware虚拟网络
 
 我这里都是使用NAT的方式对虚拟机进行配置，所以需要将VMware的NAT服务打开。
 
-![开启NAT服务](http://img.blog.csdn.net/20171122145644387?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![开启NAT服务](http://img-blog.csdn.net/20171122145644387?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 一般安装完VMware，这个几个相关服务都是默认开启的，因为我有一段时间没用VMware，所以我把这几个服务都关了。如果关了这个服务记住这个时候应该把它打开。
 
 **配置NAT**
 
-![NAT配置](http://img.blog.csdn.net/20171122145728736?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![NAT配置](http://img-blog.csdn.net/20171122145728736?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这里为了方便以后的测试，所有的虚拟机都使用静态IP地址，所以先把DHCP关了。
 
-![NAT](http://img.blog.csdn.net/20171122145954837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![NAT](http://img-blog.csdn.net/20171122145954837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **配置网关：**
 
-![默认网关](http://img.blog.csdn.net/20171122150204631?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![默认网关](http://img-blog.csdn.net/20171122150204631?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 这些配置最终都会保存在`C:\ProgramData\VMware\vmnetnat.conf`文件中。
 
@@ -45,11 +45,11 @@ tags: Linux
 
 另外**建议**把物理机的虚拟IP地址也设置成静态的：
 
-![VM8](http://img.blog.csdn.net/20171122150333269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![VM8](http://img-blog.csdn.net/20171122150333269?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![IP](http://img.blog.csdn.net/20171122150446734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![IP](http://img-blog.csdn.net/20171122150446734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![IPv4](http://img.blog.csdn.net/20171122150828270?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![IPv4](http://img-blog.csdn.net/20171122150828270?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # Linux虚拟机配置
 
@@ -61,7 +61,7 @@ tags: Linux
 >
 > ![Net-Tools与IpRoute2](https://dn-linuxcn.qbox.me/data/attachment/album/201406/04/003404uy9l1t5zayzllylm.png)
 
-![设置IP](http://img.blog.csdn.net/20171122150927555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![设置IP](http://img-blog.csdn.net/20171122150927555?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 这里配置的IP地址需要在前面配置的子网范围内。
 
@@ -73,7 +73,7 @@ service network restart
 
 # 测试
 
-![物理机IP信息](http://img.blog.csdn.net/20171122151026692?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![物理机IP信息](http://img-blog.csdn.net/20171122151026692?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![测试](http://img.blog.csdn.net/20171122151054662?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![测试](http://img-blog.csdn.net/20171122151054662?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 

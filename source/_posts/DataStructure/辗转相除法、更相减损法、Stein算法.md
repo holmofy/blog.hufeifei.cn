@@ -7,7 +7,7 @@ mathjax: true
 
 最大公约数和最小公倍数求解，常用的方法是短除法进行因式分解，然后最大公约数是所有公共因子的乘积，最小公倍数是所有因子的乘积。
 
-![短除法](http://img.blog.csdn.net/20170730184124683?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![短除法](http://img-blog.csdn.net/20170730184124683?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 本质上求最小公倍数就是求最大公倍数：`x=m*a`， `y=m*b`；m是最大公约数，那最小公倍数就是`m*a*b`。所以可以得到最大公约数与最小公倍数的关系：
 $$
@@ -169,7 +169,7 @@ int GCD(int a, int b) {
 
 下面这张图是[维基百科](https://en.wikipedia.org/wiki/Euclidean_algorithm)中对欧几里得算法的描述，但实际上这张图并没有直接求余数，而是两者相减，和更相减损法如出一辙。
 
-![维基百科动态图](http://img.blog.csdn.net/20170730184212566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![维基百科动态图](http://img-blog.csdn.net/20170730184212566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## 证明：
 

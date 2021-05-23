@@ -31,7 +31,7 @@ PS:
 
 -------------------------------------------------------------------------------
 
-![ForkJoin War](http://img.blog.csdn.net/20180224135930467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![ForkJoin War](http://img-blog.csdn.net/20180224135930467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 [TOC]
 
@@ -75,7 +75,7 @@ Result solve(Problem problem) {
 
 尽管这种思想已经存在了很长时间了，但是第一个发布的能系统解决这些问题的框架是`Cilk`<sup>[5]</sup>。`Cilk`和其他轻量级的框架是基于操作系统的基本的线程和进程机制来支持特殊用途的`Fork/Join`程序。这种策略同样适用于`Java`，尽管`Java`线程是基于低级别的操作系统的能力来实现的。创造这样一个轻量级的执行框架的主要优势是能够让`Fork/Join`程序以一种更直观的方式编写，进而能够在各种支持`JVM`的系统上运行。
 
-![](http://img.blog.csdn.net/20180224140544550?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140544550?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 `FJTask`框架是基于`Cilk`设计的一种演变。其他的类似框架有`Hood`<sup>[4]</sup>、`Filaments`<sup>[8]</sup>、`Stackthreads`<sup>[10]</sup>以及一些依赖于轻量级执行任务的相关系统。所有这些框架都采用和操作系统把线程映射到`CPU`上相同的方式来把任务映射到线程上。只是他们会使用`Fork/Join`程序的简单性、常规性以及一致性来执行这种映射。尽管这些框架都能适应不能形式的并行程序，他们优化了`Fork/Join`的设计：
 
@@ -142,7 +142,7 @@ class Fib extends FJTask {
 
 `Fork/Join`框架的核心在于轻量级调度机制。`FJTask`采用了`Cilk`的`work-stealing`所采用的基本调度策略：
 
-![work-stealing](http://img.blog.csdn.net/2018022414012956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![work-stealing](http://img-blog.csdn.net/2018022414012956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 - 每一个工作线程维护自己的调度队列中的可运行任务。
 - 队列以双端队列的形式被维护（注：`deques`通常读作『decks』），不仅支持后进先出 —— `LIFO`的`push`和`pop`操作，还支持先进先出 —— `FIFO`的`take`操作。
@@ -226,7 +226,7 @@ if (++base < top) ...
 
 下文提到的主要的测试，其测试程序都是运行在`Sun Enterprise 10000`服务器上，该服务器拥有30个`CPU`，操作系统为`Solaris 7`系统，运行`Solaris`商业版`1.2` `JVM`（`2.2.2_05`发布版本的一个早期版本）。同时，`Java`虚拟机的关于线程映射的环境参数选择为『`bound threads`』（译者注：`XX:+UseBoundThreads`，绑定用户级别的线程到内核线程，只与`Solaris`有关），而关于虚拟机的内存参数设置在4.2章节讨论。另外，需要注意的是下文提到的部分测试则是运行在拥有4 `CPU`的`Sun Enterprise 450`服务器上。
 
-![](http://img.blog.csdn.net/20180224140454600?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140454600?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 为了降低定时器粒度以及`Java`虚拟机启动因素对测试结果的影响，测试程序都使用了数量巨大的输入参数。而其它一些启动因素我们通过在启动定时器之前先运行初始化任务来进行屏蔽。所得到的测试结果数据，大部分都是在三次测试结果的中间值，然而一些测试数据仅仅来自一次运行结果（包括4.2 \~ 4.4章节很多测试），因此这些测试结果会有噪音表现。
 
@@ -234,13 +234,13 @@ if (++base < top) ...
 
 通过使用不同数目（1 \~ 30）的工作线程对同一问题集进行测试，用来得到框架的扩展性测试结果。虽然我们无法保证`Java`虚拟机是否总是能够将每一个线程映射到不同的空闲`CPU`上，同时，我们也没有证据来证明这点。有可能映射一个新的线程到`CPU`的延迟会随着线程数目的增加而变大，也可能会随不同的系统以及不同的测试程序而变化。但是，所得到的测试结果的确显示出增加线程的数目确实能够增加使用的`CPU`的数目。
 
-![](http://img.blog.csdn.net/20180224140439794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140439794?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 加速比通常表示为 **_<code>Time<sub>n</sub> / Time<sub>1<sub></code>_**。如上图所示，其中求积分的程序表现出最好的加速比（30个线程的加速比为28.2），表现最差的是矩阵分解程序（30线程是加速比只有15.35）
 
 另一种衡量扩展性的依据是：任务执行率，及执行一个单独任务（这里的任务有可能是递归分解节点任务也可能是根节点任务）所开销的平均时间。下面的数据显示出一次性执行各个程序所得到的任务执行率数据。很明显，单位时间内执行的任务数目应该是固定常量。然而事实上，随着线程数目增加，所得到的数据会表现出轻微的降低，这也表现出其一定的扩展性限制。这里需要说明的是，之所以任务执行率在各个程序上表现的巨大差异，是因其任务粒度的不同造成的。任务执行率最小的程序是`Fib`（菲波那契数列），其阀值设置为13，在30个线程的情况下总共完成了280万个单元任务。
 
-![](http://img.blog.csdn.net/20180224140426517?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140426517?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 导致这些程序的任务完成率没有表现为水平直线的因素有四个。其中三个对所有的并发框架来说都是普遍原因，所以，我们就从对`FJTask`框架（相对于`Cilk`等框架）所特有的因素说起，即垃圾回收。
 
@@ -250,7 +250,7 @@ if (++base < top) ...
 
 这种垃圾回收机制优势的一个典型体现：使用这种垃圾回收机制，四个线程运行的`Fib`程序耗时仅为5.1秒钟，而如果在`Java`虚拟机设置关闭代拷贝回收（这种情况下使用的就是标记清除（`mark−sweep`）垃圾回收机制了），耗时需要9.1秒钟。
 
-![](http://img.blog.csdn.net/20180224140407618?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140407618?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 然而，只有内存使用率只有达到一个很高的值的情况下，垃圾回收机制才会成为影响扩展性的一个因素，因为这种情况下，虚拟机必须经常停止其他线程来进行垃圾回收。以下的数据显示出在三种不同的内存设置下（`Java`虚拟机支持通过额外的参数来设置内存参数），加速比所表现出的差异：默认的4M的半空间，64M的半空间，另外根据线程数目按照公式（`2 + 2p`）M设置半空间。使用较小的半空间，在额外线程导致垃圾回收率攀高的情况下，停止其他线程并进行垃圾回收的开销开始影响加封。
 
@@ -262,7 +262,7 @@ if (++base < top) ...
 
 测试结果显示，内存操作压力的增加会导致加速比的降低，虽然我们无法提供明确的证据来证明这是引起这种表现的唯一原因。但数据的字宽的确是影响程序的性能的。比如，使用一个线程，排序字节`byte`数据需要耗时122.5秒，然而排序`long`数据则需要耗时242.5秒。
 
-![](http://img.blog.csdn.net/20180224140343874?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140343874?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 ## 4.4 任务同步
 
@@ -277,7 +277,7 @@ if (++base < top) ...
 1. 从其他队列窃取任务的开销要比在自己队列执行`pop`操作的开销大。
 2. 在大多数程序中，任务操作操作的是一个共享的数据单元，如果只运行自己部分的任务可以获得更好的局部数据访问。
 
-![](http://img.blog.csdn.net/20180224140321156?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140321156?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 如上图所示，在大多数程序中，窃取任务的相对数据都最多维持在很低的百分比。然后其中`LU`和`MM`程序随着线程数目的增加，会在工作负载上产生更大的不平衡性（相对的产生了更多的任务窃取）。通过调整算法我们可以降低这种影响以获得更好的加速比。
 
@@ -287,7 +287,7 @@ if (++base < top) ...
 
 在加速比的测试中，不同框架在不同程序上所得到的测试结果非常接近，线程数目1 \~ 4，加速比表现在（3.0 \~ 4.0之间）。因此下图也就只聚焦在不同框架表现的不同的绝对性能上，然而因为在多线程方面，所有的框架都是非常快的，大多数的差异更多的是有代码本身的质量，编译器的不同，优化配置项或者设置参数造成的。实际应用中，根据实际需要选择不同的框架以弥补不同框架之间表现的巨大差异。
 
-![](http://img.blog.csdn.net/20180224140244568?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![](http://img-blog.csdn.net/20180224140244568?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 `FJTask`在处理浮点数组和矩阵的计算上性能表现的比较差。即使`Java`虚拟机性能不断的提升，但是相比于那些`C`和`C++`语言所使用的强大的后端优化器，其竞争力还是不够的。虽然在上面的图表中没有显示，但`FJTask`版本的所有程序都要比那些没有进行编译优化的框架还是运行的快的。以及一些非正式的测试也表明，测试所得的大多数差异都是由于数组边界检查，运行时义务造成的。这也是`Java`虚拟机以及编译器开发者一直以来关注并持续解决的问题。
 

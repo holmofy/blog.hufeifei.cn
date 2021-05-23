@@ -23,7 +23,7 @@ categories: JAVA
 
 RandomAccessFile还同时实现了`DataOutput, DataInput`两个接口，所以同时拥有了`DataInputStream`和`DataOutputStream`两个类的基本方法。
 
-![RandomAccessFile](http://img.blog.csdn.net/20170820162027077?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![RandomAccessFile](http://img-blog.csdn.net/20170820162027077?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## open
 
@@ -706,7 +706,7 @@ FileInputStream和FileOutputStream与C++的STL中的文件流API类似：面向�
 
 C++中`std::basic_ifstream`代表了文件输入流，`std::basic_ofstream`代表了文件输出流，又因为C++有多继承的特性所以还有一个`std::basic_fstream`融合了前两者的功能(实际上并非继承自前两个类而是继承自basic_iostream类)。
 
-![C++中的IO流](http://img.blog.csdn.net/20170820162211680?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![C++中的IO流](http://img-blog.csdn.net/20170820162211680?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 不过C++虽好，但Java的native实现仍使用C语言(实际上Java API几乎都是C语言实现，而JVM的实现Hotspot才使用到了C++)。
 

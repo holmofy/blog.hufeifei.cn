@@ -184,7 +184,7 @@ rmiregistry
 java cn.hff.server.Server
 ```
 
-![服务端开启](http://img.blog.csdn.net/20171223175946721?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![服务端开启](http://img-blog.csdn.net/20171223175946721?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **2.**编译并运行客户端程序
 
@@ -195,5 +195,5 @@ javac cn/hff/client/Client.java
 java cn.hff.client.Client
 ```
 
-![客户端调用](http://img.blog.csdn.net/20171223180005361?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![客户端调用](http://img-blog.csdn.net/20171223180005361?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 

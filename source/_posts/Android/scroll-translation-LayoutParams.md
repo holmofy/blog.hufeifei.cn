@@ -83,7 +83,7 @@ public class ScrollView extends TextView {
 </LinearLayout>
 ```
 ### 下面是运行效果图：
-![scroll效果图](http://img.blog.csdn.net/20161231210519094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![scroll效果图](http://img-blog.csdn.net/20161231210519094?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 使用这个方法我们可以模仿ViewPager自定义一个更加简洁的页面滑动的控件。
 
@@ -199,7 +199,7 @@ public class TranslationView extends TextView {
         android:textSize="20sp"/>
 </LinearLayout>
 ```
-![translation效果图](http://img.blog.csdn.net/20161231215657155?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![translation效果图](http://img-blog.csdn.net/20161231215657155?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **我们可以看到平移属性只是将View的绘制进行了平移，View的定位并没有发生改变**
 
@@ -226,7 +226,7 @@ public float getY() {
 **2、   y = top + translationY**
 
 ### 将上面的效果图进行了一些处理，得到以下关系图：
-![关系图](http://img.blog.csdn.net/20161231231836055?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![关系图](http://img-blog.csdn.net/20161231231836055?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ### 需要注意的是这里的left/top属性与x/y属性都是相对于父容器得到的。
 
 # LayoutParams的margin属性
@@ -280,7 +280,7 @@ public class LayoutView extends TextView {
 ```
 
 运行得到效果图如下：
-![marginLeft效果图](http://img.blog.csdn.net/20161231233705795?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![marginLeft效果图](http://img-blog.csdn.net/20161231233705795?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 可以看到我点击鼠标往做移动，marginLeft减小成负数，使得控件往也左移动。在前端CSS中我们为了实现特殊的定位要求也经常用到类似的方法。
 

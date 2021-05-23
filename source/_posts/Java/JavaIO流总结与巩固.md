@@ -8,7 +8,7 @@ categories: JAVA
 
 字节流就是每次以8位一个字节的方式执行输入输出。所有字节流都继承自`InputStream`或`OutputStream`，包括字符流在内的所有类型的I/O流都是基于字节流构建的。
 
-![字节流](http://img.blog.csdn.net/20170522143807852?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![字节流](http://img-blog.csdn.net/20170522143807852?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## 字节输入流InputStream
 
@@ -42,7 +42,7 @@ categories: JAVA
 
 字符流通常是字节流的“包装器”，所有的字符流都继承自Reader和Writer这两个抽象类。字符流底层仍然是使用字节流来执行物理I / O。
 
-![字符流](http://img.blog.csdn.net/20170522143907807?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![字符流](http://img-blog.csdn.net/20170522143907807?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 字符转换流
 
@@ -89,7 +89,7 @@ Writer writer = new BufferedWriter(new FileWriter("out.txt"));
 
 数据流支持基本数据类型( `boolean`，`char`，`byte`， `short`，`int`，`long`， `float`和`double`)以及字符串(String)类型的读写。所有的数据读写流都实现了DataInput或DataOutput接口，JDK相应地提供了DataInputStream和DataOutputStream这两个实现类。
 
-![数据流](http://img.blog.csdn.net/20170522144011679?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![数据流](http://img-blog.csdn.net/20170522144011679?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 和缓冲流一样，DataInputStream和OutputStream都是包装流，并且只能包装字节流。
 
@@ -112,7 +112,7 @@ DataOutput out = new DataOutputStream(
 
 对象流都实现了ObjectInput或ObjectOutput接口，Java提供给我们两个相应的实现类ObjectInputStream和ObjectOutputStream来进行对象的I/O操作，需要注意我们序列化的对象类需要实现Serializable接口。Serializable接口没有任何方法，只是用来标识该对象能够序列化。相应的还有一个Externalizable接口，用于自定义可继承类的序列化。
 
-![序列化与反序列化相关类](http://img.blog.csdn.net/20170522145000463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![序列化与反序列化相关类](http://img-blog.csdn.net/20170522145000463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 对象的序列化与反序列化是一个很深的话题，这篇文章长度有限，想继续深入的朋友可以参考[对序列化和反序列化](http://www.infoq.com/cn/articles/serialization-and-deserialization)和[Java的序列化与反序列化](http://www.cnblogs.com/leesf456/p/5328466.html)这两篇文章
 
@@ -275,7 +275,7 @@ public Scanner(ReadableByteChannel source, String charsetName);
 |   radix   | 遇到数组使用多少进制进行解析 |                    10                    |
 我们还可以调用hasNextXxx()方法来查看有没有指定类型的数据，用NextXxx()方法来获取相应类型的数据。
 
-![Scanner](http://img.blog.csdn.net/20170522144212233?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Scanner](http://img-blog.csdn.net/20170522144212233?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ```java
 package cn.hff.io;
@@ -385,7 +385,7 @@ OK?
 
 如果这两个类创建对象时都指定了`autoFlush`参数(默认为false)，则PrintStream每次输入的内容中有`\n`这个换行符就会调用flush方法对缓冲区进行强制输出，而PrintWriter只有调用`println`,`format`或`printf`方法时才会对缓冲区进行强制输出。因为PrintStream继承自FilterOutputStream所以只能对字节流进行包装，而PrintStream继承自Writer所以它不仅能包装字节流还能包装字符流(这个体现在构造函数上)。
 
-![Print格式化输出](http://img.blog.csdn.net/20170522144334791?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Print格式化输出](http://img-blog.csdn.net/20170522144334791?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 标准输入输出流的封装----Console
 
@@ -421,7 +421,7 @@ private Console() {
 
 从构造方法我们这个类我们没法new对象，在上面提到的System类中有一个静态方法`System.console()`可以获取Console对象。这个类中提供了一下几个方法给我们调用。
 
-![Console的相关方法](http://img.blog.csdn.net/20170522144508682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Console的相关方法](http://img-blog.csdn.net/20170522144508682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 数组I/O流
 
@@ -474,7 +474,7 @@ JDK同样提供给我们两种管道I/O：
 1. 字节管道I/O流：PipedInputStream和PipedOutputStream。
 2. 字符管道I/O流：PipedReader和PipedWriter。
 
-![管道IO进行线程间通信](http://img.blog.csdn.net/20170522144558604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![管道IO进行线程间通信](http://img-blog.csdn.net/20170522144558604?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 示例：
 

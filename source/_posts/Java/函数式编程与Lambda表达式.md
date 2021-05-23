@@ -248,7 +248,7 @@ Thread-1:this is child thread
 
 这几个接口分别有几个对应的实现类，但是这几个实现类的访问属性是包级别的，我们无法直接创建这些类的示例对象。Java提供了一个StreamSupport工厂类，让我们能够创建这四个接口的对象。
 
-![StreamSupport的工厂方法](http://img.blog.csdn.net/20170822153745126?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![StreamSupport的工厂方法](http://img-blog.csdn.net/20170822153745126?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 示例：
 
@@ -786,7 +786,7 @@ System.out.println(sumLength);
 
 ##### 3. 又一大利器——collect
 
-![Reduce，Collect](http://img.blog.csdn.net/20170822155218684?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Reduce，Collect](http://img-blog.csdn.net/20170822155218684?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 假如有一个需求把一系列字符串整理成一个集合，不熟悉collet的时候，我会使用reduce实现这么写：
 
@@ -922,7 +922,7 @@ public class StreamTest {
 
 也许看到这你已经晕了：为什么这么复杂。嗯，放心，Stream不会让我们编程变得这么复杂，因为我们大部分常用的Collector已经在Collectors工具类中封装好了（果然是送佛送到西(→_→)）。
 
-![Collectors工具类](http://img.blog.csdn.net/20170822155354590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Collectors工具类](http://img-blog.csdn.net/20170822155354590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这里挑几个常用的说明一下：
 

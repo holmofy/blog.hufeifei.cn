@@ -15,11 +15,11 @@ categories: Linux运维
 
 * IntelliJ IDEA里面自带了一个连接数据库的插件，能连接各种常见的数据库，功能也挺强大的。而且[JetBrains](https://baike.baidu.com/item/JetBrains)公司还专门把数据库部分单独抽离出来成了[DataGrip](https://www.jetbrains.com/datagrip/)。
 
-  ![IDEA](http://img.blog.csdn.net/20170830184043276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  ![IDEA](http://img-blog.csdn.net/20170830184043276?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * EclipseJavaEE版本内部也自带了一个连接数据库的插件，支持的数据库也比较全，但是使用上不太友好，需要自己搞数据库驱动。
 
-  ![Eclipse](http://img.blog.csdn.net/20170830184127255?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  ![Eclipse](http://img-blog.csdn.net/20170830184127255?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 除了这几个通用的能够连接各种数据库，还有几个专门用于Oracle数据库的客户端(不过我都没装)，如：
 
@@ -89,21 +89,21 @@ ORCL =
 
 # 检测监听状态
 
-![listener control](http://img.blog.csdn.net/20170830184324364?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![listener control](http://img-blog.csdn.net/20170830184324364?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 如果报错说没有启动，就使用`lsnrctl start`命令启动监听
 
-![restart](http://img.blog.csdn.net/20170830184604633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![restart](http://img-blog.csdn.net/20170830184604633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 启动完成后使用`netstat -tanp`命令会有看到1521端口正被tnslsnr进行监听
 
-![netstat](http://img.blog.csdn.net/20170830184639500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![netstat](http://img-blog.csdn.net/20170830184639500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 客户端连接
 
 先用telnet测试一下Oracle服务端的1521端口是否已经打开。
 
-![telnet测试连接](http://img.blog.csdn.net/20170830184810481?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![telnet测试连接](http://img-blog.csdn.net/20170830184810481?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 如果连接不上则需要在查看Oracle服务端的防火墙是否打开该端口。
 
@@ -111,15 +111,15 @@ ORCL =
 
 * IDEA，很方便，点击一下驱动就帮我们下好了。
 
-![IDEA](http://img.blog.csdn.net/20170830184840319?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![IDEA](http://img-blog.csdn.net/20170830184840319?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * Navicat
 
-![Navicat](http://img.blog.csdn.net/20170830184924847?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Navicat](http://img-blog.csdn.net/20170830184924847?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * SQLplus(客户端)
 
-  ![sqlplus](http://img.blog.csdn.net/20170830184950767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  ![sqlplus](http://img-blog.csdn.net/20170830184950767?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 参考链接：
 >

@@ -150,6 +150,6 @@ Environment.MEDIA_UNKNOWN;//未知的存储状态
 ```
 #总体概括
 下面图片大概地概括了上面的方法
-![这里写图片描述](http://img.blog.csdn.net/20161202203511889)
+![这里写图片描述](http://img-blog.csdn.net/20161202203511889)
 * **Context中的方法或得到的路径都与应用包名相关**
 * **Environment中的方法与整个系统有关**

@@ -56,7 +56,7 @@ java代码获取资源文件内容
 
 ### ResourceBundle的子类
 
-![ResourceBundle](http://img.blog.csdn.net/20170805193850915?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![ResourceBundle](http://img-blog.csdn.net/20170805193850915?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ResourceBundle有两个子类：ListResourceBundle和PropertyResourceBundle。
 
@@ -98,7 +98,7 @@ ResourceBundle有两个子类：ListResourceBundle和PropertyResourceBundle。
 
 可以看出JDK的sun包中有很多这种方式书写的资源：
 
-![ListResourceBundle](http://img.blog.csdn.net/20170805193913376?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![ListResourceBundle](http://img-blog.csdn.net/20170805193913376?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 2、PropertyResourceBundle就是ResourceBundle通过get方法获取资源的形式，它使用的是`Properties`工具类获取`.properties`文件中的信息。
 
@@ -120,7 +120,7 @@ Calendar类及其子类会使用TimeZone进行本地时间与UTC(通用标准时
 
 i18n中重要的一个部分就是文本格式化，这些功能主要在`java.text`包中：
 
-![Format继承图](http://img.blog.csdn.net/20170805193938875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Format继承图](http://img-blog.csdn.net/20170805193938875?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 主要分为三类：
 
@@ -538,7 +538,7 @@ Collator类能按照相应国家和区域的习惯进行字符串比较，我们
 
 Collator类是一个抽象类，其子类实现了特定的比较策略，目前Java平台提供了一个子类RuleBasedCollator，能适用于广泛的语言。当然我们可以继续创建它的子类来适应我们其他独特的需求。
 
-![Collator关系图](http://img.blog.csdn.net/20170805194143801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Collator关系图](http://img-blog.csdn.net/20170805194143801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 示例：
 
@@ -634,7 +634,7 @@ Collator排序：
 
 java.text.StringCharacterIterator类封装好了字符串迭代功能，这个类很鸡肋，和普通的for循环迭代没啥区别。
 
-![CharacterIterator继承图](http://img.blog.csdn.net/20170805194854975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![CharacterIterator继承图](http://img-blog.csdn.net/20170805194854975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 StringCharacterIterator是CharcterIterator接口的实现类，CharcterIterator接口中定义了Unicode字符双向迭代的规则。
 
@@ -862,8 +862,8 @@ Name:x-windows-iso2022jp  DisplayName:x-windows-iso2022jp  Aliases:windows-iso20
 
 这些编码的实现类都是sun包下的：
 
-![Charset实现类](http://img.blog.csdn.net/20170805194041975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Charset实现类](http://img-blog.csdn.net/20170805194041975?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 有了Charset对象即可获取CharsetDecoder(解码器)和CharsetEncoder(编码器)。
 
-![Charset相关类关系图](http://img.blog.csdn.net/20170805194102868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Charset相关类关系图](http://img-blog.csdn.net/20170805194102868?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)

@@ -8,7 +8,7 @@ description: 安卓常用第三方框架-Gson
 # Gson简介
 json因其轻量、高效等特性，而被广泛用作移动开发的信息交互的载体。
 我们知道AndroidSDK提供了org.json工具包来解析Json数据，但是仍然避免不了解析过程中的一系列重复工作。所以就出现了许多第三方JSON解析框架。[JSON官方网站](http://www.json.org)也给我们列出了在各种语言中JSON的解析策略:
-![这里写图片描述](http://img.blog.csdn.net/20170217205859340?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![这里写图片描述](http://img-blog.csdn.net/20170217205859340?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 可以看到java语言中解析JSON的库有很多，但由于移动设备硬件与软件等各方面的因素，在这些库中比较适合用于移动开发的主要有Gson和FastJson。
 今天我们先来介绍以下Gson。
 

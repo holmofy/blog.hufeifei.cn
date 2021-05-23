@@ -155,7 +155,7 @@ mvn clean tomcat7:run
 
 如果这个时候使用浏览器访问这个服务，会得到如下的响应：
 
-![浏览器访问](http://img.blog.csdn.net/20171224151307535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![浏览器访问](http://img-blog.csdn.net/20171224151307535?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 因为调用服务传入的参数可能是对象类型，这时候传入的数据可能会非常大，GET请求很明显不符合要求，所以Hessian要求调用服务必须的使用POST请求
 
@@ -190,4 +190,4 @@ public class HessianClient {
 
 测试结果：
 
-![调用结果](http://img.blog.csdn.net/20171224151317617?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![调用结果](http://img-blog.csdn.net/20171224151317617?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)

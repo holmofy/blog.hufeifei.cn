@@ -10,7 +10,7 @@ TCP/IP起源于60年代末由美国政府资助的一个分组交换网络——
 
 网络分层从ARPAnet开始就已经在使用，将网络协议分为不同层次开发，能简化设计的复杂性，各层既能相互独立又能高效地协调工作（这也是C语言这种面向过程语言解决问题的常用方法）。提到分层，我们通常会把TCP/IP层次模型与OSI参考模型进行对比。
 
-![OSI模型与TCP/IP模型](http://img.blog.csdn.net/20170721144322946?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![OSI模型与TCP/IP模型](http://img-blog.csdn.net/20170721144322946?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## OSI参考模型
 
@@ -64,7 +64,7 @@ OSI参考模型是ISO国际标准化组织的建议。虽然OSI并未成为事�
 
    > IGP按实现原理也可以分为三类，下面这张图是当时在大三上学期学网络配置的时候总结的：
    >
-   > ![路由协议](http://img.blog.csdn.net/20170721144406075?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+   > ![路由协议](http://img-blog.csdn.net/20170721144406075?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 4. **传输层**：主要功能是为上层协议提供端到端的可靠和透明的数据传输服务。这一层主要的两个协议就是TCP和UDP。
 
@@ -98,11 +98,11 @@ OSI参考模型的缺点就是过于复杂，层次分的太细，对于那些�
 
 来看一下《TCP/IP详解》中的两张图：
 
-![TCP/IP分层模型](http://img.blog.csdn.net/20170721144450411?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![TCP/IP分层模型](http://img-blog.csdn.net/20170721144450411?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![对等实体](http://img.blog.csdn.net/20170721144514924?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![对等实体](http://img-blog.csdn.net/20170721144514924?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![协议栈封装过程](http://img.blog.csdn.net/20170721144535616?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![协议栈封装过程](http://img-blog.csdn.net/20170721144535616?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > OSI模型与TCP/IP模型都不完美，但TCP/IP模型发展是因为在ISO制定OSI参考模型过程中总是着眼于一次制定达到完美，所以的制定过程中考虑的方面比较多，但去忽略了IP这一协议的重要性，但当ISO认识到时只好在网络层划出一个子层来完成类似的功能，在无连接服务一开始也不在考虑之列，还有就是网络管理功能的过度复杂等，造成了OSI迟迟没有成熟的产品推出的成因，进而影响了厂商对它的支持，而这时的TCP/IP通过实践得到到不断的完善，也得到了大厂商的支持，所以TCP/IP模型得到了发展。
 
@@ -114,7 +114,7 @@ IP地址用来标识网络中主机的唯一性的。IP地址分为两个版本�
 
 IPv4地址长度为32bit，并划分为5类：
 
-![IP地址分类](http://img.blog.csdn.net/20170721144600810?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![IP地址分类](http://img-blog.csdn.net/20170721144600810?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 |  类型  | 范围                        | 网络数                                      | 主机数(去掉网络号和广播地址) |
 | :--: | ------------------------- | ---------------------------------------- | --------------- |
@@ -140,11 +140,11 @@ IPv4地址长度为32bit，并划分为5类：
 
    在Linux中可以用`route`命令查看路由表
 
-   ![Linux查看默认路由](http://img.blog.csdn.net/20170721144646956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+   ![Linux查看默认路由](http://img-blog.csdn.net/20170721144646956?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
    在Windows上可以用`route PRINT`命令查看路由表
 
-   ![Windows默认路由](http://img.blog.csdn.net/20170721144712654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+   ![Windows默认路由](http://img-blog.csdn.net/20170721144712654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 2. `255.255.255.255`是限制广播地址。也就是对当前网段内(广播域)中的所有主机发送广播。
 

@@ -172,11 +172,11 @@ class ProfileCondition implements Condition {
 
 Spring中的自动化配置基本就是靠这个@Condition注解实现的，所以在springboot-autoconfig中有一大堆实现了Condition接口的类：
 
-![Condition接口实现类](http://img.blog.csdn.net/20180205102900891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Condition接口实现类](http://img-blog.csdn.net/20180205102900891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 另外SpringBoot还提供了很多类似于@Profile的注解：
 
-![常见的SpringBootCondition和它相应的注解](http://img.blog.csdn.net/20180205102919302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![常见的SpringBootCondition和它相应的注解](http://img-blog.csdn.net/20180205102919302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 如果有机会再后续的文章中会对SpringBoot的自动化配置进行详细分析。
 

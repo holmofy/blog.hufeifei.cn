@@ -15,19 +15,19 @@ categories: Windows
 
 比如我的VS2017中就带了LocalDB。
 
-![Visual Studio](http://img.blog.csdn.net/20170909210158785?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Visual Studio](http://img-blog.csdn.net/20170909210158785?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 如果你觉得Visual Studio体积太大了(吃了我好几个G)，不想安装这个巨无霸，那么可以从https://www.microsoft.com/en-us/sql-server/sql-server-downloads下载一个Express版本的下载器：!
 
-![SQL Server Express LocalDB](http://img.blog.csdn.net/20170909211030541?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SQL Server Express LocalDB](http://img-blog.csdn.net/20170909211030541?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 选择LocalDB单独下载
 
-![LocalDB](http://img.blog.csdn.net/20170909211129625?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![LocalDB](http://img-blog.csdn.net/20170909211129625?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 下载完成后只有一个44M的安装包(很小(⊙o⊙)哦)。
 
-![SQLServer LocalDB](http://img.blog.csdn.net/20170909211230879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SQLServer LocalDB](http://img-blog.csdn.net/20170909211230879?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 安装过程很简单这里就不演示了。
 
@@ -113,7 +113,7 @@ C:\>sqllocaldb create MyLocalDB
 
 命令执行完成后就会在`C:\Users\Administrator\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances`创建一个文件夹保存该实例的数据库文件。
 
-![MyLocalDB](http://img.blog.csdn.net/20170909211346669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![MyLocalDB](http://img-blog.csdn.net/20170909211346669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **启动并查看数据库实例信息**
 
@@ -268,7 +268,7 @@ sqlcmd中除了可以输入T-SQL语句，还有很多内建命令：
 
 不过使用navicat等图形界面客户端需要Native Client依赖库，不过在官网找了一下，发现[SQLServer 2016](https://www.microsoft.com/en-us/download/details.aspx?id=52676)等版本都是使用SQLServer2012的Native Client依赖库，所以下载时候不要因为版本不一样而有什么疑虑。sqlncli.msi依赖：https://www.microsoft.com/zh-cn/download/details.aspx?id=50402。
 
-![Navicat](http://img.blog.csdn.net/20170909211440846?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Navicat](http://img-blog.csdn.net/20170909211440846?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 创建数据库
 

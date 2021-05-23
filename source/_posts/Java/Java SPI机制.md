@@ -27,7 +27,7 @@ public interface Driver {
 
 > 这里不要使用`java`作为包名，因为这个包名已经被JDK自己使用了，为了防止冲突Java平台不允许第三方使用这个作为包名，否则在后面的代码中会抛出SecurityException。
 >
-> ![包名不允许为java](http://img.blog.csdn.net/20180212181440818?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+> ![包名不允许为java](http://img-blog.csdn.net/20180212181440818?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 用以下命令编译这个接口，并打成jar包
 

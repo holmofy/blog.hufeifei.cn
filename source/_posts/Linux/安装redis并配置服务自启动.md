@@ -51,13 +51,13 @@ make PREFIX=/usr/local/redis-3.2.11 install
 
 安装完成后即可使用redis-server启动redis。但是直接使用该命令redis会运行在前台。
 
-![Redis服务](http://img.blog.csdn.net/20171207221009579?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Redis服务](http://img-blog.csdn.net/20171207221009579?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 我们可以通过指定配置文件的方式启动，redis源码包中已经提供了原始配置文件。
 
 启动之前我们需要对配置文件进行一些修改：
 
-![Redis服务启动配置文件](http://img.blog.csdn.net/20171207221030041?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Redis服务启动配置文件](http://img-blog.csdn.net/20171207221030041?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 安装redis服务并配置开机自启
 
@@ -65,11 +65,11 @@ make PREFIX=/usr/local/redis-3.2.11 install
 
 redis源码包中已经提供了这些脚本，而且提供了安装脚本。
 
-![安装服务](http://img.blog.csdn.net/20171207221051501?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![安装服务](http://img-blog.csdn.net/20171207221051501?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 服务安装完成后我们看到在`/etc/init.d/`目录下安装了一个名为`redis_6379`的服务。
 
-![安装后测试](http://img.blog.csdn.net/20171207221119020?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![安装后测试](http://img-blog.csdn.net/20171207221119020?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 安装完成后即可像管理其他服务一样使用service命令进行管理。
 

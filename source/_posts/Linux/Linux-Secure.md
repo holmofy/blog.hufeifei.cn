@@ -6,19 +6,19 @@ categories: Linux运维
 ---
 
 每次登录服务器的时候总有提示说有人通过ssh尝试n次登录失败。
-![Linux安全防范](http://img.blog.csdn.net/20170415164214748?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Linux安全防范](http://img-blog.csdn.net/20170415164214748?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 查一查``/var/log/secure``日志文件
 
 ```shell
  grep "Failed password for invalid user" /var/log/secure | awk '{print $13}' | uniq -c | sort -nr | more
 ```
-![日志文件](http://img.blog.csdn.net/20170415164324913?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![日志文件](http://img-blog.csdn.net/20170415164324913?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 卧槽，简直就是国内外云集啊，什么乌克兰、保加利亚、俄罗斯、巴西、阿根廷.....，我听过的没听过的国家都齐了，这尼玛都可以举办个奥运会了。
 虽然我自认我密码设置的已经相当复杂了，而且服务器上也没什么重要的东西，但是心里还是疙得慌。怎么说还是得有个防范好，害人之心不可有，防人之心不可无啊。
 
 # 修改SSH端口并禁止root登录
 ssh的配置文件全路径是：``/etc/ssh/sshd_config``
-![SSH配置](http://img.blog.csdn.net/20170415164349764?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SSH配置](http://img-blog.csdn.net/20170415164349764?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ```shell
 Port 2222	#这个端口默认是22，改成不容易猜的
 PermitRootLogin no

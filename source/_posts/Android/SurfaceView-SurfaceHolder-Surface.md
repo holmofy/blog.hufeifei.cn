@@ -98,9 +98,9 @@ public class DrawView extends View {
 </LinearLayout>
 ```
 为了能够看到DrawView刷新的情况，我们在开发者模式下打开显示surface更新的选项
-![打开显示surface更新的选项](http://img.blog.csdn.net/20170326232425934?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![打开显示surface更新的选项](http://img-blog.csdn.net/20170326232425934?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 执行结果
-![普通View重绘](http://img.blog.csdn.net/20170326232535259?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![普通View重绘](http://img-blog.csdn.net/20170326232535259?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 由于这里是使用gif录制的结果图，我特意将gif帧率调节到33FPS，才有这样的效果图。
 我们可以看到每隔1秒界面就刷新了一次，显然这里刷新的是Window的surface。
@@ -187,10 +187,10 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         android:layout_weight="1" />
 </LinearLayout>
 ```
-![SurfaceView结果图](http://img.blog.csdn.net/20170326232725650?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SurfaceView结果图](http://img-blog.csdn.net/20170326232725650?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 可以看到很明显的区别，SurfaceView并没有刷新Window，而只是刷新了SurfaceView所在的界面区域，可以看出SurfaceView使用的是自己的surface。
-![SurfaceHolder.Callback回调方法](http://img.blog.csdn.net/20170326232803713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SurfaceHolder.Callback回调方法](http://img-blog.csdn.net/20170326232803713?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 从打印的log来看SurfaceHolder.Callback方法也确实是在主线程回调的。
 
 

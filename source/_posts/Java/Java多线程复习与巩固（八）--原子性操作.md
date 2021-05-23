@@ -79,7 +79,7 @@ public class ThreadCommunicate {
 
 像`AtomicInteger`这样的类还有很多，它们都在`java.util.concurrent.atomic`包中，这些类都是无锁的、线程安全的。
 
-![原子操作类](http://img.blog.csdn.net/20170626181153640?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![原子操作类](http://img-blog.csdn.net/20170626181153640?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 从功能上来说，上面这些类主要分为以下几种：
 

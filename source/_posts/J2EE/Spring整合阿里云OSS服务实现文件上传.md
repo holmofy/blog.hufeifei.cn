@@ -8,21 +8,21 @@ categories: J2EE
 
 在阿里云控制台生成访问密钥(AccessKey)
 
-![AccessKey](http://img.blog.csdn.net/20180119085829700?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![AccessKey](http://img-blog.csdn.net/20180119085829700?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 创建OSS bucket。
 
-![OSS](http://img.blog.csdn.net/20180119085846587?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![OSS](http://img-blog.csdn.net/20180119085846587?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 阿里云提供了Endpoint(是阿里云自己的域名)。数据库中存储的文件地址如果包含阿里云的域名，将来如果不使用阿里云(使用其他的云服务，或者是自己搭建图片服务器)，那么数据库中的地址全部要修改(这里面包括富文本内容，修改富文本内容中的图片地址复杂程度可想而知)。
 >
 > 域名解析选择CNAME类型解析即可
 >
-> ![CNAME域名解析](http://img.blog.csdn.net/20180119085907748?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+> ![CNAME域名解析](http://img-blog.csdn.net/20180119085907748?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 >
 > 如果域名是使用同一个账号管理的，直接在oss控制面板绑定域名
 >
-> ![绑定域名](http://img.blog.csdn.net/20180119085931617?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+> ![绑定域名](http://img-blog.csdn.net/20180119085931617?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 实现代码
 

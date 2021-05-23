@@ -26,11 +26,11 @@ JSP页面中有三个配置编码的地方，但这三个编码各自都有不�
 
 2、`contentType="text/html;charset=UTF-8"`：这个配置会被设置到响应头中，也就是说由JSP生成的Servlet会调用response.setContentType()。客户端浏览器会根据这个配置来解析
 
-![响应头](http://img.blog.csdn.net/20170922220837068?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![响应头](http://img-blog.csdn.net/20170922220837068?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 3、`<meta charset="UTF-8">`：这个是响应体的内容，作用和第二种一样。事实上这只是html5的写法，html4中常用的写法是`<meta http-equiv="content-type" content="text/html; charset=UTF-8">`。
 
-![content-type](http://img.blog.csdn.net/20170922221019768?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![content-type](http://img-blog.csdn.net/20170922221019768?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # **Servlet程序**
 
@@ -103,13 +103,13 @@ public class TestServlet extends HttpServlet {
 
 测试过程图如下(毫无疑问的出现了乱码，而且服务端乱码和客户端乱码还不一样)：
 
-![get方式测试过程](http://img.blog.csdn.net/20170922221118248?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![get方式测试过程](http://img-blog.csdn.net/20170922221118248?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### GET请求的过程
 
 在解决这个问题前我们再来熟悉一下GET请求的一些特点
 
-![GET请求过程](http://img.blog.csdn.net/20170922221206464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![GET请求过程](http://img-blog.csdn.net/20170922221206464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 Tomcat8.0之前，默认使用ISO-8859-1编码(西欧8位字符集)去解析URI，所以这就导致使用request.getParameter读取乱码，这就是为什么控制台会打三个问号的原因。
 
@@ -160,7 +160,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 
 进行上面的设置后，虽然服务端的乱码问题解决了，但客户端的响应仍然是乱码。
 
-![响应过程](http://img.blog.csdn.net/20170922221250529?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![响应过程](http://img-blog.csdn.net/20170922221250529?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这是因为Tomcat的HTTP响应信息默认也是使用ISO-8859-1编码，我们需要在`response.getWriter`方法之前调用`resp.setCharacterEncoding("UTF-8")`将编码值设为`UTF-8`，同时我们要调用`response.setContentType`方法让客户端浏览器按照`UTF-8`的编码方式进行解析。
 
@@ -208,13 +208,13 @@ public class TestServlet extends HttpServlet {
 }
 ```
 
-![POST问题](http://img.blog.csdn.net/20170922221351518?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![POST问题](http://img-blog.csdn.net/20170922221351518?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 默认情况下和GET请求出现一样的乱码。
 
 ### POST请求过程
 
-![POST请求过程](http://img.blog.csdn.net/20170922221436011?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![POST请求过程](http://img-blog.csdn.net/20170922221436011?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 和GET请求不同，POST请求的参数数据存放在请求体中，并没有附加在URI上，所以前面针对GET进行URI的配置就没必要了。因为数据存放在请求体中，所以我们可以直接调用`request.setCharsetEncoding`方法对请求体的解码方式进行设置：
 
@@ -237,7 +237,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 }
 ```
 
-![PostResponse](http://img.blog.csdn.net/20170922221610528?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![PostResponse](http://img-blog.csdn.net/20170922221610528?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 自定义过滤器设置编码
 

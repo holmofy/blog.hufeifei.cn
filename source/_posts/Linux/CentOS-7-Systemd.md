@@ -10,7 +10,7 @@ description: Systemd进程取代init进程(很多书籍资料讲的都是init作
 
 # service命令
 service命令本质上是``/sbin``目录下的一个shell脚本，
-![service命令本质](http://img.blog.csdn.net/20170408134832232?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![service命令本质](http://img-blog.csdn.net/20170408134832232?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 是用来管理系统服务的，这个类似于windows上的sc命令和services.msc，准确的来说Linux上的服务应该叫守护进程(Daemon)，这也是为什么Linux的服务程序后面都会加一个字母d(如httpd，sshd)。service命令用法如下：
 ```shell
 Usage: service  	<option> |
@@ -23,7 +23,7 @@ Usage: service  	<option> |
  * service_name顾名思义是服务名，它主要指的是``/etc/init.d``目录下的服务脚本，事实上service脚本就是间接的去调用了该目录下的服务脚本，所以你也可以直接使用这些服务脚本进行服务的启动或关闭，比如``/etc/init.d/sshd start``可以启动ssh服务
  * command是对服务进行的一些操作，比如：start、stop、restart、status
   下面这张图是Oracle Linux5中/etc/init.d目录下的服务脚本
-  ![init.d目录下的脚本](http://img.blog.csdn.net/20170408135107033?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  ![init.d目录下的脚本](http://img-blog.csdn.net/20170408135107033?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # chkconfig命令
 chkconfig修改或查询系统服务在各种运行级别中系统开机时的开启|关闭状态，简单的说就是“开机自启动”的配置。
@@ -38,11 +38,11 @@ Linux开机启动的第一个进程就是init进程(init程序全路径为``/sbi
 6 : 系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动。运行init6机器就会重启。
 ```
 而``/etc/rc.d``下有七个运行级别的启动项配置，也就是七个rc*.d目录
-![七个运行级别](http://img.blog.csdn.net/20170408135239077?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![七个运行级别](http://img-blog.csdn.net/20170408135239077?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 这7个目录下记录都是链接文件，这些链接文件以"K"或"S"打头，也就分别对应者这个运行级别下相应服务的“关闭”或“启动”。这些链接文件指向的是``/etc/rc.d/init.d``目录下的shell脚本。事实上前面service命令中说道``/etc/init.d``目录其实是一个链接文件，指向的就是``/etc/rc.d/init.d``目录。
-![运行级别对应的连接文件](http://img.blog.csdn.net/20170408135338459?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![运行级别对应的连接文件](http://img-blog.csdn.net/20170408135338459?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 在网上找到这个比较容易理解的图，需要注意的是``/etc/rc*.d``连接到了``/etc/rc.d/rc*.d``;
-![Linux系统启动过程](http://img.blog.csdn.net/20170408135420023?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Linux系统启动过程](http://img-blog.csdn.net/20170408135420023?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 chkconfig具体用法如下(“#”号后面是注释)
 ```shell
@@ -65,7 +65,7 @@ usage:
 - 引入localectl、timedatectl等新命令，系统配置更方便。
 
 而且还配了一张神图：
-![Systemd体系结构](http://img.blog.csdn.net/20170408135533712?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Systemd体系结构](http://img-blog.csdn.net/20170408135533712?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 上图最顶层“系统工具”中最常用的就是systemctl命令了(其实部分命令有些发行版系统默认都没有安装)，总之呢，你可以把它理解为前面讲到的service和chkconfig命令的结合体。systemctl命令的使用还是比较复杂的，而且systemd体系也比较复杂，我怕我理解的还不够透彻讲不好，所以推荐两篇关于systemd的文章：
 - [Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
 - [Systemd 入门教程：实战篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)

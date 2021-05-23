@@ -12,11 +12,11 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 # 集合接口概要：
 
-![集合接口](http://img.blog.csdn.net/20170505163102593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![集合接口](http://img-blog.csdn.net/20170505163102593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 再加上并发库中的集合接口：
 
-![所有集合接口](http://img.blog.csdn.net/20170505163246463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![所有集合接口](http://img-blog.csdn.net/20170505163246463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 在下面的标题中用concurrent标记这个类是`java.util.concurrent`包中的集合
 
@@ -30,7 +30,7 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 **实现类：**
 
-![List实现类](http://img.blog.csdn.net/20170505163345542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![List实现类](http://img-blog.csdn.net/20170505163345542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### Vector（since 1.0）：
 
@@ -90,7 +90,7 @@ ArrayList绝对是集合框架中使用次数最多的类。
 
 **实现类：**
 
-![Map实现类](http://img.blog.csdn.net/20170505163429840?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Map实现类](http://img-blog.csdn.net/20170505163429840?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### Hashtable（since 1.0）：
 
@@ -295,15 +295,15 @@ ConcurrentSkipListMap（since 1.6，concurrent）：ConcurrentNavigableMap的实
 
 SortedMap实现类：
 
-![SortMap实现类](http://img.blog.csdn.net/20170505163707892?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SortMap实现类](http://img-blog.csdn.net/20170505163707892?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **NavigableMap**在SortedMap的基础上添加了更多的有序Map的操作。下图是NavigableMap增加的操作，更多细节可以查看Java官方文档。
 
-![NaviableMap增加的操作](http://img.blog.csdn.net/20170505163822018?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![NaviableMap增加的操作](http://img-blog.csdn.net/20170505163822018?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 NavigableMap实现类：
 
-![NavigableMap实现类](http://img.blog.csdn.net/20170505164048176?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![NavigableMap实现类](http://img-blog.csdn.net/20170505164048176?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### TreeMap（since 1.2）：
 
@@ -337,7 +337,7 @@ NavigableMap实现类：
 
 **ConcurrentMap 实现类：**
 
-![ConcurrentMap实现类](http://img.blog.csdn.net/20170505164202394?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![ConcurrentMap实现类](http://img-blog.csdn.net/20170505164202394?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **ConcurrentNavigableMap**是ConcurrentMap与NavigableMap的结合体：既有序又高并发。
 
@@ -357,7 +357,7 @@ ConcurrentNavigableMap接口的唯一实现类。该数据结构使用**跳跃�
 
 **Set 实现类：**
 
-![Set的实现类](http://img.blog.csdn.net/20170505164232004?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Set的实现类](http://img-blog.csdn.net/20170505164232004?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### HashSet（since 1.2）：
 
@@ -378,7 +378,7 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 只存储枚举类型的Set。根据具体的枚举类型，可以得到枚举类中的所有枚举值，进一步就确定这个集合最大的容量了。EnumSet就直接把所有枚举值放到一个数组，然后通过类似于BitSet的位图算法并借助枚举类值的ordinal作为索引来标记集合中是否有对应的枚举值。按照枚举类的大小它分成了两种实现，枚举值个数小于64的直接用一个`long`进行标记，这就是`RegularEnumSet`的实现；枚举值个数大于64的，则用`long[]`进行标记，这就是`JumboEnumSet`的实现。
 
-![EnumSet的静态方法](http://img.blog.csdn.net/20170505164302348?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![EnumSet的静态方法](http://img-blog.csdn.net/20170505164302348?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 
@@ -405,11 +405,11 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 **NavigableSet**： 在SortedSet的基础上添加了更多的有序Set的操作。下图是NavigableSet增加的操作，更多细节可以查看Java官方文档。
 
-![NavigableSet增加的操作](http://img.blog.csdn.net/20170505164416635?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![NavigableSet增加的操作](http://img-blog.csdn.net/20170505164416635?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **NavigableSet实现类：**
 
-![SortSet的实现类](http://img.blog.csdn.net/20170505164537355?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SortSet的实现类](http://img-blog.csdn.net/20170505164537355?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 
@@ -425,7 +425,7 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 # Queue （since 1.5）
 
-![队列示意图](http://img.blog.csdn.net/20170710235752953?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![队列示意图](http://img-blog.csdn.net/20170710235752953?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 在普通集合的基础上添加了一些队列操作：
 
 |  操作  |  失败抛出异常   | 失败返回false |
@@ -436,13 +436,13 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 看Queue的实现类之前，先来看一张Queue的继承图
 
-![Queue继承图](http://img.blog.csdn.net/20170505164720883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Queue继承图](http://img-blog.csdn.net/20170505164720883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 Queue这个接口仿佛就是为了并发库而设计的，所以Queue的实现类也几乎都是支持多线程的。
 
 **Queue实现类：**
 
-![Queue的实现类](http://img.blog.csdn.net/20170505164752117?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Queue的实现类](http://img-blog.csdn.net/20170505164752117?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 
@@ -462,7 +462,7 @@ Queue这个接口仿佛就是为了并发库而设计的，所以Queue的实现�
 
 **实现类：**
 
-![BlockingQueue实现类](http://img.blog.csdn.net/20170505164906876?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![BlockingQueue实现类](http://img-blog.csdn.net/20170505164906876?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### ArrayBlockingQueue（since 1.5，concurrent）：
 
@@ -483,18 +483,18 @@ Queue这个接口仿佛就是为了并发库而设计的，所以Queue的实现�
 ### SynchronousQueue（since 1.5）：
 
 这个类是一个比较奇葩的容器，或许不能称其为容器，因为它是一个0容量的队列，不像ArrayBockingQueue和LinkedBlockingQueue那样有缓冲区，SynchronousQueue没有缓冲区，内部直接通过TransferQueue(公平模式)或TransferStack(不公平模式)来进行生产者与消费者的数据传递（这是Java6之后的实现方式），公平模式使生产者(或消费者)线程排队依次添加(或取出)，而费公平模式允许恶性竞争，使用SynchronousQueue可以让生产者线程与消费者线程之间的同步：生产者生产一个消费者就消费一个。SynchronousQueue不允许添加null元素。
-![公平模式下的SynchronousQueue示意图](http://img.blog.csdn.net/20170711000357264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![公平模式下的SynchronousQueue示意图](http://img-blog.csdn.net/20170711000357264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## Deque （since 1.6）
 
-![Deque示意图](http://img.blog.csdn.net/20170711000453655?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Deque示意图](http://img-blog.csdn.net/20170711000453655?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 双端队列，两端都支持插入删除。既可以把它当Queue用又可以把它当Stack用。
 
 <table border="" cellpadding="3" cellspacing="1"><tbody><tr><td></td><td align="CENTER" colspan="2"><b>第一元素（头）</b></td><td align="CENTER" colspan="2"><b>最后元素（尾）</b></td></tr><tr><td></td><td align="CENTER"><em>抛出异常</em></td><td align="CENTER"><em>返回false</em></td><td align="CENTER"><em>抛出异常</em></td><td align="CENTER"><em>返回false</em></td></tr><tr><td><b>插入</b></td><td><code>addFirst(e)</code></td><td><code>offerFirst(e)</code></td><td><code>addLast(e)</code></td><td><code>offerLast(e)</code></td></tr><tr><td><b>删除</b></td><td><code>removeFirst()</code></td><td><code>pollFirst()</code></td><td><code>removeLast()</code></td><td><code>pollLast()</code></td></tr><tr><td><b>检查</b></td><td><code>getFirst()</code></td><td><code>peekFirst()</code></td><td><code>getLast()</code></td><td><code>peekLast()</code></td></tr></tbody></table>
 
 **实现类：**
 
-![Deque实现类](http://img.blog.csdn.net/20170505164939227?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Deque实现类](http://img-blog.csdn.net/20170505164939227?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 LinkedList（since 1.2）：双向链表实现双端队列，前面已经提过了。
 

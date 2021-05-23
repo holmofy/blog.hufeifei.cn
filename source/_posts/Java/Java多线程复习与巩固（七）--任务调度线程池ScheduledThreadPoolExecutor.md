@@ -28,7 +28,7 @@ public static ScheduledExecutorService newSingleThreadScheduledExecutor();
 
 从下面的继承图我们知道ScheduledThreadPoolExecutor就是ScheduledExecutorService接口的实现类。
 
-![线程池ThreadPoolExecutor相关类继承图](http://img.blog.csdn.net/20170819141036970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![线程池ThreadPoolExecutor相关类继承图](http://img-blog.csdn.net/20170819141036970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 3. 构造ScheduledThreadPoolExecutor对象
 
@@ -78,7 +78,7 @@ DelayedWorkQueue和`java.util.concurrent.DelayQueue`有着惊人的相似度：
 * DelayedWorkQueue实现了一个容量无限的二叉堆，DelayQueue底层使用PriorityQueue实现二叉堆各种操作。
 * DelayedWorkQueue存储了`java.util.concurrent.RunnableScheduledFuture`接口的实现类，DelayQueue存储`java.util.concurrent.Delayed`接口的实现类，这两个接口有以下的继承关系（其中`ScheduledThreadPoolExecutor`内部类`ScheduledFutureTask`就实现了`RunnableScheduledFuture`接口）
 
-![Future继承图](http://img.blog.csdn.net/20170819141457532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Future继承图](http://img-blog.csdn.net/20170819141457532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 5. 为什么使用二叉堆
 

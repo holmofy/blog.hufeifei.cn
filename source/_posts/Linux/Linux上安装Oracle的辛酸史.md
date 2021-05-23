@@ -21,7 +21,7 @@ categories: Linux运维
 
 如果你之前有掉坑的经历，已经添加过用户了，可以使用`id oracle`命令核查oracle用户是否配置完善：看Oracle是否属于`oinstall`和`dba`用户组。
 
-![oracle用户](http://img.blog.csdn.net/20170827181607857?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![oracle用户](http://img-blog.csdn.net/20170827181607857?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 创建用户完成后，后面的工作大部分就用oracle用户去完成了，需要用到root权限再切换或者使用sudo命令(sudoers需要配置，这个不是本文的内容)。
 
@@ -35,21 +35,21 @@ http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.ht
 
 http://www.oracle.com/technetwork/database/enterprise-edition/documentation/index.html
 
-![官方链接](http://img.blog.csdn.net/20170827181903347?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![官方链接](http://img-blog.csdn.net/20170827181903347?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **注意一定要选择平台相同的安装包**。如果你操作系统是64位的，下载的安装包是32位的，安装时会报交叉编译的错误信息：`/lib/ld-linux.so.2: bad ELF interpreter`。虽然有方法有解决方法，但是为了省去不必要的麻烦也为了程序的执行效率最好还是选择平台一致的安装包(走过的坑，你就不要再往下跳了＞︿＜)。
 
 我这里选用的是x64的安装包：
 
-![x86安装包](http://img.blog.csdn.net/20170827181834079?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![x86安装包](http://img-blog.csdn.net/20170827181834079?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 使用`unzip`命令将其解压(直接解压就行)，解压完成后会生成一个database文件夹：
 
-![解压后](http://img.blog.csdn.net/20170827182208644?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![解压后](http://img-blog.csdn.net/20170827182208644?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 解压完成后有个doc目录，该目录下有Oracle安装以及管理的各种文档(不过是英文的,而且安装文档中没有CentOS的技术支持,不过有RHEL的也一样可以照着操作)：
 
-![文档](http://img.blog.csdn.net/20170827182724654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![文档](http://img-blog.csdn.net/20170827182724654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 检查硬件需求
 
@@ -293,45 +293,45 @@ export PATH=$ORACLE_HOME/bin:$PATH
 
 注意：一定要使用oracle用户登录图形界面，否则运行`runInstaller`会报错显示错误(因为后面使用图形化界面安装的，需要权限去运行图形界面程序)。
 
-![开始安装](http://img.blog.csdn.net/20170827182808590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![开始安装](http://img-blog.csdn.net/20170827182808590?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 如果你弹出了以下界面，那么恭喜你离成功只有一半的距离了。
 
 1、第一步用来配置更新以及技术支持的，把勾去掉直接下一步就行
 
-![第一步](http://img.blog.csdn.net/20170827182837997?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第一步](http://img-blog.csdn.net/20170827182837997?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 2、 配置安装选项，这三个选项分别表示：①创建并配置一个新数据库，适用于新安装数据库的用户；②只安装数据库软件，适用于已有Oracle数据库数据用于数据迁移的；③升级已有数据库，适用于将老数据库升级成新数据库的用户。毫无疑问这里选择第一个选项。
 
-![第二步](http://img.blog.csdn.net/20170827182907151?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第二步](http://img-blog.csdn.net/20170827182907151?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 3、第三步配置桌面版还是服务器版，桌面版是最小化配置，这里为了练习选择服务器版的配置。
 
-![第三步](http://img.blog.csdn.net/20170827182951095?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第三步](http://img-blog.csdn.net/20170827182951095?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 4、第四步分布式网格配置，这里选择单实例服务器配置，如果要配置分布式服务的话可以参考前面说的安装文档，里面有详细的分布式服务安装过程。
 
-![第四步](http://img.blog.csdn.net/20170827183118931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第四步](http://img-blog.csdn.net/20170827183118931?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 5、这个我们为了达到练手的目的选择高级安装(典型安装基本都已经帮我们配置好了,有啥挑战性)
 
-![第五步](http://img.blog.csdn.net/20170827183308431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第五步](http://img-blog.csdn.net/20170827183308431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 6、选择语言，这里我选择英文和简体中文。
 
-![第六步](http://img.blog.csdn.net/20170827183426003?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第六步](http://img-blog.csdn.net/20170827183426003?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 7、第七步选择数据库版本，这里选择企业版
 
-![第七步](http://img.blog.csdn.net/20170827183440676?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第七步](http://img-blog.csdn.net/20170827183440676?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 8、选择安装路径，这个已经在环境变量里配置过了
 
-![第八步](http://img.blog.csdn.net/20170827183524516?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第八步](http://img-blog.csdn.net/20170827183524516?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 9、这个Inventory Directory目录用于记录Oracle的清单信息的，清单信息中包括Oracle的安装路径等信息。这里我选择在oracle的家目录下建一个目录存放这些安装信息。
 
-![第九步](http://img.blog.csdn.net/20170827183706335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第九步](http://img-blog.csdn.net/20170827183706335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 10、第十步用于创建数据库的类型：
 
@@ -340,71 +340,71 @@ export PATH=$ORACLE_HOME/bin:$PATH
 
 这里选择通用的就行。
 
-![第十步](http://img.blog.csdn.net/20170827183735559?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十步](http://img-blog.csdn.net/20170827183735559?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 11、配置数据库名，和Oracle服务ID号
 
 > 注意数据库名一定要记住，以后进行程序开发会用到这个数据库名
 
-![第十一步](http://img.blog.csdn.net/20170827183833837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十一步](http://img-blog.csdn.net/20170827183833837?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 12、十二步，这里需要配置一下字符集，将字符集设置成UTF-8，其他的不用修改(如果有特殊需求可以参考文档来配置)。
 
-![第十二步](http://img.blog.csdn.net/20170827184038712?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十二步](http://img-blog.csdn.net/20170827184038712?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 13、这一步用来配置系统信息邮件通知的，可以跳过
 
-![第十三步](http://img.blog.csdn.net/20170827184417360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十三步](http://img-blog.csdn.net/20170827184417360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 14、这一步用于配置数据存储的（数据文件存储位置），这里我们把数据存储在`/oracle/oradata`目录下。
 
-![第十四步](http://img.blog.csdn.net/20170827184559723?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十四步](http://img-blog.csdn.net/20170827184559723?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 15、十五步用于配置数据备份，这里我们只是用来学习不需要自动备份，实际生产肯定是要做备份的。
 
-![第十五步](http://img.blog.csdn.net/20170827184751430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十五步](http://img-blog.csdn.net/20170827184751430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 16、十六步配置账号密码，这里我将所有的默认用户统一使用相同的密码(如果密码太简单可能会报错，需要大小写数字都包含，需要精心设计一个密码)。
 
 > 注意密码不能忘了，不管是数据库管理还是软件开发都会用到这个密码。
 
-![第十六步](http://img.blog.csdn.net/20170827185113179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十六步](http://img-blog.csdn.net/20170827185113179?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 17、这一步用于配置数据库用户组的，只要安装前的配置工作完成了，这一步可以直接使用默认的。
 
-![第十七步](http://img.blog.csdn.net/20170827185259468?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十七步](http://img-blog.csdn.net/20170827185259468?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 18、这一步会检测交换分区大小、内核参数以及依赖包是否安装。只要前面准备工作都完成了，下面的错误可以直接忽略(比如它要求的软件包，我们的版本实际上比它要求的还高，所以这里的报错没必要理会它)。
 
-![第十八步](http://img.blog.csdn.net/20170827185343308?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十八步](http://img-blog.csdn.net/20170827185343308?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 19、这一步是对前面所有配置的一个总结，我们可以直接点击完成
 
-![第十九步](http://img.blog.csdn.net/20170827185707450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第十九步](http://img-blog.csdn.net/20170827185707450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 20、只要前面的配置没问题，我们就可以安心的等待安装成功了
 
-![第二十步](http://img.blog.csdn.net/20170827185751058?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第二十步](http://img-blog.csdn.net/20170827185751058?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 21、安装完成后，弹出下面这个界面，我们点击password management对数据库用户的密码进行一些配置
 
-![第二十一步](http://img.blog.csdn.net/20170827190115444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第二十一步](http://img-blog.csdn.net/20170827190115444?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 22、配置数据库用户密码
 
-![第二十二步](http://img.blog.csdn.net/20170827190148663?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第二十二步](http://img-blog.csdn.net/20170827190148663?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这里叫你运行使用root用户运行两个脚本，运行一下就可以了。
 
-![第二十二步](http://img.blog.csdn.net/20170827190302440?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第二十二步](http://img-blog.csdn.net/20170827190302440?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-![第二十二步](http://img.blog.csdn.net/20170827190332358?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![第二十二步](http://img-blog.csdn.net/20170827190332358?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 安装成功，此处应有掌声。
 
 # 使用SQLplus查询scott表进行测试
 
-![SQLplus](http://img.blog.csdn.net/20170827190402574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SQLplus](http://img-blog.csdn.net/20170827190402574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 如果SQLplus命令找不到，注意看一下环境变量是否配置正确，然后将oracle注销后再重新登录
 

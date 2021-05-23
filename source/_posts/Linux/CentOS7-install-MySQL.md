@@ -65,7 +65,7 @@ Dependency Updated:
 Complete!
 ```
 不知道是不是当时太兴奋，也没看安装提示直接就填了yes，等安装完傻眼了，MariaDB是什么鬼。孤陋寡闻的我，赶忙去问度娘，原来是mysql的一个分支。
-![MariaDB](http://img.blog.csdn.net/20170405220020021?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![MariaDB](http://img-blog.csdn.net/20170405220020021?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 我想要个“正房”，你却给我安了个“小三”；想养个海豚，你TM给我个海豹。
 卧槽，我说这好歹也是IT三巨头之一啊，yum库竟然连个mysql都没有。
 
@@ -106,16 +106,16 @@ Removed:
 Complete!
 ```
 唉，自己动手丰衣足食，上官网逛逛去。
-![mysql yum 安装](http://img.blog.csdn.net/20170405220219413?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)<br/>
-![mysql yum安装向导](http://img.blog.csdn.net/20170405220318490?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![mysql yum 安装](http://img-blog.csdn.net/20170405220219413?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)<br/>
+![mysql yum安装向导](http://img-blog.csdn.net/20170405220318490?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 国外的东西就是好，东西给你了，连教程都准备好了，可惜了我这连四级都没过的英语水平啊，没办法硬着头皮也要看哪。
 
 #看看官网给出的具体步骤：
 ## 1. 添加mysql yum 库
 ### a. 首先要到MySQL yum库的下载页面http://dev.mysql.com/downloads/repo/yum/
-![mysql yum库下载](http://img.blog.csdn.net/20170405220446649?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![mysql yum库下载](http://img-blog.csdn.net/20170405220446649?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ### b. 找一个跟自己平台匹配的发行包，用``uname``命令看看自己的平台版本
-![查看linux平台版本](http://img.blog.csdn.net/20170405220532165?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![查看linux平台版本](http://img-blog.csdn.net/20170405220532165?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ### c. 用``wget``命令把相应的rpm包下下来，这个包很小只有几k
 ```shell
 	[root@VM_235_40_centos ~]# wget https://repo.mysql.com//mysql57-community-release-el7-9.ch.rpm
@@ -364,7 +364,7 @@ Complete!
 ```
 此处应有掌声
 ## 4. 最后一步了，启动服务
-![启动服务](http://img.blog.csdn.net/20170405221046793?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![启动服务](http://img-blog.csdn.net/20170405221046793?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 官网的安装指南使用``service mysqld start``，CentOS7改用systemctl命令启动服务了，使用service命令会默认转向调用systemctl命令的。
 ## 附加步骤，修改MySQL密码，修改MySQL默认端口
 MySQL5.7之前的版本如果按照这种方式安装后，默认是没有密码的。对于MySQL5.7 有点特殊，下面是官网描述MySQL5.7的安装过程：
@@ -377,13 +377,13 @@ MySQL5.7之前的版本如果按照这种方式安装后，默认是没有密码
 ```shell
 shell> sudo grep 'temporary password' /var/log/mysqld.log
 ```
-![mysql root 超级管理员密码](http://img.blog.csdn.net/20170405221202043?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![mysql root 超级管理员密码](http://img-blog.csdn.net/20170405221202043?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 上面红圈部分就是生成的随即密码，然后进入mysql修改密码，当然修改密码的方式有很多种，这个可以自行百度。
-![mysql root 密码修改](http://img.blog.csdn.net/20170405221234153?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![mysql root 密码修改](http://img-blog.csdn.net/20170405221234153?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ** 修改端口 **
 mysql的配置文件在/etc/my.cnf
-![修改MySQL默认端口](http://img.blog.csdn.net/20170406215317849?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![修改MySQL默认端口](http://img-blog.csdn.net/20170406215317849?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 修改端口只需要添加一行``port=[修改的端口号]``，记得重启服务
 
 搞了两节课终于TM折腾完了

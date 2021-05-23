@@ -7,7 +7,7 @@ description: TextureView、SurfaceTexture、Surface之间的关系
 ---
 上篇文章我们说了SurfaceView，接下来我们对Texture进行一下分析。
 SurfaceView由于使用的是独立的绘图层，并且使用独立的线程去进行绘制。前面的文章中也说到SurfaceView不能进行Transition，Rotation，Scale等变换，这就导致一个问题SurfaceView在滑动的时候，SurfaceView的刷新由于不受主线程控制导致SurfaceView在滑动的时候会出现黑边的情况，看下面的效果图。
-![SurfaceView滑动出现黑边](http://img.blog.csdn.net/20170326232946909?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SurfaceView滑动出现黑边](http://img-blog.csdn.net/20170326232946909?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 这个Demo里的SurfaceView是上篇文章中定义的DrawSurfaceView，不了解的同学可以看上一篇文章
 
 如果这里的SurfaceView是VideoView，由于视频刷新的速度比这个DrawSurfaceView速度大好几倍，那么这个黑边的情况将更恶劣，同学可以将DrawSurfaceView的刷新延时DELAY设置的更小一点，看的效果更明显。这里要讲到的TextureView就是用来解决这种问题的。
@@ -126,11 +126,11 @@ public class DrawTextureView extends TextureView implements TextureView.SurfaceT
 </LinearLayout>
 ```
 效果图如下
-![TextureView刷新重绘](http://img.blog.csdn.net/20170326233106020?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![TextureView刷新重绘](http://img-blog.csdn.net/20170326233106020?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 可以看到与Surface不同的是，Texture刷新的是它所在Window的Surface。
 
 接下来我们使用DrawTextureView替换之前的SurfaceView来解决滑动黑边问题，下面是效果图
-![TextureView解决SurfaceView滑动黑边问题](http://img.blog.csdn.net/20170326233147442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![TextureView解决SurfaceView滑动黑边问题](http://img-blog.csdn.net/20170326233147442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 ## 实现代码[点击这里](http://download.csdn.net/detail/holmofy/9794709)

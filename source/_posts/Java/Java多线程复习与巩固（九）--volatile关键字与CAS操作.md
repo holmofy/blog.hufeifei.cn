@@ -10,11 +10,11 @@ categories: JAVA
 
 现代计算机都是多处理机CPU，每个核心(Core)都有一套寄存器，CPU访问寄存器的速度是最快的，但是访问RAM内存速度相对来说要慢很多，所以为了解决寄存器与内存速度的不协调问题，每个CPU内核都会有一级或多级高速缓存(Cache)：
 
-![CPU内存架构](http://img.blog.csdn.net/20170627225525165?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![CPU内存架构](http://img-blog.csdn.net/20170627225525165?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 当两个线程同时运行的时候，可能会出现下面的情况：两个线程同时使用一个共享变量，会在Cache中缓存该变量，当一个线程修改共享变量时，Cache未能及时将修改的值放回RAM，导致另一个线程不能读取修改后的值。
 
-![线程共享变量出现的问题](http://img.blog.csdn.net/20170627225612648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![线程共享变量出现的问题](http://img-blog.csdn.net/20170627225612648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # volatile关键字的作用
 
@@ -261,12 +261,12 @@ inline jint Atomic::cmpxchg    (jint exchange_value, volatile jint* dest, jint c
 
 下图是[Intel开发手册](https://software.intel.com/en-us/articles/intel-sdm)对`cmpxchg`指令的描述
 
-![cmpxchg指令](http://img.blog.csdn.net/20170627231139174?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![cmpxchg指令](http://img-blog.csdn.net/20170627231139174?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * `cmpxchg`指令有两个操作数，第一个操作数是内存地址，第二个操作数是交换的值。
 
 * `cmpxchg`同时需要一个accumulator寄存器，如果是`x86_64`架构CPU的就是64位的RAX寄存器，如果是`x86`架构的CPU就是32位的EAX寄存器(`x86_64`是向下兼容的，RAX的低32位就是EAX)，该寄存器中存储进行比较的预期值。`cmpxchg`指令可以对8位(AL)、16位(AX)、32位(EAX)、64位(RAX)进行CAS操作。上图红框就是操作对应的伪代码。
-![x86_64 累计计数寄存器](http://img.blog.csdn.net/20170627231331542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![x86_64 累计计数寄存器](http://img-blog.csdn.net/20170627231331542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 * `cmpxchg`指令可以加LOCK前缀(0xF0)来保证`cmpxchg`指令原子性执行。
 

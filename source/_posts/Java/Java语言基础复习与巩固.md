@@ -33,7 +33,7 @@ C语言因为依赖与CPU平台，数据类型所占字节数可能会因硬件�
 
 Java中为上面的八种基本类型提供了包装类，从而让基本类型变成引用类型。有了这些包装类我们就可以在ArrayList，HashMap等Java集合类中存储基本的数据类型了(因为集合类型底层都是使用Object引用类型)。
 
-![基本数据类型的包装类](http://img.blog.csdn.net/20170623011407927?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![基本数据类型的包装类](http://img-blog.csdn.net/20170623011407927?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 原本JDK1.5之前这些基本数据类型要变成包装类，必须得通过相应的构造函数来对基本数据类型进行包装。这就导致一个问题：如果我往ArrayList中存入一万个整型的1，则需要new出一万个Integer对象。这无疑会消耗很大的内存（Java对象不像C语言结构体那么干净，Java对象头部有很多字段，诸如monitor等信息）。
 
@@ -337,7 +337,7 @@ public class Test {
 
 按照前面的解释，正常情况下运行会输出`false`。在运行时进行如下配置就会输出`true`。
 
-![Integer缓存池的配置](http://img.blog.csdn.net/20170802125934475?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Integer缓存池的配置](http://img-blog.csdn.net/20170802125934475?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 包装类中的其他工具方法
 
@@ -354,7 +354,7 @@ public class Test {
 3. 其他：Boolean中的逻辑运算方法、Character中的静态工具方法最多(如判断数字字符、空白字符、西欧字符，转大写、小写)，这些工具方法正等待着各位自己去发掘(避免重复造轮子哦)。
 
 
-![基本数据类型的工具方法](http://img.blog.csdn.net/20170623011508265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![基本数据类型的工具方法](http://img-blog.csdn.net/20170623011508265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 基本数据类型的格式化输出
 
@@ -981,7 +981,7 @@ String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
 
 前面频繁提到了`StringBuffer`和`StringBuilder`这两个类，但很多初学者对这两个类区分不清：**StringBuffer是线程安全的(方法基本上都是`synchronized`同步方法)，StringBuilder是线程不安全的(没有使用`synchronized`进行同步)；正因如此StringBuilder在效率上比StringBuffer要高**。这一点上和`Vector`与`ArrayList`的关系是一样的。
 
-![CharSequence](http://img.blog.csdn.net/20170623011629190?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![CharSequence](http://img-blog.csdn.net/20170623011629190?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 前面也提到Java中String的字符串连接就是使用StringBuilder实现的，但StringBuilder是Java5之后才添加的，在Java5之前都是使用StringBuffer类来实现的。Java中每次字符串连接都会重新创建一个StringBuilder类，所以不会出现多线程访问共享资源时发生的问题。
 

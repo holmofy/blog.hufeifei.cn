@@ -7,7 +7,7 @@ categories: J2EE
 
 先来看一张整体的处理过程图：
 
-![SpringMVC原理图](http://img.blog.csdn.net/20171225214823279?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![SpringMVC原理图](http://img-blog.csdn.net/20171225214823279?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 下面的Spring源码版本为4.3.12，是目前最新的稳定版本。
 >
@@ -200,7 +200,7 @@ public class HandlerExecutionChain {
 
 从上面的源码可以大致得到拦截器链与handler执行的先后顺序：
 
-![过滤链执行顺序](http://img.blog.csdn.net/20171226164722543?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![过滤链执行顺序](http://img-blog.csdn.net/20171226164722543?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 # 检查并解析文件上传请求
 
@@ -268,7 +268,7 @@ protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Ex
 }
 ```
 
-![HandlerMapping](http://img.blog.csdn.net/20171225214959386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![HandlerMapping](http://img-blog.csdn.net/20171225214959386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## RequestMappingHandlerMapping
 
@@ -387,7 +387,7 @@ protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletExcepti
 }
 ```
 
-![HandlerAdapter](http://img.blog.csdn.net/20171225215022458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![HandlerAdapter](http://img-blog.csdn.net/20171225215022458?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 以上的HandlerAdapter分别用来适配以下几种控制器：
 
@@ -678,11 +678,11 @@ protected View resolveViewName(String viewName, Map<String, Object> model, Local
 
 ViewResolver就是把我们在Controller中返回的viewName解析成一个实际的视图层对象；[Spring支持的视图层技术](https://docs.spring.io/spring/docs/5.0.3.BUILD-SNAPSHOT/spring-framework-reference/web.html#mvc-view)包括JSP，FreeMarker，Velocity，Groovy，Tiles，PDF，Excel等，还有就是Spring官方比较推荐的Thymeleaf(Spring没有对Thymeleaf直接支持，需要导入Thymeleaf的jar包)。
 
-![ViewResolver](http://img.blog.csdn.net/20171226163906852?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![ViewResolver](http://img-blog.csdn.net/20171226163906852?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这些视图解析器解析viewName得到如下的视图对象：
 
-![View](http://img.blog.csdn.net/20171226163925347?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![View](http://img-blog.csdn.net/20171226163925347?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ## InternalResourceViewResolver
 
@@ -690,7 +690,7 @@ InternalResourceViewResolver是用的最多ViewResolver。
 
 想要分析InternalResourceViewResolver，我们还需要看看它父类的代码(resolveViewName方法在父类中)：
 
-![InternalResourceViewResolver](http://img.blog.csdn.net/20171226163942477?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![InternalResourceViewResolver](http://img-blog.csdn.net/20171226163942477?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **AbstractCachingViewResolver**
 
@@ -915,7 +915,7 @@ public class InternalResourceViewResolver extends UrlBasedViewResolver {
 
 前面ViewResolver中涉及到了三个View的实现类：InternalResourceView，RedirectView，JstlView
 
-![InternalResourceView](http://img.blog.csdn.net/20171226164020012?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![InternalResourceView](http://img-blog.csdn.net/20171226164020012?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 **AbstractView**
 

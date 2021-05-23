@@ -8,7 +8,7 @@ description: Windows C++界面库
 记得大一学C语言的时候，觉得黑白窗很无聊，后来在网上找到了[EasyX](http://baike.baidu.com/link?url=UjIZLt5nsju-JH6JC1n4w-1OWR6HxHbWOAJNCA_F7EizdlMUWysdn7Xdai2_R_qptWqWAHZqAnWtiAg1mVBoTa) （一个模仿turbo c的图形库）http://www.easyx.cn ，用它写一些贪吃蛇、扫雷这类有图形界面的游戏来练手。 当时学的时候就很好奇为什么调用这些函数就能绘制图形，后来从网上了解到了Windows编程，于是从淘宝淘了本《Windows程序设计》看了起来，当时看的时候还有点吃力。
 趁着大一结束后的那次暑假我看完了王爽老师编写的《汇编语言》，对计算机内存、CPU等底层方面的知识有了更深一层对的了解后，才重新拾起《Windows程序设计》。当时大二也开始学C++了，还记得“亮欧巴”教完谭浩强写的C++，还不能真正理解面向对象的意义，我在直接用Win32API写窗口程序的时候也感觉到要做很多重复工作，写很多模板代码（但当时自己完全不知道怎么用C++去封装Win32API），于是在网上找了些资料，还记得有一位大神出的视频里面讲了MFC的封装原理后，我自己才试着封装了Win32API（当然没使用MFC的消息映射机制，直接用了C++的虚函数多态），之后才明白C++的诞生是计算机工业发展的必然。学完后立马花了2个多月的时间写了个浏览器（为了应付学校的考试，也为了寒假回家过个好年，无奈拖长战线），当然网页显示直接使用MFC封装好的CHtmlView，这其中80%的时间都花在写界面上，当时还不知道开源社区有封装好的MFC控件，也不知道有CBitmapButton这类东西，完全自己封装，最终写出来的界面还贼TM丑，其实这也归结于当时不会PS，搞得后来很多功能都不愿完善了。
 
-![当时写的浏览器](http://img.blog.csdn.net/20170214233258052?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![当时写的浏览器](http://img-blog.csdn.net/20170214233258052?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ---
 最终我在网上了解到[DirectUI](http://baike.baidu.com/link?url=jjY4kgjgDrFjGCEAodKznQ4tjXwz9kCuQ-jEq5DpGk65qX1u6fAXz2TJCCaY4Ze4oAcixng9ssbrrCckMMvXF87Yrm1eScWKAKlgFLYTsIm)这项技术，虽然微软没有为开发者提供技术支持，但网上的总有一大批大牛人物敢于挑战。
@@ -16,8 +16,8 @@ description: Windows C++界面库
 # 开源界面库
 ## DuiLib
 首先要说的就是大名鼎鼎的DuiLib，国内很多大小公司都在使用该界面库，比如华为网盘，腾讯微信，百度杀毒 and so on。。。这个库是借鉴了国外的大牛Bjarke Viksoe写的[Windowless库](http://www.viksoe.dk/code/windowless1.htm)。据说DuiLib是国内第一个开源的DirectUI界面库，有很多界面库也是基于DuiLib二次开发的。随着时间的洗礼，很多其他界面库都慢慢销声匿迹了，DuiLib算是活的最好的。下面是我以前写过的几个小程序。
-![模仿EclipseInstaller写的EclipseSelector](http://img.blog.csdn.net/20170214233906637?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-![MediaPlayer](http://img.blog.csdn.net/20170214234045775?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![模仿EclipseInstaller写的EclipseSelector](http://img-blog.csdn.net/20170214233906637?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![MediaPlayer](http://img-blog.csdn.net/20170214234045775?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ## RingSdk
 这是国内的前辈自己写的类库，这里给出前辈对RingSdk的介绍http://blog.csdn.net/ringphone/article/details/2911244
 ## 金山界面库BKWin

@@ -112,7 +112,7 @@ public class ThreadCommunicate {
 
 所以真正能得到等于0的序列只有两种：
 
-![可以得出0的两种序列](http://img.blog.csdn.net/20170614235441302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![可以得出0的两种序列](http://img-blog.csdn.net/20170614235441302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 这么多条指令的排列中只有2条能够得到0这个结果，难怪上面的程序几乎得不到0这个结果。
 

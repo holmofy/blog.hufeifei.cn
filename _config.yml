@@ -6,9 +6,9 @@
 ## 网站标题
 title: holmofy
 ## 子标题
-subtitle: 
+subtitle:
 description: 胡飞飞的个人博客
-keywords: 
+keywords:
   - Java
   - DB
   - Alibaba
@@ -60,7 +60,7 @@ highlight:
 
 # https://github.com/hexojs/hexo-generator-index
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
 # https://github.com/hexojs/hexo-generator-archive
@@ -110,15 +110,16 @@ deploy:
   message: "hexo deployment: {{ now('YYYY-MM-DD HH:mm:ss') }}"
 
 #插件配置
-plugins: hexo-generator-feed
-         hexo-generator-sitemap
-         hexo-generator-baidu-sitemap
+plugins:
+  - hexo-generator-feed
+  - hexo-generator-sitemap
+  - hexo-generator-baidu-sitemap
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
   type: atom ##feed类型 atom或者rss2
   path: atom.xml ##feed路径
-  limit: 20  ##feed文章最小数量
+  limit: 20 ##feed文章最小数量
 
 # https://github.com/hexojs/hexo-generator-sitemap
 sitemap:
@@ -138,3 +139,13 @@ excerpt:
   excerpt_excludes: []
   more_excludes: []
   hideWholePostExcerpts: true
+
+# https://github.com/hexojs/hexo-filter-nofollow
+# 解决图片外链的问题
+nofollow:
+  enable: true
+  elements: ["a", "img"]
+  field: post
+  include:
+    - "img-blog.csdn.net"
+    - "*.sinaimg.cn"

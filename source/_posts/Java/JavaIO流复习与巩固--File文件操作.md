@@ -38,7 +38,7 @@ int open(const char *path, int oflag, .../*,mode_t mode */);
 |       1        | 标准输出流 |    STDOUT_FILENO    |      stdout       |
 |       2        | 标准错误流 |    STDERR_FILENO    |      stderr       |
 
-![标准IO流](http://img.blog.csdn.net/20170718004758184?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![标准IO流](http://img-blog.csdn.net/20170718004758184?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 FileDescriptor类中也定义了这三个常量：
 
@@ -93,7 +93,7 @@ FileDescriptor为文件的读写功能提供了基础，而File则是提供文�
 
 > 有关NIO的内容会在后续的文章中讲到
 
-![Java File与FileSystem](http://img.blog.csdn.net/20170718004837012?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Java File与FileSystem](http://img-blog.csdn.net/20170718004837012?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 File的功能大部分是由FileSystem类来实现的，而FileSystem的实现类根据平台分为两种：`WinNTFileSystem`代表微软的Windows系列的操作系统，`UnixFileSystem`代表了BSD，Linux，MaxOS为首遵循POSIX规范的类Unix系统，但FileSystem及其实现类我们无法直接使用它(因为是package访问级别)。
 
@@ -398,7 +398,7 @@ URI:file:/D:/a.txt
 
 上面方法可能在Windows体现不是很明显，Linux上对于读、写、执行的权限管理非常严格。
 
-![文件属性](http://img.blog.csdn.net/20170718005259809?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![文件属性](http://img-blog.csdn.net/20170718005259809?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 3. 文件操作
 
