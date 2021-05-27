@@ -15,11 +15,33 @@ categories: JAVA
 
 比如对于一个分布式的电商网站，最初订单系统只需要接入支付系统的接口。后面网站又拓展了优惠券模块也需要接入订单系统。
 
-![订单系统接入优惠券系统](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuShBJqbL22bAJ4c5C0CIAo4Cv_pIWlmyBh2KWgwk7KW6mOD9EwJcfG2D0G00)
+```plantuml
+@startuml
+node Trade
+node Pay
+node Coupon
+Trade --> Pay
+Trade --> Coupon
+@enduml
+```
 
 随着需求和业务的发展，后面加了短信模块、积分模块。可能觉得发短信通知成本有点高，又替换成了App上的消息通知等。
 
-![订单系统](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuShBJqbL22bAJ4c5C0CIAo4Cv_pIWlmyg61-Pbu9X1cSMmnXE1OK19GMPt21zIhewjg1j29uKFq80OWX23x890GFRfn3QbuAq5q0)
+```plantuml
+@startuml
+node Trade
+node Pay
+node Coupon
+node Point
+node Sms
+node AppPush
+Trade --> Pay
+Trade --> Coupon
+Trade --> Point
+Trade --> Sms
+Trade --> AppPush
+@enduml
+```
 
 如果用传统的RPC接口方式同步调用，可能是这样的：
 
@@ -52,6 +74,19 @@ void createTrade(...) {
 
 原来的订单系统会调用多个外部服务，每个服务的调用都会消耗一定的时间，随着接入的系统增多，整个下单流程的时间肯定会线性增长。这对于电商这样的互联网应用来说肯定是不能容忍的——用户的耐心是有限的，下个单loading半天鬼才用你家软件呢。
 
+```plantuml
+@startuml
+concise "Trade" as T
+@0
+T is 下单
+@200
+T is 付款
+@400
+T is 优惠券
+@600
+T is "..."
+@enduml
+```
 ![调用时常](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuKhEpqlEB4vLK0efIan9LL98B5O8uN8mu0fHo2nMUBAZ-sdlL2u78mEOmEuPpzRiut8mWGlicV6iUS7JZXrS3cOmiUVBrp_jQEDoi80Bp5_xPFz2BWT30vY8Oq71ixuLBniQkHnIyrA0xW00)
 
 而如果使用消息队列，优惠券、积分、短信等外部系统可以异步处理消息，这明显降低了调用时长。

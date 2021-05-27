@@ -45,28 +45,28 @@ categories: 数据库
 
 | Project            | Language                                               | Description                                       |
 | --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [alibaba/Canal](https://github.com/alibaba/canal)![stars](https://img.shields.io/github/stars/alibaba/canal) | Java                        | 阿里巴巴 MySQL binlog 增量订阅&消费组件 |
-| [debezium/debezium](https://github.com/debezium/debezium)![stars](https://img.shields.io/github/stars/debezium/debezium) | Java | Debezium is an open source distributed platform for change data capture. Replicates from MySQL to Kafka. Uses mysql-binlog-connector-java. Kafka Connector. A funded project supported by Redhat with employees working on it full time. |
-| [linkedin/databus](https://github.com/linkedin/databus)![stars](https://img.shields.io/github/stars/linkedin/databus) | Java | Precursor to Kafka. Reads from MySQL and Oracle, and replicates to its own log structure. In production use at LinkedIn. No Kafka integration. Uses Open Replicator. |
-| [zendesk/Maxwell](https://github.com/zendesk/maxwell)![stars](https://img.shields.io/github/stars/zendesk/maxwell) | Java                       | Reads MySQL event stream, output events as JSON. Parses ALTER/CREATE TABLE/etc statements to keep schema in sync. Written in java. Well maintained. |
-| [noplay/python-mysql-replication](https://github.com/noplay/python-mysql-replication)![stars](https://img.shields.io/github/stars/noplay/python-mysql-replication) | Python      | Pure python library that parses MySQL binary logs and lets you process the replication events. Basically, the python equivalent of mysql-binlog-connector-java |
-| [shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)![stars](https://img.shields.io/github/stars/shyiko/mysql-binlog-connector-java) | Java    | Library that parses MySQL binary logs and calls your code to process them. Fork/rewrite of Open Replicator. Has tests. |
-| [confluentinc/bottledwater-pg](https://github.com/confluentinc/bottledwater-pg)![stars](https://img.shields.io/github/stars/confluentinc/bottledwater-pg) | C                         | Change data capture from PostgreSQL into Kafka |
-| [uber/storagetapper](https://github.com/uber/storagetapper)![stars](https://img.shields.io/github/stars/uber/storagetapper) | Go                        | StorageTapper is a scalable realtime MySQL change data streaming, logical backup and logical replication service |
-| [moiot/gravity](https://github.com/moiot/gravity)![stars](https://img.shields.io/github/stars/moiot/gravity) | Go | A Data Replication Center |
-| [whitesock/open-replicator](https://github.com/whitesock/open-replicator)![stars](https://img.shields.io/github/stars/whitesock/open-replicator) | Java                | Open Replicator is a high performance MySQL binlog parser written in Java. It unfolds the possibilities that you can parse, filter and broadcast the binlog events in a real time manner. |
-| [mardambey/mypipe](https://github.com/mardambey/mypipe)![stars](https://img.shields.io/github/stars/mardambey/mypipe) | Scala                   | Reads MySQL event stream, and emits events corresponding to INSERTs, DELETEs, UPDATEs. Written in Scala. Emits Avro to Kafka. |
-| [Yelp/mysql_streamer](https://github.com/Yelp/mysql_streamer)![stars](https://img.shields.io/github/stars/Yelp/mysql_streamer) | Python                  | MySQLStreamer is a database change data capture and publish system. It’s responsible for capturing each individual database change, enveloping them into messages and publishing to Kafka. |
-| [actiontech/dtle](https://github.com/actiontech/dtle)![stars](https://img.shields.io/github/stars/actiontech/dtle) | Go | Distributed Data Transfer Service for MySQL |
-| [krowinski/php-mysql-replication](https://github.com/krowinski/php-mysql-replication)![stars](https://img.shields.io/github/stars/krowinski/php-mysql-replication) | PHP        | Pure PHP Implementation of MySQL replication protocol. This allow you to receive event like insert, update, delete with their data and raw SQL queries. |
-| [dianping/puma](https://github.com/dianping/puma)![stars](https://img.shields.io/github/stars/dianping/puma) | Java | 本系统还会实现数据库同步（同构和异构），以满足数据库冗余备份，数据迁移的需求。 |
-| [JarvusInnovations/Lapidus](https://github.com/JarvusInnovations/lapidus)![stars](https://img.shields.io/github/stars/JarvusInnovations/Lapidus) | Javascript        | Streams data from MySQL, PostgreSQL and MongoDB as newline delimited JSON. Can be run as a daemon or included as a Node.js module. |
+| [alibaba/Canal](https://github.com/alibaba/canal)![](https://img.shields.io/github/stars/alibaba/canal) | Java                        | 阿里巴巴 MySQL binlog 增量订阅&消费组件 |
+| [debezium/debezium](https://github.com/debezium/debezium)![](https://img.shields.io/github/stars/debezium/debezium) | Java | Debezium is an open source distributed platform for change data capture. Replicates from MySQL to Kafka. Uses mysql-binlog-connector-java. Kafka Connector. A funded project supported by Redhat with employees working on it full time. |
+| [linkedin/databus](https://github.com/linkedin/databus)![](https://img.shields.io/github/stars/linkedin/databus) | Java | Precursor to Kafka. Reads from MySQL and Oracle, and replicates to its own log structure. In production use at LinkedIn. No Kafka integration. Uses Open Replicator. |
+| [zendesk/Maxwell](https://github.com/zendesk/maxwell)![](https://img.shields.io/github/stars/zendesk/maxwell) | Java                       | Reads MySQL event stream, output events as JSON. Parses ALTER/CREATE TABLE/etc statements to keep schema in sync. Written in java. Well maintained. |
+| [noplay/python-mysql-replication](https://github.com/noplay/python-mysql-replication)![](https://img.shields.io/github/stars/noplay/python-mysql-replication) | Python      | Pure python library that parses MySQL binary logs and lets you process the replication events. Basically, the python equivalent of mysql-binlog-connector-java |
+| [shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)![](https://img.shields.io/github/stars/shyiko/mysql-binlog-connector-java) | Java    | Library that parses MySQL binary logs and calls your code to process them. Fork/rewrite of Open Replicator. Has tests. |
+| [confluentinc/bottledwater-pg](https://github.com/confluentinc/bottledwater-pg)![](https://img.shields.io/github/stars/confluentinc/bottledwater-pg) | C                         | Change data capture from PostgreSQL into Kafka |
+| [uber/storagetapper](https://github.com/uber/storagetapper)![](https://img.shields.io/github/stars/uber/storagetapper) | Go                        | StorageTapper is a scalable realtime MySQL change data streaming, logical backup and logical replication service |
+| [moiot/gravity](https://github.com/moiot/gravity)![](https://img.shields.io/github/stars/moiot/gravity) | Go | A Data Replication Center |
+| [whitesock/open-replicator](https://github.com/whitesock/open-replicator)![](https://img.shields.io/github/stars/whitesock/open-replicator) | Java                | Open Replicator is a high performance MySQL binlog parser written in Java. It unfolds the possibilities that you can parse, filter and broadcast the binlog events in a real time manner. |
+| [mardambey/mypipe](https://github.com/mardambey/mypipe)![](https://img.shields.io/github/stars/mardambey/mypipe) | Scala                   | Reads MySQL event stream, and emits events corresponding to INSERTs, DELETEs, UPDATEs. Written in Scala. Emits Avro to Kafka. |
+| [Yelp/mysql_streamer](https://github.com/Yelp/mysql_streamer)![](https://img.shields.io/github/stars/Yelp/mysql_streamer) | Python                  | MySQLStreamer is a database change data capture and publish system. It’s responsible for capturing each individual database change, enveloping them into messages and publishing to Kafka. |
+| [actiontech/dtle](https://github.com/actiontech/dtle)![](https://img.shields.io/github/stars/actiontech/dtle) | Go | Distributed Data Transfer Service for MySQL |
+| [krowinski/php-mysql-replication](https://github.com/krowinski/php-mysql-replication)![](https://img.shields.io/github/stars/krowinski/php-mysql-replication) | PHP        | Pure PHP Implementation of MySQL replication protocol. This allow you to receive event like insert, update, delete with their data and raw SQL queries. |
+| [dianping/puma](https://github.com/dianping/puma)![](https://img.shields.io/github/stars/dianping/puma) | Java | 本系统还会实现数据库同步（同构和异构），以满足数据库冗余备份，数据迁移的需求。 |
+| [JarvusInnovations/Lapidus](https://github.com/JarvusInnovations/lapidus)![](https://img.shields.io/github/stars/JarvusInnovations/Lapidus) | Javascript        | Streams data from MySQL, PostgreSQL and MongoDB as newline delimited JSON. Can be run as a daemon or included as a Node.js module. |
 
 这里只讨论Java语言的几个实现。首先[whitesock/open-replicator](https://github.com/whitesock/open-replicator)和[shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)是专门用来解析MySQL binlog的库，后者也是在前者的基础上重构的。[debezium/debezium](https://github.com/debezium/debezium)、[linkedin/databus](https://github.com/linkedin/databus)、[zendesk/Maxwell](https://github.com/zendesk/maxwell)三个中间件binlog解析都是基于这两个库。
 
 # 3. Canal vs. Debezium vs. databus vs. MaxWell
 
-1、[alibaba/Canal](https://github.com/alibaba/canal)![stars](https://img.shields.io/github/stars/alibaba/canal)
+1、[alibaba/Canal](https://github.com/alibaba/canal)![](https://img.shields.io/github/stars/alibaba/canal)
 
 优点：
 
@@ -78,7 +78,7 @@ categories: 数据库
 * 定位于MySQL binlog解析，所以只能支持MySQL数据库的CDC
 * Github上项目活跃度很一般，issue堆积了太多，13、14年的问题都还没解决。
 
-2、[debezium/debezium](https://github.com/debezium/debezium) ![stars](https://img.shields.io/github/stars/debezium/debezium)
+2、[debezium/debezium](https://github.com/debezium/debezium) ![](https://img.shields.io/github/stars/debezium/debezium)
 
 优点：
 
@@ -97,7 +97,7 @@ categories: 数据库
 >
 > Kafka创始人创办的[confluentinc](https://github.com/confluentinc)刚开始开源了[bottledwater-pg](https://github.com/confluentinc/bottledwater-pg)，最后也投入了debezium的怀抱，有官方的认可。
 
-3、[linkedin/databus](https://github.com/linkedin/databus) ![stars](https://img.shields.io/github/stars/linkedin/databus)
+3、[linkedin/databus](https://github.com/linkedin/databus) ![](https://img.shields.io/github/stars/linkedin/databus)
 
 优点：
 
@@ -118,7 +118,7 @@ categories: 数据库
 >
 > 可以看出Databus是Linkedin非常老的一个基础服务，Kafka的Log Compact的一些设计也源自于Databus。
 
-4、[zendesk/maxwell](https://github.com/zendesk/maxwell)![stars](https://img.shields.io/github/stars/zendesk/maxwell)
+4、[zendesk/maxwell](https://github.com/zendesk/maxwell)![](https://img.shields.io/github/stars/zendesk/maxwell)
 
 优点：
 
