@@ -58,33 +58,10 @@ highlight:
   auto_detect: false
   tab_replace:
 
-# https://github.com/hexojs/hexo-generator-index
-index_generator:
-  path: ""
-  per_page: 10
-  order_by: -date
-# https://github.com/hexojs/hexo-generator-archive
-archive_generator:
-  per_page: 50
-  yearly: true
-  monthly: false
-  daily: false
-  order_by: -date
 # Category & Tag
 default_category: uncategorized
 category_map:
 tag_map:
-
-meta_generator: true
-
-# 配置Math.js
-mathjax:
-  tags: none # or 'ams' or 'all'
-  single_dollars: true # enable single dollar signs as in-line math delimiters
-  cjk_width: 0.9 # relative CJK char width
-  normal_width: 0.6 # relative normal (monospace) width
-  append_css: true # add CSS to pages rendered by MathJax
-  every_page: false # if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
@@ -101,6 +78,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: paper
+meta_generator: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -111,11 +89,30 @@ deploy:
   branch: master
   message: "hexo deployment: {{ now('YYYY-MM-DD HH:mm:ss') }}"
 
+# https://github.com/hexojs/hexo-generator-index
+index_generator:
+  path: ""
+  per_page: 10
+  order_by: -date
+# https://github.com/hexojs/hexo-generator-archive
+archive_generator:
+  per_page: 50
+  yearly: true
+  monthly: false
+  daily: false
+  order_by: -date
+
 #插件配置
+# https://github.com/hexojs/hexo/wiki/Plugins
 plugins:
   - hexo-generator-feed
   - hexo-generator-sitemap
   - hexo-generator-baidu-sitemap
+  - hexo-filter-mathjax
+  - hexo-excerpt
+  - hexo-filter-nofollow
+  - hexo-filter-plantuml
+  - hexo-admin
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
@@ -134,6 +131,15 @@ githubEmojis:
   inject: true
   styles:
   customEmojis:
+
+# 配置Math.js
+mathjax:
+  tags: none # or 'ams' or 'all'
+  single_dollars: true # enable single dollar signs as in-line math delimiters
+  cjk_width: 0.9 # relative CJK char width
+  normal_width: 0.6 # relative normal (monospace) width
+  append_css: true # add CSS to pages rendered by MathJax
+  every_page: false # if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter
 
 # https://github.com/chekun/hexo-excerpt
 excerpt:
@@ -157,7 +163,6 @@ nofollow:
 plantuml:
   #  Local or PlantUMLServer.
   render: "PlantUMLServer"
-
   # The render server, you can also create your self-hosting sever
   # self-hosting cmd: java -jar /usr/local/Cellar/plantuml/1.2021.5/libexec/plantuml.jar -picoweb
   # server: http://localhost:8080/plantuml
@@ -171,3 +176,10 @@ plantuml:
 
   # common options: svg/png
   outputFormat: "svg"
+
+# https://github.com/jaredly/hexo-admin
+admin:
+  username: holmofy
+  password_hash: $2a$10$7pJS5p7CijNIU9YRx3X3/O7xPmrU8Cn12c9OwwTWsVP/zVs.ZtuAq
+  secret: 4766cFmSgcpF3bXwVlYRxwXdWCx6kFAa6GvPD4KDccU3GLRDAXuqqPx5o5UB8pu2J84+KNT4GaXOTog3l2RmrA==
+  deployCommand: "./hexo-deploy.sh"
