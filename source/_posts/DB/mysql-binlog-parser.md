@@ -2,6 +2,10 @@
 title: 基于Binlog的实时同步功能——debezium、canel、databus技术选型
 date: 2021-03-13 14:23
 categories: 数据库
+tags: 
+- DB
+- MySQL
+- Debezium
 ---
 
 大厂这段时间学到的最有价值的两个技术除了大数据，另一个就是基于CDC和消息队列的实时同步技术。

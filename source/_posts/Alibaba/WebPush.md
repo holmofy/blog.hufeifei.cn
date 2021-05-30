@@ -2,6 +2,10 @@
 title: AE在WebPush技术中的探索之路
 date: 2020-10-15 23:50
 categories: JAVA
+tags: 
+- WebPush
+- JAVA
+- Alibaba
 ---
 
 之前几个月在做的WebPush项目，最早接入Firebase的方案，看了一下官方的demo觉得这个需求应该还是很简单的，直到做的过程中遇到[fcm token失效](https://github.com/firebase/quickstart-js/issues/101)的各种坑，以及AE多语言站点的问题，可以说是一路坎坷。

@@ -2,6 +2,10 @@
 title: 由配置文件到Diamond配置中心引发的考究
 date: 2020-04-15 12:26
 categories: JAVA
+tags: 
+- Diamond
+- Config
+- JAVA
 mathjax: true
 ---
 

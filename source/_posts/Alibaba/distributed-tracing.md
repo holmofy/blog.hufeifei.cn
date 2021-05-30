@@ -3,6 +3,10 @@ title: 从谷歌Dapper到阿里EagleEye
 date: 2020-07-23 12:26
 categories: JAVA
 mathjax: true
+tags: 
+- Dapper
+- Alibaba
+- Distributed
 ---
 
 # 1、分布式链路追踪技术解决的问题

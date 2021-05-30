@@ -2,6 +2,8 @@
 title: typedef与#define的区别
 date: 2017-07-25 16:08
 categories: C&C++
+tags: 
+- C
 ---
 
 `typedef`关键字用于为类型数据创建别名，通常的用法如下：

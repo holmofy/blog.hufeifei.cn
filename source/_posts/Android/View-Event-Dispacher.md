@@ -2,6 +2,7 @@
 title: View事件分发机制源码分析
 date: 2017-01-05 13:07
 tags:
+- Android
 categories: Android
 description: View事件分发机制源码分析
 ---

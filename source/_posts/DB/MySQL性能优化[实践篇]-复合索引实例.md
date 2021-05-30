@@ -2,6 +2,9 @@
 title: MySQL性能优化[实践篇]-复合索引实例
 date: 2018-05-26 17:17
 categories: 数据库
+tags: 
+- DB
+- MySQL
 ---
 
 [上篇文章](https://blog.csdn.net/holmofy/article/details/80384637)最后提了个问题

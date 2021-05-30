@@ -2,6 +2,10 @@
 title: 从Pandora到PandoraBoot
 date: 2020-05-28 19:26
 categories: JAVA
+tags: 
+- JVM
+- JAVA
+- ClassLoader
 ---
 
 看过[Pandora](http://gitlab.alibaba-inc.com/middleware-container/pandora/wikis/home)文档的一些介绍——轻量级的依赖隔离容器，在我脑子里浮现了这几个名词：Tomcat部署多应用、OSGI、Java9模块化。谷歌“依赖隔离”这个关键词出来的结果：类加载机制、蚂蚁开源的[sofa-ark](https://github.com/sofastack/sofa-ark)。所以读了很多文章想看看这些名词之间有什么联系。

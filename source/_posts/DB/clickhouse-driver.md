@@ -2,6 +2,9 @@
 title: clickhouse-jdbc性能排查
 date: 2021-04-19 18:50
 categories: DB
+tags: 
+- DB
+- ClickHouse
 ---
 
 我们项目准备用clickhouse来做数据统计，当前(2021-04-18)使用的是clickhouse官方最新发布的[0.3.0](https://github.com/ClickHouse/clickhouse-jdbc/tree/v0.3.0)版jdbc驱动，使用过程中碰到了几个问题：

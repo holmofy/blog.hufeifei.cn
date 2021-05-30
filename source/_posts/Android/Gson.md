@@ -2,6 +2,8 @@
 title: 安卓常用第三方框架-Gson
 date: 2017-02-17 20:59
 tags:
+- Android
+- Gson
 categories: Android
 description: 安卓常用第三方框架-Gson
 ---

@@ -3,6 +3,11 @@ title: BST,AVL,Red-BlackTree,SplayTree
 date: 2018-03-28 18:31
 categories: 数据结构与算法
 mathjax: true
+tags: 
+- DataStructure
+- BST
+- AVL
+- RB-Tree
 ---
 
 # 从线性查找和二分查找说起

@@ -1,3 +1,13 @@
+---
+title: 关于消息队列Kafka的讨论
+date: 2021-05-30 18:50
+categories: JAVA
+tags: 
+- BigData
+- Alibaba
+- Kafka
+---
+
 > 这篇文章拆解自我的知乎回答：https://www.zhihu.com/question/451313635/answer/1849701932
 
 有大佬说让我讲一讲消息系统，流批处理还有k8s调度，istio，这些我也还在学习中，我先挑一个稍微熟悉一点的消息系统讲一下吧，希望整理的过程中自己也能有些收获。有什么不对的地方希望路过的大佬指正。
@@ -8,7 +18,7 @@
 
 然后我就天天忙于他们的业务，自己头上的KPI却没有任何进展。而且因为同步调用他们的服务，导致用户下单的时候贼耗时，这些外部服务严重降低了用户下单时的体验，特别是营销平台的短信服务它还要调下游运营商的服务，这尼玛可拖累死我了。而且双十一大促的时候下单量猛增，我调用他们的服务时，他们的机器根本杠不住，直接把他们打挂了，导致自己订单服务经常抛异常。这尼玛自己的KPI没完成，还造成了性能问题，恐怕今年绩效的3.25我是背定了。
 
-怎么办呢？想想这里面的几个问题：
+怎么办呢？想想这里面出现的几个问题：
 
 1、我堂堂一个订单核心应用，竟然要依赖营销平台这样一个跟用户无关紧要的服务，这明显是不合理的，我要把这些无关紧要的服务用一个统一的方式处理掉，把那些无关紧要的代码从我的代码里通通干掉，让我的服务与这些服务进行解耦。
 
@@ -24,7 +34,7 @@
 
 消息队列里经常把存储每种类型消息的队列称作一个topic，把存储消息的中间件叫做broker，所以加入消息队列后的结构就变成这样了。
 
-![](https://pic4.zhimg.com/80/v2-9dee46438ee7a784bb934bffa9c837b1_1440w.jpg)
+![](http://www.plantuml.com/plantuml/svg/FSqz2i904CNnVaynfCyL96Yzu05ibimpBYOpE1_tTr6qUloAFs_nQ1Pvx6N7FIYKh6-F8Ew6DRfA4MNGrPHpXNrrKV4yXbw914qLxct3JSwcJzX4pQcMNqFpV1gid_sd2uJ7xHi0)
 
 设计这个消息队列的时候会碰到什么问题呢？
 
@@ -55,11 +65,15 @@ Kafka主要问题在于：
 * Kafka只能保证一个partition内的消息有序，如果topic有多个partition，就无法保证消息的有序性了，也就是说消息的有序性与多个partition带来的高吞吐量二者不可兼得。
 > 关于阿里的metaq怎么解决这个问题，有兴趣的可以参考我的[上一篇文章](https://blog.hufeifei.cn/2020/04/25/Alibaba/MetaQ&Notify/)
 
-6、`Broker->Consumer`是让Broker起一个Scheduler往Consumer推消息呢，还是让Consumer自己起一个Scheduler从Broker拉消息呢？这两者各有优缺点，让Broker实现Push方式可以保证消息的及时性，一旦有新的消息进来就可以立马推送给Consumer，但是如果Consumer消化不良就可能把Consumer给撑死。Consumer的Pull方式可以让Consumer根据自身需要自身控制消费速度，消费的实时性虽然有些影响，但是Consumer可以提高Pull频率达到自己预期的响应要求，当然提高Pull频率也就导致Broker压力增大，所以这个频率也需要平衡控制。Kafka的消费客户端就是基于Pull模式的。
+6、消费完的消息怎么清理。如果是使用数据库存储，我们为了避免B+树深度的增大，肯定是需要开一个任务定时清理已经消费过的数据，B+树是对读性能优化的数据结构，对于增删操作多的写性能是很差的，这也是为什么kafka使用日志来存储消息的一个原因。同样的，kafka用日志存储也需要考虑到日志的清理，如果使用一个日志文件肯定是不方便的，所以kafka的日志除了分了partition，每个partition还分成了若干的segment。直接删除也就是把cleanup.policy设置成delete，根据消息的key对消息进行合并保留最新的一个消息就把cleanup.policy设置成compact。说到这个compact，再思考一个问题，因为基于append-only的日志存储，如果发了一条消息反悔了，想删除怎么办，kafka目前只提供了一个墓碑消息的概念，就是你发送一条消息体为null的消息并发消息的key设置成与之前消息key相同就行。
 
-7、`Broker->Consumer`消费过程中，Consumer可能会消费失败，或者消费超时，从而导致Consumer重复消费，所以同样地Consumer消费消息的时候仍要保证幂等。
+![](https://pic2.zhimg.com/80/v2-b35bd06cdfac2a2ef57a6839227fc89f_720w.png)
 
-8、一个topic可以由不同的Consumer订阅，Consumer为了提高消费速度可能会有多个线程甚至多台机器，所以就有了Consumer Group的概念。在Kafka中可以增多partition以提高消息的吞吐量，如果topic的partition数小于Consumer Group中的Consumer的个数时，肯定会有Consumer同时消费多个partition。
+7、`Broker->Consumer`是让Broker起一个Scheduler往Consumer推消息呢，还是让Consumer自己起一个Scheduler从Broker拉消息呢？这两者各有优缺点，让Broker实现Push方式可以保证消息的及时性，一旦有新的消息进来就可以立马推送给Consumer，但是如果Consumer消化不良就可能把Consumer给撑死。Consumer的Pull方式可以让Consumer根据自身需要自身控制消费速度，消费的实时性虽然有些影响，但是Consumer可以提高Pull频率达到自己预期的响应要求，当然提高Pull频率也就导致Broker压力增大，所以这个频率也需要平衡控制。Kafka的消费客户端就是基于Pull模式的。
+
+8、`Broker->Consumer`消费过程中，Consumer可能会消费失败，或者消费超时，从而导致Consumer重复消费，所以同样地Consumer消费消息的时候仍要保证幂等。
+
+9、一个topic可以由不同的Consumer订阅，Consumer为了提高消费速度可能会有多个线程甚至多台机器，所以就有了Consumer Group的概念。在Kafka中可以增多partition以提高消息的吞吐量，如果topic的partition数小于Consumer Group中的Consumer的个数时，肯定会有Consumer同时消费多个partition。
 
 ![](https://pic1.zhimg.com/80/v2-ecd4e63188ff8fbf13634952e8c604cc_1440w.jpg)
 
@@ -79,10 +93,6 @@ refs:
 * 美团MQ设计概要：https://tech.meituan.com/2016/07/01/mq-design.html
 
 <!-- 
-
-# 2、日志清除策略
-
-墓碑标记
 
 # 3、partition的设计
 

@@ -2,6 +2,11 @@
 title: 从notify和metaq初窥消息队列的前世今生
 date: 2020-04-25 12:26
 categories: JAVA
+tags: 
+- metaq
+- MQ
+- Alibaba
+- JAVA
 ---
 
 上一家公司并没有用消息队列中间件，大学里对[ActiveMQ](https://activemq.apache.org/)有所了解但并未深入研究，[RocketMQ](https://rocketmq.apache.org/)、[Kafka](https://kafka.apache.org/)也一直囿于听闻。不过在原来的项目中经常会用Redis的list实现一个分布式的阻塞队列。在短信营销任务中，会将服务的同步调用改为异步任务存入队列表，Worker批量调度以提高吞吐量，并降低大促期间大批量短信同步调用带来的压力。我觉得后面这一点也非常接近消息队列所要实现的需求。然后受益于[隆基](https://www.atatech.org/users/13788)前辈的[阿里消息中间件架构演进之路：notify和metaq](https://www.atatech.org/articles/95456)一文，用这篇小笔记总结下我对消息队列的认识和理解。
@@ -68,7 +73,24 @@ void createTrade(...) {
 }
 ```
 
-![消息队列](https://img.alicdn.com/tfs/TB142BPYpT7gK0jSZFpXXaTkpXa-1064-584.svg)
+```plantuml
+@startuml
+node Trade
+database Queue
+node Pay
+node Coupon
+node Point
+node Sms
+node AppPush
+Trade -right-> Pay
+Trade --> Queue
+Queue <-- Coupon
+Queue <-- Point
+Queue <-- Sms
+Queue <-- AppPush
+Queue <-- ...
+@enduml
+```
 
 ## 1.2、异步
 

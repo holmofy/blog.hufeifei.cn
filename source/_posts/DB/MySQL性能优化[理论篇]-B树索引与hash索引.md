@@ -2,6 +2,9 @@
 title: MySQL性能优化[理论篇]-B树索引与hash索引
 date: 2018-04-20 00:17
 categories: 数据库
+tags: 
+- DB
+- MySQL
 ---
 
 

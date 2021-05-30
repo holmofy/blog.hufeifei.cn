@@ -80,6 +80,10 @@ refs:
 MySQL提供了基于binlog的Replication，但是
 
 
+# NewSQL的困局
+
+Aggregation贼难写，不管是MongoDB还是ElasticSearch，写复杂的聚合查询的DSL都巨难读，这时人们才念起SQL的好处。
+
 
 Refs: 
 

@@ -2,6 +2,8 @@
 title: Hessian初体验
 date: 2017-12-24 15:50
 categories: J2EE
+tags: 
+- Hessian
 ---
 
 前面两篇文章[写了一个RMI的例子](http://blog.csdn.net/holmofy/article/details/78881331)并[简单分析了一下RMI的原理](http://blog.csdn.net/holmofy/article/details/78881885)。

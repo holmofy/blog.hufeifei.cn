@@ -2,6 +2,8 @@
 title: Ognl表达式语言
 date: 2017-08-5 16:50
 categories: J2EE
+tags: 
+- OGNL
 ---
 
 Ognl全称Object Graph Navigation Language，[是Apache Commons下的一个子项目](http://commons.apache.org/proper/commons-ognl/)。和JSP中的EL表达式一样，通常作为View层访问数据的一种方式。但是OGNL的功能比EL表达式功能强大的多(看完这篇文章后你会觉得OGNL能把EL表达式秒成渣)

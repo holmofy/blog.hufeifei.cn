@@ -2,6 +2,8 @@
 title: SurfaceView、SurfaceHolder、Surface
 date: 2017-03-26 23:28
 tags:
+- Android
+- SurfaceView
 categories: Android
 description: SurfaceView、SurfaceHolder、Surface之间的关系
 ---

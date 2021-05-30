@@ -2,6 +2,9 @@
 title: MySQL性能优化[准备篇]-单条SQL性能剖析
 date: 2018-03-08 00:17
 categories: 数据库
+tags: 
+- DB
+- MySQL
 ---
 
 

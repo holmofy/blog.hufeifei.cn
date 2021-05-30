@@ -2,6 +2,8 @@
 title: C语言计时函数
 date: 2017-07-28 16:08
 categories: C&C++
+tags: 
+- C
 ---
 
 # time()函数与time_t类型

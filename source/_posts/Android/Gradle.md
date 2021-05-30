@@ -2,6 +2,8 @@
 title: Gradle的那些坑
 date: 2017-03-25 22:40
 tags:
+- Android
+- Grade
 categories: Android
 description: SurfaceView、SurfaceHolder、Surface之间的关系
 ---
