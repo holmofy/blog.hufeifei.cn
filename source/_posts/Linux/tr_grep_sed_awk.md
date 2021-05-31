@@ -2,6 +2,11 @@
 title: Linux文本处理与分析工具
 date: 2021-05-21 15:50
 categories: Linux运维
+tags: 
+- Linux
+- sed
+- awk
+- grep
 ---
 
 * 文件读取：cat、head、tail

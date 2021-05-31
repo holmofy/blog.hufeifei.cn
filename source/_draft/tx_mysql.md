@@ -457,4 +457,4 @@ Refs:
 * PolarDB-X 强一致分布式事务原理: https://zhuanlan.zhihu.com/p/329978215
 * A Critique of ANSI SQL Isolation Levels: https://blog.acolyer.org/2016/02/24/a-critique-of-ansi-sql-isolation-levels/
 * SQL 隔离级别: https://ggaaooppeenngg.github.io/zh-CN/2017/04/16/SQL%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/
-
+* 多版本并发控制(MVCC)在分布式系统中的应用: https://coolshell.cn/articles/6790.html

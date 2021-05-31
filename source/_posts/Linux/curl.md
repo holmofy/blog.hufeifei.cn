@@ -2,6 +2,10 @@
 title: 一个有意思的命令行工具
 date: 2021-03-7 18:50
 categories: Linux运维
+tags: 
+- Linux
+- curl
+- cheat sheet
 ---
 
 

@@ -2,6 +2,9 @@
 title: ssh的各种玩法
 date: 2021-02-21 12:54
 categories: Linux运维
+tags: 
+- Linux
+- ssh
 ---
 
 记得n年前刚接触Linux，用ssh远程登陆的时候有[配置过sshd进程的几个参数](https://blog.hufeifei.cn/2017/04/15/Linux/Linux-Secure/)
