@@ -8,6 +8,7 @@ tags:
 - KD-Tree
 - KDB-Tree
 - BKD-Tree
+- DataStructure
 ---
 
 

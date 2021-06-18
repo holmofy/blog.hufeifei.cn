@@ -2,8 +2,7 @@
 title: 新人对TDDL分库分表的一些思考
 date: 2020-04-13 1:26
 mathjax: true
-categories: 
-- DB
+categories: 数据库
 tags: 
 - DB
 - Sharding

@@ -15,6 +15,7 @@ tags:
 * 搜索过滤：grep、egrep、fgrep、zgrep、zegrep、zfgrep
 * 统计聚合：sort、uniq、wc
 
+> OpenBSD源码地址：https://github.com/openbsd/src
 > GNU项目的coreutils源码地址：https://github.com/coreutils/coreutils
 
 <!-- more -->

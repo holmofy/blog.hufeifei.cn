@@ -5,7 +5,7 @@ categories: 数据结构与算法
 mathjax: true
 tags: 
 - B-Tree
-- Data-Structure
+- DataStructure
 ---
 
 

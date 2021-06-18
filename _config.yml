@@ -113,6 +113,17 @@ plugins:
   - hexo-filter-nofollow
   - hexo-filter-plantuml
   - hexo-admin
+  - hexo-toc
+  - hexo-reference
+
+# https://github.com/hexojs/hexo-renderer-marked
+marked:
+  # 用hexo-toc替换
+  headerIds: false
+  anchorAlias: false
+  # 用hexo-filter-nofollow替换
+  external_link: 
+    enable: false
 
 # https://github.com/hexojs/hexo-generator-feed
 feed:
@@ -157,6 +168,12 @@ nofollow:
   include:
     - "img-blog.csdn.net"
     - "*.sinaimg.cn"
+  rel:
+    - 'external'
+    - 'noreferrer'
+    - 'nofollow'
+    - 'noopener'
+  referrerpolicy: 'no-referrer'
 
 # https://github.com/miao1007/hexo-filter-plantuml
 # 添加plantuml的支持
@@ -172,7 +189,7 @@ plantuml:
   # "inlineBase64": <img src='data:image/svg+xml;base64> 
   # "localLink": <img src="/assert/puml/xxxx.svg">
   # "externalLink": <img src="http://www.plantuml.com/plantuml/svg/xxx">
-  link: "inline"
+  link: "inlineBase64"
 
   # common options: svg/png
   outputFormat: "svg"
@@ -183,3 +200,33 @@ admin:
   password_hash: $2a$10$7pJS5p7CijNIU9YRx3X3/O7xPmrU8Cn12c9OwwTWsVP/zVs.ZtuAq
   secret: 4766cFmSgcpF3bXwVlYRxwXdWCx6kFAa6GvPD4KDccU3GLRDAXuqqPx5o5UB8pu2J84+KNT4GaXOTog3l2RmrA==
   deployCommand: "./hexo-deploy.sh"
+
+# https://github.com/bubkoo/hexo-toc
+toc:
+  maxdepth: 3
+  class: toc
+  slugify: transliteration
+  decodeEntities: false
+  anchor:
+    position: before
+    symbol: '#'
+    style: header-anchor
+
+# https://github.com/hexojs/hexo-asset-pipeline
+asset_pipeline:
+  revisioning:
+    enable: false
+  clean_css:
+    enable: true
+  uglify_js:
+    enable: true
+  imagemin:
+    enable: false
+  html_minifier:
+    # 有bug
+    enable: true
+    ignore_error: false
+    removeComments: true
+    collapseWhitespace: true
+    minifyJS: true
+    minifyCSS: true

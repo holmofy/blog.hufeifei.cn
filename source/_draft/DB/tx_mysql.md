@@ -123,6 +123,14 @@ https://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking
 
 # Isolation
 
+读读：无冲突
+
+读写：读已提交、不可重复读、幻读   MVCC控制
+
+写写冲突：业务层的乐观锁控制
+
+
+
 隔离性可能是事务里最复杂的一部分了，它是用来控制多个并发事务之间的数据可见性的，历史上很多数据库的先驱在研究这个问题，并发了[一篇又一篇的论文](https://ristret.com/s/f643zk/history_transaction_histories)。
 
 ## SQL92标准中定义的隔离级别
@@ -394,7 +402,9 @@ https://www.elastic.co/cn/blog/versioning
 
 对数据库请求来说，读请求往往多于写请求。主流的数据库几乎都采用了这项优化技术，可以到[维基百科里看使用MVCC的数据库列表](https://en.wikipedia.org/wiki/List_of_databases_using_MVCC)。
 
+https://marsishandsome.github.io/2019/06/Multi_Version_Concurrency_Control
 
+https://zhuanlan.zhihu.com/p/115437885
 
 
 

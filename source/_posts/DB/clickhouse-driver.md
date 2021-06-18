@@ -1,7 +1,7 @@
 ---
 title: clickhouse-jdbc性能排查
 date: 2021-04-19 18:50
-categories: DB
+categories: 数据库
 tags: 
 - DB
 - ClickHouse
