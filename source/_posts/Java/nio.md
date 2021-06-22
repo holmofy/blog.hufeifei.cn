@@ -16,6 +16,10 @@ tags:
 - libev
 ---
 
+
+
+<!-- toc -->
+
 # 计算机存储体系结构
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/Untitled-drawing-4-4.png)
@@ -606,11 +610,11 @@ EV_SET_QOS(&kev, ident, filter, flags, qos, udata, fflags, xflags, data, ext[0],
 
 
 
-### libevent,libuv
+### libevent,libev,libuv
 
 由于每个平台的接口都不一致，而且用原生接口编程真的非常繁琐（可以看看我用每个接口写的[示例](https://github.com/holmofy/echo-server)，循环调度需要自己写），所以就有了[libevent](https://github.com/libevent/libevent)和[libuv](https://github.com/libuv/libuv)、[libev](https://github.com/enki/libev)这样跨平台的库，以及用C++封装的[Boost.Asio](https://github.com/chriskohlhoff/asio)，[uvw](https://github.com/skypjack/uvw)（基于libuv封装）库。
 
-* libevent :名气最大，应用最广泛，历史悠久的跨平台事件库，很多著名的项目都在使用这个库。
+* libevent :名气最大，应用最广泛，历史悠久的跨平台事件库，很多著名的项目都在使用这个库。支持 *[/dev/poll](http://download.oracle.com/docs/cd/E19253-01/816-5177/6mbbc4g9n/index.html)*、 *[kqueue(2)](http://www.freebsd.org/cgi/man.cgi?query=kqueue&apropos=0&sektion=0&format=html)*、 *[event ports](http://developers.sun.com/solaris/articles/event_completion.html)*、 [POSIX *select(2)*](http://manpages.debian.net/cgi-bin/man.cgi?query=select)、 [Windows *select()*](http://msdn.microsoft.com/en-us/library/ms740141(v=vs.85).aspx)、 [*poll(2)*](http://manpages.debian.net/cgi-bin/man.cgi?query=poll)和*[epoll(4)](http://www.xmailserver.org/linux-patches/epoll.txt)*，除此之外还提供了filters，限速，零拷贝文件传输，并实现了DNS、HTTP以及一个小型rpc框架。
 
   > 可以在[github](https://github.com/libevent/libevent/tree/master/sample)上看到官方提供的示例demo。
 
@@ -644,7 +648,7 @@ EV_SET_QOS(&kev, ident, filter, flags, qos, udata, fflags, xflags, data, ext[0],
 
 <!-- 
 
-## 异步IO
+异步IO
 
 [AIO](http://man7.org/linux/man-pages/man7/aio.7.html)
 
@@ -854,13 +858,13 @@ public class EchoServer {
 
 
 
-
-
-<--
-
 # Netty, Mina
 
--->
+JDK的NIO并不是那么好用，JDK并没有基于NIO实现HTTP等各种协议，而是通过制定servlet api让[Tomcat](https://github.com/apache/tomcat)、[Jetty](https://github.com/eclipse/jetty.project)去实现HTTP协议，具体Servlet容器有没有用NIO去实现，Servlet也不管。因为NIO的一些问题，就有了[xnio](https://github.com/xnio/xnio)这样实现HTTP、SSL的项目，另一个比较有名的Servlet容器[undertow](https://github.com/undertow-io/undertow)就是基于xnio实现的，但是xnio文档真的很烂。而[Mina](https://github.com/apache/mina)和Netty是脱离Servlet标准自己实现的HTTP等协议，其中[Netty](https://github.com/netty/netty)甚至完全脱离JDK的NIO，基于Linux的epoll、BSD的kqueue通过JNI自行实现了一套IO-Multiplex。而且相对Mina来说Netty架构更加干净，模块划分更加清晰。
+
+![](https://netty.io/images/components.png)
+
+有兴趣的可以看[netty 相关的教程](https://github.com/eugenp/tutorials/blob/master/netty/README.md)
 
 
 
