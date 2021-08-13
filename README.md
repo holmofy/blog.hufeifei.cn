@@ -1,5 +1,7 @@
 # [Holmofy Blog](https://blog.hufeifei.cn)
 
+base on [hexo](https://hexo.io/zh-cn/)
+
 ## Install
 
 ```
