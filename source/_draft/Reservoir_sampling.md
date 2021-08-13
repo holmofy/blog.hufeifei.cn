@@ -6,7 +6,7 @@
 
 在谷歌上找到一篇文章讲的算比较好的：Reservoir Sampling[^2]
 
-## 	最简单的实现——初等数学证明
+## 	最简单的实现Algorithm R——初等数学证明
 
 在[Wikipedia][^1]上看到最简单的是$O(N)$的的复杂度就能解决这个问题，这个算法是Waterman发明的Algorithm R，在[Donald E. Knuth](https://book.douban.com/search/Donald E. Knuth)的《[计算机程序设计艺术（第2卷）](https://book.douban.com/subject/1231891/)》中有提到。下面是翻译成Java的代码实现：
 
@@ -93,6 +93,12 @@ P(n)&=\frac{m}{m+1}*\frac{m+1}{m+2}*...*\frac{N-1}{N}\\
 &=\frac{m}{N}
 \end{align}
 $$
+# 跳过
+
+
+
+
+
 <!--
 
 ## 最优化的实现——高等数学证明
