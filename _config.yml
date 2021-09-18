@@ -85,7 +85,7 @@ meta_generator: true
 ## 这里使用git部署网站
 deploy:
   type: git
-  repo: hff@www.hufeifei.cn:~/.repo/blog.hufeifei.cn.git
+  repo: root@www.hufeifei.cn:~/.repo/blog.hufeifei.cn.git
   branch: master
   message: "hexo deployment: {{ now('YYYY-MM-DD HH:mm:ss') }}"
 
