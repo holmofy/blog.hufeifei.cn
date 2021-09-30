@@ -37,7 +37,7 @@ tags:
 
 
 
-![](http://3.bp.blogspot.com/-BtIx-scU9Dg/Ud5EmmUvhiI/AAAAAAAAAjE/ElaZ6GqVlWU/s1600/PIODMA.jpg)
+![](https://p.pstatp.com/origin/pgc-image/0a311e96901443baadb8231669979dce)
 
 最早的内存与外围I/O设备的数据传输方式是Programmed input–output(PIO[^5])，它的过程是这样的：
 
