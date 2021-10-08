@@ -138,15 +138,21 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 
 ## Loki
 
-日志数据的写是由Loki中的[Distributor](https://github.com/grafana/loki/blob/v2.3.0/docs/sources/architecture/distributor.md)和Ingester两个组件处理，整体的流程如下图红线部分。
+日志数据的写是由Loki中的[Distributor](https://github.com/grafana/loki/blob/v2.3.0/docs/sources/architecture/distributor.md)和Ingester两个组件处理，整体的流程如下图红线部分，读取过程由蓝线部分表示。
 
 ![Loki Architecture](https://p.pstatp.com/origin/pgc-image/1a23422dded44264bf646811a350ce10)
 
+除此之外，Loki还提供了一个独立的应用[loki-canary](https://grafana.com/docs/loki/latest/operations/loki-canary/)用于监控日志抓取性能。
 
+![Loki Canary](https://grafana.com/docs/loki/latest/operations/loki-canary-block.png)
+
+使用grafana即可通过[LogQL](https://grafana.com/docs/loki/latest/logql/)查询日志
 
 ![Loki Logging](https://p.pstatp.com/origin/pgc-image/3fa3c90592b446efa8f75b1994e8887d)
 
 ## Tempo
+
+
 
 ![Tempo Tracing](https://p.pstatp.com/origin/pgc-image/3b8f72c9bd6b4606a6eaa03f5edf1919)
 
