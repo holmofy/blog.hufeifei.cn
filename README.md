@@ -10,7 +10,9 @@ git clone <url>
 cd blog.hufeifei.cn
 ```
 **install theme**
+
 [holmofy/paper](https://github.com/holmofy/hexo-theme-paper)
+
 **compile and deploy**
 ```
 npm install
