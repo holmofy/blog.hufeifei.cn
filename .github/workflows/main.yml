@@ -36,9 +36,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Install theme
-        run: git clone --depth 1 https://github.com/holmofy/hexo-theme-paper themes/paper
-
       # Deploy hexo blog website.
       - name: Deploy
         id: deploy
