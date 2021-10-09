@@ -19,16 +19,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: CheckOut
+        uses: actions/checkout@v2
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Caching dependencies to speed up workflows. (GitHub will remove any cache entries that have not been accessed in over 7 days.)
+      - name: Cache node modules
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Install theme
+        run: git clone --depth 1 https://github.com/holmofy/hexo-theme-paper themes/paper
+
+      # Deploy hexo blog website.
+      - name: Deploy
+        id: deploy
+        uses: sma11black/hexo-action@v1.0.3
+        with:
+          deploy_key: ${{ secrets.ID_RSA }}
+          commit_msg: ${{ github.event.head_commit.message }}
+
+      # Use the output from the `deploy` step(use for test action)
+      - name: Get the output
         run: |
-          npm install hexo-cli -g
-          npm install
-          git config --global user.name "github"
-          git config --global user.email "hff1996723@163.com"
-          echo ${{ secrets.ID_RSA }} > ~/.ssh/id_rsa
-          ssh-add ~/.ssh/id_rsa
-          git clone --depth 1 https://github.com/holmofy/hexo-theme-paper themes/paper
-          hexo clean && hexo g && hexo d 
+          echo "${{ steps.deploy.outputs.notify }}"
