@@ -26,5 +26,9 @@ jobs:
         run: |
           npm install hexo-cli -g
           npm install
+          git config --global user.name "github"
+          git config --global user.email "hff1996723@163.com"
+          echo ${{ secrets.ID_RSA }} > ~/.ssh/id_rsa
+          ssh-add ~/.ssh/id_rsa
           git clone --depth 1 https://github.com/holmofy/hexo-theme-paper themes/paper
           hexo clean && hexo g && hexo d 
