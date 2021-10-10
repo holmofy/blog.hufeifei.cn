@@ -103,6 +103,11 @@ archive_generator:
   monthly: false
   daily: false
   order_by: -date
+# https://github.com/wzpan/hexo-generator-search
+# search:
+#   path: search.json
+#   field: post
+#   content: true
 
 #插件配置
 # https://github.com/hexojs/hexo/wiki/Plugins
