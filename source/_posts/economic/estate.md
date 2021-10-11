@@ -1,5 +1,5 @@
 ---
-title: 经济要发展就得剥削
+title: 经济发展与劳动剩余
 date: 2020-12-16 18:50
 categories: 经济与金融
 tags: 

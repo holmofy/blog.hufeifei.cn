@@ -38,6 +38,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - google4b244692104f4e5f.html
+  - ads.txt
 
 # 写作选项 Writing
 new_post_name: :title.md # File name of new posts
@@ -85,7 +87,7 @@ meta_generator: true
 ## 这里使用git部署网站
 deploy:
   type: git
-  repo: root@www.hufeifei.cn:~/.repo/blog.hufeifei.cn.git
+  repo: git@www.hufeifei.cn:repo/blog.hufeifei.cn.git
   branch: master
   message: "hexo deployment: {{ now('YYYY-MM-DD HH:mm:ss') }}"
 
@@ -101,6 +103,11 @@ archive_generator:
   monthly: false
   daily: false
   order_by: -date
+# https://github.com/wzpan/hexo-generator-search
+# search:
+#   path: search.json
+#   field: post
+#   content: true
 
 #插件配置
 # https://github.com/hexojs/hexo/wiki/Plugins
