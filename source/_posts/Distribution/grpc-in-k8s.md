@@ -13,7 +13,7 @@ tags:
 ![skywalking](./grpc-in-k8s/skywalking.svg)
 
 
-两台skywalking-oap接受并分析由agent采集的trace数据，但是两台oap服务负载不均衡。
+两台skywalking-oap接受并分析由agent采集的trace数据，但是问题是两台oap服务负载不均衡。
 
 ![grpc-in-k8s](https://p.pstatp.com/origin/pgc-image/3f7d24cab5424fdcb455ed043ad06337)
 
@@ -21,7 +21,7 @@ tags:
 
 为了排除k8s的service负载均衡的问题，在线下环境还原了请求的过程。
 
-skywalking提供了grpc(11800端口)和rest(12800)两种协议的服务。
+skywalking提供了grpc(11800端口)和rest(12800端口)两种协议的服务。
 
 从下图可以看到，skywalking提供了11800和12800的监听端口，以及连接ElasticSearch的9200端口
 
@@ -35,7 +35,7 @@ skywalking提供了grpc(11800端口)和rest(12800)两种协议的服务。
 
 ![](https://p.pstatp.com/origin/pgc-image/b013fc7590584e3d8102c09fb7e2ab3e)
 
-多次请求负载均衡是没有问题的，但是请求会断开连接，实际上是。
+多次请求负载均衡是没有问题的。但是请求会断开连接，实际上是两次**连接**连向了两台不同的server。这个概念很重要，请求和连接不是一个事物，多个请求可以复用一个连接。
 
 # grpc长连接导致负载不均衡
 
@@ -134,9 +134,13 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。 这些是：
 
 既然grpc基于http/2，那么可以使用Nginx进行grpc的反向代理，因为[Nginx在1.9.5开始支持Http/2协议](http://nginx.org/en/docs/http/ngx_http_v2_module.html)。这个方案能完全保证流量的均匀分配。
 
-但是架构上就比较复杂，为了防止skywalking-oap的pod重启，ip改变后nginx需要重新修改配置。那么需要为每个skywalking-oap创建一个service。
+但是架构上就比较复杂，为了防止skywalking-oap的pod重启，ip改变后nginx需要重新修改配置。那么需要为每个skywalking-oap创建一个Service。另外为了防止Nginx重启后Pod的ip改变，Nginx也需要创建一个Service。
 
 ![](./grpc-in-k8s/skywalking-nginx.svg)
+
+一个简单的方法是使用K8s的Ingress代替Nginx，[Ingress本身也有nginx的实现](https://kubernetes.github.io/ingress-nginx/)。
+
+![](./grpc-in-k8s/skywalking-ingress.svg)
 
 ## 2、修改K8s的service运行模式
 
