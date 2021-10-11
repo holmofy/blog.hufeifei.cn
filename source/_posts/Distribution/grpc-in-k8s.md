@@ -10,7 +10,7 @@ tags:
 
 线上skywalking架构：
 
-![skywalking](./grpc-in-k8s/skywalking.svg)
+![skywalking](./skywalking.svg)
 
 
 两台skywalking-oap接受并分析由agent采集的trace数据，但是问题是两台oap服务负载不均衡。
@@ -136,11 +136,11 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。 这些是：
 
 但是架构上就比较复杂，为了防止skywalking-oap的pod重启，ip改变后nginx需要重新修改配置。那么需要为每个skywalking-oap创建一个Service。另外为了防止Nginx重启后Pod的ip改变，Nginx也需要创建一个Service。
 
-![](./grpc-in-k8s/skywalking-nginx.svg)
+![](./skywalking-nginx.svg)
 
 一个简单的方法是使用K8s的Ingress代替Nginx，[Ingress本身也有nginx的实现](https://kubernetes.github.io/ingress-nginx/)。
 
-![](./grpc-in-k8s/skywalking-ingress.svg)
+![](./skywalking-ingress.svg)
 
 ## 2、修改K8s的service运行模式
 

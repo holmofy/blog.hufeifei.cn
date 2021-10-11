@@ -51,7 +51,7 @@ external_link:
   field: site
 filename_case: 0
 render_drafts: false
-post_asset_folder: true # 建立资源(图片)文件，安装hexo-assert-image插件
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -125,6 +125,9 @@ plugins:
 
 # https://github.com/hexojs/hexo-renderer-marked
 marked:
+  # 图片绝对路径
+  prependRoot: true
+  postAsset: true
   # 用hexo-toc替换
   headerIds: false
   anchorAlias: false
