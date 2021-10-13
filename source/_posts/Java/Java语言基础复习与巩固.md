@@ -4,7 +4,7 @@ date: 2017-05-14 22:54
 categories: JAVA
 ---
 
-<!-- toc -->
+[TOC]
 
 # 八种基本数据类型
 
