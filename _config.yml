@@ -218,10 +218,11 @@ toc:
   class: toc
   slugify: transliteration
   decodeEntities: false
-  anchor:
-    position: before
-    symbol: '#'
-    style: header-anchor
+  anchor: false
+  # anchor:
+  #   position: before
+  #   symbol: '#'
+  #   style: header-anchor
 
 # https://github.com/hexojs/hexo-asset-pipeline
 asset_pipeline:

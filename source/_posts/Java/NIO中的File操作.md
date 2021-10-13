@@ -18,7 +18,7 @@ Files的大部分功能实际上由FileSystemProvider实现，而获取FileSyste
 
 ![NIOFile](NIO中的File操作\NIOFile.svg)
 
-[TOC]
+<!-- toc -->
 
 # Path—路径操作
 
