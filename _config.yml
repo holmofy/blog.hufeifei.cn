@@ -40,6 +40,7 @@ i18n_dir: :lang
 skip_render:
   - google4b244692104f4e5f.html
   - ads.txt
+  - root.txt
 
 # 写作选项 Writing
 new_post_name: :title.md # File name of new posts
@@ -218,9 +219,10 @@ toc:
   slugify: transliteration
   decodeEntities: false
   anchor:
-    position: before
-    symbol: '#'
-    style: header-anchor
+   position: before
+   symbol: '#'
+   style: header-anchor
+  #anchor: false
 
 # https://github.com/hexojs/hexo-asset-pipeline
 asset_pipeline:

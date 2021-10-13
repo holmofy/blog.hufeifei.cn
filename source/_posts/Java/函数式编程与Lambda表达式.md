@@ -6,8 +6,6 @@ categories: JAVA
 
 [C++](http://en.cppreference.com/w/cpp/language/lambda)，[Java](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)，[C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)，[Python](https://docs.python.org/3/howto/functional.html)等各个编程语言早已经支持lambda表达式了，作为即将从业的大学生，现在学习Java的函数式编程应该为时不晚。
 
-
-
 [TOC]
 
 # FunctionalInterface—函数式接口
