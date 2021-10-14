@@ -21,8 +21,6 @@ jobs:
         ssh-host: blog.hufeifei.cn
     - name: Install npm denpendency
       uses: bahmutov/npm-install@v1
-      with:
-        working-directory: app1
     - name: Clean
       uses: heowc/action-hexo@main
       with:
