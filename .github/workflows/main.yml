@@ -21,7 +21,10 @@ jobs:
         ssh-host: blog.hufeifei.cn
     - name: Install npm denpendency
       run: |
+        echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
+        ssh-add ~/.ssh/id_rsa
         git config --global user.email "hff1996723@gmail.com"
         git config --global user.name "github/holmofy"
         npm install -g hexo-cli && npm install
         hexo clean && hexo g && hexo d
+
