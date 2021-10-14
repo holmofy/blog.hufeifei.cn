@@ -20,7 +20,7 @@ jobs:
         ssh-private-key: ${{ secrets.ID_RSA }}
         ssh-host: blog.hufeifei.cn
     - name: Install npm denpendency
-      uses: bahmutov/npm-install@v1
+      run: npm install
     - name: Clean
       uses: heowc/action-hexo@main
       with:
