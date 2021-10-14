@@ -20,19 +20,6 @@ jobs:
         ssh-private-key: ${{ secrets.ID_RSA }}
         ssh-host: blog.hufeifei.cn
     - name: Install npm denpendency
-      run: npm install
-    - name: Clean
-      uses: heowc/action-hexo@main
-      with:
-        args: clean
-    - name: Generate
-      uses: heowc/action-hexo@main
-      with:
-        args: generate
-    - name: Deploy
-      uses: heowc/action-hexo@main
-      env:
-        EMAIL: hff1996723@gmail.com
-        NAME: github/holmofy
-      with:
-        args: deploy
+      run: |
+        npm install -g hexo-cli && npm install
+        hexo clean && hexo g && hexo d
