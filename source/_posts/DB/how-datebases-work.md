@@ -9,6 +9,10 @@ tags:
 - PostgreSQL
 - Oracle
 - Sqlite
+keywords:
+- 数据库是如何工作的
+- 数据库
+- 工作原理
 ---
 
 
