@@ -1,8 +1,12 @@
 ---
-title: TextureView、SurfaceTexture、Surface
+title: TextureView、SurfaceTexture、Surface的关系
 date: 2017-03-26 23:34
 tags:
 categories: Android
+keywords:
+- TextureView
+- SurfaceTexture
+- Surface
 description: TextureView、SurfaceTexture、Surface之间的关系
 ---
 上篇文章我们说了SurfaceView，接下来我们对Texture进行一下分析。

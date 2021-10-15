@@ -2,6 +2,10 @@
 title: ThreadPoolExecutor最佳实践--如何选择队列
 date: 2018-08-12 15:44
 categories: JAVA
+keywords:
+- ThreadPoolExecutor最佳实践
+- 线程池
+- 队列
 ---
 
 前一篇文章《[如何选择线程数](https://blog.csdn.net/Holmofy/article/details/81271839)》讲了如何决定线程池中线程个数，这篇文章讨论“如何选择工作队列”。

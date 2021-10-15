@@ -2,6 +2,8 @@
 title: Java多线程复习与巩固（七）--任务调度线程池ScheduledThreadPoolExecutor
 date: 2018-02-22 23:44
 categories: JAVA
+keywords:
+- Java 多线程编程
 ---
 
 前篇：[《Java多线程复习与巩固(六)--线程池ThreadPoolExecutor详解》](http://blog.csdn.net/holmofy/article/details/77411854)

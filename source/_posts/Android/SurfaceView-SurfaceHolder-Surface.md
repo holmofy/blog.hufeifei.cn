@@ -5,6 +5,10 @@ tags:
 - Android
 - SurfaceView
 categories: Android
+keywords:
+- SurfaceView
+- SurfaceHolder
+- Surface
 description: SurfaceView、SurfaceHolder、Surface之间的关系
 ---
 

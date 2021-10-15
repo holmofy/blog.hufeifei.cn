@@ -8,6 +8,10 @@ tags:
 - BST
 - AVL
 - RB-Tree
+keywords:
+- 二分查找树
+- AVL树
+- 红黑树
 ---
 
 # 从线性查找和二分查找说起

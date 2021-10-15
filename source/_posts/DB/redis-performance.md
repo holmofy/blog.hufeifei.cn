@@ -6,6 +6,10 @@ mathjax: true
 tags: 
 - DB
 - Redis
+keywords:
+- Redis
+- pipeline
+- 性能问题
 ---
 
 压测节点拓扑图：

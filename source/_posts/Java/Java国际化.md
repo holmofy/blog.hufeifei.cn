@@ -2,6 +2,8 @@
 title: Java 国际化主题大合集
 date: 2017-08-5 16:50
 categories: JAVA
+keywords:
+- Java国际化
 ---
 
 Java提供给我们软件国际化的解决方案，这些国际化API基于Unicode标准，并且包括文本、（货币）数字、日期以及用户自定义对象的适配，从而使得软件能够应用到任何国家或地区。国际化英文为“Internationalization”，通常简写成`i18n`(实际开发经常使用简写)。更多有关Java国际化的内容可以参考[Oracle的相关网站](http://www.oracle.com/technetwork/java/javase/tech/intl-139810.html)。

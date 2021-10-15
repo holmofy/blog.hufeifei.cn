@@ -6,6 +6,8 @@ tags:
 - JAVA
 - SpringCloud
 - SpringCloudConfig
+keywords:
+- SpringCloudConfig配置项刷新
 ---
 
 # spring-cloud-bus项目结构

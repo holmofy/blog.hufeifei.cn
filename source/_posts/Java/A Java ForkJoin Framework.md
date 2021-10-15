@@ -2,6 +2,10 @@
 title: 【转|译】A Java ForkJoin Framework
 date: 2017-04-23 14:23
 categories: JAVA
+keywords:
+- ForkJoinPool
+- Java
+- 多线程
 ---
 
 > 原文链接：[A Java Fork/Join Framework(PDF)](http://gee.cs.oswego.edu/dl/papers/fj.pdf) - _Doug Lea_

@@ -5,6 +5,8 @@ categories: Linux运维
 tags: 
 - Linux
 - ssh
+keywords:
+- SSH 教程
 ---
 
 记得n年前刚接触Linux，用ssh远程登陆的时候有[配置过sshd进程的几个参数](https://blog.hufeifei.cn/2017/04/15/Linux/Linux-Secure/)

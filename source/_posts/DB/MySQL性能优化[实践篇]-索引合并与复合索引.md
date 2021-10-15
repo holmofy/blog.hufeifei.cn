@@ -5,6 +5,9 @@ categories: 数据库
 tags: 
 - DB
 - MySQL
+keywords:
+- MySQL
+- 性能优化
 ---
 
 从[上一篇创建索引的实践中](https://blog.csdn.net/holmofy/article/details/80064823)，我们看到了索引给我们带来的性能提升是非常可观的。

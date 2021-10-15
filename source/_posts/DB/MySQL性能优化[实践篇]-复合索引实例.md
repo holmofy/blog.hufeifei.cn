@@ -5,6 +5,9 @@ categories: 数据库
 tags: 
 - DB
 - MySQL
+keywords:
+- MySQL
+- 性能优化
 ---
 
 [上篇文章](https://blog.csdn.net/holmofy/article/details/80384637)最后提了个问题

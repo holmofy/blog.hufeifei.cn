@@ -7,6 +7,10 @@ tags:
 - MySQL
 - Debezium
 - Canal
+keywords:
+- Debezium
+- Canal
+- binlog同步
 ---
 
 大厂这段时间学到的最有价值的两个技术除了大数据，另一个就是基于CDC和消息队列的实时同步技术。

@@ -2,6 +2,8 @@
 title: Java多线程复习与巩固(五)--生产者消费者问题（第一部分）
 date: 2017-06-26 14:54
 categories: JAVA
+keywords:
+- Java 多线程编程
 ---
 
 # 生产者消费者问题（第一部分）

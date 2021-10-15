@@ -6,8 +6,6 @@ categories: JAVA
 
 > 文章转载自http://www.cnblogs.com/guochunguang/articles/3641008.html，感谢作者的分享。
 
-
-
 ## 一、总论
 
 根据[http://lucene.apache.org/java/docs/index.html](http://lucene.apache.org/java/docs/index.html)定义：

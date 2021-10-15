@@ -2,6 +2,8 @@
 title: ForkJoinPool入门篇
 date: 2018-09-15 15:50
 categories: JAVA
+keywords:
+- ForkJoinPool
 ---
 
 《[线程池ThreadPoolExecutor详解](https://blog.csdn.net/holmofy/article/details/77411854)》和《[任务调度线程池ScheduledThreadPoolExecutor](https://blog.csdn.net/holmofy/article/details/79344914)》两篇文章已经将[ThreadPoolExecutor](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ThreadPoolExecutor.html)和[ScheduledThreadPoolExecutor](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ScheduledThreadPoolExecutor.html)两个核心线程池详细介绍过了，它们整体的工作结构如下图所示。

@@ -7,6 +7,11 @@ tags:
 - sed
 - awk
 - grep
+keywords:
+- Linux
+- sed
+- awk
+- grep
 ---
 
 * 文件读取：cat、head、tail

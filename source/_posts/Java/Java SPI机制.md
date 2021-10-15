@@ -2,6 +2,8 @@
 title: Java SPI机制
 date: 2018-02-12 16:50
 categories: JAVA
+keywords:
+- Java SPI
 ---
 
 [SPI全称Service Provider Interface](https://en.wikipedia.org/wiki/Service_provider_interface)，是Java提供的一种让第三方实现或扩展的API。

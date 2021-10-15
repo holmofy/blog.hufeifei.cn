@@ -9,6 +9,9 @@ tags:
 - KDB-Tree
 - BKD-Tree
 - DataStructure
+keywords:
+- bdk树
+- KD树
 ---
 
 

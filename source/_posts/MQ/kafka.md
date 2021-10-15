@@ -6,6 +6,9 @@ tags:
 - BigData
 - Alibaba
 - Kafka
+keywords:
+- Kafka的设计
+- 幂等
 ---
 
 > 这篇文章拆解自我的知乎回答：https://www.zhihu.com/question/451313635/answer/1849701932

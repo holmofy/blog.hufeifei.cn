@@ -3,6 +3,10 @@ title: ThreadPoolExecutor最佳实践--如何选择线程数
 date: 2018-07-29 15:44
 categories: JAVA
 mathjax: true
+keywords:
+- ThreadPoolExecutor最佳实践
+- 线程池
+- 线程数
 ---
 
 去年的一篇《[ThreadPoolExecutor详解](https://blog.csdn.net/holmofy/article/details/77411854)》大致讲了ThreadPoolExecutor内部的代码实现。

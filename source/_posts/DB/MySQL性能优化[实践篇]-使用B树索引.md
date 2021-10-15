@@ -5,6 +5,9 @@ categories: 数据库
 tags: 
 - DB
 - MySQL
+keywords:
+- MySQL
+- 性能优化
 ---
 
 # 准备测试数据

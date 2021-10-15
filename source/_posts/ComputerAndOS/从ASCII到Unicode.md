@@ -5,6 +5,12 @@ categories: 计算机组成
 tags:
 - CS
 - Encoding
+keywords:
+- 字符集编码
+- ASCII
+- GBK
+- UTF-8
+- UTF-16
 ---
 
 # 1、ASCII编码

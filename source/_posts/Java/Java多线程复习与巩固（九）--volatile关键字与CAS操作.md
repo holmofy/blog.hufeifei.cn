@@ -2,6 +2,8 @@
 title: Java多线程复习与巩固（九）--volatile关键字与CAS操作
 date: 2017-06-27 23:44
 categories: JAVA
+keywords:
+- Java 多线程编程
 ---
 
 前一篇文章中提到原子操作，也许大家和我一样很好奇为什么`AtomicInteger.increment`方法能保证原子性，而简单的`++`运算却不能保证原子性。这篇文章我们就从`AtomicInteger`类下手分析源码，来了解一下原子操作的实现原理，但是分析源码之前需要来一段小小的前奏。

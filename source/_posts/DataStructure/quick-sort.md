@@ -2,8 +2,15 @@
 title: 单轴快排（SinglePivotQuickSort）和双轴快排（DualPivotQuickSort）及其JAVA实现
 date: 2017-05-04 20:24
 tags:
-    - JAVA
-    - 算法
+	- JAVA
+	- 算法
+keywords:
+	- 排序算法
+	- 快速排序
+	- 单轴快排
+	- 双轴快排
+	- SinglePivotQuickSort
+	- DualPivotQuickSort
 categories: 数据结构与算法
 ---
 
