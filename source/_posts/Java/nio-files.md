@@ -2,6 +2,9 @@
 title: NIO中的File文件操作
 date: 2017-08-21 14:50
 categories: JAVA
+keywords:
+- NIO
+- 文件操作
 ---
 
 之前的两篇文章
@@ -16,7 +19,7 @@ http://blog.csdn.net/holmofy/article/details/77429957
 Files的大部分功能实际上由FileSystemProvider实现，而获取FileSystemProvider必须通过FileSystem，FileSystem也因为平台的原因被定义成抽象类，所以需要通过FileSystems工具类创建FileSystem实例。
 
 
-![NIOFile](NIO中的File操作\NIOFile.svg)
+![NIOFile](./NIOFile.svg)
 
 [TOC]
 
@@ -30,7 +33,7 @@ Files的大部分功能实际上由FileSystemProvider实现，而获取FileSyste
 
 一个Path对象可用于构建目录或文件的路径，但是Path只是一个接口，而他的实现类都在`sun.nio.fs`包下：
 
-![Path](NIO中的File操作\Path.svg)
+![Path](./Path.svg)
 
 为了平台的无关性，Java提供了一个Paths工厂类让不同平台的JDK创建对应的Path对象。
 
@@ -251,7 +254,7 @@ WatchKey register(WatchService watcher,
         throws IOException;
 ```
 
-![Watchable](NIO中的File操作\Watchable.svg)
+![Watchable](./Watchable.svg)
 
 例子：
 
@@ -324,7 +327,7 @@ CopyOption：用于配置如何拷贝或移动一个文件
 
 LinkOption：定义如何处理符号链接
 
-![Option](NIO中的File操作\Option.svg)
+![Option](./Option.svg)
 
 ## 3. 列举目录下的文件
 
@@ -522,7 +525,7 @@ public static long size(Path path);
 
 所有的Attribute相关类都定义在`java.nio.file.attribute`包下，这个包下的类提供了访问文件(或文件系统)的属性。该包下关键接口的关系图如下：
 
-![AttributeView](NIO中的File操作\AttributeView.svg)
+![AttributeView](./AttributeView.svg)
 
 |              接口              |         功能          |
 | :--------------------------: | :-----------------: |

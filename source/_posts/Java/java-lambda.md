@@ -2,6 +2,10 @@
 title: Java函数式编程与Lambda表达式
 date: 2017-08-21 16:50
 categories: JAVA
+keywords:
+- Java
+- Lambda
+- 函数式编程
 ---
 
 [C++](http://en.cppreference.com/w/cpp/language/lambda)，[Java](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)，[C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions)，[Python](https://docs.python.org/3/howto/functional.html)等各个编程语言早已经支持lambda表达式了，作为即将从业的大学生，现在学习Java的函数式编程应该为时不晚。
@@ -14,7 +18,7 @@ categories: JAVA
 
 ## 四个最基本的函数式接口
 
-![function](函数式编程与Lambda表达式\function.svg)
+![function](./function.svg)
 
 * `Function<T, R>`：`R apply(T t);`；输入类型`T`返回类型`R`。
 * `Consumer<T>`：`void accept(T t);`；输入类型`T`，“消费”掉，无返回。
@@ -235,7 +239,7 @@ Thread-1:this is child thread
 
 # Stream API
 
-![Stream](函数式编程与Lambda表达式\Stream.svg)
+![Stream](./Stream.svg)
 
 与前面介绍的函数式接口对应的，有四类Stream接口，它们都继承自BaseStream：
 
@@ -389,7 +393,7 @@ mapToLong就是将原始数据类型转成`long`类型；
 
 mapToDouble就是将原始数据类型转成`double`类型；
 
-![map](函数式编程与Lambda表达式\map.svg)
+![map](./map.svg)
 
 flatMap就有点特殊了，flat字面意思平铺，实际上就是让我们把原始数据转换成该原始数据类型对应地Stream对象
 
@@ -399,7 +403,7 @@ flatMapToLong就是将原始数据类型转成LongStream类型
 
 flatMapToDouble就是将原始数据类型转成DoubleSteam类型
 
-![flatMap](函数式编程与Lambda表达式\flatMap.svg)
+![flatMap](./flatMap.svg)
 
 示例：
 
@@ -419,7 +423,7 @@ IntStream.of(1, 2, 3, 4)
 
 过滤：接受原始数据中满足测试要求的元素。
 
-![filter](函数式编程与Lambda表达式\filter.svg)
+![filter](./filter.svg)
 
 ##### 3. peek，非消费型遍历
 
@@ -482,7 +486,7 @@ get item:4
 
 去重操作和数据库中的类似：去除原始数据中重复的元素(只保留一个)。
 
-![distinct](函数式编程与Lambda表达式\distinct.svg)
+![distinct](./distinct.svg)
 
 ##### 2. sorted，排序
 
@@ -508,7 +512,7 @@ IntStream.of(4, 2, 1, 3).sorted().forEach(System.out::println);
 
 这两个功能相近，区别在于limit取头部的数据(或者说截取前面的元素)，skip取尾部的数据(跳过前面的元素)：
 
-![limit_skip](函数式编程与Lambda表达式\limit_skip.svg)
+![limit_skip](./limit_skip.svg)
 
 示例：
 
@@ -856,7 +860,7 @@ public class StreamTest {
 
 ## Collector收集器
 
-![Collector](函数式编程与Lambda表达式\Collector.svg)
+![Collector](./Collector.svg)
 
 上面的例子中用到了Collectors这个工具类，它是专门用来生成Collector接口的实例对象。所以在这之前我们先来看看Collector接口是用来干嘛的：
 
