@@ -1,6 +1,6 @@
 ---
 title: Android Handler消息机制源码分析——第二部分：Message与Handler
-date: 2017-03-07 09:28
+date: 2017-03-07
 tags:
     - Android
     - Hanlder

@@ -1,6 +1,6 @@
 ---
 title: Gradle的那些坑
-date: 2017-03-25 22:40
+date: 2017-03-25
 tags:
 - Android
 - Grade

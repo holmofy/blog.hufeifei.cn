@@ -1,6 +1,6 @@
 ---
 title: Javar眼中的JS
-date: 2018-03-16 23:17:30
+date: 2018-03-16
 categories: 前端
 ---
 

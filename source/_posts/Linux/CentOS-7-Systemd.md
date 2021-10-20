@@ -1,6 +1,6 @@
 ---
 title: CentOS 7 Systemd取代init进程
-date: 2017-04-08 13:56
+date: 2017-04-08
 categories: Linux运维
 tags: Linux
 description: Systemd进程取代init进程(很多书籍资料讲的都是init作为启动进程)，在CentOS7中使用``systemctl``代替``service``和``chkconfig``两个命令。

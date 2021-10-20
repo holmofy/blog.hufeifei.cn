@@ -1,6 +1,6 @@
 ---
 title: Struts2通配符和使用上的坑
-date: 2017-08-5 16:50
+date: 2017-08-5
 categories: J2EE
 ---
 

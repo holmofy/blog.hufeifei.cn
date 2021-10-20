@@ -1,6 +1,6 @@
 ---
 title: TextureView、SurfaceTexture、Surface的关系
-date: 2017-03-26 23:34
+date: 2017-03-26
 tags:
 categories: Android
 keywords:

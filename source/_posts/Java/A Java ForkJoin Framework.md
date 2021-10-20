@@ -1,6 +1,6 @@
 ---
 title: 【转|译】A Java ForkJoin Framework
-date: 2017-04-23 14:23
+date: 2017-04-23
 categories: JAVA
 keywords:
 - ForkJoinPool

@@ -1,6 +1,6 @@
 ---
 title:  编码全解：从ASCII/ISO-8859/GB2312/GBK到Unicode的UCS-2/UCS-4/UTF-8/UTF-16/UTF-32
-date: 2017-06-02 17:08
+date: 2017-06-02
 categories: 计算机组成
 tags:
 - CS

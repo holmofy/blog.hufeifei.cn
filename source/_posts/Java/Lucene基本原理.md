@@ -1,6 +1,6 @@
 ---
 title: Lucene基本原理
-date: 2017-08-14 22:54
+date: 2017-08-14
 categories: JAVA
 ---
 

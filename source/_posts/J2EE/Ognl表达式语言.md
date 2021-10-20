@@ -1,6 +1,6 @@
 ---
 title: Ognl表达式语言
-date: 2017-08-5 16:50
+date: 2017-08-5
 categories: J2EE
 tags: 
 - OGNL

@@ -1,6 +1,6 @@
 ---
 title: 基于Debezium与Kafka搭建MySQL到ClickHouse的同步平台
-date: 2021-05-10 18:50
+date: 2021-05-10
 categories: JAVA
 ---
 

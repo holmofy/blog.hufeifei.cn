@@ -1,6 +1,6 @@
 ---
 title: Windows C++界面库
-date: 2017-02-14 23:31
+date: 2017-02-14
 tags:
 categories: Windows
 description: Windows C++界面库

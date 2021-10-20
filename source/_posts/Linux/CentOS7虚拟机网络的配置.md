@@ -1,6 +1,6 @@
 ---
 title: CentOS7虚拟机网络的配置
-date: 2017-7-08 13:56
+date: 2017-7-08
 categories: Linux运维
 tags: Linux
 ---

@@ -1,6 +1,6 @@
 ---
 title: Java 国际化主题大合集
-date: 2017-08-5 16:50
+date: 2017-08-5
 categories: JAVA
 keywords:
 - Java国际化

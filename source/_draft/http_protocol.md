@@ -1,6 +1,6 @@
 ---
 title: HTTP协议简史
-date: 2021-06-20 18:50
+date: 2021-06-20
 categories: 网络
 tags: 
 - HTTP

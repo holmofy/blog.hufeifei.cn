@@ -1,6 +1,6 @@
 ---
 title: Java语言基础复习与巩固
-date: 2017-05-14 22:54
+date: 2017-05-14
 categories: JAVA
 ---
 

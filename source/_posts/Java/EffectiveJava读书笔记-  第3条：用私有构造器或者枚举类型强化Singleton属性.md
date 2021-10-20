@@ -1,6 +1,6 @@
 ---
 title: EffectiveJava读书笔记-  第3条：用私有构造器或者枚举类型强化Singleton属性
-date: 2018-02-14 17:10
+date: 2018-02-14
 categories: JAVA
 keywords:
 - 单例模式

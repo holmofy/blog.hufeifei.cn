@@ -1,6 +1,6 @@
 ---
 title: ES6语法学习-OOP面向对象编程
-date: 2018-03-15 18:03
+date: 2018-03-15
 categories: 前端
 ---
 

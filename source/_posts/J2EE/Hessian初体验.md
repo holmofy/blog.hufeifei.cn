@@ -1,6 +1,6 @@
 ---
 title: Hessian初体验
-date: 2017-12-24 15:50
+date: 2017-12-24
 categories: J2EE
 tags: 
 - Hessian

@@ -1,6 +1,6 @@
 ---
 title: 泛洪攻击(Flood)与TCP代理(TCP proxy)
-date: 2017-03-29 12:31
+date: 2017-03-29
 tags:
 categories: 网络
 description: 下文摘自H3C攻击防范指导手册

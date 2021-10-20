@@ -1,6 +1,6 @@
 ---
 title: Babel学习笔记
-date: 2018-03-15 20:53
+date: 2018-03-15
 categories: 前端
 ---
 

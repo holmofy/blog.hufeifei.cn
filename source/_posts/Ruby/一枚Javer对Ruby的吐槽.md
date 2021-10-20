@@ -1,6 +1,6 @@
 ---
 title: 一枚Javer对Ruby的吐槽
-date: 2019-01-13 14:26
+date: 2019-01-13
 categories: Ruby
 mathjax: true
 ---

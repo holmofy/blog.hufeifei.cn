@@ -1,6 +1,6 @@
 ---
 title: EffectiveJava读书笔记-  第2条：遇到构造器有多个参数时要考虑用构建者模式
-date: 2018-02-13 17:10
+date: 2018-02-13
 categories: JAVA
 ---
 

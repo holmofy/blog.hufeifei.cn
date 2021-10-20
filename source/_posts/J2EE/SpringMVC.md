@@ -1,6 +1,6 @@
 ---
 title: SpringMVC源码浅析
-date: 2017-12-20 16:50
+date: 2017-12-20
 categories: J2EE
 ---
 

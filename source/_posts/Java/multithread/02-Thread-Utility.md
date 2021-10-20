@@ -1,6 +1,6 @@
 ---
 title: Java多线程复习与巩固(二)--线程相关工具类的使用
-date: 2017-06-14 20:30
+date: 2017-06-14
 categories: JAVA
 keywords:
 - Java 多线程编程

@@ -1,6 +1,6 @@
 ---
 title: NJQ面经
-date: 2017-07-18 18:23
+date: 2017-07-18
 categories: 面试
 ---
 

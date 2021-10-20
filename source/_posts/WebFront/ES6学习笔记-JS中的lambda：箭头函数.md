@@ -1,6 +1,6 @@
 ---
 title: ES6语法学习-JS中的lambda:箭头函数
-date: 2018-03-15 17:53
+date: 2018-03-15
 categories: 前端
 ---
 

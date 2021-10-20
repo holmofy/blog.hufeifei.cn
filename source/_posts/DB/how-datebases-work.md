@@ -1,6 +1,6 @@
 ---
 title: 【译】关系型数据库是如何工作的
-date: 2021-06-05 13:25
+date: 2021-06-05
 categories: 数据库
 mathjax: true
 tags: 

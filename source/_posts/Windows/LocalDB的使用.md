@@ -1,6 +1,6 @@
 ---
 title: LocalDB使用详解
-date: 2017-08-14 23:31
+date: 2017-08-14
 tags:
 categories: Windows
 ---

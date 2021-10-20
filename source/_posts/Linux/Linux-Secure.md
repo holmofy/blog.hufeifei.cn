@@ -1,6 +1,6 @@
 ---
 title: Linux服务器基础安全防范
-date: 2017-04-15 16:50:23
+date: 2017-04-15
 tags:
 categories: Linux运维
 ---

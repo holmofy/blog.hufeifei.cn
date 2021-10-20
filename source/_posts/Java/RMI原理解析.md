@@ -1,6 +1,6 @@
 ---
 title: RMI原理解析
-date: 2017-12-14 17:13
+date: 2017-12-14
 categories: JAVA
 ---
 

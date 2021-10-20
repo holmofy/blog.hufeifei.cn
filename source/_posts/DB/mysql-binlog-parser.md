@@ -1,6 +1,6 @@
 ---
 title: 基于Binlog的实时同步功能——debezium、canel、databus技术选型
-date: 2021-03-13 14:23
+date: 2021-03-13
 categories: 数据库
 tags: 
 - DB

@@ -1,6 +1,6 @@
 ---
 title: ssl证书申请以及nginx证书的配置
-date: 2018-02-05 14:49:23
+date: 2018-02-05
 tags:
 categories: Linux运维
 ---

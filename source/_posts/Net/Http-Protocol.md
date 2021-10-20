@@ -1,6 +1,6 @@
 ---
 title: Http协议报文格式
-date: 2017-03-30 19:32
+date: 2017-03-30
 tags:
 categories: 网络
 description: HTTP协议详解

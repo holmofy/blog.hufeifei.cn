@@ -1,6 +1,6 @@
 ---
 title: 从ReentrantLock分析AQS的原理
-date: 2017-04-23 14:23
+date: 2017-04-23
 categories: JAVA
 ---
 

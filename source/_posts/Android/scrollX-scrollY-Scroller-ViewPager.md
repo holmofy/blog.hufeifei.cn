@@ -1,6 +1,6 @@
 ---
 title: View滑动效果常用属性详解2-使用scrollX|scrollY和Scroller实现自定义ViewPager
-date: 2017-01-02 19:44
+date: 2017-01-02
 tags:
 categories: Android
 description: View滑动效果常用属性详解2-使用scrollX|scrollY和Scroller实现自定义ViewPager

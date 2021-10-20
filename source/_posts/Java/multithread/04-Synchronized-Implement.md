@@ -1,6 +1,6 @@
 ---
 title: Java多线程复习与巩固(四)--synchronized的实现
-date: 2017-06-15 19:54
+date: 2017-06-15
 categories: JAVA
 keywords:
 - Java 多线程编程

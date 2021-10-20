@@ -1,6 +1,6 @@
 ---
 title: MySQL性能优化[实践篇]-索引合并与复合索引
-date: 2018-05-20 15:02
+date: 2018-05-20
 categories: 数据库
 tags: 
 - DB

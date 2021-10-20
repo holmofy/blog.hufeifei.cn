@@ -1,6 +1,6 @@
 ---
 title: React入门学习笔记
-date: 2018-03-15 19:53
+date: 2018-03-15
 categories: 前端
 ---
 

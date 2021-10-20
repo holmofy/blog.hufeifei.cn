@@ -1,6 +1,6 @@
 ---
 title: 数据库索引的总结
-date: 2021-06-04 13:56
+date: 2021-06-04
 categories: 数据库
 mathjax: true
 tags: 

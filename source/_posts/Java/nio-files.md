@@ -1,6 +1,6 @@
 ---
 title: NIO中的File文件操作
-date: 2017-08-21 14:50
+date: 2017-08-21
 categories: JAVA
 keywords:
 - NIO

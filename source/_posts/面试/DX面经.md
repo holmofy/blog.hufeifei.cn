@@ -1,6 +1,6 @@
 ---
 title: DX面经
-date: 2018-03-10 18:23
+date: 2018-03-10
 categories: 面试
 ---
 

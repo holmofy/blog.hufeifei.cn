@@ -1,6 +1,6 @@
 ---
 title: Java函数式编程与Lambda表达式
-date: 2017-08-21 16:50
+date: 2017-08-21
 categories: JAVA
 keywords:
 - Java

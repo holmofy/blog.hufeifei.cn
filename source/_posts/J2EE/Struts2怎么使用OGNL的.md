@@ -1,6 +1,6 @@
 ---
 title: Struts2怎么使用OGNL的
-date: 2017-08-7 2:50
+date: 2017-08-7
 categories: J2EE
 ---
 

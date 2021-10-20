@@ -1,6 +1,6 @@
 ---
 title: 解决CentOS7种yum源版本过低的问题
-date: 2021-02-13 13:56
+date: 2021-02-13
 categories: Linux运维
 tags: Linux
 ---

@@ -1,6 +1,6 @@
 ---
 title: ES6语法学习-let,var和const
-date: 2018-03-15 17:59
+date: 2018-03-15
 categories: 前端
 ---
 

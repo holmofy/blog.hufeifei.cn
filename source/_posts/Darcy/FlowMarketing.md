@@ -1,6 +1,6 @@
 ---
 title: 赤兔CRM-流程化功能功能总结
-date: 2019-08-16 18:50
+date: 2019-08-16
 categories: JAVA
 tags: 
 - JAVA

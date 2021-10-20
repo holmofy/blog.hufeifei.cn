@@ -1,6 +1,6 @@
 ---
 title: EffectiveJava读书笔记-  第4条：通过私有构造器强化不可实例化的能力
-date: 2018-02-15 20:10
+date: 2018-02-15
 categories: JAVA
 ---
 

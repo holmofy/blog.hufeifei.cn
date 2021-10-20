@@ -1,6 +1,6 @@
 ---
 title: 从notify和metaq初窥消息队列的前世今生
-date: 2020-04-25 12:26
+date: 2020-04-25
 categories: JAVA
 tags: 
 - metaq

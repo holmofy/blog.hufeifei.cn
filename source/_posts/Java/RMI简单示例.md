@@ -1,6 +1,6 @@
 ---
 title: RMI简单示例
-date: 2017-12-14 15:54
+date: 2017-12-14
 categories: JAVA
 ---
 

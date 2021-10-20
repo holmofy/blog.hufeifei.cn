@@ -1,6 +1,6 @@
 ---
 title: MySQL性能优化[实践篇]-使用B树索引
-date: 2018-04-24 15:02
+date: 2018-04-24
 categories: 数据库
 tags: 
 - DB

@@ -1,6 +1,6 @@
 ---
 title: Windows上使用压缩包安装MYSQL
-date: 2017-05-14 23:31
+date: 2017-05-14
 tags:
 categories: Windows
 description: Windows上使用压缩包安装MySQL

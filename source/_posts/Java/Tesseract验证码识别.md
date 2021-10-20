@@ -1,6 +1,6 @@
 ---
 title: Tesseract与tess4j验证码识别
-date: 2018-06-30 16:50
+date: 2018-06-30
 categories: JAVA
 ---
 

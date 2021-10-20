@@ -1,6 +1,6 @@
 ---
 title: LESS小试牛刀
-date: 2017-09-12 18:23
+date: 2017-09-12
 categories: 前端
 ---
 

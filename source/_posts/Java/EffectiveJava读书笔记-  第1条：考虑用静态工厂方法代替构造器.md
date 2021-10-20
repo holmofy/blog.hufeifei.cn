@@ -1,6 +1,6 @@
 ---
 title: EffectiveJava读书笔记-  第1条：考虑用静态工厂方法代替构造器
-date: 2018-02-12 18:50
+date: 2018-02-12
 categories: JAVA
 ---
 

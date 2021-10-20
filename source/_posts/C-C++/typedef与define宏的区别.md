@@ -1,6 +1,6 @@
 ---
 title: typedef与#define的区别
-date: 2017-07-25 16:08
+date: 2017-07-25
 categories: C&C++
 tags: 
 - C

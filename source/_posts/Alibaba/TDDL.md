@@ -1,6 +1,6 @@
 ---
 title: 新人对TDDL分库分表的一些思考
-date: 2020-04-13 1:26
+date: 2020-04-13
 mathjax: true
 categories: 数据库
 tags: 

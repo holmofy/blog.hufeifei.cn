@@ -1,6 +1,6 @@
 ---
 title: K-D树、K-D-B树、B-K-D树
-date: 2020-02-12 21:31
+date: 2020-02-12
 categories: 数据结构与算法
 mathjax: true
 tags: 

@@ -1,6 +1,6 @@
 ---
 title: ssh的各种玩法
-date: 2021-02-21 12:54
+date: 2021-02-21
 categories: Linux运维
 tags: 
 - Linux

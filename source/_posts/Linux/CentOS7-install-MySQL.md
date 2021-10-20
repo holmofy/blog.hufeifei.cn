@@ -1,6 +1,6 @@
 ---
 title: 在CentOS7上安装MySQL的心路历程
-date: 2017-04-05 22:23
+date: 2017-04-05
 categories: Linux运维
 tags:
 	- Linux

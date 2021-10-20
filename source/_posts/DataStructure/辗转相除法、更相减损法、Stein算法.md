@@ -1,6 +1,6 @@
 ---
 title: 辗转相除法、更相减损法、Stein算法
-date: 2017-07-30 18:31
+date: 2017-07-30
 categories: 数据结构与算法
 keywords:
     - 辗转相除法

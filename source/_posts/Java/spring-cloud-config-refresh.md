@@ -1,6 +1,6 @@
 ---
 title: SpringCloudConfig配置项刷新存在的问题
-date: 2021-09-18 18:50
+date: 2021-09-18
 categories: JAVA
 tags: 
 - JAVA

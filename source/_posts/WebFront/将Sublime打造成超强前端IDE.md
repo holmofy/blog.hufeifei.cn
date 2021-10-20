@@ -1,6 +1,6 @@
 ---
 title: 将Sublime打造成超强前端IDE
-date: 2017-08-12 18:23
+date: 2017-08-12
 categories: 前端
 ---
 

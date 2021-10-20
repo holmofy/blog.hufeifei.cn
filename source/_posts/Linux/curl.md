@@ -1,6 +1,6 @@
 ---
 title: 一个有意思的命令行工具,速查表tldr vs. cht
-date: 2021-03-7 18:50
+date: 2021-03-7
 categories: Linux运维
 tags: 
 - Linux

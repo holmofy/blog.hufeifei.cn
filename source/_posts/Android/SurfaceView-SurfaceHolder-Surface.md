@@ -1,6 +1,6 @@
 ---
 title: SurfaceView、SurfaceHolder、Surface
-date: 2017-03-26 23:28
+date: 2017-03-26
 tags:
 - Android
 - SurfaceView

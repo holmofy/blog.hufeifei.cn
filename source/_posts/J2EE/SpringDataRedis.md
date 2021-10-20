@@ -1,6 +1,6 @@
 ---
 title: SpringDataRedis踩坑记录
-date: 2019-2-21 1:12
+date: 2019-2-21
 categories: J2EE
 ---
 

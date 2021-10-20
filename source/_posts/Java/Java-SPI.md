@@ -1,6 +1,6 @@
 ---
 title: Java SPI机制
-date: 2018-02-12 16:50
+date: 2018-02-12
 categories: JAVA
 keywords:
 - Java SPI

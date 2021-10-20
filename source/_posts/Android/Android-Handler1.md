@@ -1,6 +1,6 @@
 ---
 title: Android Handler消息机制源码分析——第一部分：Looper与MessageQueue
-date: 2017-03-05 21:24
+date: 2017-03-05
 tags:
     - Android
     - Handler

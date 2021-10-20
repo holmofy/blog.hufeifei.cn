@@ -1,6 +1,6 @@
 ---
 title: View滑动效果常用属性详解：scroll、translation、LayoutParams
-date: 2017-01-01 00:10
+date: 2017-01-01
 tags:
 categories: Android
 description: View滑动效果常用属性详解：scroll、translation、LayoutParams

@@ -1,6 +1,6 @@
 ---
 title: 对单页面应用与Router的一些思考
-date: 2018-04-26 18:23
+date: 2018-04-26
 categories: 前端
 ---
 

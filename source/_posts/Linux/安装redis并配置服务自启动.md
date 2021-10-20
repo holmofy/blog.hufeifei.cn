@@ -1,6 +1,6 @@
 ---
 title: 安装redis并配置服务自启动
-date: 2017-04-15 16:50:23
+date: 2017-04-15
 tags:
 categories: Linux运维
 ---

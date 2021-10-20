@@ -1,6 +1,6 @@
 ---
 title: Android使用MultiDex处理64K限制
-date: 2017-07-09 14:07
+date: 2017-07-09
 tags:
 - Android
 - MultiDex
