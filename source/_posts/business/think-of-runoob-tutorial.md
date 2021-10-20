@@ -1,9 +1,9 @@
 ---
 title: 菜鸟教程引发的流量与产品的思考
 date: 2021-10-20
-categories: 经济与金融
+categories: 商业
 tags: 
-- 经济
+- 商业
 - 随笔
 keywords:
 - 互联网
@@ -54,4 +54,4 @@ keywords:
 
    联盟推广主要针对Web上的用户，对于移动端用户，可以在微信、抖音等社交媒体上推广。这中类型的广告转化率也要看平台的广告算法的准确率，千人千面——能根据用户画像精准的推荐广告，这样转化率才会更高。
 
-![](https://ae04.alicdn.com/kf/Ub334c48335db4cfdaea9cc8071fabde3F.png)
+![微信广告](https://ae04.alicdn.com/kf/Ub334c48335db4cfdaea9cc8071fabde3F.png)
