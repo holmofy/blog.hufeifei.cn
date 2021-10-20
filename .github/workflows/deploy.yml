@@ -14,7 +14,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: true # Checkout private submodules(themes or something else).
+        submodules: recursive # Checkout private submodules(themes or something else).
     - name: Install ssh-key
       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
       with:
