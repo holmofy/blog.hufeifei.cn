@@ -10,6 +10,16 @@ keywords:
 - 性能优化
 ---
 
+**系列文章：**
+
+* [MySQL性能优化[理论篇]-B树索引与hash索引](https://blog.hufeifei.cn/2018/04/DB/mysql/01-b-tree-hash-index/)
+* [MySQL性能优化[理论篇]-聚簇索引和非聚簇索引,InnoDB和MyISAM](https://blog.hufeifei.cn/2018/04/DB/mysql/02-cluster-index/)
+* [MySQL性能优化[准备篇]-慢查询日志](https://blog.hufeifei.cn/2018/04/DB/mysql/03-slow-log/)
+* [MySQL性能优化[准备篇]-单条SQL性能剖析](https://blog.hufeifei.cn/2018/04/DB/mysql/04-profiling)
+* [MySQL性能优化[实践篇]-索引合并与复合索引](https://blog.hufeifei.cn/2018/04/DB/mysql/05-index-merge-composite-index/)
+* [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
+* [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
+
 在MySQL5.0及之前的版本中，慢查询日志的响应时间单位是秒。显然对于互联网与电子商务如此发达的现在，“秒”级别的查询实在太慢了。在MySQL5.1及更新的版本中，慢查询日志的功能得到了增强，甚至可以通过设置`long_query_time`为0来捕获所有的查询。
 
 在MySQL的当前版本中，慢查询日志是开销最低、精度最高的测量查询时间的工具。我们完全不用担心开启慢查询日志会带来额外的I/O开销，这方面已经经过了测试，慢查询日志带来的开销可以忽略不计。更需要担心的是日志可能消耗大量的磁盘空间。如果长期开启慢查询日志，注意部署日志轮转(log rotation)工具，或者不要长期启用慢查询气质，只需在收集负载样本期间开启即可。
