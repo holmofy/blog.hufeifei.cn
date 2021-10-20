@@ -20,6 +20,8 @@ keywords:
 * [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
 * [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
 
+---
+
 [上篇文章](https://blog.csdn.net/holmofy/article/details/80384637)最后提了个问题
 
 假设某个表有一个**复合索引(c1,c2,c3,c4)**，问以下查询中只能使用该复合索引的c1,c2,c3部分的有那些

@@ -20,6 +20,7 @@ keywords:
 * [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
 * [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
 
+---
 
 > 对索引的优化是数据库性能优化方面最重要的一项，也是性能提升最显著的。
 

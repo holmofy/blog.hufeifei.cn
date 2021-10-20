@@ -20,6 +20,8 @@ keywords:
 * [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
 * [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
 
+---
+
 # 聚簇索引
 
 聚簇索引(Clustered Index)并不是一种新的数据结构，只是B树索引的一种存储方式。

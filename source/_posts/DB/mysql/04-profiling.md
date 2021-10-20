@@ -20,6 +20,8 @@ keywords:
 * [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
 * [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
 
+---
+
 上面一篇文章已经将慢查询语句记录到日志中，接着我们就要对单条SQL查询进行性能分析，了解它慢在何处，才能对症下药进行性能优化。
 
 # show profile
