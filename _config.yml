@@ -24,7 +24,7 @@ email: 1938304905@qq.com
 ## 如果你的网站存放在子目录中,比如http://yoursite.com/child,那么你需要将root配置为'/child/'
 url: https://blog.hufeifei.cn
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:title/
 permalink_defaults:
 # Directory
 

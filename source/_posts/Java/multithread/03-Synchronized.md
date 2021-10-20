@@ -1,6 +1,6 @@
 ---
-title: Java多线程复习与巩固(三)--线程同步
-date: 2017-06-14
+title: Java多线程复习与巩固（三）--线程同步
+date: 2017-06-16
 categories: JAVA
 keywords:
 - Java 多线程编程

@@ -1,5 +1,5 @@
 ---
-title: Java多线程复习与巩固(一)--线程基本使用
+title: Java多线程复习与巩固（一）--线程基本使用
 date: 2017-06-14
 categories: JAVA
 keywords:
