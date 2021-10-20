@@ -10,6 +10,8 @@ keywords:
 - 性能优化
 ---
 
+* [MySQL性能优化[理论篇]-B树索引与hash索引](https://blog.hufeifei.cn/2018/04/DB/mysql/01-b-tree-hash-index/)
+
 
 > 对索引的优化是数据库性能优化方面最重要的一项，也是性能提升最显著的。
 
