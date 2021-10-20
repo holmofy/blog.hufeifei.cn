@@ -18,7 +18,7 @@ jobs:
     - name: update submodule branch
       run: |
         git submodule sync
-        git submodule update
+        git submodule update --remote
     - name: Install ssh-key
       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
       with:
