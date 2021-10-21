@@ -1,6 +1,6 @@
 ---
 title: MySQL性能优化[准备篇]-慢查询日志
-date: 2018-03-08
+date: 2018-04-22
 categories: 数据库
 tags: 
 - DB
@@ -8,6 +8,18 @@ tags:
 keywords:
 - MySQL
 - 性能优化
+---
+
+**系列文章：**
+
+* [MySQL性能优化[理论篇]-B树索引与hash索引](https://blog.hufeifei.cn/2018/04/DB/mysql/01-b-tree-hash-index/)
+* [MySQL性能优化[理论篇]-聚簇索引和非聚簇索引,InnoDB和MyISAM](https://blog.hufeifei.cn/2018/04/DB/mysql/02-cluster-index/)
+* [MySQL性能优化[准备篇]-慢查询日志](https://blog.hufeifei.cn/2018/04/DB/mysql/03-slow-log/)
+* [MySQL性能优化[准备篇]-单条SQL性能剖析](https://blog.hufeifei.cn/2018/04/DB/mysql/04-profiling)
+* [MySQL性能优化[实践篇]-索引合并与复合索引](https://blog.hufeifei.cn/2018/04/DB/mysql/05-index-merge-composite-index/)
+* [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
+* [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
+
 ---
 
 在MySQL5.0及之前的版本中，慢查询日志的响应时间单位是秒。显然对于互联网与电子商务如此发达的现在，“秒”级别的查询实在太慢了。在MySQL5.1及更新的版本中，慢查询日志的功能得到了增强，甚至可以通过设置`long_query_time`为0来捕获所有的查询。

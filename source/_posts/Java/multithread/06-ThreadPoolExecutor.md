@@ -35,7 +35,7 @@ public static ScheduledExecutorService newSingleThreadScheduledExecutor();
 
 > [JDK文档](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadPoolExecutor.html)建议一般情况使用Executors去创建线程池
 
-![线程池ThreadPoolExecutor相关类继承图](http://img-blog.csdn.net/20170819141036970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![线程池ThreadPoolExecutor相关类继承图](./ThreadPool.svg)
 
 其中三个核心接口的方法如下：
 
@@ -166,7 +166,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 ThreadPoolExecutor类中有一个`ctl`属性，该属性是AtomicInteger类型，本质上就是32bit的int类型。这个32bit字段中存储了两个数据：
 
-![ThreadPoolExecutor.ctl](http://img-blog.csdn.net/20170819141257685?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![ThreadPoolExecutor.ctl](./ThreadPoolExecutor_ctl.svg)
 
 其中三个高字节位存储了线程池当前的运行状态，线程池状态有以下几个：
 
@@ -187,7 +187,7 @@ ThreadPoolExecutor类中有一个`ctl`属性，该属性是AtomicInteger类型�
 
 整个过程的状态转换图如下：
 
-![线程池状态转换图](http://img-blog.csdn.net/20170819141403952?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![线程池状态转换图](./RunState.svg)
 
 我们可以调用的两个改变线程池状态的方法分别是：
 
@@ -262,7 +262,7 @@ submit最终都会调用execute方法去执行任务，区别在于submit方法�
 
 FutureTask实现Future接口，Future接口及其相关类继承图如下：
 
-![Future继承图](http://img-blog.csdn.net/20170819141457532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![Future继承图](./Future.svg)
 
 FutureTask类中定义了如下的状态：
 
@@ -295,7 +295,7 @@ FutureTask类中定义了如下的状态：
 
 FutureTask的状态转换图如下(其中绿色标注的是外部可调用的方法，其他方法均有内部调用，RUNNING状态是我附加的状态，表示该任务已经被运行)：
 
-![FutureTask状态转换图](http://img-blog.csdn.net/20170820174049347?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![FutureTask状态转换图](./FutrueTaskState.svg)
 
 Future接口定义了以下几个方法：
 

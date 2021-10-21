@@ -14,7 +14,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        submodules: true # Checkout private submodules(themes or something else).
+        submodules: recursive # Checkout private submodules(themes or something else).
+    - name: update submodule branch
+      run: |
+        git submodule sync
+        git submodule update --remote
     - name: Install ssh-key
       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
       with:
@@ -30,5 +34,6 @@ jobs:
         git config --global user.email "hff1996723@gmail.com"
         git config --global user.name "github/holmofy"
         npm install -g hexo-cli && npm install
+        export NODE_ENV=production
         hexo clean && hexo g && hexo d
 
