@@ -2,9 +2,7 @@
 title: Java Collection框架概述
 date: 2017-05-5
 categories: JAVA
-mathjax: true
 ---
-
 
 
 [TOC]
@@ -20,8 +18,6 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 ![所有集合接口](http://img-blog.csdn.net/20170505163246463?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 > 在下面的标题中用concurrent标记这个类是`java.util.concurrent`包中的集合
-
-
 
 
 
@@ -137,27 +133,27 @@ HashMap重新定容耗时耗资源，所以如果能确定存取元素的最大�
 
 同时也可以通过构造方法中的``loadFactor``参数来自定义扩容因子，**默认扩容因子为0.75**。
 
-另外，**HashMap的容量始终保持为${2^n}$**。这样设计为了方便直接根据哈希值定位索引(用`&`位运算取代`%`取余运算)：
+另外，**HashMap的容量始终保持为$2^n$**。这样设计为了方便直接根据哈希值定位索引(用`&`位运算取代`%`取余运算)：
 
 `index = (length - 1) & hash`
 
-当$length = 2^n$时，$length - 1$的二进制为全$1$，$(length - 1)  \&  hash$可以达到取余的效果。
+当$length=2^n$时，`length-1`的二进制为全1，`(length-1) & hash`​可以达到取余的效果。
 
 所以在通过initialCapacity参数指定构造时的容量，会有下面这个运算：
 
 ```java
-  // initialCapacity指定为5，6，7的时候，实际容量都为8
-  static final int tableSizeFor(int cap) {
-      int n = cap - 1;
-      // 从最高位的1开始，后面的全是1
-      n |= n >>> 1;
-      n |= n >>> 2;
-      n |= n >>> 4;
-      n |= n >>> 8;
-      n |= n >>> 16;
-      // 最后在全1的数上加1，从而得到2^n
-      return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
-  }
+// initialCapacity指定为5，6，7的时候，实际容量都为8
+static final int tableSizeFor(int cap) {
+    int n = cap - 1;
+    // 从最高位的1开始，后面的全是1
+    n |= n >>> 1;
+    n |= n >>> 2;
+    n |= n >>> 4;
+    n |= n >>> 8;
+    n |= n >>> 16;
+    // 最后在全1的数上加1，从而得到2^n
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+}
 ```
 
 > 官方文档中将这个延伸的链表称为桶，个人觉得还是叫“拉链”更为形象。下面当拉链进化成红黑树的时候，叫“拉链”就有点不合适了。
@@ -277,7 +273,7 @@ ConcurrentHashMap（since 1.5，concurrent）：ConcurrentMap的实现类。[查
 
 ConcurrentSkipListMap（since 1.6，concurrent）：ConcurrentNavigableMap的实现类。[查看ConcurrentNavigableMap接口实现类](#ConcurrentNavigableMap)。
 
-> Android中还提供了一个数组实现的ArrayMap。HashMap将Key-Value包装成一个类对象，然后使用该类的数组。而**ArrayMap直接将Key-Value放在一个Object数组中，通过2*n，2*n+1来对Key-Value进行区分**，这和EnumMap在一定程度有有点相似。
+> Android中还提供了一个数组实现的ArrayMap。HashMap将Key-Value包装成一个类对象，然后使用该类的数组。而**ArrayMap直接将Key-Value放在一个Object数组中，通过2\*n，2\*n+1来对Key-Value进行区分**，这和EnumMap在一定程度有有点相似。
 
 ## SortedMap(since 1.2)与NavigableMap(since 1.6)
 
@@ -569,14 +565,14 @@ public class Employee {
 
 Collections中的unmodified方法有以下几个：
 
-- public static <T> Collection<T> unmodifiableCollection(Collection<? extends T> c)
-- public static <T> List<T> unmodifiableList(List<? extends T> list)
-- public static <T> Set<T> unmodifiableSet(Set<? extends T> s)
-- public static <T> SortedSet<T> unmodifiableSortedSet(SortedSet<T> s)
-- public static <T> NavigableSet<T> unmodifiableNavigableSet(NavigableSet<T> s)
-- public static <K,V> Map<K,V> unmodifiableMap(Map<? extends K, ? extends V> m)
-- public static <K,V> SortedMap<K,V> unmodifiableSortedMap(SortedMap<K, ? extends V> m)
-- public static <K,V> NavigableMap<K,V> unmodifiableNavigableMap(NavigableMap<K, ? extends V> m)
+- `public static <T> Collection<T> unmodifiableCollection(Collection<? extends T> c)`
+- `public static <T> List<T> unmodifiableList(List<? extends T> list)`
+- `public static <T> Set<T> unmodifiableSet(Set<? extends T> s)`
+- `public static <T> SortedSet<T> unmodifiableSortedSet(SortedSet<T> s)`
+- `public static <T> NavigableSet<T> unmodifiableNavigableSet(NavigableSet<T> s)`
+- `public static <K,V> Map<K,V> unmodifiableMap(Map<? extends K, ? extends V> m)`
+- `public static <K,V> SortedMap<K,V> unmodifiableSortedMap(SortedMap<K, ? extends V> m)`
+- `public static <K,V> NavigableMap<K,V> unmodifiableNavigableMap(NavigableMap<K, ? extends V> m)`
 
 > 这与Google Guava中的Immutable集合工具类有点类似。
 
@@ -584,14 +580,14 @@ Collections中的unmodified方法有以下几个：
 
 synchronized包装后的集合是线程同步的，比如ArrayList对象可以经过synchronizedList方法进行包装从而达到线程同步的目的，有了这个线程同步的包装类，ArrayList可以完全替代Vector。
 
-- public static <T> Collection<T> synchronizedCollection(Collection<T> c)
-- public static <T> List<T> synchronizedList(List<T> list)
-- public static <T> Set<T> synchronizedSet(Set<T> s)
-- public static <T> SortedSet<T> synchronizedSortedSet(SortedSet<T> s)
-- public static <T> NavigableSet<T> synchronizedNavigableSet(NavigableSet<T> s)
-- public static <K,V> Map<K,V> synchronizedMap(Map<K,V> m)
-- public static <K,V> SortedMap<K,V> synchronizedSortedMap(SortedMap<K,V> m)
-- public static <K,V> NavigableMap<K,V> synchronizedNavigableMap(NavigableMap<K,V> m)
+- `public static <T> Collection<T> synchronizedCollection(Collection<T> c)`
+- `public static <T> List<T> synchronizedList(List<T> list)`
+- `public static <T> Set<T> synchronizedSet(Set<T> s)`
+- `public static <T> SortedSet<T> synchronizedSortedSet(SortedSet<T> s)`
+- `public static <T> NavigableSet<T> synchronizedNavigableSet(NavigableSet<T> s)`
+- `public static <K,V> Map<K,V> synchronizedMap(Map<K,V> m)`
+- `public static <K,V> SortedMap<K,V> synchronizedSortedMap(SortedMap<K,V> m)`
+- `public static <K,V> NavigableMap<K,V> synchronizedNavigableMap(NavigableMap<K,V> m)`
 
 ### Collections.checked 动态类型检查包装类
 
@@ -652,15 +648,15 @@ public class Company {
 
 Collections中的checked方法有以下几个：
 
-- public static <E> Collection<E> checkedCollection(Collection<E> c, Class<E> type)
-- public static <E> List<E> checkedList(List<E> list, Class<E> type)
-- public static <E> Set<E> checkedSet(Set<E> s, Class<E> type)
-- public static <E> SortedSet<E> checkedSortedSet(SortedSet<E> s, Class<E> type)
-- public static <E> NavigableSet<E> checkedNavigableSet(NavigableSet<E> s, Class<E> type)
-- public static <K, V> Map<K, V> checkedMap(Map<K, V> m, Class<K> keyType, Class<V> valueType)
-- public static <K,V> SortedMap<K,V> checkedSortedMap(SortedMap<K, V> m, Class<K> keyType, Class<V> valueType)
-- public static <K,V> NavigableMap<K,V> checkedNavigableMap(NavigableMap<K, V> m, Class<K> keyType, Class<V> valueType)
-- public static <E> Queue<E> checkedQueue(Queue<E> queue, Class<E> type)
+- `public static <E> Collection<E> checkedCollection(Collection<E> c, Class<E> type)`
+- `public static <E> List<E> checkedList(List<E> list, Class<E> type)`
+- `public static <E> Set<E> checkedSet(Set<E> s, Class<E> type)`
+- `public static <E> SortedSet<E> checkedSortedSet(SortedSet<E> s, Class<E> type)`
+- `public static <E> NavigableSet<E> checkedNavigableSet(NavigableSet<E> s, Class<E> type)`
+- `public static <K, V> Map<K, V> checkedMap(Map<K, V> m, Class<K> keyType, Class<V> valueType)`
+- `public static <K,V> SortedMap<K,V> checkedSortedMap(SortedMap<K, V> m, Class<K> keyType, Class<V> valueType)`
+- `public static <K,V> NavigableMap<K,V> checkedNavigableMap(NavigableMap<K, V> m, Class<K> keyType, Class<V> valueType)`
+- `public static <E> Queue<E> checkedQueue(Queue<E> queue, Class<E> type)`
 
 ## Collections类中的简单工具方法
 
