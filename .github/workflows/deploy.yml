@@ -30,7 +30,7 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.ID_RSA }}
         ssh-host: blog.hufeifei.cn
-    - name: Install npm denpendency & Hexo Deploy
+    - name: Hexo Deploy
       run: |
         echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
