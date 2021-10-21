@@ -2,6 +2,7 @@
 title: TCP-IP  概述
 date: 2017-07-21
 categories: 网络
+mathjax: true
 ---
 
 TCP/IP起源于60年代末由美国政府资助的一个分组交换网络——ARPAnet(阿帕网)。到90年代TCP/IP就已成为事实上的工业标准了。

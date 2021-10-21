@@ -2,6 +2,7 @@
 title: Javar眼中的JS
 date: 2018-03-16
 categories: 前端
+mathjax: true
 ---
 
 > 把之前写的笔记整理了一下，重新拾起JS

@@ -2,6 +2,7 @@
 title: Java Collection框架概述
 date: 2017-05-5
 categories: JAVA
+mathjax: true
 ---
 
 

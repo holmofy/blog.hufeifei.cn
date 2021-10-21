@@ -2,6 +2,7 @@
 title: C语言计时函数
 date: 2017-07-28
 categories: C&C++
+mathjax: true
 tags: 
 - C
 ---
