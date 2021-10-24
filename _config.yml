@@ -51,8 +51,9 @@ default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
   enable: true # 新标签页中打开外链
-  exclude: ""
   field: site
+  exclude: 
+    - www.hufeifei.cn
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
