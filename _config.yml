@@ -183,6 +183,7 @@ nofollow:
   include:
     - "img-blog.csdn.net"
     - "*.sinaimg.cn"
+    - "*.doubanio.com"
   rel:
     - 'external'
     - 'noreferrer'
