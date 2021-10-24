@@ -249,6 +249,6 @@ asset_pipeline:
 
 # https://github.com/glazec/hexo-web-push-notification
 webPushNotification:
-  webpushrKey: "58da4dca1a881f72d046a390a59f3615"
-  webpushrAuthToken: "39508"
+  webpushrKey: "df5d99e7437d3ed74084a178d285cebf"
+  webpushrAuthToken: "39510"
   trackingCode: "BPJzNs1QEtbYa3Bn0gMAQHBAzX3Jm71llGUKHTkKEUs3D9xiDYZ0DWJ3S9sfCAAJHxXEoBkUANFyONjeIlgrJUo'"
