@@ -43,6 +43,7 @@ skip_render:
   - ads.txt
   - root.txt
   - robots.txt
+  - webpushr-sw.js
 
 # 写作选项 Writing
 new_post_name: :title.md # File name of new posts
@@ -245,3 +246,9 @@ asset_pipeline:
     collapseWhitespace: true
     minifyJS: true
     minifyCSS: true
+
+# https://github.com/glazec/hexo-web-push-notification
+webPushNotification:
+  webpushrKey: "58da4dca1a881f72d046a390a59f3615"
+  webpushrAuthToken: "39508"
+  trackingCode: "BPJzNs1QEtbYa3Bn0gMAQHBAzX3Jm71llGUKHTkKEUs3D9xiDYZ0DWJ3S9sfCAAJHxXEoBkUANFyONjeIlgrJUo'"
