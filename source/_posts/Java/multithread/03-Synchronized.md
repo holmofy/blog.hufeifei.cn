@@ -19,6 +19,8 @@ keywords:
 * [ThreadPoolExecutor最佳实践--如何选择线程数](https://blog.hufeifei.cn/2018/07/Java/ThreadPoolExecutor-best-practice-thread-size/)
 * [ThreadPoolExecutor最佳实践--如何选择队列](https://blog.hufeifei.cn/2018/08/Java/ThreadPoolExecutor-best-practice-queue/)
 
+---
+
 # 1、多线程容易出现的问题
 
 因为同一个进程内的多个线程共享进程的资源，而进程之间，资源的获取是互斥的，所以线程间通信比进程间通信更简单。我们可以直接通过**共享资源的访问**来实现线程间通信，这种通信方式十分有效(速度快)，但也容易产生错误，如：**线程干扰**和**内存一致性错误**。

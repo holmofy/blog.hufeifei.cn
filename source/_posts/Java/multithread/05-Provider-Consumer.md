@@ -19,6 +19,8 @@ keywords:
 * [ThreadPoolExecutor最佳实践--如何选择线程数](https://blog.hufeifei.cn/2018/07/Java/ThreadPoolExecutor-best-practice-thread-size/)
 * [ThreadPoolExecutor最佳实践--如何选择队列](https://blog.hufeifei.cn/2018/08/Java/ThreadPoolExecutor-best-practice-queue/)
 
+---
+
 # 生产者消费者问题（第一部分）
 
 **生产者消费者问题**也称为**有限缓冲问题**，是线程同步的一个经典问题：生产者线程和消费者线程共享一块固定大小的缓存，生产者负责生成产品然后存入共享缓冲区中，消费者负责从共享缓冲区中取出产品进行消费。该问题的关键在于生产者不会在缓冲区满时加入数据，消费者也不会在缓冲区空时消耗数据。

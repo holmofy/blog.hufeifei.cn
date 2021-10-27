@@ -19,6 +19,8 @@ keywords:
 * [ThreadPoolExecutor最佳实践--如何选择线程数](https://blog.hufeifei.cn/2018/07/Java/ThreadPoolExecutor-best-practice-thread-size/)
 * [ThreadPoolExecutor最佳实践--如何选择队列](https://blog.hufeifei.cn/2018/08/Java/ThreadPoolExecutor-best-practice-queue/)
 
+---
+
 # 1、定时器(Timer类)
 
 如果我们需要让某个任务在另一个线程中周期性的执行，或者让它在某个时刻执行一次。这时我们可能会写这样的代码：

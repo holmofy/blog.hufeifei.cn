@@ -19,11 +19,13 @@ keywords:
 * [ThreadPoolExecutor最佳实践--如何选择线程数](https://blog.hufeifei.cn/2018/07/Java/ThreadPoolExecutor-best-practice-thread-size/)
 * [ThreadPoolExecutor最佳实践--如何选择队列](https://blog.hufeifei.cn/2018/08/Java/ThreadPoolExecutor-best-practice-queue/)
 
+---
+
 前篇：[《Java多线程复习与巩固(六)--线程池ThreadPoolExecutor详解》](http://blog.csdn.net/holmofy/article/details/77411854)
 
 # 1. 为什么要使用ScheduledThreadPoolExecutor
 
-在[《Java多线程复习与巩固(二)--线程相关工具类Timer和ThreadLocal的使用》](http://blog.csdn.net/holmofy/article/details/73252436)提到过，Timer可以实现**指定延时调度任务**，还可以实现**任务的周期性执行**。但是Timer中的所有任务都是由一个TimerThread执行，也就是说**Timer是单线程**执行任务。单线程执行任务有一个致命的缺点：**当某些任务的执行特别耗时，后续的任务无法在预定的时间内得到执行，前一个任务的延迟或异常将影响到后续的任务；另外TimerThread没有做异常处理，一个任务出现异常将会导致整个Timer线程结束**。
+在[《Java多线程复习与巩固(二)--线程相关工具类Timer和ThreadLocal的使用》](https://blog.hufeifei.cn/2017/06/Java/multithread/02-Thread-Utility/)提到过，Timer可以实现**指定延时调度任务**，还可以实现**任务的周期性执行**。但是Timer中的所有任务都是由一个TimerThread执行，也就是说**Timer是单线程**执行任务。单线程执行任务有一个致命的缺点：**当某些任务的执行特别耗时，后续的任务无法在预定的时间内得到执行，前一个任务的延迟或异常将影响到后续的任务；另外TimerThread没有做异常处理，一个任务出现异常将会导致整个Timer线程结束**。
 
 由于Timer单线程的种种缺点，这个时候我们就需要让线程池去执行这些任务。
 
