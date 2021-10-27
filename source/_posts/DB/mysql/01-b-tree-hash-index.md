@@ -19,6 +19,7 @@ keywords:
 * [MySQL性能优化[实践篇]-索引合并与复合索引](https://blog.hufeifei.cn/2018/04/DB/mysql/05-index-merge-composite-index/)
 * [MySQL性能优化[实践篇]-复合索引实例](https://blog.hufeifei.cn/2018/04/DB/mysql/06-composite-index-instance/)
 * [MySQL性能优化[实践篇]-使用B树索引](https://blog.hufeifei.cn/2018/04/DB/mysql/07-use-b-tree/)
+* [分库分表的一些思考](https://blog.hufeifei.cn/2020/04/DB/Alibaba/TDDL/)
 
 ---
 
