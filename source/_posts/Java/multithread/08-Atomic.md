@@ -6,6 +6,17 @@ keywords:
 - Java 多线程编程
 ---
 
+**系列文章：**
+* [Java多线程复习与巩固（一）--线程基本使用](https://blog.hufeifei.cn/2017/06/Java/multithread/01-Thread-Basic/)
+* [Java多线程复习与巩固（二）--线程相关工具类的使用](https://blog.hufeifei.cn/2017/06/Java/multithread/02-Thread-Utility/)
+* [Java多线程复习与巩固（三）--线程同步](https://blog.hufeifei.cn/2017/06/Java/multithread/03-Synchronized/)
+* [Java多线程复习与巩固（四）--synchronized的实现](https://blog.hufeifei.cn/2017/06/Java/multithread/04-Synchronized-Implement/)
+* [Java多线程复习与巩固（五）--生产者消费者问题（第一部分）](https://blog.hufeifei.cn/2017/06/Java/multithread/05-Provider-Consumer/)
+* [Java多线程复习与巩固（六）--线程池ThreadPoolExecutor详解](https://blog.hufeifei.cn/2017/06/Java/multithread/06-ThreadPoolExecutor/)
+* [Java多线程复习与巩固（七）--任务调度线程池ScheduledThreadPoolExecutor](https://blog.hufeifei.cn/2017/06/Java/multithread/07-ScheduledThreadPoolExecutor/)
+* [Java多线程复习与巩固（八）--原子性操作与原子变量](https://blog.hufeifei.cn/2017/06/Java/multithread/08-Atomic/)
+* [Java多线程复习与巩固（九）--volatile关键字与CAS操作](https://blog.hufeifei.cn/2017/06/Java/multithread/09-volatile-CAS/)
+
 前面讲[线程同步](http://blog.csdn.net/holmofy/article/details/73264273)时，我们对多线程容易出现的问题进行了分析，在那个例子中，问题的根源在于`c++`和`c--`这两个操作在底层处理的时候被分成了若干步执行。当时我们用的是`synchronized`关键字来解决这个问题，而从[synchronize的实现原理](http://blog.csdn.net/holmofy/article/details/73302423)中我们知道`synchronized`通过`monitor`监视器来实现线程同步，这种同步方式要求线程等待`monitor`的拥有者线程释放后，才可能进一步执行，而线程等待可能会导致**线程上下文的切换(Context Switch)**，线程上下文的切换会带来极大的开销：保存和恢复线程当前的执行状态(如程序计数器，线程执行栈等)。这片文章中我们使用另一种方式来解决前面提出的多线程问题。
 
 
