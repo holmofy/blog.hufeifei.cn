@@ -3,7 +3,7 @@ title: Java多线程复习与巩固（四）--synchronized的实现
 date: 2017-06-17
 categories: JAVA
 keywords:
-- Java 多线程编程
+- Java多线程,synchronized实现,CAS锁,偏向锁,锁升级
 ---
 
 **系列文章：**
