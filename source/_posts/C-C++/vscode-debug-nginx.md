@@ -1,5 +1,5 @@
 ---
-title: 在vscode中调试nginx
+title: 在vscode中调试nginx源码
 date: 2021-11-01
 categories: C&C++
 tags: 

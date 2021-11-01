@@ -16,7 +16,9 @@ keywords:
 
 ## 安装OpenResty相关模块
 
-OpenResty是基于Lua即时编译器(LuaJIT)对Nginx进行扩展的模块——最核心的就是[`lua-nginx-module`](https://github.com/openresty/lua-nginx-module)这个模块。其他的都是[基于OpenResty的相关lua模块](https://github.com/agile6v/awesome-nginx#lua-modules)。所以要想使用OpenResty首先必须安装`lua-nginx-module`。
+OpenResty是基于Lua即时编译器(LuaJIT)对Nginx进行扩展的模块——最核心的就是[`lua-nginx-module`](https://github.com/openresty/lua-nginx-module)这个模块。其他的都是[OpenResty基于lua开发的相关模块](https://github.com/agile6v/awesome-nginx#lua-modules)，当然也可以基于lua开发自己的第三方模块。
+
+所以要想使用OpenResty首先必须安装`lua-nginx-module`。
 
 1. 下载并安装LuaJIT。可以使用源码方式安装，这个可以参考[官方文档](https://luajit.org/install.html)非常详细。这里为了方便直接用apt安装了
 
@@ -98,4 +100,66 @@ OpenResty是基于Lua即时编译器(LuaJIT)对Nginx进行扩展的模块——�
 3. 执行`make install`
 
    > 编译过程可能会比较慢，可以执行`make -j2 && make install`调大编译任务的个数
+
+## 调试OpenResty中的lua代码
+
+首先你应该知道怎么调试Nginx，知道Nginx的多进程架构，这个可以看[上篇文章](https://blog.hufeifei.cn/2021/10/C-C++/vscode-debug-nginx/)
+
+首先需要关闭多进程架构，确保nginx运行在单个非守护进程，这样方便调试。
+
+```nginx
+daemon off;
+master_process off;
+worker_processes 1;
+```
+
+这里以一个第三方的lua模板引擎为例——[lua-resty-template](https://github.com/bungle/lua-resty-template)
+
+### 安装lua模块
+
+```bash
+# 在nginx下创建一个放lua脚本的目录
+mkdir lua-lib
+# 下载lua-resty-template模块
+git clone https://github.com/bungle/lua-resty-template lua-lib/lua-resty-template
+```
+
+在`nginx.conf`中对lua模块进行配置
+
+```nginx
+http {
+    # ...
+    # 设置lua模块的路径
+    lua_package_path "lua-lib/lua-resty-template/lib/?.lua;;";
+    
+    server {
+        listen       80;
+        server_name  localhost;
+        
+        set $template_root html/templates;
+        location /templates/ {
+          root html;
+          content_by_lua '
+            local template = require "resty.template"
+            template.render("view.html", { message = "Hello, World!" })
+          ';      
+    	}
+    }
+}
+```
+
+在`html/templates`目录下添加模板文件
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>{{message}}</h1>
+</body>
+</html>
+```
+
+访问`localhost/templates/view.html`，能看到下面的结果
+
+![lua template](https://s.pc.qq.com/tousu/img/20211101/1341156_1635761461.jpg)
 
