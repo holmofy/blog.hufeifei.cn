@@ -1,6 +1,6 @@
 ---
-title: typedef与#define的区别
-date: 2017-07-25
+title: 在vscode中调试nginx
+date: 2021-11-01
 categories: C&C++
 tags: 
 - C
@@ -166,4 +166,17 @@ Worker进程和redis类似使用单线程+IO多路复用实现高并发处理IO�
 5. 从函数堆栈中，可以看到请求的处理过程
 
    ![process request](https://s.pc.qq.com/tousu/img/20211101/6907176_1635751804.jpg)
+
+## 关闭Nginx多进程模式
+
+启动两个进程的方式debug确实挺麻烦的，nginx提供了[配置关闭多进程架构](http://nginx.org/en/docs/ngx_core_module.html#master_process)，这样就可以在一个进程里对nginx的整个流程进行debug了，避免上面繁琐的配置。
+
+只需要在`nginx.conf`文件中把`daemon`和`master_process`设成`off`即可。
+
+```nginx
+# 关闭Master守护进程的功能
+daemon off;
+# 关闭多进程架构，如果为off，不会启动worker_process进程
+master_process off;
+```
 
