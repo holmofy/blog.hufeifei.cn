@@ -35,15 +35,15 @@ git clone https://github.com/nginx/nginx
 
 2. 执行 sudo ./auto/configure --prefix=nginx工程目录 ，如果遇到错误 "the HTTP rewrite module requires the PCRE library"，说明少了用来匹配正则表达式的`pcre`依赖包，可以自行根据平台进行安装
 
-   ```debein
+   ```bash Debein
    apt install pcre2-utils
    ```
 
-   ```macos
+   ```bash MacOS
    brew install pcre
    ```
 
-   ```centos
+   ```bash CentOS
    yum install pcre
    ```
 
