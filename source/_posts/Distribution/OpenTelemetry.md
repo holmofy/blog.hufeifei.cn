@@ -33,7 +33,7 @@ keywords:
 
 这其中每一篇论文都曾掀起过层层巨浪，比如号称三驾马车的GFS、MapReduce、Bigtable开创了大数据时代，Spanner、F1给分布式数据库指明了方向，TensorFlow引领了人工智能机器学习的发展，Borg衍生出基于K8S云原生的大生态。而[Dapper](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/36356.pdf)也只是谷歌浩瀚冰山下的一隅，却引领了分布式系统链路追踪的发展。
 
-![Dapper链路追踪](http://tva1.sinaimg.cn/large/bda5cd74ly1gh049xp5d1j20cl0auwf1.jpg)
+![Dapper链路追踪](http://ww1.sinaimg.cn/large/bda5cd74ly1gh049xp5d1j20cl0auwf1.jpg)
 
 [Dapper中描述了谷歌内部系统的链路追踪技术](https://blog.hufeifei.cn/2020/07/Alibaba/distributed-tracing/)。论文在2010年一经发出，Twitter根据论文研发了[Zipkin](https://github.com/openzipkin/zipkin)，Uber根据论文研发了[Jaeper](https://github.com/jaegertracing/jaeger)。当然这只是最早开源出来的非常有名气的两个项目，还有像阿里的EagleEye等众多为开源出来的内部项目都是以谷歌的Dapper为原型设计的。
 
