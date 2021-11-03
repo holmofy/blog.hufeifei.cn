@@ -187,6 +187,7 @@ nofollow:
     - "*.sinaimg.cn"
     - "*.doubanio.com"
     - "duanple.com"
+    - "p.pstatp.com"
   rel:
     - 'external'
     - 'noreferrer'
