@@ -16,7 +16,7 @@ keywords:
 
 ## 安装OpenResty相关模块
 
-OpenResty是基于Lua即时编译器(LuaJIT)对Nginx进行扩展的模块——最核心的就是[`lua-nginx-module`](https://github.com/openresty/lua-nginx-module)这个模块。其他的都是[OpenResty基于lua开发的相关模块](https://github.com/agile6v/awesome-nginx#lua-modules)，当然也可以基于lua开发自己的第三方模块。
+OpenResty是基于Lua即时编译器([LuaJIT](https://github.com/LuaJIT/LuaJIT))对Nginx进行扩展的模块——最核心的就是[`lua-nginx-module`](https://github.com/openresty/lua-nginx-module)这个模块。其他的都是[OpenResty基于lua开发的相关模块](https://github.com/bungle/awesome-resty)，当然也可以基于lua开发自己的第三方模块。
 
 所以要想使用OpenResty首先必须安装`lua-nginx-module`。
 
@@ -103,16 +103,6 @@ OpenResty是基于Lua即时编译器(LuaJIT)对Nginx进行扩展的模块——�
 
 ## 调试OpenResty中的lua代码
 
-首先你应该知道怎么调试Nginx，知道Nginx的多进程架构，这个可以看[上篇文章](https://blog.hufeifei.cn/2021/10/C-C++/vscode-debug-nginx/)
-
-首先需要关闭多进程架构，确保nginx运行在单个非守护进程，这样方便调试。
-
-```nginx
-daemon off;
-master_process off;
-worker_processes 1;
-```
-
 这里以一个第三方的lua模板引擎为例——[lua-resty-template](https://github.com/bungle/lua-resty-template)
 
 ### 安装lua模块
@@ -162,4 +152,16 @@ http {
 访问`localhost/templates/view.html`，能看到下面的结果
 
 ![lua template](https://s.pc.qq.com/tousu/img/20211101/1341156_1635761461.jpg)
+
+> Read More:
+>
+> https://github.com/lua/lua
+>
+> https://www.lua.org/pil/23.html
+>
+> http://lua-users.org/wiki/DebuggingLuaCode
+>
+> http://notebook.kulchenko.com/zerobrane/debugging-openresty-nginx-lua-scripts-with-zerobrane-studio
+>
+> https://github.com/LewisJEllis/awesome-lua
 

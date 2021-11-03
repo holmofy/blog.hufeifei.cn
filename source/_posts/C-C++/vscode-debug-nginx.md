@@ -181,3 +181,6 @@ daemon off;
 master_process off;
 ```
 
+
+
+> ReadMore: https://github.com/agile6v/awesome-nginx
