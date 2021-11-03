@@ -186,6 +186,7 @@ nofollow:
     - "img-blog.csdn.net"
     - "*.sinaimg.cn"
     - "*.doubanio.com"
+    - "duanple.com"
   rel:
     - 'external'
     - 'noreferrer'
