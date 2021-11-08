@@ -10,7 +10,7 @@ tags:
 
 这里所使用的汇编是VC的MASM。
 
-# 默认函数调用方式`__cdecl`
+## 默认函数调用方式`__cdecl`
 
 ```c
 int add(int a, int b) {
@@ -148,7 +148,7 @@ END
 >
 >   该种规约不使用任何寄存器传递参数，参数全部在栈上（从右到左依次入栈），其规则完全符合ABI规定。
 
-# __stdcall函数调用方式
+## __stdcall函数调用方式
 
 ```c
 int __stdcall add(int a, int b) {
@@ -251,7 +251,7 @@ END
 >
 > * ​
 
-# __fastcall函数调用方式
+## __fastcall函数调用方式
 
 ```c
 int __fastcall add(int a, int b) {
@@ -360,7 +360,7 @@ END
 >
 >   根据ABI，调用者不需要保护ECX和EDX，因此该规约并不违反ABI。
 
-# 其他参数传递方式
+## 其他参数传递方式
 
 - **`thiscall`** 调用规约（仅C++）
 
@@ -401,7 +401,7 @@ END
 
   fastcall被定义为`__attribute__ ((regparm(3)))`。
 
-# Windows API按照平台不同，选择不同的函数调用方式
+## Windows API按照平台不同，选择不同的函数调用方式
 
 ```c
 // 以下是minwindef.h头文件中的部分代码
@@ -468,9 +468,9 @@ END
 
 
 
-# 附录
+## 附录
 
-### 1.VC版本清单
+#### 1.VC版本清单
 
 | _MSC_VER | _MSC_FULL_VER | VC版本   | 备注                               |
 | -------- | ------------- | ------ | -------------------------------- |

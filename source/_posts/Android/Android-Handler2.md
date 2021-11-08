@@ -9,7 +9,7 @@ description: Android Handler消息机制源码分析——第二部分 Message�
 ---
 Android Handler消息机制源码分析——第二部分：Message与Handler
 
-# Message
+## Message
 ```java
 /**
  * Message代表了一个消息，消息中包含了描述信息与若干数据，
@@ -476,7 +476,7 @@ public final class Message implements Parcelable {
 }
 ```
 
-# Handler
+## Handler
 ```java
 /**
  * Handler是发送和处理消息的地方，也就是整个Handler框架的头跟尾。

@@ -6,7 +6,7 @@ categories: J2EE
 
 最近读完《[Spring技术内幕](https://book.douban.com/subject/10470970/)》一书，虽然此书评价貌似不高，但边看书边读源码，感觉还是有点收获，至少为阅读Spring源码提供了思路。然后这篇文章就记录一下这几天看Spring IOC这块的源码以及整体思路。
 
-# 1、 BeanFactory与ApplicationContext
+##1、 BeanFactory与ApplicationContext
 
 在Spring的IOC容器设计中，主要由两个容器系列：
 
@@ -15,7 +15,7 @@ categories: J2EE
 
 ![BeanFactory](http://www.plantuml.com/plantuml/svg/bLBFJXD17BxFK-mBy0AD1nGn7ZmG6XCFlGpBj4wodMbcfrMY9aL0kmPi4ui4QgA4493ORXeJtQLf-p3Ep2vluInBo02xJRZjpE_xytspltcNGyRhLGS0Zhc32jOZ1CaJQ7FArgBHYVAciZS101EEM1dQo9m3GZcoEAqLh6ADOL99Pd8GoltJA-hmlVfr61rigXzXYIY_BOAp17EnCLRVlFZZcVmxb5rV14sDaPqTsTypd1xMENs56Lg0DRZYe3l6AvHpMYrOSd0WGa-SVqX3N2RKUl7HriNMJdooALlxXkepxFAPSghT4PEUbfEjFH5CqZuYw2klgKDVYQkleVgzMoAoxOlHSJJw8ZijG_4vnuuhnjEeUsfOBr1InfKwcs5llG6twgJ-sb9RwJxHU91yV_eURup1TLH3ROcwV8bH6xakPV-Qwq0VQeZnjSLLhEVBg89Tpk3bAA4jlgunZSMKB2ENEWsK37JI1cB9PH6n1hOHYFgU-dmisqUwhfXCfH-cmU9fBpxSJlCexwSSxe9tHkMd66al-oMsePFxuY8uDxjUjpANg4HKrrVRwr7hZ-ntKc3EqsRzOM0Sh0TpSxEMwpRKx30Bb-cRGqu8kVi0yiCPlFoovlo-tFJk_ZnmmpLJvQsMUOpAiExmVESCJf53ZkrCqrovDFIBgdC3Fe_8Qhtg_0S0)
 
-# 2、 最简单的容器StaticListableBeanFactory
+##2、 最简单的容器StaticListableBeanFactory
 
 整个Spring容器中最简单的实现就是StaticListableBeanFactory，从它开始分析最合适不过了。
 
@@ -115,7 +115,7 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 }
 ```
 
-# 3、 特殊的Bean对象——FactoryBean
+##3、 特殊的Bean对象——FactoryBean
 
 Spring容器中有两种Bean：普通Bean和工厂Bean。Spring直接使用前者，后者以工厂模式生产Bean对象，并由Spring管理。
 
@@ -151,7 +151,7 @@ beanFactory.getBean("&myBean");
 
 **BeanFactory代表Spring容器，而FactoryBean表示工厂类，其创建的对象被获取后作为容器中的Bean注册**。
 
-# 4、 核心容器DefaultListableBeanFactory
+##4、 核心容器DefaultListableBeanFactory
 
 Spring IOC体系结构中最核心的容器实现类就是**DefaultListableBeanFactory**，它实现了[ConfigurableListableBeanFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/ConfigurableListableBeanFactory.html)和[BeanDefinitionRegistry](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/support/BeanDefinitionRegistry.html)两个接口的功能。
 
@@ -187,7 +187,7 @@ Spring3.0开始支持Java注解配置Bean对象，也就是通过@Configuration�
 
 > 如果注册的是@Configuration注解的类，则在ConfigurationClassPostProcessor处理器中将所有@Bean注解方法的Bean注册到容器中，这部分内容后面会讲BeanFactoryPostProcessor的时候再详细解析。
 
-# 5、可配置的ConfigurableListableBeanFactory
+##5、可配置的ConfigurableListableBeanFactory
 
 ![ConfigurableListableBeanFactory](http://www.plantuml.com/plantuml/svg/jLPVRnj547_EVOfzF4jkFa7ird5IWTIGgh7W0V6mlXqd2-VTOtVErFoHUC1Gse9e1NqWa0fLq8Y78X61abIKBvEppRVWrklRk_CbRJ7mOkt-vZU_dPcRdVKLZLHXt0yzZmi4rQC1a6iyHRiXh0CLLsc0KWq_yBfIXkcU158WvK8RumRqkE38fV1tK76nIxef-XhjGyt8aLt0CgqjOu5-pRFiDz-gCeophZ8iVbMgpZ02_mPe6GvCY6PBCFrvWKSxf5glNMxEkLiqMhFyEkaqCm-ztIkGK_pvmYqX958JT2PFu2Q2O9hafYQXRjsfdBtTVHi2p0DuW-FUah8jafQGvOnjaIfMlakTMCrMLU2ZGWUqOfJlSGLj6bKQeT58RkqdJq-J-tUdd_sSt3wSFXhzDVh2S98d1sVFxao-_UJi-EEpq_raT9mSt1a_E1aVVTDeU1qIAA0uKyjhR2ARRMhUG796g3tQicnzqlovnZGDWzKy2vf6xF7T-69cdLIQCetzbnDZctpzCBdtHtBlSFpTm-cV-zCVxawUVZhvzNvo-jFuoyV9hT_J92QVduoVt7RXsnEgELmkv50dNA1BOKiog9FiuZ28G30GmR2z1y4xBe-C_M_bAjMxhcG42ZdeywgpX7OKXSE2yF1r6iQWNxBqSzRicjEGlszB-8zyym2anZI80BIMIgz3JofuDHCsBVtV2BTw26ePNLil1XgL75xSo8t6zF6ZyS5NuwF3PFJZsRFlfxyzC7stVvoCZbpV6KLc75wH8GDbxeoQpJzmblmsANWtvWgOlTBsr8o-uRwgdoytG0UAHoWLOMxfCZ9ou28sv_qledLlPMLb1t0-5vkkBPcRjtLYKcfBCG25e0WMTwQKQQLMLrTBKwmzdn2B8yn-7WrudIeGM33vXJM95gqrvxYUtT1haZ9GVc5DkcLRxjI1VdIH4rfRrQbDWxrPy5k0b56aldk85otby3PlHWgqvbBOrnAKVpwSVSd2eRQmXhG3Qi03y2i82HQHR4embis7JSPHgXkmopKgglmBSAAobPMOxq6rOusoRzbkEfPQl4uMdyZo6KqIbVOpTfvdgQNyvpMOossptmN6WCrcdwkixTiIHWR5NIvG6JD-1I7T1MInC3k1Z21xshNPsBTzXblW9Qx4EN_pFEySaAnzU2cEBhtGj_YdOJa5Pr_EtRi2WiNzy6y0)
 
@@ -675,7 +675,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 
 
-# 6. 功能更强大的容器——ApplicationContext
+##6. 功能更强大的容器——ApplicationContext
 
 ![ApplicationContext继承图](http://www.plantuml.com/plantuml/svg/ZPBVRjCm5CRl_HHvWUu141Shqu0BaARn16vmMqkk7TbE1G8kM0i8A4r1tGHKuWzZR3UZSC76KbPU9dQwjy1PaF0Kc-qkEVvypk_xZfU5X5p67GA0n9AWIq4zYWWEeSIChZ0gqHsPptRrqzzgCWS0cm9lmX05Ln2aLs4e6RzhbsyY8M0BtM8n3n6WJA90iYYu1_BnNfOE5xlR-jse8rhvstw-lvLlxkZXZagsWJewqEEf7ZpK-v_pxxDIeP8DlVbD3RRKgu6Q79-yUMI-mGDht0ri-1i4MJJMwNMCEEHXszWXJeLjThMBg5oB6mIBDk8bUeD9oJg6NYUZR3x9qiSgUQb-zhBqUJOxA0YVlL_qZiyWhT8kvensJBSL61cuVp7OVTAnIIGVJjMddafUdpn9JBV5y50bPmsk8t4QvHgKfaIBNzAjudquqY--4bOw2Q9IN8Qz-D7NwGZewLXzsQXJ6PXMRRttKVqw7NauLVE-6MdDhBu0wz1KchWLyyAOGmYid8FBzsirvueg8j-cWCT_SOkWfgovOAiRAEHEgVrS_Ig71Q_MuyIhzxp0qYB7hRRR8wZMoX7dxGSsXEI6AGW952Ae__rrI3tATTJaIBGz_S-_L0AwqDpebhsbfV_n-e_AP2vcmA_oD_IRkp3SDKGHnw4h5h2CwEsuG_u0)
 

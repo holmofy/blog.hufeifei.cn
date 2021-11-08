@@ -4,7 +4,7 @@ date: 2017-09-12
 categories: 前端
 ---
 
-# 为什么选择less
+##为什么选择less
 
 CSS代码开发与维护都比较困难，特别是CSS中的各种尺寸颜色，看多了绝对想吐。所以就有了便于开发以及维护管理的CSS预处理语言，可以由它们编译生成CSS。
 
@@ -12,7 +12,7 @@ CSS代码开发与维护都比较困难，特别是CSS中的各种尺寸颜色�
 
 > Less官网列出了使用了less的框架：http://lesscss.org/usage/#frameworks-using-less
 
-# 安装LESS
+##安装LESS
 
 less是基于node开发的，所以安装前确保已经有[Node.js](https://nodejs.org/)的开发环境。
 
@@ -47,7 +47,7 @@ $ lessc --clean-css styles.less styles.min.css
 > * 在线编译环境：http://less2css.org/，
 > * 第三方GUI编译环境：http://lesscss.org/usage/#guis-for-less
 
-# 使用less.js进行前端开发
+##使用less.js进行前端开发
 
 > less和less.js适用于开发阶段的调试，实际发布为了能得到更好的性能应该使用使用编译后的css
 
@@ -86,7 +86,7 @@ $ lessc --clean-css styles.less styles.min.css
 
 > [点击这里](http://lesscss.org/usage/#using-less-in-the-browser-setting-options)有该配置的相关解释
 
-# 变量：variables
+##变量：variables
 
 ## 变量定义
 
@@ -251,7 +251,7 @@ content: "I am fnord.";
 // 这样可以保证我们使用第三方框架时不用修改框架中任何代码
 ```
 
-# 继承：extend
+##继承：extend
 
 extend是less中的一个伪类选择器，用于合并共用CSS样式。
 
@@ -323,7 +323,7 @@ nav ul {
 
 >extend只能放在选择器的末尾，`a:hover:extend(.link).nth-child(odd)`这种写法是不被允许的。
 
-# 样式混合：mixins
+##样式混合：mixins
 
 样式混合就是把已有的样式插入到选择器中
 

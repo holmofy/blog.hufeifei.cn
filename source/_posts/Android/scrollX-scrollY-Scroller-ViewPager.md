@@ -6,14 +6,14 @@ categories: Android
 description: View滑动效果常用属性详解2-使用scrollX|scrollY和Scroller实现自定义ViewPager
 ---
 使用scrollX,scrollY和Scroller自定义ViewPager
-# 原理介绍
+## 原理介绍
 废话不多说先上图。
 
 ![原理图](http://img-blog.csdn.net/20170102191816574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ViewPager就是包裹了n个宽高与自己相同的子页面，然后通过滑动内部子页面来达到左右页面切换效果。需要注意的是上图中width，height都是指ViewPager的宽高。
 
-# 继承ViewGroup并实现onLayout方法
+## 继承ViewGroup并实现onLayout方法
 在layout方法中我们首先要对子页面进行布局定位。在加上上一次我们实现内容滑动使用的scrollX属性
 ```java
 package cn.hufeifei.scrollertest.view;
@@ -113,12 +113,12 @@ public class MyViewPager extends ViewGroup {
 此时我们能发现出现了两个问题：
 1.自定义ViewPager无法检测滑动越界问题，
 2.当用户停止滑动释放触摸后(也就是MotionEvent.ACTION_UP事件)，没有进行页面的定位。
-## 问题解决
-### 1、滑动越界问题
+### 问题解决
+#### 1、滑动越界问题
 很显然我们在滑动的过程中应该对滑动边界进行判断，也就是在``case MotionEvent.ACTION_MOVE:``中判断滑动的位置有没有超过所有的页面的总宽度。
-### 2、用户停止移动后的定位问题
+#### 2、用户停止移动后的定位问题
 在case MotionEvent.ACTION_UP:中我们应该判断，如果用户最后停止触摸的位置小于当前所在子页面宽度的一半，应该向左定位到当前子页面；如果用户最后停止触摸的位置大于当前所在子页面宽度的一半，应该定位到下一个子页面。而且在用户释放触摸后，页面应该平滑地滑动到所要定位的子页面，否则会给用户一种突兀感，这里我们可以有很多解决方法，也许你第一个想到的是使用属性动画，其实安卓已经提供给我们一个用来实现View平滑滚动的一个工具类----Scroller。它是专门为自定义view的滑动效果设计的，与之类似的还有一个类--OverScroller，在这里我们使用Scroller来解决我们的问题
-## Scroller详解
+### Scroller详解
 官方文档是这样解释的：
 This class encapsulates scrolling. You can use scrollers (Scroller or OverScroller) to collect the data you need to produce a scrolling animation—for example, in response to a fling gesture. Scrollers track scroll offsets for you over time, but they don't automatically apply those positions to your view. It's your responsibility to get and apply new coordinates at a rate that will make the scrolling animation look smooth.
 
@@ -134,7 +134,7 @@ public Scroller(Context context, Interpolator interpolator, boolean flywheel);
 Scroller会默认提供给我们一个插值器，我们也不用处理fling手势
 2、我们需要重载View的computeScroll方法来将Scroller计算出来的数据应用到View上。
 
-## 详细代码
+### 详细代码
 ```java
 package cn.hufeifei.scrollertest.view;
 
@@ -234,7 +234,7 @@ public class MyViewPager extends ViewGroup {
 运行效果图：
 ![效果图2](http://img-blog.csdn.net/20170102192002948?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 扩展
+### 扩展
 1、你会发现在这里我们并没有像ViewPager一样自定义一个PagerAdapter适配器，来统一管理各个子页面。ViewPager这样做是为了防止开发者通过xml布局文件自己设置子页面的宽高，上一节中我们讲到开发者通常无法自己去设置left，top，right，height，width，height属性，在这个示例中，你会发现MyViewPager下的子控件宽高无法指定为确定的值，那是因为在xml实例化所有的控件后，MyViewPager会通过``onLayout``方法中重新对各个子控件进行重新布局。如果你有兴趣继续封装自己的ViewPager类你可以实现一个PagerAdapter。
 2、这种实现相对于ViewPager来说还是太简单了，如果MyViewPager中有许多嵌套的子控件，还需要考虑滑动、点击等方面的冲突，这一部分需要熟悉[View的事件分发机制(这里也写了一片文章，供大家参考)](http://blog.csdn.net/holmofy/article/details/54092120),所以我们的MyViewPager适合做一些简单的滑动效果(比如第一次启动时的滑动界面，轮播图效果等，使用ViewPager实现就太浪费了)，内部嵌套的控件不能完成一些复杂的操作。
 3、同样的如果我们将里面所有的横坐标替换成纵坐标，就能达到上下滑动的效果，把代码也贴出来吧！
@@ -336,4 +336,4 @@ public class MyViewPager extends ViewGroup {
 效果图
 ![这里写图片描述](http://img-blog.csdn.net/20170102193343830?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# [代码下载地址](http://download.csdn.net/detail/holmofy/9727064)
+## [代码下载地址](http://download.csdn.net/detail/holmofy/9727064)

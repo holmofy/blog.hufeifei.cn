@@ -17,7 +17,7 @@ keywords:
 
 [去年的一篇文章大致地讲了我对MQ的一些认识](https://blog.hufeifei.cn/2020/04/25/Alibaba/MetaQ&Notify/)，事实上Kafka在内的现代MQ，功能远不止这些。后面整理好自己的思路，肯定会再写一篇文章来讲讲。这篇文章的主角就是与MQ息息相关的CDC技术。
 
-# 1. CDC技术
+##1. CDC技术
 
 [CDC](https://en.wikipedia.org/wiki/Change_data_capture)全称叫：change data capture，是一种基于数据库数据变更的事件型软件设计模式。
 
@@ -32,7 +32,7 @@ keywords:
 
 ![database architecture](https://p.pstatp.com/origin/pgc-image/85c4945860ba4dd793acc42691226c8a)
 
-# 2. 基于Binlog的CDC
+##2. 基于Binlog的CDC
 
 [Binlog](https://dev.mysql.com/doc/internals/en/binary-log.html)是MySQL 3.23.14引进的，[它包含所有的描述数据库修改的事件](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)——DML(增删改)、DDL(表结构定义与修改)操作。
 
@@ -73,7 +73,7 @@ keywords:
 
 这里只讨论Java语言的几个实现。首先[whitesock/open-replicator](https://github.com/whitesock/open-replicator)和[shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)是专门用来解析MySQL binlog的库，后者也是在前者的基础上重构的。[debezium/debezium](https://github.com/debezium/debezium)、[linkedin/databus](https://github.com/linkedin/databus)、[zendesk/Maxwell](https://github.com/zendesk/maxwell)三个中间件binlog解析都是基于这两个库。
 
-# 3. Canal vs. Debezium vs. databus vs. MaxWell
+##3. Canal vs. Debezium vs. databus vs. MaxWell
 
 1、[alibaba/Canal](https://github.com/alibaba/canal)![](https://img.shields.io/github/stars/alibaba/canal)
 
@@ -143,7 +143,7 @@ keywords:
 
 > 综合下来，Debezium是最佳选择。
 
-# 4. Debezimu-MySQL的配置
+##4. Debezimu-MySQL的配置
 
 要使用debezium需要[预先对mysql服务进行配置](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#setting-up-mysql)。
 
@@ -247,7 +247,7 @@ Kafka-connect可以用[单机版(`standalone`)和分布式版(`distributed`)](ht
 >
 > Debezium-Connector的所有配置：https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-connector-properties
 
-# 5. binlog解析的难点与Debezium工作原理
+##5. binlog解析的难点与Debezium工作原理
 
 binlog的[ROW模式](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_format)下类似于csv是没有shema的，我们将[row_image](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_row_image)设置成full模式，不管update操作只涉及几列，都会把完整的行数据写入到binlog。
 
@@ -284,7 +284,7 @@ Debezium不希望用户直接使用history topic。因为里面包含了binlog�
 
 如果用户想要消费自己关心的表的DDL语句，Debezium提供了[schema change topic](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-schema-change-topic)，这个topic名字被命名为`serverName`，这个serverName通过[`database.server.name`](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-property-database-server-name)配置。
 
-# 6. Debezium踩坑记录
+##6. Debezium踩坑记录
 
 debezium配置起来还是比较简单的，但是这么复杂的项目，坑还是比较多的。
 

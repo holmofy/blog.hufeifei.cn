@@ -4,7 +4,7 @@ date: 2017-07-17
 categories: JAVA
 ---
 
-# FileDescriptor
+##FileDescriptor
 
 FileDescriptor，顾名思义：“文件描述符”，用来表示开放文件、开放套接字。这个概念来自于`*nux`文件系统，Linux继承Unix **“一切皆文件”** 的概念：
 
@@ -85,7 +85,7 @@ FileDescriptor类中也定义了这三个常量：
 
 > 有关标准I/O的内容可以参考[《JavaIO总结与巩固》](http://blog.csdn.net/holmofy/article/details/72626387)
 
-# File
+##File
 
 FileDescriptor为文件的读写功能提供了基础，而File则是提供文件的增删查功能。
 

@@ -25,7 +25,7 @@ keywords:
 
 <!-- more -->
 
-# cat,head,tail
+##cat,head,tail
 
 `cat`是最常用的读取文件的命令，有时候还可以用`-n`参数输出每一行数据的行号：
 
@@ -51,7 +51,7 @@ tail -n 100 file
 tail -f file
 ```
 
-# tr
+##tr
 
 [tr命令](https://www.gnu.org/software/coreutils/manual/html_node/tr-invocation.html)是`translate characters`的缩写，用来单个字符或字符集。
 
@@ -77,13 +77,13 @@ echo 'abcdefg' | tr -d 'abc'                 # defg
 如果带上`-c`参数的话，表示取反：
 
 ```sh
-# 只保留aceg，其他替换为b
+##只保留aceg，其他替换为b
 echo 'abcdefg' | tr -c 'aceg' 'b'            # abcbebgb
-# 只保留aceg，其他全部删除
+##只保留aceg，其他全部删除
 echo 'abcdefg-abcdefg' | tr -cd 'aceg'       # acegaceg
 ```
 
-# sed
+##sed
 
 [sed命令](https://www.gnu.org/software/sed/)是`stream editor`的缩写，和tr有点类似，但是功能更强大。
 
@@ -130,14 +130,14 @@ echo 'DCBAefg-dcbaefg' | sed 's/dcba/abcd/2i'   # DCBAefg-abcdefg
 
 ```sh
 echo 'DCBAefg-dcbaefg' | sed 's/^\([A-Z]*\).*-/\1/g'
-# DCBA
+##DCBA
 ```
 
 上面`^\([A-Z]*\).*`正则匹配大写字母开头的字符，`\1`把整个匹配的字符串第一个匹配组的替换整个匹配组。
 
 ```sh
 echo 'DCBAefg-dcbaefg' | sed 's/^\([A-Z]*\).*-\([a-d]*\).*/\1-\2/g'
-# DCBA-dcba
+##DCBA-dcba
 ```
 
 把正则写的再复杂一点，后面的`-\([a-d]*\).*`匹配`-`后面的a到d的字符，然后使用`\1-\2`替换整个匹配组。
@@ -275,7 +275,7 @@ cat a.txt | sed '2,3a---'
 
 更多的函数使用可以参考[man手册](https://linux.die.net/man/1/sed)
 
-# awk
+##awk
 
 [awk](https://en.wikipedia.org/wiki/AWK)是一个文本处理语言，没错它是个编程语言，像其他语言一样支持if else，while循环等各种流程控制语句，也支持函数。让我们一步步地来慢慢丰满一个翔实的awk脚本。
 
@@ -629,7 +629,7 @@ ESTABLISHED:47
 >
 > 更详细的awk语言的教程可以参考[gnu的awk用户指南](https://www.gnu.org/software/gawk/manual/gawk.html)
 
-# cut
+##cut
 
 `cut`命令和上面几个相比简单很多
 
@@ -707,7 +707,7 @@ cat hex.dump | sed -E 's/ +/,/g' | cut -d',' -f1,4,5
 
 `-d`(delimiter)指定分隔字符，`-f`(fields)指定字段的范围。
 
-# grep,egrep,fgrep,zgrep,zegrep,zfgrep
+##grep,egrep,fgrep,zgrep,zegrep,zfgrep
 
 `grep`是使用正则搜索过滤的常用工具。与之相关的还有egrep、fgrep、zgrep、zegrep、zfgrep，他们的含义如下：
 
@@ -731,17 +731,17 @@ cat numbers.txt
 7
 8
 9
-# 后两行
+##后两行
 cat numbers.txt | grep -A2 '5'
 5
 6
 7
-# 前两行
+##前两行
 cat numbers.txt | grep -B2 '5'
 3
 4
 5
-# 前后各两行
+##前后各两行
 cat numbers.txt | grep -C2 '5'
 3
 4
@@ -771,7 +771,7 @@ cat numbers.txt | egrep -nm2 '(0|2|4|6|8)'
 4:4
 ```
 
-# sort
+##sort
 
 `sort`用来进行排序的，`sort`是支持大文件排序的，用到外排序的算法，所以[`sort`的源码](https://github.com/coreutils/coreutils/blob/v8.32/src/sort.c)也是学习外排序算法的最佳工程实践。
 
@@ -809,7 +809,7 @@ cat file | sort -R
 sort --field-separator=: -k=3n /etc/passwd
 ```
 
-# uniq
+##uniq
 
 `uniq`通常和`sort`配合使用，因为重复的行如果不相邻，`uniq`命令无法检测重复，所以排重之前必须先排序。
 
@@ -843,7 +843,7 @@ sort file | uniq -c
  sort file | uniq -c | sort -nr
 ```
 
-# wc
+##wc
 
 `wc`(word count)不仅可以用来统计单词个数，还可以统计数据行数，字符个数。
 
@@ -862,13 +862,13 @@ cat file | wc -w
 字符个数：
 
 ```sh
-# 单字节字符
+##单字节字符
 cat file | wc -c
-# 多字节字符
+##多字节字符
 cat file | wc -m
 ```
 
-# 实践试试看
+##实践试试看
 
 统计nginx访问次数最多的10个ip地址：
 

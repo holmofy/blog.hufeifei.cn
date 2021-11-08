@@ -10,7 +10,7 @@ keywords:
 - 日志分析
 ---
 
-# 从单体应用到分布式应用的可观测性
+##从单体应用到分布式应用的可观测性
 
 ![分布式系统观测性的三大基石](https://engineering.zenduty.com/assets/images/tracinglogging.png)
 
@@ -92,7 +92,7 @@ Elastic野心很大，但是这也导致ElasticSearch并不专注在其中的一
 
 ![](https://p.pstatp.com/origin/pgc-image/d0f15af19cfe475f897c97a705aa4a2f)
 
-# 分布式观测系统的架构
+##分布式观测系统的架构
 
 Logging、Metrics、Tracing三者架构上基本是一致统一的，但是[这里面可选的组件](https://openapm.io/landscape)可谓是百花齐放。
 
@@ -128,7 +128,7 @@ Logging、Metrics、Tracing三者架构上基本是一致统一的，但是[这�
 
 ![Alerting](https://p.pstatp.com/origin/pgc-image/56120004638a4d588dfb6e9c7309b538)
 
-# 基于Grafana的一站式分布式观测系统
+##基于Grafana的一站式分布式观测系统
 
 最早[Grafana](https://en.wikipedia.org/wiki/Grafana)是为了弥补[Kibana](https://en.wikipedia.org/wiki/Kibana)没有Metrics指标统计功能的一个分支，2014年首次发布，目标是为Prometheus、[InfluxDB](https://en.wikipedia.org/wiki/InfluxDB)、OpenTSDB等时序数据库提供可视化界面，后面逐渐支持传统关系型数据库。
 

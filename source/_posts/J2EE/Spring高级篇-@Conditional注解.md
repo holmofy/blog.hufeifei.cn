@@ -6,7 +6,7 @@ categories: J2EE
 
 Spring3开始提供的profile机制用起来的确很爽，在Spring4中提供了一种更通用的条件化Bean定义机制。
 
-# @Conditional注解
+##@Conditional注解
 
 **使用@Conditional注解**
 
@@ -120,7 +120,7 @@ public interface AnnotatedTypeMetadata {
 }
 ```
 
-# Spring4对@Profile注解进行的重构
+##Spring4对@Profile注解进行的重构
 
 从Spring4开始，@Profile注解使用@Conditional注解实现。我们可以以它为例，学习如何使用@Conditional注解。
 
@@ -168,7 +168,7 @@ class ProfileCondition implements Condition {
 }
 ```
 
-# SpringBoot自动化配置中的Condition
+##SpringBoot自动化配置中的Condition
 
 Spring中的自动化配置基本就是靠这个@Condition注解实现的，所以在springboot-autoconfig中有一大堆实现了Condition接口的类：
 

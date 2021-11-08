@@ -14,12 +14,12 @@ keywords:
 
 上一家公司并没有用消息队列中间件，大学里对[ActiveMQ](https://activemq.apache.org/)有所了解但并未深入研究，[RocketMQ](https://rocketmq.apache.org/)、[Kafka](https://kafka.apache.org/)也一直囿于听闻。不过在原来的项目中经常会用Redis的list实现一个分布式的阻塞队列。在短信营销任务中，会将服务的同步调用改为异步任务存入队列表，Worker批量调度以提高吞吐量，并降低大促期间大批量短信同步调用带来的压力。我觉得后面这一点也非常接近消息队列所要实现的需求。然后受益于[隆基](https://www.atatech.org/users/13788)前辈的[阿里消息中间件架构演进之路：notify和metaq](https://www.atatech.org/articles/95456)一文，用这篇小笔记总结下我对消息队列的认识和理解。
 
-# 1、为什么用消息队列
+## 1、为什么用消息队列
 
 任何技术的诞生都有它背后的故事，消息队列肯定也是为了解决某些已有的问题才出现的。
 
 
-## 1.1、解耦
+### 1.1、解耦
 
 比如对于一个分布式的电商网站，最初订单系统只需要接入支付系统的接口。后面网站又拓展了优惠券模块也需要接入订单系统。
 
@@ -95,7 +95,7 @@ Queue <-- ...
 @enduml
 ```
 
-## 1.2、异步
+### 1.2、异步
 
 原来的订单系统会调用多个外部服务，每个服务的调用都会消耗一定的时间，随着接入的系统增多，整个下单流程的时间肯定会线性增长。这对于电商这样的互联网应用来说肯定是不能容忍的——用户的耐心是有限的，下个单loading半天鬼才用你家软件呢。
 
@@ -118,7 +118,7 @@ T is "..."
 
 ![下单时长](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuKhEpqlEB4vLK0efIan9LL98B5O8GGWwvvSMvEU1HPqHei6vnM2XO8IGOq61Ga1fSGPOF00XhgUd1nRovt8mu0fHo2nMUBAZ-sdlL2u78mEOmEuPpzRiut8mWGayxP_uig7nsRQEPuthkHpCOCBL6PafAQbvjH0XPx3MFJEUDIzush438XOC4di-V-sJ_GiX0W4W0Q3JdlMj09e84VC7Mz6wxSdkQS_cz3xjMiYLaPcUaGF49Ge62YNv2a152ihk-JafrZcPUQbMBfcvxaMfbLmEgNafm0030000)
 
-## 1.3、削峰
+### 1.3、削峰
 
 双十一这种大促对于所有涉及到电商业务的网站都是大考，我上一家公司是做isv业务的，也不例外。之前的项目主要是为淘宝店铺发营销短信，在双十一前一两个礼拜开始就有大量的店铺发各种促销短信，那几天的短信量有时甚至可以顶得上平常大半年的短信量。而系统当时使用的策略是将营销模块提交的一条条短信记录存在短信网关的一张队列表里，短信网关调度任务会批量从队列表拿出短信，处理后再批量地发送给下游的网关通道商——这种方式也确实达到了削峰填谷的作用。
 
@@ -132,13 +132,13 @@ T is "..."
 
 ![](http://www.plantuml.com/plantuml/svg/JOzD2eD038NtEKKkC8AkHUpFraLxW-Y4KjH4uiogzEwrjeEp2BoF5xwGTWra8SuJhEDJ5ZAQqLEWdbP-0VOqZ0_JAFwYarfTzwOZIzFWdJsyWOQWXbsPGfL2KHGf2eXwnjEoG3BZBN9aF7H7Spr3Lw9ppMy7kYg3hpP7oU2lT6w_jCtURRgMnMyFVW00)
 
-# 2、消息怎么存储
+## 2、消息怎么存储
 
 消息被暂存到中间的[消息代理(Message broker)](https://en.wikipedia.org/wiki/Message_broker)上，消息具体如何存储是首要解决的问题。
 
 ![消息队列](http://www.plantuml.com/plantuml/svg/FSqz2i904CNnVaynfCyL96Yzu05ibimpBYOpE1_tTr6qUloAFs_nQ1Pvx6N7FIYKh6-F8Ew6DRfA4MNGrPHpXNrrKV4yXbw914qLxct3JSwcJzX4pQcMNqFpV1gid_sd2uJ7xHi0)
 
-## 2.1、数据库
+### 2.1、数据库
 
 就像我之前项目一样，在数据库中创建一张队列表存储——也就是所谓“工作队列”，其实就是将任务插入到数据表中，通常需要任务调度进行处理，然后将其标记为已完成。
 
@@ -176,7 +176,7 @@ CREATE TABLE ACTIVEMQ_MSGS(
    >
    > 但是面对有大量消息堆积的应用，比如双十一期间的电商网站，一下子上亿的数据量存储在数据库中肯定对性能有所影响，因为数据增长到一定数量级后，B+树层级会变得更深，从而会导致I/O次数的增加。
 
-## 2.2、分布式KV存储
+### 2.2、分布式KV存储
 
 > 之前也在用Redis做消息队列，主要是使用了list的阻塞功能，以实现消息的实时处理：比如用户的物流信息有变化会立即`lpush`写入队列，后台会使用`brpop`的阻塞方式取出消息交给Worker线程处理，这样避免了高频率轮询数据库导致压力，也避免了长轮询导致消息处理不够及时。
 >
@@ -192,7 +192,7 @@ CREATE TABLE ACTIVEMQ_MSGS(
 
 ActiveMQ中还支持[LevelDB的持久化方式](https://activemq.apache.org/leveldb-store)。[LevelDB](https://github.com/google/leveldb)是谷歌开源的一款支持**持久化的KV存储引擎**，它使用一种`append-only`的索引结构[LSM-Tree(基于日志结构的合并树)](https://en.wikipedia.org/wiki/Log-structured_merge-tree)来存储数据。由于先写入内存的MemTable，然后由Merge线程**顺序写入**到磁盘中的SSTable中，所以写入性能会比传统的关系型数据库好很多。但是因为LSM-Tree索引结构会按照一定的策略分成多个SSTable分段，这也意味着读取时会有多次I/O，所以读取性能会有所牺牲。而消息队列经常有消息消费失败后面临重试的情况，读取性能的降低势必会对系统性能有所影响。
 
-## 2.3、基于文件顺序写的日志结构
+### 2.3、基于文件顺序写的日志结构
 
 目前业界较为常用的几款产品（[RocketMQ](http://rocketmq.apache.org/)/[Kafka](https://kafka.apache.org/)/[RabbitMQ](https://www.rabbitmq.com/)）均采用消息刷盘至文件系统来做持久化。
 
@@ -220,7 +220,7 @@ ActiveMQ中还支持[LevelDB的持久化方式](https://activemq.apache.org/leve
 
 
 
-# 3、集团的消息中间件——notify和metaq
+## 3、集团的消息中间件——notify和metaq
 
 看了[隆基](https://www.atatech.org/users/13788)前辈的[阿里消息中间件架构演进之路：notify和metaq](https://www.atatech.org/articles/95456)这篇文章，让我对集团这两个核心的中间件有了初步认识。
 

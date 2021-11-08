@@ -8,7 +8,7 @@ keywords:
 
 Java提供给我们软件国际化的解决方案，这些国际化API基于Unicode标准，并且包括文本、（货币）数字、日期以及用户自定义对象的适配，从而使得软件能够应用到任何国家或地区。国际化英文为“Internationalization”，通常简写成`i18n`(实际开发经常使用简写)。更多有关Java国际化的内容可以参考[Oracle的相关网站](http://www.oracle.com/technetwork/java/javase/tech/intl-139810.html)。
 
-# 文字国际化
+## 文字国际化
 
 Java语言基于Unicode字符集。Unicode是一种国际字符集标准，支持世界上所有主要文字以及常见技术符号。早期Unicode规定所有字符固定16bit宽(也就是UCS-2)，但是Unicode标准中的字符早已超过16bit所能表示的范围，现规定的代码点范围在U+0000到U+10FFFF之间。Java标准使用的UTF-16定义的编码方式允许使用一个或两个16bit单位来表示所有的Unicode代码点。
 
@@ -20,15 +20,15 @@ Java平台中表示字符序列的各种类型如：char[]、java.lang.CharSeque
 
 `Character`类作为基本数据类型char的包装类，里面有很多确定字符属性的静态方法，如`isLowerCase`、`isTitleCase`和`isDigit`等，在Java5之前这些方法只有`char`作为参数，所以只接受U+0000到U+FFFF范围内的码点，Java5之后这些方法有了`int`类型作为参数的重载方法，这样就能表示所有Unicode代码点。
 
-# 区域识别与本地化
+## 区域识别与本地化
 
-## 1. Locale—地区性
+### 1. Locale—地区性
 
 Java平台将语言和地区分开定义，但均使用`Locale`类表示，Locale类通常代表特定地理位置，政权或文化区域。国际化的API中都有重载的方法要求提供一个Locale类的实例，而`Locale`类中有许多的静态常量用于表示常见的国家和地区的本地化对象。比如：`Local.CHINA`,`Local.CANADA`,`Local.JAPEN`。
 
 > 官网有Java支持的所有[国家或地区语言的列表](http://www.oracle.com/technetwork/java/javase/java8locales-2095355.html)
 
-## 2. ResourceBundle—国际化资源
+### 2. ResourceBundle—国际化资源
 
 通常我们的应用或系统不会将字符(串)等信息硬编码编译到Java字节码中，而是将这些信息以资源文件的形式存储在磁盘中，这是我们通常需要ResourceBundle这个类。
 
@@ -43,7 +43,7 @@ ResourceBundle中有几个重载的静态方法`getBundle`可以用来根据资�
 比如你有两个特定区域的资源：`MyResource_en.properties`和`MyResource_zh.properties`：
 
 ```properties
-# properties文件内容
+#properties文件内容
 key=value
 ```
 
@@ -104,7 +104,7 @@ ResourceBundle有两个子类：ListResourceBundle和PropertyResourceBundle。
 
 2、PropertyResourceBundle就是ResourceBundle通过get方法获取资源的形式，它使用的是`Properties`工具类获取`.properties`文件中的信息。
 
-# 日期与时间的处理
+## 日期与时间的处理
 
 java.util.Date类代表着毫秒精度的日期时间，该类有几个方法可以获取日期中的年、月、日、时、分、秒等信息。但是由于该类依赖于时区，与国际化不兼容，大部分方法已经被弃用，通常我们使用Calendar类来转换日期和时间，并通过DateFormat类来格式化或解析日期时间字符串。
 
@@ -118,7 +118,7 @@ TimeZone是一个抽象类，封装了一个相对于GMT(格林尼治标准时�
 
 Calendar类及其子类会使用TimeZone进行本地时间与UTC(通用标准时间)之间的转换。
 
-# 格式化
+## 格式化
 
 i18n中重要的一个部分就是文本格式化，这些功能主要在`java.text`包中：
 
@@ -505,9 +505,9 @@ The disk "MyDisk" contains 1,234 files.
 >
 > 更多有关ChoiceFormat的信息可以参考[官方文档](http://docs.oracle.com/javase/8/docs/api/java/text/ChoiceFormat.html)
 
-# 字符串操作
+## 字符串操作
 
-## 字符串比较
+### 字符串比较
 
 String类实现了Comparable接口所以提供了一个compareTo方法，但是该方法是直接比较字符的Unicode编码值：
 
@@ -657,7 +657,7 @@ StringCharacterIterator是CharcterIterator接口的实现类，CharcterIterator�
  }
 ```
 
-# 编码转换
+## 编码转换
 
 Java使用Unicode作为编码方法，经常会出现将将程序中的数据输出到外部(磁盘文件或网络响应等)，最常用的两个类就是InputStreamReader和OutputStreamWriter，这两个类后期也是用Charset类来实现核心功能的。Charset采用spi设计模式，允许我们开发自定义的编解码器。
 

@@ -387,9 +387,9 @@ for (c = 0; v; v >>= 1)
 ```c
 static const unsigned char BitsSetTable256[256] =
 {
-#   define B2(n) n,     n+1,     n+1,     n+2
-#   define B4(n) B2(n), B2(n+1), B2(n+1), B2(n+2)
-#   define B6(n) B4(n), B4(n+1), B4(n+1), B4(n+2)
+#  define B2(n) n,     n+1,     n+1,     n+2
+#  define B4(n) B2(n), B2(n+1), B2(n+1), B2(n+2)
+#  define B6(n) B4(n), B4(n+1), B4(n+1), B4(n+2)
     B6(0), B6(1), B6(1), B6(2)
 };
 
@@ -636,9 +636,9 @@ while (v)
 ```c
 static const bool ParityTable256[256] =
 {
-#   define P2(n) n, n^1, n^1, n
-#   define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)
-#   define P6(n) P4(n), P4(n^1), P4(n^1), P4(n)
+#  define P2(n) n, n^1, n^1, n
+#  define P4(n) P2(n), P2(n^1), P2(n^1), P2(n)
+#  define P6(n) P4(n), P4(n^1), P4(n^1), P4(n)
     P6(0), P6(1), P6(1), P6(0)
 };
 
@@ -800,9 +800,9 @@ r <<= s; // shift when v's highest bits are zero
 ```c
 static const unsigned char BitReverseTable256[256] =
 {
-#   define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
-#   define R4(n) R2(n), R2(n + 2*16), R2(n + 1*16), R2(n + 3*16)
-#   define R6(n) R4(n), R4(n + 2*4 ), R4(n + 1*4 ), R4(n + 3*4 )
+#  define R2(n)     n,     n + 2*64,     n + 1*64,     n + 3*64
+#  define R4(n) R2(n), R2(n + 2*16), R2(n + 1*16), R2(n + 3*16)
+#  define R6(n) R4(n), R4(n + 2*4 ), R4(n + 1*4 ), R4(n + 3*4 )
     R6(0), R6(2), R6(1), R6(3)
 };
 

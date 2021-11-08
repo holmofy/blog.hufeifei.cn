@@ -21,7 +21,7 @@ keywords:
 
 ---
 
-# 1、多线程容易出现的问题
+##1、多线程容易出现的问题
 
 因为同一个进程内的多个线程共享进程的资源，而进程之间，资源的获取是互斥的，所以线程间通信比进程间通信更简单。我们可以直接通过**共享资源的访问**来实现线程间通信，这种通信方式十分有效(速度快)，但也容易产生错误，如：**线程干扰**和**内存一致性错误**。
 
@@ -77,7 +77,7 @@ public class ThreadCommunicate {
 }
 ```
 
-# 2、问题出现的原因
+##2、问题出现的原因
 
 问题就出在`c++`和`c--`这两个操作上。
 
@@ -135,7 +135,7 @@ public class ThreadCommunicate {
 
 很明显两个线程需要**按顺序**来读写共享变量才不会出问题，一旦读写过程出现交错就可能出现问题，而这个按顺序来访问变量就是我们接下来提到的"同步"。
 
-# 3、同步与异步
+##3、同步与异步
 
 ![同步和异步](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdtzz8kzj20ma0gl74i.jpg)
 
@@ -145,7 +145,7 @@ public class ThreadCommunicate {
 
 ![线程同步的原理图](http://tva1.sinaimg.cn/large/bda5cd74ly1g2hdugsxjng20hj09nx6p.gif)
 
-# 4、使用线程同步解决问题
+##4、使用线程同步解决问题
 
 线程同步的方式有很多，下面我们介绍Java语言中最简单的线程同步的实现——使用`synchronized`关键字。`synchronized`关键字有两种使用方法：同步方法、同步代码块
 
@@ -247,7 +247,7 @@ public class ThreadCommunicate {
     }
 ```
 
-# 4.3、synchronized使用注意事项
+##4.3、synchronized使用注意事项
 
 * 只能锁定对象，不能锁定基本数据类型(int,float等8种基本数据类型)；
 * 被锁定的对象数组中的单个对象不会被锁定；

@@ -13,7 +13,7 @@ description: Windows C++界面库
 ---
 最终我在网上了解到[DirectUI](http://baike.baidu.com/link?url=jjY4kgjgDrFjGCEAodKznQ4tjXwz9kCuQ-jEq5DpGk65qX1u6fAXz2TJCCaY4Ze4oAcixng9ssbrrCckMMvXF87Yrm1eScWKAKlgFLYTsIm)这项技术，虽然微软没有为开发者提供技术支持，但网上的总有一大批大牛人物敢于挑战。
 下面我以开源与否列举几个知名的。
-# 开源界面库
+##开源界面库
 ## DuiLib
 首先要说的就是大名鼎鼎的DuiLib，国内很多大小公司都在使用该界面库，比如华为网盘，腾讯微信，百度杀毒 and so on。。。这个库是借鉴了国外的大牛Bjarke Viksoe写的[Windowless库](http://www.viksoe.dk/code/windowless1.htm)。据说DuiLib是国内第一个开源的DirectUI界面库，有很多界面库也是基于DuiLib二次开发的。随着时间的洗礼，很多其他界面库都慢慢销声匿迹了，DuiLib算是活的最好的。下面是我以前写过的几个小程序。
 ![模仿EclipseInstaller写的EclipseSelector](http://img-blog.csdn.net/20170214233906637?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -27,7 +27,7 @@ description: Windows C++界面库
 上面三个界面库可以说是国内最知名的开源界面库，其他很多界面库都是来源于这三个界面库（有些库只是将名字改改，就自立一派，( ﹁ ﹁ ) ~→真不想吐槽天朝的盗版能力）
 
 ---
-# 商业库
+##商业库
 ## UIPower
 老贵的一款商业界面库，但听说产品确实不错，也有很多知名企业使用他们的界面库，比如：招商银行，瑞星杀毒，农业银行，中信证券... 前期华为网盘也是使用这个界面。貌似还能跨平台（用不起，也就无法考证），公司老总还亲自出了一系列相关视频，上个月阙总还到DuiLib交流群宣传他们公司的产品，O(∩_∩)O~~。
 公司官网：http://www.uipower.com

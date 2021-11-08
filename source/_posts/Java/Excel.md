@@ -7,7 +7,7 @@ categories: JAVA
 Excel作为一种常用的数据存储格式，在很多项目中都会有相应的导入导出的功能。这篇文章会介绍如何使用Java操作Excel，以及如何解决大文件读写时内存溢出的问题。
 
 
-# 1、OpenXML标准
+##1、OpenXML标准
 
 [Word](https://en.wikipedia.org/wiki/Microsoft_Word)、[Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)、[PPT](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)是Office办公套件中最常用的三个组件。早期的Office套件使用二进制格式，这里面包括以[`.doc`](https://en.wikipedia.org/wiki/Doc_%28computing%29)、[`.xls`](https://en.wikipedia.org/wiki/Microsoft_Excel_file_format)、[`.ppt`](https://en.wikipedia.org/wiki/Microsoft_PowerPoint#File_formats)为后缀的文件；直到07这个划时代的版本将基于XML的压缩格式作为默认文件格式，也就是相应以`.docx`、`.xlsx`、`.pptx`为后缀的文件。
 
@@ -38,7 +38,7 @@ Excel作为一种常用的数据存储格式，在很多项目中都会有相应
 
 > Excel远比我们想象的复杂
 
-# 2、使用POI操作Excel
+##2、使用POI操作Excel
 
 Java领域最常见的两个操作Excel的工具库分别是[JXL(Java Excel API)](http://jexcelapi.sourceforge.net/)和Apache的[POI](http://poi.apache.org/)。JXL有个严重的缺点就是只支持07版本之前的二进制格式Excel，而POI除了能操作Excel，还可以操作Word和PPT以及Office套装中其他的组件，高下立现。
 
@@ -463,7 +463,7 @@ public class ExampleEventUserModel {
 
 使用SheetContentsHandler的例子可以参考[官方的XLSX2CVS](https://svn.apache.org/repos/asf/poi/trunk/src/examples/src/org/apache/poi/xssf/eventusermodel/XLSX2CSV.java)
 
-# 3、写在最后
+##3、写在最后
 
 Excel本身有很多已知的限制，如最大行数和最大列数(这些限制可以参考[SpreadsheetVersion](http://poi.apache.org/apidocs/org/apache/poi/ss/SpreadsheetVersion.html))，理论上只要你有足够大的内存，你就能使用Workbook API对任意Excel进行读写。
 

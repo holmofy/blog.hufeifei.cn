@@ -12,7 +12,7 @@ keywords:
 
 [TOC]
 
-# FunctionalInterface—函数式接口
+##FunctionalInterface—函数式接口
 
 在`java.util.function` 包中提供给我们一些最常用的函数式接口：
 
@@ -144,7 +144,7 @@ java.util.Comparator
 java.nio.DirectoryStream.Filter
 ```
 
-# Lambda表达式语法
+##Lambda表达式语法
 
 前面说了那么多函数式接口，下面来看看Java中Lambda表达式的语法规则：
 
@@ -237,7 +237,7 @@ Thread-0:this is child thread
 Thread-1:this is child thread
 ```
 
-# Stream API
+##Stream API
 
 ![Stream](./Stream.svg)
 

@@ -6,13 +6,13 @@ categories: 前端
 
 昨晚鑫哥到我宿舍聊天，聊了很多，从各自公司用的技术到杭州和深圳的房价，从后端技术到前端技术，一直聊到凌晨一点多，直到鑫哥被室友“驱逐”出去。中间有一段聊到公司用到的React，提到了单页面应用和Router，觉得思路很好有必要写个笔记记下来。
 
-# 最开始的网页<i id='_top_'></i>
+##最开始的网页<i id='_top_'></i>
 
 早期的网页都是一个个独立的html页面，通过`a`标签从这个页面跳转到另外一个页面。但是同一个网站中的两个页面很多内容都是相同的，比如页头、页脚、导航栏和主菜单等。
 
 两次网络请求得到的数据中很大一部分都是重复的，不管这两个页面是完全静态的（不好维护），还是由后台动态语言程序生成的，都会浪费不小的带宽。
 
-# frame布局
+##frame布局
 
 为了便于维护，同时为了点击左边的导航栏只有右边的内容部分更新，所以有一部分网站用frameset布局。把公共的部分抽成单独的html，在frameset中引入各个html。这种布局方式在很多老的管理系统中还可以见到。
 
@@ -20,7 +20,7 @@ categories: 前端
 
 ![frameset布局](http://tva1.sinaimg.cn/large/bda5cd74gy1fqq374epnej211x0hv0xf.jpg)
 
-# ajax带来的web2.0时代
+##ajax带来的web2.0时代
 
 IE5 通过 ActiveX 来实现了Ajax后， Mozilia，Safari，Opera 相继以 XMLHttpRequest 来实现 Ajax。有了Ajax，用户交互再也不用刷新整个页面了，单页面应用(SPA:single page web application)也初具雏形。
 

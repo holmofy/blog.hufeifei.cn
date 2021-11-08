@@ -389,7 +389,7 @@ mysql的配置文件在/etc/my.cnf
 搞了两节课终于TM折腾完了
 
 
-# 命令总结
+##命令总结
 ** yum： ** Yellow dog Updater, Modified， 解决rpm包依赖的软件安装工具，可以在/etc/yum.config文件中进行yum的配置，yum数据源默认放在/etc/yum.repos.d/文件夹下。可以认为是rpm的加强版。
 ** rpm： ** RedHat Package Manager，软件安装包的管理器，可以用来安装或删除软件。
 ** wget： ** World Wide Web Get，wget是一个从网络上自动下载文件的自由工具，支持HTTP、HTTPS、FTP常见协议。

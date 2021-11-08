@@ -21,7 +21,7 @@ keywords:
 
 ---
 
-# 1、定时器(Timer类)
+##1、定时器(Timer类)
 
 如果我们需要让某个任务在另一个线程中周期性的执行，或者让它在某个时刻执行一次。这时我们可能会写这样的代码：
 
@@ -152,7 +152,7 @@ public class TimerTest {
 
 > 虽然Java 5.0以后有了ScheduledThreadPoolExecutor也能进行定时任务的执行，但是它是用线程池实现的，而Timer是单线程的(就是上面类图中的TimerThread)，单线程的缺点是如果有一个定时任务特别耗时，将会导致后续的任务延迟，不能在预定的准确时间得到执行，所以在[稍后的文章中还会提到ScheduledThreadPoolExecutor](https://blog.csdn.net/holmofy/article/details/79344914)。当然对于一些小功能来说没必要使用线程池，Timer足以应付。
 
-# 2、线程局部变量(ThreadLocal类)
+##2、线程局部变量(ThreadLocal类)
 
 **线程局部变量用于为每个线程维护一个变量的副本，使得每个线程都可以访问自己线程中的副本对象，而不会对其他线程中的副本造成影响，而且在访问这些变量时为我们提供了统一的访问方式**。
 

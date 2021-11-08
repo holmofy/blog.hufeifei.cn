@@ -8,7 +8,7 @@ tags: Linux
 
 最近准备在自己服务器上玩玩docker，把网站都用docker部署下，用ELK技术栈分析一下服务器上的日志。服务器是大学里搭的，版本是CentOS6，这次重装了系统升级到CentOS7，遇到的最头疼的问题就是装软件。因为自己在Mac上有homebrew，装啥软件都很爽，基本上软件都是最新的，但是CentOS非常保守，官方的软件库里软件版本都非常低，yum装了发现很多东西都用不了。比如tmux，官方仓库版本仍然是1.8，已经不支持[tmux-plugin](https://github.com/tmux-plugins/tpm)的功能了。所以这篇文章记录一下自己解决这个问题的过程。
 
-# CentOS7配置官方软件仓库(yum软件源)
+##CentOS7配置官方软件仓库(yum软件源)
 
 yum安装软件时，下载速度都非常慢，因为CentOS-Base.repo文件的baseurl连接的都是`mirror.centos.org`国外服务器。这个我不用担心了，因为云服务器(我用的是腾讯云)在重装系统时已经修改了yum软件源的连接。
 
@@ -81,7 +81,7 @@ Loading mirror speeds from cached hostfile
 ```
 国内的[清华软件源](https://mirrors.tuna.tsinghua.edu.cn/)、[阿里软件源](https://developer.aliyun.com/mirror/)、[腾讯软件源](https://mirrors.cloud.tencent.com/)中也提供了[`centos`](https://mirrors.tuna.tsinghua.edu.cn/centos/)、[`epel`](https://mirrors.tuna.tsinghua.edu.cn/epel/)，都只是加快了国内的访问速度，并没有解决软件包少的问题。
 
-# 第三方软件仓库
+##第三方软件仓库
 
 最后在CentOS官网终于找到一个解决方案：https://wiki.centos.org/AdditionalResources/Repositories
 
@@ -129,7 +129,7 @@ Loading mirror speeds from cached hostfile
 ```
 可以看到这里有ius发布的tmux2.9的版本，还是相对比较新的一个版本
 
-# 将ius改为腾讯镜像
+##将ius改为腾讯镜像
 
 上面安装ius软件仓库后，可以看到`yum.repos.d`目录下已经有几个仓库了
 ```sh
@@ -177,7 +177,7 @@ gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-IUS-7
 ```
 这里`http://mirrors.tencentyun.com`是内网访问地址
 
-# 同样的道理安装加速docker的安装
+##同样的道理安装加速docker的安装
 
 [docker官方文档](https://docs.docker.com/engine/install/centos/)中提到的需要安装docker-ce.repo仓库
 

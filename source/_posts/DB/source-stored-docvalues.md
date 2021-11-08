@@ -20,7 +20,7 @@ keywords:
 
 为什么 ElasticSearch使用 `_source` 字段作为默认值，所有这些可用的字段从性能的角度来看有什么区别？让我们一探究竟！
 
-# Lucene中的store_fields和doc_values
+##Lucene中的store_fields和doc_values
 
 当我们在 Lucene 中索引一个文档时，已经被索引的原始字段的信息丢失了。字段根据schema配置进行分词、转换然后索引形成倒排索引。没有任何额外的数据结构，当我们搜索一个文档时，我们得到的是这个文档的 docId 而不是原始字段。为了获得这些原始信息，我们需要额外的数据结构。Lucene为此提供了两种可用的方式：`store_fields`和`doc_values`。
 
@@ -40,7 +40,7 @@ keywords:
 
 可以找到关于`store_fields`和`doc_values`的更详细的使用方法以及各自局限性。
 
-# ElasticSearch中的字段检索
+##ElasticSearch中的字段检索
 
 如果我们在映射中明确定义`store_fields`和`doc_values`，则可以在 elasticsearch 中使用它们：
 
@@ -211,7 +211,7 @@ POST my-index-000001/_search
 
 例如，如果您有一个字段既存储了`store_fields`也存储了`doc_values`，您可以选择是从`store_fields`还是`doc_values`中检索它。从功能的角度来看，这完全相同，但您的选择可能会影响查询的执行时间。
 
-# store_fields字段, doc_values和ElasticSearch _source内部结构
+##store_fields字段, doc_values和ElasticSearch _source内部结构
 
 在本节中，我只想简要概述`store_fields`、`_source` 字段和 `doc_values` 的内部结构，以便来了解使用这些方法进行字段检索时对性能的期望。
 
@@ -235,7 +235,7 @@ POST my-index-000001/_search
 
 正因为它是包含整个文档内容的json，所以必须读取整个`_source`才能使用它包含的信息。如果我们要返回一个文档的所有字段，这个过程直观上是最快的。另一方面，如果我们只需要返回它包含的信息的一小部分，读取这个巨大的字段可能会浪费计算能力。
 
-# 性能测试
+##性能测试
 
 为了对 3 种类型的字段进行基准测试，我在 ElasticSearch 中创建了 3 个不同的索引。我索引了来自维基百科的 100 万个文档，对于每个文档，我用三种不同的方法索引了 100 个包含 15 个字符的字符串字段：在第一个索引中，我将字段设置为`store_fields`，在第二个索引中设置为`doc_values`。在这两个索引中，我都禁用了`_source`字段。相反，在第三个索引中，我只是启用了`_source`字段。
 

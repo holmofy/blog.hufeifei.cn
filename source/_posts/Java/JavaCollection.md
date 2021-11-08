@@ -9,7 +9,7 @@ categories: JAVA
 
 JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是JAVA对各种数据结构的实现。一个集合代表一组对象，使用集合框架可以独立于实现细节来操作这一组对象，而不用自己再造轮子。
 
-# 集合接口概要：
+##集合接口概要：
 
 ![集合接口](http://img-blog.csdn.net/20170505163102593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -21,7 +21,7 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 
 
-# List （since 1.2）
+##List （since 1.2）
 
 有序列表，代表一组**有序可重复**对象。
 
@@ -79,7 +79,7 @@ ArrayList绝对是集合框架中使用次数最多的类。
 
 
 
-# Map （since 1.2）
+##Map （since 1.2）
 
 > 把Map放在前面是因为，Set的实现类是基于Map或List实现的。
 
@@ -348,7 +348,7 @@ NavigableMap实现类：
 
 ConcurrentNavigableMap接口的唯一实现类。该数据结构使用**跳跃链表**实现，跳跃链表是一种查找速度与二叉查找树相当的数据结构，基于多级并联的链表实现，相较二叉查找树要消耗更多的内存资源，但实现起来比二叉查找树简单的多。关于跳跃链表的更多细节可以查看[维基百科](https://zh.wikipedia.org/zh/%E8%B7%B3%E8%B7%83%E5%88%97%E8%A1%A8)。
 
-# Set （since 1.2）
+##Set （since 1.2）
 
 无序集合，代表一组无序不可重复的对象。与数学中的集合特性类似：无序性，互异性。
 
@@ -420,7 +420,7 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 基于ConcurrentSkipListMap实现的有序集，因为ConcurrentSkipListMap支持并发操作，ConcurrentSkipListSet也支持并发操作。
 
-# Queue （since 1.5）
+##Queue （since 1.5）
 
 ![队列示意图](http://img-blog.csdn.net/20170710235752953?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 在普通集合的基础上添加了一些队列操作：
@@ -529,7 +529,7 @@ BlockingDeque与Deque的关系类似于BlcokingQueue与Queue的关系。
 * java.util.concurrent包
   - LinkedTransferQueue（since 1.7）：TransferQueue接口唯一的一个实现类，相关功能可以查看TransferQueue接口的定义。注意的是``LinkedTransferQueue.size()``方法与大多数集合不一样，该类没有成员变量中没有保存容器的size，size()方法会临时性的去遍历整个链表来计算元素个数，所以这是个非常耗时的操作，而且由于遍历过程中可能有另外的线程操作，所以该方法获取的size可能是不准确的。
 
-# Collections工具类
+##Collections工具类
 
 ## Collections工具类中的包装类
 

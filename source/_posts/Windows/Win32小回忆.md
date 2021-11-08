@@ -7,7 +7,7 @@ categories: Windows
 
 这两天阿瘦找我给他的一个程序写个界面，听说是要参加啥三创比赛(都大四老狗了，汗)，然后问要用什么语言——C/C++，Windows平台的。他之前没怎么接触过C++方面的界面开发，然后我就开始了一波Windows教学，顺便自己也回忆回忆(大一大二玩了一年多，之后几乎就没碰过)。
 
-# 整体流程
+##整体流程
 ```c
 #include <windows.h>
 
@@ -99,7 +99,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
 ```
 > 看到上面这段代码，倍感亲切啊
 
-# Windows程序的入口
+##Windows程序的入口
 我们知道标准C的入口函数是`main`，对于Windows程序来说程序的入口函数是`WinMain`。
 > 不要被`main`函数限制了你的想象力，`main`只是入口函数的标记，程序运行时会根据`main`所指向的函数地址找到要从哪条指令开始执行。我们编译链接的时候可以自行指定这个标记。
 >
@@ -133,7 +133,7 @@ int CALLBACK WinMain(
 );
 ```
 
-# 消息循环机制
+##消息循环机制
 
 [消息循环(message loop)机制](https://en.wikipedia.org/wiki/Message_loop_in_Microsoft_Windows)是整个Windows应用程序的核心。
 
@@ -210,7 +210,7 @@ while(msg.message != WM_QUIT)
 参考：
 * 消息与消息队列：https://msdn.microsoft.com/EN-US/library/windows/desktop/ms632590.aspx
 
-# 回调函数-消息处理函数
+##回调函数-消息处理函数
 
 上面WinMain的代码，90%以上都是“样板代码”：通常创建一个Windows窗口应用就必须按照这个流程，可变化的地方很少。
 
@@ -273,7 +273,7 @@ message是消息的ID号，UNIT类型的有四个字节，不过能用的只有�
 参考：
 * 消息处理函数：https://msdn.microsoft.com/en-us/library/windows/desktop/ms632593.aspx
 
-# 句柄与指针
+##句柄与指针
 
 前面频繁出现的一个东西HWND——窗口句柄。当然除了窗口句柄(HWND)，还有应用实例句柄(HINSTANCE)、文件句柄(HFILE)等各种句柄。**有了这些句柄我们就可以操作对应的Windows对象**。
 

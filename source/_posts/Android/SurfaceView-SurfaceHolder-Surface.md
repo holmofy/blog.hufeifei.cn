@@ -24,7 +24,7 @@ SurfaceView、SurfaceHolder、Surface的关系可以概括为以下几点：
 
 下面我们写一个Demo来对普通的View与SurfaceView进行区别。
 
-# 普通的View
+## 普通的View
 我们先写一个继承自View的DrawView，我们每过1秒进行一次重绘
 ```java
 public class DrawView extends View {
@@ -112,7 +112,7 @@ public class DrawView extends View {
 我们可以看到每隔1秒界面就刷新了一次，显然这里刷新的是Window的surface。
 **（使用模拟器的同学需要注意了，由于模拟器在显示到PC屏幕的过程中有延迟，模拟器在绘制时可能使用了双缓冲，所以模拟器显示出来的可能界面刷新的频率不一样）
 **
-# SurfaceView的重绘
+## SurfaceView的重绘
 这次我们的DrawSurfaceView继承自SurfaceView
 ```java
 public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
@@ -200,4 +200,4 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 从打印的log来看SurfaceHolder.Callback方法也确实是在主线程回调的。
 
 
-# 实现代码[点击这里](http://download.csdn.net/detail/holmofy/9794709)
+## 实现代码[点击这里](http://download.csdn.net/detail/holmofy/9794709)

@@ -10,7 +10,7 @@ tags:
 
 看过[Pandora](http://gitlab.alibaba-inc.com/middleware-container/pandora/wikis/home)文档的一些介绍——轻量级的依赖隔离容器，在我脑子里浮现了这几个名词：Tomcat部署多应用、OSGI、Java9模块化。谷歌“依赖隔离”这个关键词出来的结果：类加载机制、蚂蚁开源的[sofa-ark](https://github.com/sofastack/sofa-ark)。所以读了很多文章想看看这些名词之间有什么联系。
 
-# 1、从Tomcat说起
+## 1、从Tomcat说起
 
 现在SpringBoot推崇内嵌的Servlet容器，直接把Tomcat内嵌到jar包里了。但在早期业务尚不复杂应用还依赖JSP的时候，Tomcat就像一艘航母，承载着若干个轻量级的应用。
 
@@ -22,7 +22,7 @@ tags:
 
 这个问题需要我们对类加载机制有深入的了解才能解答。
 
-# 2、Java类加载机制
+## 2、Java类加载机制
 
 当我们把java代码编译后打包成`jar`，我们用到这个jar包的时候只需在`classpath`中加上这个依赖就行。
 
@@ -49,7 +49,7 @@ java -classpath ~/.m2/repository/com/google/guava/guava/20.0/guava-20.0.jar:. Cl
 
 如果这里直接改用`new ArrayList()`，就不需要指定`classpath`。这是因为JDK里的`ArrayList`和Guava的`Lists`是被不同的类加载器加载的。前者被BootstrapClassLoader加载，后者由SystemClassLoader加载。
 
-## 2.1、类加载器的定义
+### 2.1、类加载器的定义
 
 ClassLoader中定义了JDK默认的类加载机制：
 
@@ -107,7 +107,7 @@ public abstract class ClassLoader {
 
 ClassLoader的定义中有一个非常重要的字段就是`parent`，从`loadClass`的代码可以看出Java类加载遵循所谓的“双亲委托机制”——**先看该类是否已经被加载过，如果没有从父类加载器中加载该类，如果父类加载器没找到再调用当前类的加载器中定义的`findClass`去加载**。
 
-## 2.2、Java内置的三个类加载器
+### 2.2、Java内置的三个类加载器
 
 Java中默认内置3个类加载器：
 
@@ -151,7 +151,7 @@ public class ClassPathTest {
 > * 保证核心类的安全。防止开发者取了和jdk核心类库中一样的包名和类名，委托给父类加载器能保证JDK类库的类优先加载。
 > * 保证类的唯一性。先检查是否加载过这个类，避免相同类被多次加载。
 
-# 3、打破双亲委派机制
+## 3、打破双亲委派机制
 
 说回Tomcat的问题。要让一个Java进程同时加载Spring3.0和Spring4.0两个版本的类，按照JDK自带的双亲委派模型是没法解决的。因为`ClassLoader#loaderClass`默认会检查这个类有没有加载过，保证了类在进程中是唯一的。如果我们想加载两个版本的类，需要打破原有的模型：
 
@@ -211,7 +211,7 @@ public class Test {
 
 上面这个例子重写了`loadClass`方法，把`findClass`方法放在前面调用，让`Test`类能够被重复加载多次。
 
-## 3.1、Tomcat的类加载器
+### 3.1、Tomcat的类加载器
 
 从代码中可以看出Tomcat会先从war包的`/WEB-INF/classes`目录尝试加载类，如果失败了再委托给parent加载器。而每个[WebApp都会有自己的WebappClassLoader](https://github.com/apache/tomcat/blob/9.0.35/java/org/apache/catalina/loader/WebappLoader.java#LC382)，这样就可以保证每个Webapp的依赖类相互隔离了。
 
@@ -378,7 +378,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 }
 ```
 
-# 4、菱形依赖问题
+## 4、菱形依赖问题
 
 前面说到的Tomcat这种场景需要在一个进程中加载两个不同版本依赖。
 
@@ -396,7 +396,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 
 另一种方式就是之前说的通过打破双亲委派模型的类隔离机制。业界比较知名的就是[OSGI](https://www.baeldung.com/osgi)，Eclipse中的各种插件相互隔离就是靠OSGI实现，而且还支持插件的动态插拔。OSGI联盟野心很大，曾一度想让OSGI成为Java模块化技术的标准，不过[Java9在语法层面提供了JPMS标准](https://www.baeldung.com/java-9-modularity)，直接颠覆了原有的模块化管理方式。
 
-# 5、从OSGI到Pandora
+## 5、从OSGI到Pandora
 
 最初，HSF 1.X为了解决与应用的jar冲突问题，使用OSGi来做隔离。当时淘系大部分的应用都运行在JBoss中，`.sar` 作为JBoss支持的一种部署格式（与 `.war`类似），它在JBoss中的默认启动顺序早于`.war`，符合HSF优先于应用启动完成类导出的需求，因此HSF 1.X的部署包被定为`taobao-hsf.sar`。
 
@@ -408,7 +408,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 
 和Tomcat类似，每个Pandora Plugin模块都有自己的[ModuleClassLoader](http://gitlab.alibaba-inc.com/middleware-container/pandora/blob/develop/pandora.container/src/main/java/com/taobao/pandora/service/loader/ModuleClassLoader.java)，这样就能保证每个中间件Plugin相互隔离。
 
-# 6、PandoraBoot
+## 6、PandoraBoot
 
 受Ruby on Rails“约定大于配置”思想的影响，Pivotal基于Spring3.0的注解配置和Spring4.0的@Conditional Bean，[开发了支持AutoConfiguration的SpringBoot](https://spring.io/blog/2013/12/12/announcing-spring-framework-4-0-ga-release)，大大简化了应用的配置。
 
@@ -422,7 +422,7 @@ public abstract class WebappClassLoaderBase extends URLClassLoader
 >
 > 在pandora-boot 2.1.3版本之后，`taobao-hsf.sar`变成一个空的jar包，它引入了`taobao-hsf.sar-container`和其它的插件。具体可以参考PandoraBoot文档《[对`taobao-hsf.sar`的形式和位置](http://mw.alibaba-inc.com/products/pandoraboot/_book/taobao-hsf-sar.html)》一节。
 
-## 6.1、SpringBoot FatJar
+### 6.1、SpringBoot FatJar
 
 SpringBoot会将应用以及相关的依赖打包成一个[FatJar](https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-executable-jar-format.html)，只需要`java -jar`命令即可启动应用，这是因为SpringBoot的maven构建插件会将`MANIFEST.MF`中的`Main-Class`替换成[JarLauncher](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/loader/JarLauncher.html)，SpringBoot定义好针对FatJar的类加载器后，再去调SpringBoot的`Start-Class`的入口方法。
 

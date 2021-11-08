@@ -8,7 +8,7 @@ categories: Linux运维
 
 下个礼拜就要开始学习Oracle了，得嘞先在我的CentOS7上装一个(貌似听说Oracle装在Oracle Linux能得到更好的性能，不过懒得下Oracle Linux镜像，在CentOS7上装个试试先)。
 
-# 创建oracle用户与相关用户组
+##创建oracle用户与相关用户组
 
 为什么要把这部分作为第一步呢，主要是为了避免后面创建文件以及解压缩等一系列步骤中，要将文件所有者修改为oracle才能在安装过程中有足够的权限创建文件或子目录(Linux的权限既带来了安全，也带来了各种不便，稍一走神就忘了赋权限)。
 
@@ -25,7 +25,7 @@ categories: Linux运维
 
 创建用户完成后，后面的工作大部分就用oracle用户去完成了，需要用到root权限再切换或者使用sudo命令(sudoers需要配置，这个不是本文的内容)。
 
-# 下载安装包
+##下载安装包
 
 软件包官网下载链接如下：
 
@@ -51,7 +51,7 @@ http://www.oracle.com/technetwork/database/enterprise-edition/documentation/inde
 
 ![文档](http://img-blog.csdn.net/20170827182724654?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 检查硬件需求
+##检查硬件需求
 
 毕竟Oracle是个大型软件，如果你的硬件给的不够，我劝你还是终止后面的步骤吧(铁定的安装失败)
 
@@ -105,7 +105,7 @@ http://www.oracle.com/technetwork/database/enterprise-edition/documentation/inde
   # df -h
   ```
 
-# 检查软件需求
+##检查软件需求
 
 ## 1. 操作系统要求
 
@@ -156,7 +156,7 @@ unixODBC-devel-2.2.11
 你可以使用以下命令查看上面这些软件包的版本是否大于等于上面的要求：
 
 ```shell
-# rpm -q binutils compat-libstdc++ elfutils-libelf elfutils-libelf-devel elfutils-libelf-devel-static gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers kernel-headers ksh libaio libaio-devel libgcc libgomp libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel
+##rpm -q binutils compat-libstdc++ elfutils-libelf elfutils-libelf-devel elfutils-libelf-devel-static gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers kernel-headers ksh libaio libaio-devel libgcc libgomp libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel
 ```
 
 如果符合都符合要求就没啥问题了，如果出现有未安装的软件包，比如我出现的这种情况：
@@ -191,10 +191,10 @@ sysstat-10.1.5-7.el7.x86_64
 我的建议是使用yum把这些软件包都更新一遍：
 
 ```shell
-# yum install binutils compat-libstdc++ elfutils-libelf elfutils-libelf-devel elfutils-libelf-devel-static gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers kernel-headers ksh libaio libaio-devel libgcc libgomp libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel
+##yum install binutils compat-libstdc++ elfutils-libelf elfutils-libelf-devel elfutils-libelf-devel-static gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers kernel-headers ksh libaio libaio-devel libgcc libgomp libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel
 ```
 
-# 配置内核参数
+##配置内核参数
 
 > 以下命令都需要root用户权限执行
 
@@ -217,10 +217,10 @@ net.core.wmem_max = 1048586
 为使上述配置生效而不重启系统，执行如下命令
 
 ```shell
-# /sbin/sysctl -p
+##/sbin/sysctl -p
 ```
 
-# 为oracle用户添加shell配置
+##为oracle用户添加shell配置
 
 为了提高Oracle软件性能，需要为Oracle用户添加以下shell配置：
 
@@ -258,7 +258,7 @@ session    required     pam_limits.so
           fi
   fi
   ```
-# 创建并配置环境变量
+##创建并配置环境变量
 
 安装路径可以自选，我这里直接在根路径下创建了一个oracle目录，如果用于生产建议不要这么干，不方便以后的扩展。
 
@@ -287,7 +287,7 @@ export ORACLE_HOME=/oracle/app
 export ORACLE_SID=oracleSID
 export PATH=$ORACLE_HOME/bin:$PATH
 ```
-# 开始正式安装
+##开始正式安装
 
 进入到之前解压的安装包，运行`runInstaller`脚本开始安装
 
@@ -402,7 +402,7 @@ export PATH=$ORACLE_HOME/bin:$PATH
 
 安装成功，此处应有掌声。
 
-# 使用SQLplus查询scott表进行测试
+##使用SQLplus查询scott表进行测试
 
 ![SQLplus](http://img-blog.csdn.net/20170827190402574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 

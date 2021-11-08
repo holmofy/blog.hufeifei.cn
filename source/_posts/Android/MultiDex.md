@@ -26,7 +26,7 @@ trouble writing output : Too many field references : 131000 ;max is 65536. You m
 
 如果你的应用出现了这个错误，首先恭喜你，你的应用肯定有很大的代码量。文章接下来就介绍如何解决该问题，让你的应用拥有更大的代码量和更丰富的功能。
 
-# 在Android5.0之前平台中使用MultiDex
+## 在Android5.0之前平台中使用MultiDex
 
 因为Android5.0之前的系统是使用[Dalvik虚拟机](http://baike.baidu.com/item/Dalvik)来执行应用程序。默认情况下，Dalvik虚拟机将每个APK限制在单个`classes.dex`字节码文件中。我们可以使用MultiDex支持库来解决单个Dex文件的限制。
 
@@ -34,20 +34,20 @@ trouble writing output : Too many field references : 131000 ;max is 65536. You m
 
 ![MultiDex原理图](http://img-blog.csdn.net/20170709135951416?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# Android5.0及以上版本的MultiDex
+## Android5.0及以上版本的MultiDex
 
 Androd5.0之后使用了名为[ART(Android Runtime)](http://baike.baidu.com/item/Android%20runtime)的运行时环境，它本身就支持“APK中包含多个dex文件”。
 
 ART在应用安装时执行预编译，将Dalvik字节码翻译成本机二进制机器码从而加快应用执行速度：在预编译过程中会扫描dex文件，并将多个dex文件(dalvik字节码)编译成单个`.oat`文件(二进制机器码)。关于ART的更多信息，可以参考Android官方文档。
 
-# 解决65K限制的方法。
+## 解决65K限制的方法。
 
-## 1. 避免64K问题——减少方法数
+### 1. 避免64K问题——减少方法数
 
 * 在程序中应尽量避免使用重量型的库，比如Google的Guava，Apache的Commons等。大多数JavaEE中的库都不适合在Android中使用。
 * 使用ProGuard删除未使用的代码，保证应用的发布版本体积尽可能小巧。ProGuard的使用会在后面的文章中提到。
 
-## 2. 配置MultiDex构建多dex应用
+### 2. 配置MultiDex构建多dex应用
 
 首先确保你使用的Build Tools是21.1及以上版本，因为这样才可以使用Gradle的安卓插件来支持multidex。
 
@@ -157,7 +157,7 @@ ART在应用安装时执行预编译，将Dalvik字节码翻译成本机二进�
 
 完成以上配置后，Android构建工具会根据需要将字节码文件打包成一个主Dex文件(classes.dex)和多个附加Dex文件(classes2.dex、classes3.dex...)。
 
-# 开发过程中对MultiDex程序构建的优化
+## 开发过程中对MultiDex程序构建的优化
 
 配置MultiDex后应用构建的时间明显增长，因为构建系统需要判断主Dex文件中应该包含哪些类、辅助Dex文件中应该包含哪些类，这个过程非常复杂。构建MultiDex应用于构建常规应用通常需要更多的时间，这可能会降低你的开发速度。
 

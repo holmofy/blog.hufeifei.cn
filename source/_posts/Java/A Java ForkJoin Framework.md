@@ -14,7 +14,7 @@ keywords:
 >
 > 译文发在[并发编程网 – ifeve.com](http://ifeve.com/)：[`Java` `Fork/Join`框架](http://ifeve.com/java-fork-join-framework/)， 2017-11-02
 
-# Java Fork/Join框架
+##Java Fork/Join框架
 
 ## 译序
 
@@ -41,13 +41,13 @@ PS:
 
 -------------------------------------------------------------------------------
 
-# 0. 摘要
+##0. 摘要
 
 这篇论文描述了`Fork/Join`框架的设计、实现以及性能，这个框架通过（递归的）把问题划分为子任务，然后并行的执行这些子任务，等所有的子任务都结束的时候，再合并最终结果的这种方式来支持并行计算编程。总体的设计参考了为`Cilk`设计的`work-stealing`框架。就设计层面来说主要是围绕如何高效的去构建和管理任务队列以及工作线程来展开的。性能测试的数据显示良好的并行计算程序将会提升大部分应用，同时也暗示了一些潜在的可以提升的空间。
 
 > 校注1： `Cilk`是英特尔`Cilk`语言。英特尔`C++`编辑器的新功能`Cilk`语言扩展技术，为`C/C++`语言增加了细粒度任务支持，使其为新的和现有的软件增加并行性来充分发掘多处理器能力变得更加容易。
 
-# 1. 简介
+##1. 简介
 
 `Fork/Join`并行方式是获取良好的并行计算性能的一种最简单同时也是最有效的设计技术。`Fork/Join`并行算法是我们所熟悉的分治算法的并行版本，典型的用法如下：
 
@@ -68,7 +68,7 @@ Result solve(Problem problem) {
 
 一些相关的编程技术和实例在[《`Java`并发编程 —— 设计原则与模式 第二版》](https://book.douban.com/subject/1244021/)<sup>[7]</sup> 4.4章节中已经讨论过。这篇论文将讨论`FJTask`的设计（第2节）、实现（第3节）以及性能（第4节），它是一个支持并行编程方式的`Java™`框架。`FJTask` 作为`util.concurrent`软件包的一部分，目前可以在 http://gee.cs.oswego.edu/ 获取到。
 
-# 2. 设计
+##2. 设计
 
 `Fork/Join`程序可以在任何支持以下特性的框架之上运行：框架能够让构建的子任务并行执行，并且拥有一种等待子任务运行结束的机制。然而，`java.lang.Thread`类（同时也包括`POSIX pthread`，这些也是`Java`线程所基于的基础）对`Fork/Join`程序来说并不是最优的选择：
 
@@ -162,7 +162,7 @@ class Fib extends FJTask {
 
 作为上述规则的一个后果，对于一些基础的操作而言，使用相对较小粒度的任务比那些仅仅使用粗粒度划分的任务以及那些没有使用递归分解的任务的运行速度要快。尽管相关的少数任务在大多数的`Fork/Join`框架中会被其他工作线程窃取，但是创建许多组织良好的任务意味着只要有一个工作线程处于可运行的状态，那么这个任务就有可能被执行。
 
-# 3. 实现
+##3. 实现
 
 这个框架是由大约800行纯`Java`代码组成，主要的类是`FJTaskRunner`，它是`java.lang.Thread`的子类。`FJTask`自己仅仅维持一个关于结束状态的布尔值，所有其他的操作都是通过当前的工作线程来代理完成的。`JFTaskRunnerGroup`类用于创建工作线程，维护一些共享的状态（例如：所有工作线程的标示符，在窃取操作时需要），同时还要协调启动和关闭。
 
@@ -212,7 +212,7 @@ if (++base < top) ...
 
 `Java`中并没有十分健壮的工作来保证这个，但是在实际中它往往是可以让人接受的。一个抢断失败的线程在尝试另外的抢断之前会降低自己的优先级，在尝试抢断之间执行`Thread.yeild`操作，然后将自己的状态在`FJTaskRunnerGroup`中设置为不活跃的。他们会一直阻塞直到有新的主线程。其他情况下，在进行一定的自旋次数之后，线程将进入休眠阶段，他们会休眠而不是放弃抢断。强化的休眠机制会给人造成一种需要花费很长时间去划分任务的假象。但是这似乎是最好的也是通用的折中方案。框架的未来版本也许会支持额外的控制方法，以便于让程序员在感觉性能受到影响时可以重写默认的实现。
 
-# 4. 性能
+##4. 性能
 
 如今，随着编译器与`Java`虚拟机性能的不断提升，性能测试结果也仅仅只能适用一时。但是，本节中所提到的测试结果数据却能揭示`Fork/Join`框架的基本特性。
 
@@ -297,7 +297,7 @@ if (++base < top) ...
 
 相比较，计算敏感型程序因为编码质量所引起的性能差异却是很少的。
 
-# 5. 结论
+##5. 结论
 
 本论文阐述了使用纯`Java`实现支持可移植的（`portable`）、高效率的（`efficient`）和可伸缩的（`scalable`）并行处理的可能性，并提供了便利的`API`让程序员可以遵循很少几个设计规则和模式（参考资料<sup>[7]</sup>中有提出和讨论）就可以利用好框架。从本文的示例程序中观察分析到的性能特性也同时为用户提供了进一步的指导，并提出了框架本身可以潜在改进的地方。
 
@@ -309,11 +309,11 @@ if (++base < top) ...
 
 除了对于框架做渐进性的改良，未来可以做的包括在框架上构建有用的应用（而不是Demo和测试）、在生产环境的应用负载下的后续评估、在不同的`JVM`上测量以及为搭载多处理器的集群的方便使用开发扩展。
 
-# 6. 致谢
+##6. 致谢
 
 本文的部分工作受到来自`Sun`实验室的合作研究资助的支持。感谢`Sun`实验室`Java`课题组的 _Ole Agesen_、_Dave Detlefs_、_Christine Flood_、_Alex Garthwaite_ 和 _Steve Heller_ 的建议、帮助和评论。_David Holmes_、_Ole Agesen_、_Keith Randall_、_Kenjiro Taura_ 以及哪些我不知道名字的审校人员为本论文的草稿提供的有用的评论。_Bill Pugh_ 指出了在3.1节讨论到的`JVM`的写后读的局限（`read−after−write limitations`）。特别感谢 _Dave Dice_ 抽出时间在30路企业机型上执行了测试。
 
-# 7. 参考文献
+##7. 参考文献
 
 - **[1]** Agesen, Ole, David Detlefs, and J. Eliot B. Moss. Garbage Collection and Local Variable Type−Precision and Liveness in Java Virtual Machines. In _Proceedings of 1998 ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)_, 1998.
 - **[2]** Agesen, Ole, David Detlefs, Alex Garthwaite, Ross Knippel, Y.S. Ramakrishna, and Derek White. An Efficient Meta−lock for Implementing Ubiquitous Synchronization. In _Proceedings of OOPSLA ’99_, ACM, 1999.

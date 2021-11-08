@@ -24,7 +24,7 @@ keywords:
 
 [TOC]
 
-# 计算机存储体系结构
+##计算机存储体系结构
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/Untitled-drawing-4-4.png)
 
@@ -36,7 +36,7 @@ keywords:
 
 北桥被集成到CPU芯片内[^2]，南桥[^3]与其他的I/O功能逐渐演变成PCH(Platform Controller Hub[^4])
 
-# 从PIO到DMA的演进
+##从PIO到DMA的演进
 
 
 
@@ -70,7 +70,7 @@ I/O 模块不直接通知 CPU，CPU 可能会等待或稍后返回，在编程�
 
 ![](https://pic1.zhimg.com/80/v2-282ecfe51a18f00918f02f02bdf20950_1440w.jpg)
 
-# 用户态与内核态
+##用户态与内核态
 
 Intel x86系列的第一个CPU 8086[^12]可以寻址1MB的内存(对应着20根地址总线$2^{20}=1MB$)，由于CPU寄存器是16位的，所以8086使用段寄存器和指针寄存器分段[^13]式访问内存，用户程序和操作系统没有很明确的界限，都可以访问整个内存；用户程序退出就会到操作系统；用户程序触发软中断就到操作系统，中断处理结束又回到用户程序；用户程序自己可以访问大部分的硬件设备；用户程序甚至可以随意修改属于操作系统的数据。**用户程序的权限过大了，会导致五花八门的问题。**
 
@@ -86,7 +86,7 @@ Intel在80286[^14]地址总线变成了24根，可以寻址16MB，但是寄存�
 
 简单点说，**就是用户程序中的代码只能在用户模式下执行，要执行I/O等操作必须调用系统函数交由内核去执行，内核可以将CPU切换到更高权限的访问级别，访问完成结果由内核返回给用户程序**。
 
-# I/O读写的演进
+##I/O读写的演进
 
 执行I/O很显然要调用操作系统的接口，而Linux上I/O接口已经经过了很多轮演进
 
@@ -313,7 +313,7 @@ sendfile方式仍然需要一次内核空间的数据拷贝，所以更甚者进
 * https://www.zhihu.com/question/306127044/answer/555327651
 * https://www.gnu.org/software/libc/manual/html_mono/libc.html#Low_002dLevel-I_002fO
 
-# IO处理模式
+##IO处理模式
 
 上面提到的是内核层面怎么处理与用户程序的I/O读写，但用户程序怎么处理I/O也有很多讲究。
 
@@ -664,7 +664,7 @@ https://docs.microsoft.com/en-us/windows/desktop/WinSock/windows-sockets-start-p
 
 
 
-# Java NIO
+##Java NIO
 
 Java在1.4中提供了[JSR-51](https://jcp.org/en/jsr/detail?id=51)要求的新版IO，也就是所谓的[Non-blocking I/O](https://en.wikipedia.org/wiki/Non-blocking_I/O_%28Java%29)。
 
@@ -862,7 +862,7 @@ public class EchoServer {
 
 
 
-# Netty, Mina
+##Netty, Mina
 
 JDK的NIO并不是那么好用，JDK并没有基于NIO实现HTTP等各种协议，而是通过制定servlet api让[Tomcat](https://github.com/apache/tomcat)、[Jetty](https://github.com/eclipse/jetty.project)去实现HTTP协议，具体Servlet容器有没有用NIO去实现，Servlet也不管。因为NIO的一些问题，就有了[xnio](https://github.com/xnio/xnio)这样实现HTTP、SSL的项目，另一个比较有名的Servlet容器[undertow](https://github.com/undertow-io/undertow)就是基于xnio实现的，但是xnio文档真的很烂。而[Mina](https://github.com/apache/mina)和Netty是脱离Servlet标准自己实现的HTTP等协议，其中[Netty](https://github.com/netty/netty)甚至完全脱离JDK的NIO，基于Linux的epoll、BSD的kqueue通过JNI自行实现了一套IO-Multiplex。而且相对Mina来说Netty架构更加干净，模块划分更加清晰。
 

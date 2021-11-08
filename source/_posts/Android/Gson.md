@@ -7,7 +7,7 @@ tags:
 categories: Android
 description: 安卓常用第三方框架-Gson
 ---
-# Gson简介
+## Gson简介
 json因其轻量、高效等特性，而被广泛用作移动开发的信息交互的载体。
 我们知道AndroidSDK提供了org.json工具包来解析Json数据，但是仍然避免不了解析过程中的一系列重复工作。所以就出现了许多第三方JSON解析框架。[JSON官方网站](http://www.json.org)也给我们列出了在各种语言中JSON的解析策略:
 ![这里写图片描述](http://img-blog.csdn.net/20170217205859340?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -20,24 +20,24 @@ Google自己是这么说的：已经有一些开源项目可用来将Java对象�
 2.允许不可变对象与JSON之间进行相互转换。
 3.支持Java泛型
 4.支持任何复杂的对象(深层包含与泛型)
-## 添加Gradle依赖
+### 添加Gradle依赖
 ```java
 compile 'com.google.code.gson:gson:2.8.0'
 ```
-## 下载地址：
+### 下载地址：
 Github：https://github.com/google/gson
 MVN：https://mvnrepository.com/artifact/com.google.code.gson/gson
-## API文档
+### API文档
 http://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0
 
-# GSON的使用
+## GSON的使用
 1. 创建Gson对象
   调用构造方法``new Gson()``，或者使用``GsonBuilder``类构造Gson对象
 2. 调用toJson()或fromJson()方法
   Gson对象中toJson()方法用来序列化，fromJson()方法用来反序列化
 
-# 示例
-## 1、基本类型
+## 示例
+### 1、基本类型
 ```java
 // 序列化
 Gson gson = new Gson();
@@ -56,7 +56,7 @@ String str = gson.fromJson("\"abc\"", String.class);
 String[] anotherStr = gson.fromJson("[\"abc\"]", String[].class);
 ```
 
-## 2、简单Java对象
+### 2、简单Java对象
 ```java
 class BagOfPrimitives {
   private int value1 = 1;
@@ -92,7 +92,7 @@ disableInnerClassSerialization()：调用该方法后Gson对象将不会序列�
 setDateFormat()：设置Date类型的序列化格式
 ...
 
-## 3、嵌套对象
+### 3、嵌套对象
 Gson可以反序列化静态内部类，但是不能反序列化普通的非静态内部类，因为它们构造对象时需要传入外部类对象的引用。所以反序列化时要么使用静态内部类，要么为非静态内部类定义一个InstanceCreator(Gson中已经提供了该接口)。比如下面的例子：
 ```java
 public class A {
@@ -125,7 +125,7 @@ public class InstanceCreatorForB implements InstanceCreator<A.B> {
 
 后者虽然可行，但是Gson不推荐使用该方法。
 
-## 4、数组
+### 4、数组
 ```java
 Gson gson = new Gson();
 int[] ints = {1, 2, 3, 4, 5};
@@ -140,7 +140,7 @@ int[] ints2 = gson.fromJson("[1,2,3,4,5]", int[].class);
 // ==> ints2 与 ints值相同
 ```
 
-## 5、集合对象
+### 5、集合对象
 ```java
 Gson gson = new Gson();
 Collection<Integer> ints = Lists.immutableList(1,2,3,4,5);//Guava Collections库
@@ -154,11 +154,11 @@ Collection<Integer> ints2 = gson.fromJson(json, collectionType);
 // ==> ints2 is same as ints
 ```
 
-## 6、其他特殊情况
+### 6、其他特殊情况
 **Collections集合的局限性**
 Gson能序列化任意的集合对象，但是不能反序列化，因为序列化成字符串不需要指定生成结果的类型，相反，反序列化时，使用哪个集合必须是指定的，泛型也必须是指定的。
 
-### 1、泛型的序列化与反序列化
+#### 1、泛型的序列化与反序列化
 当你调用toJson(obj)时，Gson会调用obj.getClass()获取字段信息来序列化。类似地，在fromJson()方法中你可以传入Obj.class来指定你要实例化的对象。但是，如果对象是泛型(比如说Collections集合)，由于泛型对象的Java类型擦除(Java Type Erasure)而丢失类型信息。
 ```java
 class Foo<T> {
@@ -180,7 +180,7 @@ gson.toJson(foo, fooType);
 
 gson.fromJson(json, fooType);
 ```
-### 2、序列化与反序列化混合类型的集合
+#### 2、序列化与反序列化混合类型的集合
 某些时候可能需要处理包含混合类型的JSON数组，比如：
 ```[ 'hello', 5, { name:'GREETINGS', source:'guest' } ]```
 与之等价的集合对象如下：
@@ -283,7 +283,7 @@ public class UserJsonAdapter extends TypeAdapter<User>; {
 ```
 - 3、与第2中方法类似，只是这里不使用Collection.class注册，而使用其他自定义类来注册，比如MyCollectionMemberType.class。然后再使用fromJson() 与 Collection<MyCollectionMemberType>的TypeToken。这种方法只适用于JSON数组作为顶层元素出现，或者将出现Collection的字段改为Collection<MyCollectionMemberType>。
 
-### 3、自定义序列化与反序列化
+#### 3、自定义序列化与反序列化
 有时候默认的表示方法不是不能满足你的需要，这经常出现在类似于Date，Point等特殊类型上。你可能需要将Data序列化成"YY-MM-DD"这种格式，或者将Point序列化成"(x,y)"这样的字符串，而不是将它们分为多个int存储。这个时候就需要在创建Gson对象时对这些特殊类型进行以下处理：
 - 1、JSON序列化器(Json Serializers)：对该类型对象自定义一个序列化方法，用于将该对象的实例转换成JSON字符串。
 - 2、JSON反序列化器(Json Deserializers)：为该类型自定义一个反序列化方法，用于从JSON字符串创建该类型的实例。
@@ -295,8 +295,8 @@ gson.registerTypeAdapter(MyType.class, new MySerializer());
 gson.registerTypeAdapter(MyType.class, new MyDeserializer());
 gson.registerTypeAdapter(MyType.class, new MyInstanceCreator());
 ```
-## 示例
-### 1、序列化器
+### 示例
+#### 1、序列化器
 下面是一个Date的自定义序列化器
 ```java
 private class DateSerializer implements JsonSerializer<Date> {
@@ -308,7 +308,7 @@ private class DateSerializer implements JsonSerializer<Date> {
 ```
 
 当Gson序列化碰到Date对象时，它就会调用DateSerializer.serialize()方法
-### 2、反序列化器
+#### 2、反序列化器
 ```java
 private class DateDeserializer implements JsonDeserializer<Date> {
 	public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -319,7 +319,7 @@ private class DateDeserializer implements JsonDeserializer<Date> {
 ```
 当Gson反序列化JSON字符串片段会调用DateDeserializer.deserialize()方法来实例化Date对象。
 
-### 3、实例创建器
+#### 3、实例创建器
 当反序列化对象时，Gson需要创建类的实例，所以这个类最好是有一个无参构造方法(不论是public或private)
 显然，实例创建器是为那些没有无参构造方法的类创建对象的。
 ```java

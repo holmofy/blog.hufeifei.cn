@@ -5,7 +5,7 @@ tags:
 categories: 网络
 description: HTTP协议详解
 ---
-# Http协议概述
+##Http协议概述
 HyperText Transfer Tansfer Protocol 超文本传输协议，是一种基于TCP的应用层协议，也是目前为止最为流行的应用层协议之一，可以说HTTP协议是万维网的基石。历经了0.9、HTTP/1.0、HTTP/1.1、HTTP/2几个版本(关于HTTP协议的历史，[这里](http://www.oschina.net/news/76365/http-introduce)有一片文章介绍的比较详细)，目前流行的还是HTTP1.1这个版本，HTTP2还在推广中，我这里复习的也仅仅是HTTP1.1(HTTP2还不是了解(>^ω^<)，只知道增加了很多加密技术)。
 
 首先需要明白HTTP是一种客户端请求、服务器应答式的应用层传输协议，也就是说服务器端是不可能主动向客户端发送数据的，如果服务器能主动向客户端发送数据那这个世界就乱套了，同时还说明了在网络正常的情况下请求和响应都是一一对应的。而这个请求和响应也就是后端开发人员经常看到的Request和Response。
@@ -15,7 +15,7 @@ Client对度娘的说：我要你的首页，你给我吧；度娘马上在从�
 所以我想说的是这个HTTP请求有时候并不一定是用户自己主动发送的，但是一定是用户使用的客户端软件发送的。当然这个客户端软件不仅可以是IE，谷歌之类的浏览器，也可是用户机上的客户端应用程序，比如说安卓上大部分的非浏览器应用使用HTTP协议进行数据请求。
 
 那说了这么久，客户程序发送的请求以及服务器端的响应的格式到底是什么样的呢。
-# Request|Response-->HTTP请求报文格式与响应报文格式
+##Request|Response-->HTTP请求报文格式与响应报文格式
 不哔哔先上图
 ![HTTP Request 请求报文格式](http://img-blog.csdn.net/20170330192653242?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ![Response HTTP响应报文格式](http://img-blog.csdn.net/20170330192754102?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -255,7 +255,7 @@ HTTP/1.0 200 OK
 
 > 更多响应头信息可以查看附录
 
-# 附录
+##附录
 
 ## 请求头信息
 

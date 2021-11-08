@@ -23,7 +23,7 @@ Files的大部分功能实际上由FileSystemProvider实现，而获取FileSyste
 
 [TOC]
 
-# Path—路径操作
+##Path—路径操作
 
 [上一篇文章中](http://blog.csdn.net/holmofy/article/details/75269866)也说过File中是一个大杂烩：路径操作，文件属性访问，文件增删操作，磁盘属性访问等全部混在了File类中。NIO中将这些功能划分开来，其中Path类就定义了路径操作的功能。Path也是`java.nio.file`包中的核心接口之一，如果你的应用使用NIO API来操作文件，那就很有必要了解一下这个类的强大功能了。
 
@@ -278,7 +278,7 @@ public class PathTest {
 }
 ```
 
-# Files工具类——文件操作
+##Files工具类——文件操作
 
 Files工具类负责文件的各种操作：
 
@@ -740,7 +740,7 @@ THIRDPARTYLICENSEREADME-JAVAFX.txt
 THIRDPARTYLICENSEREADME.txt
 ```
 
-# FileSystem与FileSystems
+##FileSystem与FileSystems
 
 FileSystem是访问文件或其他文件系统对象的工厂类。它是个抽象类，我们可以使用FileSystems这个工具类来创建FileSystem对象。
 
