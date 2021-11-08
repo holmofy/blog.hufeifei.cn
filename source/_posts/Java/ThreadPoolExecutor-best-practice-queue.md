@@ -20,7 +20,7 @@ keywords:
 
 4、当线程总数达到**maximumPoolSize**时，后续提交的任务都会被RejectedExecutionHandler拒绝。
 
-##1、BlockingQueue
+## 、BlockingQueue
 
 线程池中工作队列由BlockingQueue实现类提供功能，BlockingQueue定义了这么几组方法：
 
@@ -68,7 +68,7 @@ keywords:
 
 > 事实上，工作线程的超时销毁是调用`offer(e, time, unit)`实现的。
 
-##2、JDK提供的阻塞队列实现
+## 、JDK提供的阻塞队列实现
 
 JDK中提供了以下几个BlockingQueue实现类：
 
@@ -203,7 +203,7 @@ DelayQueue和PriorityBlockingQueue底层都是使用**二叉堆实现**的**优�
 
 ![LinkedTransferQueue](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAp2j9BKfBJ4vL22nDBKr5uZlbv2TdP-Qbeuk752Nc5QUb5a74kS2KWeskBfe660ykZwOHAbu3b73EpqikBIfApIlnoSpBJar1Cm2X42ADQW-AgKYgq9pfa9gN0lGm0000)
 
-##3、让生产者阻塞的线程池
+## 、让生产者阻塞的线程池
 
 前面说到CachedThreadPool和FixedThreadPool都有可能导致内存溢出，前者是由于线程数过多，后者是由于队列任务过多。而究其根本就是因为任务生产速度远大于线程池处理任务的速度。
 
@@ -341,7 +341,7 @@ public class ThreadPoolTest {
 
 使用这种方式的好处是线程池仍可以设置maximumPoolSize，当任务入队失败仍可以创建临时线程执行任务，只有当线程总数大于maximumPoolSize时，任务才会被拒绝。
 
-##4、Tomcat中的线程池
+## 、Tomcat中的线程池
 
 作为一个最常用的Java应用服务器之一，Tomcat中线程池还是值得我们借鉴学习的。
 

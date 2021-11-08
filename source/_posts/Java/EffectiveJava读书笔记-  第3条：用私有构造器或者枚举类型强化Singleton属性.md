@@ -7,7 +7,7 @@ keywords:
 - Singleton
 ---
 
-##用私有构造器或枚举类型强化Singleton属性
+## 私有构造器或枚举类型强化Singleton属性
 
 [单例模式(Singleton Pattern)](https://en.wikipedia.org/wiki/Singleton_pattern)无疑是笔试面试中被问得最多的问题之一。单例模式虽然看似简单，但是仍有很多东西值得思考。
 

@@ -8,7 +8,7 @@ tags:
 
 Ognl全称Object Graph Navigation Language，[是Apache Commons下的一个子项目](http://commons.apache.org/proper/commons-ognl/)。和JSP中的EL表达式一样，通常作为View层访问数据的一种方式。但是OGNL的功能比EL表达式功能强大的多(看完这篇文章后你会觉得OGNL能把EL表达式秒成渣)
 
-##jar包下载
+## ar包下载
 
 使用ognl最有名的项目就是Struts2和MyBatis了，关于OGNL在Struts2中的使用以及原理，后面会有一篇文章详细说明。
 
@@ -29,7 +29,7 @@ http://commons.apache.org/proper/commons-ognl/download_ognl.cgi
 </dependency>
 ```
 
-##基本语法
+## 本语法
 
 最基本的语法很简单：通过属性(property)来访问Bean的数据，所以OGNL要求类对象具有getter/setter方法(也就是符合标准JavaBean的规则)。
 
@@ -201,7 +201,7 @@ public class OgnlContext extends Object implements Map
 }
 ```
 
-##OGNL中的常量
+## GNL中的常量
 
 **1.**字符串常量，需要用引号引起来(可以是单引号也可以是双引号，单引号可以作为内嵌脚本使用)。
 
@@ -213,7 +213,7 @@ public class OgnlContext extends Object implements Map
 
 **5.**空指针，null
 
-##集合元素
+## 合元素
 
 **访问List元素**
 
@@ -295,7 +295,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##集合的伪属性
+## 合的伪属性
 
 ```java
 @Test
@@ -325,7 +325,7 @@ OGNL中为集合相关的类提供了以下的伪属性：
 | Iterator             | `next`: 获取迭代器的下一个元素<br>`hasNext`: 迭代器是否有可用元素。 |
 | Enumeration          | `next`: 获取迭代器的下一个元素<br>`hasNext`迭代器是否有可用元素。 |
 
-##构造集合
+## 造集合
 
 **构造原生数组**
 
@@ -403,7 +403,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##[not] in操作
+## not] in操作
 
 ```java
 @Test
@@ -420,7 +420,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##^、$和?操作符进行元素过滤
+## 、$和?操作符进行元素过滤
 
 > 也有人把这些操作叫做投影(projection)
 
@@ -478,7 +478,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##三目运算符
+## 目运算符
 
 ```java
 @Test
@@ -492,7 +492,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##类的静态方法调用
+## 的静态方法调用
 
 ```java
 @Test
@@ -506,7 +506,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##多条语句的执行
+## 条语句的执行
 
 ```java
 @Test
@@ -523,7 +523,7 @@ public void test() throws OgnlException {
 }
 ```
 
-##Lambda表达式
+## ambda表达式
 
 ```java
 @Test
@@ -538,7 +538,7 @@ public void test() throws OgnlException {
 
 
 
-##附录：OGNL语法摘要表
+## 录：OGNL语法摘要表
 
 | Operator                                 | `getValue()` Notes                       | `setValue()` Notes                       |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |

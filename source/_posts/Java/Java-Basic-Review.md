@@ -7,7 +7,7 @@ mathjax: true
 
 [TOC]
 
-##八种基本数据类型
+## 种基本数据类型
 
 Java语言中有八种基本数据类型：
 
@@ -30,7 +30,7 @@ C语言因为依赖与CPU平台，数据类型所占字节数可能会因硬件�
 
 > 注意：Java中boolean比较特殊：单个boolean在编译时映射成int；boolean数组则会被编译成byte数组。用1表示true，0表示false。参考[JVM规范](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.3.4)
 
-##基本数据类型的包装类
+## 本数据类型的包装类
 
 Java中为上面的八种基本类型提供了包装类，从而让基本类型变成引用类型。有了这些包装类我们就可以在ArrayList，HashMap等Java集合类中存储基本的数据类型了(因为集合类型底层都是使用Object引用类型)。
 
@@ -117,7 +117,7 @@ public class NumberTest {
 
 确实如此。
 
-##包装类的缓存池
+## 装类的缓存池
 
 前面说自动装箱调用的相应包装类的valueOf静态方法。那看看这些静态方法的实现：
 
@@ -241,7 +241,7 @@ false
 
 > 关于IdentityHashMap的介绍可以查看[Java集合框架总结和巩固](http://blog.csdn.net/holmofy/article/details/71215548)
 
-##Integer缓存池的自定义配置
+## nteger缓存池的自定义配置
 
 通过查看Byte，Short，Integer，Long源码你会发现，它们缓存都包装在一个相应的类中ByteCache、ShortCache、IntegerCache、LongCache。其中ByteCache，ShortCache，LongCache这三个内部类代码基本一致：都是缓存`-127~128`的数据。
 
@@ -340,7 +340,7 @@ public class Test {
 
 ![Integer缓存池的配置](http://img-blog.csdn.net/20170802125934475?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##包装类中的其他工具方法
+## 装类中的其他工具方法
 
 在这些基本数据类型的包装类中还提供给我们许多的工具方法。
 
@@ -357,7 +357,7 @@ public class Test {
 
 ![基本数据类型的工具方法](http://img-blog.csdn.net/20170623011508265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##基本数据类型的格式化输出
+## 本数据类型的格式化输出
 
 在Java中提供了两个类PrintStream和PrintWriter支持常见数据的格式化输出。
 
@@ -434,7 +434,7 @@ public class TestFormat {
 ```
 > 关于字符格式化的更多内容可以查看JDK中的java.text.*`包中的相关描述。
 
-##Java中的数学运算
+## ava中的数学运算
 
 java像大多数语言一样不仅提供了`+`,`-`,`*`,`/`,`%`这样的基本数学运算，还提供了一个Math类来进行更复杂的数学运算。
 
@@ -575,7 +575,7 @@ Math.random()函数底层使用`java.util.Random`类随机生成一个大于等�
 
 
 
-##Java中的字符串
+## ava中的字符串
 
 ## Java字符串与C/C++字符串对比
 
@@ -978,7 +978,7 @@ String join(CharSequence delimiter, CharSequence... elements)
 String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
 ```
 
-##StringBuffer与StringBuilder
+## tringBuffer与StringBuilder
 
 前面频繁提到了`StringBuffer`和`StringBuilder`这两个类，但很多初学者对这两个类区分不清：**StringBuffer是线程安全的(方法基本上都是`synchronized`同步方法)，StringBuilder是线程不安全的(没有使用`synchronized`进行同步)；正因如此StringBuilder在效率上比StringBuffer要高**。这一点上和`Vector`与`ArrayList`的关系是一样的。
 

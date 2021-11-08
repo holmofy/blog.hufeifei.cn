@@ -36,21 +36,21 @@ nginx依赖于PCRE、Zlib、OpenSSL。
 yum install -y pcre pcre-devel zlib zlib-devel openssl openssl-devel
 ```
 
-##解压编译并安装
+## 压编译并安装
 
 **解压**
 
 ```shell
-##解压gz压缩包
+## 压gz压缩包
 tar -zxvf nginx-1.8.1.tar.gz
 ```
 
 **配置**
 
 ```shell
-##切换到nginx源码目录
+## 换到nginx源码目录
 cd nginx-1.8.1
-##使用默认配置即可
+## 用默认配置即可
 ./configure
 ```
 
@@ -65,9 +65,9 @@ cd nginx-1.8.1
 **编译安装**
 
 ```shell
-##编译
+## 译
 make
-##安装
+## 装
 make install
 ```
 
@@ -80,7 +80,7 @@ make install
 **启动nginx**
 
 ```shell
-##启动nginx
+## 动nginx
 /usr/local/nginx/sbin/nginx
 ```
 
@@ -91,9 +91,9 @@ make install
 ```shell
 [root@localhost ~]# ps -aux | grep nginx
 Warning: bad syntax, perhaps a bogus '-'? See /usr/share/doc/procps-3.2.8/FAQ
-##主进程
+## 进程
 root     13405  0.0  0.1   5344   640 ?        Ss   03:46   0:00 nginx: master process ./nginx
-##工作进程
+## 作进程
 nobody   13406  0.0  0.1   5544   984 ?        S    03:46   0:00 nginx: worker process
 root     13439  0.0  0.1   4360   756 pts/0    S+   04:10   0:00 grep nginx
 ```

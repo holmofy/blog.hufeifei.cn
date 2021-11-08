@@ -23,7 +23,7 @@ keywords:
 
 ---
 
-##准备测试数据
+## 备测试数据
 
 ```mysql
 create table tb_user(
@@ -43,7 +43,7 @@ create table tb_user(
 
 ```mysql
 delimiter $$
-##生成随机字符串
+## 成随机字符串
 create function rand_str(n int) returns varchar(10)
 begin
   declare CHARS char(52) default 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -57,7 +57,7 @@ begin
 end
 $$
 
-##生成随机数(i <= R < j)
+## 成随机数(i <= R < j)
 create function rand_num(i int, j int) returns int
 begin
   return floor(i + rand() * (j - i));
@@ -93,7 +93,7 @@ delimiter ;
 call insert_tb_user(1000000);
 ```
 
-##未创建索引
+## 创建索引
 
 为了能更细致的看到每个查询的耗时情况，我们把`profiling`打开。
 
@@ -127,7 +127,7 @@ mysql> show profiles;
 > MySQL默认创建的主键索引就是B树索引，所以主键查询速度会很快。
 
 ```mysql
-##tb_user目前只有一个主键索引
+## b_user目前只有一个主键索引
 mysql> show index from tb_user\G
 *************************** 1. row ***************************
         Table: tb_user
@@ -257,15 +257,15 @@ it is often the longest-running state over the lifetime of a given query.
 
 事实证明**磁盘IO才是罪魁祸首**。
 
-##对`name`字段创建索引
+## `name`字段创建索引
 
 ```mysql
-##不加“using btree”子句，mysql也会默认创建B树索引
+## 加“using btree”子句，mysql也会默认创建B树索引
 mysql> create index idx_tb_user_name on tb_user(name);
 Query OK, 0 rows affected (5.32 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-##现在有两条索引了
+## 在有两条索引了
 mysql> show index from tb_user \G
 *************************** 1. row ***************************
         Table: tb_user
@@ -300,7 +300,7 @@ Index_comment:
 
 >  创建索引的详细语法可以参考官方文档[`create index`](https://dev.mysql.com/doc/refman/8.0/en/create-index.html)和 [`alter table`](https://dev.mysql.com/doc/refman/8.0/en/alter-table.html)
 
-##创建索引后查询
+## 建索引后查询
 
 ```mysql
 mysql> select * from tb_user where name='UZlihlHEY';
@@ -311,7 +311,7 @@ mysql> select * from tb_user where name='UZlihlHEY';
 +--------+-----------+------+
 1 row in set (0.00 sec)
 
-##创建索引后耗时从原来的0.5秒缩短到现在的0.67毫秒
+## 建索引后耗时从原来的0.5秒缩短到现在的0.67毫秒
 mysql> show profiles;
 +----------+------------+------------------------------------------------+
 | Query_ID | Duration   | Query                                          |
@@ -345,14 +345,14 @@ possible_keys: idx_tb_user_name
 
 > 即使创建了索引，使用`name`字段查询仍然没有主键查询的速度快，这是因为`name`字段创建的索引是二级索引，InnoDB的二级索引叶子节点并不保存实际的数据行或数据行的引用，而是保存了主键id。二级索引走了一遍得到主键id，还要拿着主键id在主键索引再走一遍，才能查到数据行。关于这部分内容会在后续的文章中详细介绍。
 
-##正确使用索引
+## 确使用索引
 
 索引虽然能加快我们的查询速度，但是如果姿势不对还是不能达到预期的速度。
 
 ## 1. 避免索引列在表达式中出现
 
 ```mysql
-##索引列在表达式中
+## 引列在表达式中
 mysql> select * from tb_user where id+30000=130000;
 +--------+-----------+------+
 | id     | name      | age  |
@@ -361,7 +361,7 @@ mysql> select * from tb_user where id+30000=130000;
 +--------+-----------+------+
 1 row in set (0.38 sec)
 
-##SQL解析器无法优化这样的等式
+## QL解析器无法优化这样的等式
 mysql> explain select * from tb_user where id+30000=130000\G
 *************************** 1. row ***************************
            id: 1
@@ -378,7 +378,7 @@ possible_keys: NULL
         Extra: Using where
 1 row in set, 1 warning (0.00 sec)
 
-##索引列单独在等式的一端，仍可以使用索引
+## 引列单独在等式的一端，仍可以使用索引
 mysql> select * from tb_user where id=30000+70000;
 +--------+-----------+------+
 | id     | name      | age  |
@@ -407,7 +407,7 @@ possible_keys: PRIMARY
 ## 2. 避免索引列作为函数参数 
 
 ```mysql
-##如果birth列创建了索引，但查询条件中这一列作为函数参数，birth这个索引就不会被用到
+## 果birth列创建了索引，但查询条件中这一列作为函数参数，birth这个索引就不会被用到
 select count(*) from tb_user where YEAR(current_date) - YEAR(birth) >= 18;
 ```
 

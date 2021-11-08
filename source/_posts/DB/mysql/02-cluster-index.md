@@ -23,7 +23,7 @@ keywords:
 
 ---
 
-##聚簇索引
+## 簇索引
 
 聚簇索引(Clustered Index)并不是一种新的数据结构，只是B树索引的一种存储方式。
 
@@ -41,7 +41,7 @@ MySQL中索引由存储引擎实现，不同的存储引擎索引的存储结构
 
 MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_MySQL_database_engines)(包括官方的和第三方的)，使用最多的就是[InnoDB(5.5之后默认的存储引擎)](https://en.wikipedia.org/wiki/InnoDB)和[MyISAM(5.5之前默认的存储引擎)](https://en.wikipedia.org/wiki/MyISAM)。
 
-##[InnoDB存储引擎](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
+## InnoDB存储引擎](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
 **InnoDB中主键索引默认是聚簇的**。
 
@@ -75,7 +75,7 @@ MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_M
 4. 聚簇索引可能导致全表扫描速度变慢，因为可能需要加载物理上相隔较远的页到内存中（需要耗时的磁盘寻道操作）。
 5. 二级索引访问数据行需要两次索引查找，由于二级索引保存了主键列，二级索引会占更大的空间(所以选用一个短主键是有利的)。
 
-##[MyISAM存储引擎](https://dev.mysql.com/doc/refman/5.7/en/myisam-storage-engine.html)
+## MyISAM存储引擎](https://dev.mysql.com/doc/refman/5.7/en/myisam-storage-engine.html)
 
 InnoDB通过主键聚集数据，整个聚簇索引就是一张完整的表。MyISAM存储引擎的数据相对简单。
 

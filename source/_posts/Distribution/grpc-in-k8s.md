@@ -17,7 +17,7 @@ tags:
 
 ![grpc-in-k8s](https://p.pstatp.com/origin/pgc-image/3f7d24cab5424fdcb455ed043ad06337)
 
-##k8s的service四层负载均衡
+## 8s的service四层负载均衡
 
 为了排除k8s的service负载均衡的问题，在线下环境还原了请求的过程。
 
@@ -37,7 +37,7 @@ skywalking提供了grpc(11800端口)和rest(12800端口)两种协议的服务。
 
 多次请求负载均衡是没有问题的。但是请求会断开连接，实际上是两次**连接**连向了两台不同的server。这个概念很重要，请求和连接不是一个事物，多个请求可以复用一个连接。
 
-##grpc长连接导致负载不均衡
+## rpc长连接导致负载不均衡
 
 观察线上的两台oap发现，两台server都维持了大量的长连接，其中负载高的一台明显连接数更多。
 
@@ -45,7 +45,7 @@ skywalking提供了grpc(11800端口)和rest(12800端口)两种协议的服务。
 
 由于线上skywalking-agent和skywalking-oap使用的是grpc进行通信的，grpc基于http/2会维持一个长连接。k8s的service无法识别应用层的负载均衡。
 
-##对比常见的负载均衡实现
+## 比常见的负载均衡实现
 
 **dubbo与SpringCloudRibbon的客户端负载均衡**
 
@@ -71,7 +71,7 @@ k8s的service就有点类似于nginx的tcp反向代理。当然只是说很像�
 
 下面看一下k8s的service实现原理。
 
-##k8s的service实现原理
+## 8s的service实现原理
 
 [k8s的service是基于虚拟ip实现的](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies)：使用iptables实现路由转发。k8s的service代理有三种运行模式：
 
@@ -126,7 +126,7 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。 这些是：
 
 如果要确保每次都将来自特定客户端的连接传递到同一 Pod， 则可以通过将 `service.spec.sessionAffinity` 设置为 "ClientIP" （默认值是 "None"），来基于客户端的 IP 地址选择会话关联。 你还可以通过适当设置 `service.spec.sessionAffinityConfig.clientIP.timeoutSeconds` 来设置最大会话停留时间。 （默认值为 10800 秒，即 3 小时）。
 
-##K8s中grpc负载均衡的解决方案
+## 8s中grpc负载均衡的解决方案
 
 前面已经分析了k8s的service是无法实现应用层的负载均衡的。grpc基于http/2，因为http/2是长连接，负载均衡需要发生在每次调用，而非每次连接。K8s识别不了http/2的请求，就无法实现grpc的负载均衡。
 

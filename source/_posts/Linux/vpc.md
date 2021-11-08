@@ -7,7 +7,7 @@ tags: Linux
 
 前几天新买了台机器想用来做日志分析，发现两台机器用内网地址死活连不上，腾讯云文档上都说同一VPC下不同子网默认是互通的。最后向腾讯云提了个工单才发现是自己服务器docker网段和内网网段冲突导致的。这里记录一下整个过程的始末。
 
-##1、 申请了台新机器
+## 、 申请了台新机器
 
 之前那台机器是大学里买的，穷逼学生机配置：1核CPU、1G内存、1M带宽，ElasticSearch起都起不来，漫天OOM。
 
@@ -15,7 +15,7 @@ tags: Linux
 
 ![server](https://p.pstatp.com/origin/pgc-image/9038b52b19b64847a62f6312c6335a7f)
 
-##2、公网不行，用内网，可是内网也不通
+## 、公网不行，用内网，可是内网也不通
 
 穷逼一个，新机器也只买了1M带宽，所以两台机器肯定是不能通过公网来进行通信的。
 
@@ -26,13 +26,13 @@ tags: Linux
 ![ping](https://p.pstatp.com/origin/pgc-image/219f414e43da43ffa61094e25d75d13e)
 ![ping](https://p.pstatp.com/origin/pgc-image/128055bc6f9b4221beaee61ea6a76281)
 
-##3、安全组策略的问题？
+## 、安全组策略的问题？
 
 因为刚开始安全组入站规则，我是把ICMP的ping给禁用了的，所以专门把ICMP开放了
 
 ![安全组策略](https://p.pstatp.com/origin/pgc-image/7ea5195936d4441c9892d4a388afb777)
 
-##4、原来是路由问题
+## 、原来是路由问题
 
 我装了个telent尝试用别的协议连一下，这个报错让我发现了问题的关键: 路由配置有问题
 
@@ -44,7 +44,7 @@ tags: Linux
 
 可以看到docker网络与内网网段冲突了——docker的网段正好覆盖了内网网段
 
-##5、修改docker网卡地址
+## 、修改docker网卡地址
 
 1）vim /etc/docker/daemon.json（这里没有这个文件的话，自行创建）
 ```json
@@ -64,7 +64,7 @@ systemctl restart docker
 
 使用内网地址也能互相ping通了。😊
 
-##6、测试一下内网带宽
+## 、测试一下内网带宽
 
 一端开启服务，监听流量
 ```sh

@@ -6,7 +6,7 @@ categories: JAVA
 
 J2EE服务端开发编码问题主要集中在两个地方：JSP页面和Servlet程序。
 
-##**JSP页面：**
+## *JSP页面：**
 
 ```html
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
@@ -32,7 +32,7 @@ JSP页面中有三个配置编码的地方，但这三个编码各自都有不�
 
 ![content-type](http://img-blog.csdn.net/20170922221019768?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##**Servlet程序**
+## *Servlet程序**
 
 Servlet程序中出现乱码主要出现在表单提交的时候。GET提交方式与POST提交方式出现乱码原因也各不相同。这里搞两个表单的html分别测试两种情况：
 
@@ -307,7 +307,7 @@ public class UTF8EncodingFilter implements Filter{
 
 > Tomcat的SetCharacterEncodingFilter文档地址：http://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#Set_Character_Encoding_Filter
 
-##Tomcat相关源码分析
+## omcat相关源码分析
 
 通过源码看Tomcat解析请求参数的过程
 

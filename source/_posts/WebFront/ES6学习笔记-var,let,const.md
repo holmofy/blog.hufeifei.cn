@@ -4,7 +4,7 @@ date: 2018-03-15
 categories: 前端
 ---
 
-##var,let和const
+## ar,let和const
 
 ES6新增了`let`关键字**用于声明变量**，用法上和`var`类似，这里列举一些两者的区别。
 

@@ -14,6 +14,7 @@ mathjax: true
 ![短除法](http://img-blog.csdn.net/20170730184124683?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 本质上求最小公倍数就是求最大公倍数：`x=m*a`， `y=m*b`；m是最大公约数，那最小公倍数就是`m*a*b`。所以可以得到最大公约数与最小公倍数的关系：
+
 $$
 LCM(A,B)×GCD(A,B) = A×B
 $$
@@ -46,7 +47,7 @@ $$
 
 > 扩展欧几里得算法是后加进来的，它解决的不单纯是求最大公约数的问题，本不应该放进来。因为本文介绍了欧几里得算法，权衡利弊后也就顺带把扩展欧几里得算法讲一下。
 
-##公约数的性质
+## 公约数的性质
 
 在介绍算法之前，我们需要先了解一下公约数的几个重要性质，这几个性质在后面几个算法中会用到(用到时再证明，以免数学不感冒的人看的头痛)：
 
@@ -65,11 +66,11 @@ gcd(A,B) = gcd(B,A) = gcd(A,A+B) = gcd(A,A-B) = gcd(A,Ax+By) = gcd(A,A mod B)
 
 
 
-##分解因式法
+## 分解因式法
 
 很显然因式分解不是一个好方法，看下面实现代码就知道很耗性能，而且还不能对0处理。
 
-## 代码：
+### 代码：
 
 ```c
 // greatest common divisor
@@ -102,9 +103,9 @@ int GCD(int a, int b) {
 
 
 
-##[辗转相除法(欧几里得算法)](https://en.wikipedia.org/wiki/Euclidean_algorithm)
+## [辗转相除法(欧几里得算法)](https://en.wikipedia.org/wiki/Euclidean_algorithm)
 
-## 定义：
+### 定义：
 
 辗转相除法(中国叫法)也叫欧几里得算法(国外叫法)。
 
@@ -116,7 +117,7 @@ int GCD(int a, int b) {
 gcd(A, B) = gcd(B, A mod B)   其中:A > B
 ```
 
-## 证明
+### 证明
 
 > 不妨设A > B，设A和B的最大公约数为X，所以 A=aX，B=bX，其中a和b都为正整数且a>b。
 >
@@ -128,7 +129,7 @@ gcd(A, B) = gcd(B, A mod B)   其中:A > B
 >
 > 即A、B、R的公约数相同，所以有gcd(A，B) = gcd(B，A mod B)
 
-## 代码：
+### 代码：
 
 ```c
 int GCD(int a, int b) {
@@ -138,7 +139,7 @@ int GCD(int a, int b) {
 
 > 一行代码简洁明了。
 
-## 将递归化成循环：
+### 将递归化成循环：
 
 ```c
 int GCD(int a, int b) {
@@ -152,9 +153,9 @@ int GCD(int a, int b) {
 
 
 
-##[更相减损法](https://baike.baidu.com/item/%E6%9B%B4%E7%9B%B8%E5%87%8F%E6%8D%9F%E6%B3%95)
+## [更相减损法](https://baike.baidu.com/item/%E6%9B%B4%E7%9B%B8%E5%87%8F%E6%8D%9F%E6%B3%95)
 
-## 定义：
+### 定义：
 
 更相减损法原本是为了约分而设计的：可半者半之，不可半者，副置分母、子之数，以少减多，更相减损，求其等也。以等数约之。
 
@@ -175,7 +176,7 @@ int GCD(int a, int b) {
 
 ![维基百科动态图](http://img-blog.csdn.net/20170730184212566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 证明：
+### 证明：
 
 > 不妨设A>B，设A和B的最大公约数为X，所以 A=aX，B=bx，其中a和b都为正整数，切a>b。
 >
@@ -187,7 +188,7 @@ int GCD(int a, int b) {
 >
 > 所以`gcd(A,B) = gcd(B,A-B)`
 
-## 代码实现：
+### 代码实现：
 
 ```c
 int GCD(int a, int b) {
@@ -203,7 +204,7 @@ int GCD(int a, int b) {
 
 
 
-##辗转相除法与更相减损术的比较
+## 辗转相除法与更相减损术的比较
 
 （1）两者都是求最大公因数的方法，计算上辗转相除法以除法为主，更相减损术以减法为主，计算次数上辗转相除法计算次数相对较少，特别当两个数字大小区别较大时计算次数的区别较明显。
 
@@ -211,7 +212,7 @@ int GCD(int a, int b) {
 
 
 
-##扩展欧几里得算法
+## 扩展欧几里得算法
 
 说到欧几里得算法，就不得不谈谈扩展欧几里得算法了。但是需要注意的是它一般用来求解模线性方程(组)，所以该算法不是本文的重点，不感兴趣的可以直接跳过。
 
@@ -229,7 +230,7 @@ $$
 
 > 特别地，方程$ax+by=1$有整数解当且仅当整数a和b互质。
 
-## 证明
+### 证明
 
 不妨设 a > b，$a = kb + r$；（其中k为a除以b的商，r为余数）
 
@@ -240,7 +241,7 @@ $$
 化简得：$x_1 = y_2$；$y_1 = x_2 - ky_2$；
 上述表明 $x_1, y_1$ 可由 $x_2, y_2$ 表示，以此递归下去，直到b = 0；可知必有解。
 
-## 代码：
+### 代码：
 
 ```c
 int ExtendGCD(int a, int b, int *x, int *y) {
@@ -257,7 +258,7 @@ int ExtendGCD(int a, int b, int *x, int *y) {
 }
 ```
 
-## 将递归转化为循环
+### 将递归转化为循环
 
 ```c
 int ExtendGCD(int a, int b, int *x, int *y)
@@ -283,7 +284,7 @@ int ExtendGCD(int a, int b, int *x, int *y)
 }
 ```
 
-##[Stein算法](https://en.wikipedia.org/wiki/Binary_GCD_algorithm)
+## [Stein算法](https://en.wikipedia.org/wiki/Binary_GCD_algorithm)
 
 欧几里德算法是计算两个数最大公约数的传统算法，无论从理论还是从实际效率上都是很好的。但是却有一个致命的缺陷，这个缺陷在素数比较小的时候一般是感觉不到的，只有在大素数时才会显现出来：一般实际应用中的整数很少会超过64位（当然现在已经允许128位了），对于这样的整数，计算两个数之间的模是很简单的。对于字长为32位的平台，计算两个不超过32位的整数的模，只需要一个指令周期，而计算64位以下的整数模，也不过几个周期而已。但是对于更大的素数，这样的计算过程就不得不由用户来设计，为了计算两个超过64位的整数的模，用户也许不得不采用类似于多位数除法手算过程中的试商法，这个过程不但复杂，而且消耗了很多CPU时间。对于现代密码算法，要求计算128位以上的素数的情况比比皆是，比如说[RSA加密算法](https://baike.baidu.com/item/RSA%E7%AE%97%E6%B3%95)至少要求500bit密钥长度，设计这样的程序迫切希望能够抛弃除法和取模。
 

@@ -12,7 +12,7 @@ categories: JAVA
 
 除了[ASM](http://asm.ow2.org/)之外——另外一个字节码库，cglib基于[ASM](https://asm.ow2.io/)提供一些高级别的字节码操作功能——cglib提供了底层的字节码转换，可以让用户在不了解任何Java类编译细节的下使用。不幸的是，cglib的文档很短，甚至可以说基本上没有。除了一篇[2005年写的介绍Enhancer类的博客](http://jnb.ociweb.com/jnb/jnbNov2005.html)之外，别无他物。这篇博客将尝试着演示cglib和它那些不幸的很少使用的API。
 
-##Enhancer
+## nhancer
 
 让我们从`Enhancer`类开始讲解，该类可能是cglib库中最常用的类了。`Enhancer`可以为一个不实现任何接口的类创建代理。可以将`Enhancer`与标准库中Java 1.3引入的[`Proxy`](https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)类进行比较。`Enhancer`会动态地为指定类创建子类，但该子类的所有方法调用都会被拦截。与`Proxy`不一样，它对类和接口类型均适用。
 
@@ -165,7 +165,7 @@ public void testFixedValue() throws Exception {
 这个FixedValue的匿名子类，将会变得很难从被增强类SampleClass中进行引用，因此这个匿名的子类以及包含这个@Test放到的类将永远不会被垃圾回收，这将会导致严重的内存泄露。因此，**不要在cglib中使用非静态类**（我在这篇博客中使用匿名类仅仅是为了让事例更短小些）。
  最后，**千万不要拦截Object#finalize()方法！**由于cglib是通过子类方式实现的代理，所以finalize方法会被覆盖，但是覆盖finalize[通常不是个好主意](https://howtodoinjava.com/java/basics/why-not-to-use-finalize-method-in-java/)。这些拦截了finalize方法的增强类事例不会被垃圾回收器特别对待，同样会被放入JVM的finalization队里。如果你不小心在callback中硬编码应用了被增强类，那么你就创建了一个永远不被回收的实例。以上问题通常是你不希望发生的。庆幸的是，cglib不会代理所有的final方法，因此Object#wait, Object#notify和Object#notifyAll方法不会遇到这些问题。需要注意的是Object#clone是会被代理的，这通常是你不希望发生的。
 
-##ImmutableBean
+## mmutableBean
 
 cglib库`ImmutableBean`允许创建一个不可变的包装器，这个类似于`Collections#immutableSet`。底层bean的所有修改操作都会被阻止，并抛出`IllegalStateException`异常(不是用java API建议的`UnsupportedOperationException`)。让我们来看一些Bean：
 
@@ -198,7 +198,7 @@ public void testImmutableBean() throws Exception {
 
 从示例看显而易见，ImmutableBean阻止了对bean的所有状态修改，并且会抛出`IllegalStateException`异常。然而，可以通过原始对象来修改Bean的状态，并且所有更改将会反映到`ImmutableBean`上。
 
-##BeanGenerator
+## eanGenerator
 
 `BeanGenerator`是cglib的另一个Bean工具类，它可以在运行时动态地创建bean对象：
 
@@ -223,7 +223,7 @@ public void testBeanGenerator() throws Exception {
 
 有一些依赖于Cglib的第三方库期望通过反射决定这些bean，在运行时不知道这些bean时，这种情况下BeanGenerator可能很有用。(这种场景的一个应用实例是[Apache Wicket](http://wicket.apache.org/))。
 
-##BeanCopier
+## eanCopier
 
 `BeanCopier`是另一个Bean工具类，它可以复制bean的属性值。假设现在有一个与`SampleBean`拥有相同属性的bean：
 
@@ -255,7 +255,7 @@ public void testBeanCopier() throws Exception {
 
 这种拷贝不受特定类型限制。`BeanCopier#copy`方法可以传递一个可选的`Converter`参数，这个参数允许在复制过程中对每个属性做更多细致的操作。如果`BeanCopier`在通过create方法创建时，第三个参数传了false。拷贝时会忽略第三个`Converter`参数，所以这里的例子直接传了个`null`。
 
-##BulkBean
+## ulkBean
 
 `BulkBean`可以通过数组指定Bean的一组访问方法来对属性进行批量操作。
 
@@ -278,7 +278,7 @@ public void testBulkBean() throws Exception {
 
 `BulkBean`需要一个getter数组、一个setter数组和一个相应属性类型的数组来作为构造参数。然后可以通过`BulkBean#getPropertyValues(Object)`方法提取出一个属性数组。相应地，可以通过`BulkBean#setPropertyValues(Object, Object[])`方法设置一组属性。
 
-##BeanMap
+## eanMap
 
 这是cglib库中的最后一个bean的工具类，`BeanMap`会将bean的所有属性转换为`String`到`Object`的键值对映射`Map`：
 
@@ -294,7 +294,7 @@ public void testBeanGenerator() throws Exception {
 
 另外，`BeanMap#newInstance(Object)`方法可以重用相同`Class`来为其他Bean创建BeanMap。
 
-##KeyFactory
+## eyFactory
 
 `KeyFactory`允许创建由多个值组成的Key，这些Key可以在`Map`等实现中使用。为了达到这个目的，`KeyFactory`需要一个接口，该接口用于定义组成key需要的值。这个接口需要有一个方法，方法名必须为`newInstance`，返回值必须为Object实例，比如：
 
@@ -319,7 +319,7 @@ public void testKeyFactory() throws Exception {
 
 `KeyFactory`会确保正确实现`Object#equals(Object)`和`Object#hashCode`方法，因此生成的key可以直接用于`Map`和`Set`中。在cglib库内部，`KeyFactory`也是被频繁使用的。
 
-##Mixin
+## ixin
 
 有些人可能已经从其他编程语言（如Ruby或Scala）中了解了`Mixin`类的概念，cglib的`Mixin`s允许将多个对象组合成一个对象。但是，为了实现这个功能，这些对象必须要实现接口：
 
@@ -368,7 +368,7 @@ public void testMixin() throws Exception {
 
 诚然，`Mixin`API相当笨拙，因为需要额外定义接口，这个问题可以通过非检测(non-instrumented)的Java来解决。
 
-##StringSwitcher
+## tringSwitcher
 
 `StringSwitcher`可以模拟一个`String`到int的键值对映射`Map`：
 
@@ -386,7 +386,7 @@ public void testStringSwitcher() throws Exception {
 
 `StringSwitcher`可以模拟`String`类型的`switch`的分支逻辑，就像java7及更高版本已经内建的`swtich`一样。如果在Java 6或更低版本中使用`StringSwitcher`可能真的会给代码带来一些好处，但这是值得怀疑的，我个人是不建议使用的。
 
-##InterfaceMaker
+## nterfaceMaker
 
 `InterfaceMaker`顾名思义，它可以动态地创建新Interface：
 
@@ -405,7 +405,7 @@ public void testInterfaceMaker() throws Exception {
 
 与cglib库的其他API不同的是，InterfaceMarker依赖于ASM的类型。在一个正在运行的程序中创建interface几乎没有意义，因为一个interface仅仅代表着一个类型，一般是在编译器的进行类型检测时使用。当然，如果是你是要将生成的代码用于后续的开发，还是有一些用处的。
 
-##MethodDelegate
+## ethodDelegate
 
 MethodDelegate允许通过将方法调用绑定到某个接口来模拟类似于[`c#`的方法委托](http://msdn.microsoft.com/de-de/library/900fyy8e%28v=vs.90%29.aspx)，例如，下面的代码将`SampleBean#getValue`方法绑定到委托:
 
@@ -436,7 +436,7 @@ public void testMethodDelegate() throws Exception {
 - 不能代理带参的方法；
 - 如果你的接口方法带参，Method Deletegate根本无法正常工作，而且它不会抛出任何异常信息(方法的返回值永远都是null)。如果你的接口方法的返回类型与被代理的方法不一致(即便是被代理方法返回对象的父类)，你将会收到一个`IllegalArgumentException`异常。
 
-##MulticastDelegate
+## ulticastDelegate
 
 尽管`MulticastDelegate`与`MethodDelegate`的目标功能是相似的，但是二者之间的工作方式还是会有一些区别的。为了使用`MulticastDelegate`，我们的对象需要实现一个接口：
 
@@ -479,7 +479,7 @@ public void testMulticastDelegate() throws Exception {
 - 所有的对象都需要实现一个包含单个方法的接口，这对于第三方库来说很糟糕，当你想要使用CGlib实现一些隐藏性的操作时，是不可行的，实现这些操作的代码就会暴露到正常的代码中。其实，你可以自己轻松的实现这种代理方式（即使不通过字节码，但是我猜你自己实现会更好）。
 - 当被代理方法需要返回数据时，你只能拿到最后一个对象返回的数据，其他对象返回的数据都会丢失（但是可以在某些点被multicast delegate检测到）。
 
-##ConstructorDelegate
+## onstructorDelegate
 
 `ConstructorDelegate`允许创建一个以字节为单位的[工厂方法](http://en.wikipedia.org/wiki/Factory_method_pattern)。要使用它，首先需要一个接口，这个接口必须包含一个名称为`newInstance`的方法，该方法的返回值必须为`Object`，这个方法可以包含任意多个参数（参数个数和类型与需要代理的构造方法相同）。例如，为了为`SampleBean`创建`ConstructorDelegate`，我们需要以下内容来调用SampleBean的默认（无参）构造函数：
 
@@ -497,7 +497,7 @@ public void testConstructorDelegate() throws Exception {
 }
 ```
 
-##ParallelSorter
+## arallelSorter
 
 在二维数组排序时，`ParallelSorter`声称是Java标准库的数组排序的更快替代品：
 
@@ -526,7 +526,7 @@ public void testParallelSorter() throws Exception {
 
 就我个人而言，我怀疑ParallelSorter是否真的在排序时间上有优势。诚然，我还没有尝试对它进行基准测试。如果你尝试过，我很乐意在评论中听到你的回复。
 
-##FastClass and FastMembers
+## astClass and FastMembers
 
 `FastClass`承诺要提供比[Java reflection API](http://docs.oracle.com/javase/tutorial/reflect/)更快的方法调用，它包装一个Class，并提供与Java reflection API相同API：
 
@@ -543,11 +543,11 @@ public void testFastClass() throws Exception {
 
 除了`FastMethod`外，`FastClass`还可以创建`FastConstructor`，但是不能创建fast field。但是，`FastClass`怎么就比正常的反射API更快呢？Java reflection是通过JNI（Java Native Interface）执行的，JNI会调用C语言的代码执行反射方法，而`FastClass`是通过生成一些字节码直接在JVM中调用的。然而，新版本的HotSpot JVM（或许还有其他的现代JVM）会有一个叫做inflation的概念，当使用JNI调用超过一定次数后会[翻译反射方法调用](http://www.docjar.com/html/api/sun/reflect/ReflectionFactory.java.html)生成一个[本地版本](http://www.docjar.com/html/api/sun/reflect/NativeMethodAccessorImpl.java.html)的`FastClass`字节码。你通过属性`sun.reflect.inflationThreshold`设置这个次数（默认为15次），以控制jvm的inflation行为（至少在HotSpot JVM中）。这个属性决定了在执行多少次JNI调用后会在本地生成字节码。我建议在现代的JVM中不再使用`FastClass`，但是在老版本的JVM中可以用来优化性能。
 
-##cglib Proxy
+## glib Proxy
 
 就像本文开头个所说，cglib `Proxy`是Java `Proxy`的重新实现版本。开发这个库的本意是想要在Java 1.3之前的版本中使用Java库的proxy，当时的cglib Proxy与Java Proxy仅有很少的细节上有区别。在Java Standard库的javadoc中有关于[Java Proxy很好的文档](http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/Proxy.html)，为此我将省略对其的细节讨论。
 
-##最后的警告
+## 后的警告
 
 在概述了cglib的功能后，我想说最后一句警告。cglib生成字节码的类，会导致这些额外的类保存在JVM的一块特殊内存中：所谓的**perm space**。就像他的名字一样，这块永久的内存空间适用于保存不需要垃圾回收的永久对象的。然而，这也不是完全正确的：一旦`Class`被加载(load)后，如果加载它的`ClassLoader`没有准备好进行垃圾回收，它就不会被卸载(unload)。`ClassLoader`被回收的唯一场景是，这个`ClassLoader`不是JVM系统的`ClassLoader`而是自定义的(程序创建的)`ClassLoader`。这种`ClassLoader`如果自己准备好，且它加载的所有类以及这些类的实例都准备好回收了，垃圾回收器才会真正的回收。这就意味着，如果你在Java程序中创建越来越多的类，并且不认证考虑移除内存中的这些类，你迟早会将perm space耗尽，最终程序死于`OutOfMemoryError`之手。因此，请谨慎使用cglib。但是，如果你明知且谨慎的使用cglib，你将可以做很多纯Java程序不能做的奇妙的事情。
 最后，当你创建依赖于cglib的项目的时候，你需要注意到一个事实：cglib项目没有得到应有的管理和开发积极性（考虑到它的流行程度来说）。缺少文档就是这么说的第一个证据，第二个就是它经常出现的凌乱的public接口。发布到Maven中心仓库也存在不好的地方，邮件列表就像是垃圾邮件一样，它的版本迭代也相当的不稳定。因此你可能需要了解一下[javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/)，一个真正可以替代cglib的库（但是功能较cglib弱）。Javassist附带了一个伪Java编译器，这样就可以在不清楚Java字节码的情况下创建不可思议的字节码增强了。如果你想要亲力亲为，你可能更喜欢ASM（cglib就是基于这个构建的），ASM不管是库还是Java代码又或者是字节码，都有强大的文档支持。

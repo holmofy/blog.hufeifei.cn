@@ -12,7 +12,7 @@ Struts2和Servlet相比有几个牛逼的地方。对OGNL表达式的整合以�
 
 这篇文章就来说说Struts2中的通配符以及它的各种坑。
 
-##最基本的使用
+## 基本的使用
 
 ## 1. `*`通配符
 
@@ -79,7 +79,7 @@ Struts2和Servlet相比有几个牛逼的地方。对OGNL表达式的整合以�
 
 
 
-##命名空间的配置
+## 名空间的配置
 
 虽然不推荐Action的name属性包含`/`，但是对于使用`/`进行模块划分有更好的解决方案——package的namespace属性。
 
@@ -115,7 +115,7 @@ Struts2中，package标签的namespace属性是用来细分项目模块的，比
 
 
 
-##命名空间中包含请求参数
+## 名空间中包含请求参数
 
 从Struts2.1开始，框架可以从命名空间中提取请求参数，要使用该功能需要先配置一个常量：
 
@@ -137,7 +137,7 @@ public class DetailsAction exends ActionSupport {
 
 
 
-##Action Name中包含请求参数
+## ction Name中包含请求参数
 
 除了上面的命名空间可以从url提取请求参数，Action也可以从url中提取请求参数，使用该功能需要配置两个常量：
 
@@ -161,7 +161,7 @@ public class DetailsAction exends ActionSupport {
 
 > 命名空间和Action Name中携带参数，这两个运用的场合还是比较多，比如各大博客平台的url就是这么设计的，CSDN的博客url：blog.csdn.net/{USER_NAME}/article/details/{ARTICLE_ID}。在Struts2中使用这种携带参数的url可能还会蹑手蹑脚(确实不怎么好用)，但是在另一个更牛逼的MVC框架——SpringMVC，它把这种url中携带参数的方式发扬光大，并且还衍生出[RESTful](https://baike.baidu.com/item/RESTful)架构模式(听起来很牛逼的样子，其实本质上就是在url中携带参数，同时与Http协议的POST、GET、PUT 和 DELETE请求方式进行结合)。
 
-##更牛逼的通配符----正则表达式
+## 牛逼的通配符----正则表达式
 
 从Struts2.1.9开始可以在Action的name属性中定义正则表达式，这就大大的加强了Struts2的匹配能力，因为正则独立于框架独立于编程语言的，如果以前了解过正则，在Struts2的通配符映射的配置上基本不需要花什么学习成本。
 
@@ -223,7 +223,7 @@ public class DetailsAction exends ActionSupport {
 
 
 
-##在action的method属性中使用通配符
+## action的method属性中使用通配符
 
 前面说到使用`{n}`可以获取通配符的匹配组，这个匹配组可以用在&lt;action&gt;标签属性或子标签下等多个地方，而放在&lt;action&gt;的method属性下最能体现Struts2的灵活性。因为method属性是根据请求url变化而动态调用Action类下的方法的，官方称之为通配符方法(Wildcard Method)
 

@@ -5,16 +5,16 @@ tags:
 categories: Linux运维
 ---
 
-##下载并安装JDK
+## 载并安装JDK
 
 **卸载原装的OpenJDK(如果有)**
 
 ```shell
-##查看是否安装Java
+## 看是否安装Java
 java -version
-##查看Java的安装包信息
+## 看Java的安装包信息
 rpm -qa | grep java
-##卸载原装Java,<java_package>为查找到的安装包信息
+## 载原装Java,<java_package>为查找到的安装包信息
 rpm -e --nodeps <java_package>
 ```
 
@@ -26,9 +26,9 @@ rpm -e --nodeps <java_package>
 http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-i586.tar.gz
 
 ```shell
-##创建安装目录
+## 建安装目录
 mkdir -p /usr/local/java
-##解压
+## 压
 tar -xzvf jdk-8u151-linux-i586.tar.gz -C /usr/local/java
 ```
 
@@ -58,7 +58,7 @@ source /etc/profile
 
 ![测试JDK环境是否安装成功](http://img-blog.csdn.net/20171128143347441?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##下载并安装Tomcat
+## 载并安装Tomcat
 
 从清华大学的镜像站下载会快一点：
 
@@ -79,7 +79,7 @@ tar -xzvf apache-tomcat-8.5.23.tar.gz -C /usr/local/java
 在`/etc/profile`文件后再追加一条TOMCAT的环境变量
 
 ```shell
-##在/etc/profile文件末尾追加TOMCAT的环境变量
+## /etc/profile文件末尾追加TOMCAT的环境变量
 export CATALINA_HOME=/usr/local/java/apache-tomcat-8.5.23
 ```
 
@@ -100,10 +100,10 @@ source /etc/profile
 > 省的每次启动后还要到tomcat的bin目录下找startup脚本
 
 ```shell
-##把tomcat的脚本文件拷一份到/etc/init.d目录
+## tomcat的脚本文件拷一份到/etc/init.d目录
 cp /usr/local/java/apache-tomcat-8.5.23/bin/catalina.sh /etc/init.d/tomcat8
 
-##并把改脚本授权给所有用户执行
+## 把改脚本授权给所有用户执行
 chmod 755 /etc/init.d/tomcat8
 ```
 
@@ -143,10 +143,10 @@ export CATALINA_HOME=/usr/local/java/apache-tomcat-8.5.23
 
 ![检查服务是否安装成功](http://img-blog.csdn.net/20171128143801312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##配置防火墙打开8080端口并访问测试
+## 置防火墙打开8080端口并访问测试
 
 ```shell
-##对内网网段，打开8080端口
+## 内网网段，打开8080端口
 iptables -I INPUT -s 192.168.10.0/24 -p tcp --dport 8080 -j ACCEPT
 ```
 

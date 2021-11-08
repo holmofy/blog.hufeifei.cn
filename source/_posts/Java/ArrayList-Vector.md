@@ -10,7 +10,7 @@ Vector作为JDK1.0开始就已经存在的元老级数据结构，在JDK的版�
 
 <!-- more -->
 
-##相同点
+## 同点
 1. 都使用数组实现，提供的操作也基本一致
   在ArrayList与Vector中都有一个`` Object[] elementData``用来保存数据
   看看它们的方法：
@@ -28,7 +28,7 @@ E remove(int index);   -->   void removeElementAt(int index);
 ListIterator<E> listIterator();   -->   Enumeration<E> elements();
 ```
 
-##不同点
+## 同点
 ## 默认构造对象的初始容量不同
 两个类都可以通过构造函数指定初始容量在ArrayList中也是很有讲究的，这个在扩容策略中讲。这里要说的是是无参构造函数函数调用时，创建的数据对象数组不相同。
 1. Vector默认初始容量为10

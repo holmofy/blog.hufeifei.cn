@@ -108,9 +108,9 @@ OpenResty是基于Lua即时编译器([LuaJIT](https://github.com/LuaJIT/LuaJIT))
 ### 安装lua模块
 
 ```bash
-##在nginx下创建一个放lua脚本的目录
+#在nginx下创建一个放lua脚本的目录
 mkdir lua-lib
-##下载lua-resty-template模块
+#下载lua-resty-template模块
 git clone https://github.com/bungle/lua-resty-template lua-lib/lua-resty-template
 ```
 

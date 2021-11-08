@@ -175,9 +175,9 @@ Worker进程和redis类似使用单线程+IO多路复用实现高并发处理IO�
 只需要在`nginx.conf`文件中把`daemon`和`master_process`设成`off`即可。
 
 ```nginx
-##关闭Master守护进程的功能
+#关闭Master守护进程的功能
 daemon off;
-##关闭多进程架构，如果为off，不会启动worker_process进程
+#关闭多进程架构，如果为off，不会启动worker_process进程
 master_process off;
 ```
 

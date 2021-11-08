@@ -29,7 +29,7 @@ keywords:
 
 MySQL还有另外一种查询日志，被称为“通用日志”，但极少用于分析服务器性能。通用日志在查询请求达到服务器时记录，所以不包括响应时间和执行计划等重要的性能信息。MySQL5.1之后支持将日志记录到数据库的表中，但大多数情况没必要记录到表中。这对性能有较大的影响，MySQL5.1在将慢查询记录到文件中时已经支持微妙级的信息，然而将慢查询记录到表中会导致时间退化到秒级别。秒级别的慢查询日志没有太大意义。
 
-##开启慢查询日志
+## 启慢查询日志
 
 默认情况下，慢查询日志被禁用；默认慢查询日志放在数据目录，默认文件名为*host_name*-slow.log。
 
@@ -63,7 +63,7 @@ mysql> show variables like 'slow_query%';
 
 > **注意**：使用`set global slow_query_log=1`开启慢查询日志只对当前数据库生效，MySQL重启后则会失效。如果要永久生效，就必须修改配置文件my.cnf(windows下为my.ini)，或者在使用命令行启动mysql的时候，在[`--slow-query-log`](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_slow_query_log)参数中指定，其它系统变量也是如此。
 
-##设置慢查询时间阈值
+## 置慢查询时间阈值
 
 开启了慢查询日志后，什么样的SQL才会记录到慢查询日志里面呢？ 这个是由参数[`long_query_time`](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_long_query_time)控制，默认`long_query_time=10`，也就是10秒。
 
@@ -101,7 +101,7 @@ mysql> show global variables like 'long_query_time';
 >
 > [`show variables`完整语法](https://dev.mysql.com/doc/refman/5.7/en/show-variables.html)为：show [global|session] variables  [like '*pattern*' | where *expr*]
 
-##将慢查询日志记录到数据表中
+## 慢查询日志记录到数据表中
 
 尽管将慢查询日志记录到数据表中会影响性能，但谁也无法保证不会出现这样的需求。
 
@@ -128,7 +128,7 @@ mysql> show variables like 'log_output';
 1 row in set, 1 warning (0.00 sec)
 ```
 
-##将未使用到索引的查询当做慢查询记录到日志中
+## 未使用到索引的查询当做慢查询记录到日志中
 
 系统变量[log-queries-not-using-indexes](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_log-queries-not-using-indexes)：未使用索引的查询也被记录到慢查询日志中（可选项）。如果调优的话，建议开启这个选项。另外，开启了这个参数，其实使用full index scan(索引全扫描)的sql也会被记录到慢查询日志。
 
@@ -153,7 +153,7 @@ mysql> show variables like 'log_queries_not_using_indexes';
 1 row in set, 1 warning (0.00 sec)
 ```
 
-##将管理性质的SQL语句记录慢查询
+## 管理性质的SQL语句记录慢查询
 
 [`log-slow-admin-statements`](https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_log-slow-admin-statements)变量会将管理性质的慢SQL记录到慢查询日志中。管理性质的SQL语句包括：[`ALTER TABLE`](https://dev.mysql.com/doc/refman/5.7/en/alter-table.html), [`ANALYZE TABLE`](https://dev.mysql.com/doc/refman/5.7/en/analyze-table.html), [`CHECK TABLE`](https://dev.mysql.com/doc/refman/5.7/en/check-table.html), [`CREATE INDEX`](https://dev.mysql.com/doc/refman/5.7/en/create-index.html), [`DROP INDEX`](https://dev.mysql.com/doc/refman/5.7/en/drop-index.html), [`OPTIMIZE TABLE`](https://dev.mysql.com/doc/refman/5.7/en/optimize-table.html), 和[`REPAIR TABLE`](https://dev.mysql.com/doc/refman/5.7/en/repair-table.html)。
 
@@ -167,7 +167,7 @@ mysql> show variables like 'log_slow_admin_statements';
 1 row in set (0.00 sec)
 ```
 
-##查看慢查询记录的条数
+## 看慢查询记录的条数
 
 如果你想查询有多少条慢查询记录，可以使用这个[系统状态变量](https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html)——[Slow_queries](https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html#statvar_Slow_queries)。
 
@@ -181,7 +181,7 @@ mysql> show global status like 'slow_queries';
 1 row in set (0.00 sec)
 ```
 
-##日志分析工具
+## 志分析工具
 
 在实际生产环境中，如果要手工分析日志，查找、分析SQL，显然是个体力活，MySQL提供了日志分析工具**mysqldumpslow**
 
@@ -226,16 +226,16 @@ mysqldumpslow --help
 使用示例：
 
 ```shell
-##得到返回记录集最多的10个SQL。
+## 到返回记录集最多的10个SQL。
 mysqldumpslow -s r -t 10 /database/mysql/mysql06_slow.log
 
-##得到访问次数最多的10个SQL
+## 到访问次数最多的10个SQL
 mysqldumpslow -s c -t 10 /database/mysql/mysql06_slow.log
 
-##得到按照时间排序的前10条里面含有左连接的查询语句。
+## 到按照时间排序的前10条里面含有左连接的查询语句。
 mysqldumpslow -s t -t 10 -g “left join” /database/mysql/mysql06_slow.log
 
-##另外建议在使用这些命令时结合 | 和more 使用 ，否则有可能出现刷屏的情况。
+## 外建议在使用这些命令时结合 | 和more 使用 ，否则有可能出现刷屏的情况。
 mysqldumpslow -s r -t 20 /mysqldata/mysql/mysql06-slow.log | more
 ```
 

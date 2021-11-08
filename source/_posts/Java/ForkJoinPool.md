@@ -12,7 +12,7 @@ keywords:
 
 这篇文章将介绍最后一个线程池——Java7中最引人瞩目的[ForkJoinPool](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ForkJoinPool.html)线程池。
 
-##1. 为什么使用ForkJoinPool
+## . 为什么使用ForkJoinPool
 
 ThreadPoolExecutor中每个任务都是由单个线程独立处理的，如果出现一个非常耗时的大任务(比如大数组排序)，就可能出现线程池中只有一个线程在处理这个大任务，而其他线程却空闲着，这会**导致CPU负载不均衡**：空闲的处理器无法帮助工作繁忙的处理器。
 
@@ -20,7 +20,7 @@ ForkJoinPool就是用来解决这种问题的：将一个大任务拆分成多�
 
 ![Fork/Join框架原理](http://tva1.sinaimg.cn/large/bda5cd74gy1ft9simzhklj20cc0etgm1.jpg)
 
-##2. ForkJoinPool的基本原理
+## . ForkJoinPool的基本原理
 
 *ForkJoinPool* 类是[Fork/Join 框架](http://gee.cs.oswego.edu/dl/papers/fj.pdf)的核心，和ThreadPoolExecutor一样它也是ExecutorService接口的实现类。
 
@@ -55,7 +55,7 @@ Fork/Join框架中使用的*work stealing*灵感来源于[Cilk](https://en.wikip
 
 ![Work Stealing算法](http://tva1.sinaimg.cn/large/bda5cd74gy1fvadx7bjxzj20di08p0t6.jpg)
 
-##3. 创建ForkJoinPool对象
+## . 创建ForkJoinPool对象
 
 **1、使用Executors工具类**
 
@@ -150,7 +150,7 @@ public ForkJoinPool(int parallelism,
 
 > Java9中提供的构造参数更复杂了，可以在[JSR166 Concurrency论坛](http://jsr166-concurrency.10961.n7.nabble.com/Customized-ForkJoinPool-constructor-td13321.html)看看作者Doug Lea是怎么想的。
 
-##4. 提交任务到ForkJoinPool
+## . 提交任务到ForkJoinPool
 
 ```java
 // 提交没有返回值的任务
@@ -210,7 +210,7 @@ public <T> T invoke(ForkJoinTask<T> task) {
 
 可以看到所有的任务最终都会以ForkJoinTask类型提交到线程池中。
 
-##5. [ForkJoinTask](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinTask.html)
+## . [ForkJoinTask](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinTask.html)
 
 大多数情况下，我们都是直接提交ForkJoinTask对象到ForkJoinPool中。
 
@@ -280,7 +280,7 @@ isCompletedNormally => NORMAL
 isDone() => status<0 => NORMAL || CANCELLED || EXCEPTIONAL
 ```
 
-##6. RecursiveAction与RecursiveTask
+## . RecursiveAction与RecursiveTask
 
 通常我们不会直接使用ForkJoinTask，而是使用它的两个抽象子类：
 
@@ -425,7 +425,7 @@ public class DirectoryTask extends RecursiveTask {
 }
 ```
 
-##7. Fork/Join的陷阱与注意事项
+## . Fork/Join的陷阱与注意事项
 
 使用Fork/Join框架时，需要注意一些陷阱
 
@@ -482,7 +482,7 @@ return leftAns + rightAns;
 
 Fork/Join的很多使用场景都用到数组或者List等数据结构，子任务在某个分区中运行，最典型的例子如并行排序和并行查找。拆分子任务以及合并处理结果的时候，应该尽量避免System.arraycopy这样耗时耗空间的操作，从而最小化任务的处理开销。
 
-##8. 异常处理
+## . 异常处理
 
 Java的受检异常机制一直饱受诟病，所以在ForkJoinTask的`invoke()`、`join()`方法及其衍生方法中都没有像`get()`方法那样抛出个`ExecutionException`的受检异常。
 

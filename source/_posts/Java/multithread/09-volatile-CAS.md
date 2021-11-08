@@ -23,7 +23,7 @@ keywords:
 
 前一篇文章中提到原子操作，也许大家和我一样很好奇为什么`AtomicInteger.increment`方法能保证原子性，而简单的`++`运算却不能保证原子性。这篇文章我们就从`AtomicInteger`类下手分析源码，来了解一下原子操作的实现原理，但是分析源码之前需要来一段小小的前奏。
 
-##CPU内存架构
+## PU内存架构
 
 现代计算机都是多处理机CPU，每个核心(Core)都有一套寄存器，CPU访问寄存器的速度是最快的，但是访问RAM内存速度相对来说要慢很多，所以为了解决寄存器与内存速度的不协调问题，每个CPU内核都会有一级或多级高速缓存(Cache)：
 
@@ -33,7 +33,7 @@ keywords:
 
 ![线程共享变量出现的问题](http://img-blog.csdn.net/20170627225612648?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##volatile关键字的作用
+## olatile关键字的作用
 
 前面讲CPU内存架构就是为了说明`volatile`关键字的作用：用来保证对变量修改后，能立即写回主存，从而保证共享变量的修改对所有线程是可见的。[JVM语言规范](http://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html#jls-17.4.5)将该特性称为`happens-before`。
 
@@ -103,7 +103,7 @@ public class ThreadCommunicate {
 > https://stackoverflow.com/questions/1063133/usage-of-volatile-specifier-in-c-c-java/1065150
 > https://en.wikipedia.org/wiki/Volatile_(computer_programming)
 
-##AtomicInteger中`volatile`的使用
+## tomicInteger中`volatile`的使用
 
 下面就让我们看看AtomicInteger中是怎么使用volatile关键字的
 ```java
@@ -165,7 +165,7 @@ public final boolean compareAndSet(int expect, int update) {
 > CAS操作经常被用来实现无锁数据结构，在`java.util.concurrent`包中就有很多这样的数据结构：`ConcurrentLinkedQueue`、`ConcurrentLinedDeque`、`ConcurrentHashMap`、`ConcurrentSkipListMap`、`ConcurrentSkipListSet`
 
 
-##源码分析CAS操作
+## 码分析CAS操作
 
 
 说了半天都没有说到`getAndIncrement`和`getAndDecrement`的实现！接下来就来分析分析这几个方法的源码：
@@ -287,7 +287,7 @@ inline jint Atomic::cmpxchg    (jint exchange_value, volatile jint* dest, jint c
 
 * `cmpxchg`指令可以加LOCK前缀(0xF0)来保证`cmpxchg`指令原子性执行。
 
-##CAS操作的[ABA问题](https://en.wikipedia.org/wiki/ABA_problem)
+## AS操作的[ABA问题](https://en.wikipedia.org/wiki/ABA_problem)
 
 **CAS操作只有内存值与预期值相等才会更新内存中的值**，所有CAS操作可能会出现这种现象：原来内存值为A，线程1和线程2都获取该值，然后线程1使用CAS将内存值修改为B，然后又使用CAS将内存值修改回A；这时线程2使用CAS对内存值进行修改时发现内存值仍然是A，然后线程2修改成功。这种现象是“ABA问题”，也称“调包问题”。
 
@@ -299,7 +299,7 @@ inline jint Atomic::cmpxchg    (jint exchange_value, volatile jint* dest, jint c
 
 使用AtomicStampedReference实现无锁二叉搜索树：https://github.com/arunmoezhi/LockFreeBST
 
-##参考文章：
+## 考文章：
 
 同步原语：https://software.intel.com/en-us/articles/choosing-between-synchronization-primitives
 

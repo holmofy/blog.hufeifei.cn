@@ -27,7 +27,7 @@ tags:
 
 Hessian的官网中提供了Java，Flash，Python，C++，.NET，PHP，Ruby，OC等各种语言对Hessian的实现。这篇文章会用Java来实现一个简单的例子。
 
-##服务端
+## 务端
 
 **1.**导入Hessian以及相关的依赖
 
@@ -161,7 +161,7 @@ mvn clean tomcat7:run
 
 > 因为调用服务传入的参数可能是对象类型，这时候传入的数据可能会非常大，GET请求很明显不符合要求，所以Hessian要求调用服务必须的使用POST请求
 
-##客户端
+## 户端
 
 ```java
 package cn.hff.client;

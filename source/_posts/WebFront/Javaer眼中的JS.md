@@ -7,7 +7,7 @@ mathjax: true
 
 > 把之前写的笔记整理了一下，重新拾起JS
 
-##基本数据类型
+## 本数据类型
 
 | JS                    | Java    |
 | --------------------- | ------- |
@@ -92,7 +92,7 @@ isNaN(1 + undefined) // true
 ```
 
 
-##对象类型--[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+## 象类型--[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 | JS     | Java |
 | ------ | ---- |
@@ -142,7 +142,7 @@ var p = {
 
 > JSON数据格式就是从Javascript语言中出来的。
 
-##其他内置对象
+## 他内置对象
 
 除了前面介绍的Object以及基本数据类型的包装类型JS还提供了一些其他的内置对象。
 

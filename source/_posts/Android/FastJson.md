@@ -20,9 +20,9 @@ Github：
 Fastjson提供了两种版本：标准版本，Android版本，所以添加Gradle依赖也有所不同
 关于两个版本的区别可以查看阿里巴巴写的[文档](https://github.com/alibaba/fastjson/wiki/Android%E7%89%88%E6%9C%AC)
 ```groovy
-##标准版
+#标准版
 compile 'com.alibaba:fastjson:1.2.24'
-##android版
+#android版
 compile 'com.alibaba:fastjson:1.1.56.android'
 ```
 ## FastJson使用

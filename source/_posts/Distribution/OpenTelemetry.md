@@ -13,7 +13,7 @@ keywords:
 
 > 天下大势，分久必合，合久必分——《三国演义》
 
-##乾坤未定，混沌初开
+## 坤未定，混沌初开
 
 ![Linux性能观测工具](https://www.brendangregg.com/Perf/linux_observability_tools.png)
 
@@ -23,7 +23,7 @@ keywords:
 
 ![分布式观测性三大基石](https://pic3.zhimg.com/v2-246813d3962794604c4bc409a94693d6_r.jpg)
 
-##Dapper启蒙，百花齐放
+## apper启蒙，百花齐放
 
 谷歌作为互联网的巨擘，手握独步天下的搜索引擎——Google。搜索引擎作为互联网的要隘，流量增长异常惊人，这也促使谷歌发展出自己的一套分布式系统。谷歌为了增加公司影响力便于吸引人才，将内部的系统设计以一篇篇论文的形式公布给业界。
 
@@ -39,7 +39,7 @@ keywords:
 
 ![链路追踪技术](https://p.pstatp.com/origin/pgc-image/d0f15af19cfe475f897c97a705aa4a2f)
 
-##OpenTracing标准，号令天下; OpenCensus不出，谁与争锋
+## penTracing标准，号令天下; OpenCensus不出，谁与争锋
 
 但是随着各大厂商对链路追踪系统的实现趋于碎片化，社区开始制定OpenTracing标准来统一链路追踪中涉及的相关概念和规范——这是一套平台无关、厂商无关的Trace协议，使得开发人员能够方便的添加或更换分布式追踪系统的实现。
 
@@ -53,7 +53,7 @@ OpenCensus和OpenTracing最大的不同在于除了Tracing外，它还把Metrics
 
 OpenTracing这边有Elastic、Uber、Twitter、DataDog等互联网新秀作为拥趸已发展多年，而OpenCensus有谷歌、微软两大巨头撑腰。一时间也难分高低。
 
-##横扫六合，一统天下
+## 扫六合，一统天下
 
 既然没办法分个高低，谁都有优劣势，咱们就别干了，统一吧。于是OpenTelemetry横空出世。
 

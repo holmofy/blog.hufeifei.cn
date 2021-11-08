@@ -19,7 +19,7 @@ Certbot是有个最大的好处是，能自动化部署[Let's Encrypt](https://l
 
 ![CentOS7下Nginx配置ssl证书](http://tva1.sinaimg.cn/large/bda5cd74gy1fr7vmwiw7ej211y0kgdhu.jpg)
 
-##独立申请证书
+## 立申请证书
 
 certbot提供的全自动化的配置是挺不错的，但是个人总觉得全自动的隐藏过多细节，心里有点不踏实。
 
@@ -33,7 +33,7 @@ certbot certonly --standalone --email 1938304905@qq.com -d www.hufeifei.cn -d bl
 
 生成证书和私钥后在nginx的配置文件中手动配置上面的两个文件，具体可以参考[nginx文档](https://nginx.org/en/docs/http/configuring_https_servers.html)
 
-##过期重申
+## 期重申
 
 `certbot renew `命令能帮我们检查证书还有多少天过期，如果接近到期时间，会帮我们更新证书。
 
@@ -47,7 +47,7 @@ certbot renew --pre-hook "/usr/local/nginx/sbin/nginx -s stop" --post-hook "/usr
 
 ![没过期的时候执行该命令](http://tva1.sinaimg.cn/large/bda5cd74gy1fu7bi6exc7j20qm06cwei.jpg)
 
-##定期重申
+## 期重申
 
 为了省去每三个月都上服务器执行一次命令的繁琐，我们可以在corntab中加一个定时任务定期执行上面的`renew`命令：
 
