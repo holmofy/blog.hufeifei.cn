@@ -8,7 +8,7 @@ keywords:
 
 Java提供给我们软件国际化的解决方案，这些国际化API基于Unicode标准，并且包括文本、（货币）数字、日期以及用户自定义对象的适配，从而使得软件能够应用到任何国家或地区。国际化英文为“Internationalization”，通常简写成`i18n`(实际开发经常使用简写)。更多有关Java国际化的内容可以参考[Oracle的相关网站](http://www.oracle.com/technetwork/java/javase/tech/intl-139810.html)。
 
-## 文字国际化
+# 文字国际化
 
 Java语言基于Unicode字符集。Unicode是一种国际字符集标准，支持世界上所有主要文字以及常见技术符号。早期Unicode规定所有字符固定16bit宽(也就是UCS-2)，但是Unicode标准中的字符早已超过16bit所能表示的范围，现规定的代码点范围在U+0000到U+10FFFF之间。Java标准使用的UTF-16定义的编码方式允许使用一个或两个16bit单位来表示所有的Unicode代码点。
 
@@ -20,7 +20,7 @@ Java平台中表示字符序列的各种类型如：char[]、java.lang.CharSeque
 
 `Character`类作为基本数据类型char的包装类，里面有很多确定字符属性的静态方法，如`isLowerCase`、`isTitleCase`和`isDigit`等，在Java5之前这些方法只有`char`作为参数，所以只接受U+0000到U+FFFF范围内的码点，Java5之后这些方法有了`int`类型作为参数的重载方法，这样就能表示所有Unicode代码点。
 
-## 区域识别与本地化
+# 区域识别与本地化
 
 ### 1. Locale—地区性
 
@@ -43,7 +43,7 @@ ResourceBundle中有几个重载的静态方法`getBundle`可以用来根据资�
 比如你有两个特定区域的资源：`MyResource_en.properties`和`MyResource_zh.properties`：
 
 ```properties
-#properties文件内容
+# properties文件内容
 key=value
 ```
 
@@ -56,7 +56,7 @@ java代码获取资源文件内容
  String value = res.getString("key");
  ```
 
-### ResourceBundle的子类
+#### ResourceBundle的子类
 
 ![ResourceBundle](http://img-blog.csdn.net/20170805193850915?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -104,21 +104,21 @@ ResourceBundle有两个子类：ListResourceBundle和PropertyResourceBundle。
 
 2、PropertyResourceBundle就是ResourceBundle通过get方法获取资源的形式，它使用的是`Properties`工具类获取`.properties`文件中的信息。
 
-## 日期与时间的处理
+# 日期与时间的处理
 
 java.util.Date类代表着毫秒精度的日期时间，该类有几个方法可以获取日期中的年、月、日、时、分、秒等信息。但是由于该类依赖于时区，与国际化不兼容，大部分方法已经被弃用，通常我们使用Calendar类来转换日期和时间，并通过DateFormat类来格式化或解析日期时间字符串。
 
-## Calendar
+### Calendar
 
 Calendar是一个抽象类，它用于一个整数的计算机纪元点时间转换成年、月、日、星期等信息。`GregorianCalendar `类是Calendar实现类，它根据格林尼治时间历法(公历)来实现。同时Calendar类提供了`getInstance`静态工厂方法来创建Calendar实例对象。
 
-## TimeZone
+### TimeZone
 
 TimeZone是一个抽象类，封装了一个相对于GMT(格林尼治标准时间)的偏移值。`TimeZone.getTimeZone`工厂方法能通过指定zoneID来创建一个TimeZone实例对象。另外TimeZone还有一个SimpleTimeZone实现类可以创建TimeZone对象。
 
 Calendar类及其子类会使用TimeZone进行本地时间与UTC(通用标准时间)之间的转换。
 
-## 格式化
+# 格式化
 
 i18n中重要的一个部分就是文本格式化，这些功能主要在`java.text`包中：
 
@@ -138,9 +138,9 @@ Format类主要有两个抽象方法需要子类去实现：
 
 DateFormat和NumberFormat这两个是抽象类，它们都有静态工厂方法getXxxInstance来获取该类的实例对象，同时它们也提供了子类可以实例化。
 
-## 日期时间格式化
+### 日期时间格式化
 
-### DateFormat
+#### DateFormat
 
 DateFormat有几个静态工厂方法getXxxInstance，DateFormat提供了几个标准的时间格式：
 
@@ -205,7 +205,7 @@ Fri Aug 04 11:04:31 CST 2017
 
 
 
-### SimpleDateFormat
+#### SimpleDateFormat
 
 SimpleDateFormat是DateFormat的子类，可以由开发者自己定义解析格式。
 
@@ -229,9 +229,9 @@ SimpleDateFormat是DateFormat的子类，可以由开发者自己定义解析格
 
 > [官方API文档中](http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html)给出了SimpleDateFormat的各种pattern的规则。
 
-## 数字格式化
+### 数字格式化
 
-### NumberFormat
+#### NumberFormat
 
 NumberFormat和DateFormat类似，也提供了几个标准的数字格式：
 
@@ -292,7 +292,7 @@ public final static NumberFormat getPercentInstance(Locale inLocale);  // PERCEN
 12,346%
 ```
 
-### DecimalFormat
+#### DecimalFormat
 
 该类允许我们自定义十进制数字的格式化。
 
@@ -300,17 +300,17 @@ public final static NumberFormat getPercentInstance(Locale inLocale);  // PERCEN
 
 ```java
         DecimalFormat format;
-        format = new DecimalFormat("#### #### ### 0# 圆整");
+        format = new DecimalFormat("####,####,###0.0# 圆整");
 
         System.out.println(format.format(12345678.90F));
         System.out.println(format.format(-12345678.90F));
 
-        format.applyPattern("0.0##### 0#### );
+        format.applyPattern("0.0#####E0####");
 
         System.out.println(format.format(1234567894987654321.90F));
         System.out.println(format.format(12.34F));
 
-        format.applyPattern("00.0#E0## );
+        format.applyPattern("00.0#E0##");
 
         System.out.println(format.format(1234567894987654321.90F));
         System.out.println(format.format(12.34F));
@@ -327,11 +327,11 @@ public final static NumberFormat getPercentInstance(Locale inLocale);  // PERCEN
 12.34E0
 ```
 
-## 信息格式化
+### 信息格式化
 
 所谓“信息”格式化，其实就是字符串格式化，可以通过MessageFormat这个类构造一个字符串显示给终端用户。不过在这之前要说说JDK1.0开始就已经存在的老牌API——`java.util.Formatter`。
 
-### java.util.Formatter
+#### java.util.Formatter
 
 我们知道String类中有一个静态方法`String.format(String format, Object... args)`和C语言中的`sprintf`函数极为相似，这个方法底层就是用了`java.util.Formatter`类来实现，而待会儿要讲的`MessageFormat`类功能远比这个类功能强大(指的是格式化字符串这方面)，所以在这之前我们先来说说`java.util.Formatter`这个类。
 
@@ -355,7 +355,7 @@ public final StringBuffer format(Object[] arguments, StringBuffer result, FieldP
 
 这个方法使用的是`StringBuffer`类作为存储字符串的缓冲区，这才契合了`sprintf`的功能。
 
-### java.text.MessageFormat
+#### java.text.MessageFormat
 
 前面扯到C语言和Java API中格式化输出的对比，接下来就继续谈谈MessageFormat的强大功能。
 
@@ -505,7 +505,7 @@ The disk "MyDisk" contains 1,234 files.
 >
 > 更多有关ChoiceFormat的信息可以参考[官方文档](http://docs.oracle.com/javase/8/docs/api/java/text/ChoiceFormat.html)
 
-## 字符串操作
+# 字符串操作
 
 ### 字符串比较
 
@@ -534,7 +534,7 @@ String类实现了Comparable接口所以提供了一个compareTo方法，但是�
 
 但是Unicode中文字符并没有严格的排序（有一说是按笔画排序，但在[Unicode官网](http://www.unicode.org/charts/)下的编码表中看并没有严格按笔画排序），而且我们通常习惯按照中文拼音对中文字符串进行排序。Java已经给我们提供了相应的解决方案。
 
-## Collator
+### Collator
 
 Collator类能按照相应国家和区域的习惯进行字符串比较，我们可以使用它来对字符(串)进行排序。
 
@@ -632,7 +632,7 @@ Collator排序：
 
 > 关于中文排序的问题，[这里](http://blog.csdn.net/dada9407/article/details/2975622)有一篇文章给出了几个解决方案
 
-## 字符串迭代
+### 字符串迭代
 
 java.text.StringCharacterIterator类封装好了字符串迭代功能，这个类很鸡肋，和普通的for循环迭代没啥区别。
 
@@ -657,11 +657,11 @@ StringCharacterIterator是CharcterIterator接口的实现类，CharcterIterator�
  }
 ```
 
-## 编码转换
+# 编码转换
 
 Java使用Unicode作为编码方法，经常会出现将将程序中的数据输出到外部(磁盘文件或网络响应等)，最常用的两个类就是InputStreamReader和OutputStreamWriter，这两个类后期也是用Charset类来实现核心功能的。Charset采用spi设计模式，允许我们开发自定义的编解码器。
 
-## Charset
+### Charset
 
 写个例子看一下Charset支持哪些编码：
 

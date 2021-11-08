@@ -7,13 +7,13 @@ mathjax: true
 
 TCP/IP起源于60年代末由美国政府资助的一个分组交换网络——ARPAnet(阿帕网)。到90年代TCP/IP就已成为事实上的工业标准了。
 
-## 络分层
+# 网络分层
 
 网络分层从ARPAnet开始就已经在使用，将网络协议分为不同层次开发，能简化设计的复杂性，各层既能相互独立又能高效地协调工作（这也是C语言这种面向过程语言解决问题的常用方法）。提到分层，我们通常会把TCP/IP层次模型与OSI参考模型进行对比。
 
 ![OSI模型与TCP/IP模型](http://img-blog.csdn.net/20170721144322946?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## OSI参考模型
+### OSI参考模型
 
 OSI参考模型是ISO国际标准化组织的建议。虽然OSI并未成为事实上的标准，但仍然具有学习参考和工作指导的意义。
 
@@ -89,7 +89,7 @@ OSI参考模型是ISO国际标准化组织的建议。虽然OSI并未成为事�
 
 > 网络工程师的工作范围主要就是下三层，而软件设计师的工作范围主要就是上三层。
 
-## TCP/IP分层模型
+### TCP/IP分层模型
 
 OSI参考模型的缺点就是过于复杂，层次分的太细，对于那些基于UDP不需要会话的协议基本上就没有会话层这一概念。比如DNS协议查询域名对应的IP地址。
 
@@ -107,11 +107,11 @@ OSI参考模型的缺点就是过于复杂，层次分的太细，对于那些�
 
 > OSI模型与TCP/IP模型都不完美，但TCP/IP模型发展是因为在ISO制定OSI参考模型过程中总是着眼于一次制定达到完美，所以的制定过程中考虑的方面比较多，但去忽略了IP这一协议的重要性，但当ISO认识到时只好在网络层划出一个子层来完成类似的功能，在无连接服务一开始也不在考虑之列，还有就是网络管理功能的过度复杂等，造成了OSI迟迟没有成熟的产品推出的成因，进而影响了厂商对它的支持，而这时的TCP/IP通过实践得到到不断的完善，也得到了大厂商的支持，所以TCP/IP模型得到了发展。
 
-## 络地址(IP地址)
+# 网络地址(IP地址)
 
 IP地址用来标识网络中主机的唯一性的。IP地址分为两个版本：IPv4和IPv6。
 
-## IPv4
+### IPv4
 
 IPv4地址长度为32bit，并划分为5类：
 
@@ -153,11 +153,11 @@ IPv4地址长度为32bit，并划分为5类：
 
 4. `169.254.0.1~169.254.255.254`如果你的Windows开启了DHCP功能来自动获取IP，系统没有找到任何DHCP服务器给它分配地址时，它会自动分配一个这样的地址作为IP，所以当一个机房都没有获取到DHCP的地址时，仍可以使用这个地址在机房内进行通信。
 
-## IPv6
+### IPv6
 
 IPv6是下一代IP协议，用于解决IPv4地址枯竭的问题，目前IPv6的使用还在过渡阶段。IPv6地址长度为128bit，理论上有$3.4*10^{38}$地址，号称能为世界上每一粒沙分配ip地址(估计能用到人类灭亡)。
 
-### 表示方法
+#### 表示方法
 
 128bit的IPv6长度是IPv4的4倍，明显IPv4的点分十进制表示方法不再适用。IPv6通常有一下几种表示方法：
 
@@ -185,7 +185,7 @@ IPv6是下一代IP协议，用于解决IPv4地址枯竭的问题，目前IPv6的
 
 > 目前IPv6技术还不成熟，所以也没有相关资料以供学习。IPv6的过渡应该仍有一段时间。
 
-## P地址+端口号=套接字
+# IP地址+端口号=套接字
 
 TCP和UDP均采用16bit的端口号来表示主机进程，而IP地址标识Internet上的主机，所以IP地址加上端口号能标识Internet主机上的任何一个网络进程。套接字英文“Socket”，直译过来就是“插座，插槽”，这个名字非常形象：“拿根USB线你就可以连接两个有USB插槽的设备了”。实现了TCP/IP协议的操作系统会提供一个socket API给程序开发人员，使用Socket API编程，操作系统会帮你将Socket套接字封装到TCP/UDP报文并发送出去。
 
@@ -196,23 +196,23 @@ TCP和UDP均采用16bit的端口号来表示主机进程，而IP地址标识Inte
 下面列举一些常用端口：
 
 ```powershell
-## 件协议
+# 文件协议
 ftp-data           20/tcp                           #FTP, data
 ftp                21/tcp                           #FTP. control
-## ecure Shell
+# Secure Shell
 ssh                22/tcp                           #SSH Remote Login Protocol
-## elnet
+# Telnet
 telnet             23/tcp
-## 件传输协议
+# 邮件传输协议
 smtp               25/tcp    mail                   #Simple Mail Transfer Protocol
-## NS域名服务
+# DNS域名服务
 domain             53/tcp                           #Domain Name Server
 domain             53/udp                           #Domain Name Server
-## 单文件传输协议
+# 简单文件传输协议
 tftp               69/udp                           #Trivial File Transfer
-## TTP超文本传输协议
+# HTTP超文本传输协议
 http               80/tcp    www www-http           #World Wide Web
-## TTPS协议
+# HTTPS协议
 https             443/tcp    MCom                   #HTTP over TLS/SSL
 https             443/udp    MCom                   #HTTP over TLS/SSL
 ```

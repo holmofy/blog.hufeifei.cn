@@ -7,7 +7,7 @@ keywords:
 - Singleton
 ---
 
-## 私有构造器或枚举类型强化Singleton属性
+# 用私有构造器或枚举类型强化Singleton属性
 
 [单例模式(Singleton Pattern)](https://en.wikipedia.org/wiki/Singleton_pattern)无疑是笔试面试中被问得最多的问题之一。单例模式虽然看似简单，但是仍有很多东西值得思考。
 
@@ -19,11 +19,11 @@ GOF是这么定义单例模式的：
 
 通常单例分为两大类实现：饿汉式和懒汉式。
 
-## 饿汉式单例
+### 饿汉式单例
 
 > 所谓“饿汉式单例”就是**在类加载器加载这个类的时候就立马创建这个类的单例对象**。
 
-### 1. 使用静态常量域提供外部访问
+#### 1. 使用静态常量域提供外部访问
 
 ```java
 public class Singleton {
@@ -35,7 +35,7 @@ public class Singleton {
 }
 ```
 
-### 2. 使用静态工厂方法提供外部访问
+#### 2. 使用静态工厂方法提供外部访问
 
 ```java
 public class Singleton {
@@ -52,7 +52,7 @@ public class Singleton {
 
 静态工厂方法相对于静态常量域的好处是可以在不改变API的前提下，可以改变该类是否为单例的想法。
 
-### 3. 防止反射调用私有构造器
+#### 3. 防止反射调用私有构造器
 
 上面的私有构造方法仍有缺少保护，外部的调用者仍可以使用反射机制`AccessibleObject.setAccessible()`方法来访问私有构造方法：
 
@@ -88,7 +88,7 @@ public class Singleton {
 }
 ```
 
-### 4. 防止反序列化导致的多个实例
+#### 4. 防止反序列化导致的多个实例
 
 如果我们的Singleton类实现了Serializable接口，上面构造器检测抛异常的方式也无法阻止反序列化创建新实例。
 
@@ -139,7 +139,7 @@ public class Singleton implements Serializable {
 
 > 这个方式是《Effective Java》中推荐的做法。关于readResolve的原理，可以参考[Java对象序列化规范](https://docs.oracle.com/javase/8/docs/platform/serialization/spec/serialTOC.html)或者[StackOverflow对这个问题的讨论：用Java如何高效的实现单例](https://stackoverflow.com/questions/70689/what-is-an-efficient-way-to-implement-a-singleton-pattern-in-java/71399#71399)
 
-### 5. 使用单元素枚举类实现单例
+#### 5. 使用单元素枚举类实现单例
 
 使用枚举类实现单例是《Effective Java》中推荐的最佳方法：
 
@@ -155,11 +155,11 @@ public enum Singleton {
 
 这种方式和最开始的使用静态常量域的方式差不多，但是它更简洁；由于枚举类的特性，它能绝对地防止多次实例化，并且无偿地提供了序列化的机制，这种方式完全避免了前面的反射和反序列化的问题。
 
-## 懒汉式单例
+### 懒汉式单例
 
 > 所谓“懒汉式单例”就是**在加载这个类的时候不立即创建对象，而是等到第一次用到单例对象的时候临时创建单例对象**。对于一些大对象来说，**懒加载**还是很有必要的。
 
-### 1. 使用静态工厂方法实现懒汉式单例
+#### 1. 使用静态工厂方法实现懒汉式单例
 
 很显然为了能实现懒汉式单例，我们肯定不能**直接**使用静态常量了，所以只能用静态工厂方法实现懒汉式单例了。
 
@@ -179,7 +179,7 @@ public class Singleton {
 }
 ```
 
-### 2. 同步方法解决多线程问题
+#### 2. 同步方法解决多线程问题
 
 上面的单例在单线程环境下确实没啥毛病，但是在多线程环境下**可能**就会出现问题：可能会有多个进程同时通过 `(INSTANCE == null)`的条件检查，于是，多个实例就创建出来，如果在C++里面创建的对象没有销毁就会导致内存泄漏(多线程的世界真可怕(╯︵╰))，不过好在java天生支持多线程同步，我们可以在静态工厂方法上添加`synchronized`关键字实现线程同步访问：
 
@@ -202,7 +202,7 @@ public class Singleton {
 }
 ```
 
-### 3. 使用同步代码块减小锁粒度
+#### 3. 使用同步代码块减小锁粒度
 
 线程同步问题是解决了，但是**每次调用getInstance方法的时候都去检查同步锁**肯定会影响程序执行的效率，虽然现在JVM对`synchronized`的优化做的越来越好，但是调用次数多了整体效率肯定下降，所以我们有必要减小锁粒度。
 
@@ -302,7 +302,7 @@ public class Singleton {
 }
 ```
 
-### 4. 使用私有静态内部类保存单例
+#### 4. 使用私有静态内部类保存单例
 
 上面的方法也太麻烦了吧，一个单例都要搞老半天，有没有更简单的方法。
 
@@ -333,7 +333,7 @@ public class Singleton {
 
 
 
-## 什么时候单例不是单例
+### 什么时候单例不是单例
 
 之前在StackOverflow中看到有讨论不同类加载器下单例模式会出现问题，然后在Oracle官网找到了[这篇文章](http://www.oracle.com/technetwork/articles/java/singleton-1577166.html)
 

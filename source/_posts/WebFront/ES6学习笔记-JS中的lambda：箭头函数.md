@@ -4,7 +4,7 @@ date: 2018-03-15
 categories: 前端
 ---
 
-##### 1. 最基本的写法
+###### 1. 最基本的写法
 
 使用`=>`操作符，简化匿名函数的定义
 
@@ -29,7 +29,7 @@ callback = callback || (() => {});    // ok
 
 ![最基础的lambda](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjespwloj208n020t8m.jpg)
 
-##### 2. 如果函数体只有一条语句，可以省略函数体的大括号
+###### 2. 如果函数体只有一条语句，可以省略函数体的大括号
 
 ```javascript
 (param1,param2,...,paramN) => expression
@@ -41,7 +41,7 @@ callback = callback || (() => {});    // ok
 
 ![省略函数体的大括号](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjfbv04fj209h04oq2z.jpg)
 
-##### 3. 如果参数只有一个，可以省略参数列表的小括号
+###### 3. 如果参数只有一个，可以省略参数列表的小括号
 
 ```javascript
 singleParam => { statements }
@@ -49,14 +49,14 @@ singleParam => { statements }
 (singleParam) => { statements }
 ```
 
-##### 4. 如果函数没有参数，参数列表的小括号不能省略
+###### 4. 如果函数没有参数，参数列表的小括号不能省略
 
 ```javascript
 // 参数列表的小括号不能省略
 () => { statements }
 ```
 
-##### 5. 当返回值是对象字面量时，为了避免函数体的大括号与对象字面量的大括号冲突，必须在字面量上加一对小括号
+###### 5. 当返回值是对象字面量时，为了避免函数体的大括号与对象字面量的大括号冲突，必须在字面量上加一对小括号
 
 ```javascript
 params => ({foo: bar})
@@ -64,7 +64,7 @@ params => ({foo: bar})
 
 ![返回对象字面量](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjfyvhfrj207702zweg.jpg)
 
-##### 6. 使用可变参数
+###### 6. 使用可变参数
 
 ```javascript
 (param1, param2, ...rest) => { statements }
@@ -72,7 +72,7 @@ params => ({foo: bar})
 
 ![lambda可变参数](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjgnglifj20a8023t8n.jpg)
 
-##### 7. 参数默认值
+###### 7. 参数默认值
 
 默认情况下参数默认值为`undefined`，可以使用`param=defaultValue`的方式指定参数的默认值。
 
@@ -83,7 +83,7 @@ params => ({foo: bar})
 }
 ```
 
-##### 8. 在参数列表中使用解构赋值
+###### 8. 在参数列表中使用解构赋值
 
 ```javascript
 // a+b+c = a+b+a+b
@@ -95,7 +95,7 @@ f([3]); // 18
 f([3,4],{x:5}); // 12
 ```
 
-##### 9. 对象解构赋值
+###### 9. 对象解构赋值
 
 ```javascript
 var materials = [
@@ -117,7 +117,7 @@ materials.map((material) => {
 materials.map(({length}) => length); // [8, 6, 7, 9]
 ```
 
-##### 10. 箭头函数没有绑定`this`变量
+###### 10. 箭头函数没有绑定`this`变量
 
 this作用域问题
 
@@ -180,7 +180,7 @@ function Person(){
 var p = new Person();
 ```
 
-##### 11. 箭头函数使用`call`和`apply`方法
+###### 11. 箭头函数使用`call`和`apply`方法
 
 ```javascript
 var func = (a,b) => a+b;
@@ -188,7 +188,7 @@ func.call(null,1,2); // 3
 func.apply(null,[1,2]); // 3
 ```
 
-##### 12. 箭头函数没有绑定`arguments`变量
+###### 12. 箭头函数没有绑定`arguments`变量
 
 箭头函数没有自己的arguments变量。
 
@@ -214,7 +214,7 @@ function foo(n) {
 foo(1); // 2
 ```
 
-##### 13. 箭头函数作为对象的方法，注意this的问题
+###### 13. 箭头函数作为对象的方法，注意this的问题
 
 ```javascript
 var obj = {
@@ -230,14 +230,14 @@ obj.b(); // undefined, Window {...} (or the global object)
 obj.c(); // 10, Object {...}
 ```
 
-##### 14. 箭头函数不能作为构造函数
+###### 14. 箭头函数不能作为构造函数
 
 ```javascript
 var Foo = () => { this.age = 18 };
 var foo = new Foo(); // TypeError: Foo is not a constructor
 ```
 
-##### 15. 箭头函数没有`prototype` 属性
+###### 15. 箭头函数没有`prototype` 属性
 
 ```javascript
 var Foo = () => {};

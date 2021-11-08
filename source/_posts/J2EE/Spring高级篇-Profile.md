@@ -6,7 +6,7 @@ categories: J2EE
 
 通常开发测试与上线生产使用不同的环境配置，我们可以使用@Profile注解实现。
 
-## 类上使用@Profile注解
+# 在类上使用@Profile注解
 
 **开发环境配置**
 
@@ -114,7 +114,7 @@ public class ProdProfileConfig {
 
 另外在类路径下的`db.properties`文件中配置数据源的详细配置。
 
-## 方法上使用@Profile注解
+# 在方法上使用@Profile注解
 
 Spring3.2开始，@Profile注解就可以在方法级别上使用了：
 
@@ -171,7 +171,7 @@ public class DataSourceConfig {
 }
 ```
 
-## ML配置方式
+# XML配置方式
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -210,7 +210,7 @@ public class DataSourceConfig {
 </beans>
 ```
 
-## 活Profile
+# 激活Profile
 
 激活Profile需要两个独立的properties属性：`spring.profiles.active`和`spring.profiles.default`。如果设置了`spring.profiles.active`的值，就用它的值来确定哪个profile是激活的，如果没有设置，则使用`spring.profiles.default`设置的值。如果两个值都没有设置，则所有的profile都不会被激活，也就是至创建哪些没有定义在profile中的bean。
 

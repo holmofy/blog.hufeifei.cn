@@ -4,11 +4,11 @@ date: 2018-03-15
 categories: 前端
 ---
 
-## eact介绍
+# React介绍
 
 谷歌大法，一搜一大把
 
-## eact环境安装
+# React环境安装
 
 安装`react`，`react-dom`模块：
 
@@ -32,7 +32,7 @@ cnpm install babel-preset-es2015 --save-dev
 
 > React团队提供了一个[`create-react-app`](https://github.com/facebook/create-react-app/blob/master/README.md#getting-started)的工具，只需在命令行输入`create-react-app <app-name>`，工具会帮你安装`react`，`react-dom`，`react-script`并生成项目的基本框架。
 
-## webpack配置
+### webpack配置
 
 在安装完成后我们首先编写一段react语法的代码
 
@@ -113,7 +113,7 @@ module.exports = {
 
 `cnpm install babel-core babel-loader babel-preset-es2015 babel-preset-react react react-dom webpack webpack-dev-server --save`
 
-## eact组件
+# React组件
 
 组件化开发是react开发中最重要的功能，可以简单的认为react就是开发组件的.
 
@@ -121,7 +121,7 @@ module.exports = {
 
 ![组件树](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj6arz3vj21320f4t8v.jpg)
 
-## 定义react组件
+### 定义react组件
 
 编写一个`Header`组件：
 
@@ -194,7 +194,7 @@ ReactDOM.render(<App/>, document.getElementById("app"))
 > ```
 >
 
-## SX
+# JSX
 
 **JSX=JS+XHTML**，其中XHTML要求HTML格式符合XML标准，不能像写HTML一样随意：标签闭合，空标签`<tag/>`。
 
@@ -238,7 +238,7 @@ React.createClass就是用来创建React组件的。
 
 > **注意**：上面的header元素不通过class而使用className来引用CSS类，不仅仅因为class与ES6的关键字冲突；最主要的原因React将标签中的所有属性最终会作为一个对象传给`React.createElement`方法，JS中通过`className`(字符形式)或`classList`(数组形式)属性来操作class，显然用className更合适。
 
-## 拟DOM
+# 虚拟DOM
 
 > 参考React官网的文档：https://reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom
 
@@ -252,7 +252,7 @@ Web App性能问题主要出在 DOM 对象的操作上，比如读写，创建�
 
 > 可以联想到游戏开发中经常提到的“双缓冲”机制，两者有异曲同工之妙
 
-## 用组件对象的`props`访问标签属性
+# 使用组件对象的`props`访问标签属性
 
 ```jsx
 class Header extends React.Component{
@@ -266,7 +266,7 @@ class Header extends React.Component{
 ReactDOM.render(<Header text='我是头部'/>, document.getElementById("app"));
 ```
 
-## this.props.children`访问标签子元素
+# `this.props.children`访问标签子元素
 
 props中还有一个特殊的属性`children`用于访问标签中的子元素。
 
@@ -302,7 +302,7 @@ ReactDOM.render(<List>
 >
 > 为了方便操作React在[`React.Children`](https://reactjs.org/docs/react-api.html#reactchildren)中提供了一套工具方法，方便操作子元素。
 
-## 用`defaultProps`定义默认的props
+# 使用`defaultProps`定义默认的props
 
 如果标签中没有指定属性值，`this.props`会取出`undefined`值，可以在组件的[`defaultProps`](https://reactjs.org/docs/react-component.html#defaultprops)中定义默认的属性值。
 
@@ -323,7 +323,7 @@ ReactDOM.render(<Header/>, document.getElementById("app"));
 
 > 如果不使用ES6，在调用createReactClass时，需要在对象中定义一个`getDefaultProps`方法。详见：https://reactjs.org/docs/react-without-es6.html#declaring-default-props
 
-## props中的属性进行类型检查
+# 对props中的属性进行类型检查
 
 > 参考：https://reactjs.org/docs/typechecking-with-proptypes.html
 
@@ -349,13 +349,13 @@ Header.propTypes = {
 ReactDOM.render(<Header text='文本'/>, document.getElementById("app"));
 ```
 
-## 取真实的DOM节点
+# 获取真实的DOM节点
 
 > 参考：https://reactjs.org/docs/refs-and-the-dom.html
 
 前面说到React的render方法创建的是虚拟DOM对象，它并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，当虚拟DOM更新到浏览器的DOM后，我们要怎么操作真实的DOM节点呢？这时就要用到 `ref` 属性。
 
-## String refs
+### String refs
 
 先看老版本API中的`ref`怎么使用：
 
@@ -383,7 +383,7 @@ ReactDOM.render(
 
 传统的方式要将在元素中定义`ref`属性，相当于给元素定义了一个id，然后组件中可以在`this.refs`属性根据`ref`指定的id获取标签元素。
 
-## ref callback
+### ref callback
 
 新版本的不再使用字符引用的方式，[这里](https://github.com/facebook/react/pull/8333#issuecomment-271648615)有关于两者的讨论。
 
@@ -409,7 +409,7 @@ ReactDOM.render(
 );
 ```
 
-## etState方法改变组件状态`this.state`
+# setState方法改变组件状态`this.state`
 
 UI组件避免不了与用户的交互，有交互就避免不了对组件的修改。React将组件看成一个状态机，**一开始有一个初始状态**，一旦有状态的改变，就会触发重新渲染。
 
@@ -445,7 +445,7 @@ class LikeButton extends React.Component {
 >
 > 详见官方文档：https://reactjs.org/docs/react-without-es6.html#setting-the-initial-state
 
-## 根据前一个状态计算后续状态
+### 根据前一个状态计算后续状态
 
 因为setState是异步更新状态，我们不应该直接依赖当前的state值计算下一个状态：
 
@@ -461,7 +461,7 @@ this.setState((prevState, props) => ({
 }));
 ```
 
-## 件生命周期
+# 组件生命周期
 
 > 参考：https://reactjs.org/docs/state-and-lifecycle.html
 >
@@ -500,7 +500,7 @@ this.setState((prevState, props) => ({
 
 > 方法的具体介绍可以点击相应链接看官方文档的介绍
 
-## 个简单的时钟组件例子
+# 一个简单的时钟组件例子
 
 *component/TimerClock.jsx*
 

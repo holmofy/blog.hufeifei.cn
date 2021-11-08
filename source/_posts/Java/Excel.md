@@ -7,7 +7,7 @@ categories: JAVA
 Excel作为一种常用的数据存储格式，在很多项目中都会有相应的导入导出的功能。这篇文章会介绍如何使用Java操作Excel，以及如何解决大文件读写时内存溢出的问题。
 
 
-## 、OpenXML标准
+# 1、OpenXML标准
 
 [Word](https://en.wikipedia.org/wiki/Microsoft_Word)、[Excel](https://en.wikipedia.org/wiki/Microsoft_Excel)、[PPT](https://en.wikipedia.org/wiki/Microsoft_PowerPoint)是Office办公套件中最常用的三个组件。早期的Office套件使用二进制格式，这里面包括以[`.doc`](https://en.wikipedia.org/wiki/Doc_%28computing%29)、[`.xls`](https://en.wikipedia.org/wiki/Microsoft_Excel_file_format)、[`.ppt`](https://en.wikipedia.org/wiki/Microsoft_PowerPoint#File_formats)为后缀的文件；直到07这个划时代的版本将基于XML的压缩格式作为默认文件格式，也就是相应以`.docx`、`.xlsx`、`.pptx`为后缀的文件。
 
@@ -38,7 +38,7 @@ Excel作为一种常用的数据存储格式，在很多项目中都会有相应
 
 > Excel远比我们想象的复杂
 
-## 、使用POI操作Excel
+# 2、使用POI操作Excel
 
 Java领域最常见的两个操作Excel的工具库分别是[JXL(Java Excel API)](http://jexcelapi.sourceforge.net/)和Apache的[POI](http://poi.apache.org/)。JXL有个严重的缺点就是只支持07版本之前的二进制格式Excel，而POI除了能操作Excel，还可以操作Word和PPT以及Office套装中其他的组件，高下立现。
 
@@ -75,7 +75,7 @@ POI目前最新版本是4.0，可以将相应maven依赖添加到pom.xml文件�
 
 > POI滑动窗口只窗口范围内的单元格数据加载到内存中，窗口外的数据读写内容会以临时文件的形式保存到磁盘上，同时还支持临时文件的压缩。SXSSF可以通过构造函数中的`rowAccessWindowSize`参数指定窗口大小，`compressTmpFiles`指定是否压缩临时文件，`useSharedStringsTable`指定是否使用共享字符表。
 
-## 2.1、使用Workbook API
+### 2.1、使用Workbook API
 
 上面说的三种方式都有一个Workbook实现类，用法上基本一致。唯一不同的是SXSSFWorkbook最后需要调用`dispose()`方法处理磁盘上的临时文件。
 
@@ -181,7 +181,7 @@ workbook.close();
 
 POI还支持插入图片、形状、数据透视表以及更多的样式，更多详细代码可以参考[官方的快速入门指南](http://poi.apache.org/components/spreadsheet/quick-guide.html)
 
-## 2.2、HSSFListener实现流式解析
+### 2.2、HSSFListener实现流式解析
 
 虽然SXSSFWorkbook通过滑动窗口有效地降低了内存消耗，但是并不支持读的功能，而且写功能也只支持OpenXML格式。而HSSFWorkbook和XSSFWorkbook需要将Excel内容全部读取到内存才能操作，对于二进制Excel大文件的读取必须使用HSSFListener。
 
@@ -257,7 +257,7 @@ public class EventExample implements HSSFListener
 
 ![Record继承图](http://tva1.sinaimg.cn/large/bda5cd74gy1fv2c87sd90j21b90b4q3s.jpg)
 
-## 2.3、SXSSF API
+### 2.3、SXSSF API
 
 SXSSF(org.apache.poi.xssf.streaming)是兼容XSSF API的流式扩展，用于生成数据量较大的Excel文件。SXSSF通过限制滑动窗口内行的访问来实现低内存占用，而XSSF API允许访问文档中的所有行。不在窗口中的旧行将不可访问，因为它们已经被写入磁盘。
 
@@ -344,7 +344,7 @@ out.close();
 wb.dispose();
 ```
 
-## 2.4、使用SAX解析xlsx文件
+### 2.4、使用SAX解析xlsx文件
 
 虽然大文件的写入有SXSSF的支持，但是读取暂时没有更好的解决方案。POI目前推荐的做法是直接使用SAX API手动解析XML。这要求开发者对Excel的接口有清楚的认识。
 
@@ -463,7 +463,7 @@ public class ExampleEventUserModel {
 
 使用SheetContentsHandler的例子可以参考[官方的XLSX2CVS](https://svn.apache.org/repos/asf/poi/trunk/src/examples/src/org/apache/poi/xssf/eventusermodel/XLSX2CSV.java)
 
-## 、写在最后
+# 3、写在最后
 
 Excel本身有很多已知的限制，如最大行数和最大列数(这些限制可以参考[SpreadsheetVersion](http://poi.apache.org/apidocs/org/apache/poi/ss/SpreadsheetVersion.html))，理论上只要你有足够大的内存，你就能使用Workbook API对任意Excel进行读写。
 

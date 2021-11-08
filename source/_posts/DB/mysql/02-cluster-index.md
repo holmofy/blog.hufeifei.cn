@@ -23,7 +23,7 @@ keywords:
 
 ---
 
-## 簇索引
+# 聚簇索引
 
 聚簇索引(Clustered Index)并不是一种新的数据结构，只是B树索引的一种存储方式。
 
@@ -41,7 +41,7 @@ MySQL中索引由存储引擎实现，不同的存储引擎索引的存储结构
 
 MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_MySQL_database_engines)(包括官方的和第三方的)，使用最多的就是[InnoDB(5.5之后默认的存储引擎)](https://en.wikipedia.org/wiki/InnoDB)和[MyISAM(5.5之前默认的存储引擎)](https://en.wikipedia.org/wiki/MyISAM)。
 
-## InnoDB存储引擎](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
+# [InnoDB存储引擎](https://dev.mysql.com/doc/refman/5.7/en/innodb-index-types.html)
 
 **InnoDB中主键索引默认是聚簇的**。
 
@@ -61,13 +61,13 @@ MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_M
 
 ![B+树索引](http://tva1.sinaimg.cn/large/bda5cd74ly1fyrfmroao8j20ry0k379y.jpg)
 
-### 聚簇索引的优点
+#### 聚簇索引的优点
 
 1. 聚簇索引将索引和数据行保存在同一个B-Tree中，查询通过聚簇索引可以直接获取数据，而非聚簇索引要进行多次I/O，所以聚簇索引通常比非聚簇索引查找更快。
 2. 聚簇索引对主键范围查询的效率很高，因为其数据是按照主键排列的
 3. 二级索引使用索引覆盖可以直接使用叶节点的主键值。
 
-### 聚簇索引的缺点
+#### 聚簇索引的缺点
 
 1. 聚簇索引最大限度地提高了I/O密集型应用的性能，但如果数据都存放在内存中，则访问顺序就不那么重要了，聚簇索引也没什么优势。
 2. 插入速度严重依赖于插入顺序。按照主键顺序往InnoDB中进行数据导入是最快的。如果不是按照主键插入，最好在导入完成后使用[`OPTIMIZE TABLE`](https://dev.mysql.com/doc/refman/5.7/en/optimize-table.html)命令重新组织一下表。
@@ -75,7 +75,7 @@ MySQL支持很[多种存储引擎](https://en.wikipedia.org/wiki/Comparison_of_M
 4. 聚簇索引可能导致全表扫描速度变慢，因为可能需要加载物理上相隔较远的页到内存中（需要耗时的磁盘寻道操作）。
 5. 二级索引访问数据行需要两次索引查找，由于二级索引保存了主键列，二级索引会占更大的空间(所以选用一个短主键是有利的)。
 
-## MyISAM存储引擎](https://dev.mysql.com/doc/refman/5.7/en/myisam-storage-engine.html)
+# [MyISAM存储引擎](https://dev.mysql.com/doc/refman/5.7/en/myisam-storage-engine.html)
 
 InnoDB通过主键聚集数据，整个聚簇索引就是一张完整的表。MyISAM存储引擎的数据相对简单。
 
@@ -87,12 +87,12 @@ MyISAM([ISAM，indexed sequential access method](https://en.wikipedia.org/wiki/I
 
 ![MyISAM索引存储结构](http://tva1.sinaimg.cn/large/bda5cd74gy1frp7htdkc2j20fn0cxabx.jpg)
 
-### MyISAM优点
+#### MyISAM优点
 
 1. 读取数据行的速度快，特别是当数据行长度固定的时候。
 2. 数据行插入容易，新行直接追加到数据文件末尾。
 
-### MyISAM缺点
+#### MyISAM缺点
 
 1. 删除操作必须留出空白区域，否则后面的行数据偏移将会发生变化。正因如此当大量删除MyISAM表数据后，数据文件大小不会发生变化，所以要定期执行`OPTIMIZE TABLE`操作对MyISAM碎片空间进行整理。
 2. 修改操作数据行长度如果变短，也会留白；数据行如果变长，数据将会分段存储。

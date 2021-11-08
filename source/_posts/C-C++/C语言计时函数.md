@@ -7,7 +7,7 @@ tags:
 - C
 ---
 
-## time()函数与time_t类型
+# time()函数与time_t类型
 
 **头文件**：time.h
 
@@ -102,7 +102,7 @@ duration: 1.000000
 
 **总结**：C标准库中的函数，可移植性最好，性能也很稳定，但精度太低，只能精确到秒，对于一般的事件计时还算够用，而对运算时间的计时就明显不够用了。
 
-## clock()函数与clock_t类型
+# clock()函数与clock_t类型
 
 **头文件**：time.h
 
@@ -156,7 +156,7 @@ duration: 1.000000
 
 **总结**：可以精确到毫秒，适合一般场合的使用。
 
-## timespec_get()函数与timespec类型
+# timespec_get()函数与timespec类型
 
 **头文件**：time.h
 
@@ -214,7 +214,7 @@ duration: 1234135600 nanosecond
 
 以上是C语言标准库提供的函数，跨平台特性较好，下面的几个是特定平台的API，所以视情况使用。
 
-## timeGetTime()函数
+# timeGetTime()函数
 
 **头文件**：timeapi.h（Windows.h中已经包括该头文件）
 
@@ -278,7 +278,7 @@ int main() {
 1234
 ```
 
-## GetTickCount函数
+# GetTickCount函数
 
 **头文件**：Winbase.h（Windows.h中已经包括该头文件）
 
@@ -312,7 +312,7 @@ int main() {
 1234
 ```
 
-## QueryPerformanceCounter()、QueryPerformanceFrequency()高精度时间
+# QueryPerformanceCounter()、QueryPerformanceFrequency()高精度时间
 
 **头文件**：Winbase.h (Windows.h中已经包括该头文件)
 

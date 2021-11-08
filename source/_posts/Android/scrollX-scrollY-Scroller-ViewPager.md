@@ -6,14 +6,14 @@ categories: Android
 description: View滑动效果常用属性详解2-使用scrollX|scrollY和Scroller实现自定义ViewPager
 ---
 使用scrollX,scrollY和Scroller自定义ViewPager
-## 原理介绍
+# 原理介绍
 废话不多说先上图。
 
 ![原理图](http://img-blog.csdn.net/20170102191816574?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ViewPager就是包裹了n个宽高与自己相同的子页面，然后通过滑动内部子页面来达到左右页面切换效果。需要注意的是上图中width，height都是指ViewPager的宽高。
 
-## 继承ViewGroup并实现onLayout方法
+# 继承ViewGroup并实现onLayout方法
 在layout方法中我们首先要对子页面进行布局定位。在加上上一次我们实现内容滑动使用的scrollX属性
 ```java
 package cn.hufeifei.scrollertest.view;
@@ -336,4 +336,4 @@ public class MyViewPager extends ViewGroup {
 效果图
 ![这里写图片描述](http://img-blog.csdn.net/20170102193343830?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## [代码下载地址](http://download.csdn.net/detail/holmofy/9727064)
+# [代码下载地址](http://download.csdn.net/detail/holmofy/9727064)

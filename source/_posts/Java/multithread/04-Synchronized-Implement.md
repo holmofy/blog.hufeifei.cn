@@ -21,7 +21,7 @@ keywords:
 
 ---
 
-## 、温故知新
+# 1、温故知新
 
 在上一篇文章的例子中有一个Counter类：
 
@@ -58,7 +58,7 @@ static class Counter {
    }
    ```
 
-## 、反编译代码
+# 2、反编译代码
 
 我们把上面三段代码反编译一下，并取出`increment`和`decrement`两个方法的反编译代码：
 
@@ -219,7 +219,7 @@ static class Counter {
 1. 普通方法和`synchronized`方法在方法内部没有任何区别，仅仅是`synchronized`方法比普通方法多了一个[`ACC_SYNCHRONIZED`标志位](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.6)，该标志位表示访问该方法需要同步访问(synchronized access)
 2. `synchronized`同步代码块中由于要加载this引用，多了很多指令，而关键的两个指令是`monitorenter`，`monitorexit`。
 
-## 、JVM规范中的Monitor
+# 3、JVM规范中的Monitor
 
 Oracle官网提供的[JVM规范](http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html#jvms-6.5.monitorenter)中对`monitorenter`和`monitorexit`两个指令有以下介绍：
 
@@ -242,7 +242,7 @@ Oracle官网提供的[JVM规范](http://docs.oracle.com/javase/specs/jvms/se8/ht
 
 JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`监视器实现的。
 
-## 、Hotspot中的锁及其优化
+# 4、Hotspot中的锁及其优化
 
 > Hotspot介绍可以参考[Wiki](https://en.wikipedia.org/wiki/HotSpot)
 >
@@ -250,7 +250,7 @@ JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`
 >
 > Hotspot偏向锁的介绍可参考[这里](https://wiki.openjdk.java.net/display/HotSpot/Synchronization)
 
-## 4.1、轻量级锁、重量级锁、偏向锁
+### 4.1、轻量级锁、重量级锁、偏向锁
 
 在Java Hotspot中，每一个对象前面都有一个类指针和一个头字段。头字段中存储了一个哈希码(HashCode)以及一个标志位，该标志位用于标识对象的年龄(新生代，老年代等)，同时它也被用来实现轻量锁。下面这张图展示了头字段的位置以及不同对象状态下的字段值。
 
@@ -274,7 +274,7 @@ JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`
 
 类似的机制称为**批量偏置(bulk rebiasing)**，它优化了类的对象被不同的线程加解锁但从不并发的情况。它会使类的所有实例的偏向锁暂时无效，而不是禁用偏置锁。类中的`epoch`值用于指示偏向锁有效性的时间戳。在对象分配时将该值复制到对象头中。然后，批量偏置可以有效地实现为适当类中的`epoch`的增加。下一次要锁定此类的实例时，代码会在对戏那个头字段中检测到不同的值，并将对象重新映射到当前线程。
 
-## 4.2、Hotspot源码分析
+### 4.2、Hotspot源码分析
 
 [oopDesc](https://hg.openjdk.java.net/jdk8/jdk8/hotspot/file/87ee5ee27509/src/share/vm/oops/oop.hpp)类是对象类的顶级基类：
 

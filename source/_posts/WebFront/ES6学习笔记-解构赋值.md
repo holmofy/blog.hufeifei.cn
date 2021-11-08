@@ -4,13 +4,13 @@ date: 2018-03-15
 categories: 前端
 ---
 
-## 构赋值
+# 解构赋值
 
 解构赋值可以将**数组中的元素**或**对象中的属性**赋值给指定的变量。
 
-### 1. 数组解构
+#### 1. 数组解构
 
-#### 1.1 基本用法
+##### 1.1 基本用法
 
 ```javascript
 var a, b, rest;
@@ -70,7 +70,7 @@ console.log(x);
 console.log(y);
 ```
 
-#### 1.2 使用解构赋值实现变量交换
+##### 1.2 使用解构赋值实现变量交换
 
 ```javascript
 var a = 1;
@@ -81,7 +81,7 @@ console.log(a); // 3
 console.log(b); // 1
 ```
 
-#### 1.3 解构函数返回值
+##### 1.3 解构函数返回值
 
 ```javascript
 function f() {
@@ -94,7 +94,7 @@ console.log(a); // 1
 console.log(b); // 2
 ```
 
-#### 1.4 忽略某些返回值
+##### 1.4 忽略某些返回值
 
 ```javascript
 function f() {
@@ -109,7 +109,7 @@ console.log(b); // 3
 [,,] = f();
 ```
 
-#### 1.5 数组解构与正则结合使用的实例
+##### 1.5 数组解构与正则结合使用的实例
 
 ```javascript
 // 使用正则和赋值解构获取url中的协议、主机、路径等信息
@@ -128,9 +128,9 @@ function parseProtocol(url) {
 console.log(parseProtocol('https://developer.mozilla.org/en-US/Web/JavaScript')); // "https"
 ```
 
-### 2. 对象解构
+#### 2. 对象解构
 
-#### 2.1 基本用法
+##### 2.1 基本用法
 
 ```javascript
 var o = {p: 42, q: true};
@@ -140,7 +140,7 @@ console.log(p); // 42
 console.log(q); // true
 ```
 
-#### 2.2 对象字面量的解构
+##### 2.2 对象字面量的解构
 
 ```javascript
 var a, b;
@@ -150,7 +150,7 @@ var a, b;
 
 > 为了避免对象字面量的大括号`{ }`与代码块的大括号混淆，字面量解构的时候需要在外层包裹一个小括号`( )`。
 
-#### 2.3 为解构的对象属性值定义新的变量名
+##### 2.3 为解构的对象属性值定义新的变量名
 
 ```javascript
 var o = {p: 42, q: true};
@@ -160,7 +160,7 @@ console.log(foo); // 42
 console.log(bar); // true
 ```
 
-#### 2.4 属性默认值
+##### 2.4 属性默认值
 
 对于不存在的属性，默认解构得到的属性为`undefined`，但是可以设置默认值
 
@@ -177,7 +177,7 @@ console.log(a); // 3
 console.log(b); // 5
 ```
 
-#### 2.5 同时提供默认值并取新变量名
+##### 2.5 同时提供默认值并取新变量名
 
 ```javascript
 var {a:aa = 10, b:bb = 5} = {a: 3};
@@ -186,7 +186,7 @@ console.log(aa); // 3
 console.log(bb); // 5
 ```
 
-#### 2.6 对象解构与函数默认参数结合使用的实例
+##### 2.6 对象解构与函数默认参数结合使用的实例
 
 ```javascript
 // ES5版本：函数参数默认值的设置
@@ -217,7 +217,7 @@ drawES2015Chart({
 });
 ```
 
-#### 2.7 对象解构和数组解构嵌套使用
+##### 2.7 对象解构和数组解构嵌套使用
 
 ```javascript
 var metadata = {
@@ -240,7 +240,7 @@ console.log(englishTitle); // "Scratchpad"
 console.log(localeTitle);  // "JavaScript-Umgebung"
 ```
 
-#### 2.8 循环迭代中使用解构赋值
+##### 2.8 循环迭代中使用解构赋值
 
 ```javascript
 var people = [
@@ -273,7 +273,7 @@ for (var {name: n, family: {father: f}} of people) {
 // "Name: Tom Jones, Father: Richard Jones"
 ```
 
-#### 2.9 通过对象解构直接从函数参数中获取对象字段
+##### 2.9 通过对象解构直接从函数参数中获取对象字段
 
 ```javascript
 function userId({id}) {
@@ -297,7 +297,7 @@ console.log('userId: ' + userId(user)); // "userId: 42"
 whois(user); // "jdoe is John"
 ```
 
-#### 2.10 动态解构对象字段
+##### 2.10 动态解构对象字段
 
 ```javascript
 let key = 'z';
@@ -307,7 +307,7 @@ let {[key]: value} = {x: 'X', y: 'Y', z: 'Z'};
 console.log(value); // "Z"
 ```
 
-#### 2.11 变参解构切割对象
+##### 2.11 变参解构切割对象
 
 ```javascript
 let {a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40}
@@ -316,7 +316,7 @@ b; // 20
 rest; // { c: 30, d: 40 }
 ```
 
-#### 2.12 解构特殊属性
+##### 2.12 解构特殊属性
 
 ```javascript
 // fizz-buzz属性不能作为变量名

@@ -22,11 +22,11 @@ keywords:
 ---
 
 
-##  为什么要使用线程池
+# 1. 为什么要使用线程池
 
 线程创建与销毁都耗费时间，对于**大量的短暂任务**如果仍使用“创建->执行任务->销毁”的简单模式，将极大地降低线程的使用效率(一个线程仅仅处理一个短暂的任务就被销毁了)。在这种情况下，为了提高线程的使用效率，我们使用缓存池的策略让线程执行任务后不立即销毁而是等待着处理下一个任务。
 
-##  使用Executors工具类创建线程池
+# 2. 使用Executors工具类创建线程池
 
 Executors是线程池框架提供给我们的创建线程池的工具类，它里面提供了以下创建几类线程池的方法。
 
@@ -56,7 +56,7 @@ public static ScheduledExecutorService newSingleThreadScheduledExecutor();
 
 ![三个核心接口的方法](http://img-blog.csdn.net/20170819141127562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##  构造ThreadPoolExecutor对象
+# 3. 构造ThreadPoolExecutor对象
 
 `java.util.concurrent.ThreadPoolExecutor` 类是线程池中最核心的类之一，因此如果要透彻地了解Java中的线程池，必须先了解这个类。下面分析一下ThreadPoolExecutor类的核心源码的具体实现。
 
@@ -177,7 +177,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
   > 可通过实现RejectedExecutionHandler接口来自定义任务拒绝后的处理策略
 
-##  线程池的状态转换
+# 4. 线程池的状态转换
 
 ThreadPoolExecutor类中有一个`ctl`属性，该属性是AtomicInteger类型，本质上就是32bit的int类型。这个32bit字段中存储了两个数据：
 
@@ -231,7 +231,7 @@ public boolean isTerminated() {
 }
 ```
 
-##  任务的提交
+# 5. 任务的提交
 
 任务提交主要有三种方式：
 
@@ -239,7 +239,7 @@ public boolean isTerminated() {
 * submit的三个重载方法：定义在ExecutorService接口中
 * invoke(invokeAll,invokeAny)提交方式：定义在ExecutorService接口中
 
-## 5.1 submit提交方式
+### 5.1 submit提交方式
 
 submit方法的实现源码在ThreadPoolExecutor的基类AbstractExecutorService中：
 
@@ -273,7 +273,7 @@ submit方法的实现源码在ThreadPoolExecutor的基类AbstractExecutorService
 
 submit最终都会调用execute方法去执行任务，区别在于submit方法返回一个FutureTask对象(顾名思义FutrueTask就是未来将执行的任务，可以通过FutureTask对象获取任务执行的结果)。
 
-### 5.1.1 FutrueTask
+#### 5.1.1 FutrueTask
 
 FutureTask实现Future接口，Future接口及其相关类继承图如下：
 
@@ -386,7 +386,7 @@ public class ThreadPoolExecutorTest {
 }
 ```
 
-## 5.2 execute提交方式
+### 5.2 execute提交方式
 
 submit最终都会调用execute方法去执行任务，所以我们重点需要分析execute方法：
 
@@ -438,7 +438,7 @@ submit最终都会调用execute方法去执行任务，所以我们重点需要�
 - 第十三行`workQueue.offer(command)`：offer方法不会阻塞(名不符其实，阻塞队列不阻塞呵呵)，如果入队成功会立即返回true否则返回false。入队成功与否取决于`workQueue`的性质。比如：①单链表实现的**LinkedBlockingQueue**默认容量为`Integer.MAX_VALUE`(等价于无限容量)，所以此时该方法不会返回false也不会创建临时线程(都去排队去了)，当然如果创建LinkedBlockingQueue时指定了capacity，offer方法就可能返回false，但我们一般不会这么干；②而数组实现的**ArrayBlockingQueue**不允许扩容，所以队列已满则会返回false进入二十三行尝试创建临时线程，如果总线程数不超过maximumPoolSize则能创建临时线程，但会导致后来的任务没排队反而能得到执行(不公平)，如果超出maximumPoolSize创建临时线程失败则会拒绝任务，两种情况都不好，所以ArrayBlockingQueue用的不是很多；③使用小顶堆实现的`PriorityBlockingQueue`会根据任务的优先级来选择执行顺序；④使用没有容量的同步队列`SynchronousQueue`，如果没有空闲线程接收任务会立即返回false，所以大部分情况会创建新的临时线程。
 - 第十七行`workerCountOf(recheck) == 0`：这句判断间接表示核心线程数为0的情况，核心线程数为0只会发生在两种条件下：①线程池本身已经指定核心数为0(构造方法指定或`setCorePoolSize`方法指定)，②调用`allowCoreThreadTimeOut`方法允许核心线程超时导致核心线程数位0。
 
-## 5.3 invoke提交方式
+### 5.3 invoke提交方式
 
 ExecutorService中定义了两组invoke方法：
 
@@ -501,7 +501,7 @@ public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
 }
 ```
 
-### 5.3.1 等待任务完成
+#### 5.3.1 等待任务完成
 
 invokeAll方式会导致调用线程阻塞直到所有任务完成，由于不知道哪个任务先执行完毕，使用这种方式效率不是很高。所以Java5还提供了一个`CompletionService `接口给我们用。`CompletionService`目前只有一个实现类——`ExecutorCompletionService`。
 
@@ -561,7 +561,7 @@ void solve(Executor e, Collection<Callable<Result>> solvers)
 
 > invokeAny就是通过`CompletionService`实现，从而拿到第一个执行完成的任务的结果。
 
-##  线程如何创建
+# 6. 线程如何创建
 
 刚刚的execute提交任务中调用到了addWorker方法来创建线程
 
@@ -661,7 +661,7 @@ private boolean addWorker(Runnable firstTask, boolean core) {
     }
 ```
 
-##  线程如何执行
+# 7. 线程如何执行
 
 线程执行我们肯定得找到run方法，我们看一下Worker类是怎么定义的：
 
@@ -767,7 +767,7 @@ final void runWorker(Worker w) {
     }
 ```
 
-##  线程池的其他变量和方法
+# 8. 线程池的其他变量和方法
 
 其他成员变量：
 
@@ -857,7 +857,7 @@ public void purge();
 public boolean awaitTermination(long timeout, TimeUnit unit);
 ```
 
-##  扩展ThreadPoolExecutor的功能
+# 9. 扩展ThreadPoolExecutor的功能
 
 在ThreadPoolExecutor类中还有三个protected属性的空方法：
 
@@ -920,7 +920,7 @@ class PausableThreadPoolExecutor extends ThreadPoolExecutor {
 }
 ```
 
-## 0. 更多种类的线程池MoreExecutors
+# 10. 更多种类的线程池MoreExecutors
 
 [Guava](https://github.com/google/guava)是Google提供的一个最受欢迎的通用工具包。它提供了很多并发工具，其中包括几个便捷的`ExecutorService`实现类，这些实现类我们无法直接访问，Guava提供了一个唯一的访问入口——[MoreExecutors](https://github.com/google/guava/blob/master/guava/src/com/google/common/util/concurrent/MoreExecutors.java)工具类。
 

@@ -13,7 +13,7 @@ keywords:
 
 > 天下大势，分久必合，合久必分——《三国演义》
 
-## 坤未定，混沌初开
+# 乾坤未定，混沌初开
 
 ![Linux性能观测工具](https://www.brendangregg.com/Perf/linux_observability_tools.png)
 
@@ -23,7 +23,7 @@ keywords:
 
 ![分布式观测性三大基石](https://pic3.zhimg.com/v2-246813d3962794604c4bc409a94693d6_r.jpg)
 
-## apper启蒙，百花齐放
+# Dapper启蒙，百花齐放
 
 谷歌作为互联网的巨擘，手握独步天下的搜索引擎——Google。搜索引擎作为互联网的要隘，流量增长异常惊人，这也促使谷歌发展出自己的一套分布式系统。谷歌为了增加公司影响力便于吸引人才，将内部的系统设计以一篇篇论文的形式公布给业界。
 
@@ -39,7 +39,7 @@ keywords:
 
 ![链路追踪技术](https://p.pstatp.com/origin/pgc-image/d0f15af19cfe475f897c97a705aa4a2f)
 
-## penTracing标准，号令天下; OpenCensus不出，谁与争锋
+# OpenTracing标准，号令天下; OpenCensus不出，谁与争锋
 
 但是随着各大厂商对链路追踪系统的实现趋于碎片化，社区开始制定OpenTracing标准来统一链路追踪中涉及的相关概念和规范——这是一套平台无关、厂商无关的Trace协议，使得开发人员能够方便的添加或更换分布式追踪系统的实现。
 
@@ -53,7 +53,7 @@ OpenCensus和OpenTracing最大的不同在于除了Tracing外，它还把Metrics
 
 OpenTracing这边有Elastic、Uber、Twitter、DataDog等互联网新秀作为拥趸已发展多年，而OpenCensus有谷歌、微软两大巨头撑腰。一时间也难分高低。
 
-## 扫六合，一统天下
+# 横扫六合，一统天下
 
 既然没办法分个高低，谁都有优劣势，咱们就别干了，统一吧。于是OpenTelemetry横空出世。
 
@@ -78,7 +78,7 @@ OpenTelemetry可谓是一出生就带着无比炫目的光环：OpenTracing支�
 1. 工作组目前主要的工作是在把OpenTracing和OpenCensus的概念尽早统一并开发相应的SDK，Logging是P2的优先级。
 2. 他们还没有想好Logging该怎么集成到规范中，因为这里还需要和CNCF里面的Fluentd一起去做，大家都还没有想好。
 
-## 终极目标
+### 终极目标
 
 OpenTelemetry的终态就是实现Metrics、Tracing、Logging的融合，作为CNCF可观察性的终极解决方案。
 
@@ -90,7 +90,7 @@ Logging：提供系统/进程最精细化的信息，例如某个关键变量、
 
 这三者在可观测性上缺一不可：基于Metrics的告警发现异常，通过Tracing定位问题（可疑）模块，根据模块具体的日志详情定位到错误根源，最后再基于这次问题调查经验调整Metrics（增加或者调整报警阈值等）以便下次可以更早发现/预防此类问题。
 
-## Metrics、Tracing、Logging融合的关键
+### Metrics、Tracing、Logging融合的关键
 
 实现Metrics、Tracing、Logging融合的关键是能够拿到这三者之间的关联关系.其中我们可以根据最基础的信息来聚焦，例如：时间、Hostname(IP)、APPName。这些最基础的信息只能定位到一个具体的时间和模块，但很难继续Digin，于是我们就把TraceID把打印到Log中，这样可以做到Tracing和Logging的关联。但这还是解决不了很多问题：
 
@@ -105,7 +105,7 @@ Logging：提供系统/进程最精细化的信息，例如某个关键变量、
 - 多种维度的关联基于Tag（或者叫meta）信息实现，Tag内容由业务确定，例如：通过TrafficType来区别是生产流量还是压测流量、通过DeviceType来分析各个设备类型的数据...
 - 提供分布式的Context传播方式，例如通过W3C的traceparent/tracestate头、GRPC协议等
 
-## 当前状态以及后续路线
+### 当前状态以及后续路线
 
 目前OpenTelemetry还处于策划和原型阶段，很多细节的点还在讨论当中，目前官方给的时间节奏是：
 
@@ -113,7 +113,7 @@ Logging：提供系统/进程最精细化的信息，例如某个关键变量、
 - 2019年11月，OpenTracing和OpenCensus正式sunsetted（ReadOnly）
 - 未来两年内，保证可以兼容OpenTracing和OpenCensus的SDK
 
-## 总结
+### 总结
 
 从Prometheus、OpenTracing、Fluentd到OpenTelemetry、Thanos这些项目的陆续进入就可以看出CNCF对于Cloud Native下可观察性的重视，而OpenTelemetry的出现标志着Metrics、Tracing、Logging有望全部统一。
 

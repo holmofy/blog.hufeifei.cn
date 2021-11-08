@@ -8,7 +8,7 @@ categories: JAVA
 
 > 建议结合着源代码看这篇文章(这篇文章就是记录我看源代码的过程，这里的java版本是1.8.0_131)
 
-## andomAccessFile
+# RandomAccessFile
 
 这个类就是完全模仿C语言的文件读写操作，允许随机读取，想读文件的哪个部分就可以把文件流指针指到哪儿。下面会列一张表将这个类中的常用方法和标准C语言API进行对比，然后再看一下Java在Native层是怎么实现这个类的：
 
@@ -25,7 +25,7 @@ RandomAccessFile还同时实现了`DataOutput, DataInput`两个接口，所以�
 
 ![RandomAccessFile](http://img-blog.csdn.net/20170820162027077?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## open
+### open
 
 ```java
     // 首先从构造方法开始看
@@ -230,7 +230,7 @@ HANDLE WINAPI CreateFile(
 );
 ```
 
-## read
+### read
 
 ```java
 // 所有的read方法最终都会辗转调用这两个方法
@@ -400,7 +400,7 @@ BOOL WINAPI ReadFile(
 );
 ```
 
-## write
+### write
 
 ```java
 // 所有的write方法最终都会调用这两个方法
@@ -584,7 +584,7 @@ BOOL WINAPI WriteFile(
 );
 ```
 
-## seek
+### seek
 
 ```java
 private native void seek0(long pos) throws IOException;
@@ -667,7 +667,7 @@ BOOL WINAPI SetFilePointerEx(
 );
 ```
 
-## getFilePointer
+### getFilePointer
 
 ```java
 public native long getFilePointer() throws IOException;
@@ -700,7 +700,7 @@ RandomAccessFile类最终调用的是Windows的四个API：OpenFile，ReadFile�
 
 
 
-## ileInputStream和FileOutputStream
+# FileInputStream和FileOutputStream
 
 FileInputStream和FileOutputStream与C++的STL中的文件流API类似：面向对象，RandomAccessFile仅仅以面向对象方式封装了文件读写。Java的文件流功能上肯定不如C++，要知道C++的运算符重载，模板类等语言特性让C++的文件操作简单了很多(相反调试也变得更加困难)。
 
@@ -712,7 +712,7 @@ C++中`std::basic_ifstream`代表了文件输入流，`std::basic_ofstream`代�
 
 事实上FileInputStream和FileOutputStream的实现和RandomAccessFile几近一致：
 
-## FileInputStream的native方法
+### FileInputStream的native方法
 
 ```java
 private native void open0(String name) throws FileNotFoundException;
@@ -850,7 +850,7 @@ BOOL WINAPI GetFileSizeEx(
 );
 ```
 
-## FileOutputStream的native方法
+### FileOutputStream的native方法
 
 FileOutputStream的native实现就更简单了
 

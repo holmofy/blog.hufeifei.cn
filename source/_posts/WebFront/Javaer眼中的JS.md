@@ -7,7 +7,7 @@ mathjax: true
 
 > 把之前写的笔记整理了一下，重新拾起JS
 
-## 本数据类型
+# 基本数据类型
 
 | JS                    | Java    |
 | --------------------- | ------- |
@@ -92,7 +92,7 @@ isNaN(1 + undefined) // true
 ```
 
 
-## 象类型--[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+# 对象类型--[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 | JS     | Java |
 | ------ | ---- |
@@ -142,7 +142,7 @@ var p = {
 
 > JSON数据格式就是从Javascript语言中出来的。
 
-## 他内置对象
+# 其他内置对象
 
 除了前面介绍的Object以及基本数据类型的包装类型JS还提供了一些其他的内置对象。
 
@@ -154,7 +154,7 @@ typeof /^.*$/;    // object
 typeof [6, 7, 8]; // object
 ```
 
-## 1. [Math](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
+### 1. [Math](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 和绝大多数语言一样，JS也提供了数学计算的API——Math对象，Math对象有常见的数学常量和函数。但是和下面介绍的其他内置对象不同，Math对象不是function对象，也就是说Math不是构造函数，所以你不能使用`new Math()`或`Math()`的方式来创建Math对象。JS中的Math对象可以看做java中的Math.class。
 
@@ -208,7 +208,7 @@ Math {
 }
 ```
 
-## 2. [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+### 2. [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
 和大多数编程语言一样，JS中也有基于计算机纪元(1970年1月1日)的日期类Date。
 
@@ -234,7 +234,7 @@ console.log(d);
 VM546:1 Mon Sep 11 2017 19:42:48 GMT+0800 (中国标准时间)
 ```
 
-## 3. [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+### 3. [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
 
 尽管Java也有Pattern和Matcher两个类来提供正则表达式的支持，但相对于JS和Python这类脚本语言，Java的正则用起来相当麻烦。JS中提供的正则很强大，使用也相当便捷。
 
@@ -307,7 +307,7 @@ while(null !== (arrRe = regex.exec("12C19D88at221B99"))){
 
 > 有关正则表达式的基础内容可以参考[这篇文章](http://blog.csdn.net/holmofy/article/details/74884785)
 
-## 4. [Array数组](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array)
+### 4. [Array数组](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array)
 
 Array数组是一种使用整数作为键同时具有长度属性(length)的常规对象，数组对象还继承了Array.prototype的一些函数用于操作数组对象。
 
@@ -352,7 +352,7 @@ length: 6  // 注意数组长度为6
 __proto__: Array.prototype
 ```
 
-### push|pop 和 unshift|shift
+#### push|pop 和 unshift|shift
 
 Array.prototype中提供了很多函数用于操作，比如这两对：unshift|shift 和 push|pop。从这两对函数上看JS中的数组倒有点像双端队列
 
@@ -380,11 +380,11 @@ arr.shift(); // 删除并返回最前面的一个元素：1
 console.log(arr); // 输出： [2, 3, 4, 5, 6, 7, 8]
 ```
 
-### keys(), values(), entries()
+#### keys(), values(), entries()
 
 这三个方法和Java中Map类型的三个类似方法功能一样，都是用于遍历Array对象的。这也从另一方面验证了前面所说的：JS中的Array本质上仍然是一个Map。但是需要注意这三个函数都是ES6中新定义的，所以还存在很多兼容性问题。
 
-### 函数式编程
+#### 函数式编程
 
 JS是一门函数式语言，Java8中提供的[Stream API](http://blog.csdn.net/holmofy/article/details/77481304)功能也是学习了这一类语言。而且ES6开始支持[Lambda表达式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，这使得JS的功能更强大。但是和Java8中的Stream不同的是：JS中的这些操作都不是惰性的，不会进行优化，也就是说任何一个方法都会立即返回一个新生成的数组。作为解释性的脚本语言，JS也没必要进行优化，毕竟JS设计这些API和Java的Stream目的性不同。
 
@@ -396,7 +396,7 @@ JS是一门函数式语言，Java8中提供的[Stream API](http://blog.csdn.net/
 
 <table><tbody><tr><td colspan="3" align="center" border="0">Array函数分类</td></tr><tr><td rowspan="2" border="1">中间操作(Intermediate operations)</td><td>无状态(Stateless)</td><td>filter(), map()</td></tr><tr><td>有状态(Stateful)</td><td>sort(), reverse()<br/>slice()</td></tr><tr><td rowspan="2" border="1">终断操作(Terminal operations)</td><td>非短路操作</td><td>forEach()<br/>reduce(), reduceRight()</td></tr><tr><td>短路操作(short-circuiting)</td><td>every(), some()<br/>find(), findIndex()</td></tr></tbody></table>
 
-### map()
+#### map()
 
 ![map](//img-blog.csdn.net/20180316232612261?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
@@ -415,7 +415,7 @@ Array.of(1,2,3,4).map(a => a*a);
 // 返回数组：1,4,9,16
 ```
 
-### filter()
+#### filter()
 
 ![filter操作](//img-blog.csdn.net/20180316232633719?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
@@ -433,7 +433,7 @@ Array.of(1,2,3,4).filter(a => a%2==0);
 // 返回数组：1,4,9,16
 ```
 
-### sort()
+#### sort()
 
 ![sort操作](//img-blog.csdn.net/20180316232647468?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
@@ -456,12 +456,12 @@ Array.of(3,2,4,1).sort(); // 使用默认规则排序：1,2,3,4
 Array.of(3,2,4,1).sort((a,b)=>b-a); // 自定义排序规则:4,3,2,1
 ```
 
-### reverse()
+#### reverse()
 
 ![reverse](//img-blog.csdn.net/20180316232706903?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 数组逆序。这个很简单，而且也没什么参数。
 
-### slice()
+#### slice()
 
 ![slice](//img-blog.csdn.net/20180316232726335?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
@@ -474,7 +474,7 @@ Array.of(1,2,3,4).slice(1,3);
 // 包含索引为1的“2”,不包含索引为3的“4”,最终结果为：2,3
 ```
 
-### forEach()
+#### forEach()
 
 ```javascript
 // forEach用于遍历数组中的元素
@@ -491,7 +491,7 @@ Array[2] = 3
 Array[3] = 4
 ```
 
-### reduce()与reduceRight()
+#### reduce()与reduceRight()
 
 ![reduce操作](//img-blog.csdn.net/20180316232826592?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
@@ -515,7 +515,7 @@ Array.of(1,2,3,4).reduce((acc,v)=>acc.concat(v), ""); // 1234
 Array.of(1,2,3,4).reduceRight((acc,v)=>acc.concat(v), ""); // 4321
 ```
 
-### every(),some()
+#### every(),some()
 
 ```javascript
 // every函数表示数组中的每个元素都符合callback函数中指定的条件
@@ -538,7 +538,7 @@ Array.of(1,2,3,4).every(v=>v%2==1); // false
 Array.of(1,2,3,4).some(v=>v%2==1); // true
 ```
 
-### find(),findIndex()
+#### find(),findIndex()
 
 ```javascript
 // find函数用于从数组中查找符合callback函数中指定条件的元素
@@ -570,7 +570,7 @@ Array.of(10,11,12,13,14,15)
 // 找到第一个出现的素数就会返回: 1
 ```
 
-## 5. ArrayBuffer,DataView
+### 5. ArrayBuffer,DataView
 
 如果说JS中的Array是Java中的List（容量可变），那么JS中的ArrayBuffer才是Java中真正的数组（容量不可变）。
 
@@ -617,7 +617,7 @@ DataView类提供了下面16种操作内存的方法，如果把getter/setter看
 15. [`DataView.prototype.setUint32()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView/setUint32)
 16. [`DataView.prototype.setUint8()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView/setUint8)
 
-## 6. TypedArray
+### 6. TypedArray
 
 尽管DataView能操作各种数据类型，但是如果我在一段内存中只操作一种数据类型，那DataView就显得有些多余。所以JS还提供了用于操作单一数据类型的视图类 —— TypedArray。TypedArray主要有以下几种类型，它们的在使用上都是一样的。
 

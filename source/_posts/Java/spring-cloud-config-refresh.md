@@ -10,7 +10,7 @@ keywords:
 - SpringCloudConfig配置项刷新
 ---
 
-## pring-cloud-bus项目结构
+# spring-cloud-bus项目结构
 
 ![](./spring-cloud-monitor.svg)
 
@@ -20,7 +20,7 @@ kafka和rabbitmq的消息处理逻辑本身也被抽象成了spring-cloud-stream
 
 spring-cloud-config-monitor是一个通过spring-cloud-bus实现配置实时更新的依赖库。
 
-## pring-cloud-config-monitor架构
+# spring-cloud-config-monitor架构
 
 ![](./config-server-refresh-single.svg)
 
@@ -49,7 +49,7 @@ public abstract class RemoteApplicationEvent extends ApplicationEvent {
 
 5、`RefreshListener`中会调用`ContextRefresher`，拉取最新的配置，并更新Environment，重建所有加了@RefreshScope注解的Bean。
 
-## pringBus的几个配置
+# SpringBus的几个配置
 
 ```yaml
 spring:
@@ -74,7 +74,7 @@ spring:
 
 4、`trace`是用来记录这些事件的，目前SpringCloud没有实现，只是打了debug日志。但是SpringCloud提供了HttpTraceRepository接口，后期可能会扩展。
 
-## 在的问题
+# 存在的问题
 
 ![](./config-server-refresh-config.svg)
 
@@ -82,7 +82,7 @@ spring:
 
 2、gitlab中通常只配置一个webhook，测试、预发、生产环境的`config-server`怎么能都收到这个配置进行仓库的更新。
 
-## 解决方案一
+### 解决方案一
 
 1、首先mq必须全局共享，开发、测试、预发、生产都用同一套mq
 
@@ -94,7 +94,7 @@ spring:
 
 ![](./config-server-refresh-multi-profile.svg)
 
-## 解决方案二
+### 解决方案二
 
 1、gitlab中配置多个环境的webhook，这要求各环境的`config-server`域名区分开
 
@@ -106,7 +106,7 @@ spring:
 
 ![](./config-server-refresh-isolation.svg)
 
-## 解决方案三
+### 解决方案三
 
 SpringCloudBus的问题：
 

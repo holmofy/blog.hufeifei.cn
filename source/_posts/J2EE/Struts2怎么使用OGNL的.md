@@ -26,7 +26,7 @@ Struts2框架就是使用OGNL完成数据的设置与访问的：
 
 ![ValueStack原理图](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp39gtbwj20mb0ch0tg.jpg)
 
-## 、官方文档导致的错误理解
+# 一、官方文档导致的错误理解
 
 [官方文档](http://struts.apache.org/core-developers/)中对OGNL有一段描述：Struts2框架将OGNL的上下文context设置为ActionContext，并将ValueStack设置为OGNL的root对象，而且还给出了一个树状图。
 
@@ -40,7 +40,7 @@ Struts2框架就是使用OGNL完成数据的设置与访问的：
 
 ![ValueStack](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp5qp61zj20q8090t9w.jpg)
 
-## 、ActionContext和ValueStack中真正的context
+# 二、ActionContext和ValueStack中真正的context
 
 看到上面的代码，我首先想到的是，这两个context不会就是同一个吧。那就写个Action类测试一下试试看吧：
 
@@ -74,7 +74,7 @@ public class OgnlTestAction extends ActionSupport {
 
 ![OgnlValueStack](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp68p6nsj20vz0f7mzl.jpg)
 
-## 、CompoundRoot才是真正的值栈实现
+# 三、CompoundRoot才是真正的值栈实现
 
 CompoundRoot源码很简单，就是使用List模拟了一个栈的数据结构。
 
@@ -86,7 +86,7 @@ CompoundRoot源码很简单，就是使用List模拟了一个栈的数据结构�
 >
 >好在CompoundRoot中并不会存放很多数据，一次请求过程中最多都不会存储超过10个元素，所以性能影响并不是明显。但是开发时应该注意不应该往CompoundRoot中push过多的对象。
 
-## 、为什么OGNL表达式能直接访问栈顶的数据呢
+# 四、为什么OGNL表达式能直接访问栈顶的数据呢
 
 看过前一篇文章的应该知道，在OGNL表达式中访问List对象需要使用`[n]`这样的索引语法。但是平常使用在页面中使用OGNL表达式都是可以直接访问Action中的属性。这个到底是怎么实现的呢？
 
@@ -96,7 +96,7 @@ CompoundRoot源码很简单，就是使用List模拟了一个栈的数据结构�
 
 ![root](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp7rjk50j20uf05adgn.jpg)
 
-## 、CompoundRootAccessor让OGNL总是能直接访问栈顶元素
+# 五、CompoundRootAccessor让OGNL总是能直接访问栈顶元素
 
 CompoundRootAccessor实现了PropertyAccessor接口，OGNL中可以通过实现PropertyAccessor接口来自定义对象的访问规则
 
@@ -198,7 +198,7 @@ struts.xml文件中的action配置这里就不贴了。
 
 ![top](http://tva1.sinaimg.cn/large/bda5cd74gy1fqdp8faz5jj207103qaa0.jpg)
 
-## 、为什么通过EL表达式能访问值栈中的数据
+# 六、为什么通过EL表达式能访问值栈中的数据
 
 除了能在Struts2的标签中能使用OGNL表达式访问值栈，EL表达式中也能访问值栈中的数据。
 

@@ -13,7 +13,7 @@ categories: J2EE
 >
 > 源码版本不一致，可能会有稍许差异。
 
-## 求的分发
+# 请求的分发
 
 ***DispatcherServlet.doDispatcher()***
 
@@ -128,7 +128,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 }
 ```
 
-## 求处理器的执行链
+# 请求处理器的执行链
 
 ***HandlerExecutionChain***
 
@@ -202,7 +202,7 @@ public class HandlerExecutionChain {
 
 ![过滤链执行顺序](http://img-blog.csdn.net/20171226164722543?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 查并解析文件上传请求
+# 检查并解析文件上传请求
 
 ***DispatcherServlet.checkMultipart()***
 
@@ -244,7 +244,7 @@ protected HttpServletRequest checkMultipart(HttpServletRequest request) throws M
 }
 ```
 
-## 取请求处理器
+# 获取请求处理器
 
 ***DispacherServlet.getHandler()***
 
@@ -270,7 +270,7 @@ protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Ex
 
 ![HandlerMapping](http://img-blog.csdn.net/20171225214959386?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## RequestMappingHandlerMapping
+### RequestMappingHandlerMapping
 
 RequestMappingHandlerMapping是匹配@Controller和@RequestMapping注解的，这种方式也是最常用的：
 
@@ -365,7 +365,7 @@ public class RequestMappingHandlerMapping extends RequestMappingInfoHandlerMappi
 }
 ```
 
-## 取处理器适配器
+# 获取处理器适配器
 
 ***DispatcherServlet.getHandlerAdapter()***
 
@@ -399,7 +399,7 @@ protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletExcepti
 
 > RequestMappingHandlerAdapter与AnnotationMethodHandlerAdapter相比提供了更多的扩展功能，比如Servlet3支持的异步请求，Controller切面支持注解@ControllerAdvice和ControllerAdviceBean等。
 
-## RequestMappingHandlerAdapter
+### RequestMappingHandlerAdapter
 
 ```java
 public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
@@ -520,7 +520,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 }
 ```
 
-## 求处理方法
+# 请求处理方法
 
 ***HandlerMethod***
 
@@ -546,7 +546,7 @@ ServletInvocableHandlerMethod也有一个重要的参数：
 
 * HandlerMethodReturnValueHandlerComposite是一组HandlerMethodReturnValueHandler，他们用来处理handler方法的返回值。比如方法上有@ResponseBody注解就把返回值序列化成JSON或XML响应给客户端。
 
-## 求处理方法的参数解析和返回值处理
+# 请求处理方法的参数解析和返回值处理
 
 ***HandlerMethodArgumentResolver***和***HandlerMethodReturnValueHandler***
 
@@ -560,7 +560,7 @@ HandlerMethodReturnValueHandler用于处理Controller方法的返回值，可以
 
 ![默认HandlerMethodReturnValueHandler](http://tva1.sinaimg.cn/large/bda5cd74gy1fskglkiu9dj20mp0h9dgo.jpg)
 
-## 理请求分发结果
+# 处理请求分发结果
 
 ***DispatcherServlet.processDispatchResult()***
 
@@ -611,7 +611,7 @@ private void processDispatchResult(HttpServletRequest request, HttpServletRespon
 }
 ```
 
-## 析视图名并渲染视图
+# 解析视图名并渲染视图
 
 ***DispatcherServlet.render(), resolveViewName()***
 
@@ -684,7 +684,7 @@ ViewResolver就是把我们在Controller中返回的viewName解析成一个实�
 
 ![View](http://img-blog.csdn.net/20171226163925347?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## InternalResourceViewResolver
+### InternalResourceViewResolver
 
 InternalResourceViewResolver是用的最多ViewResolver。
 
@@ -911,7 +911,7 @@ public class InternalResourceViewResolver extends UrlBasedViewResolver {
 }
 ```
 
-## InternalResourceView，RedirectView，JstlView
+### InternalResourceView，RedirectView，JstlView
 
 前面ViewResolver中涉及到了三个View的实现类：InternalResourceView，RedirectView，JstlView
 

@@ -6,7 +6,7 @@ categories: J2EE
 
 最近读完《[Spring技术内幕](https://book.douban.com/subject/10470970/)》一书，虽然此书评价貌似不高，但边看书边读源码，感觉还是有点收获，至少为阅读Spring源码提供了思路。然后这篇文章就记录一下这几天看Spring IOC这块的源码以及整体思路。
 
-## 、 BeanFactory与ApplicationContext
+# 1、 BeanFactory与ApplicationContext
 
 在Spring的IOC容器设计中，主要由两个容器系列：
 
@@ -15,7 +15,7 @@ categories: J2EE
 
 ![BeanFactory](http://www.plantuml.com/plantuml/svg/bLBFJXD17BxFK-mBy0AD1nGn7ZmG6XCFlGpBj4wodMbcfrMY9aL0kmPi4ui4QgA4493ORXeJtQLf-p3Ep2vluInBo02xJRZjpE_xytspltcNGyRhLGS0Zhc32jOZ1CaJQ7FArgBHYVAciZS101EEM1dQo9m3GZcoEAqLh6ADOL99Pd8GoltJA-hmlVfr61rigXzXYIY_BOAp17EnCLRVlFZZcVmxb5rV14sDaPqTsTypd1xMENs56Lg0DRZYe3l6AvHpMYrOSd0WGa-SVqX3N2RKUl7HriNMJdooALlxXkepxFAPSghT4PEUbfEjFH5CqZuYw2klgKDVYQkleVgzMoAoxOlHSJJw8ZijG_4vnuuhnjEeUsfOBr1InfKwcs5llG6twgJ-sb9RwJxHU91yV_eURup1TLH3ROcwV8bH6xakPV-Qwq0VQeZnjSLLhEVBg89Tpk3bAA4jlgunZSMKB2ENEWsK37JI1cB9PH6n1hOHYFgU-dmisqUwhfXCfH-cmU9fBpxSJlCexwSSxe9tHkMd66al-oMsePFxuY8uDxjUjpANg4HKrrVRwr7hZ-ntKc3EqsRzOM0Sh0TpSxEMwpRKx30Bb-cRGqu8kVi0yiCPlFoovlo-tFJk_ZnmmpLJvQsMUOpAiExmVESCJf53ZkrCqrovDFIBgdC3Fe_8Qhtg_0S0)
 
-## 、 最简单的容器StaticListableBeanFactory
+# 2、 最简单的容器StaticListableBeanFactory
 
 整个Spring容器中最简单的实现就是StaticListableBeanFactory，从它开始分析最合适不过了。
 
@@ -115,7 +115,7 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 }
 ```
 
-## 、 特殊的Bean对象——FactoryBean
+# 3、 特殊的Bean对象——FactoryBean
 
 Spring容器中有两种Bean：普通Bean和工厂Bean。Spring直接使用前者，后者以工厂模式生产Bean对象，并由Spring管理。
 
@@ -151,13 +151,13 @@ beanFactory.getBean("&myBean");
 
 **BeanFactory代表Spring容器，而FactoryBean表示工厂类，其创建的对象被获取后作为容器中的Bean注册**。
 
-## 、 核心容器DefaultListableBeanFactory
+# 4、 核心容器DefaultListableBeanFactory
 
 Spring IOC体系结构中最核心的容器实现类就是**DefaultListableBeanFactory**，它实现了[ConfigurableListableBeanFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/ConfigurableListableBeanFactory.html)和[BeanDefinitionRegistry](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/support/BeanDefinitionRegistry.html)两个接口的功能。
 
 ![DefaultListableBeanFactory](http://www.plantuml.com/plantuml/svg/VP51hiCW34Jtd88Bv0P_aVnKNNNLdi19JMg900AZgb8FNo9LLHGPjiERCMFtYI5oNgrIv1YZWHdraDa_AU880IQB_mZk33Fx-Df1etU6bXoFH0MvKE9wsAQUq90Z9k-kk1HwovejfAI_V85-JxSSWe-iLFrD_tKvT7gOYbQW_M11Ez2D5TIHGrOf1Dcor5p9solETnTfUR3yRtcaP6nN40uZXZKxo3VRl1PDswfwTFUysWy0)
 
-## 4.1 、BeanDefinition、BeanDefinitionRegistry、BeanDefinitionReader
+### 4.1 、BeanDefinition、BeanDefinitionRegistry、BeanDefinitionReader
 
 **BeanDefinition**用于描述一个Bean实例的scope、是否为懒加载、生命周期方法(init、destroy)、属性值、构造参数值以及组件依赖等信息。
 
@@ -171,7 +171,7 @@ Spring IOC体系结构中最核心的容器实现类就是**DefaultListableBeanF
 
 ![BeanDefinitionReader](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAp2j9BKfBJ4vLS4fDp7D9JSlCoop9pCyBIarCIItYuafCAYufIamkKKZEIImkLd24Sh4hnYQgO5EZfuTV7qmIXtPTNOM0elo2rAAIpDHYCWrmByhFBwiaKtD4RWvs_pgavgK0Gn40)
 
-## 4.2、基于Java注解的配置
+### 4.2、基于Java注解的配置
 
 ![AnnotationConfigRegistry](http://www.plantuml.com/plantuml/svg/TSvD3i9020NWFQUOPTtq18sswGMCdW2dT4AiJ0DeDEhTxK_ScBZayH5UROxgryi0mEAaFKOAZKXsTCxIPkav7IYnkJwUSClS1Lr6qg8TqApQRSko3BZUKBU4P9lLMaGfZguiQLOdDDfZF6EQnHl-VGhLQzA_ssOS1uxVmEdk03L9DzN_0000)
 
@@ -187,7 +187,7 @@ Spring3.0开始支持Java注解配置Bean对象，也就是通过@Configuration�
 
 > 如果注册的是@Configuration注解的类，则在ConfigurationClassPostProcessor处理器中将所有@Bean注解方法的Bean注册到容器中，这部分内容后面会讲BeanFactoryPostProcessor的时候再详细解析。
 
-## 、可配置的ConfigurableListableBeanFactory
+# 5、可配置的ConfigurableListableBeanFactory
 
 ![ConfigurableListableBeanFactory](http://www.plantuml.com/plantuml/svg/jLPVRnj547_EVOfzF4jkFa7ird5IWTIGgh7W0V6mlXqd2-VTOtVErFoHUC1Gse9e1NqWa0fLq8Y78X61abIKBvEppRVWrklRk_CbRJ7mOkt-vZU_dPcRdVKLZLHXt0yzZmi4rQC1a6iyHRiXh0CLLsc0KWq_yBfIXkcU158WvK8RumRqkE38fV1tK76nIxef-XhjGyt8aLt0CgqjOu5-pRFiDz-gCeophZ8iVbMgpZ02_mPe6GvCY6PBCFrvWKSxf5glNMxEkLiqMhFyEkaqCm-ztIkGK_pvmYqX958JT2PFu2Q2O9hafYQXRjsfdBtTVHi2p0DuW-FUah8jafQGvOnjaIfMlakTMCrMLU2ZGWUqOfJlSGLj6bKQeT58RkqdJq-J-tUdd_sSt3wSFXhzDVh2S98d1sVFxao-_UJi-EEpq_raT9mSt1a_E1aVVTDeU1qIAA0uKyjhR2ARRMhUG796g3tQicnzqlovnZGDWzKy2vf6xF7T-69cdLIQCetzbnDZctpzCBdtHtBlSFpTm-cV-zCVxawUVZhvzNvo-jFuoyV9hT_J92QVduoVt7RXsnEgELmkv50dNA1BOKiog9FiuZ28G30GmR2z1y4xBe-C_M_bAjMxhcG42ZdeywgpX7OKXSE2yF1r6iQWNxBqSzRicjEGlszB-8zyym2anZI80BIMIgz3JofuDHCsBVtV2BTw26ePNLil1XgL75xSo8t6zF6ZyS5NuwF3PFJZsRFlfxyzC7stVvoCZbpV6KLc75wH8GDbxeoQpJzmblmsANWtvWgOlTBsr8o-uRwgdoytG0UAHoWLOMxfCZ9ou28sv_qledLlPMLb1t0-5vkkBPcRjtLYKcfBCG25e0WMTwQKQQLMLrTBKwmzdn2B8yn-7WrudIeGM33vXJM95gqrvxYUtT1haZ9GVc5DkcLRxjI1VdIH4rfRrQbDWxrPy5k0b56aldk85otby3PlHWgqvbBOrnAKVpwSVSd2eRQmXhG3Qi03y2i82HQHR4embis7JSPHgXkmopKgglmBSAAobPMOxq6rOusoRzbkEfPQl4uMdyZo6KqIbVOpTfvdgQNyvpMOossptmN6WCrcdwkixTiIHWR5NIvG6JD-1I7T1MInC3k1Z21xshNPsBTzXblW9Qx4EN_pFEySaAnzU2cEBhtGj_YdOJa5Pr_EtRi2WiNzy6y0)
 
@@ -201,7 +201,7 @@ ConfigurableBeanFactory：为容器提供了配置接口，以拓展容器的功
 
 我们想要拓展Spring IOC容器的功能主要就是通过ConfigurableBeanFactory开出的几个接口实现的：
 
-## 5.1、BeanExpressionResolver
+### 5.1、BeanExpressionResolver
 
 ConfigurableBeanFactory有两个关于Spring EL表达式的方法：
 
@@ -250,7 +250,7 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 
 StandardBeanExpressionResolver提供了一个`customizeEvaluationContext`方法允许我们重载，我们唯一能做的就是对StandardEvaluationContext进行一些自定义配置。
 
-## 5.2、Scope
+### 5.2、Scope
 
 Spring容器为我们提供了`SCOPE_SINGLETON`和`SCOPE_PROTOTYPE`两种基本的Scope，它还允许我们注册自己的Scope。比如Web应用中会用到的`request`和`session`两个Scope，另外Spring还提供了很多基础的Scope给我们，如线程级别`SimpleThreadScope`、事务级别的`SimpleTransactionScope`。
 
@@ -261,7 +261,7 @@ Spring容器为我们提供了`SCOPE_SINGLETON`和`SCOPE_PROTOTYPE`两种基本�
 > 关于BeanFactoryPostProcessor后面有一部分会介绍。
 
 
-## 5.3、ConversionService
+### 5.3、ConversionService
 
 ConversionService，顾名思义，就是Spring提供给我们的类型转换服务。它主要有几种用途，解析配置文件中字符串，解析BeanDefinition中的property并绑定到对象中([DataBinder](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/DataBinder.html))，解析Web应用中的请求参数并绑定到Controller的入参对象中([WebDataBinder](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/WebDataBinder.html))，解析Spring EL表达式中的字面量。
 
@@ -277,7 +277,7 @@ ConversionService，顾名思义，就是Spring提供给我们的类型转换服
 >
 > https://www.baeldung.com/spring-mvc-custom-property-editor
 
-## 5.4、BeanPostProcessor
+### 5.4、BeanPostProcessor
 
 这个接口是用于扩展Spring功能的核心接口，事实上Spring容器本身的很多功能特性就是通过这个接口丰富的。
 
@@ -480,7 +480,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 ![initializeBean](http://tva1.sinaimg.cn/large/bda5cd74gy1gbdyhiplcxj21bc0bewgp.jpg)
 
-## 5.5、BeanPostProceesor的常见实现
+### 5.5、BeanPostProceesor的常见实现
 
 ![BeanPostProceesorImpl](http://www.plantuml.com/plantuml/svg/fP31IWCn48RlUOgyGFS9F3IAdXGMB7eUaxzj83jPPgPh2pwyxg8KiU2MFIM7x_iI_hKQYHswubncWsmfmj-2kArghTG8rIgEtjI4eldmVGbfo9fvDmCTaOUliyefl9FWH_sjkJybV_FH56ojyQ7lIuvakV9TPSFHfj1PlkWs_Xao5DXLpcEbjCaTNa43P8uZURUtPiOo_n5ZRRMwShVPzFc19zY-fXSgEKsRBWu6FN4CpDMctcWkRhOGpMhWYFjZH3-6DqAivSAVtHgS3btv1000)
 
@@ -496,7 +496,7 @@ Web应用中装配ServletContext的ServletContextAwareProcessor；
 
 > 关于Spring异步方法的使用可以参考[这篇教程](https://www.baeldung.com/spring-async)
 
-## 5.6、BeanPostProcessor的子接口
+### 5.6、BeanPostProcessor的子接口
 
 ![BeanPostProcessor](http://www.plantuml.com/plantuml/svg/bP7DIiKm44RtUOei5RnluEAsTDE5Ml09fkcNCj9EP395yEVTjKMmM8NSPS8v7mVcd8tKbdboZiMWaG9y3P8kPUiq1UISzCqzz4y8vfz_Vcl4f6Y5ZMdYLp9ESlMDzI2vyO-cBEFskASPrt-CLD6W5sryx3fRoKPYl7dL2oaEvJkwGJPTGX5x1nqnh4I3o6jV-iMwW-vltq-degP_r6DWcLXIUuOCNrV-1000)
 
@@ -675,7 +675,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 
 
-##  功能更强大的容器——ApplicationContext
+# 6. 功能更强大的容器——ApplicationContext
 
 ![ApplicationContext继承图](http://www.plantuml.com/plantuml/svg/ZPBVRjCm5CRl_HHvWUu141Shqu0BaARn16vmMqkk7TbE1G8kM0i8A4r1tGHKuWzZR3UZSC76KbPU9dQwjy1PaF0Kc-qkEVvypk_xZfU5X5p67GA0n9AWIq4zYWWEeSIChZ0gqHsPptRrqzzgCWS0cm9lmX05Ln2aLs4e6RzhbsyY8M0BtM8n3n6WJA90iYYu1_BnNfOE5xlR-jse8rhvstw-lvLlxkZXZagsWJewqEEf7ZpK-v_pxxDIeP8DlVbD3RRKgu6Q79-yUMI-mGDht0ri-1i4MJJMwNMCEEHXszWXJeLjThMBg5oB6mIBDk8bUeD9oJg6NYUZR3x9qiSgUQb-zhBqUJOxA0YVlL_qZiyWhT8kvensJBSL61cuVp7OVTAnIIGVJjMddafUdpn9JBV5y50bPmsk8t4QvHgKfaIBNzAjudquqY--4bOw2Q9IN8Qz-D7NwGZewLXzsQXJ6PXMRRttKVqw7NauLVE-6MdDhBu0wz1KchWLyyAOGmYid8FBzsirvueg8j-cWCT_SOkWfgovOAiRAEHEgVrS_Ig71Q_MuyIhzxp0qYB7hRRR8wZMoX7dxGSsXEI6AGW952Ae__rrI3tATTJaIBGz_S-_L0AwqDpebhsbfV_n-e_AP2vcmA_oD_IRkp3SDKGHnw4h5h2CwEsuG_u0)
 
@@ -711,7 +711,7 @@ void refresh();
 void close();
 ```
 
-## 6.1、AbstractApplicationContext
+### 6.1、AbstractApplicationContext
 
 先让我们看一下refresh()方法。
 
@@ -770,7 +770,7 @@ void close();
 
 AbstractApplicationContext提供了很多模版方法给子类去实现，接下来我们看一下最主要的两个子类。
 
-## 6.2、GenericApplicationContext与AbstractRefreshableApplicationContext
+### 6.2、GenericApplicationContext与AbstractRefreshableApplicationContext
 
 ![Spring容器的两个体系](http://www.plantuml.com/plantuml/svg/dLAxJW915EttA_O7-05Z0P98OZGnqb3G3Ej5DfcT8RCN8YKnMWXeOf36niI7MqaX92hmD-o3ln1ogPJTMIbtpZdtddlEPbra2XiEDmnR8AWgiy3CIr6rpngALJZawdLkMmnjAPRF2ETei8gBYbbeMfovhfbRVwPdda1LWLkZyLk8o5zwQSdX6yX6yfdcRYQJT5iiHCe2252szNzXkf1qh9XvclnISscs9k0abFJxDeTYoqLmjfsGNnLzpB0Mqt5S3QGk8iED7Gc9O5OaedHspFda9PmEGgyJ3BxywMtmuVbNtJrWeYpcdxsmx_dNZz5ivZyF5XVUuh8NpjvNo2HwRI_1-VTDCEv4mtkDbpLAT-Zyb8uEoGoj8pF1i9ySHrduTrrDvi73A6oFWz4adTs2ahBPIk6OYBzDQvRaX918h_GRwlSSi2PRDXIzFVtPPMH1d3OS_WC0)
 
@@ -831,7 +831,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 }
 ```
 
-## 6.3、BeanFactoryPostProcessor
+### 6.3、BeanFactoryPostProcessor
 
 不要将[BeanFactoryPostProcessor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanFactoryPostProcessor.html)和前面的[BeanPostProcessor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/config/BeanPostProcessor.html)搞混，这个接口是BeanFactory初始化后的回调接口。
 

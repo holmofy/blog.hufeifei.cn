@@ -10,7 +10,7 @@ description: Android Handler消息机制源码分析——第一部分:Looper与
 
 由于在Android中，网络请求不能运行在主线程中，同时一些耗时的操作也不建议运行在主线程中。因此多线程以及线程间通信在Android中显得更为重要了，而安卓SDK中也提供给我们很多的多线程机制，譬如：Handler，AsyncTask，以及基于这些机制而来的IntentService，AsyncService，Loader等常用类，其中AsyncTask又是基于Java的Concurrent框架而来的，虽然有些人对AsyncTask抱有怨言，但后面的文章中我们也会以学习的态度对AsyncTask进行深入剖析。这里我们先来对常用的Handler做更深层次的了解。Handler机制可以说是Android开发过程中最常用到的线程通信机制，比如说Activity.runOnUiThread方法，View.post,View.postDelayed等方法底层使用的都是该机制。但是在分析源码之前我们先来对整个框架机制中的几个相关类简单的说明一下。
 
-## Handler机制相关类的概括
+# Handler机制相关类的概括
 ### Handler
 首先要提到的就是Handler整个框架的上层建筑，也就是我们常用到的Handler类。Handler类可以说是整个框架中最外层的类，从整个过程的开始（消息的发送）到整个过程的终结（消息的处理），两端的事件都在Handler类中进行。这里面有几个重要方法分别是
 ```java
@@ -30,11 +30,11 @@ boolean sendMessageAtTime(Message msg, long uptimeMillis)
 ### Looper
 Looper是整个框架的核心类，相当于汽车的发动机，Looper.loop方法不断的将当前线程MessageQueue中的Message分发出去(也就是调用msg.target.dispatchMessage方法交给Handler处理)。
 
-## 源码摘要分析
+# 源码摘要分析
 下面我们对该机制部分重点核心源码进行分析，首先分析整个框架的核心类Looper
 
 ***下面源码中我会用区间注释来标注哪些是该机制的重点部分***
-## Looper
+# Looper
 ```java
 /**
  * Looper是个final类，所以你无法继承并重载它的方法
@@ -287,7 +287,7 @@ public final class Looper {
 ```
 
 
-## MessageQueue
+# MessageQueue
 ```java
 package android.os;
 

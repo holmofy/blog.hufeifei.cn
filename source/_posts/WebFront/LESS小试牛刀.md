@@ -4,7 +4,7 @@ date: 2017-09-12
 categories: 前端
 ---
 
-## 什么选择less
+# 为什么选择less
 
 CSS代码开发与维护都比较困难，特别是CSS中的各种尺寸颜色，看多了绝对想吐。所以就有了便于开发以及维护管理的CSS预处理语言，可以由它们编译生成CSS。
 
@@ -12,7 +12,7 @@ CSS代码开发与维护都比较困难，特别是CSS中的各种尺寸颜色�
 
 > Less官网列出了使用了less的框架：http://lesscss.org/usage/#frameworks-using-less
 
-## 装LESS
+# 安装LESS
 
 less是基于node开发的，所以安装前确保已经有[Node.js](https://nodejs.org/)的开发环境。
 
@@ -47,7 +47,7 @@ $ lessc --clean-css styles.less styles.min.css
 > * 在线编译环境：http://less2css.org/，
 > * 第三方GUI编译环境：http://lesscss.org/usage/#guis-for-less
 
-## 用less.js进行前端开发
+# 使用less.js进行前端开发
 
 > less和less.js适用于开发阶段的调试，实际发布为了能得到更好的性能应该使用使用编译后的css
 
@@ -86,9 +86,9 @@ $ lessc --clean-css styles.less styles.min.css
 
 > [点击这里](http://lesscss.org/usage/#using-less-in-the-browser-setting-options)有该配置的相关解释
 
-## 量：variables
+# 变量：variables
 
-## 变量定义
+### 变量定义
 
 对于CSS中经常出现的共用属性值，我们可以使用变量来统一管理：
 
@@ -112,7 +112,7 @@ a:hover { color: @link-color-hover; }
 
 > LESS中的变量和编程语言中的变量不同，我们并不能修改变量的值，只能在相应的地方引用该变量。所以更准确的定义应该叫“常量”。
 
-## 变量插值语句
+### 变量插值语句
 
 上面的例子是将变量用作“属性值”，事实上变量也能用在其他地方，比如选择器、属性名、URL或@import指令。
 
@@ -146,7 +146,7 @@ body { color: #444; background: url("@{images}/white-sand.png"); }
 
 > 变量用作选择器和属性名时必须要以`@{ }`的方式引用变量，否则编译不通过。在url和@import指令中使用也需要`@{ }`，否则会被当成字符串的一部分。
 
-## 变量用作变量名
+### 变量用作变量名
 
 这句话可能有点绕，我觉的看例子最直接：
 
@@ -162,7 +162,7 @@ content: @@var;  // @@var=@fnord=I am fnord.
 content: "I am fnord.";
 ```
 
-## 变量的惰性加载
+### 变量的惰性加载
 
 可以在变量的定义之前使用变量
 
@@ -234,7 +234,7 @@ content: "I am fnord.";
 }
 ```
 
-## 默认变量的覆盖
+### 默认变量的覆盖
 
 使用第三方框架时，我们可能需要修改里面的一些变量属性值，根据上面变量惰性加载的原理，我们可以这样使用：
 
@@ -251,7 +251,7 @@ content: "I am fnord.";
 // 这样可以保证我们使用第三方框架时不用修改框架中任何代码
 ```
 
-## 承：extend
+# 继承：extend
 
 extend是less中的一个伪类选择器，用于合并共用CSS样式。
 
@@ -282,7 +282,7 @@ nav ul {
 
 > 当被继承的类选择器(这里是`.inline`)不存在，或者选择器中没有任何CSS属性，则该继承类在编译时会被删除。
 
-## 继承的语法规则
+### 继承的语法规则
 
 ```less
 ////////////////
@@ -323,7 +323,7 @@ nav ul {
 
 >extend只能放在选择器的末尾，`a:hover:extend(.link).nth-child(odd)`这种写法是不被允许的。
 
-## 式混合：mixins
+# 样式混合：mixins
 
 样式混合就是把已有的样式插入到选择器中
 
@@ -384,7 +384,7 @@ nav ul {
 }
 ```
 
-## 带参数的mixins
+### 带参数的mixins
 
 ```less
 // 定义mixins
@@ -404,7 +404,7 @@ nav ul {
 }
 ```
 
-## mixins默认参数
+### mixins默认参数
 
 ```less
 .border-radius(@radius: 5px) {
@@ -420,7 +420,7 @@ nav ul {
 }
 ```
 
-## 多参mixins
+### 多参mixins
 
 ```less
 // 多个变量之间也使用","隔开
@@ -440,7 +440,7 @@ nav ul {
 
 > 推荐使用";"分隔参数，因为","还可能是多个css属性值的分隔符
 
-## @arguments变量
+### @arguments变量
 
 @arguments变量类似于JS中的arguments，用来表示mixins的所有输入参数。
 
@@ -469,7 +469,7 @@ nav ul {
 }
 ```
 
-## 可变参数
+### 可变参数
 
 像编程语言一样可以使用`...`表示可变参数：
 

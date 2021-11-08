@@ -8,7 +8,7 @@ description: Windows上使用压缩包安装MySQL
 
 上个月在学校，好几个人过来叫我帮他们装MySQL，我说“你们可以到官网下个傻瓜式的安装向导，很简单，我这只有压缩包版的”，他们懒得下，我就用压缩包方式帮他们装。上次写过一篇在CentOS 7上安装MySQL的文章，索性把Windows上安装过程也写下来，对比一下。
 
-## 载Zip压缩包
+# 下载Zip压缩包
 
 傻瓜式安装方式我就不讲了，可以从[官网](https://dev.mysql.com/downloads/windows/installer/5.7.html)下载msi安装器。
 
@@ -16,7 +16,7 @@ MySQL压缩包可以从[https://dev.mysql.com/downloads/mysql/](https://dev.mysq
 
 下载完安装包后把它解压到你想安装的目录，传统的MySQL服务器都会安装在`C:\mysql`目录下，如果你不安装在这个目录下，后续的配置步骤中需要安装目录。
 
-## ySQL压缩包目录简单介绍
+# MySQL压缩包目录简单介绍
 
 Windows上的安装唯一的好处就是软件的所有文件都比较集中，不像Linux上那么分散。
 
@@ -29,26 +29,26 @@ Windows上的安装唯一的好处就是软件的所有文件都比较集中，�
 | `lib`                                   | MySQL提供的C语言库文件                           |
 | `share`                                 | 其他支持文件，包括错误消息，字符集文件，示例配置文件，用于数据库安装的SQL脚本(安装过程中会创建系统数据库) |
 
-## 配置MySQL启动信息
+#  配置MySQL启动信息
 
 解压的文件夹下有一个`my-default.ini`文件，该文件是MySQL默认配置，我们把该文件拷贝一份并重命名为`my.ini`，修改`basedir`和`datadir`的配置
 
 ```ini
 [mysqld]
-## ySQL安装主目录
+# MySQL安装主目录
 basedir=E:/mysql
-## 据库文件目录
+# 数据库文件目录
 datadir=E:/mydata/data
 ```
 
-## 据库初始化
+# 数据库初始化
 
 从`5.7.6`版开始，Zip压缩包不再提供`data`目录，所以也不会有MySQL系统数据库的数据文件，我们需要使用`mysqld --initialize`或者`--initialize-insecure`对数据库进行初始化
 
 * `--initialize`：初始化时会随机生成一个`root`用户密码，改密码会以日志的方式打印出来，如果控制台没有密码可能记录在日志文件下，在Windows上可以使用`--console`选项把信息打印到控制台。
 * `--initialize-insecure`：不会生成随机密码，但是在登录服务器是可以使用`--skip-password`跳过密码输入：`mysql -u root --skip-password`。
 
-## 改数据库root用户密码
+# 修改数据库root用户密码
 
 使用`mysql -u root -p`命令登录MySQL服务器后即可修改数据库密码
 

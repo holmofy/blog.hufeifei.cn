@@ -12,7 +12,7 @@ keywords:
 
 这篇文章将介绍最后一个线程池——Java7中最引人瞩目的[ForkJoinPool](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ForkJoinPool.html)线程池。
 
-##  为什么使用ForkJoinPool
+# 1. 为什么使用ForkJoinPool
 
 ThreadPoolExecutor中每个任务都是由单个线程独立处理的，如果出现一个非常耗时的大任务(比如大数组排序)，就可能出现线程池中只有一个线程在处理这个大任务，而其他线程却空闲着，这会**导致CPU负载不均衡**：空闲的处理器无法帮助工作繁忙的处理器。
 
@@ -20,7 +20,7 @@ ForkJoinPool就是用来解决这种问题的：将一个大任务拆分成多�
 
 ![Fork/Join框架原理](http://tva1.sinaimg.cn/large/bda5cd74gy1ft9simzhklj20cc0etgm1.jpg)
 
-##  ForkJoinPool的基本原理
+# 2. ForkJoinPool的基本原理
 
 *ForkJoinPool* 类是[Fork/Join 框架](http://gee.cs.oswego.edu/dl/papers/fj.pdf)的核心，和ThreadPoolExecutor一样它也是ExecutorService接口的实现类。
 
@@ -38,7 +38,7 @@ public class ForkJoinWorkerThread extends Thread {
 
 > **ForkJoinPool的两大核心就是分而治之(Divide and conquer)和工作窃取(Work Stealing)算法**
 
-## 2.1 工作窃取算法
+### 2.1 工作窃取算法
 
 Fork/Join框架中使用的*work stealing*灵感来源于[Cilk](https://en.wikipedia.org/wiki/Cilk)(开发Cilk的公司被Intel收购，原项目后来被升级为[Clik Plus](https://www.cilkplus.org/))。
 
@@ -55,7 +55,7 @@ Fork/Join框架中使用的*work stealing*灵感来源于[Cilk](https://en.wikip
 
 ![Work Stealing算法](http://tva1.sinaimg.cn/large/bda5cd74gy1fvadx7bjxzj20di08p0t6.jpg)
 
-##  创建ForkJoinPool对象
+# 3. 创建ForkJoinPool对象
 
 **1、使用Executors工具类**
 
@@ -150,7 +150,7 @@ public ForkJoinPool(int parallelism,
 
 > Java9中提供的构造参数更复杂了，可以在[JSR166 Concurrency论坛](http://jsr166-concurrency.10961.n7.nabble.com/Customized-ForkJoinPool-constructor-td13321.html)看看作者Doug Lea是怎么想的。
 
-##  提交任务到ForkJoinPool
+# 4. 提交任务到ForkJoinPool
 
 ```java
 // 提交没有返回值的任务
@@ -210,7 +210,7 @@ public <T> T invoke(ForkJoinTask<T> task) {
 
 可以看到所有的任务最终都会以ForkJoinTask类型提交到线程池中。
 
-##  [ForkJoinTask](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinTask.html)
+# 5. [ForkJoinTask](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinTask.html)
 
 大多数情况下，我们都是直接提交ForkJoinTask对象到ForkJoinPool中。
 
@@ -250,7 +250,7 @@ public static <T extends ForkJoinTask<?>> Collection<T> invokeAll(Collection<T> 
 
 上面几个方法都是让**第一个任务同步执行，其他任务异步执行**(注意：其他任务先fork，第一个任务再invoke)。
 
-## 5.1 任务状态
+### 5.1 任务状态
 
 ForkJoinTask内部维护了四个状态：
 
@@ -280,7 +280,7 @@ isCompletedNormally => NORMAL
 isDone() => status<0 => NORMAL || CANCELLED || EXCEPTIONAL
 ```
 
-##  RecursiveAction与RecursiveTask
+# 6. RecursiveAction与RecursiveTask
 
 通常我们不会直接使用ForkJoinTask，而是使用它的两个抽象子类：
 
@@ -291,7 +291,7 @@ isDone() => status<0 => NORMAL || CANCELLED || EXCEPTIONAL
 
 
 
-## 6.1 使用RecursiveAction
+### 6.1 使用RecursiveAction
 
 ```java
 public class RecursiveActionTest {
@@ -347,7 +347,7 @@ public class RecursiveActionTest {
 }
 ```
 
-## 5.2 使用RecursiveTask
+### 5.2 使用RecursiveTask
 
 ```java
 public class RecursiveTaskTest {
@@ -425,11 +425,11 @@ public class DirectoryTask extends RecursiveTask {
 }
 ```
 
-##  Fork/Join的陷阱与注意事项
+# 7. Fork/Join的陷阱与注意事项
 
 使用Fork/Join框架时，需要注意一些陷阱
 
-## 7.1、避免不必要的fork()
+### 7.1、避免不必要的fork()
 
 划分成两个子任务后，不要同时调用两个子任务的`fork()`方法。
 
@@ -439,7 +439,7 @@ public class DirectoryTask extends RecursiveTask {
 
 > 当一个大任务被划分成两个以上的子任务时，尽可能使用前面说到的三个衍生的`invokeAll`方法，因为使用它们能避免不必要的fork()。
 
-## 7.2、注意fork()、compute()、join()的顺序
+### 7.2、注意fork()、compute()、join()的顺序
 
 为了两个任务并行，三个方法的调用顺序需要万分注意。
 
@@ -470,7 +470,7 @@ return leftAns + rightAns;
 
 下面两种实际上都没有并行。
 
-## 7.3、选择合适的子任务粒度
+### 7.3、选择合适的子任务粒度
 
 选择划分子任务的粒度(顺序执行的阈值)很重要，因为使用Fork/Join框架并不一定比顺序执行任务的效率高：**如果任务太大，则无法提高并行的吞吐量；如果任务太小，子任务的调度开销可能会大于并行计算的性能提升**，我们还要考虑创建子任务、fork()子任务、线程调度以及合并子任务处理结果的耗时以及相应的内存消耗。
 
@@ -478,11 +478,11 @@ return leftAns + rightAns;
 
 > 和其他Java代码一样，Fork/Join框架测试时需要“预热”或者说执行几遍才会被[JIT(Just-in-time)编译器](https://en.wikipedia.org/wiki/Just-in-time_compilation)优化，所以测试性能之前跑几遍程序很重要。
 
-## 7.4、避免重量级任务划分与结果合并
+### 7.4、避免重量级任务划分与结果合并
 
 Fork/Join的很多使用场景都用到数组或者List等数据结构，子任务在某个分区中运行，最典型的例子如并行排序和并行查找。拆分子任务以及合并处理结果的时候，应该尽量避免System.arraycopy这样耗时耗空间的操作，从而最小化任务的处理开销。
 
-##  异常处理
+# 8. 异常处理
 
 Java的受检异常机制一直饱受诟病，所以在ForkJoinTask的`invoke()`、`join()`方法及其衍生方法中都没有像`get()`方法那样抛出个`ExecutionException`的受检异常。
 

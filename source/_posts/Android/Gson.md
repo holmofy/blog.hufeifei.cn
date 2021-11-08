@@ -7,7 +7,7 @@ tags:
 categories: Android
 description: 安卓常用第三方框架-Gson
 ---
-## Gson简介
+# Gson简介
 json因其轻量、高效等特性，而被广泛用作移动开发的信息交互的载体。
 我们知道AndroidSDK提供了org.json工具包来解析Json数据，但是仍然避免不了解析过程中的一系列重复工作。所以就出现了许多第三方JSON解析框架。[JSON官方网站](http://www.json.org)也给我们列出了在各种语言中JSON的解析策略:
 ![这里写图片描述](http://img-blog.csdn.net/20170217205859340?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -30,13 +30,13 @@ MVN：https://mvnrepository.com/artifact/com.google.code.gson/gson
 ### API文档
 http://www.javadoc.io/doc/com.google.code.gson/gson/2.8.0
 
-## GSON的使用
+# GSON的使用
 1. 创建Gson对象
   调用构造方法``new Gson()``，或者使用``GsonBuilder``类构造Gson对象
 2. 调用toJson()或fromJson()方法
   Gson对象中toJson()方法用来序列化，fromJson()方法用来反序列化
 
-## 示例
+# 示例
 ### 1、基本类型
 ```java
 // 序列化

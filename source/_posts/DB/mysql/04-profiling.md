@@ -25,11 +25,11 @@ keywords:
 
 上面一篇文章已经将慢查询语句记录到日志中，接着我们就要对单条SQL查询进行性能分析，了解它慢在何处，才能对症下药进行性能优化。
 
-## how profile
+# show profile
 
 `show profile`命令是MySQL5.1之后引入的，由开源社区的[Jeremy Cole](https://blog.jcole.us/)贡献。
 
-## 1. 开启profiling
+### 1. 开启profiling
 
 [`profiling`](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_profiling)系统变量是用来支持访问剖析信息的，`profiling`默认是关闭的，我们可以用`set profiling=1`命令开启profile。
 
@@ -69,7 +69,7 @@ mysql> select @@profiling;
 >
 > set命令更多详细内容可以参考[MySQL官方手册](https://dev.mysql.com/doc/refman/5.7/en/set-variable.html)
 
-## 2. show profiles
+### 2. show profiles
 
 [`show profiles`](https://dev.mysql.com/doc/refman/5.7/en/show-profiles.html)命令用来显示**当前会话最近执行语句**的耗时情况。
 
@@ -135,7 +135,7 @@ mysql> show profiles;
 
 可以看到show profiles展示了最近执行的四条查询语句。`show profiles`默认保存15条性能剖析信息，可以通过[**`profiling_history_size`**](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_profiling_history_size)系统变量来修改这个值，注意这个变量最大值为100。
 
-## 3. show profile
+### 3. show profile
 
 我们要看到某一条查询的详细性能剖析信息，需要用到[`show profile`命令](https://dev.mysql.com/doc/refman/5.7/en/show-profile.html)。
 
@@ -151,7 +151,7 @@ mysql> show profiles;
 +----------+------------+-------------------+
 4 rows in set, 1 warning (0.00 sec)
 
-## how profile命令默认显示最近一条查询的剖析信息
+# show profile命令默认显示最近一条查询的剖析信息
 mysql> show profile;
 +----------------------+----------+
 | Status               | Duration |
@@ -177,8 +177,8 @@ mysql> show profile;
 +----------------------+----------+
 18 rows in set, 1 warning (0.00 sec)
 
-## 获取更早的查询剖析信息要用for query字句
-## or query字句后面跟QUERY_ID
+# 要获取更早的查询剖析信息要用for query字句
+# for query字句后面跟QUERY_ID
 mysql> show profile for query 3;
 +----------------------+----------+
 | Status               | Duration |
@@ -210,7 +210,7 @@ mysql> show profile for query 3;
 
 > 关于show profile命令的更多语法查看官方手册：https://dev.mysql.com/doc/refman/5.7/en/show-profile.html
 
-## 4. 直接查询INFORMATION_SCHEMA.PROFILING表
+### 4. 直接查询INFORMATION_SCHEMA.PROFILING表
 
 `show profile`命令列出来的信息的确很详细，但是我们无法快速的确定哪个步骤花费的时间最多，因为输出的顺序是按照语句执行的顺序排列的。但是我们实际更关心的是哪些部分开销较大，但是很不幸show profile命令暂时不支持order by这样的排序功能。实际上profile的性能剖析信息都存在information_schema数据库的profiling表中。
 
@@ -259,7 +259,7 @@ mysql> select state,sum(duration) as Total_R,
 
 通过看[官方手册对explain的解释](https://dev.mysql.com/doc/refman/5.7/en/explain.html)发现，`describe`(可简写成`desc`)和`explain`可以混着用(MySQL解析器将它们视为同义词)，只是大多数情况下更喜欢用`desc`来查看表结构(事实上是对`show columns`命令的简化，主要为了兼容Oracle数据库)，使用`explain`来查看执行计划(即解析MySQL是如何执行查询语句的)。
 
-## 用explain获取执行计划
+# 使用explain获取执行计划
 
 我们可以使用`explain`来获取`select`,`delete`,`insert`,`replace`,`update`这几个语句经过MySQL优化器优化后的执行计划。
 

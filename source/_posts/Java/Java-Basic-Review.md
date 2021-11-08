@@ -7,7 +7,7 @@ mathjax: true
 
 [TOC]
 
-## 种基本数据类型
+# 八种基本数据类型
 
 Java语言中有八种基本数据类型：
 
@@ -30,7 +30,7 @@ C语言因为依赖与CPU平台，数据类型所占字节数可能会因硬件�
 
 > 注意：Java中boolean比较特殊：单个boolean在编译时映射成int；boolean数组则会被编译成byte数组。用1表示true，0表示false。参考[JVM规范](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.3.4)
 
-## 本数据类型的包装类
+# 基本数据类型的包装类
 
 Java中为上面的八种基本类型提供了包装类，从而让基本类型变成引用类型。有了这些包装类我们就可以在ArrayList，HashMap等Java集合类中存储基本的数据类型了(因为集合类型底层都是使用Object引用类型)。
 
@@ -117,7 +117,7 @@ public class NumberTest {
 
 确实如此。
 
-## 装类的缓存池
+# 包装类的缓存池
 
 前面说自动装箱调用的相应包装类的valueOf静态方法。那看看这些静态方法的实现：
 
@@ -241,7 +241,7 @@ false
 
 > 关于IdentityHashMap的介绍可以查看[Java集合框架总结和巩固](http://blog.csdn.net/holmofy/article/details/71215548)
 
-## nteger缓存池的自定义配置
+# Integer缓存池的自定义配置
 
 通过查看Byte，Short，Integer，Long源码你会发现，它们缓存都包装在一个相应的类中ByteCache、ShortCache、IntegerCache、LongCache。其中ByteCache，ShortCache，LongCache这三个内部类代码基本一致：都是缓存`-127~128`的数据。
 
@@ -340,7 +340,7 @@ public class Test {
 
 ![Integer缓存池的配置](http://img-blog.csdn.net/20170802125934475?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 装类中的其他工具方法
+# 包装类中的其他工具方法
 
 在这些基本数据类型的包装类中还提供给我们许多的工具方法。
 
@@ -357,7 +357,7 @@ public class Test {
 
 ![基本数据类型的工具方法](http://img-blog.csdn.net/20170623011508265?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 本数据类型的格式化输出
+# 基本数据类型的格式化输出
 
 在Java中提供了两个类PrintStream和PrintWriter支持常见数据的格式化输出。
 
@@ -434,7 +434,7 @@ public class TestFormat {
 ```
 > 关于字符格式化的更多内容可以查看JDK中的java.text.*`包中的相关描述。
 
-## ava中的数学运算
+# Java中的数学运算
 
 java像大多数语言一样不仅提供了`+`,`-`,`*`,`/`,`%`这样的基本数学运算，还提供了一个Math类来进行更复杂的数学运算。
 
@@ -443,7 +443,7 @@ java像大多数语言一样不仅提供了`+`,`-`,`*`,`/`,`%`这样的基本数
 1. 因为Math类属于`java.lang`包下的，所以我们无需另外导包，可以直接Math.xxx()进行调用。
 2. 因为Math类的方法都是`static`静态的，所以我们可以使用`import static java.lang.Math.*`方式导入Math类的静态方法。这样我们调用的时候可以不用加类名，直接调用xxx()方法。
 
-## Math类中的常量和最基本方法
+### Math类中的常量和最基本方法
 
 - `Math.E`, 自然对数的底数
 - `Math.PI`, 圆周率
@@ -502,7 +502,7 @@ long max(long arg1, long arg2)
                 返回两个参数的较大值
             </td></tr></tbody></table>
 
-## 指数运算与幂运算
+### 指数运算与幂运算
 
 <table width="100%" border="1" cellpadding="4" cellspacing="3" summary="幂运算与指数运算"><caption><b>幂运算与指数运算</b></caption><tbody><tr><th id="method">
 方法
@@ -526,7 +526,7 @@ double sqrt(double d)
 开平方根。根号d
 </td></tr></tbody></table>
 
-## 三角函数运算
+### 三角函数运算
 
 <table width="100%" border="1" cellpadding="4" cellspacing="3" summary="三角函数摘要"><caption><b>三角函数摘要</b></caption><tbody><tr><th id="method">
 方法
@@ -569,15 +569,15 @@ double toRadians(double d)
 将弧度制转换成角度制
 </td></tr></tbody></table>
 
-## 产生伪随机数
+### 产生伪随机数
 
 Math.random()函数底层使用`java.util.Random`类随机生成一个大于等于零并且小于一的双精度浮点数：`0.0 <= Math.random() < 1.0`。这和C语言的rand()函数还是有区别，rand函数生成的是0到32767(RAND_MAX)之间的数。这个方法比较鸡肋，我们完全可以使用`java.util.Random`或`java.security.SecureRandom`这两个类来生成随机数。
 
 
 
-## ava中的字符串
+# Java中的字符串
 
-## Java字符串与C/C++字符串对比
+### Java字符串与C/C++字符串对比
 
 字符串是程序设计中最常用到的数据类型。
 
@@ -606,13 +606,13 @@ Java中有一个专门的类String用来代表字符串，而不像C/C++中字�
 
 > 关于编码的问题可以查看我的这篇文章：[从ASCII、ISO-8859、GB2312、GBK到Unicode的UCS-2、UCS-4、UTF-8、UTF-16、UTF-32](http://blog.csdn.net/holmofy/article/details/72846118)
 
-## Java字符串的不可变性
+### Java字符串的不可变性
 
 尽管Java的String类中提供了像`replace()`这样的修改字符串的方法，但实际上Java的String类是一个不可变类型：一旦创建，对象的字符内容不可修改。那些`replace()`之类的方法都是重新创建一个String类对象作为返回值。
 
 那我们平时经常使用“`+`”操作符作为来进行字符串连接，是怎样实现的呢？
 
-## Java的字符串连接底层实现
+### Java的字符串连接底层实现
 
 下面我们写一个简单的小Demo来看一下String的字符串连接：
 
@@ -746,7 +746,7 @@ c + "World!" != "Hello" + "World!";
 // "Hello" + "World!"不会在运行时进行字符串连接，而是在编译时转成"HelloWorld!"常量
 ```
 
-## String字符串常量池的底层实现
+### String字符串常量池的底层实现
 
 Java中所有的字符串常量都存储在字符串常量池中。比如上面Demo中的"Hello"，"HelloWorld!"这种字面量。
 
@@ -924,7 +924,7 @@ public:
 
 从源码可以看出：**StringTable也就是所谓的字符串常量池实际上就是一个Hashtable，而且被设计成单例，通过`lookup()`来查找元素，`intern()`方法来添加元素。**
 
-## String类中的几个工具方法
+### String类中的几个工具方法
 
 对于String类中的许多成员方法，我们可能都非常熟悉。
 
@@ -978,7 +978,7 @@ String join(CharSequence delimiter, CharSequence... elements)
 String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
 ```
 
-## tringBuffer与StringBuilder
+# StringBuffer与StringBuilder
 
 前面频繁提到了`StringBuffer`和`StringBuilder`这两个类，但很多初学者对这两个类区分不清：**StringBuffer是线程安全的(方法基本上都是`synchronized`同步方法)，StringBuilder是线程不安全的(没有使用`synchronized`进行同步)；正因如此StringBuilder在效率上比StringBuffer要高**。这一点上和`Vector`与`ArrayList`的关系是一样的。
 

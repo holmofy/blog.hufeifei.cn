@@ -8,7 +8,7 @@ description: Systemd进程取代init进程(很多书籍资料讲的都是init作
 
 由于这个学期学校有Linux课程，我也一直期待着这门课，为了练习在Linux上搭建一些应用，so 我把原来的Windows2012的云服务器换成了CentOS7（其实有很多其他原因，比如mstsc传输速度慢的可怕，而且服务器带宽本来就不行）。在学习过程中遇到了很多问题，主要在于很多Linux命令在CentOS7中有了替代品，也就是所谓的新特性，其中最“坑”的就是Systemd进程取代init进程(很多书籍资料讲的都是init作为启动进程)。这个主要体现在``service``和``chkconfig``命令上，在CentOS7中使用``systemctl``代替``service``和``chkconfig``两个命令。
 
-## ervice命令
+# service命令
 service命令本质上是``/sbin``目录下的一个shell脚本，
 ![service命令本质](http://img-blog.csdn.net/20170408134832232?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 是用来管理系统服务的，这个类似于windows上的sc命令和services.msc，准确的来说Linux上的服务应该叫守护进程(Daemon)，这也是为什么Linux的服务程序后面都会加一个字母d(如httpd，sshd)。service命令用法如下：
@@ -25,7 +25,7 @@ Usage: service  	<option> |
   下面这张图是Oracle Linux5中/etc/init.d目录下的服务脚本
   ![init.d目录下的脚本](http://img-blog.csdn.net/20170408135107033?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## hkconfig命令
+# chkconfig命令
 chkconfig修改或查询系统服务在各种运行级别中系统开机时的开启|关闭状态，简单的说就是“开机自启动”的配置。
 Linux开机启动的第一个进程就是init进程(init程序全路径为``/sbin/init``)，关于Linux“开机启动项”又有一大堆名堂了。首先要说的就是运行级别，运行级别在``/etc/inittab``文件中有详细的描述(标准的Linux运行级别为3或5)：
 ```shell
@@ -53,7 +53,7 @@ usage:
 		④ chkconfig [--level <levels>] <name> <on|off|reset|resetpriorities>
 				#④修改指定服务在指定级别中的开闭状态
 ```
-## ystemctl命令
+# systemctl命令
 说道systemctl命令就要说道Systemd这个守护进程了，Systemd是用来取代传统的开机进程init进程的，主要原因是init是串行启动，前一个服务进程启动完成后下一个服务进程才能启动，这也就导致了init进程启动耗时比较长。关于Systemd体系与init的比较。在维基百科中有这样一段描述：
 
 与System V风格init相比，systemd采用了以下新技术：

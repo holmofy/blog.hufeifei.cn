@@ -23,13 +23,13 @@ keywords:
 
 前篇：[《Java多线程复习与巩固(六)--线程池ThreadPoolExecutor详解》](http://blog.csdn.net/holmofy/article/details/77411854)
 
-##  为什么要使用ScheduledThreadPoolExecutor
+# 1. 为什么要使用ScheduledThreadPoolExecutor
 
 在[《Java多线程复习与巩固(二)--线程相关工具类Timer和ThreadLocal的使用》](https://blog.hufeifei.cn/2017/06/Java/multithread/02-Thread-Utility/)提到过，Timer可以实现**指定延时调度任务**，还可以实现**任务的周期性执行**。但是Timer中的所有任务都是由一个TimerThread执行，也就是说**Timer是单线程**执行任务。单线程执行任务有一个致命的缺点：**当某些任务的执行特别耗时，后续的任务无法在预定的时间内得到执行，前一个任务的延迟或异常将影响到后续的任务；另外TimerThread没有做异常处理，一个任务出现异常将会导致整个Timer线程结束**。
 
 由于Timer单线程的种种缺点，这个时候我们就需要让线程池去执行这些任务。
 
-##  使用Executors工具类
+# 2. 使用Executors工具类
 
 Executors是线程池框架提供给我们的创建线程池的工具类，FixedThreadPool，SingleThreadExecutor，CachedThreadPool都是[上一篇文章中的ThreadPoolExecutor对象](http://blog.csdn.net/holmofy/article/details/77411854)。
 
@@ -47,7 +47,7 @@ public static ScheduledExecutorService newSingleThreadScheduledExecutor();
 
 ![线程池ThreadPoolExecutor相关类继承图](http://img-blog.csdn.net/20170819141036970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##  构造ScheduledThreadPoolExecutor对象
+# 3. 构造ScheduledThreadPoolExecutor对象
 
 先看一下ScheduledThreadPoolExecutor的几个构造函数
 
@@ -88,7 +88,7 @@ public class ScheduledThreadPoolExecutor
 * keepAliveTime和unit：0 NANOSECONDS，0纳秒，也就是说一旦有空闲线程会立即销毁该线程对象。
 * workQueue：DelayedWorkQueue是ScheduledThreadPoolExecutor的内部类，它也是实现按时调度的核心。
 
-##  二叉堆DelayedWorkQueue
+# 4. 二叉堆DelayedWorkQueue
 
 DelayedWorkQueue和`java.util.concurrent.DelayQueue`有着惊人的相似度：
 
@@ -97,7 +97,7 @@ DelayedWorkQueue和`java.util.concurrent.DelayQueue`有着惊人的相似度：
 
 ![Future继承图](http://img-blog.csdn.net/20170819141457532?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##  为什么使用二叉堆
+# 5. 为什么使用二叉堆
 
 大学学过数据结构的应该学过堆排序吧：堆排序就是用小顶堆(或大顶堆)实现最小(或最大)的元素往堆顶移动。这里的**DelayedWorkQueue就是使用二叉堆获取堆中延时最短的任务**。具体的比较策略让我们看下面这个方法：
 
@@ -128,7 +128,7 @@ DelayedWorkQueue和`java.util.concurrent.DelayQueue`有着惊人的相似度：
         }
 ```
 
-##  为什么不用DelayQueue的二叉堆实现
+# 6. 为什么不用DelayQueue的二叉堆实现
 
 `java.util.concurrent.DelayQueue`就是根据延时获取元素的，那为什么不直接用`DalayQueue`而重新定义一个`DelayedWorkQueue`呢。这个问题本质上就是在问`DelayQueue`与`DelayedWorkQueue`的区别，我们看一下`DelayedWorkQueue`注释中的一段话：
 
@@ -232,7 +232,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
 
 包装修饰主要是指两个`ScheduledThreadPoolExecutor.decorateTask`方法。这部分内容放在文末“扩展ScheduledThreadPoolExecutor的功能”时讲。
 
-##  任务的提交
+# 7. 任务的提交
 
 ```java
     public void execute(Runnable command) {
@@ -251,7 +251,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
 
 我们看到原来ThreadPoolExecutor中的几个提交方法都被重写了，最终调用了个的都是`schedule`方法，并且这几个方法的延时都为0纳秒。
 
-##  schedule
+# 8. schedule
 
 既然前面任务的提交全部都是交给schedule方法执行，那么让我们看一下schedule相关的几个方法
 
@@ -365,7 +365,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
 
 总结来说就是**fixRate是以任务开始时间计算间隔，而fixDelay是以任务结束时间计算间隔**。
 
-##  delayedExecute
+# 9. delayedExecute
 
 上面的几个方法都是将`runnable`或`callable`包装成`ScheduledFutureTask`对象，最终都是丢给`delayedExecute`方法去执行：
 
@@ -403,7 +403,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
     }
 ```
 
-## 0. ScheduledFutureTask.run
+# 10. ScheduledFutureTask.run
 
 添加线程后，线程肯定会从阻塞队列中获取任务，并执行任务的run方法，也就是ScheduledFutureTask的run方法：
 
@@ -440,7 +440,7 @@ DelayedWorkQueue类似于DelayQueue和PriorityQueue，是基于“堆”的一�
     }
 ```
 
-## 1. ScheduledThreadPoolExecutor的其他配置项
+# 11. ScheduledThreadPoolExecutor的其他配置项
 
 ```java
 public class ScheduledThreadPoolExecutor
@@ -467,7 +467,7 @@ public class ScheduledThreadPoolExecutor
 }
 ```
 
-## 2. 继承ScheduledThreadPoolExecutor对任务进行包装
+# 12. 继承ScheduledThreadPoolExecutor对任务进行包装
 
 ThreadPoolExecutor提供了beforeExecute,afterExecute,terminated三个钩子方法让我们重载以进行扩展。
 
@@ -491,7 +491,7 @@ public class CustomScheduledExecutor extends ScheduledThreadPoolExecutor {
 }
 ```
 
-## 3. ScheduledThreadPoolExecutor尚有的缺点
+# 13. ScheduledThreadPoolExecutor尚有的缺点
 
 ScheduledThreadPoolExecutor是使用纳秒为单位进行任务调度，它底层使用的是`System.nanoTime()`来获取时间：
 

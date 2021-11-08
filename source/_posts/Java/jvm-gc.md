@@ -14,13 +14,13 @@ keywords:
 
 这篇文章的目的就是为了突破这座藩篱，尽量让更多的人理解JVM的垃圾回收机制。
 
-## 、GC之前
+# 1、GC之前
 
 早在1960年，[Lisp语言](https://en.wikipedia.org/wiki/Lisp_%28programming_language%29)中就有自动垃圾收集的算法，只是那时候还没有形成[*Garbage Collection*](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29)这个概念。直到1996年，GC因为[Java](https://en.wikipedia.org/wiki/Java_%28programming_language%29)的出现而一举成名。
 
 在GC被广泛运用之前程序员们手动管理内存都会出现什么问题呢？
 
-## 1.1、悬挂指针
+### 1.1、悬挂指针
 
 [悬挂指针](https://en.wikipedia.org/wiki/Dangling_pointer)就是指针指向了一段已经被回收的内存。被回收的内存随时可能被再次分配出去，使用悬挂指针会出现一些不可预测的结果。
 
@@ -97,7 +97,7 @@ void safefree(void **pp)
 
 > 悬挂指针(Dangling pointer)与野指针(Wild pointer)是两种不同的概念。野指针指的是：指针值没有初始化。没有初始化的指针指向的值是不确定的，直接使用野指针也会导致不可预测的结果，所以在声明一个值(不管是指针值还是普通值类型)的时候都尽量给一个初始值。
 
-## 1.2、内存泄漏
+### 1.2、内存泄漏
 
 [内存泄漏](https://en.wikipedia.org/wiki/Memory_leak)指的是不再需要的内存没有得到释放。
 
@@ -195,7 +195,7 @@ void func() {
 
 > GC拯救了程序员，拯救了程序员的头发:smile:
 
-## 、GC算法
+# 2、GC算法
 
 垃圾回收算法的设计主要考虑以下几个问题：
 
@@ -207,7 +207,7 @@ void func() {
 
 首先判断[垃圾对象](https://en.wikipedia.org/wiki/Garbage_%28computer_science%29)的方法有两种：[引用计数](https://en.wikipedia.org/wiki/Reference_counting)、[可达性分析](https://en.wikipedia.org/wiki/Unreachable_memory)
 
-## 、引用计数
+# 3、引用计数
 
 引用计数就是为每个对象添加一个计数器，每当有一个地方引用到它，计数器值加1，当引用释放或失效时，计数器值减1，计数器值降为0对象就会被回收。
 
@@ -234,7 +234,7 @@ window.onload = function() {
 
 > 现在主流的JS引擎早已不再用引用计数算法了，[V8和Hotspot一样用分代收集算法](https://github.com/thlorenz/v8-perf/blob/master/gc.md)，值得一提的是V8的核心开发成员[Lars_Bak](https://en.wikipedia.org/wiki/Lars_Bak_%28computer_programmer%29)也是Hotspot团队的技术负责人。
 
-## 、可达性分析——引用树遍历
+# 4、可达性分析——引用树遍历
 
 引用树遍历是可达性分析最主要的手段。
 
@@ -250,7 +250,7 @@ GC从根引用开始，顺着引用链遍历，找到所有的存活对象，同
 >
 > 2、标记策略，每个对象头部加个标记位？Cache命中率低，Bitmap标记？
 
-## 、Mark-Sweep
+# 5、Mark-Sweep
 
 标记清除算法是基于可达性分析最简单的一种回收策略。
 
@@ -266,7 +266,7 @@ Mark-Sweep算法的清除阶段很简单：遍历堆中的对象，把没标记�
 
 2、 创建对象时要从空闲列表中找到匹配的内存空间(First-Fit, Best-fit, Worst-fit)，影响对象的内存分配时间。
 
-## 、Copying
+# 7、Copying
 
 GC拷贝算法解决了Mark-Sweep算法的内存碎片的问题。
 
@@ -284,7 +284,7 @@ GC拷贝算法解决了Mark-Sweep算法的内存碎片的问题。
 * 内存使用率不高，一半的内存会空闲；
 * 对象存活率较高时，就会有大量的拷贝操作。
 
-## 、Mark-Compact
+# 6、Mark-Compact
 
 [标记整理算法](https://en.wikipedia.org/wiki/Mark-compact_algorithm)可以看作是标记清除和复制算法算法的组合。
 
@@ -298,7 +298,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 
 这个算法缺点也很明显：前面有一块内存是垃圾对象，后续的对象都需要移动，存活对象较多时，移动耗时基本与内存大小成正比。
 
-## 、分代GC
+# 8、分代GC
 
 > 事实上，目前为止都没有一个能“一统天下”的GC回收策略，每种回收策略都有各自的优缺点。
 
@@ -314,7 +314,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 
 * 对整个堆内存(新生代和老年代)执行的GC称为Full GC。
 
-## 、Ungar分代
+# 9、Ungar分代
 
 分代GC这个概念最早由[David Ungar](https://en.wikipedia.org/wiki/David_Ungar)于1984年在[论文](https://people.cs.umass.edu/~emery/classes/cmpsci691s-fall2004/papers/p157-ungar.pdf)中提出的，他将堆内存分为4个空间：Eden、两个Survivor、OldGen，其中Eden和两个Survivor合称为新生代空间。
 
@@ -346,7 +346,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 >
 > 大对象仍然在新生代吗？如果存活时间长，岂不是增加了新生代的拷贝成本。
 
-## 0、JVM规范与内存结构
+# 10、JVM规范与内存结构
 
 目前Oracle JDK和Open JDK使用的[JVM](https://en.wikipedia.org/wiki/Java_virtual_machine)都是Hotspot VM，市场上也有一些[其他虚拟机](https://en.wikipedia.org/wiki/Comparison_of_Java_virtual_machines)，它们大多遵循[JVM规范](https://docs.oracle.com/javase/specs/index.html)。
 
@@ -354,11 +354,11 @@ Java虚拟机规范中定义了程序执行期间使用的各种运行时数据�
 
 ![HotSpot JVM Architecture](http://tva1.sinaimg.cn/large/bda5cd74ly1fxpcdwwmmij20qo0k0wf3.jpg)
 
-## 10.1、pc寄存器
+### 10.1、pc寄存器
 
 JVM可以支持多线程，每个虚拟机线程都有自己的pc(program counter)寄存器。在任何时候，线程的当前方法如果不是native，则pc寄存器存储当前正在执行的JVM指令地址。
 
-## 10.2、虚拟机堆栈
+### 10.2、虚拟机堆栈
 
 每个JVM线程创建时都会创建一个私有堆栈，JVM堆栈类似于传统C语言的堆栈：保存了局部变量和函数的入参，这些数据在函数返回时会随着栈帧弹出而回收。规范中允许JVM堆栈具有固定大小或动态伸缩。
 
@@ -367,7 +367,7 @@ JVM可以支持多线程，每个虚拟机线程都有自己的pc(program counte
 
 > 在Hotspot中线程堆栈大小是固定的，不同的操作系统默认值不一样，也可以通过-Xss(-XX:ThreadStackSize)参数进行调节。
 
-## 10.3、Java堆
+### 10.3、Java堆
 
 Java堆是所有线程共享的内存，所有的类实例和数组都在此分配。Java堆在JVM启动时创建，并由垃圾回收器管理。
 
@@ -393,11 +393,11 @@ Hotspot堆结构：
 >
 > 下面会重点介绍Hotspot堆的细节
 
-## 10.4、方法区
+### 10.4、方法区
 
 [方法区](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5.4)也是所有线程共享的内存。方法区中包括每个类的结构：运行时常量池，类的字段和方法等信息，方法、构造器和代码块的JVM指令。方法区在逻辑上是堆的一部分，但规范不要求对方法区进行垃圾回收（只是Hotspot等商用虚拟机都实现了该区域的自动内存管理），方法区的内存不要求连续，可以固定大小也可以动态伸缩。
 
-## 10.5、运行时常量池
+### 10.5、运行时常量池
 
 `.class`文件中有一个[`constant_pool`表](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.4)，它包含了几种常量：编译时已知的字面量，运行时解析的方法引用和字段引用。
 
@@ -459,11 +459,11 @@ Constant pool:
 
 运行时常量池是方法区的一部分。[当类或接口被创建](https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.3)时常量池会被一起创建。
 
-## 10.6、本地方法栈
+### 10.6、本地方法栈
 
 JVM可以使用传统的C堆栈以支持native方法的执行，另外本地方法栈也会被C语言实现的Java指令解释器(Hotspot中的JIT)使用。
 
-## 1、Hotspot
+# 11、Hotspot
 
 > 声明：后续的Hotspot参数在不同的JDK版本中会有些许差异，如需调整请以对应版本官方文档为准。
 
@@ -471,7 +471,7 @@ JVM可以使用传统的C堆栈以支持native方法的执行，另外本地方�
 
 ![Heapspot key Component](http://tva1.sinaimg.cn/large/bda5cd74ly1fxpcf1jowfj20qo0k074w.jpg)
 
-## 11.1、JIT编译器
+### 11.1、JIT编译器
 
 JIT及时编译器支持三种模式：`interpreted-only`、`compilation `、`mixed`，分别可以用`-Xint`、`-Xcomp`、`-Xmixed`选项开启。
 
@@ -499,7 +499,7 @@ JIT的内容不是本文的核心，有兴趣的可以自行谷歌或[参考官�
 
 下面主要讲得是Hotspot中的Java堆以及管理Java堆的垃圾回收器。
 
-## 11.2、Hotspot分代
+### 11.2、Hotspot分代
 
 Hotspot使用Ungar分代策略管理Java堆，并提供了相应的参数设置各个分代的大小：
 
@@ -534,7 +534,7 @@ Hotspot使用Ungar分代策略管理Java堆，并提供了相应的参数设置�
 
 > 更多的JVM参数以及参数的默认值可以参考[官方文档](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)。
 
-## 11.3、PermGen与Metaspace
+### 11.3、PermGen与Metaspace
 
 永久代（PermGen）中主要存储：类元数据等静态数据。也就是JVM规范中的方法区所存储的区域。
 
@@ -546,11 +546,11 @@ Hotspot使用Ungar分代策略管理Java堆，并提供了相应的参数设置�
 
 ![Metaspace](http://tva1.sinaimg.cn/large/bda5cd74ly1fxo9oiczhbj20e908cwep.jpg)
 
-## 11.4、可选的垃圾回收器
+### 11.4、可选的垃圾回收器
 
 Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不同的性能特征与不同的适用场景。
 
-### 11.4.1、串行收集器
+#### 11.4.1、串行收集器
 
 串行收集器使用单个线程来执行所有垃圾收集工作。因为线程之间没有通信开销，所以回收效率较高。它最适合单处理器机器，因为它无法利用多处理器硬件。它对于具有小数据集（最大约100 MB）的多处理器应用程序也非常有效。默认情况下，JVM会根据硬件、操作系统以及JVM配置(-client)选用串行收集器，或者可以使用`-XX:+UseSerialGC`选项显式启用串行收集器。
 
@@ -558,7 +558,7 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 > 串行收集器(Serial)在新生代使用复制算法，老年代(Serial Old)使用压缩整理算法。
 
-### 11.4.2、并行收集器
+#### 11.4.2、并行收集器
 
 并行收集器（也称为[吞吐量](https://translate.google.cn/#view=home&op=translate&sl=en&tl=zh-CN&text=throughput)收集器）并行执行垃圾回收，这可以显着减少垃圾收集开销。它适用于在多处理器硬件上运行的具有中型到大型数据集的应用程序。默认情况下，JVM会根据硬件、操作系统以及JVM配置(-server)选用并行收集器，或者可以使用`-XX:+UseParallelGC`选项显式启用并行收集器。
 
@@ -574,7 +574,7 @@ Hotspot VM包括三种不同类型的垃圾收集器，每种收集器具有不�
 
 ParNewGC主要配合CMS收集器使用，因为ParNewGC有CMS并发阶段所需要的一些同步操作。`-XX:+UseParNewGC`选项可以开启新生代的ParNewGC，此时老年代使用Serial Old。ParNewGC不能和ParallelOldGC一起使用（原因[在这](https://blogs.oracle.com/jonthecollector/our-collectors)，我也没怎么看明白，貌似是因为接口不兼容导致的)。在Java8中ParNewGC只能和CMS配合使用。
 
-### 11.4.3、并发收集器
+#### 11.4.3、并发收集器
 
 前面的收集器在收集过程中用户线程会完全暂停(也叫Stop The World)，收集完成后用户线程才会继续运行。这个暂停时间可能会持续一秒以上，对响应速度有要求的应用可能会有不好的体验，所以Hotspot还提供了并发收集器。
 
@@ -610,7 +610,7 @@ CMS整个过程中只有初始标记和重新标记阶段需要StopTheWorld，�
 
 ![Valid GC combinations](http://tva1.sinaimg.cn/large/bda5cd74ly1fxrakmsv9vj20ko0fnjtq.jpg)
 
-## 11.5、选择垃圾回收器
+### 11.5、选择垃圾回收器
 
 除非应用程序具有相当严格的暂停时间要求，否则应该让JVM自行选择垃圾回收器。如有必要，可以通过调整堆大小以提高性能。如果性能仍不符合目标，可以参照以下策略：
 

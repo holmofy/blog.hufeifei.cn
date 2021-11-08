@@ -17,7 +17,7 @@ keywords:
 
 [去年的一篇文章大致地讲了我对MQ的一些认识](https://blog.hufeifei.cn/2020/04/25/Alibaba/MetaQ&Notify/)，事实上Kafka在内的现代MQ，功能远不止这些。后面整理好自己的思路，肯定会再写一篇文章来讲讲。这篇文章的主角就是与MQ息息相关的CDC技术。
 
-## CDC技术
+# 1. CDC技术
 
 [CDC](https://en.wikipedia.org/wiki/Change_data_capture)全称叫：change data capture，是一种基于数据库数据变更的事件型软件设计模式。
 
@@ -32,7 +32,7 @@ keywords:
 
 ![database architecture](https://p.pstatp.com/origin/pgc-image/85c4945860ba4dd793acc42691226c8a)
 
-## 基于Binlog的CDC
+# 2. 基于Binlog的CDC
 
 [Binlog](https://dev.mysql.com/doc/internals/en/binary-log.html)是MySQL 3.23.14引进的，[它包含所有的描述数据库修改的事件](https://dev.mysql.com/doc/refman/8.0/en/binary-log.html)——DML(增删改)、DDL(表结构定义与修改)操作。
 
@@ -73,7 +73,7 @@ keywords:
 
 这里只讨论Java语言的几个实现。首先[whitesock/open-replicator](https://github.com/whitesock/open-replicator)和[shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)是专门用来解析MySQL binlog的库，后者也是在前者的基础上重构的。[debezium/debezium](https://github.com/debezium/debezium)、[linkedin/databus](https://github.com/linkedin/databus)、[zendesk/Maxwell](https://github.com/zendesk/maxwell)三个中间件binlog解析都是基于这两个库。
 
-##  Canal vs. Debezium vs. databus vs. MaxWell
+# 3. Canal vs. Debezium vs. databus vs. MaxWell
 
 1、[alibaba/Canal](https://github.com/alibaba/canal)![](https://img.shields.io/github/stars/alibaba/canal)
 
@@ -143,11 +143,11 @@ keywords:
 
 > 综合下来，Debezium是最佳选择。
 
-##  Debezimu-MySQL的配置
+# 4. Debezimu-MySQL的配置
 
 要使用debezium需要[预先对mysql服务进行配置](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#setting-up-mysql)。
 
-## 4.1. MySQL配置
+### 4.1. MySQL配置
 
 **1）**创建单独的用户，并授予debezium需要的权限
 
@@ -201,7 +201,7 @@ expire_logs_days  = 10
 > * [配置MySQL会话超时时间](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-session-timeouts)用于大表的快照读阶段。
 > * [开启原始SQL语句的记录](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#enable-query-log-events)用于查看每条binlog记录的原始SQL。
 
-## 4.2. 准备Kafka环境，在Kafka-connect中安装Debezium
+### 4.2. 准备Kafka环境，在Kafka-connect中安装Debezium
 
 > [Kafka](http://kafka.apache.org/)需要依赖[Zookeeper](https://zookeeper.apache.org/)管理集群，所以还需要准备zookeeper环境。
 
@@ -220,7 +220,7 @@ Kafka-connect可以用[单机版(`standalone`)和分布式版(`distributed`)](ht
 * `standalone`模式下，启动时直接提供`properties`文件来创建Connector任务。
 * `distributed`模式下，提供[REST接口](https://docs.confluent.io/platform/current/connect/references/restapi.html)对Connector任务进行增删改查。
 
-## 4.3. Debezium的基础配置
+### 4.3. Debezium的基础配置
 
 在`distributed`模式下可以，调用[`POST /connectors`](https://docs.confluent.io/platform/current/connect/references/restapi.html#post--connectors)接口创建Debezium的Connector任务，任务的基本配置如下：
 
@@ -247,11 +247,11 @@ Kafka-connect可以用[单机版(`standalone`)和分布式版(`distributed`)](ht
 >
 > Debezium-Connector的所有配置：https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-connector-properties
 
-##  binlog解析的难点与Debezium工作原理
+# 5. binlog解析的难点与Debezium工作原理
 
 binlog的[ROW模式](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_format)下类似于csv是没有shema的，我们将[row_image](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_row_image)设置成full模式，不管update操作只涉及几列，都会把完整的行数据写入到binlog。
 
-## 5.1. 表结构随时都会修改，需要解析ddl并维护一份schema用于事件的生成
+### 5.1. 表结构随时都会修改，需要解析ddl并维护一份schema用于事件的生成
 
 数据库客户端查询数据库的时候，客户端拿到的都是数据库当前的schema。因为schema随时可以改变，这意味着主从备份的时候，debezium不能只使用当前的schema，因为debezium可能正在处理较旧的事件。
 
@@ -259,7 +259,7 @@ binlog的[ROW模式](https://dev.mysql.com/doc/refman/5.7/en/replication-options
 
 > MySQL在binlog中不仅包含行级修改，还包括了数据库的DDL语句。当Debezium的Connector读取binlog并遇到这些DDL语句时，它会解析这些DDL并更新内存中每个表shema。Debezium使用这个shema就能标识每次增删改操作的结构从而生成事件。
 
-## 5.2. 内存里的schema维护存在问题
+### 5.2. 内存里的schema维护存在问题
 
 崩溃或正常重启后，怎么还原schema，如果使用数据库当前的schema会怎样呢：
 
@@ -274,21 +274,21 @@ Debezium会把所有DDL语句以及DDL在binlog的位置单独存在一个[histo
 
 [alibaba/canal](https://github.com/alibaba/canal)提供了[TableMetaTSDB](https://github.com/alibaba/canal/wiki/TableMetaTSDB)的功能可以存储表结构的时序数据。
 
-## 5.3. Kafka无法保证多个partition的消费顺序
+### 5.3. Kafka无法保证多个partition的消费顺序
 
 因为Debezium会重新解析history topic的DDL语句，我们希望DDL语句能按正常顺序解析，但是Kafka无法保证多个partition的消费顺序，所以history的topic的partition个数必须设置成1。
 
-## 5.4. 消费DDL
+### 5.4. 消费DDL
 
 Debezium不希望用户直接使用history topic。因为里面包含了binlog中的所有ddl语句。
 
 如果用户想要消费自己关心的表的DDL语句，Debezium提供了[schema change topic](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-schema-change-topic)，这个topic名字被命名为`serverName`，这个serverName通过[`database.server.name`](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-property-database-server-name)配置。
 
-##  Debezium踩坑记录
+# 6. Debezium踩坑记录
 
 debezium配置起来还是比较简单的，但是这么复杂的项目，坑还是比较多的。
 
-## 6.1. 关闭快照初始化
+### 6.1. 关闭快照初始化
 
 Debezium的Connector第一次启动时，会给你的数据库执行一次[快照初始化](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-snapshots)。
 
@@ -317,7 +317,7 @@ snapshot只适合在备份从库上执行，否则可能会影响正常用户的
 
 > 用一句话总结一下：`initial`先全量后增量同步，`schema_only`和`never`是只增量同步，`initial_only`是只全量同步。
 
-## 6.2. 修改topic
+### 6.2. 修改topic
 
 Debezium默认的行为是将一张表上的`INSERT`、`UPDATE`、`DELETE`操作记录到一个topic。Topic命名规则是`<serverName>.<databaseName>.<tableName>`
 
@@ -334,7 +334,7 @@ transforms.route.replacement=$3
 
 Kafka-Connect提供了一个[`RegexRouter`](https://docs.confluent.io/platform/current/connect/transforms/regexrouter.html)、[`TimestampRouter`](https://docs.confluent.io/platform/current/connect/transforms/timestamprouter.html)、[MessageTimestampRouter](https://docs.confluent.io/platform/current/connect/transforms/messagetimestamprouter.html)几个SMT让我们修改数据存入的topic。这里的RegexRouter，允许我们用正则表达式来对`Debezium`默认的topic进行修改。
 
-## 6.3. Decimal数据的处理
+### 6.3. Decimal数据的处理
 
 对于MySQL中的[`decimal`](https://dev.mysql.com/doc/refman/8.0/en/fixed-point-types.html)类型的数据，Java里会转成`BigDecimal`，但是以json格式存入kafka的时候就会丢失精度。
 
@@ -342,7 +342,7 @@ Kafka-Connect提供了一个[`RegexRouter`](https://docs.confluent.io/platform/c
 
 Debezium支持[`decimal.handling.mode`](https://debezium.io/documentation/reference/1.4/connectors/mysql.html#mysql-property-decimal-handling-mode)选项可以将decimal配置成`string`类型。
 
-## 6.4. 时间类型数据的处理
+### 6.4. 时间类型数据的处理
 
 Debezium底层的binlog解析用的是[shyiko/mysql-binlog-connector-java](https://github.com/shyiko/mysql-binlog-connector-java)。这中间做了很多转换：
 
@@ -375,7 +375,7 @@ datetime.format.timestamp=yyyy-MM-dd HH:mm:ss
 datetime.format.timestamp.zone=UTC+8
 ```
 
-## 6.5. 墓碑事件
+### 6.5. 墓碑事件
 
 Debezium会生成5种事件：
 
@@ -501,7 +501,7 @@ Debezium会生成5种事件：
 
 需要特别注意，墓碑事件的消息value为null，需要为这个事件做特殊处理。
 
-## 6.6. 禁用Kafka-Connect的Schema配置
+### 6.6. 禁用Kafka-Connect的Schema配置
 
 Kafka-Connect为了保证每条消息是可以自我描述的，所以都会带schema。如果我们使用了[`JsonConverter`](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/)进行序列化，默认情况下，kafka中的消息格式是这样的：
 
@@ -541,7 +541,7 @@ value.converter.schemas.enable=false
 
 在github搜索[`schema registry`](https://github.com/search?q=Schema+registry)关键词查找相关项目。[Debezium在文档中](https://debezium.io/documentation/faq/#avro-converter)推荐[Apicurio API and Schema Registry](https://github.com/Apicurio/apicurio-registry) 和 [Confluent Schema Registry](https://github.com/confluentinc/schema-registry)这两种SchemaRegistry。
 
-## 6.7. 对Debezium生成的消息进行处理
+### 6.7. 对Debezium生成的消息进行处理
 
 没有shema的时候，Debezium默认生成的数据格式是这样的：
 
@@ -587,7 +587,7 @@ transforms.unwrap.delete.handling.mode=drop
 
 更多配置可以参考[官方文档](https://debezium.io/documentation/reference/configuration/event-flattening.html#configuration-options)
 
-## 6.8. kafka-connect的坑
+### 6.8. kafka-connect的坑
 
 kafka broker本身有个配置[auto.create.topics.enable](https://kafka.apache.org/documentation/#brokerconfigs_auto.create.topics.enable)默认为true——当发送消息到一个不存在的topic时，kafka会自动创建这个topic，这些自动创建的topic会使用[num.partitions](http://kafka.apache.org/documentation.html#brokerconfigs_num.partitions)和[default.replication.factor](http://kafka.apache.org/documentation.html#brokerconfigs_default.replication.factor)指定的partition数和replicas数创建topic。生产环境一般是不建议使用kafka broker中的自动创建主题的，因为这可能会带来很大的维护成本，我们希望不同情况使用不同的主题配置。
 

@@ -14,7 +14,7 @@ keywords:
 - OpenResty
 ---
 
-## 安装OpenResty相关模块
+### 安装OpenResty相关模块
 
 OpenResty是基于Lua即时编译器([LuaJIT](https://github.com/LuaJIT/LuaJIT))对Nginx进行扩展的模块——最核心的就是[`lua-nginx-module`](https://github.com/openresty/lua-nginx-module)这个模块。其他的都是[OpenResty基于lua开发的相关模块](https://github.com/bungle/awesome-resty)，当然也可以基于lua开发自己的第三方模块。
 
@@ -48,7 +48,7 @@ OpenResty是基于Lua即时编译器([LuaJIT](https://github.com/LuaJIT/LuaJIT))
 
    > 另外注意[lua-nginx-module与nginx的兼容性](https://github.com/openresty/lua-nginx-module#nginx-compatibility)，nginx1.6.0之前的版本是不支持的。
 
-## 编译nginx源码
+### 编译nginx源码
 
 0. 如果需要对nginx进行debug的话，需要修改 /auto/cc/conf 文件，将`ngx_compile_opt="-c"`修改为 `ngx_compile_opt="-c -g"`
 
@@ -101,16 +101,16 @@ OpenResty是基于Lua即时编译器([LuaJIT](https://github.com/LuaJIT/LuaJIT))
 
    > 编译过程可能会比较慢，可以执行`make -j2 && make install`调大编译任务的个数
 
-## 调试OpenResty中的lua代码
+### 调试OpenResty中的lua代码
 
 这里以一个第三方的lua模板引擎为例——[lua-resty-template](https://github.com/bungle/lua-resty-template)
 
-### 安装lua模块
+#### 安装lua模块
 
 ```bash
-#在nginx下创建一个放lua脚本的目录
+# 在nginx下创建一个放lua脚本的目录
 mkdir lua-lib
-#下载lua-resty-template模块
+# 下载lua-resty-template模块
 git clone https://github.com/bungle/lua-resty-template lua-lib/lua-resty-template
 ```
 

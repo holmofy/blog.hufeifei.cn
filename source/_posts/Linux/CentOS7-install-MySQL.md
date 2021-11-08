@@ -111,12 +111,12 @@ Complete!
 国外的东西就是好，东西给你了，连教程都准备好了，可惜了我这连四级都没过的英语水平啊，没办法硬着头皮也要看哪。
 
 #看看官网给出的具体步骤：
-## 1. 添加mysql yum 库
-### a. 首先要到MySQL yum库的下载页面http://dev.mysql.com/downloads/repo/yum/
+### 1. 添加mysql yum 库
+#### a. 首先要到MySQL yum库的下载页面http://dev.mysql.com/downloads/repo/yum/
 ![mysql yum库下载](http://img-blog.csdn.net/20170405220446649?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-### b. 找一个跟自己平台匹配的发行包，用``uname``命令看看自己的平台版本
+#### b. 找一个跟自己平台匹配的发行包，用``uname``命令看看自己的平台版本
 ![查看linux平台版本](http://img-blog.csdn.net/20170405220532165?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-### c. 用``wget``命令把相应的rpm包下下来，这个包很小只有几k
+#### c. 用``wget``命令把相应的rpm包下下来，这个包很小只有几k
 ```shell
 	[root@VM_235_40_centos ~]# wget https://repo.mysql.com//mysql57-community-release-el7-9.ch.rpm
 	--2017-04-05 16:32:26--  https://repo.mysql.com//mysql57-community-release-el7-9.noarch.rpm
@@ -130,7 +130,7 @@ Complete!
 
 	2017-04-05 16:32:28 (75.1 MB/s) - 'mysql57-community-release-el7-9.noarch.rpm' saved [9224/9224]
 ```
-### d. 把这个包安装上
+#### d. 把这个包安装上
 ```shell
 	[root@VM_235_40_centos ~]# rpm -Uvh mysql57-community-release-el7-9.noarch.rpm
 	warning: mysql57-community-release-el7-9.noarch.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5KEY
@@ -144,7 +144,7 @@ Complete!
 	CentOS-Base.repo  mysql-community-source.repo
 	CentOS-Epel.repo  mysql-community.repo
 ```
-## 2. 看看文件里有啥东西
+### 2. 看看文件里有啥东西
 ```shell
 	[root@VM_235_40_centos yum.repos.d]# more mysql-community.repo
 	[mysql-connectors-community]
@@ -200,7 +200,7 @@ Complete!
 ```
 ** 按照官网的说法，在这个文件中你可以配置你想要安装的mysql版本，如果需要安装这个版本就设置``enabled=1``,不需要的版本就把它设置为0。这里我安装5.7的版本 **
 
-## 3. 完事具备，接下来就可以来安装mysql了
+### 3. 完事具备，接下来就可以来安装mysql了
 ```shell
 [root@VM_235_40_centos yum.repos.d]# yum install mysql-community-server
 Loaded plugins: fastestmirror, langpacks
@@ -363,10 +363,10 @@ Dependency Installed:
 Complete!
 ```
 此处应有掌声
-## 4. 最后一步了，启动服务
+### 4. 最后一步了，启动服务
 ![启动服务](http://img-blog.csdn.net/20170405221046793?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 官网的安装指南使用``service mysqld start``，CentOS7改用systemctl命令启动服务了，使用service命令会默认转向调用systemctl命令的。
-## 附加步骤，修改MySQL密码，修改MySQL默认端口
+### 附加步骤，修改MySQL密码，修改MySQL默认端口
 MySQL5.7之前的版本如果按照这种方式安装后，默认是没有密码的。对于MySQL5.7 有点特殊，下面是官网描述MySQL5.7的安装过程：
 - 服务初始化
 - 在data文件夹生成SSL证书和密钥
@@ -389,7 +389,7 @@ mysql的配置文件在/etc/my.cnf
 搞了两节课终于TM折腾完了
 
 
-## 令总结
+# 命令总结
 ** yum： ** Yellow dog Updater, Modified， 解决rpm包依赖的软件安装工具，可以在/etc/yum.config文件中进行yum的配置，yum数据源默认放在/etc/yum.repos.d/文件夹下。可以认为是rpm的加强版。
 ** rpm： ** RedHat Package Manager，软件安装包的管理器，可以用来安装或删除软件。
 ** wget： ** World Wide Web Get，wget是一个从网络上自动下载文件的自由工具，支持HTTP、HTTPS、FTP常见协议。

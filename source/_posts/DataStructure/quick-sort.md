@@ -17,7 +17,7 @@ categories: 数据结构与算法
 
 快速排序使用的是分治思想，将原问题分成若干个子问题进行递归解决。通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
 
-## 轴快排（SinglePivotQuickSort）
+# 单轴快排（SinglePivotQuickSort）
 
 单轴快速排序是快速排序最简单的实现。
 
@@ -32,9 +32,9 @@ categories: 数据结构与算法
 
 根据上面的步骤可以看出，**如何将大于pivot和小于pivot的元素进行划分**是实现快速排序的关键
 
-## 元素划分的方式
+### 元素划分的方式
 
-###  两端扫描交换方式
+####  两端扫描交换方式
 
 ![两端扫描交换](http://img-blog.csdn.net/20170504125640821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -79,7 +79,7 @@ private void swap(int[] items, int i, int j) {
 	items[j] = tmp;
 }
 ```
-### 赋值填充方式 ---- 一端挖坑一端填充
+#### 赋值填充方式 ---- 一端挖坑一端填充
 
 ![赋值填充过程图](http://img-blog.csdn.net/20170504125809679?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -118,7 +118,7 @@ public void fillSort(int[] items, int start, int end) {
 	}
 }
 ```
-### 单向扫描划分方式
+#### 单向扫描划分方式
 
 前面的i，j标记都是相向而行，i标记负责找比pivot大的元素，j标记负责比pivot小的元素。下面要说的这种实现方式中思想与前两者不太一样：
 
@@ -176,7 +176,7 @@ public void forwardScanSort(int[] items, int start, int end) {
 	}
 }
 ```
-### 单轴快排的一种优化方式----三分单向扫描
+#### 单轴快排的一种优化方式----三分单向扫描
 
 先来看一个例子：
 
@@ -242,7 +242,7 @@ public void div3ScanSort(int[] items, int start, int end) {
 }
 ```
 
-### 另一种优化----三分双向扫描
+#### 另一种优化----三分双向扫描
 
 在上面的实现中，扫描到大于pivot的元素，将最后一个未扫描的元素(j所在的位置)与当前元素(k所在的位置)进行交换。那如果这个未扫描的元素正好是比pivot大的元素呢，这无疑增加了交换的次数。
 
@@ -298,9 +298,9 @@ public void div3DeScanSort(int[] items, int start, int end) {
 }
 ```
 
-## 轴快排（DualPivotQuickSort）
+# 双轴快排（DualPivotQuickSort）
 
-## 双轴快排思想
+### 双轴快排思想
 
 理解了前面的三分单向扫描和三分双向扫描，双轴快速排序就很好理解了。
 
@@ -375,7 +375,7 @@ public void dualPivotQuickSort(int[] items, int start, int end) {
 
 
 
-## 种实现速度大比拼
+# 各种实现速度大比拼
 
 我们测试的序列长度为10000
 
@@ -391,7 +391,7 @@ xxxSort(tmp);
 end = System.nanoTime();
 ```
 
-## 对多重复元素的序列进行排序
+### 对多重复元素的序列进行排序
 
 ```java
 for (int i = 0; i < testItems.length; i++) {
@@ -411,7 +411,7 @@ dualPivotQuickSort:8891518  5160274  5430809  4968971  5393451   平均：596900
 Arrays.sort:       3513666  3856864  3460299  3684855  3888063   平均：3680749
 ```
 
-## 对稀疏序列进行排序
+### 对稀疏序列进行排序
 
 这次生成的随机数是10万以内的。
 
