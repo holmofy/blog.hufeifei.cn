@@ -13,7 +13,7 @@ keywords:
 
 其实ssh的功能还是很强大的，可以玩出各种花儿来。
 
-## . 使用公钥登陆服务器
+##  使用公钥登陆服务器
 
 使用公钥登陆，服务器端`sshd_config`需要配置如下：
 ```sh
@@ -40,7 +40,7 @@ ssh-add ~/.ssh/id_rsa
 ```
 如果设置了密码，这个命令会让你输入密钥的密码，之后使用ssh登陆就不用输入密码了。
 
-## . 换服务器端口
+##  换服务器端口
 
 由于默认的22号端口众所周知，很容易收到网上的黑客流量的暴力攻击，可以在`sshd_config`中换掉端口：
 ```sh
@@ -56,7 +56,7 @@ ssh ssh://user@example.com:2222
 ```
 > 和`http://xxx`的80端口类似，`ssh://xxx`不指定端口默认就是22号端口
 
-## . 远程执行命令
+##  远程执行命令
 
 有时候，我们并不想进入远程服务器的终端中执行命令(比如在shell脚本中)。这时候我们可以在ssh最后跟上需要执行的命令，让远程服务器执行
 
@@ -106,7 +106,7 @@ ssh user@example.com -t python
 
 > 这个远程执行命令的功能，让ssh有了更多的想象空间
 
-## . SSH Tunnel端口转发
+##  SSH Tunnel端口转发
 有时候我们无法直接从host1连上host2，但是如果有一个host3在中间作为桥梁，host1能通过ssh连上host3，host3再将请求转发给host2，这时我们就在host1和host2建立了SSH Tunnel。
 
 ![SSH Tunnel](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAIKqhKIZ9LoZAJCyeKKZ9B4fDBidCp-FAoqz9LSZ8BounH32D44nZBh2SWgwk7HBV6CI7AkLoICrB0La10000)
@@ -166,7 +166,7 @@ ssh -o ProxyCommand='/usr/bin/nc -X 5 -x 127.0.0.1:5000 %h %p' user@host2
 
 > 这个功能想象空间更大:grin:
 
-## . ssh客户端配置文件
+##  ssh客户端配置文件
 
 前面有提到过[`sshd_config`](https://linux.die.net/man/5/sshd_config)服务端配置文件，同样地，还有一个[`ssh_config`](https://linux.die.net/man/5/ssh_config)客户端配置文件
 
@@ -194,7 +194,7 @@ Host *
 ```
 更多的配置选项可以通过`man ssh_config`命令查看手册
 
-## . 穿越跳板机
+##  穿越跳板机
 
 ![跳板机](https://p.pstatp.com/origin/pgc-image/8af6c15e283d43e0a4921d1f8033f750)
 
@@ -223,7 +223,7 @@ Host remote-host-nickname
 ```
 这样就可以直接使用`ssh remote-host-nickname`命令穿越跳板机登录远程主机了
 
-## . 连接保活
+##  连接保活
 
 TCP连接有[超时时间](https://tools.ietf.org/html/rfc5482)，防火墙也可以[配置空闲连接的超时关闭](https://www.google.com/search?q=firewall+timeout)。
 
@@ -242,7 +242,7 @@ Host *
   ServerAliveCountMax 10
 ```
 
-## . ssh多路复用
+##  ssh多路复用
 
 通常来说，[多路复用(Multiplexing)](https://en.wikipedia.org/wiki/Multiplexing)就是在单个连接上处理多个请求的功能。这和Java中的NIO解决的问题一样。
 

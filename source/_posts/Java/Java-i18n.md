@@ -300,7 +300,7 @@ public final static NumberFormat getPercentInstance(Locale inLocale);  // PERCEN
 
 ```java
         DecimalFormat format;
-        format = new DecimalFormat("#### #### ### .0# 圆整");
+        format = new DecimalFormat("#### #### ### 0# 圆整");
 
         System.out.println(format.format(12345678.90F));
         System.out.println(format.format(-12345678.90F));

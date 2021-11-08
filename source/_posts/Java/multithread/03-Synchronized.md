@@ -247,7 +247,7 @@ public class ThreadCommunicate {
     }
 ```
 
-## .3、synchronized使用注意事项
+## 3、synchronized使用注意事项
 
 * 只能锁定对象，不能锁定基本数据类型(int,float等8种基本数据类型)；
 * 被锁定的对象数组中的单个对象不会被锁定；
