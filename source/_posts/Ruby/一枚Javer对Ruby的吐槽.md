@@ -6,7 +6,7 @@ mathjax: true
 ---
 > 公司收购了个项目，技术都很老，Web用的Ruby on Rails，前端还在用jQuery，后台定时任务用Java(用的技术也都很老)。自己以前没有接触过Ruby，只是听几个朋友大学里玩过这玩意儿，所以对我来说Ruby就是一门全新的语言。我个人是非常抵触学一门新语言的，Java都还没吃透就并行学Ruby，只会分散深入学习Java的精力。但没办法谁让公司抽到我，还是好好学吧！
 
-##1、安装Ruby
+# 1、安装Ruby
 
 Windows上傻瓜式安装Ruby就不赘述了(有[RubyInstaller](https://rubyinstaller.org/)会点下一步就行)，其他操作系统都可以用系统相应的包依赖管理器安装Ruby(Linux上的yum、apt-get，Mac上的homebrew)。但是这些包管理器通常只能安装yum源中已有的二进制包，如果你想要的Ruby版本没有在对应操作系统已编译的二进制包，那就只能下载源码自行编译了。虽然通常只需三个命令就能完成编译，但是多个Ruby之间版本的切换也是个问题，这也是小型脚本语言的痛。像Java大版本内不会有语法上改变，小版本也只是修复些bug，切换版本重新编译费时费劲，但Node.js和Ruby这样小巧而且版本间差异相对较大的语言，就需要运行环境的版本管理工具了。
 
@@ -22,7 +22,7 @@ Windows上傻瓜式安装Ruby就不赘述了(有[RubyInstaller](https://rubyinst
 
 切换Ruby版本只需用`rvm use INTERPRETER[-VERSION]`命令。
 
-##2、Ruby周边
+# 2、Ruby周边
 
 **gem**
 
@@ -40,7 +40,7 @@ Windows上傻瓜式安装Ruby就不赘述了(有[RubyInstaller](https://rubyinst
 
 [Ruby on Rails](https://rubyonrails.org/)是一个基于Ruby的MVC框架，和[express.js](http://expressjs.com/)类似，也正是因为这个框架使得默默无闻的Ruby一夜崛起。也是这个框架最早提出[Convention Over Configuration](https://en.wikipedia.org/wiki/Convention_over_configuration)的概念，后来其他语言的框架也纷纷效仿，如今口口相传的SpringBoot也深受它的影响。
 
-##3、 初学Ruby的20条经验
+# 3、 初学Ruby的20条经验
 
 **1、** Ruby和JS、Python一样是解释性脚本语言，使用源文件即可执行，按照惯例源文件以`.rb`为后缀。和Python的强制缩进不通，Ruby的缩进并不重要，但是为了代码可读性必须得缩进。
 
@@ -94,11 +94,11 @@ print (-5 % -3)   # prints -2
 **5、** Ruby中一切皆对象，不像Java还有几个基本类型。Ruby中数值类型也是对象。Ruby中Float是双精度浮点型(也就是Java里的Double)。并且Ruby原生就支持BigNum(也就是Java中的BigInteger)，所以再也不用担心算数溢出的问题了。并且Ruby 2.4之后[Fixnum和Bignum统一为Integer](https://github.com/rails/rails/pull/25056)了。
 
 ```ruby
-##Before Ruby 2.4
+# Before Ruby 2.4
 1.class         #=> Fixnum
 (2 ** 62).class #=> Bignum
 
-##Ruby 2.4
+# Ruby 2.4
 1.class         #=> Integer
 (2 ** 62).class #=> Integer
 ```
@@ -167,8 +167,8 @@ names1 = [ 'ann', 'richard', 'william', 'susan', 'pat' ]
 puts names1[0] # ann  
 puts names1[3] # susan  
 
-##使用%w快捷方式声明数组，其中w就是word的缩写
-##其实等价于'ann richard william susan pat'.split(' ')
+# 使用%w快捷方式声明数组，其中w就是word的缩写
+# 其实等价于'ann richard william susan pat'.split(' ')
 names2 = %w{  ann richard william susan pat }  
 puts names2[0] # ann  
 puts names2[3] # susan  
@@ -218,12 +218,12 @@ puts "hello".start_with? "hell"               # true
 **13、** Ruby内建的正则表达式对象和JS一样，使用`/.../`双斜杠创建正则字面量，也可以使用`%r{...}`或[Regexp](http://ruby-doc.org/core-2.6/Regexp.html)的构造函数。
 
 ```ruby
-##和JS不同的是，//斜杠中间可以使用变量插值
+# 和JS不同的是，//斜杠中间可以使用变量插值
 place = "東京都"
 m = /#{place}/.match("Go to 東京都")
     #=> #<MatchData "東京都">
 puts m[0]  # 東京都
-##和其他语言一样m[0]是整个正则匹配组，如果正则中有其他捕获组索引从1开始
+# 和其他语言一样m[0]是整个正则匹配组，如果正则中有其他捕获组索引从1开始
 ```
 
 **14、** 由于Ruby中每声明一个字符串都会创建一个字符串对象，并且字符串对象是可变的，所以Ruby还提供了一个与字符串类似，但不可变且全局唯一的Symbol类对象。
@@ -239,9 +239,9 @@ puts (:"a").object_id  # 372328
 Symbol包括变量名、方法名、类名，每声明一个变量，方法，类都会在符号表中记录下相应的名字，使用`Symbol.all_symbols`方法可以查看当前符号表里所有的符号。
 
 ```ruby
-##不要尝试使用Symbol.all_symbols.include? :new_symbol的方式检测符号是否存在
-##因为当这条语句解析时:new_symbol已经添加到符号表中了，执行的结果肯定是true
-##所以这里要转成字符串
+# 不要尝试使用Symbol.all_symbols.include? :new_symbol的方式检测符号是否存在
+# 因为当这条语句解析时:new_symbol已经添加到符号表中了，执行的结果肯定是true
+# 所以这里要转成字符串
 curr_symbols = Symbol.all_symbols.map {|symbol| symbol.to_s}
 puts curr_symbols.include? '_any_variable_name_'  # false
 _any_variable_name_ = 'this is new variable'      # 这里可以是新变量、方法、类的声明
@@ -260,14 +260,14 @@ puts arr[-1]            # 索引值可以为负数，最后一个元素索引为
 
 grades = { "Jane Doe" => 10, "Jim Doe" => 6 }
 puts grades["Jane Doe"]     # 10
-##使用Symbol作为Key
+# 使用Symbol作为Key
 options = { :font_size => 10, :font_family => "Arial" }
 options[:font_size]         # 10
-##使用Symbol作为Key可以简写成下面这种形式
+# 使用Symbol作为Key可以简写成下面这种形式
 options = { font_size: 10, font_family: "Arial" }
 
 
-##(start..end)语法表示Range对象，两个点包括end，三个点不包括end
+# (start..end)语法表示Range对象，两个点包括end，三个点不包括end
 (-1..-5).to_a      #=> []
 (-5..-1).to_a      #=> [-5, -4, -3, -2, -1]
 ('a'..'e').to_a    #=> ["a", "b", "c", "d", "e"]
@@ -283,30 +283,30 @@ options = { font_size: 10, font_family: "Arial" }
 ```ruby
 my_method(arg1, arg2)
 my_method arg1, arg2
-##但是同时调用两个方法发生歧义，Ruby会报语法错误
-##比如下面的arg3不知道应该穿给method_one还是method_two
+# 但是同时调用两个方法发生歧义，Ruby会报语法错误
+# 比如下面的arg3不知道应该穿给method_one还是method_two
 method_one arg1，method_two arg2，arg3
 
-##可以传hash参数
+# 可以传hash参数
 def my_method(arg)
     puts arg
 end
-##调用时不用{}
+# 调用时不用{}
 my_method('key'=>'value')  # {"key"=>"value"}
 my_method(key:'value')     # {:key=>"value"}
 
-##可以使用*号，代表可变参数
+# 可以使用*号，代表可变参数
 def rest_method(arg1, *args)
     puts "first argument is #{arg1}"
     puts "other arguments is #{args}"
 end
 rest_method(1,2,3,4)
-##first argument is 1
-##other arguments is [2, 3, 4]
+# first argument is 1
+# other arguments is [2, 3, 4]
 rest_method(1, key1:2, key2:3)  # hash参数必须放在最后
 rest_method(1, key1:2, key2:3 ,4) # 否则会报语法错误
 
-##方法支持默认参数
+# 方法支持默认参数
 def default_arg_method(a, b, c = 3, d = 4)
   p [a, b, c, d]
 end
@@ -324,10 +324,10 @@ end
 my_method {
   # ...
 }
-##do...end 的优先级比 {...} 低
-##通常{ ... } 用在单行
+# do...end 的优先级比 {...} 低
+# 通常{ ... } 用在单行
 
-##传入的代码块也支持参数
+# 传入的代码块也支持参数
 my_method do |arg1, arg2|
   # ...
 end
@@ -339,14 +339,14 @@ end
 
 my_method {|a,b| a+b}  # print 3
 
-##yield传参也可以不带括号
+# yield传参也可以不带括号
 def my_method
   yield self
 end
 
 place = "world"
 
-##分号后声明代码块内的局部变量
+# 分号后声明代码块内的局部变量
 my_method do |obj; place|
   place = "block" # 这里的局部变量不会修改外面的变量
   puts "hello #{obj} this is #{place}"
@@ -373,33 +373,33 @@ def condition(a)
     end
 end
 
-##除了if ... elsif ... else 
-##Ruby还有unless这种奇葩语法
+# 除了if ... elsif ... else 
+# Ruby还有unless这种奇葩语法
 unless true
   puts "the value is a false-value"
 end
-##等价于
+# 等价于
 if not true
   puts "the value is a false-value"
 end
-##unless也可以与else结合使用
+# unless也可以与else结合使用
 unless true
   puts "the value is false"
 else
   puts "the value is true"
 end
 
-#if 条件可以写在末尾
+# if 条件可以写在末尾
 a = 0
 a += 1 if a.zero?
 p a # print 1
-##unless也一样
+# unless也一样
 a = 0
 a += 1 unless a.zero?
 p a # print 1
 
 
-##循环语句
+# 循环语句
 a = 0
 while a < 10 do
   p a      # 0，1，2，3，4，5，6，7，8，9
@@ -407,7 +407,7 @@ while a < 10 do
 end
 p a        # 10
 
-##
+# 
 a = 0
 until a > 10 do
   p a     # 0，1，2，3，4，5，6，7，8，9，10
@@ -416,7 +416,7 @@ end
 p a       # 10
 
 
-##for循环
+# for循环
 for value in [1, 2, 3] do
   puts value
 end
@@ -427,22 +427,22 @@ for (key,value) in {k1:1, k2:2, k3:3} do
   puts "#{key}=>#{value}"
 end
 
-##Java和JS使用forEach遍历时无法打断循环
-##但Ruby可以
+# Java和JS使用forEach遍历时无法打断循环
+# 但Ruby可以
 [1, 2, 3].each do |value|
   break if value.even?
   puts value
 end
-##print 1
+# print 1
 
-##Ruby中没有continue但有next
+# Ruby中没有continue但有next
 result = [1, 2, 3].map do |value|
   next if value.even?
   value * 2
 end
 p result # prints [2, nil, 6]
 
-##next接受一个返回值
+# next接受一个返回值
 result = [1, 2, 3].map do |value|
   next value if value.even?
   value * 2
@@ -472,7 +472,7 @@ greeter.say_bye  # Bye Pat, come back soon.
 
 greeter.name   # 报语法错误，不能直接访问实例变量
 
-##类允许定义多次，前面的定义会和后面的定义merge
+# 类允许定义多次，前面的定义会和后面的定义merge
 class Greeter
     attr_accessor :name  # 指明name属性可以访问，相当于给name属性加了Getter/Setter
 end
@@ -480,7 +480,7 @@ greeter.name
 greeter.name = 'Andy'
 greeter.say_hi   # Hi Andy
 
-##通常我们要限制属性的写操作
+# 通常我们要限制属性的写操作
 class Person
     def initialize(name="holmofy",age=0)
         @name = name
@@ -514,7 +514,7 @@ end
 
 class B < A
 end
-##和大多数语言一样，子类允许调用父类的方法
+# 和大多数语言一样，子类允许调用父类的方法
 p B.new.z #=> 1
 
 class A

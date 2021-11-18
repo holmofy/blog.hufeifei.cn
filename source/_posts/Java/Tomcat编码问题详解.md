@@ -6,7 +6,7 @@ categories: JAVA
 
 J2EE服务端开发编码问题主要集中在两个地方：JSP页面和Servlet程序。
 
-##**JSP页面：**
+# **JSP页面：**
 
 ```html
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
@@ -32,7 +32,7 @@ JSP页面中有三个配置编码的地方，但这三个编码各自都有不�
 
 ![content-type](http://img-blog.csdn.net/20170922221019768?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##**Servlet程序**
+# **Servlet程序**
 
 Servlet程序中出现乱码主要出现在表单提交的时候。GET提交方式与POST提交方式出现乱码原因也各不相同。这里搞两个表单的html分别测试两种情况：
 
@@ -60,7 +60,7 @@ Servlet程序中出现乱码主要出现在表单提交的时候。GET提交方�
 </html>
 ```
 
-## 测试get请求
+### 测试get请求
 
 先来测试get方式的请求：
 
@@ -105,7 +105,7 @@ public class TestServlet extends HttpServlet {
 
 ![get方式测试过程](http://img-blog.csdn.net/20170922221118248?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### GET请求的过程
+#### GET请求的过程
 
 在解决这个问题前我们再来熟悉一下GET请求的一些特点
 
@@ -156,7 +156,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 
 > [官方文档](file:///E:/JDevTools/apache-tomcat-8.0.36-windows-x64/webapps/docs/config/http.html#Common_Attributes)中建议使用第一种URIEncoding的方式。第二种配置方式主要为了兼容 Tomcat 4.1.x之前的版本。
 
-### 服务端响应过程
+#### 服务端响应过程
 
 进行上面的设置后，虽然服务端的乱码问题解决了，但客户端的响应仍然是乱码。
 
@@ -189,7 +189,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 }
 ```
 
-## 测试post请求
+### 测试post请求
 
 ```java
 public class TestServlet extends HttpServlet {
@@ -212,7 +212,7 @@ public class TestServlet extends HttpServlet {
 
 默认情况下和GET请求出现一样的乱码。
 
-### POST请求过程
+#### POST请求过程
 
 ![POST请求过程](http://img-blog.csdn.net/20170922221436011?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -239,7 +239,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 
 ![PostResponse](http://img-blog.csdn.net/20170922221610528?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### 自定义过滤器设置编码
+#### 自定义过滤器设置编码
 
 每个Servlet调用`request.setCharacterEncoding`确实很烦，最好的方式就是写一个Filter方便统一管理所有的编码。Filter代码如下：
 
@@ -279,7 +279,7 @@ public class UTF8EncodingFilter implements Filter{
 </web-app
 ```
 
-### 使用Tomcat内建过滤器设置请求体编码
+#### 使用Tomcat内建过滤器设置请求体编码
 
 事实上Tomcat已经实现了上面的过滤器功能，而且过滤器的编码可以自行配置，使用时直接在`web.xml`中进行如下配置即可：
 
@@ -307,13 +307,13 @@ public class UTF8EncodingFilter implements Filter{
 
 > Tomcat的SetCharacterEncodingFilter文档地址：http://tomcat.apache.org/tomcat-8.0-doc/config/filter.html#Set_Character_Encoding_Filter
 
-##Tomcat相关源码分析
+# Tomcat相关源码分析
 
 通过源码看Tomcat解析请求参数的过程
 
 > 以下源码出自`apache-tomcat-8.0.36-src`，该版本源码可以从[这里下载](http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.36/)，不同版本可能略有差异
 
-## 请求参数处理相关源码
+### 请求参数处理相关源码
 
 ```java
 ////////////////////////////////////////////////
@@ -550,7 +550,7 @@ public final class Parameters {
     }
 ```
 
-## 响应体相关源码
+### 响应体相关源码
 
 ```java
 package org.apache.catalina.connector;

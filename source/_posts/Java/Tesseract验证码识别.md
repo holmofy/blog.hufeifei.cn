@@ -28,7 +28,7 @@ categories: JAVA
 
  ![验证码](http://219.229.243.77/CheckCode.aspx)
 
-##Tesseract
+# Tesseract
 
 这里用[开源的Tesseract-OCR引擎](https://github.com/tesseract-ocr/tesseract)来识别字符，Tesseract目前最新版是4.0，[Wiki](https://github.com/tesseract-ocr/tesseract/wiki)里给出了各平台的安装方式。
 
@@ -54,7 +54,7 @@ Windows下载地址：https://github.com/tesseract-ocr/tesseract/wiki/Downloads
 
 从控制台的输出结果可以看出直接拿原始图片进行识别，准确率非常的低。所以我们要对图片进行预处理。
 
-##图片预处理
+# 图片预处理
 
 预处理要根据验证码的背景、干扰线、旋转、扭曲、黏连的程度进行处理。不同的验证码需要做的处理也不一样。
 
@@ -119,7 +119,7 @@ public void testImageProcess() throws IOException {
 
 识别率低主要原因是tesseract默认的训练数据主要用于正常文字(如扫描版pdf)的识别，不怎么适用于这种验证码，我们要专门针对验证码训练出自己的一套数据。
 
-##tesseract训练
+# tesseract训练
 
 首先我们针对**验证码中出现的字体**生成图像，以这些字体图像为基础进行训练。
 
@@ -216,7 +216,7 @@ tesseract output.jpg --tessdata-dir /training/tessdata -l myeng --psm 7 stdout
 
 你会发现识别率高了很多，不过仍然有错。
 
-##采样训练
+# 采样训练
 
 我们采集一些验证码的样本，特别是那些容易识别错的验证码。
 
@@ -230,7 +230,7 @@ tesseract output.jpg --tessdata-dir /training/tessdata -l myeng --psm 7 stdout
 
 矫正后和之前使用字体生成的box文件一起进行一轮训练，最后生成训练数据。
 
-##在Java中使用tesseract-ocr
+# 在Java中使用tesseract-ocr
 
 在Java中我们可以使用[tess4j](https://github.com/nguyenq/tess4j)来调用tesseract-ocr的API进行识别
 

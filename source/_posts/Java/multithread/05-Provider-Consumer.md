@@ -21,7 +21,7 @@ keywords:
 
 ---
 
-##生产者消费者问题（第一部分）
+# 生产者消费者问题（第一部分）
 
 **生产者消费者问题**也称为**有限缓冲问题**，是线程同步的一个经典问题：生产者线程和消费者线程共享一块固定大小的缓存，生产者负责生成产品然后存入共享缓冲区中，消费者负责从共享缓冲区中取出产品进行消费。该问题的关键在于生产者不会在缓冲区满时加入数据，消费者也不会在缓冲区空时消耗数据。
 
@@ -29,7 +29,7 @@ keywords:
 
 > 解决生产者消费者问题的方法有很多，这里先介绍最简单的一种，后续的文章中会陆续给出其他的解决方案
 
-## 1、Object的`wait`和`notify`方法
+### 1、Object的`wait`和`notify`方法
 
 `Object.wait()`和`Thread.sleep()`方法在功能上很相似，它们都会导致线程挂起。
 
@@ -112,7 +112,7 @@ public class ProducerConsumer {
 }
 ```
 
-## 2、对共享缓冲区进行封装
+### 2、对共享缓冲区进行封装
 
 ```java
 import java.util.Random;
@@ -189,7 +189,7 @@ public class ProducerConsumer {
 }
 ```
 
-## 3、BlockingQueue
+### 3、BlockingQueue
 
 在`java.util.concurrent`包中有很多类似于上面的Buffer的数据结构，不同的是它们大都使用并发库中的`ReentrantLock`实现线程的互斥访问。通常它们都是`BlockingQueue`接口的实现类:
 

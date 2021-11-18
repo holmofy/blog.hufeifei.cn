@@ -53,7 +53,7 @@ keywords:
 
 > 这里插几条数据，主要是为了防止空表对SQL优化器的影响
 
-##where c1=x and c2=x and c4>x and c3=x
+# where c1=x and c2=x and c4>x and c3=x
 
 用到了索引的所有部分，其中c1,c2,c3精确匹配，c4范围查询：
 
@@ -79,7 +79,7 @@ keywords:
 
 ![索引覆盖](http://tva1.sinaimg.cn/large/bda5cd74gy1fro3m5i6a9j20lh071wet.jpg)
 
-##where c1=x and c2=x and c4=x order by c3
+# where c1=x and c2=x and c4=x order by c3
 
 用到了索引的c1,c2,c3列，其中c1、c2列用于查询，c3用于排序。由于c3列没有精确匹配，导致c4列无法用到索引。
 
@@ -93,7 +93,7 @@ ref指的是从表中读取匹配索引值的所有行。type=ref说明使用了
 
 相反[**type: eq_ref**](https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#jointype_eq_ref)就是使用了primary key或unique key的查询，这种查询能从表中唯一一条记录。
 
-## where c1=x and c4=x group by c3,c2
+#  where c1=x and c4=x group by c3,c2
 
 ![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1froty4ypchj20kl07amxh.jpg)
 
@@ -105,13 +105,13 @@ group by子句执行时会先排序，再分组。这条语句由于group by的�
 
 ![优化](http://tva1.sinaimg.cn/large/bda5cd74gy1frou412zw6j20jy075aae.jpg)
 
-##where c1=? and c5=? order by c2,c3
+# where c1=? and c5=? order by c2,c3
 
 因为group by本质上也会执行order by操作，所以这条语句原理上和上面的差不多。
 
 ![explain](http://tva1.sinaimg.cn/large/bda5cd74gy1frou877wxfj20jk0723yr.jpg)
 
-##where c1=? and c2=? and c5=? order by c2,c3
+# where c1=? and c2=? and c5=? order by c2,c3
 
 这条查询和上条略有不同c1列和c2列已经使用索引精确匹配了，而order by再对c2进行排序已经没有意义了，因为过滤后的数据c2都是相等的，所以实际上只有c3列才用到排序。
 

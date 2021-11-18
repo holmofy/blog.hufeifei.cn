@@ -5,7 +5,7 @@ tags:
 categories: Linux运维
 ---
 
-##准备知识
+# 准备知识
 
 * **SSL/TLS**：这两个分别是Secure Socket Layer(安全套接字层)，Transport Layer Security(传输层安全)的缩写。TLS是SSL的继承者，如果不是搞安全的专业人员，完全可以认为他们是一样的东西。
 
@@ -26,7 +26,7 @@ categories: Linux运维
 
 * crt：Certificate的缩写，这就是我们想要的证书。我们只要把CSR文件提交给[证书颁发机构(CA)](https://baike.baidu.com/item/CA/20721560)后，证书颁发机构使用其根证书私钥签名就生成了证书公钥文件，也就是颁发给用户的证书。
 
-##使用openssl自己颁发证书
+# 使用openssl自己颁发证书
 
 > openssl的命令详细说明可以参考http://linux.51yip.com/search/openssl
 
@@ -62,7 +62,7 @@ openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcrea
 
 执行完成后server.crt就是我们要的证书了。
 
-##在Nginx中配置SSL证书
+# 在Nginx中配置SSL证书
 
 > [ngx_http_ssl_module](https://nginx.org/en/docs/http/ngx_http_ssl_module.html)模块的配置参考链接：https://nginx.org/en/docs/http/ngx_http_ssl_module.html
 
@@ -129,7 +129,7 @@ server {
 
 这是因为我们的证书是我们自己颁发的，浏览器不信任自己颁发的证书，如果要信任该证书需要在Internet选项中添加信任的证书。自己颁发的证书玩玩就行，实际上我们并不会用自己颁发的证书。
 
-##使用免费的SSL证书
+# 使用免费的SSL证书
 
 我们要向获得受信任的证书，我们的csr必须得交给受信任的CA签名才行。要想获取这样的证书也很简单，国内有很多CA代理，不过一般需要请毛爷爷帮忙才行。
 

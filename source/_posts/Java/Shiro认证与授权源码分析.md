@@ -82,13 +82,13 @@ public class Quickstart {
 }
 ```
 
-##身份认证过程
+# 身份认证过程
 
 官方文档中提供了一张身份认证的图，直接看这张图可能还不能完全掌握认证的过程。调试源码源码过后，再回头看这张图，这张图才会深深的烙印在脑海中。
 
 ![img](http://shiro.apache.org/assets/images/ShiroAuthenticationSequence.png)
 
-## 1. 从Demo中的Subject.login方法开始
+### 1. 从Demo中的Subject.login方法开始
 
 ![登录](http://img-blog.csdn.net/20180104170408572?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -98,7 +98,7 @@ Subject接口实现类如下，这里demo不是Web环境，所以使用的实现
 
 ![DelegateSubject代理SecurityManager.login](http://img-blog.csdn.net/20180104170450197?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 2. SecurityManager.login()
+### 2. SecurityManager.login()
 
 SecurityManager接口的实现类
 
@@ -108,7 +108,7 @@ SecurityManager接口的实现类
 
 ![认证器](http://img-blog.csdn.net/20180104170630450?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 3. Authenticator认证器
+### 3. Authenticator认证器
 
 认证器的实现类，SecurityMananger也继承自Authenticator，通过查看AuthenticatingSecurityManager源码其实就是Authenticator的代理。而真正实现认证功能的Authenticator实现类只有一个ModularRealmAuthenticator，从类的名字可以看出这个认证器的实现原理——模块化认证器：一个Realm就是一个认证模块。
 
@@ -122,7 +122,7 @@ SecurityManager接口的实现类
 
 ![模块化认证器](http://img-blog.csdn.net/20180104170731346?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### 单模块认证
+#### 单模块认证
 
 官方提供的这个例子就是单模块认证(IniRealm,用户、角色、权限等信息保存在ini配置文件中)。
 
@@ -130,11 +130,11 @@ SecurityManager接口的实现类
 
 ![doSingleRealmAuthentication](http://img-blog.csdn.net/20180104170754624?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### 多模块认证
+#### 多模块认证
 
 ![doMultiRealmAuthentication](http://img-blog.csdn.net/20180104170825091?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 4. 多模块认证策略AuthenticationStrategy
+### 4. 多模块认证策略AuthenticationStrategy
 
 Shiro提供了三种认证策略
 
@@ -159,7 +159,7 @@ securityManager.authenticator.authenticationStrategy = $authcStrategy
 ...
 ```
 
-## 5. 认证模块Realm的实现
+### 5. 认证模块Realm的实现
 
 Shiro提供了如下的认证模块实现类，在官方的这个Demo中，由于使用的是Ini配置文件的方式，所以使用的Realm是IniRealm。
 
@@ -167,7 +167,7 @@ Shiro提供了如下的认证模块实现类，在官方的这个Demo中，由�
 
 ![Realm模块实现类](http://img-blog.csdn.net/20180104170923976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##授权过程
+# 授权过程
 
 授权主要在调用Subject.hasRole或Subject.isPermitted等检查角色或权限的方法时触发。
 

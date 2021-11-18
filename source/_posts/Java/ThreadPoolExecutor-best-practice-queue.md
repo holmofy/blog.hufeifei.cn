@@ -20,7 +20,7 @@ keywords:
 
 4、当线程总数达到**maximumPoolSize**时，后续提交的任务都会被RejectedExecutionHandler拒绝。
 
-##1、BlockingQueue
+# 1、BlockingQueue
 
 线程池中工作队列由BlockingQueue实现类提供功能，BlockingQueue定义了这么几组方法：
 
@@ -68,13 +68,13 @@ keywords:
 
 > 事实上，工作线程的超时销毁是调用`offer(e, time, unit)`实现的。
 
-##2、JDK提供的阻塞队列实现
+# 2、JDK提供的阻塞队列实现
 
 JDK中提供了以下几个BlockingQueue实现类：
 
 ![BlockingQueue类图](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAp2j9BKfBJ4vLSCh9JyxEp4iFB4qjJUNYGk4gsEZgAZWM5ILMeWXZKHHScPUSKPIVbrzQZ4k9JsPUTceA8ODSKdCIAt591XHbvXTbbbIYkTaXDIy5w2i0)
 
-## 2.1、[ArrayBlockingQueue](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ArrayBlockingQueue.html)
+### 2.1、[ArrayBlockingQueue](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ArrayBlockingQueue.html)
 
 这是一个由**数组实现**的**容量固定**的有界阻塞队列。这个队列的实现非常简单：
 
@@ -112,7 +112,7 @@ private E dequeue() {
 
 > ArrayBlockingQueue主要复杂在迭代，允许迭代中修改队列(删除元素时会更新迭代器)，并不会抛出ConcurrentModificationException；好在大多数场景中我们不会迭代阻塞队列。
 
-## 2.2、[SynchronousQueue](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/SynchronousQueue.html)
+### 2.2、[SynchronousQueue](https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/SynchronousQueue.html)
 
 这是一个非常有意思的集合，更准确的说它并不是一个集合容器，因为**它没有容量**。你可以“偷偷地”把它看作`new ArrayBlockingQueue(0)`，之所以用"偷偷地"这么龌龊的词，首先是因为`ArrayBlockingQueue`在`capacity<1`时会抛异常，其次`ArrayBlockingQueue(0)`并不能实现`SynchronousQueue`这么强大的功能。
 
@@ -140,7 +140,7 @@ public static ExecutorService newCachedThreadPool() {
 
 所以使用CachedThreadPool要注意避免提交长时间阻塞的任务，可能会由于线程数过多而导致内存溢出(OutOfOutOfMemoryError)。
 
-## 2.3、[LinkedBlockingQueue](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingQueue.html)
+### 2.3、[LinkedBlockingQueue](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/LinkedBlockingQueue.html)
 
 这是一个由**单链表实现**的**默认无界**的阻塞队列。LinkedBlockingQueue提供了一个可选有界的构造函数，而在未指明容量时，容量默认为Integer.MAX_VALUE。
 
@@ -179,7 +179,7 @@ public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactor
 
 但是需要注意的是，不要往FixedThreadPool提交过多的任务，因为所有未处理的任务都会到LinkedBlockingQueue中排队，队列中任务过多也可能会导致内存溢出。虽然这个过程会比较缓慢，因为队列中的请求所占用的资源比线程占用的资源要少得多。
 
-## 2.4、其他队列
+### 2.4、其他队列
 
 DelayQueue和PriorityBlockingQueue底层都是使用**二叉堆实现**的**优先级阻塞队列**。
 
@@ -203,7 +203,7 @@ DelayQueue和PriorityBlockingQueue底层都是使用**二叉堆实现**的**优�
 
 ![LinkedTransferQueue](http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuUBAp2j9BKfBJ4vL22nDBKr5uZlbv2TdP-Qbeuk752Nc5QUb5a74kS2KWeskBfe660ykZwOHAbu3b73EpqikBIfApIlnoSpBJar1Cm2X42ADQW-AgKYgq9pfa9gN0lGm0000)
 
-##3、让生产者阻塞的线程池
+# 3、让生产者阻塞的线程池
 
 前面说到CachedThreadPool和FixedThreadPool都有可能导致内存溢出，前者是由于线程数过多，后者是由于队列任务过多。而究其根本就是因为任务生产速度远大于线程池处理任务的速度。
 
@@ -213,7 +213,7 @@ DelayQueue和PriorityBlockingQueue底层都是使用**二叉堆实现**的**优�
 
 我提供的第一种方式是：重写offer方法把它变成阻塞式。
 
-## 3.1、重写BlockingQueue的offer
+### 3.1、重写BlockingQueue的offer
 
 这种处理方式是将原来非阻塞的offer覆盖，使用阻塞的put方法实现。
 
@@ -270,7 +270,7 @@ public class ThreadPoolTest {
 
 这种方式把BlockingQueue的行为修改了，这时线程池的maximumPoolSize形同虚设，因为ThreadPoolExecutor调用offer入队失败返回false后才会创建临时线程。现在offer改成了阻塞式的，实际上永远是返回true，所以永远都不会创建临时线程，maximumPoolSize的限制也就没有什么意义了。
 
-## 3.2、重写拒绝策略
+### 3.2、重写拒绝策略
 
 在介绍第二种方式之前，先简单介绍JDK中提供了四种拒绝策略：
 
@@ -341,7 +341,7 @@ public class ThreadPoolTest {
 
 使用这种方式的好处是线程池仍可以设置maximumPoolSize，当任务入队失败仍可以创建临时线程执行任务，只有当线程总数大于maximumPoolSize时，任务才会被拒绝。
 
-##4、Tomcat中的线程池
+# 4、Tomcat中的线程池
 
 作为一个最常用的Java应用服务器之一，Tomcat中线程池还是值得我们借鉴学习的。
 

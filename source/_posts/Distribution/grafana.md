@@ -14,7 +14,7 @@ keywords:
 
 ![分布式系统观测性的三大基石](https://engineering.zenduty.com/assets/images/tracinglogging.png)
 
-## Logging
+### Logging
 
 **日志记录本质上是一个事件**。大多数语言、应用程序框架或库都支持日志，表现形式可以是字符串这样原始的非结构化数据，也可以是JSON等半结构化数据。开发者可以通过日志来分析应用的执行状况，报错信息，分析性能...... 正因为日志极其灵活，生成非常容易，没有一个统一的结构，所以它的体量也是最大的。
 
@@ -40,7 +40,7 @@ Elastic野心很大，但是这也导致ElasticSearch并不专注在其中的一
 
 ![image-20211118103512775](http://img.hufeifei.cn/picgoimage-20211118103512775.png)
 
-## Metrics
+### Metrics
 
 单体应用中应用的性能可以通过[Linux自带的各种工具](https://www.brendangregg.com/linuxperf.html)进行观测。
 
@@ -72,7 +72,7 @@ Elastic野心很大，但是这也导致ElasticSearch并不专注在其中的一
 
 ![image-20211118104006562](http://img.hufeifei.cn/picgoimage-20211118104006562.png)
 
-## Trace
+### Trace
 
 单体应用的调用只局限于内存的堆栈，可以通过**stack trace**进行调用链追踪，调用的性能分析可以通过这些堆栈生成相应的火炬图进行可视化。[github](https://github.com/search?q=Flame+Graph)上也有大多数语言应用生成火炬图的工具，使用火炬图能方便地分析各个函数的调用深度和调用消耗。
 
@@ -136,7 +136,7 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 
 ![](https://p.pstatp.com/origin/pgc-image/ff7bc578c7ab464a9415a3d6e0791ef9)
 
-## Loki
+### Loki
 
 日志数据的写是由Loki中的[Distributor](https://github.com/grafana/loki/blob/v2.3.0/docs/sources/architecture/distributor.md)和Ingester两个组件处理，整体的流程如下图红线部分，读取过程由蓝线部分表示。
 
@@ -150,7 +150,7 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 
 ![image-20211118105337310](http://img.hufeifei.cn/picgoimage-20211118105337310.png)
 
-## Tempo
+### Tempo
 
 ![Tempo](http://img.hufeifei.cn/picgografana-query.png)
 

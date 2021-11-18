@@ -17,7 +17,7 @@ tags:
 
 ![grpc-in-k8s](https://p.pstatp.com/origin/pgc-image/3f7d24cab5424fdcb455ed043ad06337)
 
-##k8s的service四层负载均衡
+# k8s的service四层负载均衡
 
 为了排除k8s的service负载均衡的问题，在线下环境还原了请求的过程。
 
@@ -37,7 +37,7 @@ skywalking提供了grpc(11800端口)和rest(12800端口)两种协议的服务。
 
 多次请求负载均衡是没有问题的。但是请求会断开连接，实际上是两次**连接**连向了两台不同的server。这个概念很重要，请求和连接不是一个事物，多个请求可以复用一个连接。
 
-##grpc长连接导致负载不均衡
+# grpc长连接导致负载不均衡
 
 观察线上的两台oap发现，两台server都维持了大量的长连接，其中负载高的一台明显连接数更多。
 
@@ -45,7 +45,7 @@ skywalking提供了grpc(11800端口)和rest(12800端口)两种协议的服务。
 
 由于线上skywalking-agent和skywalking-oap使用的是grpc进行通信的，grpc基于http/2会维持一个长连接。k8s的service无法识别应用层的负载均衡。
 
-##对比常见的负载均衡实现
+# 对比常见的负载均衡实现
 
 **dubbo与SpringCloudRibbon的客户端负载均衡**
 
@@ -71,11 +71,11 @@ k8s的service就有点类似于nginx的tcp反向代理。当然只是说很像�
 
 下面看一下k8s的service实现原理。
 
-##k8s的service实现原理
+# k8s的service实现原理
 
 [k8s的service是基于虚拟ip实现的](https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies)：使用iptables实现路由转发。k8s的service代理有三种运行模式：
 
-## 1、userspace代理模式
+### 1、userspace代理模式
 
 这种模式，kube-proxy 会监控 Kubernetes control plane 对 Service 对象和 Endpoints 对象的添加和移除操作。 对每个 Service，它会在本地 Node 上打开一个端口（随机选择）。 任何连接到“代理端口”的请求，都会被代理到 Service 后端的某个Pod上（如 `Endpoints` 所报告的一样）。 使用哪个后端 Pod，是 kube-proxy 基于 `SessionAffinity` 来确定的。
 
@@ -85,7 +85,7 @@ k8s的service就有点类似于nginx的tcp反向代理。当然只是说很像�
 
 ![Services overview diagram for userspace proxy](https://d33wubrfki0l68.cloudfront.net/e351b830334b8622a700a8da6568cb081c464a9b/13020/images/docs/services-userspace-overview.svg)
 
-## 2、iptables 代理模式
+### 2、iptables 代理模式
 
 这种模式，`kube-proxy` 会监控 Kubernetes control plane 对 Service 对象和 Endpoints 对象的添加和移除。对每个 Service，它会配置 iptables 规则，从而捕获到达该 Service 的 `clusterIP` 和端口的请求，进而将请求重定向到 Service 的后端中的某个 Pod 上面。 对于每个 Endpoints 对象，它也会配置 iptables 规则，这个规则会选择一个后端Pod。
 
@@ -99,7 +99,7 @@ k8s的service就有点类似于nginx的tcp反向代理。当然只是说很像�
 
 ![iptables代理模式下Service概览图](https://d33wubrfki0l68.cloudfront.net/27b2978647a8d7bdc2a96b213f0c0d3242ef9ce0/e8c9b/images/docs/services-iptables-overview.svg)
 
-## 3、IPVS模式
+### 3、IPVS模式
 
 在 `ipvs` 模式下，kube-proxy 监控 Kubernetes Services和Endpoints，调用 `netlink` 接口相应地创建 IPVS 规则， 并定期将 IPVS 规则与 Kubernetes 服务和端点同步。 该控制循环可确保IPVS 状态与所需状态匹配。访问Service时，IPVS 将流量定向到后端Pod之一。
 
@@ -126,11 +126,11 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。 这些是：
 
 如果要确保每次都将来自特定客户端的连接传递到同一 Pod， 则可以通过将 `service.spec.sessionAffinity` 设置为 "ClientIP" （默认值是 "None"），来基于客户端的 IP 地址选择会话关联。 你还可以通过适当设置 `service.spec.sessionAffinityConfig.clientIP.timeoutSeconds` 来设置最大会话停留时间。 （默认值为 10800 秒，即 3 小时）。
 
-##K8s中grpc负载均衡的解决方案
+# K8s中grpc负载均衡的解决方案
 
 前面已经分析了k8s的service是无法实现应用层的负载均衡的。grpc基于http/2，因为http/2是长连接，负载均衡需要发生在每次调用，而非每次连接。K8s识别不了http/2的请求，就无法实现grpc的负载均衡。
 
-## 1、使用Nginx进行反向代理
+### 1、使用Nginx进行反向代理
 
 既然grpc基于http/2，那么可以使用Nginx进行grpc的反向代理，因为[Nginx在1.9.5开始支持Http/2协议](http://nginx.org/en/docs/http/ngx_http_v2_module.html)。这个方案能完全保证流量的均匀分配。
 
@@ -142,7 +142,7 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。 这些是：
 
 ![](./skywalking-ingress.svg)
 
-## 2、修改K8s的service运行模式
+### 2、修改K8s的service运行模式
 
 我们退而求其次，无法实现每次grpc调用的负载均衡，保证连接数的均衡，也算进一大步了。
 
@@ -162,7 +162,7 @@ IPVS 提供了更多选项来平衡后端 Pod 的流量。 这些是：
 
 那么可以使用IPVS的`lc`模式，让连接优先分配给打开链接数少的server。这样能保证连接数的均衡。
 
-## 3、为grpc添加LoaderBalancer组件
+### 3、为grpc添加LoaderBalancer组件
 
 原生grpc就没有服务发现这个概念，而是使用[另外的LoaderBalancer组件实现](https://github.com/grpc/grpc/blob/master/doc/load-balancing.md)负载均衡。
 

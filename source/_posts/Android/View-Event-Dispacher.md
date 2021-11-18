@@ -7,7 +7,7 @@ categories: Android
 description: View事件分发机制源码分析
 ---
 
-## 1、事件传递规则概述
+# 1、事件传递规则概述
 在解释事件分发机制之前，需要搞清楚几个概念。
 1、事件:由于android设备对键盘依赖性的降低，导致触摸事件(MotionEvent)成为android最主要的事件，所以对于事件的分发，其实就是对MotionEvent对象的传递过程。
 2、事件序列：从用户手指按下，到手里离开的这一系列事件的集合(可以看成用户在屏幕上的一个手势)。即事件序列以ACTION_DOWN开始，ACTION_UP结束：ACTION_DOWN-->ACTION_MOVE-->ACTION-->...->ACTION_UP事件。
@@ -72,7 +72,7 @@ boolean onTouchEvent(MotionEvent e){
 分发过程：Activity->Window->ViewGroup->View；
 按照这种过程一层一层分发下去，如果下层View的onTouchEvent方法没有处理则返回false，交由上一层处理，如果上一层也没有处理，再交由上一层，就是这样将未处理的事件返回给上一层处理。
 
-## 源代码分析
+# 源代码分析
 源代码分析前，先将一些结论整理出来，带着结论看源码也许会更轻松，更容易理解，我们在源代码中对以下结论进行验证。
 1、通常，一个**事件序列**只能被一个View拦截并消耗，因为一旦事件被拦截了，那么同一个事件序列内的所有事件都将直接交给该View处理，所以同一个事件序列中的事件不能同时由两个View处理，但是可以使用其他特殊方法做到，比如View将本该自己处理的事件通过调用其他View的onTouchEvent强行交给其他View处理。
 2、某个View一旦决定拦截(onInterceptTouchEvent方法被调用并返回true)，那该事件序列中的所有事件都只能由它来处理，而且在该事件序列传递过程中这个View的onInterceptTouchEvent不会再被调用。换句话说，onInterceptTouchEvent一旦决定拦截会拦截一个事件序列。

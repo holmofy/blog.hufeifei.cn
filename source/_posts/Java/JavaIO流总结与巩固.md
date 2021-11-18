@@ -4,13 +4,13 @@ date: 2017-05-5
 categories: JAVA
 ---
 
-##字节流
+# 字节流
 
 字节流就是每次以8位一个字节的方式执行输入输出。所有字节流都继承自`InputStream`或`OutputStream`，包括字符流在内的所有类型的I/O流都是基于字节流构建的。
 
 ![字节流](http://img-blog.csdn.net/20170522143807852?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 字节输入流InputStream
+### 字节输入流InputStream
 
 字节输入流基本上都需要实现**InputStream**这个抽象类的方法：
 
@@ -26,7 +26,7 @@ categories: JAVA
 | public synchronized void mark(int readlimit) | 标记当前读取的位置，使用reset可以恢复到标记位置。InputStream默认提供空实现,数组输入流和缓冲流实现了该功能。 |
 | public synchronized void reset() throws IOException; | 恢复到mark标记的位置。InputStream默认抛出异常,缓冲流如果超出readlimit也会抛出异常。 |
 
-## 字节输出流OutputStream
+### 字节输出流OutputStream
 
 字节输出流基本上都需要实现**OutputStream**这个抽象类的方法：
 
@@ -38,13 +38,13 @@ categories: JAVA
 | public void flush() throws IOException;  | 强制将缓冲区内容写入。OutputStream默认提供空实现,一般对有缓冲的输出流才有效。 |
 | public void close() throws IOException;  | 关闭流释放资源。OutputStream默认提供空实现,如果缓冲关闭前会调用flush方法。 |
 
-##字符流
+# 字符流
 
 字符流通常是字节流的“包装器”，所有的字符流都继承自Reader和Writer这两个抽象类。字符流底层仍然是使用字节流来执行物理I / O。
 
 ![字符流](http://img-blog.csdn.net/20170522143907807?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##字符转换流
+# 字符转换流
 
 前面提到了字节流和字符流，通常我们需要将字节流转换成字符流，而处理字节流到字符流的转换通常使用`InputStreamReader`和`OutputStreamWriter`。事实上看类的命名也可才出其作用：
 
@@ -58,15 +58,15 @@ categories: JAVA
 | new FileReader("in.txt")  | new InputStreamReader(new FileInputStream("in.txt")) |
 | new FileWriter("out.txt") | new OutputStreamWriter(new FileOutputStream("out.txt")) |
 
-##缓冲流
+# 缓冲流
 
-## 为什么要有缓冲流？
+### 为什么要有缓冲流？
 
 如果使用无缓冲的I/O，这意味着每次读写请求都由底层操作系统直接处理。这个效率是非常低的，因为每次这样的请求通常会触发磁盘访问，网络IO或其他相当耗时的操作。举个例子：大部分磁盘都是使用扫描算法实现磁盘调度，而且磁盘的读写以扇区为基本单位，一个扇区为512字节(新硬盘是4KB)，直接使用FileInputStream(或FileOutputStream)的进行小份量的读(写)，将会导致磁头在一次扫描的过程中只读取一小部分的数据，如此反复以往，将会降低磁头的扫描的效率。
 
 为了减少这种开销，Java提供了缓冲I/O流，每次读取(写入)请求都是从缓冲区中读取(写入)的，当缓冲区为空(已满)才会调用底层API进行读(写)操作。
 
-## JDK中的缓冲流
+### JDK中的缓冲流
 
 我们可以使用I/O流包装类将无缓冲的I/O流包装成相应的缓冲流。这样的包装类有四个：
 
@@ -85,7 +85,7 @@ Reader reader = new BufferedReader(new FileReader("in.txt"));
 Writer writer = new BufferedWriter(new FileWriter("out.txt"));
 ```
 
-##数据流
+# 数据流
 
 数据流支持基本数据类型( `boolean`，`char`，`byte`， `short`，`int`，`long`， `float`和`double`)以及字符串(String)类型的读写。所有的数据读写流都实现了DataInput或DataOutput接口，JDK相应地提供了DataInputStream和DataOutputStream这两个实现类。
 
@@ -106,7 +106,7 @@ DataOutput out = new DataOutputStream(
 // 然后就可以调用DataInput和DataOutput接口中的方法进行基本数据类型的读写。
 ```
 
-##对象流与序列化
+# 对象流与序列化
 
 前面提到使用DataInputStream和DataOutputStream对基本的数据类型进行读写操作。但是对于Java而言，大多数时候我们遇到的都是Java对象。这个时候就要使用对象流来对对象进行序列化或反序列化。
 
@@ -116,7 +116,7 @@ DataOutput out = new DataOutputStream(
 
 > 对象的序列化与反序列化是一个很深的话题，这篇文章长度有限，想继续深入的朋友可以参考[对序列化和反序列化](http://www.infoq.com/cn/articles/serialization-and-deserialization)和[Java的序列化与反序列化](http://www.cnblogs.com/leesf456/p/5328466.html)这两篇文章
 
-##标准I/O流
+# 标准I/O流
 
 以前学C++的时候，在iostream中声明了`std::cin`，`std::cout`，`std::cerr`，`std::clog`。这几个变量分别代表标准输入流，标准输出流，标准错误输出流，标准日志输出流。在Java中也有几个类似的流，它们都是System类的静态变量：`System.in`，`System.out`以及`System.err`，这些对象是由Java平台初始化的流对象，不需要再打开。
 
@@ -178,7 +178,7 @@ private static PrintStream newPrintStream(FileOutputStream fos, String enc) {
 
 而且我们从这段代码中可以看出：`System.in`是BufferedInputStream对象。
 
-##标准流的重定向
+# 标准流的重定向
 
 上面说道`System.in`,`System.out`,`System.err`三个标准流的初始化使用了`setIn0`,`setOut0`,`setErr0`方法。System类还将这三个方法提供了调用接口给我们。
 
@@ -214,7 +214,7 @@ System.setOut(new PrintStream(new FileOutputStream("D://redirect.txt")));
 System.out.println("Hello World");
 ```
 
-##标准流的格式化输入输出
+# 标准流的格式化输入输出
 
 对于上面的`System.out`这个对象，我们肯定非常熟悉，`System.err`对象和`System.out`对象是相同类型的对象，用法也就不用多说了，但是`System.in`这个对象用的就相对少很多了。前面我们对标准输入输出流进行了简单的剖析，我们已经知道`System.in`是个BufferedInputStream对象，很明显我们要想从中读取基本数据类型( `boolean`，`char`，`byte`， `short`，`int`，`long`， `float`和`double`)以及字符串(String)类型肯定相当麻烦。这个时候我们可能会想到使用DataInputStream这个类来对其进行包装。
 
@@ -237,7 +237,7 @@ System.out.println(in.readInt());
 
 下面我们来介绍一个工具类。
 
-## Scanner扫描工具处理格式化输入
+### Scanner扫描工具处理格式化输入
 
 需要注意Scanner类并不是I/O流。它是java.util包下的一个专门用来扫描文本数据的工具类。
 
@@ -367,7 +367,7 @@ OK?
 [10.1, 10.24, 7.23, 4.17]
 ```
 
-## StreamTokenizer与StringTokenizer
+### StreamTokenizer与StringTokenizer
 
 除了Scanner这个牛逼的工具，还有StreamTokenizer和StringTokenizer这两个专门进行字符解析的工具。
 
@@ -375,7 +375,7 @@ OK?
 
 这两个类可以用来做单词统计之类的工作。不过这两个类这方面的能力也不是很强，很鸡肋。
 
-## PrintStream和PrintWriter打印流处理格式化输出
+### PrintStream和PrintWriter打印流处理格式化输出
 
 刚说完格式化输入，现在讲讲格式化输出吧！
 
@@ -387,7 +387,7 @@ OK?
 
 ![Print格式化输出](http://img-blog.csdn.net/20170522144334791?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##标准输入输出流的封装----Console
+# 标准输入输出流的封装----Console
 
 我们前面提到`System.in`，`System.out`，`System.err`这三个标准输入输出流。JDK1.6版本后提供给我们一个类----Console(控制台)，这个类封装了标准输入输出流。我们可以看一下它的构造方法：
 
@@ -423,7 +423,7 @@ private Console() {
 
 ![Console的相关方法](http://img-blog.csdn.net/20170522144508682?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##数组I/O流
+# 数组I/O流
 
 数组I/O流，可以将字节数组(或字符数组)以流的方式来操作。
 
@@ -451,7 +451,7 @@ JDK1.1有了字符流后，同时提供给我们字符数组输入输出流：Ch
 
    **注意：CharArrayReader和CharArrayWriter的方法也是线程安全的**
 
-##字符串I/O流
+# 字符串I/O流
 
 与CharArrayReader类似的还有一个StringReader，可以以流的方式来读取字符串的内容。JDK1.1设计了设个类之后，原本的StringBufferInputStream就被替代了。
 
@@ -465,7 +465,7 @@ JDK1.1有了字符流后，同时提供给我们字符数组输入输出流：Ch
 
 > 这几个类效率低，而且可以直接使用StringBuilder或StringBuffer来实现类似的功能，所以使用频率比较少。
 
-##管道I/O流
+# 管道I/O流
 
 管道流的主要作用是可以进行两个线程间的通讯。
 
@@ -542,7 +542,7 @@ public class PipeTest {
 }
 ```
 
-##回退输入流
+# 回退输入流
 
 使用回退流对其他输入流包装后，我们不仅可以从流中读取数据，还可以往流中回写数据。当然这里说的回写仅仅是将数据写入到回写流的内存缓冲区，而不是写入输入源。
 

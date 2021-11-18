@@ -4,7 +4,7 @@ date: 2017-07-17
 categories: JAVA
 ---
 
-##FileDescriptor
+# FileDescriptor
 
 FileDescriptor，顾名思义：“文件描述符”，用来表示开放文件、开放套接字。这个概念来自于`*nux`文件系统，Linux继承Unix **“一切皆文件”** 的概念：
 
@@ -85,7 +85,7 @@ FileDescriptor类中也定义了这三个常量：
 
 > 有关标准I/O的内容可以参考[《JavaIO总结与巩固》](http://blog.csdn.net/holmofy/article/details/72626387)
 
-##File
+# File
 
 FileDescriptor为文件的读写功能提供了基础，而File则是提供文件的增删查功能。
 
@@ -178,11 +178,11 @@ D:\dir\a.txt
 
   Windows：`set PATH = %PATH%;D:\Program Files\Xxx\bin`，`%PATH%`是取出PATH变量的值
 
-## File相关方法
+### File相关方法
 
 File类的方法可以分为以下几类：
 
-### 1. 路径操作
+#### 1. 路径操作
 
 | Path-component accessors | Period          | Explain     |
 | ------------------------ | --------------- | ----------- |
@@ -382,7 +382,7 @@ URI:file:/D:/a.txt
 
 > Demo输出有点长，区别很细微，最好是自己敲一遍
 
-### 2. 访问属性
+#### 2. 访问属性
 
 | Attribute accessors   | Period          | Explain  |
 | --------------------- | --------------- | -------- |
@@ -400,7 +400,7 @@ URI:file:/D:/a.txt
 
 ![文件属性](http://img-blog.csdn.net/20170718005259809?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### 3. 文件操作
+#### 3. 文件操作
 
 | File operations                          | Period          | Explain                                |
 | ---------------------------------------- | --------------- | -------------------------------------- |
@@ -499,7 +499,7 @@ Apache的`commons-io`库中有各种过滤器的实现，我画了张图概括co
 
 ![FileFilter](JavaIO流复习与巩固--FileDescriptor与File/FileFilter.svg)
 
-### 4. 磁盘空间
+#### 4. 磁盘空间
 
 | Disk usage            | Period      | Explain        |
 | --------------------- | ----------- | -------------- |
@@ -540,7 +540,7 @@ public class FileTest {
 
 > 注意：返回结果是字节数
 
-###  5. 静态方法
+####  5. 静态方法
 
 1. 根路径
 

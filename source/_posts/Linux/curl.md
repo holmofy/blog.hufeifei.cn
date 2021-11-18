@@ -29,7 +29,7 @@ server {
 
 > [chubin](https://github.com/chubin)这位大佬还写了很多类似的服务，[wttr.in](https://github.com/chubin/wttr.in)用来查天气的，[rate.sx](https://github.com/chubin/rate.sx)用来查汇率的。除此之外还有人开发了[qrenco.de](https://github.com/fukuchi/libqrencode)进行二维码编码的，[transfer.sh](https://transfer.sh/)进行云存储的。大佬们真是让命令行工具大放异彩。
 
-##1、文档
+# 1、文档
 
 任何命令行工具，第一个看的就是文档在哪儿，方便自己学习。
 
@@ -37,7 +37,7 @@ server {
 curl cht.sh/:help
 ```
 
-##2、查询命令行速查表
+# 2、查询命令行速查表
 
 man手册内容很详细，但是对于一个新的命令行工具，我们就想尽快上手，所以`tldr`项目提供了一个简单的命令行速查表，tldr项目本意就是`too long don't read`，摘出一些常用的命令。
 
@@ -48,49 +48,49 @@ cht.sh也提供了这个功能，而且它把`tldr`的速查表页面也包含�
 ```sh
 $ curl cht.sh/ps
  cheat:ps
-##To list every process on the system:
+# To list every process on the system:
 ps aux
 
-##To list a process tree:
+# To list a process tree:
 ps axjf
 
-##To list every process owned by foouser:
+# To list every process owned by foouser:
 ps -aufoouser
 
-##To list every process with a user-defined format:
+# To list every process with a user-defined format:
 ps -eo pid,user,command
 
-##Exclude grep from your grepped output of ps.
-##Add [] to the first letter. Ex: sshd -> [s]shd
+# Exclude grep from your grepped output of ps.
+# Add [] to the first letter. Ex: sshd -> [s]shd
 ps aux | grep '[h]ttpd'
 
  tldr:ps
-##ps
-##Information about running processes.
+# ps
+# Information about running processes.
 
-##List all running processes:
+# List all running processes:
 ps aux
 
-##List all running processes including the full command string:
+# List all running processes including the full command string:
 ps auxww
 
-##Search for a process that matches a string:
+# Search for a process that matches a string:
 ps aux | grep string
 
-##List all processes of the current user in extra full format:
+# List all processes of the current user in extra full format:
 ps --user $(id -u) -F
 
-##List all processes of the current user as a tree:
+# List all processes of the current user as a tree:
 ps --user $(id -u) f
 
-##Get the parent pid of a process:
+# Get the parent pid of a process:
 ps -o ppid= -p pid
 
-##Sort processes by memory consumption:
+# Sort processes by memory consumption:
 ps --sort size
 ```
 
-##3、语言代码片段
+# 3、语言代码片段
 
 `cht.sh`相比于`tldr`，优势的一点是支持各种语言的代码片段搜索
 
@@ -130,7 +130,7 @@ curl cht.sh/js/thread | less
 
 ![cht.sh](https://p.pstatp.com/origin/pgc-image/82987ec453dc49009289c0e005192402)
 
-##4、安装客户端和命令行自动补全
+# 4、安装客户端和命令行自动补全
 
 `cht.sh`除了web接口，还支持命令行客户端
 

@@ -14,7 +14,7 @@ keywords:
 
 上一家公司并没有用消息队列中间件，大学里对[ActiveMQ](https://activemq.apache.org/)有所了解但并未深入研究，[RocketMQ](https://rocketmq.apache.org/)、[Kafka](https://kafka.apache.org/)也一直囿于听闻。不过在原来的项目中经常会用Redis的list实现一个分布式的阻塞队列。在短信营销任务中，会将服务的同步调用改为异步任务存入队列表，Worker批量调度以提高吞吐量，并降低大促期间大批量短信同步调用带来的压力。我觉得后面这一点也非常接近消息队列所要实现的需求。然后受益于[隆基](https://www.atatech.org/users/13788)前辈的[阿里消息中间件架构演进之路：notify和metaq](https://www.atatech.org/articles/95456)一文，用这篇小笔记总结下我对消息队列的认识和理解。
 
-## 1、为什么用消息队列
+# 1、为什么用消息队列
 
 任何技术的诞生都有它背后的故事，消息队列肯定也是为了解决某些已有的问题才出现的。
 
@@ -132,7 +132,7 @@ T is "..."
 
 ![](http://www.plantuml.com/plantuml/svg/JOzD2eD038NtEKKkC8AkHUpFraLxW-Y4KjH4uiogzEwrjeEp2BoF5xwGTWra8SuJhEDJ5ZAQqLEWdbP-0VOqZ0_JAFwYarfTzwOZIzFWdJsyWOQWXbsPGfL2KHGf2eXwnjEoG3BZBN9aF7H7Spr3Lw9ppMy7kYg3hpP7oU2lT6w_jCtURRgMnMyFVW00)
 
-## 2、消息怎么存储
+# 2、消息怎么存储
 
 消息被暂存到中间的[消息代理(Message broker)](https://en.wikipedia.org/wiki/Message_broker)上，消息具体如何存储是首要解决的问题。
 
@@ -220,7 +220,7 @@ ActiveMQ中还支持[LevelDB的持久化方式](https://activemq.apache.org/leve
 
 
 
-## 3、集团的消息中间件——notify和metaq
+# 3、集团的消息中间件——notify和metaq
 
 看了[隆基](https://www.atatech.org/users/13788)前辈的[阿里消息中间件架构演进之路：notify和metaq](https://www.atatech.org/articles/95456)这篇文章，让我对集团这两个核心的中间件有了初步认识。
 

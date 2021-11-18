@@ -8,7 +8,7 @@ categories: Linux运维
 
 废话不多说，直接上正题。
 
-##安装git
+# 安装git
 
 这里以我的CentOS 7为例，其他发行版可以查看git官网提供的命令https://git-scm.com/download/linux
 
@@ -16,20 +16,20 @@ categories: Linux运维
 yum install git
 ```
 
-##创建git用户
+# 创建git用户
 
 创建git用户，是为了专门管理服务器上的git服务。在Linux最好每个用户管理某一个模块的功能，这样安全性更高。当然如果你不在意这些，你可以跳过这一步，在后面的步骤中你可以使用已存在的用户代替。
 
 ```shell
 useradd git -s /usr/bin/git-shell -p 123Xyz
-##-p 指定密码，这个可以按你的想法设置
+# -p 指定密码，这个可以按你的想法设置
 ```
 
 > -s 参数为了指定git用户使用的shell，这里使用git-shell。如果不指定的话默认是bash，别人可能会通过git用户来登录到你的服务器。
 >
 > -p 参数为了指定git用户的密码，不过待会儿我们会在服务器上为本地PC配置公钥，这样可以免得每次git同步都需要输密码。
 
-##在服务器上创建裸仓库
+# 在服务器上创建裸仓库
 
 你想在哪个目录下创建仓库，就在哪个目录下执行以下的命令。
 
@@ -46,15 +46,15 @@ useradd git -s /usr/bin/git-shell -p 123Xyz
 
 ```shell
 git init --bare html.git
-##这里的html是我仓库的名字，这个可以任取
-##--bare 是代表创建裸仓库，这个参数一定记得带上
+# 这里的html是我仓库的名字，这个可以任取
+# --bare 是代表创建裸仓库，这个参数一定记得带上
 ```
 
-##在服务器上为本地PC配置公钥
+# 在服务器上为本地PC配置公钥
 
 如果你的PC是Windows的，你可以使用git-bash执行下面的命令。
 
-## 1. 为本地PC生成公钥密钥对
+### 1. 为本地PC生成公钥密钥对
 
 ```shell
 ssh-keygen
@@ -62,7 +62,7 @@ ssh-keygen
 
 > ssh-keygen随 SSH 软件包提供，在Windows上git-bash会提供这个命令。
 
-## 2. 查看生成的公钥和密钥
+### 2. 查看生成的公钥和密钥
 
 ```shell
 cd ~/.ssh
@@ -70,13 +70,13 @@ ls -al
 ```
 
 ```shell
-##如果有以下两个文件，
-##id_rsa代表使用rsa算法生成的密钥
-##id_rsa.pub代表使用ras算法生成的公钥
+# 如果有以下两个文件，
+# id_rsa代表使用rsa算法生成的密钥
+# id_rsa.pub代表使用ras算法生成的公钥
 id_rsa  id_rsa.pub
 ```
 
-## 3.在服务器上配置公钥
+### 3.在服务器上配置公钥
 
 在你要登录的用户的家目录下创建`.ssh/authorized_keys  `文件。
 
@@ -91,14 +91,14 @@ id_rsa  id_rsa.pub
 > # 单引号中间是你id_rsa.pub文件的内容
 > ```
 
-## 4. 测试以上配置
+### 4. 测试以上配置
 
 在你的PC上使用git-bash输入以下命令，测试以上配置是否成功。
 
 ```shell
-##www.hufeifei.cn是我服务器的域名，你也可以使用ip地址
-##/home/git/www/html.git是前面创建的裸仓库的绝对路径
-##test是你要从服务器clone到本地主机的目录
+# www.hufeifei.cn是我服务器的域名，你也可以使用ip地址
+# /home/git/www/html.git是前面创建的裸仓库的绝对路径
+# test是你要从服务器clone到本地主机的目录
 git clone git@www.hufeifei.cn:/home/git/www/html.git test
 ```
 
@@ -114,7 +114,7 @@ warning: You appear to have cloned an empty repository.
 
 
 
-##自动同步站点目录
+# 自动同步站点目录
 
 现在你使用git推送任何网页文件，都没法儿看到效果，因为你只是把文件传到了git上，比如我的文件就会被传到`/home/git/www/`目录下，现在我们需要把这些文件同步到`www`服务器的目录上。
 
@@ -169,22 +169,22 @@ warning: You appear to have cloned an empty repository.
 
 
 
-##接下来你就可以往git服务器上同步网站了
+# 接下来你就可以往git服务器上同步网站了
 
 ```shell
-##把本地PC网站目录下的所有文件添加到git中
+# 把本地PC网站目录下的所有文件添加到git中
 git add .
-##把文件提交到仓库，引号内是提交的相关信息
+# 把文件提交到仓库，引号内是提交的相关信息
 git commit -m 'message'
-##指定远程git服务器地址，如果你使用刚刚clone的目录，你就可以跳过这一步
-##git remote add origin git@www.hufeifei.cn:/home/git/www/html.git
-##把本地的git推送到git服务器上，如果前面的公钥没配的话可能要输密码
+# 指定远程git服务器地址，如果你使用刚刚clone的目录，你就可以跳过这一步
+# git remote add origin git@www.hufeifei.cn:/home/git/www/html.git
+# 把本地的git推送到git服务器上，如果前面的公钥没配的话可能要输密码
 git push -u origin master
-##查看git当前状态
+# 查看git当前状态
 git status
 ```
 
-##权限问题解决
+# 权限问题解决
 
 如果期间出现`Permission denied`类似的错误，肯定是服务器目录的权限没有配置，毕竟Linux对权限限制的很死。
 

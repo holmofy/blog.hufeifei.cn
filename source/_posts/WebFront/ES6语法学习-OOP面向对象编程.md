@@ -4,7 +4,7 @@ date: 2018-03-15
 categories: 前端
 ---
 
-##ES5中使用构造函数定义类
+# ES5中使用构造函数定义类
 
 ES6之前定义一个类，都是通过定义构造函数实现：
 
@@ -33,7 +33,7 @@ console.log(window.y) // 2
 
 ![OOP](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj7lgif8j208h05jaa2.jpg)
 
-## 1. 防止构造函数被当成普通函数调用
+### 1. 防止构造函数被当成普通函数调用
 
 有两种方式可以防止构造函数被当成普通函数调用。
 
@@ -66,7 +66,7 @@ console.log(window.y) // 2
    }
    ```
 
-## 2. 构造函数中的return
+### 2. 构造函数中的return
 
 ```javascript
 function Rectangle(x,y) {
@@ -108,7 +108,7 @@ console.log(new Rectangle(1,2)); // Rectangle {x: 1, y: 2}
 
 如果构造函数中返回的是对象类型，那么`new`指令会返回这个对象；如果是基本数据类型、`null`或`undefined`则返回new出来的对象。
 
-## 3. new指令的执行原理
+### 3. new指令的执行原理
 
 执行new指令，具体可以分为以下几步：
 
@@ -154,7 +154,7 @@ var obj = new Object();
 obj.__proto__ == Object.prototype; // true
 ```
 
-##ES6中使用class定义类
+# ES6中使用class定义类
 
 ```javascript
 class Rectangle {
@@ -166,7 +166,7 @@ class Rectangle {
 console.log(new Rectangle()); // Rectangle {height: 1, width: 2}
 ```
 
-## 1. class定义的类没有变量提升
+### 1. class定义的类没有变量提升
 
 ```javascript
 // class必须先声明在使用
@@ -181,7 +181,7 @@ new Rectangle();
 function Rectangle() {}
 ```
 
-## 2. 匿名类
+### 2. 匿名类
 
 ```javascript
 // unnamed
@@ -206,7 +206,7 @@ console.log(new Rectangle(1,2));
 // Rectangle {height: 1, width: 2}
 ```
 
-## 3. 一个类不允许有多个构造函数
+### 3. 一个类不允许有多个构造函数
 
 ```javascript
 class Rectangle {
@@ -236,7 +236,7 @@ class Rectangle {
 }
 ```
 
-## 4. 类中定义方法
+### 4. 类中定义方法
 
 ```javascript
 class Rectangle {
@@ -251,7 +251,7 @@ class Rectangle {
 }
 ```
 
-## 5. 定义getter/setter方法
+### 5. 定义getter/setter方法
 
 ```javascript
 class Rectangle {
@@ -269,7 +269,7 @@ var r = new Rectangle(1,2);
 console.log(r.area);
 ```
 
-## 6. 定义类静态方法
+### 6. 定义类静态方法
 
 ```javascript
 class Point {
@@ -310,7 +310,7 @@ Point.distance = function() {
   }
 ```
 
-## 7. 类的继承
+### 7. 类的继承
 
 和原型链继承本质上是一样的
 
@@ -335,7 +335,7 @@ var d = new Dog('Mitzie');
 d.speak(); // Mitzie barks.
 ```
 
-## 8. 使用`super`关键字调用父类方法
+### 8. 使用`super`关键字调用父类方法
 
 ```javascript
 class Animal {

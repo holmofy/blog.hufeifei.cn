@@ -24,7 +24,7 @@ keywords:
 
 [TOC]
 
-##计算机存储体系结构
+# 计算机存储体系结构
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/Untitled-drawing-4-4.png)
 
@@ -36,7 +36,7 @@ keywords:
 
 北桥被集成到CPU芯片内[^2]，南桥[^3]与其他的I/O功能逐渐演变成PCH(Platform Controller Hub[^4])
 
-##从PIO到DMA的演进
+# 从PIO到DMA的演进
 
 
 
@@ -70,7 +70,7 @@ I/O 模块不直接通知 CPU，CPU 可能会等待或稍后返回，在编程�
 
 ![](https://pic1.zhimg.com/80/v2-282ecfe51a18f00918f02f02bdf20950_1440w.jpg)
 
-##用户态与内核态
+# 用户态与内核态
 
 Intel x86系列的第一个CPU 8086[^12]可以寻址1MB的内存(对应着20根地址总线$2^{20}=1MB$)，由于CPU寄存器是16位的，所以8086使用段寄存器和指针寄存器分段[^13]式访问内存，用户程序和操作系统没有很明确的界限，都可以访问整个内存；用户程序退出就会到操作系统；用户程序触发软中断就到操作系统，中断处理结束又回到用户程序；用户程序自己可以访问大部分的硬件设备；用户程序甚至可以随意修改属于操作系统的数据。**用户程序的权限过大了，会导致五花八门的问题。**
 
@@ -86,11 +86,11 @@ Intel在80286[^14]地址总线变成了24根，可以寻址16MB，但是寄存�
 
 简单点说，**就是用户程序中的代码只能在用户模式下执行，要执行I/O等操作必须调用系统函数交由内核去执行，内核可以将CPU切换到更高权限的访问级别，访问完成结果由内核返回给用户程序**。
 
-##I/O读写的演进
+# I/O读写的演进
 
 执行I/O很显然要调用操作系统的接口，而Linux上I/O接口已经经过了很多轮演进
 
-## Buffer I/O
+### Buffer I/O
 
 最典型的就是以`read`/ `write`为代表的传统Buffer I/O。
 
@@ -131,7 +131,7 @@ java.nio.FileChannel.write(ByteBuffer src);
 
 ![](https://pic2.zhimg.com/v2-cadabc5672c37a84a83ee837de545be5_r.jpg)
 
-## Vectored I/O
+### Vectored I/O
 
 [Vectored I/O](https://en.wikipedia.org/wiki/Vectored_I/O)也被称作**scatter/gather I/O**。就是一个调用读取多个缓冲区中写入文件，或者读取文件写入多个缓冲区。
 
@@ -160,7 +160,7 @@ FileChannel.write(ByteBuffer[] srcs, int offset, int length)
 - 连接输出：想要在内存中写入非顺序放置数据的应用程序可以在一个Vectored I/O 操作中完成。例如，可以通过单个向量 I/O 操作将固定大小的标头及其关联的负载数据写入内存中，这些数据以非顺序方式放置在内存中，而无需先将标头和负载连接到另一个缓冲区。
 - 效率：一个Vectored I/O读或写可以代替很多普通的读或写，从而节省[系统调用](https://en.wikipedia.org/wiki/Syscall)的开销
 
-## mmap
+### mmap
 
 不管是普通的Buffer I/O还是Vectored I/O，都会经过内核的PageCache。复制一个文件，也就意味着有2次CPU拷贝和2次DMA拷贝以及4次用户态到内核态的切换。从PageCache拷贝到用户缓冲区的这次CPU拷贝其实是没必要的，所以Linux提供了mmap[^26]的方式，将内核缓冲区的PageCache直接映射到用户缓冲区。对于使用者来说访问硬盘就好像访问内存一样。mmap也是[POSIX标准](https://pubs.opengroup.org/onlinepubs/9699919799/functions/mmap.html)中定义的接口
 
@@ -209,7 +209,7 @@ public static String readFileAsString(String path, Charset charset) throws IOExc
 1. PageCache的页大小是固定的，对于特别小的文件，可能会导致空间浪费，比如对于4KB的Cache页，文件只有几十个字节，那将会浪费三千多个字节的空间。
 2. 对于大文件的拷贝，会导致PageCache缓存算法失效，加载进缓存意味着另一份缓存被替换出去，导致其他真正需要缓存机制的文件IO效率下降。
 
-## Direct I/O
+### Direct I/O
 
 传统的读/写和 mmap 都涉及内核页缓存，并将内核的 I/O 延迟调度。 当应用程序希望自己调度 I/O（至于原因我们稍后将解释），它可以使用 Direct I/O。 这涉及使用 **O_DIRECT 标志打开文件**[^27]，`O_DIRECT`是Linux 2.4.10引入的，在FreeBSD[^28]等Unix操作系统上也有支持，但在MacOS和Windows上还没有得到支持。
 
@@ -240,7 +240,7 @@ fc.read(buff);
 
 > [github](https://github.com/smacke/jaydio)上有一个库，实现了DirectIO，当然和sun提供的ExtendedOpenOption一样，兼容性并不好。
 
-## sendfile
+### sendfile
 
 sendfile[^30]是在Linux 2.2中引入的，直接把拷贝任务交给操作系统。目的是为了减少mmap方式拷贝过程中的用户态与内核态的切换。
 
@@ -287,7 +287,7 @@ struct sf_hdtr {
 };
 ```
 
-## sendfile+Scatter/Gather DMA 
+### sendfile+Scatter/Gather DMA 
 
 sendfile方式仍然需要一次内核空间的数据拷贝，所以更甚者进入了Scatter/Gather DMA，将这次拷贝交由DMA控制器处理，CPU完全解放了。
 
@@ -313,11 +313,11 @@ sendfile方式仍然需要一次内核空间的数据拷贝，所以更甚者进
 * https://www.zhihu.com/question/306127044/answer/555327651
 * https://www.gnu.org/software/libc/manual/html_mono/libc.html#Low_002dLevel-I_002fO
 
-##IO处理模式
+# IO处理模式
 
 上面提到的是内核层面怎么处理与用户程序的I/O读写，但用户程序怎么处理I/O也有很多讲究。
 
-## 阻塞式IO
+### 阻塞式IO
 
 传统的文件与socket I/O接口都是阻塞式的，读写文件会阻塞到数据读取完成
 
@@ -390,7 +390,7 @@ public class EchoServer {
 }
 ```
 
-## 非阻塞式IO
+### 非阻塞式IO
 
 Linux在打开文件描述中提供了一个`O_NONBLOCK`属性，这个属性与`O_DIRECT`类似。标记了`O_NONBLOCK`属性的文件描述符，调用read和write的时候，如果没有数据或缓冲区已满，将不会阻塞，而是返回-1并将全局变量**errno**设置为`EAGAIN`。这就是所谓的[非阻塞式IO](https://en.wikipedia.org/wiki/Non-blocking_I/O_%28Java%29)。
 
@@ -420,7 +420,7 @@ java.nio.channels.SelectableChannel.configureBlocking(blocking);
 
 阻塞的问题解决了，但是每个连接都排一个线程去检查是否有数据，还是不太高效。[多路复用(Multiplex)](https://en.wikipedia.org/wiki/Multiplexing)便是解决这个问题的。
 
-## IO多路复用
+### IO多路复用
 
 多路复用来是计算机网络中的词汇，指的是一个共享介质处理多个信道信息。而**IO多路复用指的就是单个事件循环中处理多个I/O通道的事件。**
 
@@ -444,7 +444,7 @@ IO多路复用机制尽可能满足：
 
 * **多快好省完成任务等**。
 
-### poll与select
+#### poll与select
 
 [poll](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/poll.h.html)和[select](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/sys_select.h.html)是最早的多路复用技术，select[^31]是1983年BSD Unix分支引入的，而poll是1986年SVR3 Unix分支引入的，分别代表着以伯克利大学为首的开源派和[AT&T的SystemV](https://en.wikipedia.org/wiki/UNIX_System_V)为首的商业闭源两个Unix大分支。
 
@@ -506,7 +506,7 @@ struct pollfd {
 
 > Windows支持[select API](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-select)，因为Windows最早支持tcp/ip的时候就用的是BSD系列的实现，可以看到[WinSock](https://docs.microsoft.com/en-us/windows/win32/winsock/winsock-functions) API中提供的以小写字母命名的函数和Unix是完全一样的。但是由于select的缺点，poll api又是商业公司的没有开源，所以Windows从Windows Vista版本开始还提供了类似于poll api的[WSAPoll](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsapoll)接口，从命名可以看出是微软风格的函数接口。
 
-### epoll,kqueue和IOCP
+#### epoll,kqueue和IOCP
 
 由于select和poll的种种问题，现在基本都被epoll[^32]（Linux）、kqueue[^33]（BSD Unix）、IOCP[^34]（Windows）取代了。
 
@@ -614,7 +614,7 @@ EV_SET_QOS(&kev, ident, filter, flags, qos, udata, fflags, xflags, data, ext[0],
 
 
 
-### libevent,libev,libuv
+#### libevent,libev,libuv
 
 由于每个平台的接口都不一致，而且用原生接口编程真的非常繁琐（可以看看我用每个接口写的[示例](https://github.com/holmofy/echo-server)，循环调度需要自己写），所以就有了[libevent](https://github.com/libevent/libevent)和[libuv](https://github.com/libuv/libuv)、[libev](https://github.com/enki/libev)这样跨平台的库，以及用C++封装的[Boost.Asio](https://github.com/chriskohlhoff/asio)，[uvw](https://github.com/skypjack/uvw)（基于libuv封装）库。
 
@@ -664,11 +664,11 @@ https://docs.microsoft.com/en-us/windows/desktop/WinSock/windows-sockets-start-p
 
 
 
-##Java NIO
+# Java NIO
 
 Java在1.4中提供了[JSR-51](https://jcp.org/en/jsr/detail?id=51)要求的新版IO，也就是所谓的[Non-blocking I/O](https://en.wikipedia.org/wiki/Non-blocking_I/O_%28Java%29)。
 
-## buffer
+### buffer
 
 NIO中提供了行为被限制的buffer：主要是为了让内存映射(mmap)的MappedByteBuffer和Java堆内存中的HeapByteBuffer行为统一。
 
@@ -700,7 +700,7 @@ ByteBuffer <-- HeapByteBuffer
 @enduml
 ```
 
-## channel
+### channel
 
 还有新的I/O抽象——Channel
 
@@ -781,7 +781,7 @@ NetworkChannel <-- DatagramChannel
 @enduml
 ```
 
-## selector
+### selector
 
 基于I/O多路复用的Selector。SelectorProvider会根据不同的操作系统，选用epoll(linux)，kqueue(macOSx)，wepoll(windows)和兼容性更好的poll(unix/windows)。JDK的好处就是不用关心底层到底使用哪种实现，java程序猿真幸福😊。
 
@@ -862,7 +862,7 @@ public class EchoServer {
 
 
 
-##Netty, Mina
+# Netty, Mina
 
 JDK的NIO并不是那么好用，JDK并没有基于NIO实现HTTP等各种协议，而是通过制定servlet api让[Tomcat](https://github.com/apache/tomcat)、[Jetty](https://github.com/eclipse/jetty.project)去实现HTTP协议，具体Servlet容器有没有用NIO去实现，Servlet也不管。因为NIO的一些问题，就有了[xnio](https://github.com/xnio/xnio)这样实现HTTP、SSL的项目，另一个比较有名的Servlet容器[undertow](https://github.com/undertow-io/undertow)就是基于xnio实现的，但是xnio文档真的很烂。而[Mina](https://github.com/apache/mina)和Netty是脱离Servlet标准自己实现的HTTP等协议，其中[Netty](https://github.com/netty/netty)甚至完全脱离JDK的NIO，基于Linux的epoll、BSD的kqueue通过JNI自行实现了一套IO-Multiplex。而且相对Mina来说Netty架构更加干净，模块划分更加清晰。
 

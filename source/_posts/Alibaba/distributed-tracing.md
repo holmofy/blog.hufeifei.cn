@@ -13,7 +13,7 @@ keywords:
 - Dapper
 ---
 
-## 1、分布式链路追踪技术解决的问题
+# 1、分布式链路追踪技术解决的问题
 
 * 分布式系统服务非常多，很复杂
 * 每个服务可能由不同项目组开发，没有一个人能详细地了解所有的系统。
@@ -24,7 +24,7 @@ keywords:
 
 ![image.png](http://tva1.sinaimg.cn/large/bda5cd74ly1gh03y8q74cj21aq0pykcr.jpg)
 
-## 2、Google的Dapper
+# 2、Google的Dapper
 
 Google很早就已经为微服务化了，并在2010年发表了《[Dapper - a Large-Scale Distributed Systems Tracing Infrastructure](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/papers/dapper-2010-1.pdf)》论文介绍他们的分布式系统跟踪技术。
 
@@ -52,7 +52,7 @@ A~E分别表示五个服务，用户发起一次请求到前端系统A，然后A
 
 ![Dapper架构图](http://tva1.sinaimg.cn/large/bda5cd74ly1gh059qtux4j20jg0d10uy.jpg)
 
-## 3、阿里的鹰眼
+# 3、阿里的鹰眼
 
 业界已有很多链路追踪技术的实现了，Twitter基于Google的Dapper论文开发了[Zipkin](https://github.com/openzipkin/zipkin)并提供了开源版本。Zipkin提供了Java版本的埋点库[Brave](https://github.com/openzipkin/brave)，[Spring Cloud Seluth](https://github.com/spring-cloud/spring-cloud-sleuth)通过自动化配置可以很方便地将Brave整合进Java应用以提供链路追踪功能。Uber公司的技术团队受[Dapper](https://research.google.com/pubs/pub36356.html) 和 [OpenZipkin](https://zipkin.io/)启发用Go语言也开发了一款链路追踪平台[Jaeger](https://github.com/jaegertracing/jaeger)。开源社区也启动了[OpenTracing计划](https://github.com/opentracing)，旨在将各种语言和平台间的链路追踪名词和概念进行[标准化](https://opentracing.io/specification/)。
 
@@ -72,7 +72,7 @@ HSF服务端收到这个请求之后，会从请求附件里取出调用上下�
 
 ![Alibaba Eagleeye](http://tva1.sinaimg.cn/large/bda5cd74ly1gh0p1t1ioxj20ez09ajsr.jpg)
 
-## 4、源码导读
+# 4、源码导读
 
 首先大多数链路的入口是用户发起的HTTP请求。鹰眼提供了一个EagleEyeFilter用于处理入口处的请求，其中包括生成整个链路的TraceID等操作。
 

@@ -18,7 +18,7 @@ keywords:
 
 所以国庆回家几天，研究了一下WebPush的规范，以期能从Firebase的泥沼中得到解脱。
 
-## 1、浅谈Push消息
+# 1、浅谈Push消息
 
 Push消息是移动互联网的产物。作为移动端两大操作系统，iOS和Android有各自的消息推送服务，苹果有APNs(Apple Push Notification service)，谷歌有GCM(Google Cloud Messaging)和FCM(Firebase Cloud Messaging)，FCM是[Firebase被Google收购](https://en.wikipedia.org/wiki/Firebase)后与GCM结合的产物，移动互联网竞争失败者微软也有自己的MPNs。
 
@@ -28,7 +28,7 @@ APNs和GCM都是系统级的推送能力，以APNs为例，[iOS系统会有一�
 
 ![Push消息](https://img.alicdn.com/tfs/TB1Q8.LYYY1gK0jSZTEXXXDQVXa-808-797.png)
 
-## 2、从AppPush到WebPush
+# 2、从AppPush到WebPush
 
 在任何操作系统上浏览器都是使用最频繁的App，随着浏览器的性能提升，很多应用都没有独立的App，而是建立在Web上。WebApp的兴起也激发了WebPush的需求。
 
@@ -44,7 +44,7 @@ Mozilla的Firefox仿佛是独立于三界之外的产物，但是却推动了整
 
 ![](https://img.alicdn.com/tfs/TB1aj.nY.z1gK0jSZLeXXb9kVXa-1896-1202.png)
 
-## 3、WebPush规范
+# 3、WebPush规范
 
 WebPush规范分为三部分：WebPush的推送方式([RFC8030](https://tools.ietf.org/html/rfc8030))，WebPush消息的加密([RFC8291](https://tools.ietf.org/html/rfc8291))，客户端浏览器与应用服务的识别([RFC8292](https://tools.ietf.org/html/rfc8292))。
 
@@ -125,7 +125,7 @@ var auth = subscription.getKey('auth');
 
 有了WebPushLib一切就如拨云见日，但是AE还是有一个问题亟待解决。
 
-## 4、AE的多站点授权问题
+# 4、AE的多站点授权问题
 
 AE由于国际化的特性，每个站点都会有不同域名，比如主战是`www.aliexpress.com`，俄罗斯站点域名是`aliexpress.ru`，德国站点是`de.aliexpress.com`...。除此之外，AE业务很复杂，根据业务还会有`my.aliexpress.com`，`trade.aliexpress.com`，`sale.aliexpress.com`，`best.aliexpress.com`等域名。
 

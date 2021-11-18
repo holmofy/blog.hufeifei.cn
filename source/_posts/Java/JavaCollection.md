@@ -9,7 +9,7 @@ categories: JAVA
 
 JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是JAVA对各种数据结构的实现。一个集合代表一组对象，使用集合框架可以独立于实现细节来操作这一组对象，而不用自己再造轮子。
 
-##集合接口概要：
+# 集合接口概要：
 
 ![集合接口](http://img-blog.csdn.net/20170505163102593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -21,7 +21,7 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 
 
-##List （since 1.2）
+# List （since 1.2）
 
 有序列表，代表一组**有序可重复**对象。
 
@@ -29,7 +29,7 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 ![List实现类](http://img-blog.csdn.net/20170505163345542?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### Vector（since 1.0）：
+#### Vector（since 1.0）：
 
 与ArrayList实现基本类似，都是用Object数组存储，区别在于Vector是线程安全的，而且Vector扩容策略也比较老式：
 
@@ -43,7 +43,7 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 
 
-### Stack（since 1.0）：
+#### Stack（since 1.0）：
 
 “后进先出(LIFO)”的栈式结构，继承自Vector，这也决定了它被淘汰的命运：因为**Deque接口的实现类可以作为栈使用**
 
@@ -51,7 +51,7 @@ JAVA集合框架可以是说是JAVA开发中使用次数最高的一套类，是
 
 
 
-### ArrayList（since 1.2）：
+#### ArrayList（since 1.2）：
 
 数组实现的List，自动扩容，Java8.0中一般扩容策略为`newCapacity = oldCapacity + (oldCapacity >> 1)`，也就是说每次扩容新容量为原始容量的**1.5倍**，另外在第一次添加元素的时候才申请内存(**默认初始容量为10**)。
 
@@ -59,7 +59,7 @@ ArrayList绝对是集合框架中使用次数最多的类。
 
 
 
-### LinkedList（since 1.2）：
+#### LinkedList（since 1.2）：
 
 双向链表实现的List，在后续Java版本中又相继实现了Queue，Deque接口，所以**该类可以当作链表、队列、栈**使用。
 
@@ -69,7 +69,7 @@ ArrayList绝对是集合框架中使用次数最多的类。
 
 
 
-### CopyOnWriteArrayList（since 1.5，concurrent）：
+#### CopyOnWriteArrayList（since 1.5，concurrent）：
 
 通过拷贝数组来保证写线程不会影响到读线程(实现所谓的读写分离)，所以该类允许读写同时进行；
 
@@ -79,7 +79,7 @@ ArrayList绝对是集合框架中使用次数最多的类。
 
 
 
-##Map （since 1.2）
+# Map （since 1.2）
 
 > 把Map放在前面是因为，Set的实现类是基于Map或List实现的。
 
@@ -89,7 +89,7 @@ ArrayList绝对是集合框架中使用次数最多的类。
 
 ![Map实现类](http://img-blog.csdn.net/20170505163429840?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### Hashtable（since 1.0）：
+#### Hashtable（since 1.0）：
 
 哈希表，与HashMap实现原理相同，都是使用链式地址法解决哈希碰撞的。
 
@@ -102,7 +102,7 @@ Hashtable基本被淘汰，Java的后续版本都没有对其升级。
 
 > 更多相关内容可以查看HashMap
 
-### Propreties（since 1.0）：
+#### Propreties（since 1.0）：
 
 严格的说，这个类不能算是容器类。这个类一般用于存取属性配置文件的，该类实际上是一个``Hashtable<Object,Object>``对象。
 
@@ -110,7 +110,7 @@ Hashtable基本被淘汰，Java的后续版本都没有对其升级。
 public class Properties extends Hashtable<Object,Object>
 ```
 
-### HashMap（since 1.2）：
+#### HashMap（since 1.2）：
 
 HashMap在集合框架中的地位举足轻重，所以Java在每个版本中都对它进行了大大小小的性能优化。
 
@@ -187,7 +187,7 @@ static final int MIN_TREEIFY_CAPACITY = 64;
 
 
 
-### WeakHashMap（since 1.2）：
+#### WeakHashMap（since 1.2）：
 
 使用上与HashMap类似，区别在于这里的Entry对象(Key-Value对)继承自WeakReference。
 
@@ -227,7 +227,7 @@ WeakHashMap也进行了二次幂优化：`hash & (length-1)`
 
 
 
-### IdentityHashMap（since 1.4）：
+#### IdentityHashMap（since 1.4）：
 
 与HashMap功能相同，区别在于IdentityHashMap使用`k1 == k2`判断key是否相同，也就是k1和k2是同一个对象的引用才认为是同一个key；
 
@@ -243,7 +243,7 @@ private static int hash(Object x, int length) {
 	return ((h << 1) - (h << 8)) & (length - 1);
 }
 ```
-### LinkedHashMap（since 1.4）：
+#### LinkedHashMap（since 1.4）：
 
 LinkedHashMap继承自HashMap，在HashMap的基础上，**通过维护一个双向链表来保存元素插入的顺序**。
 
@@ -263,7 +263,7 @@ public class LruCache extends LinkedHashMap {
 
 
 
-### EnumMap（since 1.5）：
+#### EnumMap（since 1.5）：
 
 元素只能是枚举类，构造EnumMap时指定枚举类型。**底层使用数组实现存储**，所以**数据比较紧凑**。Key不允许为null。使用相对比较少。
 
@@ -275,7 +275,7 @@ ConcurrentSkipListMap（since 1.6，concurrent）：ConcurrentNavigableMap的实
 
 > Android中还提供了一个数组实现的ArrayMap。HashMap将Key-Value包装成一个类对象，然后使用该类的数组。而**ArrayMap直接将Key-Value放在一个Object数组中，通过2\*n，2\*n+1来对Key-Value进行区分**，这和EnumMap在一定程度有有点相似。
 
-## SortedMap(since 1.2)与NavigableMap(since 1.6)
+### SortedMap(since 1.2)与NavigableMap(since 1.6)
 
 
 
@@ -302,7 +302,7 @@ NavigableMap实现类：
 
 ![NavigableMap实现类](http://img-blog.csdn.net/20170505164048176?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### TreeMap（since 1.2）：
+#### TreeMap（since 1.2）：
 
 通过**红黑树**（一种自平衡二叉查找树树）实现的有序Map映射，因为红黑树的元素查找类似于**二分查找**，所以保证了增删改查等方法的时间复杂度$log_2(N)$。
 
@@ -312,7 +312,7 @@ NavigableMap实现类：
 
 >  ConcurrentSkipListMap可以[查看ConcurrentNavigableMap接口的实现类](#ConcurrentNavigableMap)。
 
-## ConcurrentMap （since 1.5）与ConcurrentNavigableMap （since 1.6）
+### ConcurrentMap （since 1.5）与ConcurrentNavigableMap （since 1.6）
 
 在Map的基础上添加了一些原子操作，从而实现无锁数据结构，具有多线程高并发特性，更多内容可以查看[这篇文章](http://blog.csdn.net/holmofy/article/details/73824757)。
 
@@ -338,17 +338,17 @@ NavigableMap实现类：
 
 **ConcurrentNavigableMap**是ConcurrentMap与NavigableMap的结合体：既有序又高并发。
 
-### ConcurrentHashMap（since 1.5，concurrent）：
+#### ConcurrentHashMap（since 1.5，concurrent）：
 
 该类用来代替Hashtable实现多线高并发操作。与Hashtable相比支持高并发的读取操作，Hashtable由于所有的方法都加上了同步锁(包括读取操作)，而ConcurrentHashMap对读取操作不加锁，对写入操作的关键部分加同步锁，进而降低锁粒度，所以在多线程操作的效率上ConcurrentHashMap比Hashtable更加高效。
 
 
 
-### ConcurrentSkipListMap（since 1.6，concurrent）：
+#### ConcurrentSkipListMap（since 1.6，concurrent）：
 
 ConcurrentNavigableMap接口的唯一实现类。该数据结构使用**跳跃链表**实现，跳跃链表是一种查找速度与二叉查找树相当的数据结构，基于多级并联的链表实现，相较二叉查找树要消耗更多的内存资源，但实现起来比二叉查找树简单的多。关于跳跃链表的更多细节可以查看[维基百科](https://zh.wikipedia.org/zh/%E8%B7%B3%E8%B7%83%E5%88%97%E8%A1%A8)。
 
-##Set （since 1.2）
+# Set （since 1.2）
 
 无序集合，代表一组无序不可重复的对象。与数学中的集合特性类似：无序性，互异性。
 
@@ -356,11 +356,11 @@ ConcurrentNavigableMap接口的唯一实现类。该数据结构使用**跳跃�
 
 ![Set的实现类](http://img-blog.csdn.net/20170505164232004?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### HashSet（since 1.2）：
+#### HashSet（since 1.2）：
 
 一个**底层由HashMap实现**的无序集合。只使用了HashMap的Key，而**没有使用Value**，HashSet的所有元素的Value都是一个Object常量：``private static final Object PRESENT = new Object();``。因为HashMap允许Key为null，所以HashSet中的元素也**允许为null**。
 
-### LinkedHashSet（since 1.4）：
+#### LinkedHashSet（since 1.4）：
 
 底层由LinkedHashMap实现。LinkedHashSet继承自HashSet，该类只有四个构造函数，这四个构造函数都是调用HashSet的这个构造函数(该构造方法包内私有)：
 
@@ -371,7 +371,7 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 ```
 
 
-### EnumSet（since 1.5）：
+#### EnumSet（since 1.5）：
 
 只存储枚举类型的Set。根据具体的枚举类型，可以得到枚举类中的所有枚举值，进一步就确定这个集合最大的容量了。EnumSet就直接把所有枚举值放到一个数组，然后通过类似于BitSet的位图算法并借助枚举类值的ordinal作为索引来标记集合中是否有对应的枚举值。按照枚举类的大小它分成了两种实现，枚举值个数小于64的直接用一个`long`进行标记，这就是`RegularEnumSet`的实现；枚举值个数大于64的，则用`long[]`进行标记，这就是`JumboEnumSet`的实现。
 
@@ -379,13 +379,13 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 
 
-### CopyOnWriteArraySet（since 1.5，concurrent）：
+#### CopyOnWriteArraySet（since 1.5，concurrent）：
 
 基于CopyOnWriteArraySet实现的无序集，**与CopyOnWriteArrayList一样不适合写操作频繁的场合**。由于底层使用数组实现，所以它的**查找速度不如HashSet**。
 
 > ConcurrentSkipListSet可以[查看NavigableSet接口](#NavigableSet)。
 
-## SortedSet （since 1.2）与NavigableSet （since 1.6）
+### SortedSet （since 1.2）与NavigableSet （since 1.6）
 
 **SortedSet** ：有序集合，在Set基础上提供排序功能，由于Set基本上都是使用Map实现的(除了上面提到的EnumSet)，所以SortedSet的排序功能也来自于SortedMap。
 
@@ -410,17 +410,17 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 
 
-### TreeSet（since 1.2）：
+#### TreeSet（since 1.2）：
 
 底层由TreeMap实现，与HashSet一样只使用Key不使用Value，Value都是同一个对象：`private static final Object PRESENT = new Object();`
 
 
 
-### ConcurrentSkipListSet（since 1.6，concurrent）：
+#### ConcurrentSkipListSet（since 1.6，concurrent）：
 
 基于ConcurrentSkipListMap实现的有序集，因为ConcurrentSkipListMap支持并发操作，ConcurrentSkipListSet也支持并发操作。
 
-##Queue （since 1.5）
+# Queue （since 1.5）
 
 ![队列示意图](http://img-blog.csdn.net/20170710235752953?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 在普通集合的基础上添加了一些队列操作：
@@ -443,15 +443,15 @@ Queue这个接口仿佛就是为了并发库而设计的，所以Queue的实现�
 
 
 
-### PriorityQueue（since 1.5）：
+#### PriorityQueue（since 1.5）：
 
 优先级队列，使用数组实现**二叉堆**(完全二叉树)，从而对元素进行排序，队列中的元素需要实现Comparable接口或者在构造方法中指定Comparator比较器。
 
-### ConcurrentLinkedQueue（since 1.5，concurrent）：
+#### ConcurrentLinkedQueue（since 1.5，concurrent）：
 
 无界限非阻塞的并发队列，使用了非阻塞同步算法(CAS)实现无锁数据结构，该类与BlockingQueue接口的实现类不同，BlockingQueue通过线程阻塞来实现生产者与消费者的同步，而无锁数据结构不会导致线程阻塞。关于CAS的内容可以参考[这篇文章](http://blog.csdn.net/holmofy/article/details/73824757)。
 
-## BlockingQueue （since 1.5，concurrent）
+### BlockingQueue （since 1.5，concurrent）
 
 阻塞队列。在Queue的基础上进行阻塞扩展，如果**队列为空读取元素会阻塞**，如果**队列已满添加元素会阻塞**。用生产者消费者模式来解释就是：当生产者向队列添加元素但队列已满时，生产者会被阻塞；当消费者从队列移除元素但队列为空时，消费者会被阻塞。阻塞队列是线程间通信常用的手段。
 
@@ -461,28 +461,28 @@ Queue这个接口仿佛就是为了并发库而设计的，所以Queue的实现�
 
 ![BlockingQueue实现类](http://img-blog.csdn.net/20170505164906876?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-### ArrayBlockingQueue（since 1.5，concurrent）：
+#### ArrayBlockingQueue（since 1.5，concurrent）：
 
 **数组实现**的阻塞队列，数组大小**不会自动增长**。队列已满，生产者线程阻塞。元素不允许为null。
 
-### DelayQueue（since 1.5，concurrent）：
+#### DelayQueue（since 1.5，concurrent）：
 
 使用PriorityQueue与ReentrantLock实现的延时阻塞队列，该集合存储的元素需要实现Delayed接口，该集合通过Delayed接口来获取元素对应的延时时长。元素不能为null。
 
-### LinkedBlockingQueue（since 1.5）：
+#### LinkedBlockingQueue（since 1.5）：
 
 单向链表实现的阻塞队列，该集合功能上类似与ArrayBlockingQueue。LinkedBlockingQueue可以在构造方法中指定最大容量，如果没有指定则为Integer.MAX_VALUE，相当于不限容，所以LinkedBlockingQueue相比ArrayBlockingQueue有更大的吞吐量。元素不允许为null。
 
-### PriorityBlockingQueue（since 1.5）：
+#### PriorityBlockingQueue（since 1.5）：
 
 在PriorityQueue的基础上对读写操作加重入锁(ReentrantLock)来达到多线程的同步。
 
-### SynchronousQueue（since 1.5）：
+#### SynchronousQueue（since 1.5）：
 
 这个类是一个比较奇葩的容器，或许不能称其为容器，因为它是一个0容量的队列，不像ArrayBockingQueue和LinkedBlockingQueue那样有缓冲区，SynchronousQueue没有缓冲区，内部直接通过TransferQueue(公平模式)或TransferStack(不公平模式)来进行生产者与消费者的数据传递（这是Java6之后的实现方式），公平模式使生产者(或消费者)线程排队依次添加(或取出)，而费公平模式允许恶性竞争，使用SynchronousQueue可以让生产者线程与消费者线程之间的同步：生产者生产一个消费者就消费一个。SynchronousQueue不允许添加null元素。
 ![公平模式下的SynchronousQueue示意图](http://img-blog.csdn.net/20170711000357264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## Deque （since 1.6）
+### Deque （since 1.6）
 
 ![Deque示意图](http://img-blog.csdn.net/20170711000453655?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 双端队列，两端都支持插入删除。既可以把它当Queue用又可以把它当Stack用。
@@ -507,7 +507,7 @@ LinkedBlockingDeque（since 1.7，concurrent）：
 
 BlockingDeque接口的实现类。[查看BlockingDeque接口](#BlockingDeque)
 
-## BlockingDeque （since 1.6）
+### BlockingDeque （since 1.6）
 
 BlockingDeque与Deque的关系类似于BlcokingQueue与Queue的关系。
 
@@ -518,7 +518,7 @@ BlockingDeque与Deque的关系类似于BlcokingQueue与Queue的关系。
 * java.util.concurrent包
   - LinkedBlockingDeque（since 1.7）：双向链表实现的双端阻塞队列。与LinkedBlockingQueue类似，只是说这个类还可以当作栈使用。
 
-## TransferQueue （since 1.7）
+### TransferQueue （since 1.7）
 
 在BlockingQueue的基础上更进一步，生产者会一直阻塞直到所添加到队列的元素被某一个消费者所消费（不仅仅是添加到队列里就完事）。这个和SynchronousQueue有点类似，但区别在于SynchronousQueue只允许一个生产者线程将数据传递给一个消费者线程，其他线程想要添加或取出数据就会阻塞；而TransferQueue可以允许多个生产者线程同时与多个消费者线程进行数据传递，所以当我们把TransferQueue的容量设为0时TransferQueue就等价于SynchronousQueue了。
 <table border="0" cellpadding="3" cellspacing="0"><tr><th scope="col">返回值</th><th scope="col">方法说明</th></tr><tr id="i0"><td><code>int</code></td><td><code><span>getWaitingConsumerCount</span>()</code><div>返回调用<code>BlockingQueue.take()</code>或<code>BlockingQueue.poll</code>消费者方法而阻塞的消费者的数量</div></td></tr><tr id="i1"><td><code>boolean</code></td><td><code><span>hasWaitingConsumer</span>()</code><div><code>true</code>是否有消费者正在调用<code>BlockingQueue.take()</code>或<code>BlockingQueue.poll</code>消费者方法</div></td></tr><tr id="i2"><td><code>void</code></td><td><code><span>transfer</span>(E&nbsp;e)</code><div>将元素e转交给消费者，如有必要该方法阻塞以等待消费者将元素e消费。</div></td></tr><tr id="i3"><td><code>boolean</code></td><td><code><span>tryTransfer</span>(E&nbsp;e)</code><div>如果可以立即将元素e转交给等待的消费者返回true，否则返回false。</div></td></tr><tr id="i4"><td><code>boolean</code></td><td><code><span>tryTransfer</span>(E&nbsp;e,
@@ -529,11 +529,11 @@ BlockingDeque与Deque的关系类似于BlcokingQueue与Queue的关系。
 * java.util.concurrent包
   - LinkedTransferQueue（since 1.7）：TransferQueue接口唯一的一个实现类，相关功能可以查看TransferQueue接口的定义。注意的是``LinkedTransferQueue.size()``方法与大多数集合不一样，该类没有成员变量中没有保存容器的size，size()方法会临时性的去遍历整个链表来计算元素个数，所以这是个非常耗时的操作，而且由于遍历过程中可能有另外的线程操作，所以该方法获取的size可能是不准确的。
 
-##Collections工具类
+# Collections工具类
 
-## Collections工具类中的包装类
+### Collections工具类中的包装类
 
-### Collections.unmodifiable 不可修改包装类
+#### Collections.unmodifiable 不可修改包装类
 
 经过unmodifiable方法包装的集合对象将成为只读对象，对只读的集合进行add，remove等修改操作将会抛出异常。这个方法使用场景比较广泛。比如说一个公司(Company)有一个字段为员工表(employeeList)，同时有一个获取员工表的方法``List getEmployeeList()``，我们希望员工的删减只能通过Company类中的指定方法来修改，``List getEmployeeList()``方法返回员工表但是不能被外部修改，此时就需要使用unmodifiableList对employeeList进行包装了。
 
@@ -576,7 +576,7 @@ Collections中的unmodified方法有以下几个：
 
 > 这与Google Guava中的Immutable集合工具类有点类似。
 
-### Collections.synchronized 同步包装类
+#### Collections.synchronized 同步包装类
 
 synchronized包装后的集合是线程同步的，比如ArrayList对象可以经过synchronizedList方法进行包装从而达到线程同步的目的，有了这个线程同步的包装类，ArrayList可以完全替代Vector。
 
@@ -589,7 +589,7 @@ synchronized包装后的集合是线程同步的，比如ArrayList对象可以�
 - `public static <K,V> SortedMap<K,V> synchronizedSortedMap(SortedMap<K,V> m)`
 - `public static <K,V> NavigableMap<K,V> synchronizedNavigableMap(NavigableMap<K,V> m)`
 
-### Collections.checked 动态类型检查包装类
+#### Collections.checked 动态类型检查包装类
 
 这主要归咎于Java的类型擦除(Java的泛型与C++的泛型不同，准确的说C++应该叫做“模板”，C++在编译后会根据模版的使用情况生成多套可执行代码，而Java使用同一套代码)。Java集合实际存储的时候都是使用Object数组，集合中不保存集合元素的数据类型，所以在源代码中你会看到类似下面的代码：
 
@@ -658,7 +658,7 @@ Collections中的checked方法有以下几个：
 - `public static <K,V> NavigableMap<K,V> checkedNavigableMap(NavigableMap<K, V> m, Class<K> keyType, Class<V> valueType)`
 - `public static <E> Queue<E> checkedQueue(Queue<E> queue, Class<E> type)`
 
-## Collections类中的简单工具方法
+### Collections类中的简单工具方法
 
 1. 列表逆序
   ```java
@@ -714,8 +714,8 @@ Collections中的checked方法有以下几个：
   public static int lastIndexOfSubList(List<?> source, List<?> target)
   ```
 
-## Collections类中的算法
-### 排序算法
+### Collections类中的算法
+#### 排序算法
 Collections直接调用list.sort方法，该方法底层调用Arrays类中的排序算法。
 ```java
 public static <T extends Comparable<? super T>> void sort(List<T> list)
@@ -724,27 +724,27 @@ public static <T> void sort(List<T> list, Comparator<? super T> c)
 
 > 关于排序算法可以先参考[常见排序算法及Java实现](http://blog.csdn.net/holmofy/article/details/70245895)和[SinglePivotQuickSort与DualPivotQuickSort及其JAVA实现](http://blog.csdn.net/holmofy/article/details/71168530)。
 
-### 二分查找算法
+#### 二分查找算法
 
 ```java
 int binarySearch(List<? extends Comparable<? super T>> list, T key)
 public static <T> int binarySearch(List<? extends T> list, T key, Comparator<? super T> c)
 ```
 
-### 洗牌算法
+#### 洗牌算法
 ```java
 public static void shuffle(List<?> list)
 public static void shuffle(List<?> list, Random rnd)
 ```
 
-### 列表旋转算法
+#### 列表旋转算法
 ```java
 // 列表的旋转可能不好理解，你把list想象成一个环。
 // 环的旋转就相当于把list的尾部放到头部，头部放到尾部，注意这和列表的逆序不一样。
 public static void rotate(List<?> list, int distance)
 ```
 
-## Collections中的适配器
+### Collections中的适配器
 
 Collections集合中使用对象的适配器模式实现并提供了两个适配器，分别可以将Map适配成Set，Deque适配成Stack。
 

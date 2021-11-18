@@ -5,11 +5,11 @@ tags:
 categories: Windows
 ---
 
-##LocalDB是什么
+# LocalDB是什么
 
 我们知道微软有一个SQL Server的免费版本[SQL Server Express](https://en.wikipedia.org/wiki/SQL_Server_Express)，它是作为学习以及构建桌面或小型服务器应用的入门级的免费数据库。但是作为编程人员，还是觉得体积过大。所以微软为开发者量身定制了一款专门用于编程开发的小数据库[SQL Server Express LocalDB](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-2016-express-localdb)(实际上就是从SQL Server Express中抽离出来的)。
 
-##下载和安装LocalDB
+# 下载和安装LocalDB
 
 如果你使用Visual Studio开发，那么恭喜你Visual Studio从2012版本开始就自带了LocalDB。
 
@@ -37,7 +37,7 @@ categories: Windows
 
 > sqllocaldb工具的参考文档：https://docs.microsoft.com/en-us/sql/tools/sqllocaldb-utility
 
-##使用sqllocaldb命令行工具管理数据库实例
+# 使用sqllocaldb命令行工具管理数据库实例
 
 命令行工具很好用，所有的文档都是中文的：
 
@@ -102,7 +102,7 @@ SqlLocalDB 将空格作为分隔符处理。需要用引号将
 实例 "MSSQLLocalDB"。
 ```
 
-## 创建数据库实例
+### 创建数据库实例
 
 ```shell
 C:\>sqllocaldb create MyLocalDB
@@ -144,7 +144,7 @@ sqlservr.exe                 13680 Console                  1    170,684 K
 
 为了支持多个计算机用户连接到单个LocalDB实例，可以使用`sqllocaldb share`命令选择允许计算机上的其他用户连接到该实例，注意不是将实例共享给其他计算机(跟网络没啥关系)，所以这个功能很鸡肋。
 
-## 连接LocalDB
+### 连接LocalDB
 
 **1、 客户端应用连接**
 
@@ -270,7 +270,7 @@ sqlcmd中除了可以输入T-SQL语句，还有很多内建命令：
 
 ![Navicat](http://img-blog.csdn.net/20170909211440846?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##创建数据库
+# 创建数据库
 
 这部分就属于T-SQL语言的部分了，忘记了赶快翻大学课本回忆一下：
 

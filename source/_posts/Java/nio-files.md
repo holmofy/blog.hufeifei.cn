@@ -23,7 +23,7 @@ Files的大部分功能实际上由FileSystemProvider实现，而获取FileSyste
 
 [TOC]
 
-##Path—路径操作
+# Path—路径操作
 
 [上一篇文章中](http://blog.csdn.net/holmofy/article/details/75269866)也说过File中是一个大杂烩：路径操作，文件属性访问，文件增删操作，磁盘属性访问等全部混在了File类中。NIO中将这些功能划分开来，其中Path类就定义了路径操作的功能。Path也是`java.nio.file`包中的核心接口之一，如果你的应用使用NIO API来操作文件，那就很有必要了解一下这个类的强大功能了。
 
@@ -37,7 +37,7 @@ Files的大部分功能实际上由FileSystemProvider实现，而获取FileSyste
 
 为了平台的无关性，Java提供了一个Paths工厂类让不同平台的JDK创建对应的Path对象。
 
-## 使用Paths工具类创建Path对象
+### 使用Paths工具类创建Path对象
 
 Paths类只有两个方法，实现也很简单：
 
@@ -69,7 +69,7 @@ public final class Paths {
 
 > FileSystem类和以及它的工厂类FileSystems会在文章的后半部分讲到。
 
-## 1. 简单路径操作(字符操作)
+### 1. 简单路径操作(字符操作)
 
 Path路径本质上就是一个字符串，在没有访问文件系统之前，大部分操作只是进行字符串的操作。
 
@@ -198,7 +198,7 @@ iterate subpath: dir
 iterate subpath: test.txt
 ```
 
-## 2. 路径的解析与处理
+### 2. 路径的解析与处理
 
 ```java
 // 根据当前路径解析other路径
@@ -241,7 +241,7 @@ D:\a\c
 c
 ```
 
-## 3. 路径(文件或目录)的监测
+### 3. 路径(文件或目录)的监测
 
 ```java
 // 注册一个监听器观察路径对应的文件或目录是否有事件(创建,删除,修改)
@@ -278,11 +278,11 @@ public class PathTest {
 }
 ```
 
-##Files工具类——文件操作
+# Files工具类——文件操作
 
 Files工具类负责文件的各种操作：
 
-## 1. 文件内容的读写操作
+### 1. 文件内容的读写操作
 
 使用这些方法我们可以直接获取文件的IO流对象(传统IO)或文件管道(NIO)，这很大程度方便了我们的编程。
 
@@ -310,7 +310,7 @@ public static SeekableByteChannel newByteChannel(Path path, OpenOption... option
 }
 ```
 
-## 2. 拷贝和移动
+### 2. 拷贝和移动
 
 ```java
 // 将源文件拷贝到指定路径
@@ -319,7 +319,7 @@ public static Path copy(Path source, Path target, CopyOption... options);
 public static Path move(Path source, Path target, CopyOption... options);
 ```
 
-### OpenOption与CopyOption
+#### OpenOption与CopyOption
 
 OpenOption：用于配置如何打开或创建一个文件
 
@@ -329,7 +329,7 @@ LinkOption：定义如何处理符号链接
 
 ![Option](./Option.svg)
 
-## 3. 列举目录下的文件
+### 3. 列举目录下的文件
 
 ```java
 // 非递归迭代目录下的文件(一层)
@@ -393,7 +393,7 @@ C:\Windows
 C:\Windows10Upgrade
 ```
 
-## 4. 创建与删除
+### 4. 创建与删除
 
 ```java
 // 创建文件，并指定相应的文件属性
@@ -421,7 +421,7 @@ public static void delete(Path path);
 public static boolean deleteIfExists(Path path);
 ```
 
-## 5. 其他
+### 5. 其他
 
 ```java
 // 读取符号链接指向的路径
@@ -486,7 +486,7 @@ ContentType示例：
 text/plain
 ```
 
-## 6. 属性访问
+### 6. 属性访问
 
 ```java
 /**读取FileAttributeView的子类的相关属性**/
@@ -521,7 +521,7 @@ public static Path setLastModifiedTime(Path path, FileTime time);
 public static long size(Path path);
 ```
 
-### AttributeView
+#### AttributeView
 
 所有的Attribute相关类都定义在`java.nio.file.attribute`包下，这个包下的类提供了访问文件(或文件系统)的属性。该包下关键接口的关系图如下：
 
@@ -591,7 +591,7 @@ NT AUTHORITY\Authenticated Users:[READ_DATA, READ_NAMED_ATTRS, WRITE_NAMED_ATTRS
 BUILTIN\Users:[READ_DATA, READ_NAMED_ATTRS, READ_ACL, READ_ATTRIBUTES, SYNCHRONIZE, EXECUTE]
 ```
 
-## 7. 可访问性
+### 7. 可访问性
 
 ```java
 /**文件是否存在**/
@@ -606,7 +606,7 @@ public static boolean isWritable(Path path);
 public static boolean isExecutable(Path path);
 ```
 
-## 8. 递归操作
+### 8. 递归操作
 
 ```java
 /**遍历文件树**/
@@ -655,7 +655,7 @@ E:\JDevTools\jdk1.8.0_131\include\win32\jawt_md.h
 E:\JDevTools\jdk1.8.0_131\include\win32\jni_md.h
 ```
 
-## 9. 文件内容读写的简单包装
+### 9. 文件内容读写的简单包装
 
 ```java
 // 打开一个文本文件，并以BufferedReader进行读取
@@ -683,7 +683,7 @@ public static Path write(Path path, Iterable<? extends CharSequence> lines, Char
 public static Path write(Path path, Iterable<? extends CharSequence> lines, OpenOption... options);
 ```
 
-## 10. Stream函数式编程
+### 10. Stream函数式编程
 
 Lambda与函数式编程可参考[这篇文章](http://blog.csdn.net/holmofy/article/details/77481304)。
 
@@ -740,7 +740,7 @@ THIRDPARTYLICENSEREADME-JAVAFX.txt
 THIRDPARTYLICENSEREADME.txt
 ```
 
-##FileSystem与FileSystems
+# FileSystem与FileSystems
 
 FileSystem是访问文件或其他文件系统对象的工厂类。它是个抽象类，我们可以使用FileSystems这个工具类来创建FileSystem对象。
 
@@ -824,7 +824,7 @@ DESKTOP-DQJB4BI\Administrator
 
 上面的例子方法都很简单，不过PathMatcher需要详细介绍一下
 
-## PathMatcher
+### PathMatcher
 
 在传统IO的File类中我们通常使用FileFilter或FilenameFilter来过滤文件，Common-IO中提供了这两个接口大量的实现类，其中有两个实现类就是`WildcardFileFilter`和`RegexFileFilter`分别代表了使用通配符过滤文件名、使用正则表达式过滤文件名，而在Java7提供的`FileSystem.getPathMatcher`方法返回了一个PathMatcher对象，这个PathMatcher对象就能实现`WildcardFileFilter`和`RegexFileFilter`两者的功能。
 

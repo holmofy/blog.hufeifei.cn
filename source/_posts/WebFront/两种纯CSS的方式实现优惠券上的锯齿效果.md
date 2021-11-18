@@ -16,7 +16,7 @@ categories: 前端
 
 我们的目的是用纯CSS实现锯齿
 
-##一、使用before和after伪元素的border实现
+# 一、使用before和after伪元素的border实现
 
 先看一张效果图
 
@@ -30,7 +30,7 @@ categories: 前端
 <div class="sawtooth" style="background:#e24141;width:400px;height:170px;"></div>
 ```
 
-## 1. 用dotted圆点边框覆盖div
+### 1. 用dotted圆点边框覆盖div
 
 我们的主要思路就是用两排圆点覆盖在div上：
 
@@ -68,7 +68,7 @@ categories: 前端
 
 ![1](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbivveosnj20c405m0sl.jpg)
 
-## 2. 微调边框位置
+### 2. 微调边框位置
 
 但是由于圆点是顶着div开始的，总感觉不怎么好看，我们把before和after两个伪元素往下移动一点：
 
@@ -87,7 +87,7 @@ categories: 前端
 
 ![3](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbix3cohyj20d906s746.jpg)
 
-## 3. 隐藏多余的部分
+### 3. 隐藏多余的部分
 
 为了解决这个问题，我们把需要把超出div的部分剪切掉：
 
@@ -144,7 +144,7 @@ categories: 前端
 
 
 
-##二、使用透明背景实现
+# 二、使用透明背景实现
 
 上面的方法的缺点是，我们需要让border的颜色和背景色一致，才能让我们的优惠券不“露馅”。
 
@@ -162,7 +162,7 @@ categories: 前端
 <div class="sawtooth" style="width:420px;height:170px;"></div>
 ```
 
-##  1. 用css画出这张网
+###  1. 用css画出这张网
 
 为了画出这么多的洞，我们要用到`radial-gradient`这个渐变函数，不过我们并不需要用到它的渐变功能，只要用它来画透明的圆点就行。
 
@@ -197,7 +197,7 @@ categories: 前端
 
 ![2](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj0dtoeej207j05da9u.jpg)
 
-## 2. 找一个元素把多余的洞覆盖掉
+### 2. 找一个元素把多余的洞覆盖掉
 
 **为了不影响html的整洁性**，我们就**使用before或after这两个伪元素中的一个**来覆盖多余的洞吧。
 
@@ -229,7 +229,7 @@ categories: 前端
 
 ![3](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj10ocfnj20d505zq2r.jpg)
 
-## 3. 让遮罩层下移，让它成为背景
+### 3. 让遮罩层下移，让它成为背景
 
 上面的样式还有一点点问题。
 
@@ -276,7 +276,7 @@ OK，我们想要的效果有了。
 
 ![6](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbj2p9r0tj20di062q2r.jpg)
 
-## 4. 双层背景实现遮罩
+### 4. 双层背景实现遮罩
 
 使用伪元素实现遮罩除了要使用`z-index`改变层级外，代码也显得冗长，我们还可以用双层背景来实现遮罩。为了让两个背景大小不一样我们还要用到[background-clip](https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip)来设置背景的裁剪区域，`background-clip`支持四种属性值(text兼容性不好)：
 
@@ -302,7 +302,7 @@ OK，我们想要的效果有了。
 >
 > 不过我在实践的时候，发现直接用纯色背景也可以实现效果。
 
-## 附加：改变形状，生成别样的锯齿
+### 附加：改变形状，生成别样的锯齿
 
 我们可以通过适当修改background的几个参数，将圆形压扁，生成其他形状的锯齿：
 

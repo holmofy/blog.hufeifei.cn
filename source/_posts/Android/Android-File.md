@@ -10,7 +10,7 @@ description: android文件存储解析
 
 安卓中提供了Context中的方法与Environment类来获取文件。
 
-## Context文件操作方法
+# Context文件操作方法
 ```java
     public File getFileStreamPath(String name)
     public String[] fileList()
@@ -86,7 +86,7 @@ context.getExternalCacheDirs-->/storage/emulated/0/Android/data/cn.hufeifei.envi
 context.getExternalFilesDir-->/storage/emulated/0/Android/data/cn.hufeifei.environmenttest/files/Alarms
 context.getExternalFilesDirs-->/storage/emulated/0/Android/data/cn.hufeifei.environmenttest/files/Alarms
 ```
-## Environment工具类中提供了以下几个方法：
+# Environment工具类中提供了以下几个方法：
 
 ```java
 Environment.getDataDirectory();
@@ -148,8 +148,7 @@ Environment.MEDIA_UNMOUNTABLE;//存储媒体无法挂载,可能是文件系统�
 Environment.MEDIA_EJECTING;//存储媒体正在移除
 Environment.MEDIA_UNKNOWN;//未知的存储状态
 ```
-
-## 总体概括
+#总体概括
 下面图片大概地概括了上面的方法
 ![这里写图片描述](http://img-blog.csdn.net/20161202203511889)
 * **Context中的方法或得到的路径都与应用包名相关**

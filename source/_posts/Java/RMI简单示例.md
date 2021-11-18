@@ -8,7 +8,7 @@ RMI是Java1.1中实现的一种RPC通信机制。使用RMI可以让一个Java虚
 
 这篇文章使用RMI实现一个简单的例子。
 
-##服务端代码
+# 服务端代码
 
 **1.**声明一个服务接口，提供给远程调用，该接口必须继承自`java.rmi.Remote`接口。
 
@@ -117,7 +117,7 @@ public class Server {
 
 
 
-##客户端代码
+# 客户端代码
 
 ```java
 package cn.hff.client;
@@ -163,18 +163,18 @@ public class Client {
 Remote stub = Naming.lookup("rmi://127.0.0.1:1099/calc");
 ```
 
-##编译运行
+# 编译运行
 
 **1.**编译服务端的三个类，并在类路径下执行`rmiregistry`命令运行本地注册表，然后再执行Server的main方法。
 
 ```shell
-##编译服务端代码
+# 编译服务端代码
 javac cn/hff/service/ICalcService.java cn/hff/service/CalcServiceImpl.java cn/hff/server/Server.java
 
-##运行本地注册表，注意开启后不要关闭
-##可以用"rmiregistry &"让它在后台运行
-##rmiregistry还可以指定端口
-##这个端口就是服务端绑定服务、客户端查找服务的端口
+# 运行本地注册表，注意开启后不要关闭
+# 可以用"rmiregistry &"让它在后台运行
+# rmiregistry还可以指定端口
+# 这个端口就是服务端绑定服务、客户端查找服务的端口
 rmiregistry
 ```
 
@@ -189,9 +189,9 @@ java cn.hff.server.Server
 **2.**编译并运行客户端程序
 
 ```shell
-##编译
+# 编译
 javac cn/hff/client/Client.java
-##运行
+# 运行
 java cn.hff.client.Client
 ```
 

@@ -12,11 +12,11 @@ keywords:
 
 [TOC]
 
-##FunctionalInterface—函数式接口
+# FunctionalInterface—函数式接口
 
 在`java.util.function` 包中提供给我们一些最常用的函数式接口：
 
-## 四个最基本的函数式接口
+### 四个最基本的函数式接口
 
 ![function](./function.svg)
 
@@ -25,38 +25,38 @@ keywords:
 * `Predicate<T>`：`boolean test(T t);`；输入类型`T`，并进行条件“判断”，返回`true|false`。
 * `Supplier<T>`：`T get();`；无输入，“生产”一个`T`类型的返回值。
 
-## 基本数据类型的函数式接口
+### 基本数据类型的函数式接口
 
 上面的四个接口因为使用泛型，Java泛型不支持基本数据类型，又因为基本数据类型与引用类型频繁的拆装箱将会严重影响效率，所以有Java还提供了几个基本数据类型的函数式接口：
 
-### 1、`double`类型的函数式接口
+#### 1、`double`类型的函数式接口
 
 - `DoubleFunction<R>`：`R apply(double value);`
 - `DoubleConsumer`：`void accept(double value);`
 - `DoublePredicate`：`boolean test(double value);`
 - `DoubleSupplier`：`double getAsDouble();`
 
-### 2、`int`类型的函数式接口
+#### 2、`int`类型的函数式接口
 
 * `IntFunction<R>`：`R apply(int value);`
 * `IntConsumer`：`void accept(int value);`
 * `IntPredicate`：`boolean test(int value);`
 * `IntSupplier`：`int getAsInt();`
 
-### 3、`long`类型的函数式接口
+#### 3、`long`类型的函数式接口
 
 * `LongFunction<R>`：`R apply(long value);`
 * `LongConsumer`：`void accept(long value);`
 * `LongPredicate`：`boolean test(long value);`
 * `LongSupplier`：`long getAsLong();`
 
-### 4、`boolean`类型的函数式接口
+#### 4、`boolean`类型的函数式接口
 
 * `BooleanSupplier`：`boolean getAsBoolean();`
 
 >为了防止API的爆炸式增长，JDK中只提供了一些必要的基本数据类型的函数式接口，如long，double。而int作为最突出的基本类型（如数组索引，整形字符等）。所有其他的类型都可以转成这三个类型。而这里的BooleanSupplier主要是为了能更方便地做布尔运算而扩展。
 
-## 一元函数式接口
+### 一元函数式接口
 
 引用类型：
 
@@ -68,36 +68,36 @@ keywords:
 * `LongUnaryOperator`：`long applyAsLong(long operand);`
 * `DoubleUnaryOperator`：`double applyAsDouble(double operand);`
 
-## 用于类型转换的一元函数式接口
+### 用于类型转换的一元函数式接口
 
-#### ①、引用类型转基本数据类型
+##### ①、引用类型转基本数据类型
 
 * `ToDoubleFunction<T>`：`double applyAsDouble(T value);`
 * `ToIntFunction<T>`：`int applyAsInt(T value);`
 * `ToLongFunction<T>`：`long applyAsLong(T value);`
 
-#### ②、`double`类型转其他类型
+##### ②、`double`类型转其他类型
 
 * `DoubleToIntFunction`：`int applyAsInt(double value);`
 * `DoubleToLongFunction`：`long applyAsLong(double value);`
 
 > 由`double`得到引用类型就是前面的`DoubleFunction<R>`：`R apply(double value);`
 
-#### ③、`int`类型转其他类型
+##### ③、`int`类型转其他类型
 
 * `IntToDoubleFunction`：`double applyAsDouble(int value);`
 * `IntToLongFunction`：`long applyAsLong(int value);`
 
 > 由`int`得到引用类型就是前面的`IntFunction<R>`：`R apply(int value);`
 
-#### ④、`long`类型转其他类型
+##### ④、`long`类型转其他类型
 
 * `LongToDoubleFunction`：`double applyAsDouble(long value);`
 * `LongToIntFunction`：`int applyAsInt(long value);`
 
 > 由`long`得到引用类型就是前面的`LongFunction<R>`：`R apply(long value);`
 
-## 二元函数式接口
+### 二元函数式接口
 
 * `BiFunction<T, U, R>`：`R apply(T t, U u);`
 * `BiConsumer<T, U>`：`void accept(T t, U u);`
@@ -105,7 +105,7 @@ keywords:
 
 > 因为Supplier是没有输入，只有返回值，返回值只有一个，所以没有该类型的二元函数式接口
 
-### 同类型输入的二元函数式接口
+#### 同类型输入的二元函数式接口
 
 引用类型：
 
@@ -117,19 +117,19 @@ keywords:
 * `LongBinaryOperator`：`long applyAsLong(long left, long right);`
 * `DoubleBinaryOperator`：`double applyAsDouble(double left, double right);`
 
-### 混合类型输入的二元函数式接口
+#### 混合类型输入的二元函数式接口
 
 * `ObjDoubleConsumer<T>`：`void accept(T t, double value);`
 * `ObjIntConsumer<T>`：`void accept(T t, int value);`
 * `ObjLongConsumer<T>`：`void accept(T t, long value);`
 
-### 引用类型到基本数据类型的二元函数式接口
+#### 引用类型到基本数据类型的二元函数式接口
 
 * `ToDoubleBiFunction<T, U>`：`double applyAsDouble(T t, U u);`
 * `ToIntBiFunction<T, U>`：`int applyAsInt(T t, U u);`
 * `ToLongBiFunction<T, U>`：`long applyAsLong(T t, U u);`
 
-## 其他函数式接口
+### 其他函数式接口
 
 上面列出了JDK1.8在`java.util.function`中提供给我们的常用的函数式接口，这些接口都只有**一个抽象方法**(Java8中还提供了默认方法的特性，所以只要有一个abstract方法即可)。JDK8中还提供一个运行时注解`FunctionalInterface`，所有函数式接口定义时都会加上这个注解用来标记，有了该标记那么就可以使用Lambda表达式来表示该接口抽象方法的实现了，而这个抽象方法的实现在[lambda](https://en.wikipedia.org/wiki/Lambda_calculus)中叫做**“匿名函数”**（注意不是匿名内部类，匿名内部类允许有成员变量可以保存对象的状态，但匿名函数不保存对象状态）。
 
@@ -144,7 +144,7 @@ java.util.Comparator
 java.nio.DirectoryStream.Filter
 ```
 
-##Lambda表达式语法
+# Lambda表达式语法
 
 前面说了那么多函数式接口，下面来看看Java中Lambda表达式的语法规则：
 
@@ -237,7 +237,7 @@ Thread-0:this is child thread
 Thread-1:this is child thread
 ```
 
-##Stream API
+# Stream API
 
 ![Stream](./Stream.svg)
 
@@ -291,7 +291,7 @@ public class StreamTest {
 
 但是Stream主要用来操作一些常用的数据源：Collection集合，数组，IO管道。这些数据源都为我们提供了创建Stream对象的方法，所以通常我们不会直接去使用底层的StreamSupport类去创建Stream对象(不然怎么体现Stream API的简洁高效呢(～￣▽￣)～)。
 
-## 可创建Stream的数据源
+### 可创建Stream的数据源
 
 Java8中在很多类中都提供了创建Stream对象的方法：
 
@@ -322,7 +322,7 @@ IntStream.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
 > 如果我们需要开发一个第三方库，并为调用者提供类似于上面几种创建Stream的API，这时我们可能就需要用到StreamSupport类，可以参考Java中提供的实现。
 
-## Stream的特点
+### Stream的特点
 
 * 无存储性：
 
@@ -344,7 +344,7 @@ IntStream.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
   流只能使用(“消费”)一次，一旦调用终断操作，流就不能再次使用，必须重新创建一个流。就像迭代器一样，遍历一遍后，想要再次遍历需要重新创建一个迭代器。
 
-## Stream操作的分类
+### Stream操作的分类
 
 <table><tbody><tr><td colspan="3" align="center" border="0">Stream操作分类</td></tr><tr><td rowspan="2" border="1">中间操作(Intermediate operations)</td><td>无状态(Stateless)</td><td>StatelessOp: unordered(), filter(), map(), mapToInt(), mapToLong(), mapToDouble(), flatMap(), flatMapToInt(), flatMapToLong(), flatMapToDouble(), peek();</td></tr><tr><td>有状态(Stateful)</td><td>DistinctOps: distinct();<br/>SortedOps: sorted();<br/>SliceOps: limit(), skip() </td></tr><tr><td rowspan="2" border="1">终断操作(Terminal operations)</td><td>非短路操作</td><td>ForEachOps: forEach(), forEachOrdered();<br/>ReduceOps:reduce(), collect(), max(), min(), count();<br/>toArray()</td></tr><tr><td>短路操作(short-circuiting)</td><td>MatchOps: anyMatch(), allMatch(), noneMatch();<br/>FindOps: findFirst(), findAny()</td></tr></tbody></table>
 
@@ -371,15 +371,15 @@ IntStream.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 
   * 非短路操作：对数据源中的所有数据都执行操作。
 
-## Stream操作详解
+### Stream操作详解
 
 前面对Stream操作进行了分类(其实都是JavaDoc里的内容，这里只是整理了一下(●ˇ∀ˇ●))，下面对这些操作进行详细的介绍：
 
-### ** 中间操作 **
+#### ** 中间操作 **
 
-#### 一、无状态操作
+##### 一、无状态操作
 
-##### 1. 一大利器——map
+###### 1. 一大利器——map
 
 map、mapToInt、mapToLong、mapToDouble、flatMap、flatMapToInt、flatMapToLong、flatMapToDouble：
 
@@ -419,13 +419,13 @@ IntStream.of(1, 2, 3, 4)
 // 输出结果为：1 2 3 2 4 6 3 6 9 4 8 12
 ```
 
-##### 2. filter，过滤
+###### 2. filter，过滤
 
 过滤：接受原始数据中满足测试要求的元素。
 
 ![filter](./filter.svg)
 
-##### 3. peek，非消费型遍历
+###### 3. peek，非消费型遍历
 
 peek，遍历Stream中的元素，和forEach类似，区别是peek不会“消费”掉Stream，而forEach会消费掉Stream；peek是中间操作所以也是惰性的，只有在Stream“消费”的时候生效。
 
@@ -480,15 +480,15 @@ get item:4
 
 > 因为peek操作是惰性的，所以会和forEach一起生效
 
-#### 二、有状态操作
+##### 二、有状态操作
 
-##### 1. distinct，去重
+###### 1. distinct，去重
 
 去重操作和数据库中的类似：去除原始数据中重复的元素(只保留一个)。
 
 ![distinct](./distinct.svg)
 
-##### 2. sorted，排序
+###### 2. sorted，排序
 
 sorted：对Stream中的元素进行排序。
 
@@ -508,7 +508,7 @@ IntStream.of(4, 2, 1, 3).sorted().forEach(System.out::println);
 // 输出顺序：1 2 3 4
 ```
 
-##### 3. limit&skip，截取操作
+###### 3. limit&skip，截取操作
 
 这两个功能相近，区别在于limit取头部的数据(或者说截取前面的元素)，skip取尾部的数据(跳过前面的元素)：
 
@@ -553,11 +553,11 @@ public class StreamTest {
 3 4 5 6
 3 4 5 6
 ```
-### ** 终断操作 **
+#### ** 终断操作 **
 
-#### 三、短路操作
+##### 三、短路操作
 
-##### 1. anyMatch&allMatch&noneMatch
+###### 1. anyMatch&allMatch&noneMatch
 
 前面说过短路操作其实就和我们日常编程用到的`&&`和`||`运算符处理过程类似，遇到一个满足条件的就立即停止判断。所以看下面几个例子来理解一下`anyMatch`，`allMatch`，`noneMatch`的区别。
 
@@ -647,9 +647,9 @@ false     # allMatch只要任意一个元字符串匹配失败就直接返回fal
 
 > 看到这个，顿时想起高中的真命题，假命题，逆否命题的概念，(￣▽￣)"
 
-#### 四、非短路操作
+##### 四、非短路操作
 
-##### 1. 消费性遍历：forEach&forEachOrdered
+###### 1. 消费性遍历：forEach&forEachOrdered
 
 这两个方法都是用于对流中的元素进行遍历，区别在于forEachOrdered能保证并行遍历的有序性，而forEach并不能，但是正因forEachOrdered保证了并行遍历的有序性，所以在并行执行的情况下效率不如forEach。
 
@@ -690,7 +690,7 @@ forEach: B A C D         # 对于并发的forEach，每次执行结果都不一�
 forEachOrdered: A B C D
 ```
 
-##### 2. 利器之二——reduce
+###### 2. 利器之二——reduce
 
 reduct，max，min，count这四个操作归根结底都属于Reduce操作(Map&Reduce核心之一)，所以重点说说reduce这个核心操作(reduce，归约，这名字让我莫名地想到编译原理)。
 
@@ -786,7 +786,7 @@ System.out.println(sumLength);
 
 > max,min,sum等方法的实现可以查看几种Stream对应的实现类Pipeline中的源码，也是使用reduce实现，这里就不做过多的说明
 
-##### 3. 又一大利器——collect
+###### 3. 又一大利器——collect
 
 ![Reduce，Collect](http://img-blog.csdn.net/20170822155218684?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -858,7 +858,7 @@ public class StreamTest {
 
 看到这你也许会好奇Collector是什么，Collectors又是什么。下面就来解决这个问题。
 
-## Collector收集器
+### Collector收集器
 
 ![Collector](./Collector.svg)
 
@@ -928,7 +928,7 @@ public class StreamTest {
 
 这里挑几个常用的说明一下：
 
-### 1. 集合收集器
+#### 1. 集合收集器
 
 ```java
 // collectionFactory参数可以自己指定集合类，
@@ -943,7 +943,7 @@ public static <T> Collector<T, ?, Set<T>> toSet();
 
 > 这三个估计是最简单的
 
-### 2. Map映射收集器
+#### 2. Map映射收集器
 
 ```java
 /////////////////////////////////////////////////////
@@ -996,7 +996,7 @@ public static <T, K, U, M extends ConcurrentMap<K, U>> Collector<T, ?, M>
 
 > 也许你和我一样看到这一大坨泛型都想吐了
 
-### 3. 分组操作
+#### 3. 分组操作
 
 分组操作有两种：
 
@@ -1037,7 +1037,7 @@ public static <T, K, A, D, M extends ConcurrentMap<K, D>> Collector<T, ?, M> gro
 
 > 又是一大坨的泛型
 
-### 4. 字符串拼接
+#### 4. 字符串拼接
 
 ```java
 public static Collector<CharSequence, ?, String> joining();

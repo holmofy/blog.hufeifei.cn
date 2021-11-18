@@ -4,7 +4,7 @@ date: 2017-09-16
 tags:
 categories: Linux运维
 ---
-## 下载
+# 下载
 
 可以到官网找下载地址：http://nginx.org/en/download.html
 
@@ -16,7 +16,7 @@ wget http://nginx.org/download/nginx-1.8.1.tar.gz
 
 > 下载方式多种多样，你也可以用ftp传上去
 
-## 安装前环境准备
+# 安装前环境准备
 
 **1.**准备gcc-c++编译器
 
@@ -36,21 +36,21 @@ nginx依赖于PCRE、Zlib、OpenSSL。
 yum install -y pcre pcre-devel zlib zlib-devel openssl openssl-devel
 ```
 
-##解压编译并安装
+# 解压编译并安装
 
 **解压**
 
 ```shell
-##解压gz压缩包
+# 解压gz压缩包
 tar -zxvf nginx-1.8.1.tar.gz
 ```
 
 **配置**
 
 ```shell
-##切换到nginx源码目录
+# 切换到nginx源码目录
 cd nginx-1.8.1
-##使用默认配置即可
+# 使用默认配置即可
 ./configure
 ```
 
@@ -65,13 +65,13 @@ cd nginx-1.8.1
 **编译安装**
 
 ```shell
-##编译
+# 编译
 make
-##安装
+# 安装
 make install
 ```
 
-## 启动与停止nginx
+# 启动与停止nginx
 
 默认配置下，Nginx的安装目录为`/usr/local/nginx`
 
@@ -80,7 +80,7 @@ make install
 **启动nginx**
 
 ```shell
-##启动nginx
+# 启动nginx
 /usr/local/nginx/sbin/nginx
 ```
 
@@ -91,9 +91,9 @@ make install
 ```shell
 [root@localhost ~]# ps -aux | grep nginx
 Warning: bad syntax, perhaps a bogus '-'? See /usr/share/doc/procps-3.2.8/FAQ
-##主进程
+# 主进程
 root     13405  0.0  0.1   5344   640 ?        Ss   03:46   0:00 nginx: master process ./nginx
-##工作进程
+# 工作进程
 nobody   13406  0.0  0.1   5544   984 ?        S    03:46   0:00 nginx: worker process
 root     13439  0.0  0.1   4360   756 pts/0    S+   04:10   0:00 grep nginx
 ```
@@ -124,7 +124,7 @@ root     13439  0.0  0.1   4360   756 pts/0    S+   04:10   0:00 grep nginx
 
 > 该命令用于重新加载配置文件
 
-## 开放80端口
+# 开放80端口
 
 nginx默认使用80端口通信，所以需要打开80端口
 
@@ -132,11 +132,11 @@ nginx默认使用80端口通信，所以需要打开80端口
 iptables -I INPUT -s 0.0.0.0 -p tcp --dport 80 -j ACCEPT
 ```
 
-## 测试
+# 测试
 
 ![测试](http://img-blog.csdn.net/20171126204627503?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-## 开启自启动
+#  开启自启动
 
 将以下脚本写入到`/etc/init.d/nginx`文件中。
 

@@ -4,11 +4,11 @@ date: 2018-03-15
 categories: 前端
 ---
 
-##var,let和const
+# var,let和const
 
 ES6新增了`let`关键字**用于声明变量**，用法上和`var`类似，这里列举一些两者的区别。
 
-### let与var区别
+#### let与var区别
 
 **`let`声明的变量只在它所在的代码块内有效**：
 
@@ -36,7 +36,7 @@ ES6新增了`let`关键字**用于声明变量**，用法上和`var`类似，这
 
 ![临时性死区](http://tva1.sinaimg.cn/large/bda5cd74gy1fqbjbiq2d1j2095030aa0.jpg)
 
-### const定义常引用
+#### const定义常引用
 
 **常引用不允许修改**
 

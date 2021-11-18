@@ -4,7 +4,7 @@ date: 2018-1-19
 categories: J2EE
 ---
 
-##相关配置
+# 相关配置
 
 在阿里云控制台生成访问密钥(AccessKey)
 
@@ -24,7 +24,7 @@ categories: J2EE
 >
 > ![绑定域名](http://img-blog.csdn.net/20180119085931617?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##实现代码
+# 实现代码
 
 添加OSS服务SDK依赖
 
@@ -40,16 +40,16 @@ categories: J2EE
 在properties文件中配置下面的相关信息
 
 ```properties
-##阿里云访问密钥
+# 阿里云访问密钥
 aliyun.access.key.id=XXX
 aliyun.access.key.secret=XXXX
 
-##阿里云OSS服务相关配置
-##OSS的endpoint,这里是华南地区(也就是深圳)
+# 阿里云OSS服务相关配置
+# OSS的endpoint,这里是华南地区(也就是深圳)
 aliyun.oss.endpoint=http://oss-cn-shenzhen.aliyuncs.com
-##这是创建的bucket
+# 这是创建的bucket
 aliyun.oss.bucket.name=XXX
-##这里已经把自己的域名映射到bucket地址了。
+# 这里已经把自己的域名映射到bucket地址了。
 aliyun.oss.img.domain=XXX.XXX.com
 ```
 
@@ -148,7 +148,7 @@ public class AliyunOss {
 }
 ```
 
-##测试代码
+# 测试代码
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)

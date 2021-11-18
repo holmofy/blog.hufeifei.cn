@@ -21,13 +21,13 @@ keywords:
 
 
 
-##JavaCC解析器的性能问题
+# JavaCC解析器的性能问题
 
 按照clickhouse[官方文档中给的性能建议](https://clickhouse.tech/docs/en/introduction/performance/#performance-when-inserting-data)：使用批量插入单个请求里至少1000行。官方给的性能数据是CSV插入MergeTree表，可以达到50～200M/S。
 
 根据这个建议，项目中将kafka的数据按批次读取出来，直接拼成一条条sql去执行，但是线上性能和预期差距特别大：一秒不到一万条数据，一万条trade_info大概5M，也就是不超过5M/s。
 
-## clickhouse-server性能
+### clickhouse-server性能
 
 首先想的是测试一下clickhouse-server性能，是不是言过其实。
 
@@ -41,7 +41,7 @@ keywords:
 
 这里使用clickhouse自带的`clickhouse-client`插入csv能达到将近40M/s，所以基本排除了clickhouse-server的问题。
 
-## JavaCC解析器
+### JavaCC解析器
 
 鉴于此，将我们的测试代码跑了一下[profiler](https://github.com/jvm-profiling-tools/async-profiler)，发现大部分cpu时间都花在了`ClickHouseParser.parse`方法上：
 
@@ -53,13 +53,13 @@ keywords:
 
 我用了一下发现Connection都无法创建，原因是Connection初始化的时候会执行一条查询clickhouse-server时区的sql。而且由于原来基于正则的解析器bug特别多，它将在0.3.0被移除，为了保证向后兼容没有使用`use_new_parser=false`的方式。
 
-##JdbcTemplate.batchUpdate的问题
+# JdbcTemplate.batchUpdate的问题
 
 clickhouse-driver的开发人员在issue中提到，可以直接用PreparedStatement.addBatch来批量插入数据。
 
 所以我们又转向用`JdbcTemplate.batchUpdate`的方式来执行批量插入，发现性能离预期还是有很大差距。
 
-## SqlExecutor vs. BatchUpdater vs. HttpClientExecutor
+### SqlExecutor vs. BatchUpdater vs. HttpClientExecutor
 
 最后我写了份测试代码，直接用HttpClient调用clickhouse-server的Http接口。
 
@@ -147,7 +147,7 @@ public class ClickHouseConnectionImpl implements ClickHouseConnection {
 }
 ```
 
-## 原生Jdbc批量插入性能
+### 原生Jdbc批量插入性能
 
 最后我在测试中加入了原生Jdbc的Batch方式：
 
@@ -195,7 +195,7 @@ clickhouse-jdbc使用[TabSeparated](https://clickhouse.tech/docs/en/interfaces/f
 
 -->
 
-##LocalDateTime问题
+# LocalDateTime问题
 
 我们项目直接把Kafka中同步的json拼成sql写入到clickhouse，没有先转换成Java对象再交给ORM框架处理。
 

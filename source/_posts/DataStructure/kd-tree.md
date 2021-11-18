@@ -19,7 +19,7 @@ K-D树在[维基百科](https://en.wikipedia.org/wiki/K-d_tree)上定义是将K�
 
 维基百科的解释很正式(看的迷迷糊糊)。简单的说，**K-D树就是二分查找树在K维空间的泛化**(更迷糊了:joy:)。
 
-##1、K维空间的二分查找树
+# 1、K维空间的二分查找树
 
 [之前的一篇文章中有讲过二分查找树(BST)](https://blog.csdn.net/Holmofy/article/details/79692613)这样基础的数据结构，它是基于二分查找的思想实现$O(log_2N)$的插入和查找速度。
 
@@ -65,7 +65,7 @@ Person1(age:18,hight:176)，Person2(age:19,height:181) ... Person10(age:23,heigh
 
 高纬度数据查找效率并不一定好，有时候可能不如最原始的暴力查找。通常，如果维度为k，则k-d树中的点数N应远远大于$2^k$ (即$N \gg 2^k$)。否则查找时，节点中大多数节点都会被遍历到，效率上还不如原始的遍历。
 
-##2、K-D树的平衡问题
+# 2、K-D树的平衡问题
 
 既然K-D树是BST在k维空间的推广，那K-D树自然也有[BST存在的平衡性问题——二叉树退化成链表](https://blog.csdn.net/Holmofy/article/details/79692613)。
 
@@ -96,7 +96,7 @@ function kdtree (list of points pointList, int depth)
 
 很明显这种方式**只适用于输入点已知的静态数据**。对于频繁插入删除操作的动态数据，每次重建K-D树成本过大。
 
-##3、K-D-B树
+# 3、K-D-B树
 
 **[K-D-B树](https://en.wikipedia.org/wiki/K-D-B-tree)是K-D树与B树的结合。**
 
@@ -110,7 +110,7 @@ K-D-B树汲取了B树的优点：**提供平衡K-D树的搜索效率，同时提
 
 
 
-##4、K-D-B树页分裂的效率问题
+# 4、K-D-B树页分裂的效率问题
 
 B树如果节点中的子节点树超过规定的阶数，就会发生节点分裂（数据库中经常称之为“页”分裂）。
 
@@ -128,7 +128,7 @@ K-D-B树的这个操作修改的节点比较多，由于写入磁盘的速度比
 
 所以和K-D树一样，**K-D-B树对于修改频繁的动态数据并不友好**。
 
-##5、B-K-D树
+# 5、B-K-D树
 
 为了解决B-K-D树的问题，计算机科学领域的先驱们提出了很多方案，比如[hB-Tree](http://www.cs.bu.edu/fac/gkollios/cs591/hb-tree.pdf)，以及这篇文章要重点介绍的[B-K-D树](https://users.cs.duke.edu/~pankaj/publications/papers/bkd-sstd.pdf)。
 
@@ -158,7 +158,7 @@ B-K-D树结合了二叉树和B+树的特性。比较特殊的是，**内部节�
 
 假设B-K-D树有$N$个数据，那么它有$ log_2(\frac{N}{M})$个K-D树。每一个树都是前一个树的2倍。数据首先被插入到内存里的Buffer里，一旦Buffer满了，先定位到第1个为空的树。这个Buffer的数据，以及空树之前所有节点的数据一起生成一个满的平衡树。在论文里，有对这个算法的详细描述。
 
-##6、写在最后
+# 6、写在最后
 
 KD树有很多用处，如查找空间点的距离，最近邻搜索等。除了KD树还有很多其他的空间索引结构，如用于索引二维数据的[4叉树](https://en.wikipedia.org/wiki/Quadtree)，三维数据的[8叉树](https://en.wikipedia.org/wiki/Octree)，和诸多GIS用到的[R树](https://en.wikipedia.org/wiki/R-tree)。
 

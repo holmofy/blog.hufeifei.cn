@@ -29,7 +29,7 @@ keywords:
 
 实际应用场景中我们的表结构会更复杂，查询条件也会非常多。在多条件查询的情况下又如何才能用到索引呢，我们可以测试一下。
 
-##准备测试数据
+# 准备测试数据
 
 创建表结构
 
@@ -45,7 +45,7 @@ create table tb_test(id int primary key auto_increment,
 
 ```mysql
 delimiter $$
-##生成随机字符串
+# 生成随机字符串
 create function rand_char() returns char(1)
 begin
   declare CHARS char(52) default 'abcdefghijklmnopqrstuvwxyz';
@@ -93,7 +93,7 @@ Empty set (0.61 sec)  # 0.61秒，很慢
 
 我们先来试试第一种方案。
 
-##多个单列索引
+# 多个单列索引
 
 创建多个索引
 
@@ -179,7 +179,7 @@ possible_keys: idx_tb_test_c1,idx_tb_test_c2,idx_tb_test_c3,idx_tb_test_c4
 
 或者使用`force index`、`ignore index`提示优化器强制使用或忽略某些索引(具体参考[Index Hints](https://dev.mysql.com/doc/refman/5.6/en/index-hints.html))。
 
-##复合索引
+# 复合索引
 
 删除之前的单列索引：
 
@@ -217,7 +217,7 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
      filtered: 100.00
         Extra: Using index
 1 row in set, 1 warning (0.00 sec)
-##索引的使用与where条件的顺序没有任何关系，解析器将SQL解析成树后，这几个条件的层级是一样的
+# 索引的使用与where条件的顺序没有任何关系，解析器将SQL解析成树后，这几个条件的层级是一样的
 mysql> explain select * from tb_test where c3='A' and c1='B' and c4='C' and c2='D'\G
 *************************** 1. row ***************************
            id: 1
@@ -237,11 +237,11 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
 
 很明显复合索引的速度和之前不是一个量级的。
 
-##选择合适的索引顺序
+# 选择合适的索引顺序
 
 正确的索引顺序对查询性能也很重要。但是选择合适的索引顺序要从多方面考虑。
 
-## 1. 范围查询放在索引最后面
+### 1. 范围查询放在索引最后面
 
 ```mysql
 mysql> select * from tb_test where c1='A' and c2<'B' and c3='C' and c4='D'\G
@@ -268,7 +268,7 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
 
 只针对这个SQL语句，我们需要把索引的顺序调整为`c1_c3_c4_c2`。
 
-## 2. 索引列顺序尽量匹配`order by`子句的排序列顺序
+### 2. 索引列顺序尽量匹配`order by`子句的排序列顺序
 
 之前说过B+树本身是有序的，使用B+树排序可以避免filesort。
 
@@ -317,7 +317,7 @@ possible_keys: idx_c1_c2_c4_c3
         Extra: Using where; Using index  # 没有filesort
 1 row in set, 1 warning (0.00 sec)
 
-##范围查询会导致后面的排序列用不上索引
+# 范围查询会导致后面的排序列用不上索引
 mysql> explain select * from tb_test where c1='A' and c2<'B' order by c4,c3\G
 *************************** 1. row ***************************
            id: 1
@@ -351,7 +351,7 @@ possible_keys: idx_c1_c2_c4_c3
 1 row in set, 1 warning (0.00 sec)
 ```
 
-## 3. 索引列顺序尽量匹配`group by`子句顺序
+### 3. 索引列顺序尽量匹配`group by`子句顺序
 
 没有索引的情况下，`group by`子句执行`filesort`对数据进行排序，然后在进行分组。这个过程中**可能会导致全表扫描并且创建中间临时表**。
 
@@ -421,7 +421,7 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
         Extra: Using index for group-by # 使用索引执行group by子句
 1 row in set, 1 warning (0.00 sec)
 
-##下面这个语句会用到c1,c2列进行精确匹配，c3,c4列用来分组
+# 下面这个语句会用到c1,c2列进行精确匹配，c3,c4列用来分组
 mysql> explain select count(c3) from tb_test where c1='A' and c2='B' group by c3,c4\G
 *************************** 1. row ***************************
            id: 1
@@ -438,7 +438,7 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
         Extra: Using where; Using index
 1 row in set, 1 warning (0.00 sec)
 
-##如果group by的顺序与索引顺序不一致,group by子句仍会filesort并创建中间表
+# 如果group by的顺序与索引顺序不一致,group by子句仍会filesort并创建中间表
 mysql> explain select count(c3) from tb_test where c1='A' and c2='B' group by c4,c3\G
 *************************** 1. row ***************************
            id: 1
@@ -455,7 +455,7 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
         Extra: Using where; Using index; Using temporary; Using filesort  # 中间表;文件排序
 1 row in set, 1 warning (0.00 sec)
 
-##范围查询也会导致索引后面的列用不上索引进行group by
+# 范围查询也会导致索引后面的列用不上索引进行group by
 mysql> explain select count(c3) from tb_test where c1='A' and c2<'B' group by c3,c4\G
 *************************** 1. row ***************************
            id: 1
@@ -473,7 +473,7 @@ possible_keys: idx_tb_test_c1_c2_c3_c4
 1 row in set, 1 warning (0.00 sec)
 ```
 
-## 4. 选择性最高的列放在索引最前面
+### 4. 选择性最高的列放在索引最前面
 
 关于选择索引顺序有个经验：将选择性最高的列作为索引的最前列。在某些场景下确实很有帮助，但通常不如避免随机IO和排序那么重要。(很多时候需要全方面的考虑索引列的顺序)。
 

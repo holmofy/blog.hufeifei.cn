@@ -7,7 +7,7 @@ tags:
 categories: Android
 description: 安卓常用第三方框架-FastJson
 ---
-## 简介
+# 简介
 上次我们讲到Google的Gson库，作为国际大公司的阿里巴巴也不敢示弱，出了一款号称速度最快的Fastjson，这里有第三方给出的测试结果https://github.com/eishay/jvm-serializers/wiki， 虽然FastJson在Github上戏称Gson的“G”是“龟速”的意思，但FastJson在文档方面确实做得不如Gson(没办法天朝软件行业的通病)。废话不多说下面先给地址。
 
 ### 下载地址
@@ -20,12 +20,12 @@ Github：
 Fastjson提供了两种版本：标准版本，Android版本，所以添加Gradle依赖也有所不同
 关于两个版本的区别可以查看阿里巴巴写的[文档](https://github.com/alibaba/fastjson/wiki/Android%E7%89%88%E6%9C%AC)
 ```groovy
-##标准版
+# 标准版
 compile 'com.alibaba:fastjson:1.2.24'
-##android版
+# android版
 compile 'com.alibaba:fastjson:1.1.56.android'
 ```
-## FastJson使用
+# FastJson使用
 与Gson的fromJson,toJson类似FastJson也有如下方法
 ```java
 package com.alibaba.fastjson;
@@ -72,7 +72,7 @@ public @interface JSONField {
 ```
 可以说@JSONField 的一个注解融合了Gson的@Expose和@SerializedName两个注解的功能，
 
-## 示例
+# 示例
 JavaBean
 ```java
 public class Group {
