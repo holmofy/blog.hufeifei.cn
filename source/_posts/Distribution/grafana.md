@@ -136,6 +136,10 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 
 ![](https://p.pstatp.com/origin/pgc-image/ff7bc578c7ab464a9415a3d6e0791ef9)
 
+
+
+![image-20211118111959974](http://img.hufeifei.cn/picgoimage-20211118111959974.png)
+
 ### Loki
 
 日志数据的写是由Loki中的[Distributor](https://github.com/grafana/loki/blob/v2.3.0/docs/sources/architecture/distributor.md)和Ingester两个组件处理，整体的流程如下图红线部分，读取过程由蓝线部分表示。
