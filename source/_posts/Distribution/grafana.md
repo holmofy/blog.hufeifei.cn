@@ -10,7 +10,7 @@ keywords:
 - 日志分析
 ---
 
-##从单体应用到分布式应用的可观测性
+## 从单体应用到分布式应用的可观测性
 
 ![分布式系统观测性的三大基石](https://engineering.zenduty.com/assets/images/tracinglogging.png)
 
@@ -34,11 +34,11 @@ Elastic野心很大，但是这也导致ElasticSearch并不专注在其中的一
 
 5、基于JVM的Logstash极其笨重，经常因为[GC无响应](https://discuss.elastic.co/t/logstash-with-long-gc/42159)导致日志延时，作为采集日志的agent有点喧宾夺主，为此Elastic专门用Go语言开发了轻量级的FileBeat日志采集工具。由FileBeat负责采集，Logstash负责解析处理。
 
-![EFK](https://p.pstatp.com/origin/pgc-image/94fcb1c52ac64cc4b9fd1c7fbf51a374)
+![ELK](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mrp1gNwmFcnAn7UZuF2hxiaVOPHW4gAIWu66KbkuVsb3nI4akLR7pKgow/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 目前K8s生态下以Fluentd和C语言编写的fluent-bit为主作为日志收集工具，Grafana开发的Loki负责存储。Loki去掉了全文索引，使用最原始的块存储，对时间和特定标签做索引，这和Metrics领域的Prometheus类似。
 
-![](https://p.pstatp.com/origin/pgc-image/0c15041f721449ab9d993bcdf7b89c6c)
+![image-20211118103512775](http://img.hufeifei.cn/picgoimage-20211118103512775.png)
 
 ## Metrics
 
@@ -64,19 +64,19 @@ Elastic野心很大，但是这也导致ElasticSearch并不专注在其中的一
 
 正因为时序数据是按照时间依次生成顺序追加的，所以除了早期的[VividCortex（基于MySQL）](https://orangematter.solarwinds.com/2014/12/16/in-case-you-missed-it-building-a-time-series-database-in-mysql/)和[TimeScaleDB（基于PostgreSQL）](https://blog.timescale.com/blog/building-a-distributed-time-series-database-on-postgresql/)使用就地更新的B+树来存储，其他大多数时序数据库都是用LSM-Tree(Log-Structured Merge Tree)作为底层的索引结构（在InfluxDB中被叫做Time-Structured Merge Tree）。
 
-![Time Series DB Rank](https://p.pstatp.com/origin/pgc-image/c86afeeb70f749c7a8526ca0be61117d)
+![image-20211118103722343](http://img.hufeifei.cn/picgoimage-20211118103722343.png)
 
 时序数据并不局限于系统与应用的性能指标，还包括了各种业务指标，如互联网应用的流量分析、接口性能、消息发送量......物联网传感器的功率、风速、温度等各种信号......金融领域的股票交易数据......
 
 目前prometheus+grafana的组合几乎成了分布式系统指标观测的事实标准。
 
-![](https://p.pstatp.com/origin/pgc-image/46dc82602df94297b2f11c4beb3886a7)
+![image-20211118104006562](http://img.hufeifei.cn/picgoimage-20211118104006562.png)
 
 ## Trace
 
 单体应用的调用只局限于内存的堆栈，可以通过**stack trace**进行调用链追踪，调用的性能分析可以通过这些堆栈生成相应的火炬图进行可视化。[github](https://github.com/search?q=Flame+Graph)上也有大多数语言应用生成火炬图的工具，使用火炬图能方便地分析各个函数的调用深度和调用消耗。
 
-![FlameGraph](https://p.pstatp.com/origin/pgc-image/2d6f3a7eb8244c75b3fb5889356ebfe7)
+![FlameGraph](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mr4TZtWaHyicKZh4Rhr2Zf4BHoMQjxWcf6kfgfkIo06icxT2ksuESn3b4w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 但是分布式应用，不再是内存内的堆栈调用了，而是穿透网络的RPC调用。用户一个请求过来，从A服务到B服务再到C服务……这个调用链可能很长。再也不能像单机版应用一样直接看程序堆栈，直接用火炬图就能分析应用的性能了。而且一个应用部署了多台机器，具体调用了集群中哪台机器也是不知道的。
 
@@ -90,45 +90,41 @@ Elastic野心很大，但是这也导致ElasticSearch并不专注在其中的一
 
 随着K8s催生的云原生的发展，OpenTracing和OpenCensus合并到了[OpenTelemetry](https://opentelemetry.io/)，并且将Traces, Metrics, Logs进行了统一。目前OpenTelemetry是云原生基金会的孵化项目，是K8s生态分布式观测系统的未来。
 
-![](https://p.pstatp.com/origin/pgc-image/d0f15af19cfe475f897c97a705aa4a2f)
+![image-20211118104143121](http://img.hufeifei.cn/picgoimage-20211118104143121.png)
 
-##分布式观测系统的架构
+## 分布式观测系统的架构
 
 Logging、Metrics、Tracing三者架构上基本是一致统一的，但是[这里面可选的组件](https://openapm.io/landscape)可谓是百花齐放。
 
 比如FileBeat和MetricBeat可以负责Logging和Metrics的日志采集，由Logstash处理后存入ElasticSearch；ElasticAPM Agent可以负责Tracing的数据采集，由APM Server处理后存入ElasticSearch；Kibana中提供了Logging、Metrics、Tracing的可视化；Elastic官方提供了[kibana-alerting](https://www.elastic.co/cn/what-is/kibana-alerting)用于告警，开源社区也有一个[ElastAlert插件](https://github.com/Yelp/elastalert)可以提供告警功能。
 
-![Elastic](https://p.pstatp.com/origin/pgc-image/461814bfbcb44c459853f1b933ee9a93)
+![EFK](http://img.hufeifei.cn/picgoimage-20211118102519687.png)
 
 1、Library：应用内生成数据。Logging领域的库不胜枚举，Metrics和Tracing领域也有很多。
 
-![Library](https://p.pstatp.com/origin/pgc-image/a73c4349b0024a9896e73e35342d3ecc)
+![Library](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mrb13picTN0L5qpkDU8HepUZBRYhCwJMUohRv0ZmEVX8iab8YpD6kNt8dg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 2、 Collector Agent：负责在服务器节点上采集数据，有一些能做简单的数据处理，如从日志中拆解字段，过滤清洗日志等。
 
-![Agent](https://p.pstatp.com/origin/pgc-image/63a0f226bf374232a0ddce664fe29f12)
-
-![agent](https://p.pstatp.com/origin/pgc-image/255d60c725e5456b9641e5ace1d763a4)
+![Agent](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mrwa6micsq8ms79OeXhRUeEkPCwauYwqu6t1HuBuhaRLF392mw1zH8ySg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 3、Transport：负责中间转储，防止日志丢失，为日志处理流程提供相对高的可靠性。
 
-![Transport](https://p.pstatp.com/origin/pgc-image/c2d48ee1baf1416794028c518e0eca56)
+![Transport](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mr9L5WE0hiaH4XWSHCK22l0Vh1l3DIMe6XH1vAiaS0MJEJRQeD0qx5eicjA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 4、Storage：负责数据的存储，可以根据数据的不同schema（非结构化的大文本日志类，半结构化的JSON文档类型，结构化的）选用适合的存储。
 
-![Storage](https://p.pstatp.com/origin/pgc-image/ea383fb32c7540b5a93b20ff72989d49)
+![Storage](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mrFnak49iazzLVUNibgOSXHzFM42Gr7Nacnib5dlo9KqzLusla5MFtYpHGg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 5、Visualization & Dashboarding：负责将数据可视化展示，生成相应的仪表盘
 
-![Visualization](https://p.pstatp.com/origin/pgc-image/e52a5dde1be24941bbbc6a7d7c987370)
-
-![Dashboarding](https://p.pstatp.com/origin/pgc-image/71966b34cd624aea86db86579d2785b4)
+![Visualization](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mr8tNgGTPNWl2k9IPLOwicia8c52JYBYh3cBpnz4zZbicxavvsQbUIEPoVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 6、Alerting：负责对异常进行告警
 
-![Alerting](https://p.pstatp.com/origin/pgc-image/56120004638a4d588dfb6e9c7309b538)
+![Alerting](https://mmbiz.qpic.cn/mmbiz_png/1tSJhpzDRzL3Fs0QtzAZaVDTe2Bdx5mrTsyNI3zOJExvuthHKrd1mZmgMz1GTu9x9xBFXAwlbHUuw98uBxvN1g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-##基于Grafana的一站式分布式观测系统
+## 基于Grafana的一站式分布式观测系统
 
 最早[Grafana](https://en.wikipedia.org/wiki/Grafana)是为了弥补[Kibana](https://en.wikipedia.org/wiki/Kibana)没有Metrics指标统计功能的一个分支，2014年首次发布，目标是为Prometheus、[InfluxDB](https://en.wikipedia.org/wiki/InfluxDB)、OpenTSDB等时序数据库提供可视化界面，后面逐渐支持传统关系型数据库。
 
@@ -152,15 +148,11 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 
 使用grafana即可通过[LogQL](https://grafana.com/docs/loki/latest/logql/)查询日志
 
-![Loki Logging](https://p.pstatp.com/origin/pgc-image/3fa3c90592b446efa8f75b1994e8887d)
+![image-20211118105337310](http://img.hufeifei.cn/picgoimage-20211118105337310.png)
 
 ## Tempo
 
-
-
-![Tempo Tracing](https://p.pstatp.com/origin/pgc-image/3b8f72c9bd6b4606a6eaa03f5edf1919)
-
-
+![Tempo](http://img.hufeifei.cn/picgografana-query.png)
 
 
 
