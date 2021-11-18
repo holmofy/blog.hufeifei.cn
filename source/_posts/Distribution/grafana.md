@@ -140,6 +140,16 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 
 ![image-20211118111959974](http://img.hufeifei.cn/picgoimage-20211118111959974.png)
 
+### OpenTelemetry
+
+[OpenTelemetry](https://blog.hufeifei.cn/2021/10/Distribution/OpenTelemetry/)是由两个项目合并而成：由开源社区主导的OpenTracing，由谷歌主导微软支持的OpenCensus。OpenTracing只是制定了Tracing相关的标准，OpenCensus提供了Tracing和Metrics采集与收集的相关实现。两者合并后目标是将Logging、Tracing、Metrics三者的采集与收集进行统一，并指定一个数据编码与传输规范——[OpenTelemetry Protocol Specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/otlp.md)。
+
+截至当前(2021年11月)，OTLP规范的Tracing和Metrics已经稳定，Logging目前还在Beta版本。
+
+![image-20211118112912951](http://img.hufeifei.cn/picgoimage-20211118112912951.png)
+
+[opentelemetry-cpp-contrib](https://github.com/open-telemetry/opentelemetry-cpp-contrib/blob/main/instrumentation/nginx/README.md)还提供了nginx的支持（C/C++语言实现的）。
+
 ### Loki
 
 日志数据的写是由Loki中的[Distributor](https://github.com/grafana/loki/blob/v2.3.0/docs/sources/architecture/distributor.md)和Ingester两个组件处理，整体的流程如下图红线部分，读取过程由蓝线部分表示。
@@ -157,6 +167,8 @@ Kibana和Grafana走向了两个不同的发展道路。Kibana作为ElasticSearch
 ### Tempo
 
 ![Tempo](http://img.hufeifei.cn/picgografana-query.png)
+
+
 
 
 
