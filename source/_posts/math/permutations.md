@@ -81,7 +81,7 @@ $$
 $$
 \begin{align}
 0!&=1 \\
-C_n^n=\frac{P_n^n}{P_n^n}&=1 \\
+C_n^n&=1 \\
 \end{align}
 $$
 
