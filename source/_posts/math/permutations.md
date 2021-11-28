@@ -95,8 +95,8 @@ $$
     因为都是两人组，这里不再关心分组的排列顺序，三个分组都是等价的，所以可以除去所有队伍数量的排列数
     $$
     \begin{align}
-    \frac{C_6^2 \times C_4^2 \times C_2^2}{P_3^3}&=\frac{\frac{6!}{4!\times2!}\times\frac{4!}{2!\times2!}\times\frac{2!}{0!\times2!}}{3!} \\
-    &=\frac{6!}{2!\times2!\times2!\times3!} \\
+    \frac{C_6^2 \times C_4^2 \times C_2^2}{P_3^3}&=\frac{\frac{6!}{4!\times2!}\times\frac{4!}{2!\times2!}\times\frac{2!}{0!\times2!}}{3!} \\\\
+    &=\frac{6!}{2!\times2!\times2!\times3!} \\\\
     &=15
     \end{align}
     $$
@@ -109,7 +109,7 @@ $$
 
    但是先选1人还是先选3人，这个是无所谓的，这就跟排列问题，先给铜牌颁奖还是先给金牌颁奖是不会影响结果的。
    $$
-   C_6^3\times C_3^2\times C_1^1=\frac{6!}{3!\times3!}\times\frac{3!}{2!\times1!}=60 \\
+   C_6^3\times C_3^2\times C_1^1=\frac{6!}{3!\times3!}\times\frac{3!}{2!\times1!}=60 \\\\
    C_6^1\times C_5^2\times C_3^3=\frac{6!}{5!\times1!}\times\frac{5!}{3!\times2!}=60
    $$
    
@@ -139,7 +139,7 @@ $$
    这个问题需要把几种分组情况列出来：4,1,1、3,2,1、2,2,2。其中等分2,2,2分组相同。这实际是前三个问题的汇总。
    $$
    \begin{align}
-   \frac{C_6^4\times C_2^1\times C_1^1}{P_2^2} + C_6^3\times C_3^2\times C_1^1 + \frac{C_6^2\times C_4^2\times C_2^2}{P_3^3}&=15+15+60 \\ 
+   \frac{C_6^4\times C_2^1\times C_1^1}{P_2^2} + C_6^3\times C_3^2\times C_1^1 + \frac{C_6^2\times C_4^2\times C_2^2}{P_3^3}&=15+15+60 \\\\ 
    &=90
    \end{align}
    $$
