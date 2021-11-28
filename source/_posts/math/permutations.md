@@ -1,5 +1,5 @@
 ---
-title: 排列组合问题
+title: 排列组合问题全解
 date: 2021-11-17
 categories: Math
 mathjax: true
