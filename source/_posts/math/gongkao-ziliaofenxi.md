@@ -335,7 +335,7 @@ $$
 \begin{align}
 基期_A&=\frac{现期_A}{1+增长率_a} \\\\
 基期_B&=\frac{现期_B}{1+增长率_b} \\\\
-\frac{基期_A}{基期_B}&=\frac{\frac{现期_A}{1+增长率_a}}{\frac{现期_B}{1+增长率_b}}
+\frac{基期_A}{基期_B}&=\frac{\frac{现期_A}{1+增长率_a}}{\frac{现期_B}{1+增长率_b}} \\\\
 &=\frac{现期_A}{现期_B}\times\frac{1+增长率_b}{1+增长率_a}
 \end{align}
 $$
