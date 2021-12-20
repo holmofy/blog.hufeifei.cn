@@ -214,6 +214,8 @@ plantuml:
 
   # common options: svg/png
   outputFormat: "svg"
+  className: plantuml
+  appendCss: false
 
 # https://github.com/jaredly/hexo-admin
 admin:
