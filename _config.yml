@@ -210,7 +210,7 @@ plantuml:
   # "inlineBase64": <img src='data:image/svg+xml;base64> 
   # "localLink": <img src="/assert/puml/xxxx.svg">
   # "externalLink": <img src="http://www.plantuml.com/plantuml/svg/xxx">
-  link: "inlineBase64"
+  link: "inline"
 
   # common options: svg/png
   outputFormat: "svg"
