@@ -188,6 +188,7 @@ nofollow:
     - "*.doubanio.com"
     - "duanple.com"
     - "p.pstatp.com"
+    - "*.tqwba.com"
   rel:
     - 'external'
     - 'noreferrer'
