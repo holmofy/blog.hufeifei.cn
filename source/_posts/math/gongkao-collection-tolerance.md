@@ -28,7 +28,7 @@ $$
 A\cup B=A+B- A\cap B
 $$
 
-> A+B相当于$A\cap B$加了两次，所以需要减掉一次
+A+B相当于$A\cap B$加了两次，所以需要减掉一次
 
 2、三集合容斥
 
@@ -38,7 +38,7 @@ $$
 A\cup B\cup C=A+B+C- A\cap B - A\cap C - B\cap C + A\cap B\cap C
 $$
 
-> 原理和两集合类似，A+B+C里面有加了两次的，有加了三次的，那减掉$A\cap B、A\cap C、B\cap C$把加了三次的全减没了，所以得加回来
+原理和两集合类似，A+B+C里面有加了两次的，有加了三次的，那减掉$A\cap B、A\cap C、B\cap C$把加了三次的全减没了，所以得加回来
 
 ## 例题
 
