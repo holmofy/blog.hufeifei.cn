@@ -1,5 +1,5 @@
 ---
-title: 判断推理总结·
+title: 判断推理总结
 date: 2021-12-19
 categories: 公考
 mathjax: false
