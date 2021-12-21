@@ -31,10 +31,6 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.ID_RSA }}
         ssh-host: blog.hufeifei.cn
-    - name: Run Plantuml server
-      run: |
-        docker run -d -p 8080:8080 plantuml/plantuml-server:jetty && \
-        sed -i 's/http:\/\/www.plantuml.com\/plantuml/http:\/\/localhost:8080\/plantuml/g' _config.yml
     - name: Hexo Deploy
       run: |
         echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
