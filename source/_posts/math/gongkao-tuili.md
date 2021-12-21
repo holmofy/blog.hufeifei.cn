@@ -180,6 +180,9 @@ keywords: 公考,公务员
 
 ### 空间重构
 
+Z
+L
+
 ## 定义判断
 
 ## 类比推理
@@ -296,6 +299,81 @@ keywords: 公考,公务员
 @endmindmap
 ```
 
+#### 充分条件，必要条件
+
+$$
+\begin{align}
+A\rightarrow B \newline
+如果A,就B \Leftrightarrow A是B的充分条件 \Leftrightarrow A\rightarrow B \newline
+只有A,才B \Leftrightarrow A是B的必要条件 \Leftrightarrow B\rightarrow A \newline
+\end{align}
+$$
+
+#### 摩根定律
+
+$$
+\begin{align}
+\neg(A\land B)&\Leftrightarrow\neg A \lor \neg B \newline
+\neg(A\lor B)&\Leftrightarrow\neg A \land \neg B
+\end{align}
+$$
+
+#### 量词推理
+
+$$
+\exists A \rightarrow B \newline
+(存在)有的A是B\newline
+\newline
+否定：\forall A \nrightarrow B \newline
+所有A不是B
+$$
+
+$$
+\forall A \rightarrow B \newline
+所有A是B \newline
+\newline
+否定：\exists A \nrightarrow B \newline
+存在A不是B
+$$
+
+#### 例题
+
+> （2020年山东）某城市选拔志愿者，已知情况如下：
+> 1) 只有小红报名，小白、小黑和小花才会都跟着报名；
+> 2) 如果小白不报名，则小黑也不报名；
+> 3) 如果小黑不报名，则小灰也不报名；
+> 4) 小红没报名；
+> 5) 小灰报名了。
+> 
+> 由此可推出：
+> - A. 小白、小黑和小花都报名了
+> - B. 小白和小黑都报名了
+> - C. 小黑和小白都报名了
+> - D. 小白和小花都报名了
+
+翻译成逻辑数学
+1) $白\land 黑\land 花 \rightarrow 红$
+   等价于逆否命题：
+   $\neg红\rightarrow\neg白\lor\neg黑\lor\neg花$
+2) $\neg白\rightarrow\neg黑$ 
+   等价于逆否命题：
+   $黑\rightarrow白$
+3) $\neg黑\rightarrow\neg灰$
+   等价于逆否命题：
+   $灰\rightarrow黑$
+4) $\neg红$
+5) $灰$
+
+$$
+\begin{align}
+3\land5&\rightarrow 黑 \newline
+黑\land2&\rightarrow 白 \newline
+4\land1\land黑\land白&\rightarrow \neg花 \newline
+\end{align}
+$$
+
+小白和小黑报名了，小花没有报名
+
 ### 组合推理
 
 ```puml
@@ -317,9 +395,5 @@ keywords: 公考,公务员
 @endmindmap
 ```
 
-### 加强题型
-
-
-
-### 削弱题型
+### 加强/削弱题型
 
