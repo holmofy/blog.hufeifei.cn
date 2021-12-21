@@ -24,6 +24,8 @@ header {
 <p class="center">属性不同看数量，点线笔画面素形</p>
 <p class="center">特殊情况看关系，相交相切和相离</p>
 
+<!-- more -->
+
 ### 位置规律
 
 ```puml
