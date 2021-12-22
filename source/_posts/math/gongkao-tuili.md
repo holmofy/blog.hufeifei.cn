@@ -22,7 +22,7 @@ header {
 <p class="center">元素相似看样式，加减运算和遍历</p>
 <p class="center">元素不同看属性，对称开闭和曲直</p>
 <p class="center">属性不同看数量，点线笔画面素形</p>
-<p class="center">特殊情况看关系，相交相切和相离</p>
+<p class="center">数量不同看关系，交切相离面线点</p>
 
 <!-- more -->
 
