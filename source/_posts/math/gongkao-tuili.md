@@ -7,7 +7,7 @@ keywords: 公考,公务员
 ---
 
 <style>
-.center, th, td, header {
+.center, th, td, header, h2 {
     text-align: center;
 }
 header {
@@ -192,7 +192,7 @@ header {
 *****_ 相交于面
 *****_ 相交于点
 *****_ 相交于边
-** 四面体
+** 八面体
 ***_ 考点
 ****_ 点
 ****_ 箭头
@@ -359,7 +359,33 @@ $$
 |假|真|真|
 |假|假|真|
 
+##### 例题
 
+> （2018年江西）某学校有五位学生会留任委员会候选成员，分别是小张、小王、小李、小刘、小陈，其中小张、小王、小李对此次竞选的结果预测如下：
+> 小张：“如果小陈没有当选，则我也不当选。”
+> 小王：“我和小刘、小陈三人要么都当选，要么都不当选。”
+> 小李：“如果我当选，则小王也当选。”
+> 评定结果出来后，发现三人的预测都是错误的，则最终有多少人当选？
+> A. 1    B. 2    C. 3    D. 4
+
+1. 翻译成逻辑数学
+   $$
+   \begin{align}
+   \neg陈 \rightarrow \neg张 \newline
+   王\land刘\land陈 \lor \neg王\land\neg刘\land\neg陈 \newline
+   李\rightarrow王
+   \end{align}
+   $$
+2. 三个预测都是错误的，三个命题都为假
+   $$
+   \begin{align}
+   \neg(\neg陈 \rightarrow \neg张) \Rightarrow \neg陈 \land 张 \newline
+   \neg(李\rightarrow王) \Rightarrow 李\land\neg王 \newline
+   \neg(王\land刘\land陈 \lor \neg王\land\neg刘\land\neg陈) \Rightarrow 刘
+   \end{align}
+   $$
+
+小张、小李、小刘当选，小陈、小王未当选，故选C
 
 #### 摩根定律
 
