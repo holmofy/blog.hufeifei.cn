@@ -7,7 +7,7 @@ mathjax: true
 
 TCP/IP起源于60年代末由美国政府资助的一个分组交换网络——ARPAnet(阿帕网)。到90年代TCP/IP就已成为事实上的工业标准了。
 
-# 网络分层
+## 网络分层
 
 网络分层从ARPAnet开始就已经在使用，将网络协议分为不同层次开发，能简化设计的复杂性，各层既能相互独立又能高效地协调工作（这也是C语言这种面向过程语言解决问题的常用方法）。提到分层，我们通常会把TCP/IP层次模型与OSI参考模型进行对比。
 
@@ -107,7 +107,7 @@ OSI参考模型的缺点就是过于复杂，层次分的太细，对于那些�
 
 > OSI模型与TCP/IP模型都不完美，但TCP/IP模型发展是因为在ISO制定OSI参考模型过程中总是着眼于一次制定达到完美，所以的制定过程中考虑的方面比较多，但去忽略了IP这一协议的重要性，但当ISO认识到时只好在网络层划出一个子层来完成类似的功能，在无连接服务一开始也不在考虑之列，还有就是网络管理功能的过度复杂等，造成了OSI迟迟没有成熟的产品推出的成因，进而影响了厂商对它的支持，而这时的TCP/IP通过实践得到到不断的完善，也得到了大厂商的支持，所以TCP/IP模型得到了发展。
 
-# 网络地址(IP地址)
+## 网络地址(IP地址)
 
 IP地址用来标识网络中主机的唯一性的。IP地址分为两个版本：IPv4和IPv6。
 
@@ -185,7 +185,7 @@ IPv6是下一代IP协议，用于解决IPv4地址枯竭的问题，目前IPv6的
 
 > 目前IPv6技术还不成熟，所以也没有相关资料以供学习。IPv6的过渡应该仍有一段时间。
 
-# IP地址+端口号=套接字
+## IP地址+端口号=套接字
 
 TCP和UDP均采用16bit的端口号来表示主机进程，而IP地址标识Internet上的主机，所以IP地址加上端口号能标识Internet主机上的任何一个网络进程。套接字英文“Socket”，直译过来就是“插座，插槽”，这个名字非常形象：“拿根USB线你就可以连接两个有USB插槽的设备了”。实现了TCP/IP协议的操作系统会提供一个socket API给程序开发人员，使用Socket API编程，操作系统会帮你将Socket套接字封装到TCP/UDP报文并发送出去。
 
@@ -196,23 +196,23 @@ TCP和UDP均采用16bit的端口号来表示主机进程，而IP地址标识Inte
 下面列举一些常用端口：
 
 ```powershell
-# 文件协议
+## 文件协议
 ftp-data           20/tcp                           #FTP, data
 ftp                21/tcp                           #FTP. control
-# Secure Shell
+## Secure Shell
 ssh                22/tcp                           #SSH Remote Login Protocol
-# Telnet
+## Telnet
 telnet             23/tcp
-# 邮件传输协议
+## 邮件传输协议
 smtp               25/tcp    mail                   #Simple Mail Transfer Protocol
-# DNS域名服务
+## DNS域名服务
 domain             53/tcp                           #Domain Name Server
 domain             53/udp                           #Domain Name Server
-# 简单文件传输协议
+## 简单文件传输协议
 tftp               69/udp                           #Trivial File Transfer
-# HTTP超文本传输协议
+## HTTP超文本传输协议
 http               80/tcp    www www-http           #World Wide Web
-# HTTPS协议
+## HTTPS协议
 https             443/tcp    MCom                   #HTTP over TLS/SSL
 https             443/udp    MCom                   #HTTP over TLS/SSL
 ```

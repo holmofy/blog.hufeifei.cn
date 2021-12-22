@@ -18,7 +18,7 @@ categories: 数据结构与算法
 description: 八大算法详解，JAVA实现
 ---
 
-# 排序算法的分类
+## 排序算法的分类
 先看维基百科中的一张关于排序算法的表
 
 ![排序算法的分类](http://img-blog.csdn.net/20170419212953699?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -28,7 +28,7 @@ description: 八大算法详解，JAVA实现
 ![排序算法分类](http://img-blog.csdn.net/20170731104101462?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
-# 简单选择排序（SelectSort）
+## 简单选择排序（SelectSort）
 选择排序思想很简单，对所有元素进行遍历，选出最小(或最大)的元素与第一个元素进行交换，然后逐次缩小遍历的范围。
 ![选择排序动态gif图](http://img-blog.csdn.net/20150606134600369)
 >关于八大排序算法的动态图，[这里有一个网站](http://www.atool.org/sort.php)我觉得特别好。
@@ -72,7 +72,7 @@ public class SelectSort implements SortAlgorithm {
 排序前：[3, 6, 2, 5, 9, 0, 1, 7, 4, 8]
 排序后：[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-# 进阶版选择排序----堆排序（HeapSort）
+## 进阶版选择排序----堆排序（HeapSort）
 堆排序就是对上面的选择排序进行了优化。从上面的简单选择排序实现中，我们可以看出，内部的循环负责比较选出最小值，然后进行一次交换。也就是说循环n次最后只选了个最小值和最前面的进行交换，前面的循环比较得出来的结果就这样抛弃了。举个很简单的例子“8， 9， 4， 6”这个无序的数组，第一次循环中已经得到``8 < 9``和``8 > 6``这个结论，第二次循环又将9和6进行比较，很明显第一次循环已经可以得出了9>6这个结论了，9和6比较完全是浪费的，但是简单选择就是这么傻逼无脑，那有没有一种方法让前面循环进行比较得到的结果能保存起来。这就涉及到一个概念了-----二叉堆。
 二叉堆听起来很牛逼的样子，其实说白了就是一个完全二叉树。完全二叉树是什么？就是去掉满二叉树后面若干个叶子结点，看下图：
 ![满二叉树](http://img-blog.csdn.net/20170419213320349?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)&nbsp;&nbsp;&nbsp;![完全二叉树](http://img-blog.csdn.net/20170419213533467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -167,7 +167,7 @@ public class HeapSort implements SortAlgorithm {
 ```
 > 有一个“平滑排序”算法和堆排序有点类似，“平滑排序”使用的是另一种二叉树----Leonardo树。关于“平滑排序”的各种说明，[这里](http://paroid.org/blog/smooth-sort/)有篇文章可供参考。
 
-# 简单插入排序（InsertSort）
+## 简单插入排序（InsertSort）
 插入排序原理也很简单，和整理扑克牌有点像。
 ![插入排序与扑克牌](http://docs.huihoo.com/c/linux-c-programming/images/sortsearch.sortcards.png)
 在未排序的部分选择一个元素，插入到已排序的部分，插入时会将比这个值大的所有元素往后挤。下面有动态图，看的很清楚。
@@ -208,7 +208,7 @@ public class InsertSort implements SortAlgorithm {
 	}
 }
 ```
-# 进阶版插入排序----希尔排序（ShellSort）
+## 进阶版插入排序----希尔排序（ShellSort）
 希尔排序也称缩小增量排序，是直接插入排序算法的一种更高效的改进版本。希尔排序这名字可能不好理解，因为这是设计者的名字，但是提到“缩小增量排序”这个名字，可能你就已经理解一小半了。
 既然说插入排序不是最高效的，那我们来想想怎么能将其进行优化吧。从上面的代码可以看出内层的循环是负责为current找到插入的位置，这是在有序的数组中查找位置，我第一个想到的就是二分查找(可能是对二分查找太敏感)，但是细想之后，你会发现即使你找到那个插入点，但是你还是得将插入点后面的元素往后移动腾出个空位，这始终避免不了上面实现代码的内层循环操作。
 维基百科中是这样概括插入排序的：
@@ -263,7 +263,7 @@ public class ShellSort implements SortAlgorithm {
 }
 ```
 
-# 冒泡排序（BubbleSort）
+## 冒泡排序（BubbleSort）
 冒泡可能是这八大排序中最简单的。“冒泡”两字很形象----大的元素慢慢的浮上去。冒泡排序只对相邻的两个元素进行交换。不多说，看图好理解。
 ![冒泡排序](http://img-blog.csdn.net/20150606135803929)
 
@@ -319,7 +319,7 @@ public class BubbleSort implements SortAlgorithm {
     }
 ```
 
-# 冒泡排序变形版----鸡尾酒排序（CocktailSort）
+## 冒泡排序变形版----鸡尾酒排序（CocktailSort）
 
 上面的冒泡排序每次循环都是从前到后进行相邻的比较。而鸡尾酒是前后来回地进行交换，有点像调鸡尾酒来回搅动，也有人把它叫做“双向冒泡排序”。鸡尾酒排序只是在冒泡排序的基础上做了些轻微改动，在效率上冒泡排序和鸡尾酒排序相差不了多少。
 ![鸡尾酒排序](http://img-blog.csdn.net/20170419214112329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -366,7 +366,7 @@ public class CocktailSort implements SortAlgorithm {
 	}
 }
 ```
-# 快速排序（QuickSort）
+## 快速排序（QuickSort）
 快速排序使用的是分治思想，把原有问题分成两个子问题进行递归解决，步骤如下：
 1. 如果待排序的数组项数为0或1，直接返回。(递归出口)
 2. 在待排序的数组中任选一个元素，作为中心点(pivot)
@@ -446,7 +446,7 @@ public class QuickSort implements SortAlgorithm {
 }
 ```
 
-# 归并排序（MergeSort）
+## 归并排序（MergeSort）
 归并排序使用的也是分治思想，不同的是它是直接将序列分为两个子序列进行递归排序。
 归并排序主要分为一下几个步骤：
 1. 如果待排序的序列项数为0或1，直接返回。（递归出口）
@@ -535,7 +535,7 @@ public class MergeSort implements SortAlgorithm {
 ---
 接下来要讲的所有排序算法和上面的排序算法思想完全不同，没有交换、选择，插入等操作，都是使用统计计数来实现的。
 **注意**：由于网上的很多资料与书籍都没有将计数排序，基数排序，鸽巢排序，桶排序划分清楚，大多数算法都只是伪代码（图书馆里找了很多书籍，也在网上查了很多资料，很难找到一个准确的说法，或者是长篇大论，未明所云，或者大篇幅的伪代码解释，无法上机验证），所以下面的排序算法名称和算法的真正实现原理可能不吻合，如果您对以下算法有不同的看法，还望指点一二，笔者不胜感激。
-# 计数排序（CountingSort）
+## 计数排序（CountingSort）
 因为后面的基数排序是从计数排序优化得到的，所以我们先讲讲计数排序。
 计数排序有两种实现，先来看第一种比较直观的：
 ![计数排序](https://img-blog.csdnimg.cn/2020020916320935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hvbG1vZnk=,size_16,color_FFFFFF,t_70)
@@ -652,7 +652,7 @@ public class CountSort {
 上面的计数排序和前面讲到的交换，插入的排序相比，还有很多缺点：
 - 因为对序列中的数据计数依赖数组索引，所以计数排序只能用来对整型数据进行排序。
 - 空间复杂度较高，存储结果的Result数组，以及计数器数组都需要分配内存，而且如果需要排序的数据比较稀疏，计数器数组会占用很大的内存空间。
-# 计数排序的另一种优化方式----基数排序（RadixSort）
+## 计数排序的另一种优化方式----基数排序（RadixSort）
 上面虽然对计数排序进行了优化，但是如果对于数据稀疏的序列进行计数排序，那计数器数组中将有很多空间会浪费掉。举个例子，比如说我们有一个序列``3，100，10086，404，6，57，2048``，对于这样小的一个序列，如果用计数排序我们最少需要分配``10086-3=10083``个内存长度的计数器，⊙﹏⊙这得浪费多少内存呐，因此基数排序应运而生。
 基数排序首先需要选择一个基数(Radix)。什么是基数呢，其实就是我们常说的进制中的基数，二进制的基数是2，8进制的基数是8，十进制的基数是10...，通常我们选择的基数是10，看起来比较直观，调试也方便。有了基数后我们怎么用它来优化计数排序呢，核心步骤和计数排序相同，只是根据位数的多少进行了多轮计数。具体看下图。
 ![基数排序原理图](http://img-blog.csdn.net/20170419215446036?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -732,7 +732,7 @@ public class RadixSort {
 ```
 > 到了这里基数排序还有一个缺陷：对于序列中的负数无能为力了，因为这里的算法和未优化的计数排序类似，如果你有更好的方案对基数排序进行优化，可以和大家分享一下。
 
-# 鸽巢排序（PigeonholeSort）
+## 鸽巢排序（PigeonholeSort）
 讲桶排序之前，先来说说鸽巢排序，其实鸽巢排序和前面的计数排序原理类似，这里说的鸽巢其实就是计数器，不同的是后面的数据重排过程，鸽巢排序相对于计数排序来说更好理解，我就直接画张图贴在这了。
 ![鸽巢排序](http://img-blog.csdn.net/20170419215603540?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
@@ -805,7 +805,7 @@ public class PigeonholeSort {
 ### 计数排序与鸽巢排序的比较
 这个算法和计数排序其实很相似，与计数排序的不同点在于：计数排序通过使用辅助数组result来降低时间复杂度，而鸽巢排序相比计数排序的时间复杂度高很多，鸽巢排序有时甚至不如直接选择，直接插入等排序算法效率高，因为当序列数据比较稀疏的时候，鸽巢hole数组(你也可以把它理解为计数器)将会很大，进而导致内层循环执行次数增多。
 
-# 桶排序（BucketSort）
+## 桶排序（BucketSort）
 桶排序和基数排序原理差不多，不同的是：桶排序将数据按照指定位的值分开装进不同的桶中，然后倒回原数组，而不像基数排序那样巧妙的使用计数器计算出元素的位置。这里所说的桶本质上就是一个线性表，而线性表可以使用数组实现，也可以使用链表实现，所以桶排序也有两种实现方式。
 
 ### 数组实现
@@ -952,7 +952,7 @@ public class LinkBucketSort {
 }
 ```
 
-# 排序算法大比拼
+## 排序算法大比拼
 随机生成1000个一万以内的数据
 ```java
 int[] testItems = new int[1000];
@@ -991,7 +991,7 @@ LinkBucketSort耗时：2.520621
 最后呢，再贴一张维基百科中对各个排序的对比作为整篇文章的总结：
 ![排序算法总结](http://img-blog.csdn.net/20170419215954901?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 代码下载地址
+## 代码下载地址
 CSDN：[点击这里下载全部代码](http://download.csdn.net/detail/holmofy/9819582)
 
 Github：https://github.com/holmofy/algorithm/tree/master/Sort

@@ -7,7 +7,7 @@ tags:
 categories: Android
 ---
 
-# 1、Android 几个模式
+## 1、Android 几个模式
 
 **正常模式**。也就是正常启动Android操作系统的样子。启动操作系统后，可以在开发者选项中打开USB调试。打开后可以用`adb`命令对连线的手机执行一些操作：
 
@@ -56,7 +56,7 @@ adb reboot recovery
 > adb shell ls -al /dev/block/platform/soc/1da4000.ufshc/by-name
 > ```
 
-# 2、解锁bootloader
+## 2、解锁bootloader
 
 PC想要重装操作系统，还是挺简单的。ghost备份的方式安装或者U盘装机。但是安卓刷机就有点麻烦了。首先一个原因就是几乎所有的安卓机都有OEM锁。
 
@@ -104,7 +104,7 @@ OKAY [  0.020s]
 finished. total time: 0.020s
 ```
 
-# 3、刷recovery分区使用第三方recovery系统
+## 3、刷recovery分区使用第三方recovery系统
 
 解锁bootloader后，我们可以继续使用原来的操作系统，也可以自由刷机。刷机有几个部分可以刷，一个是用来恢复的`/recovery`分区，还有一个是正常使用的android操作系统也就是`/system`分区，还有一个就是`/boot`内核启动分区。
 
@@ -127,7 +127,7 @@ fastboot reboot
 
 请注意，许多设备会在启动期间自动替换自定义recovery。所以需要在刷完分区后第一次进入，按住键组合并启动到 TWRP。启动 TWRP 后，TWRP 将修补库存 ROM，以防止原有ROM 替换 TWRP。如果不遵循此步骤，将不得不重复安装。
 
-# 4、使用magisk刷boot分区获取root权限
+## 4、使用magisk刷boot分区获取root权限
 
 目前都是使用[magisk](https://github.com/topjohnwu/Magisk)来进行root权限管理，早期的supersu和kingroot已经被淘汰了，
 
@@ -174,7 +174,7 @@ Refs:
 
 [目前ROOT成功率最高的软件是什么？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/55892085/answer/1974101365)
 
-# 5、第三方Android ROM操作系统
+## 5、第三方Android ROM操作系统
 
 刷了`recovery`分区和`boot`分区，我们还可以刷`system`分区自定义的ROM，第三方的ROM多如牛毛(毕竟大多数就只是做做界面)：
 
@@ -201,7 +201,7 @@ ROM开发
 
 
 
-# 6、Terminal on Android：Termux
+## 6、Terminal on Android：Termux
 
 在Android上玩终端，甚至将Android改装成Linux服务器，这些都可以用下面的软件实现。
 

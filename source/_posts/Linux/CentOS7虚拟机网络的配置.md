@@ -11,7 +11,7 @@ tags: Linux
 
 网上一大把。
 
-# 物理机配置
+## 物理机配置
 
 为了方便测试虚拟机是否能ping通物理机，物理机需要先打开ICMP回显功能。Win7以上的操作系统需要在高级安全防火墙中配置：
 
@@ -51,7 +51,7 @@ tags: Linux
 
 ![IPv4](http://img-blog.csdn.net/20171122150828270?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# Linux虚拟机配置
+## Linux虚拟机配置
 
 **IP地址等配置**
 
@@ -71,7 +71,7 @@ tags: Linux
 service network restart
 ```
 
-# 测试
+## 测试
 
 ![物理机IP信息](http://img-blog.csdn.net/20171122151026692?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 

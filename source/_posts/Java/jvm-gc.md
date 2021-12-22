@@ -14,7 +14,7 @@ keywords:
 
 这篇文章的目的就是为了突破这座藩篱，尽量让更多的人理解JVM的垃圾回收机制。
 
-# 1、GC之前
+## 1、GC之前
 
 早在1960年，[Lisp语言](https://en.wikipedia.org/wiki/Lisp_%28programming_language%29)中就有自动垃圾收集的算法，只是那时候还没有形成[*Garbage Collection*](https://en.wikipedia.org/wiki/Garbage_collection_%28computer_science%29)这个概念。直到1996年，GC因为[Java](https://en.wikipedia.org/wiki/Java_%28programming_language%29)的出现而一举成名。
 
@@ -195,7 +195,7 @@ void func() {
 
 > GC拯救了程序员，拯救了程序员的头发:smile:
 
-# 2、GC算法
+## 2、GC算法
 
 垃圾回收算法的设计主要考虑以下几个问题：
 
@@ -207,7 +207,7 @@ void func() {
 
 首先判断[垃圾对象](https://en.wikipedia.org/wiki/Garbage_%28computer_science%29)的方法有两种：[引用计数](https://en.wikipedia.org/wiki/Reference_counting)、[可达性分析](https://en.wikipedia.org/wiki/Unreachable_memory)
 
-# 3、引用计数
+## 3、引用计数
 
 引用计数就是为每个对象添加一个计数器，每当有一个地方引用到它，计数器值加1，当引用释放或失效时，计数器值减1，计数器值降为0对象就会被回收。
 
@@ -234,7 +234,7 @@ window.onload = function() {
 
 > 现在主流的JS引擎早已不再用引用计数算法了，[V8和Hotspot一样用分代收集算法](https://github.com/thlorenz/v8-perf/blob/master/gc.md)，值得一提的是V8的核心开发成员[Lars_Bak](https://en.wikipedia.org/wiki/Lars_Bak_%28computer_programmer%29)也是Hotspot团队的技术负责人。
 
-# 4、可达性分析——引用树遍历
+## 4、可达性分析——引用树遍历
 
 引用树遍历是可达性分析最主要的手段。
 
@@ -250,7 +250,7 @@ GC从根引用开始，顺着引用链遍历，找到所有的存活对象，同
 >
 > 2、标记策略，每个对象头部加个标记位？Cache命中率低，Bitmap标记？
 
-# 5、Mark-Sweep
+## 5、Mark-Sweep
 
 标记清除算法是基于可达性分析最简单的一种回收策略。
 
@@ -266,7 +266,7 @@ Mark-Sweep算法的清除阶段很简单：遍历堆中的对象，把没标记�
 
 2、 创建对象时要从空闲列表中找到匹配的内存空间(First-Fit, Best-fit, Worst-fit)，影响对象的内存分配时间。
 
-# 7、Copying
+## 7、Copying
 
 GC拷贝算法解决了Mark-Sweep算法的内存碎片的问题。
 
@@ -284,7 +284,7 @@ GC拷贝算法解决了Mark-Sweep算法的内存碎片的问题。
 * 内存使用率不高，一半的内存会空闲；
 * 对象存活率较高时，就会有大量的拷贝操作。
 
-# 6、Mark-Compact
+## 6、Mark-Compact
 
 [标记整理算法](https://en.wikipedia.org/wiki/Mark-compact_algorithm)可以看作是标记清除和复制算法算法的组合。
 
@@ -298,7 +298,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 
 这个算法缺点也很明显：前面有一块内存是垃圾对象，后续的对象都需要移动，存活对象较多时，移动耗时基本与内存大小成正比。
 
-# 8、分代GC
+## 8、分代GC
 
 > 事实上，目前为止都没有一个能“一统天下”的GC回收策略，每种回收策略都有各自的优缺点。
 
@@ -314,7 +314,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 
 * 对整个堆内存(新生代和老年代)执行的GC称为Full GC。
 
-# 9、Ungar分代
+## 9、Ungar分代
 
 分代GC这个概念最早由[David Ungar](https://en.wikipedia.org/wiki/David_Ungar)于1984年在[论文](https://people.cs.umass.edu/~emery/classes/cmpsci691s-fall2004/papers/p157-ungar.pdf)中提出的，他将堆内存分为4个空间：Eden、两个Survivor、OldGen，其中Eden和两个Survivor合称为新生代空间。
 
@@ -346,7 +346,7 @@ Mark-Compact把标记存活的对象往内存的一个方向靠拢，边界端�
 >
 > 大对象仍然在新生代吗？如果存活时间长，岂不是增加了新生代的拷贝成本。
 
-# 10、JVM规范与内存结构
+## 10、JVM规范与内存结构
 
 目前Oracle JDK和Open JDK使用的[JVM](https://en.wikipedia.org/wiki/Java_virtual_machine)都是Hotspot VM，市场上也有一些[其他虚拟机](https://en.wikipedia.org/wiki/Comparison_of_Java_virtual_machines)，它们大多遵循[JVM规范](https://docs.oracle.com/javase/specs/index.html)。
 
@@ -463,7 +463,7 @@ Constant pool:
 
 JVM可以使用传统的C堆栈以支持native方法的执行，另外本地方法栈也会被C语言实现的Java指令解释器(Hotspot中的JIT)使用。
 
-# 11、Hotspot
+## 11、Hotspot
 
 > 声明：后续的Hotspot参数在不同的JDK版本中会有些许差异，如需调整请以对应版本官方文档为准。
 

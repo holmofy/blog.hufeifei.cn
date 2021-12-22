@@ -10,7 +10,7 @@ keywords:
 
 java平台中很多功能都是以这种方式提供接口给开发者调用的，最典型的如：[JDBC](https://en.wikipedia.org/wiki/Java_Database_Connectivity)，[JDNI](https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface)，[JCE(Java加密扩展)](https://en.wikipedia.org/wiki/Java_Cryptography_Extension)，[JAXP](https://en.wikipedia.org/wiki/Java_API_for_XML_Processing)等，看JDK源码或者第三方源码的时候会经常碰到SPI，所以我觉得很有必要写个笔记把SPI记录下来。
 
-# 定义SPI接口
+## 定义SPI接口
 
 这里我就拿JDBC的数据库驱动作为例子，这里Driver类进行了简化。
 
@@ -40,7 +40,7 @@ javac javaxx/Driver.java
 jar cvf ../jar/driver-spi.jar javaxx/Driver.class
 ```
 
-# 实现SPI接口
+## 实现SPI接口
 
 **MySQL驱动简单实现**
 
@@ -63,8 +63,8 @@ public class MysqlDriver implements Driver{
 在这个例子中就是创建`META-INF/services/javaxx.Driver`文件，并在文件中写下以下内容
 
 ```bash
-# 文件中“#”号开头的内容会被解析成注释
-# MySQL Provider Implement
+## 文件中“#”号开头的内容会被解析成注释
+## MySQL Provider Implement
 mysql.MysqlDriver
 ```
 
@@ -96,7 +96,7 @@ public class OracleDriver implements Driver {
 在`META-INF/services/javaxx.Driver`文件中写下Oracle SPI的实现类：
 
 ```bash
-# java.Driver Oracle Implement
+## java.Driver Oracle Implement
 oracle.OracleDriver
 ```
 
@@ -109,7 +109,7 @@ javac -classpath ../jar/driver-spi.jar oracle/OracleDriver.java
 jar -cvf ../jar/oracle-driver.jar oracle/ META-INF/
 ```
 
-# 使用ServiceLoader加载SPI实现
+## 使用ServiceLoader加载SPI实现
 
 在`java.util`包下有个ServiceLoader工具类可以帮助我们加载类路径下所有的SPI接口的实现类
 

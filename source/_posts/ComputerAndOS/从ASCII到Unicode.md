@@ -14,7 +14,7 @@ keywords:
 - UTF-16
 ---
 
-# 1、ASCII编码
+## 1、ASCII编码
 
 为了能在电报、打印机、计算机等电信设备上进行信息交换，就必须为不同的设备制定统一的编码格式。早期的电信设备字符编码基本都是使用6位编码。1963年美国国家标准协会(ANSI)制定并公布的ASCII编码是第一个被广泛采用7位编码。
 
@@ -47,7 +47,7 @@ keywords:
 
 国际标准化组织和国际电工委员会ISO/IEC于1972年制订了[ISO/IEC 646](https://en.wikipedia.org/wiki/ISO/IEC_646)标准，它来自于多个国家标准(主要是ASCII)，允许其他国家根据需要修改ASCII中的`$` `@` `[` `\` `]` `^` `{` `|` `}` `~`12个字符为自己国家使用。
 
-# 2、EASCII编码
+## 2、EASCII编码
 
 欧洲国家与美国走得最近的，美国在计算机方面的发展也影响到了欧洲国家，编码问题就是其中之一。
 
@@ -55,7 +55,7 @@ keywords:
 
 ![扩展ASCII编码](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wvgv8rutj20fx08ytb1.jpg)
 
-# 3、ISO-8859编码
+## 3、ISO-8859编码
 
 由于各国制造厂商的EASCII扩展编码不统一，于是ISO/IEC委员会颁布了8位字符编码标准——[ISO/IEC 8859](https://en.wikipedia.org/wiki/ISO/IEC_8859)。
 
@@ -82,7 +82,7 @@ keywords:
 | ISO/IEC 8859-16 |   拉丁语系10-东南欧   |    2001     |
 | ISO/IEC 8859-12 | 原预留给印度梵文,后搁置废弃 |    搁置废弃     |
 
-# 4、汉字编码GB2312
+## 4、汉字编码GB2312
 
 信息技术飞速发展，计算机也开始进入中国，但是有个很严峻的问题：中华文化博大精深，光常用汉字就有几千个，这明显无法用单个字节进行编码，于是智慧的中国人民使用两个字节搞出了GB2312编码，并美其名曰：[DBCS](https://en.wikipedia.org/wiki/DBCS)（Double Byte Charecter Set 双字节字符集）。
 
@@ -140,7 +140,7 @@ GB2312编码空间为94 x 94，即有94个区，每个区有94个位，这些区
 
 > 点击这里查看[GB2312的编码表](http://www.qqxiuzi.cn/zh/hanzi-gb2312-bianma.php)。
 
-# 5、对GB2312的扩展—GBK
+## 5、对GB2312的扩展—GBK
 
 GB2312已经覆盖了99.75%的使用频率，但是很多人名地名无法用GB2312表示，比如前总理的“镕”字，歌手陶喆的“喆”字，我老家这边有个地名叫“喆桥”。没有这些字上户口办身份证都成问题了，于是国家把GB2312进行了扩展，所以就有了GBK编码。K就是“扩展”的拼音首字母。
 
@@ -202,7 +202,7 @@ GBK编码支持国际标准[ISO/IEC10646-1](https://en.wikipedia.org/wiki/Univer
 
 ![GB2312十六进制编码](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wwsnllcmj207q02xaa0.jpg)
 
-# 6、统一编码字符集
+## 6、统一编码字符集
 
 ### 6.1、ISO 10646标准与Unicode联盟
 
@@ -249,7 +249,7 @@ Unicode中每个字符对应的编码值被叫做**Code Point**(翻译成“码�
 ![第一辅助平面SMP](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx4g95afj20ks0ea40d.jpg)
 ![第二辅助平面SIP](http://tva1.sinaimg.cn/large/bda5cd74ly1g0wx4qe4hxj20js0erjsx.jpg)
 
-# 7、UTF编码体系
+## 7、UTF编码体系
 
 随着计算机一起发展起来的还有互联网，那时候网络传输价格还是蛮高的，如果使用UCS-2或UCS-4对文本数据进行网络传输，那将消耗很大的带宽，特别是对于使用ASCII码或ISO-8895的美国和欧洲国家，原本可以用1个字节表示的字符，非要用两个字节甚至四个字节，这宽带费蹭蹭地往上涨啊。于是ISO组织和Unicode联盟共同开发了面向传输的Unicode编码方案——UTF(Unicode Transformation Format)。这个编码体系有UTF-1、UTF-7、UTF-8、UTF-16、UTF-32。其中被广泛接受的是UTF-8和UTF-16以及UTF-32。
 
@@ -354,7 +354,7 @@ Unicode中第一个汉字为“一”，码点值为U+4E00。
 
 从这里也可以看出，中文以UTF-16方式存储所占空间比UTF-8所占空间更小。
 
-# 参考文献
+## 参考文献
 
 维基百科：相关链接在文章中已经给出
 

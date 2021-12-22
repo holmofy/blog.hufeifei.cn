@@ -8,7 +8,7 @@ categories: Linux运维
 
 废话不多说，直接上正题。
 
-# 安装git
+## 安装git
 
 这里以我的CentOS 7为例，其他发行版可以查看git官网提供的命令https://git-scm.com/download/linux
 
@@ -16,7 +16,7 @@ categories: Linux运维
 yum install git
 ```
 
-# 创建git用户
+## 创建git用户
 
 创建git用户，是为了专门管理服务器上的git服务。在Linux最好每个用户管理某一个模块的功能，这样安全性更高。当然如果你不在意这些，你可以跳过这一步，在后面的步骤中你可以使用已存在的用户代替。
 
@@ -29,7 +29,7 @@ useradd git -s /usr/bin/git-shell -p 123Xyz
 >
 > -p 参数为了指定git用户的密码，不过待会儿我们会在服务器上为本地PC配置公钥，这样可以免得每次git同步都需要输密码。
 
-# 在服务器上创建裸仓库
+## 在服务器上创建裸仓库
 
 你想在哪个目录下创建仓库，就在哪个目录下执行以下的命令。
 
@@ -50,7 +50,7 @@ git init --bare html.git
 # --bare 是代表创建裸仓库，这个参数一定记得带上
 ```
 
-# 在服务器上为本地PC配置公钥
+## 在服务器上为本地PC配置公钥
 
 如果你的PC是Windows的，你可以使用git-bash执行下面的命令。
 
@@ -114,7 +114,7 @@ warning: You appear to have cloned an empty repository.
 
 
 
-# 自动同步站点目录
+## 自动同步站点目录
 
 现在你使用git推送任何网页文件，都没法儿看到效果，因为你只是把文件传到了git上，比如我的文件就会被传到`/home/git/www/`目录下，现在我们需要把这些文件同步到`www`服务器的目录上。
 
@@ -169,7 +169,7 @@ warning: You appear to have cloned an empty repository.
 
 
 
-# 接下来你就可以往git服务器上同步网站了
+## 接下来你就可以往git服务器上同步网站了
 
 ```shell
 # 把本地PC网站目录下的所有文件添加到git中
@@ -184,7 +184,7 @@ git push -u origin master
 git status
 ```
 
-# 权限问题解决
+## 权限问题解决
 
 如果期间出现`Permission denied`类似的错误，肯定是服务器目录的权限没有配置，毕竟Linux对权限限制的很死。
 

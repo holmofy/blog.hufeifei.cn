@@ -4,7 +4,7 @@ date: 2018-03-15
 categories: 前端
 ---
 
-# babel有什么用
+## babel有什么用
 
 ES6标准从ES2015制定开始已经有几个年头了，虽然各大浏览器最新版都在极力地实现标准，但并不是所有人都会用最新版本的浏览器，特别是天朝像某狗某游这样的二次包装的浏览器，使用别人的内核而且版本更新又比较慢，导致新标准不能及时地在浏览器端使用。
 
@@ -22,7 +22,7 @@ arr.map(function(item){
 
 > 想了解更多，来看看官网：https://babeljs.io/
 
-# 插件(plugins)与预设(presets)
+## 插件(plugins)与预设(presets)
 
 > 参考：https://babeljs.io/docs/plugins/
 
@@ -60,7 +60,7 @@ babel6之后将默认的转换功能做成了可插拔的插件，默认不携�
 
 > TC39对EmacScript的提案详见：https://github.com/tc39/proposals
 
-# 在webpack构建系统中使用babel
+## 在webpack构建系统中使用babel
 
 用个babel有这么麻烦吗？光插件和预设就有这么多名堂。放心，我们不用管这些劳什子。
 

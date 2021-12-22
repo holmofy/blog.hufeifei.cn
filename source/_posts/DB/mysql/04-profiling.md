@@ -25,7 +25,7 @@ keywords:
 
 上面一篇文章已经将慢查询语句记录到日志中，接着我们就要对单条SQL查询进行性能分析，了解它慢在何处，才能对症下药进行性能优化。
 
-# show profile
+## show profile
 
 `show profile`命令是MySQL5.1之后引入的，由开源社区的[Jeremy Cole](https://blog.jcole.us/)贡献。
 
@@ -151,7 +151,7 @@ mysql> show profiles;
 +----------+------------+-------------------+
 4 rows in set, 1 warning (0.00 sec)
 
-# show profile命令默认显示最近一条查询的剖析信息
+## show profile命令默认显示最近一条查询的剖析信息
 mysql> show profile;
 +----------------------+----------+
 | Status               | Duration |
@@ -177,8 +177,8 @@ mysql> show profile;
 +----------------------+----------+
 18 rows in set, 1 warning (0.00 sec)
 
-# 要获取更早的查询剖析信息要用for query字句
-# for query字句后面跟QUERY_ID
+## 要获取更早的查询剖析信息要用for query字句
+## for query字句后面跟QUERY_ID
 mysql> show profile for query 3;
 +----------------------+----------+
 | Status               | Duration |
@@ -259,7 +259,7 @@ mysql> select state,sum(duration) as Total_R,
 
 通过看[官方手册对explain的解释](https://dev.mysql.com/doc/refman/5.7/en/explain.html)发现，`describe`(可简写成`desc`)和`explain`可以混着用(MySQL解析器将它们视为同义词)，只是大多数情况下更喜欢用`desc`来查看表结构(事实上是对`show columns`命令的简化，主要为了兼容Oracle数据库)，使用`explain`来查看执行计划(即解析MySQL是如何执行查询语句的)。
 
-# 使用explain获取执行计划
+## 使用explain获取执行计划
 
 我们可以使用`explain`来获取`select`,`delete`,`insert`,`replace`,`update`这几个语句经过MySQL优化器优化后的执行计划。
 

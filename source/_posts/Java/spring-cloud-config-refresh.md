@@ -10,7 +10,7 @@ keywords:
 - SpringCloudConfig配置项刷新
 ---
 
-# spring-cloud-bus项目结构
+## spring-cloud-bus项目结构
 
 ![](./spring-cloud-monitor.svg)
 
@@ -20,7 +20,7 @@ kafka和rabbitmq的消息处理逻辑本身也被抽象成了spring-cloud-stream
 
 spring-cloud-config-monitor是一个通过spring-cloud-bus实现配置实时更新的依赖库。
 
-# spring-cloud-config-monitor架构
+## spring-cloud-config-monitor架构
 
 ![](./config-server-refresh-single.svg)
 
@@ -49,7 +49,7 @@ public abstract class RemoteApplicationEvent extends ApplicationEvent {
 
 5、`RefreshListener`中会调用`ContextRefresher`，拉取最新的配置，并更新Environment，重建所有加了@RefreshScope注解的Bean。
 
-# SpringBus的几个配置
+## SpringBus的几个配置
 
 ```yaml
 spring:
@@ -74,7 +74,7 @@ spring:
 
 4、`trace`是用来记录这些事件的，目前SpringCloud没有实现，只是打了debug日志。但是SpringCloud提供了HttpTraceRepository接口，后期可能会扩展。
 
-# 存在的问题
+## 存在的问题
 
 ![](./config-server-refresh-config.svg)
 

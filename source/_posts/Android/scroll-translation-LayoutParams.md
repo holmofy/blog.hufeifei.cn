@@ -10,7 +10,7 @@ description: View滑动效果常用属性详解：scroll、translation、LayoutP
 scrollX/scrollY,translationX/translationY,x/y,LayoutParams
 
 ---
-# 1.scrollX/scrollY
+## 1.scrollX/scrollY
 对于这两个属性，View中提供了很多公有方法对其进行设置：
 ```java
 1、setScrollX(int value)/setScrollY(int value);
@@ -88,7 +88,7 @@ public class ScrollView extends TextView {
 使用这个方法我们可以模仿ViewPager自定义一个更加简洁的页面滑动的控件。
 
 ---
-# 2.translationX/translationY
+## 2.translationX/translationY
 与translationX/translationY类似的属性有很多，这些属性都存在View的RenderNode成员中。
 ```java
     /**
@@ -229,7 +229,7 @@ public float getY() {
 ![关系图](http://img-blog.csdn.net/20161231231836055?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 #### 需要注意的是这里的left/top属性与x/y属性都是相对于父容器得到的。
 
-# LayoutParams的margin属性
+## LayoutParams的margin属性
 看到这个属性，很容易就联想到前端CSS中的盒子模型概念。安卓中margin，padding的概念与前端CSS类似。
 
 同样的我们以marginLeft作为操作对象，来创建一个TextView的子类LayoutView。
@@ -285,11 +285,11 @@ public class LayoutView extends TextView {
 可以看到我点击鼠标往做移动，marginLeft减小成负数，使得控件往也左移动。在前端CSS中我们为了实现特殊的定位要求也经常用到类似的方法。
 
 
-# 三种滑动方式的对比
+## 三种滑动方式的对比
 1、通过修改scrollX/scrollY属性达到滑动效果：它可以方便地实现滑动效果而且不影响内部元素的单击事件。但是它只能滑动View的内容，并不能滑动View本身。
 2、View本身定位没有发生改变，只是绘制的位置发生了改变
 3、从布局上改变了View本身的定位。
 
-# [代码下载地址](http://download.csdn.net/detail/holmofy/9726419)
+## [代码下载地址](http://download.csdn.net/detail/holmofy/9726419)
 
 刚开始写博客，不正确的地方请多多指正

@@ -5,7 +5,7 @@ tags:
 categories: Linux运维
 ---
 
-# 下载并安装JDK
+## 下载并安装JDK
 
 **卸载原装的OpenJDK(如果有)**
 
@@ -58,7 +58,7 @@ source /etc/profile
 
 ![测试JDK环境是否安装成功](http://img-blog.csdn.net/20171128143347441?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 下载并安装Tomcat
+## 下载并安装Tomcat
 
 从清华大学的镜像站下载会快一点：
 
@@ -143,7 +143,7 @@ export CATALINA_HOME=/usr/local/java/apache-tomcat-8.5.23
 
 ![检查服务是否安装成功](http://img-blog.csdn.net/20171128143801312?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 配置防火墙打开8080端口并访问测试
+## 配置防火墙打开8080端口并访问测试
 
 ```shell
 # 对内网网段，打开8080端口

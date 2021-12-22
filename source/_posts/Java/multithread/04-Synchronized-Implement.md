@@ -21,7 +21,7 @@ keywords:
 
 ---
 
-# 1、温故知新
+## 1、温故知新
 
 在上一篇文章的例子中有一个Counter类：
 
@@ -58,7 +58,7 @@ static class Counter {
    }
    ```
 
-# 2、反编译代码
+## 2、反编译代码
 
 我们把上面三段代码反编译一下，并取出`increment`和`decrement`两个方法的反编译代码：
 
@@ -219,7 +219,7 @@ static class Counter {
 1. 普通方法和`synchronized`方法在方法内部没有任何区别，仅仅是`synchronized`方法比普通方法多了一个[`ACC_SYNCHRONIZED`标志位](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html#jvms-4.6)，该标志位表示访问该方法需要同步访问(synchronized access)
 2. `synchronized`同步代码块中由于要加载this引用，多了很多指令，而关键的两个指令是`monitorenter`，`monitorexit`。
 
-# 3、JVM规范中的Monitor
+## 3、JVM规范中的Monitor
 
 Oracle官网提供的[JVM规范](http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html#jvms-6.5.monitorenter)中对`monitorenter`和`monitorexit`两个指令有以下介绍：
 
@@ -242,7 +242,7 @@ Oracle官网提供的[JVM规范](http://docs.oracle.com/javase/specs/jvms/se8/ht
 
 JVM规范文档说的非常清楚明白，`synchronized`关键字是由`monitor`监视器实现的。
 
-# 4、Hotspot中的锁及其优化
+## 4、Hotspot中的锁及其优化
 
 > Hotspot介绍可以参考[Wiki](https://en.wikipedia.org/wiki/HotSpot)
 >

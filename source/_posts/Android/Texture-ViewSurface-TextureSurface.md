@@ -16,11 +16,11 @@ SurfaceView由于使用的是独立的绘图层，并且使用独立的线程去
 
 如果这里的SurfaceView是VideoView，由于视频刷新的速度比这个DrawSurfaceView速度大好几倍，那么这个黑边的情况将更恶劣，同学可以将DrawSurfaceView的刷新延时DELAY设置的更小一点，看的效果更明显。这里要讲到的TextureView就是用来解决这种问题的。
 
-### 先来简单介绍一下TextureView
+## 先来简单介绍一下TextureView
 TextureView是API 14添加进来的，也就是Android4.0之后才能使用这个类，而SurfaceView从API 1开始就已经有了。
 从字面意思来看TextureView是用来绘制纹理的View，官方文档给出解释是说，TextureView专门用来渲染像视频或OpenGL场景之类的数据，而且TextureView只能用在具有硬件加速的Window中,如果使用的是软件渲染，TextureView什么也不显示。也就是说对于没有GPU的设备，TextureView完全不可用。好在现在的移动设备基本都有GPU进行硬件加速渲染（连我手里这款破旧的华为测试机都有(^o^)）。
 
-#### TextureView的相关类SurfaceTexture
+### TextureView的相关类SurfaceTexture
 TextureView在使用的时候涉及到这么几个类：SurfaceTexture，Surface。
 Surface就是SurfaceView中使用的Surface，就是内存中的一段绘图缓冲区。
 SurfaceTexture是什么呢，官方文档给出的解释是这样的：
@@ -137,4 +137,4 @@ public class DrawTextureView extends TextureView implements TextureView.SurfaceT
 ![TextureView解决SurfaceView滑动黑边问题](http://img-blog.csdn.net/20170326233147442?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
-### 实现代码[点击这里](http://download.csdn.net/detail/holmofy/9794709)
+## 实现代码[点击这里](http://download.csdn.net/detail/holmofy/9794709)

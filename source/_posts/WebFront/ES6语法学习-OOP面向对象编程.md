@@ -4,7 +4,7 @@ date: 2018-03-15
 categories: 前端
 ---
 
-# ES5中使用构造函数定义类
+## ES5中使用构造函数定义类
 
 ES6之前定义一个类，都是通过定义构造函数实现：
 
@@ -154,7 +154,7 @@ var obj = new Object();
 obj.__proto__ == Object.prototype; // true
 ```
 
-# ES6中使用class定义类
+## ES6中使用class定义类
 
 ```javascript
 class Rectangle {

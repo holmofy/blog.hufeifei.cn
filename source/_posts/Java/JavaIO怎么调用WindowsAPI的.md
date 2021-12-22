@@ -8,7 +8,7 @@ categories: JAVA
 
 > 建议结合着源代码看这篇文章(这篇文章就是记录我看源代码的过程，这里的java版本是1.8.0_131)
 
-# RandomAccessFile
+## RandomAccessFile
 
 这个类就是完全模仿C语言的文件读写操作，允许随机读取，想读文件的哪个部分就可以把文件流指针指到哪儿。下面会列一张表将这个类中的常用方法和标准C语言API进行对比，然后再看一下Java在Native层是怎么实现这个类的：
 
@@ -700,7 +700,7 @@ RandomAccessFile类最终调用的是Windows的四个API：OpenFile，ReadFile�
 
 
 
-# FileInputStream和FileOutputStream
+## FileInputStream和FileOutputStream
 
 FileInputStream和FileOutputStream与C++的STL中的文件流API类似：面向对象，RandomAccessFile仅仅以面向对象方式封装了文件读写。Java的文件流功能上肯定不如C++，要知道C++的运算符重载，模板类等语言特性让C++的文件操作简单了很多(相反调试也变得更加困难)。
 

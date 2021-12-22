@@ -6,7 +6,7 @@ categories: JAVA
 
 [之前](http://blog.csdn.net/holmofy/article/details/78881331)看过一个RMI的简单示例。这篇文章简单的分析一下RMI的原理。
 
-# RMI应用程序的体系结构
+## RMI应用程序的体系结构
 
 [上一个例子](http://blog.csdn.net/holmofy/article/details/78881331)中，我们编写了两个程序，一个服务端(Server)和一个客户端(Client)。
 
@@ -20,7 +20,7 @@ categories: JAVA
 * Skeleton：骨架驻留在服务端系统中，Stub通过Skeleton传递参数给远程服务对象。
 * RRL(Remote Reference Layer)：RRL是负责管理客户端到远程对象的引用。
 
-# RMI的工作原理
+## RMI的工作原理
 
 * 当客户端调用远程对象时，它会被Stub接收，并把请求传递给RRL
 * 当客户端RRL接收到请求后，它会调用RemoteRef的invoke()方法。最终这个请求会被传递到服务端的RRL中。
@@ -39,7 +39,7 @@ categories: JAVA
 
 > 这两个过程之间涉及到的消息通信协议，也被称为[JRMP协议](https://en.wikipedia.org/wiki/Java_Remote_Method_Protocol)，Java Remote Message Protocol
 
-# RmiRegistry的作用
+## RmiRegistry的作用
 
 RmiRegistry用于管理所有的远程服务。
 
@@ -49,7 +49,7 @@ RmiRegistry用于管理所有的远程服务。
 
 ![RmiRegistry](http://img-blog.csdn.net/20171223200420058?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 分析Stub中的源代码
+## 分析Stub中的源代码
 
 在上面的体系架构中，提到了Stub与Skeleton，但是在程序中我们并没有看到这两个类，那是因为从Java 5.0之后，Java使用`java.lang.reflect.Proxy`为我们动态生成了这两个类。
 
@@ -58,7 +58,7 @@ RmiRegistry用于管理所有的远程服务。
 在Java 5.0之前需要我们使用`rmic`命令根据服务实现类编译生成存根。
 
 ```shell
-# -keep选项：保留生成的源代码
+## -keep选项：保留生成的源代码
 rmic -keep cn.hff.service.CalcServiceImpl
 ```
 

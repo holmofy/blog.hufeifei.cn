@@ -5,7 +5,7 @@ tags:
 categories: Linux运维
 ---
 
-# 安装Redis
+## 安装Redis
 
 安装过程很简单，[官网](https://redis.io/download)也有安装教程，这里贴一下redis-3.2.11版的安装过程：
 
@@ -59,7 +59,7 @@ make PREFIX=/usr/local/redis-3.2.11 install
 
 ![Redis服务启动配置文件](http://img-blog.csdn.net/20171207221030041?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 安装redis服务并配置开机自启
+## 安装redis服务并配置开机自启
 
 通常我们要安装服务，需要在`/etc/init.d/`目录下添加符合一定规则的启动脚本。
 

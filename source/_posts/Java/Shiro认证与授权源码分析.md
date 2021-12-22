@@ -82,7 +82,7 @@ public class Quickstart {
 }
 ```
 
-# 身份认证过程
+## 身份认证过程
 
 官方文档中提供了一张身份认证的图，直接看这张图可能还不能完全掌握认证的过程。调试源码源码过后，再回头看这张图，这张图才会深深的烙印在脑海中。
 
@@ -167,7 +167,7 @@ Shiro提供了如下的认证模块实现类，在官方的这个Demo中，由�
 
 ![Realm模块实现类](http://img-blog.csdn.net/20180104170923976?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSG9sbW9meQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-# 授权过程
+## 授权过程
 
 授权主要在调用Subject.hasRole或Subject.isPermitted等检查角色或权限的方法时触发。
 

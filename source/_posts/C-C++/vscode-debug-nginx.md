@@ -17,7 +17,7 @@ keywords:
 
 vscode调试nginx源码
 
-### clone源码
+## clone源码
 
 ```bash
 git clone https://github.com/nginx/nginx
@@ -27,7 +27,7 @@ git clone https://github.com/nginx/nginx
 
 这两个发行版添加了各自的[三方module](https://github.com/agile6v/awesome-nginx#third-party-modules)。
 
-### 编译运行
+## 编译运行
 
 1. 修改 /auto/cc/conf 文件，将ngx_compile_opt="-c" 修改为 ngx_compile_opt="-c -g"
 
@@ -57,7 +57,7 @@ git clone https://github.com/nginx/nginx
 
 > 具体源码编译内容可以参考[nginx文档](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#compiling-and-installing-from-source)
 
-### Nginx的多进程架构
+## Nginx的多进程架构
 
 nginx是多进程架构：一个Master进程，若干个Worker进程。
 
@@ -73,7 +73,7 @@ Worker进程和redis类似使用单线程+IO多路复用实现高并发处理IO�
 
 ![NGINX architecture](http://www.aosabook.org/images/nginx/architecture.png)
 
-### Master进程调试
+## Master进程调试
 
 1. 修改`/conf/nginx.conf`
 
@@ -124,7 +124,7 @@ Worker进程和redis类似使用单线程+IO多路复用实现高并发处理IO�
 
    ![nginx debug](https://s.pc.qq.com/tousu/img/20211101/1323853_1635750161.jpg)
 
-### 调试Worker进程
+## 调试Worker进程
 
 1. 查看 Worker 进程pid
 
@@ -168,7 +168,7 @@ Worker进程和redis类似使用单线程+IO多路复用实现高并发处理IO�
 
    ![process request](https://s.pc.qq.com/tousu/img/20211101/6907176_1635751804.jpg)
 
-### 关闭Nginx多进程模式
+## 关闭Nginx多进程模式
 
 启动两个进程的方式debug确实挺麻烦的，nginx提供了[配置关闭多进程架构](http://nginx.org/en/docs/ngx_core_module.html#master_process)，这样就可以在一个进程里对nginx的整个流程进行debug了，避免上面繁琐的配置。
 

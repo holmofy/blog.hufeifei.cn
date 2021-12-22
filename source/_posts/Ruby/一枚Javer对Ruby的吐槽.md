@@ -6,7 +6,7 @@ mathjax: true
 ---
 > 公司收购了个项目，技术都很老，Web用的Ruby on Rails，前端还在用jQuery，后台定时任务用Java(用的技术也都很老)。自己以前没有接触过Ruby，只是听几个朋友大学里玩过这玩意儿，所以对我来说Ruby就是一门全新的语言。我个人是非常抵触学一门新语言的，Java都还没吃透就并行学Ruby，只会分散深入学习Java的精力。但没办法谁让公司抽到我，还是好好学吧！
 
-# 1、安装Ruby
+## 1、安装Ruby
 
 Windows上傻瓜式安装Ruby就不赘述了(有[RubyInstaller](https://rubyinstaller.org/)会点下一步就行)，其他操作系统都可以用系统相应的包依赖管理器安装Ruby(Linux上的yum、apt-get，Mac上的homebrew)。但是这些包管理器通常只能安装yum源中已有的二进制包，如果你想要的Ruby版本没有在对应操作系统已编译的二进制包，那就只能下载源码自行编译了。虽然通常只需三个命令就能完成编译，但是多个Ruby之间版本的切换也是个问题，这也是小型脚本语言的痛。像Java大版本内不会有语法上改变，小版本也只是修复些bug，切换版本重新编译费时费劲，但Node.js和Ruby这样小巧而且版本间差异相对较大的语言，就需要运行环境的版本管理工具了。
 
@@ -22,7 +22,7 @@ Windows上傻瓜式安装Ruby就不赘述了(有[RubyInstaller](https://rubyinst
 
 切换Ruby版本只需用`rvm use INTERPRETER[-VERSION]`命令。
 
-# 2、Ruby周边
+## 2、Ruby周边
 
 **gem**
 
@@ -40,7 +40,7 @@ Windows上傻瓜式安装Ruby就不赘述了(有[RubyInstaller](https://rubyinst
 
 [Ruby on Rails](https://rubyonrails.org/)是一个基于Ruby的MVC框架，和[express.js](http://expressjs.com/)类似，也正是因为这个框架使得默默无闻的Ruby一夜崛起。也是这个框架最早提出[Convention Over Configuration](https://en.wikipedia.org/wiki/Convention_over_configuration)的概念，后来其他语言的框架也纷纷效仿，如今口口相传的SpringBoot也深受它的影响。
 
-# 3、 初学Ruby的20条经验
+## 3、 初学Ruby的20条经验
 
 **1、** Ruby和JS、Python一样是解释性脚本语言，使用源文件即可执行，按照惯例源文件以`.rb`为后缀。和Python的强制缩进不通，Ruby的缩进并不重要，但是为了代码可读性必须得缩进。
 

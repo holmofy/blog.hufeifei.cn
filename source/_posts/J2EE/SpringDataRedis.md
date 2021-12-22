@@ -6,7 +6,7 @@ categories: J2EE
 
 这几天做的功能涉及到Redis缓存，踩了不少坑，这里记录下来。
 
-# 1、SpringBoot自动配置的RedisTemplate
+## 1、SpringBoot自动配置的RedisTemplate
 
 在SpringBoot中可以在`properties`配置文件中配置[`spring.redis.*`相关属性](https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/api/org/springframework/boot/autoconfigure/data/redis/RedisProperties.html)，SpringBoot就会自动帮你创建相关Redis连接以及RedisTemplate相关对象。
 
@@ -53,7 +53,7 @@ public class RedisAutoConfiguration {
 
 大多数情况下使用SpringBoot默认的配置即可。
 
-# 2、StringRedisTemplate与RedisTemplate
+## 2、StringRedisTemplate与RedisTemplate
 
 SpringBoot默认为我们配置了两个RedisTemplate，其中`StringRedisTemplate`继承自`RedisTemplate<String,String>`。
 
@@ -145,7 +145,7 @@ public final class SafeEncoder {
 }
 ```
 
-# 3、使用RedisTemplate
+## 3、使用RedisTemplate
 
 使用RedisTemplate很简单，因为SpringBoot已经为我们创建了RedisTemplate和StringRedisTemplate，所以我们直接在需要使用的Bean里面注入就行：
 
@@ -172,7 +172,7 @@ public class Example {
 }
 ```
 
-# 4、使用RedisTemplate的操作视图
+## 4、使用RedisTemplate的操作视图
 
 RedisTemplate按照Redis的命令分组为我们提供了相应的操作视图：
 
@@ -218,7 +218,7 @@ public class Example {
 
 > 这个功能得益于PropertyEditorSupport，具体可参考[该链接](https://stackoverflow.com/questions/43006197/why-a-redistemplate-can-convert-to-a-listoperations)
 
-# 5、RedisSerilizer
+## 5、RedisSerilizer
 
 因为StringRedisTemplate和RedisTemplate默认使用的序列化不一样，所以在使用视图操作时要注意一些序列化方面的细节：
 
@@ -275,7 +275,7 @@ public class Example {
 
 缺点：所有操作只能以字符串形式执行。StringRedisTemplate的key，value等参数都必须是String类型，因为StringRedisSerializer只负责把String转换成byte[]。存储对象时，需要我们手动序列化成字符串；相应地，取对象需要反序列化。
 
-# 6、其他序列化
+## 6、其他序列化
 
 目前最新的SpringDataRedis 2.1.5版默认提供了6种序列化方案。
 
@@ -331,7 +331,7 @@ System.out.println(obj.getClass()); // com.example.demo.Person
 
 这两种序列化器是针对特定对象类型，前者用的是Jackson，后者用Spring的ConversionService。
 
-# 7、JedisConnection的选择db问题
+## 7、JedisConnection的选择db问题
 
 SpringBoot使用Jedis作为Redis的默认Client，可是`1.8.11.RELEASE`之前的版本中，发现如果redis的database不是0的话，JedisConnection每次创建的时候执行`select n`，并在关闭的时候执行重置`select 0`。
 
