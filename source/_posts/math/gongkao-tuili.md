@@ -7,7 +7,7 @@ keywords: 公考,公务员
 ---
 
 <style>
-.center, th, td, header, h2 {
+.center, th, td, header {
     text-align: center;
 }
 header {
@@ -21,7 +21,7 @@ header {
 <p class="center">元素相同看位置，平移旋转和翻转</p>
 <p class="center">元素相似看样式，加减运算和遍历</p>
 <p class="center">元素不同看属性，对称开闭和曲直</p>
-<p class="center">属性不同看数量，点线笔画面素形</p>
+<p class="center">属性不同看数量，面线笔画点素形</p>
 <p class="center">数量不同看关系，交切相离面线点</p>
 
 <!-- more -->
