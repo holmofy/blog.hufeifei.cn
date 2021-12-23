@@ -23,6 +23,7 @@ header {
 <p class="center">元素不同看属性，对称开闭和曲直</p>
 <p class="center">属性不同看数量，面线笔画点素形</p>
 <p class="center">数量不同看关系，交切相离面线点</p>
+<p class="center">日田变形圆交切，二除奇点笔画数</p>
 
 <!-- more -->
 
@@ -205,7 +206,6 @@ header {
 > 定义判断 有什么学习技巧吗？ https://www.zhihu.com/question/273682592
 
 
-
 ## 类比推理
 
 > 行测类比推理怎么做？ https://www.zhihu.com/question/373977860
@@ -336,7 +336,11 @@ header {
 @endmindmap
 ```
 
+注意：**不要通过理解语义来解题**，做这种题不要考虑命题本身是否正确，只要根据翻译出关系就行。
+
 #### 充分条件，必要条件
+
+**充分条件**
 
 $$
 A\rightarrow B
@@ -346,9 +350,17 @@ $$
 如果A,就B \Leftrightarrow A是B的充分条件 \Leftrightarrow A\rightarrow B
 $$
 
+**如果**我考上公务员，**那么**我肯定通过了笔试。 => 考上公务员 -> 通过了笔试
+**只要**你考上公务员，我**就**嫁给你。 => 考上公务员 -> 嫁给你
+**凡是**我不认识的字，**都**不是字。=> 不认识的字 -> 不是字
+
+**必要条件**
+
 $$
 只有A,才B \Leftrightarrow A是B的必要条件 \Leftrightarrow B\rightarrow A \newline
 $$
+
+只有通过笔试，才能考上公务员。 => 考上公务员 -> 通过了笔试
 
 <header>充分条件真值表</header>
 
@@ -600,7 +612,6 @@ package "职业" {
 ```
 
 ### 真假推理
-
 
 ```puml
 @startmindmap
