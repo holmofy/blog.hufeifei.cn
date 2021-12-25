@@ -1,6 +1,6 @@
 ---
 title: 找零钱问题
-date: 2021-12-20
+date: 2021-12-23
 categories: 算法
 mathjax: true
 tags:
@@ -88,6 +88,7 @@ public int changeCoins(int money, int[] coins, int n) {
 @Test
 public void testChangeCoins() {
     Assert.assertEquals(changeCoins(90, new int[]{10, 20, 50}, 3), 8);
+    Assert.assertEquals(changeCoins(90, new int[]{50, 20, 10}, 3), 8);
     Assert.assertEquals(changeCoins(190, new int[]{10, 20, 50}, 3), 26);
     Assert.assertEquals(changeCoins(100, new int[]{1, 2, 5, 10}, 4), 2156);
 }
