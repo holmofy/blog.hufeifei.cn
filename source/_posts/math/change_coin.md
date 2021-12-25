@@ -25,14 +25,16 @@ $$
 
 然后看x、y、z的组合有多少种：
 $$
-50\times1+20\times2+10\times0=90 \newline
-50\times1+20\times1+10\times2=90 \newline
-50\times1+20\times0+10\times4=90 \newline
-50\times0+20\times4+10\times1=90 \newline
-50\times0+20\times3+10\times3=90 \newline
-50\times0+20\times2+10\times5=90 \newline
-50\times0+20\times1+10\times7=90 \newline
-50\times0+20\times0+10\times9=90 \newline
+\begin{align}
+50\times1+20\times2+10\times0&=90 \newline
+50\times1+20\times1+10\times2&=90 \newline
+50\times1+20\times0+10\times4&=90 \newline
+50\times0+20\times4+10\times1&=90 \newline
+50\times0+20\times3+10\times3&=90 \newline
+50\times0+20\times2+10\times5&=90 \newline
+50\times0+20\times1+10\times7&=90 \newline
+50\times0+20\times0+10\times9&=90 \newline
+\end{align}
 $$
 
 因为10块钱最多只有8张，所以最后一种不可能，也就是说总共7种可能，题目答案选C。
