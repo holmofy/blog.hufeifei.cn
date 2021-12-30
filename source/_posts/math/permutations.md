@@ -42,7 +42,7 @@ keywords: 排列组合
 >
 > 换言之：8个人选出3个人进行排名，有多少种方法
 
-![](./permutations.png)
+![](http://img.hufeifei.cn/img/permutations.png)
 
 第一步：第1名，可以在8个人中任选一个，有8种选择。A可以被替换为 B C D E F G H中的任何一个。
 

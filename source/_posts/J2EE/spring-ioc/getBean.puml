@@ -1,9 +1,0 @@
-@startuml
-
-BeanFactory --> AbstractBeanFactory: getBean
-AbstractBeanFactory --> AbstractBeanFactory: doGetBean
-AbstractBeanFactory --> AbstractAutowireCapableBeanFactory: createBean
-AbstractAutowireCapableBeanFactory --> AbstractAutowireCapableBeanFactory: doCreateBean
-AbstractAutowireCapableBeanFactory --> AbstractAutowireCapableBeanFactory: initializeBean
-
-@enduml

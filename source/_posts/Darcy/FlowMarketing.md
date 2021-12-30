@@ -14,13 +14,13 @@ tags:
 
 <!-- more -->
 
-![](./flow-graph.png)
+![](http://img.hufeifei.cn/img/202112301705089.png)
 
 ## 节点类型
 
 ###### 数据源节点
 
-![起始节点](./start-nodes.png)
+![](http://img.hufeifei.cn/img/202112301706386.png)
 
 数据源节点中有动态数据节点和静态数据节点：
 
@@ -29,19 +29,19 @@ tags:
 
 ###### 逻辑节点
 
-![逻辑节点](./logic-nodes.png)
+![](http://img.hufeifei.cn/img/202112301706851.png)
 
 可以对数据节点进行逻辑操作，还可以对逻辑操作的结果再进行逻辑操作。
 
 ###### 动作节点
 
-![](./action-nodes.png)
+![](http://img.hufeifei.cn/img/202112301704589.png)
 
 动作节点都有执行时间，用户在这个节点里配置短信内容，选择发放的优惠券，或者赠送积分的数量。
 
 ###### 分析节点
 
-![](./analysis-nodes.png)
+![](http://img.hufeifei.cn/img/202112301704919.png)
 
 对短信、优惠券等节点的营销效果进行分析。
 
