@@ -42,6 +42,7 @@ skip_render:
   - baidu_verify_code-4FNAayJ9H3.html
   - ads.txt
   - root.txt
+  - jd_root.txt
   - robots.txt
   - webpushr-sw.js
   - book/index.html
