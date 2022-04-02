@@ -46,6 +46,7 @@ skip_render:
   - robots.txt
   - webpushr-sw.js
   - book/index.html
+  - CNAME
 
 # 写作选项 Writing
 new_post_name: :title.md # File name of new posts
