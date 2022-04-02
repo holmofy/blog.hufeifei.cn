@@ -1,4 +1,3 @@
 [submodule "themes/paper"]
 	path = themes/paper
-	url = https://github.com/holmofy/hexo-theme-paper
-	branch = master
+	url = https://github.com/holmofy/hexo-theme-paper.git
