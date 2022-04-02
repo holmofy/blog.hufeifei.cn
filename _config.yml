@@ -191,6 +191,7 @@ nofollow:
     - "duanple.com"
     - "p.pstatp.com"
     - "*.tqwba.com"
+    - "*.qpic.cn"
   rel:
     - 'external'
     - 'noreferrer'
