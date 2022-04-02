@@ -19,17 +19,17 @@ jobs:
       run: |
         git submodule sync
         git submodule update --remote
+    - name: Install ssh-key
+      uses: kielabokkie/ssh-key-and-known-hosts-action@v1
+      with:
+        ssh-private-key: ${{ secrets.ID_RSA }}
+        ssh-host: github.com
     - name: Install npm denpendency 
       uses: actions/setup-node@v2
       with:
         node-version: '14'
     - run: npm install -g hexo-cli
     - run: npm install
-    - name: Install ssh-key
-      uses: kielabokkie/ssh-key-and-known-hosts-action@v1
-      with:
-        ssh-private-key: ${{ secrets.ID_RSA }}
-        ssh-host: github.com
     - name: Hexo Deploy
       run: |
         echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
