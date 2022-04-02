@@ -27,7 +27,7 @@ jobs:
       uses: kielabokkie/ssh-key-and-known-hosts-action@v1
       with:
         ssh-private-key: ${{ secrets.ID_RSA }}
-        ssh-host: github
+        ssh-host: github.com
     - run: npm install -g hexo-cli
     - run: npm install
     - name: Hexo Deploy
@@ -35,7 +35,7 @@ jobs:
         echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-add ~/.ssh/id_rsa
-        ssh-keyscan -t rsa github >> ~/.ssh/known_hosts
+        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
         git config --global user.email "hff1996723@gmail.com"
         git config --global user.name "github/holmofy"
         hexo clean && hexo g && hexo d
