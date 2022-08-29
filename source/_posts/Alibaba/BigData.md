@@ -203,7 +203,7 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 ## 13、了解更多
 
-可以看awesome bigdata(https://github.com/newTendermint/awesome-bigdata)收集了所有开源的大数据技术栈
+可以看[awesome bigdata](https://github.com/newTendermint/awesome-bigdata)收集了所有开源的大数据技术栈
 
 
 **Refs：**
