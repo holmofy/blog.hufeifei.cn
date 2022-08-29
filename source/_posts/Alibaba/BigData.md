@@ -52,9 +52,9 @@ Hadoop1.0时期使用JobTracker和TaskTracker的架构来实现MapReduce任务�
 
 ![Yarn架构](http://tva1.sinaimg.cn/large/bda5cd74ly1gi6slp7p14j216o0o0mza.jpg)
 
-> 分布式文件系统完美地解决了海量数据存储的问题，但是一个优秀的数据存储系统需要同时考虑数据存储和访问两方面的问题，比如你希望能够对数据进行随机访问，这是传统的关系型数据库所擅长的，但却不是分布式文件系统所擅长的，那么有没有一种存储方案能够同时兼具分布式文件系统和关系型数据库的优点，基于这种需求，就产生了 HBase。
+> 分布式文件系统完美地解决了海量数据存储的问题，但是一个优秀的数据存储系统需要同时考虑数据存储和访问两方面的问题。比如你希望能够对数据进行随机访问，这是传统的关系型数据库所擅长的，但却不是分布式文件系统所擅长的，那么有没有一种存储方案能够同时兼具分布式文件系统和关系型数据库的优点，基于这种需求，就产生了 HBase。
 >
-> 谷歌的第三篇论文[BigTable](http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf)介绍了基于GFS实现的一个结构化数据存储系统。对应的开源实现就是基于Hadoop的[HBase](https://hbase.apache.org/)。数据存储结构上遵循[LSM-Tree](https://www.cs.umb.edu/~poneil/lsmtree.pdf)算法，由于Hadoop以128M大块为存储单位的，新数据都会先写到内存的memtable中并进行排序，当达到一定阈值后再flush到磁盘的SSTable中，SSTable数量会随着数据的增加而增加，LSM-Tree会有一个Compact机制对磁盘中的多个SSTable进行合并。值得一提的是LSM-Tree算法已被应用在了LevelDB、ElasticSearch、MongoDB等各种数据存储上。
+> 传统关系型数据库一般用B+树来适应磁盘按块访问的方式，从而减少磁盘IO的访问次数，比如Mysql的InnoDB引擎每个页大小是16KB，恰好是现代磁盘扇区4K的4倍。谷歌的第三篇论文[BigTable](http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf)介绍了基于GFS实现的一个结构化数据存储系统。对应的开源实现就是基于Hadoop的[HBase](https://hbase.apache.org/)。数据存储结构上遵循[LSM-Tree](https://www.cs.umb.edu/~poneil/lsmtree.pdf)算法，由于Hadoop以128M大块为存储单位的，所以HBase新数据都会先写到内存的memtable中并进行排序，当达到一定阈值后再flush到磁盘的SSTable中，SSTable数量会随着数据的增加而增加，LSM-Tree会有一个Compact机制对磁盘中的多个SSTable进行合并。值得一提的是LSM-Tree算法已被应用在了LevelDB、ElasticSearch、MongoDB等各种数据存储上。HBase只提供Key-Value存储，但是并不支持SQL，所以也被人叫做NoSQL数据库。Phoenix在上层提供了SQL功能。
 
 ## 3、Hive
 
@@ -73,6 +73,8 @@ Hive则是SQL On Hadoop，Hive提供了SQL接口，开发人员只需要编写�
 > 在Hive之后还有[Pig](https://pig.apache.org/)也可以生成MapReduce任务，只是后面的发展都偏向于通用的SQL，Pig也就逐渐没落。
 >
 > Hive可以将SQL转成MapReduce任务，而[phoenix](https://phoenix.apache.org/)可以将SQL转成HBase scan。
+>
+> 需要区分的是Hive和Phoenix的区别：Hive延时较高通常用来做大批量的离线任务，Phoenix=HBase+SQL适合做在线查询。
 
 目前认知中的大数据平台应该是这样的：
 
