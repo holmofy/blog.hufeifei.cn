@@ -104,6 +104,9 @@ Sqoop将Sql表同步到Hive表，涉及到存储格式与数据类型的兼容�
 
 通常我们使用Flume监控一个不断追加数据的日志文件，并将数据传输到HDFS。
 
+> 这样的日志采集工具现在非常多了，网上一搜一大把。比如ELK体系的Logstash和轻量级的FileBeat，被云原生体系囊括的Fluentd...
+> [github上开源的Log Collect工具](https://github.com/search?q=log+collect)
+
 ### 4.3、DataX
 
 和Sqoop类似，[DataX](https://github.com/alibaba/datax)是阿里开源的一款离线数据同步工具，DataX有更[丰富的数据源支持](https://github.com/alibaba/DataX#support-data-channels)。
@@ -132,7 +135,9 @@ MapReduce编程模型非常通用，但是运算太慢——因为中间的计�
 
 ![Tez](http://tva1.sinaimg.cn/large/bda5cd74ly1ght102dtzbj20b50a6mxw.jpg)
 
-其中就包括Tez，Spark。Spark号称比传统Hadoop的MapReduce快百倍以上。基于Spark的SQL项目[Shark](https://databricks.com/blog/2014/07/01/shark-spark-sql-hive-on-spark-and-the-future-of-sql-on-spark.html)也演变成了Spark下的子项目Spark SQL，为了兼容已有的Hive仓库，[SparkSQL也支持HiveQL](https://spark.apache.org/sql/)。Hive也吸收了Tez和Spark的思想，逐渐发展起[Hive On Spark](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Getting+Started)、[Hive On Tez](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez)等项目。与此同时，各种OLAP的数据仓库引擎百花齐放——[Impala](https://impala.apache.org/)、[Presto](https://prestodb.io/)、[Drill](https://drill.apache.org/)、[Hawq](http://hawq.apache.org/)、[Druid](https://druid.apache.org/)、[Pinot](https://pinot.apache.org/)、[Kylin](http://kylin.apache.org/)......
+其中就包括Tez，Spark。Spark号称比传统Hadoop的MapReduce快百倍以上。基于Spark的SQL项目[Shark](https://databricks.com/blog/2014/07/01/shark-spark-sql-hive-on-spark-and-the-future-of-sql-on-spark.html)也演变成了Spark下的子项目Spark SQL，为了兼容已有的Hive仓库，[SparkSQL也支持HiveQL](https://spark.apache.org/sql/)。Hive也吸收了Tez和Spark的思想，逐渐发展起[Hive On Spark](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Getting+Started)、[Hive On Tez](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez)等项目。
+
+与此同时，由于计算模型的改善，速度加快，各种OLAP的数据仓库引擎百花齐放——[Impala](https://impala.apache.org/)、[Presto](https://prestodb.io/)、[Drill](https://drill.apache.org/)、[Hawq](http://hawq.apache.org/)、[Druid](https://druid.apache.org/)、[Pinot](https://pinot.apache.org/)、[Kylin](http://kylin.apache.org/)......
 
 ![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1ght14ok1twj21gg0rgas4.jpg)
 
