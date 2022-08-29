@@ -145,7 +145,7 @@ MapReduce编程模型非常通用，但是运算太慢——因为中间的计�
 
 在实际业务场景下，特别是对于一些监控日志，想实时地从日志中了解一些指标，这时候，从HDFS上分析就太慢了，尽管是通过Flume采集的，但Flume也不能间隔很短就往HDFS上滚动文件，这样会导致小文件特别多(Hadoop块大小为128M，不适合存小文件)。所以一般日志都会先采集到消息队列中(如[Kafka](http://kafka.apache.org/))。
 
-Flume只能采集应用日志，对于数据库的变更(增删改)操作也可能需要做一些处理，比如将数据库的变更同步到ElasticSearch搜索引擎中。阿里开源了一款MySQL的binlog订阅组件[Canal](https://github.com/alibaba/canal)。
+Flume只能采集应用日志，对于数据库的变更(增删改)操作也可能需要做一些处理，比如将数据库的变更同步到ElasticSearch搜索引擎中。阿里开源了一款MySQL的binlog订阅组件[Canal](https://github.com/alibaba/canal)，Redhat开源了Debezium，具体可以参考[基于Binlog的实时同步功能——debezium、canel、databus技术选型](https://blog.hufeifei.cn/2021/03/DB/mysql-binlog-parser/)。
 
 ![日志订阅](http://tva1.sinaimg.cn/large/bda5cd74ly1ght37lwu4oj217o0k4wsn.jpg)
 
@@ -157,7 +157,11 @@ Flume只能采集应用日志，对于数据库的变更(增删改)操作也可�
 
 ![实时监控](http://tva1.sinaimg.cn/large/bda5cd74ly1ghwdrpo58uj211q0ipgvp.jpg)
 
-## 9、数据要实时--批处理vs.流处理
+## 9、数据治理
+
+除此之外，还有数据表的血缘关系，比如一个Hive表变更可能会影响其他表，要想维护好这些表，需要一个好的数据治理工具。开源的方案有Apache的Atlas和Linkedin开源的DataHub。
+
+## 10、数据要实时--批处理vs.流处理
 
 > 如果把数据比喻成水的话，批处理框架就像水桶，想喝水得一桶桶地从水井里打水喝，流处理就像自来水管道——不知出自哪位大牛的话
 
@@ -173,7 +177,7 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 ![实时计算](http://tva1.sinaimg.cn/large/bda5cd74ly1ghzte72nvdj21ks0u21kx.jpg)
 
-## 10、数据查询与可视化
+## 11、数据查询与可视化
 
 前面提到离线数据可以通过Sqoop或DataX导出到RDB或HBase中，这个一般也是通过设置定时任务将Hive表中的数据进行导出。
 
@@ -183,7 +187,9 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 ![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1ghzwqb0lsdj21l60xsb29.jpg)
 
-## 11、高大上的大数据算法与机器学习
+> 除了DataV、AntV、HighChart、Echarts等前端开发库外，还有现成的一些零代码BI平台，开源的比如CBoard、Tableau、Metabase、Redash等，只需要在BI平台上填入SQL，按照格式查出对应的数据，就能直接构建可视化报表
+
+## 12、高大上的大数据算法与机器学习
 
 抖音的视频、知乎的文章越看越停不下来的秘密，是因为有推荐系统。推荐系统对浏览者平时浏览的信息进行统计生成用户画像，对发布者的视频和文本内容提取特征，依此进行推荐，所以你越喜欢看某类文章视频你的某个特征就越明显。
 
@@ -195,6 +201,9 @@ Hadoop中的Job属于“离线批处理任务”，根据数据量的不同它�
 
 ![BigData](http://tva1.sinaimg.cn/large/bda5cd74ly1gi7pfbc3iqj21ku0xob29.jpg)
 
+## 13、了解更多
+
+可以看awesome bigdata(https://github.com/newTendermint/awesome-bigdata)收集了所有开源的大数据技术栈
 
 
 **Refs：**
