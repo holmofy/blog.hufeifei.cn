@@ -1,5 +1,5 @@
 ---
-title: SpringBoot3 WebFlux的新特性-RFC7807-ProblemDetail
+title: SpringBoot3的新特性-RFC7807-ProblemDetail
 date: 2023-5-28
 categories: J2EE
 tags: 
@@ -55,8 +55,14 @@ SpringBoot默认并没有开启ProblemDetail功能，需要通过以下方式任
 1、yaml配置文件
 
 ```yaml
+# webmvc
 spring:
   mvc:
+    problemdetails:
+      enabled: true
+# webflux
+spring:
+  webflux:
     problemdetails:
       enabled: true
 ```
