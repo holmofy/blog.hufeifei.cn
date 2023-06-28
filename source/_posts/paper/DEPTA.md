@@ -1,6 +1,11 @@
-```yaml
+---
 title: DEPTA
-```
+date: 2023-01-26
+categories: 算法
+tags: 
+- 算法
+- Web挖掘
+---
 
 Web Data Extraction Based on Partial Tree Alignment ———— 论文翻译
 
