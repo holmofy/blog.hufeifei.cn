@@ -1,3 +1,5 @@
+[![Deploy](https://github.com/holmofy/blog.hufeifei.cn/actions/workflows/deploy.yml/badge.svg)](https://github.com/holmofy/blog.hufeifei.cn/actions/workflows/deploy.yml)
+
 # [Holmofy Blog](https://blog.hufeifei.cn)
 
 base on [hexo](https://hexo.io/zh-cn/)
