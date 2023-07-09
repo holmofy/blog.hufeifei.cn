@@ -1,6 +1,6 @@
 ---
 title: 农业社会到工业社会的思考
-date: 2021-07-1
+date: 2023-07-1
 categories: 经济与金融
 tags: 
 - 经济
