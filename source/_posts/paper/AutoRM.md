@@ -39,7 +39,7 @@ AutoRM在以下三个主要步骤中挖掘数据记录：
 * 问题1：如何确定CG-Region中相似C-Records的第一个C-Record的头节点？
 * 问题2：如何确定相邻的两个C-Records之间的边界，以及CG-Region中相似C-Records的最后一个C-Record的尾节点？
 
-<img width="956" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/ab371007-f3bb-4bb9-9bcb-3136a6c6a6a2">
+![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/ab371007-f3bb-4bb9-9bcb-3136a6c6a6a2)
 
 在本文中，我们提出了一个新的算法来处理问题1。我们知道，大多数现有的方法并没有开发特殊算法来处理问题1。这使得它们容易在数据记录中包含不相关的信息。
 
@@ -61,7 +61,7 @@ AutoRM在以下三个主要步骤中挖掘数据记录：
 
 本文的其余部分组织如下。第2节介绍了一些预备知识，包括树相似度计算和相似树聚类；这些预备知识将用于在数据记录挖掘过程中对相似数据记录进行聚类。第3节介绍了我们从Web页面的DOM树中挖掘所有相似C-Records的算法。第4节介绍了我们用于CG-Region识别的算法。第5节介绍了我们将CG-Region分割成相似C-Records的算法。第6节介绍了我们从C-Records中挖掘实际相似数据记录的算法。第7节给出了我们的实验结果。第8节回顾了相关工作。第9节对论文进行了总结，并概述了未来的工作计划。
 
-<img width="903" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/de4238f8-7372-4943-8f64-dc98431e8c5f">
+![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/de4238f8-7372-4943-8f64-dc98431e8c5f)
 
 ## 2. 预备知识
 在Web数据记录挖掘过程中，我们需要对相似的数据记录进行聚类。为此，我们将计算任意两个数据记录之间的相似度，并基于数据记录的相似度对数据记录进行聚类。具体而言，我们将为每个数据记录构建一棵树，通过向数据记录中的节点添加一个人工父节点来实现。通过这种方式，计算数据记录的相似度和聚类相似数据记录将转化为计算树的相似度和聚类相似树。接下来，
@@ -101,7 +101,7 @@ $$Similarity(T1,T2)=\dfrac{\left | clusters_1 \right | \cap \left | clusters_2 \
 
 算法 1 展示了该算法。算法的输入是给定网页的 DOM 树 T，输出是从 T 中挖掘出的所有相似 C-Record 的集合列表。
 
-<img width="625" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/a115383f-bf0f-4c9b-9729-aeadff089712">
+![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/a115383f-bf0f-4c9b-9729-aeadff089712)
 
 根据 DEPTA [40]，在同一个父节点下可能存在多个相似数据记录集合。因此，如果 T:root（T 的根节点）包含子节点，则我们从 T:root:children（T:root 的子节点）中挖掘所有相似 C-Record 的集合（第 3-4 行）。具体而言，首先我们对 T:root:children 中的相似节点进行聚类（注意：我们通过获取以 T:root:children 中的节点为根的树，并使用第 2.2 节中描述的算法对这些树进行相似节点的聚类）（第 3 行）；其次，我们使用 Procedure mineCRecFromNS() 基于 T:root:children 中的相似节点来挖掘相似 C-Record（第 4 行）。在论文的其余部分，对于任何节点 N，N:cluster 表示包含 N 以及与 N 相似的所有兄弟节点的节点聚类。
 
@@ -129,7 +129,7 @@ $$Similarity(T1,T2)=\dfrac{\left | clusters_1 \right | \cap \left | clusters_2 \
 
 算法 2 展示了我们用于识别 CG-Region 的算法。算法的输入是一组兄弟节点 NS，输出是从 NS 中识别出的 CG-Region 的列表。
 
-<img width="766" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/4510ceb9-6bfd-4ac3-941e-45daacc0b064">
+![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/4510ceb9-6bfd-4ac3-941e-45daacc0b064)
 
 根据属性 1，我们首先获取 NS 的相似非分隔节点的聚类（第 1 行）。如第 3 节所述，第 1 行中的 N:cluster 表示包含 N 及其所有与 N 相似的兄弟节点的节点聚类。因此，N:cluster \ NS 表示包含 N 及 NS 中与 N 相似的节点的聚类。此外，由于分隔节点不包含实际内容，且通常随机出现，它们不用于 CG-Region 的识别。
 
@@ -163,6 +163,6 @@ $$Similarity(T1,T2)=\dfrac{\left | clusters_1 \right | \cap \left | clusters_2 \
 
 算法 3 展示了我们用于 CG-Region 分割的算法。算法的输入是一个 CG-Region CR = {C1, C2, ..., Cn}。输出是从 CR 中挖掘出的一组相似的 C-Records。
 
-<img width="619" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/7f9ebb05-261a-449c-b177-5efd4fcda4f5">
+![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/7f9ebb05-261a-449c-b177-5efd4fcda4f5)
 
 为了处理问题 1，我们从左到右扫描 CR 中的节点（第 2 行）。对于每个扫描到的节点 Ci，如果 Ci 是一个分隔符节点，则它不包含真实内容，我们将移动到下一个节点。否则（第 3 行），我们将 Ci 视为第一个 C-Record 的头节点，并尝试使用算法 4 从 hCi; Ci+1; ... ; Cn 中挖掘相似的 C-Record（第 4 行）。如果无法挖掘出相似的 C-Record，则尝试下一个节点。否则（第 5 行），我们检查挖掘到的 C-Record 集合是否是已经挖掘的 C-Record 集合的子集（第 6 行）。如果是，我们假设所有可能的第一个 C-Record 的头节点已经尝试过，并直接终止扫描（第 7 行）。如果不是，挖掘到的 C-Record 集合将被放入列表中（第 8 行）。当扫描最终终止时，我们得到了一系列可能的 C-Record 集合。现在问题是如何确定应选择哪个 C-Record 集合。为了解决这个问题，我们开发了一些用于比较 C-Record 集合质量的度量标准，并选择质量最高的 C-Record 集合。我们的度量标准基于以下观察：高质量的 C-Record 集合满足以下两个属性：
