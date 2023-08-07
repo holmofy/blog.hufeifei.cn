@@ -192,6 +192,7 @@ nofollow:
     - "p.pstatp.com"
     - "*.tqwba.com"
     - "*.qpic.cn"
+    - "*.bcebos.com"
   rel:
     - 'external'
     - 'noreferrer'
