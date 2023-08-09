@@ -39,7 +39,7 @@ tags:
 
 我们从财政的角度，从税收角度，我们可以看到中国的税收几乎是全世界最扭曲的税收。百分之九十以上的税收来自于劳动者劳动，而不是针对资产和资本利得课税。
 
-![image](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/c51f40e8-6daa-4fd3-a4e6-c8cbdb86c86d)
+![中国税种构成比例](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/c51f40e8-6daa-4fd3-a4e6-c8cbdb86c86d)
 
 中国的金融资本发展到了现在，已经进入到一个非常危险的状况，就是国家、企业和个人的负债杠杆居高不下，而杠杆所形成的那部分的资本利得被少数人占有，并且相当部分转往国外。从2012年到2018年，3万亿美元外逃。
 
