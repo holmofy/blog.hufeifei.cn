@@ -19,7 +19,7 @@ tags:
 
 ## 1、锚定效应：比较心理
 
-![](https://p.pstatp.com/origin/pgc-image/4e4e8670b94349138ab0ce589bd78cba)
+![](https://pic4.zhimg.com/v2-7602ffc5a785c864d939ce6eca702543_r.jpg)
 
 我们大多数人都会觉得右边的小正方形颜色更深，因为人的视觉经常会受到对比参考物的影响。但实际上中间的两个正方形颜色都是`#4e4e4e`。
 
@@ -27,23 +27,23 @@ tags:
 
 比如有定价125元一年的订阅杂志卖不出去了，此时商家提供一个电子版的杂志56元，电子版加纸质版买一送一125元。这个锚定的56元电子版，让原来卖不出去的125元纸质杂志捆绑销售，用户觉得自己捡了个56块钱的便宜，纸质版杂志相当于69元买到手了，但实际上电子版成本几乎为零，商家为了促销才让你觉得赚到了。
 
-![](https://p.pstatp.com/origin/pgc-image/4005fb9ae6de45568799ecb0f0c0bc45)
+![](https://pic3.zhimg.com/v2-b54aae22825ad2eb4c24283d6aa54de2_r.jpg)
 
 再比如星巴克里咖啡的不同规格：
 
-![](https://p.pstatp.com/origin/pgc-image/b671d61f89a4489487bf148714cfb10e)
+![](https://pic4.zhimg.com/80/v2-f5115feee1247d26ff7f15a915783ff7_1440w.webp)
 
 星巴克大杯470ml是31元，而小杯240ml就需要25元，算一下发现470ml将近是240ml两杯，这个时候你可能就心甘情愿的花了31块买了个大杯的星巴克，还以为自己赚了。实际上小杯星巴克就是一个参考锚定值，让你觉得31块买470ml的星巴克不贵而且赚了。
 
-![](https://p.pstatp.com/origin/pgc-image/8018d89df9204a64ada71a37069bed03)
+![](https://pic4.zhimg.com/80/v2-072014036f05a19fa5c49a6a2ed161ab_1440w.webp)
 
 奶茶第二杯半价的本质也是让你觉得占到了便宜，以一杯的价格作为锚点，让你发现两杯价格反而更便宜。商家不傻，商家卖两杯的收益肯定是比卖一杯的收益大的，所以这也可以间接推算出一杯奶茶的利润率肯定大于50%
 
-![](https://p.pstatp.com/origin/pgc-image/8b17f69588e047daad782e299b2f0e99)
+![](https://pic1.zhimg.com/v2-c21f249842a64e029b36ae2ed7f50d04_r.jpg)
 
 俗话都说“货比三家不吃亏”，人衡量自己是赚到了还是亏了，是需要有个参照物的，而商家就专门设计这么个参照物，让你觉得自己占了便宜。
 
-![](https://p.pstatp.com/origin/pgc-image/405fbdaba2b34613b684fad0a7e742cc)
+![](https://pic4.zhimg.com/80/v2-1277d767743e032154a71159b692dc27_1440w.webp)
 
 **攀比心理**
 
@@ -51,7 +51,7 @@ tags:
 
 这个普世的价值观实际上这也是锚定效应的一种体现，因为你拿来比对的是你周围的亲戚朋友。“隔壁老王的娃这次考试又考了100了，你怎么才考95分”，难道是95分不够优秀吗，只是因为你的视野范围内有更优秀的，这是人性的弱点，所以营销专家们也喜欢钻营这个，专门夸大广告词。
 
-![](https://p.pstatp.com/origin/pgc-image/b8cc73f8afdd43b0b2ac9d25119ebee8)
+![](https://pic2.zhimg.com/80/v2-0568b4f2c8bb7a5ad0429f96245fb33d_1440w.webp)
 
 ### 损失厌恶心理
 
@@ -59,25 +59,25 @@ tags:
 
 比如有一个彩票，50%概率能赢得11块，50%概率损失10块。
 
-![](https://p.pstatp.com/origin/pgc-image/daf5814925b840469db4056707dcd541)
+![](https://pic4.zhimg.com/80/v2-f0db847d48b3e7a0d12a15d86cc3142b_1440w.webp)
 
 按照传统经济学理论，这个游戏的盈利期望是正的，应该会有很多人乐意玩这个游戏。但是实际研究发现大多数人不愿意玩这个游戏，因为损失10块钱带来的痛苦会比赢11块钱带来的价值大。
 
-![](https://p.pstatp.com/origin/pgc-image/b558d4ba841449b18755ceb9e137eb91)
+![](https://pic2.zhimg.com/80/v2-e4c4c8a5bd97369b51f5360210502a99_1440w.webp)
 
 首月1元或首月免减，连续包年的会员，让你先拥有会员资质，等你体验了会员权益后，失去这个权益的痛苦大于你一个月得到十几块钱的价值，此时你就会一直让他扣费。这就是利用了人的损失厌恶心理。
 
-![](https://p.pstatp.com/origin/pgc-image/be3157ebd9134e6cad11052d1be92177)
+![](https://pic1.zhimg.com/80/v2-7b8fbee7803123cbac80e039d2921290_1440w.webp)
 
 再比如电商常用手段——优惠券，你看着快过期的优惠券，心里痒痒地觉得就要损失5块钱了，于是你开始打开app翻啊翻，找啊找，看看有没有潜在的想买的东西。这也是电商营销平台最喜欢用的激活用户潜在需求的手段。
 
-![](https://p.pstatp.com/origin/pgc-image/572756b2e4ab45e8b5e527fa59abd88b)
+![](https://pic4.zhimg.com/80/v2-96f1ad5cd0ffcd6a40b7f719f18ca483_1440w.webp)
 
 ## 2、羊群效应：从众心理
 
 为什么一条牧羊犬能驯服一千多只羊的羊群呢？因为牧羊犬只要搞定羊群中的几只领头羊，其他羊都会满怀信任心甘情愿地跟着它走。
 
-![](http://picture.youth.cn/qtdb/201709/W020170925525993850417.jpg)
+![](https://pic2.zhimg.com/80/v2-8d8c2fdc11f56fb47263a932f44f8941_1440w.webp)
 
 人也是一样，在人类早期，单独的个体面对豺狼虎豹是很难生存下来的，所以人类也进化出了羊群效应。
 
