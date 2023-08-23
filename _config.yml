@@ -193,6 +193,8 @@ nofollow:
     - "*.tqwba.com"
     - "*.qpic.cn"
     - "*.bcebos.com"
+    - "*.githubusercontent.com"
+    - "*.marxist.com"
   rel:
     - 'external'
     - 'noreferrer'
