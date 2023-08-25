@@ -186,6 +186,7 @@ nofollow:
   field: post
   include:
     - "img-blog.csdn.net"
+    - "*.csdnimg.cn"
     - "*.sinaimg.cn"
     - "*.doubanio.com"
     - "duanple.com"
