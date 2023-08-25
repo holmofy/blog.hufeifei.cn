@@ -424,7 +424,7 @@ java.nio.channels.SelectableChannel.configureBlocking(blocking);
 
 多路复用来是计算机网络中的词汇，指的是一个共享介质处理多个信道信息。而**IO多路复用指的就是单个事件循环中处理多个I/O通道的事件。**
 
-![时分多路复用原理图](http://ww1.sinaimg.cn/large/bda5cd74ly1g14qlfflpzg20c703nn4t.gif)
+![时分多路复用原理图](https://upload.wikimedia.org/wikipedia/commons/e/e0/Telephony_multiplexer_system.gif)
 
 这就好比到餐厅吃饭，传统的阻塞式IO就是一个服务员服务一桌客人，从你进餐厅到结账全程一对一的VIP服务。对于餐厅老板来说这个成本太高了，1000桌就得聘请1000个服务员。而且服务员在为客人服务的过程中并不是一直都忙着，客人点完菜，上完菜，吃着的这段时间，服务员就闲下来了，可是这个服务员还是被这桌客人占用着，不能为别的客人服务。
 
