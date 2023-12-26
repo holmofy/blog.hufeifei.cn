@@ -257,6 +257,8 @@ binlog的[ROW模式](https://dev.mysql.com/doc/refman/5.7/en/replication-options
 
 比如，有一张trade_info表，在某个时间点T添加了payment字段，在T之前的binlog是没有payment字段的，T之后的binlog才有payment。那Debezium生成事件也应该是在T之前有payment字段，T之后没有payment字段。
 
+换句话说，消费binlog消息的时刻数据库的schema和消息生产时候的schema是不一致的，如果用消费时schema就会导致binlog消息解析失败，因此需要schema的快照。
+
 > MySQL在binlog中不仅包含行级修改，还包括了数据库的DDL语句。当Debezium的Connector读取binlog并遇到这些DDL语句时，它会解析这些DDL并更新内存中每个表shema。Debezium使用这个shema就能标识每次增删改操作的结构从而生成事件。
 
 ### 5.2. 内存里的schema维护存在问题
