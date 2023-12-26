@@ -1,6 +1,6 @@
 ---
 title: 在读《资本论》
-date: 2023-08-06
+date: 2023-10-06
 categories: 经济与金融
 tags: 
 - 经济
