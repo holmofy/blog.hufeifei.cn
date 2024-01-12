@@ -42,6 +42,8 @@ keywords:
 
 ## B+树的优缺点
 
+<img width="725" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/ac8a8c9d-c49c-4629-973f-38d666513bec">
+
 **优点**：
 
 1、随机读写：根据B+树索引查询，能对磁盘中的数据实现快速读写。按照InnoDB的16KB块大小计算，对8字节的ID值进行索引，包括物理指针在内，一个节点可以存储1000左右的数据。这样算内两层数据只有1M左右，可以缓存在内存中，第三层可以索引1G左右的数据，所以三层B+树基本只要一次I/O操作。
