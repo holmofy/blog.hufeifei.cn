@@ -2,6 +2,7 @@
 title: 【译】基于MarkupLM的web数据抽取
 date: 2024-01-11
 categories: 算法
+mathjax: true
 tags: 
 - 算法
 - Web挖掘
