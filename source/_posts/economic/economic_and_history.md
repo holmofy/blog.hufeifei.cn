@@ -1,5 +1,5 @@
 ---
-title: 经济学历史观
+title: 唯物主义历史观
 date: 2023-08-06
 categories: 经济与金融
 tags: 
