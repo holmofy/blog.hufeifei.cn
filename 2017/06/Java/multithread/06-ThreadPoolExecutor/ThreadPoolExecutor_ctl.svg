@@ -1,0 +1,19 @@
+<svg width="726" height="119" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="121" width="728" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000" id="svg_1" height="36.999998" width="688" y="56.077978" x="17.5" stroke-width="1.5" fill="#fff"/>
+  <rect stroke="#000" id="svg_2" height="37.130435" width="599" y="56.077978" x="107.5" stroke-opacity="null" stroke-width="1.5" fill="#00c950"/>
+  <text style="cursor: move;" font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="43.096279" x="367.128442" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#00e841">29bit</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_4" y="43.096279" x="40.522738" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">3bit</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_5" y="82.545844" x="327.678878" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">workerCount</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="20" id="svg_6" y="82.545844" x="24.926398" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">runState</text>
+ </g>
+</svg>

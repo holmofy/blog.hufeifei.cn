@@ -1,0 +1,33 @@
+<svg width="583" height="203" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="205" width="585" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_13" d="m176.5,96.333208" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000"/>
+  <path id="svg_14" d="m391.03693,106.427349l3.646614,-4.199997l-7.05055,0l-7.050535,0l0,-2.599997l0,-2.6l6.969651,0c3.833303,0 6.969645,-0.13178 6.969645,-0.292846c0,-0.161062 -1.526026,-2.051062 -3.391164,-4.199996l-3.391175,-3.907155l3.134482,0l3.13447,0l4.787046,5.505266l4.787044,5.505264l-4.796227,5.49473l-4.796225,5.49473l-3.299847,0l-3.299855,0l3.646624,-4.199999l0.000002,0.000001z" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000"/>
+  <rect stroke="#000" id="svg_16" height="4.467273" width="218.78867" y="97.408328" x="177.605034" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <text style="cursor: move;" stroke="#000" transform="matrix(1.0231984010708666,0,0,1.0209931709507327,-5.797223151661788,23.855070914865863) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_17" y="54.962892" x="179.638421" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">filter(i -&gt; i % 2 == 0)</text>
+  <rect id="svg_9" height="165" width="161" y="24.833207" x="14.000183" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <text transform="matrix(1.0814108368218476,0,0,1.0567965094664076,-2.651373432475507,2.48731189951471) " stroke="#000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_12" y="53.848569" x="37.407632" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">IntStream</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_22" y="108.99999" x="37.750106" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">1</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_24" y="108.99999" x="71.916756" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">2</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_26" y="108.99999" x="102.750075" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">3</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_28" y="108.99999" x="135.250059" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">4</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_30" y="162.333299" x="37.750105" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">5</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_32" y="163.166632" x="70.25009" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">6</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_34" y="162.333299" x="103.583407" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">7</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_36" y="162.333299" x="136.083391" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">8</text>
+  <rect id="svg_73" height="165" width="161" y="23.166541" x="406.5" stroke-width="1.5" stroke="#000" fill="#fff"/>
+  <text transform="matrix(1.0814108368218476,0,0,1.031426891582067,-2.651373432475507,3.637217261508365) " stroke="#000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_74" y="51.83683" x="400.359254" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#000000">IntStream</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_76" y="104.833325" x="453.171786" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">2</text>
+  <text transform="matrix(1,0,0,1,0,0) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_78" y="104.833325" x="507.33322" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">4</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_80" y="161.080696" x="453.16137" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">6</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_82" y="161.085904" x="507.333218" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">8</text>
+ </g>
+</svg>
