@@ -2,6 +2,7 @@
 title: 增值税与贫富差距
 date: 2024-05-01
 categories: 经济与金融
+mathjax: true
 tags: 
 - 经济
 - 税收
