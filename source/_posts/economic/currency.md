@@ -30,7 +30,7 @@ tags:
 
 但是以物易物的方式效率太低了，大家都不想回到以前，最终大家先后找到了铜、金、银这种稀缺的金属作为货币。“金钱”也因此而来。
 
-![中国金属货币](https://upload.wikimedia.org/wikipedia/commons/f/fe/China_coin1.JPG)
+![中国金属货币](https://e0.ifengimg.com/02/2019/0227/BC237C1F4A22A5CFBCE824F75F4DEA7C00C4B1EB_size117_w1000_h788.jpeg)
 
 ## 货币是国家信用的派生
 
@@ -48,13 +48,13 @@ tags:
 
 世界上最早的纸币就是北宋时期的中国人发明的，名为“交子”。那要是国家随便印钞票咋办？这个收割劳动剩余的方式也被称为“铸币税”。蒙古人入主中原后，汉人的统治艺术没学到多少，印纸币倒是学的很快，元朝第一次将纸币称为“钞”，从字面上就能看出这个字的意思。站在“钞”的使用者角度，他比铜钱更轻便；站在“钞”的发行者角度看，他可以轻松地掠夺民间财富。从此“金钱”变成了“钞票”。
 
-![道光时期的银票](https://upload.wikimedia.org/wikipedia/commons/9/9c/1000_Cash_-_Chang_Feng_Money_Shop_%28Daoguang_13_-_1850%29.jpg)
+![银票](https://img1.artron.net/auction/old/art8178/d/art81784015.jpg)
 
 ## 生产力的提高促进劳动剩余的积累
 
 有一天，大洋彼岸的英格兰王国有位聪明的小伙子瓦特发明了一种动力机器——蒸汽机，有人基于这个蒸汽机制造了纺织机、远洋货轮、火车。以前需要10个纺织工人10天干的活，现在利用机器一个纺织工人一两天就能干完。有了火车和远洋货轮，这些商品可以运往欧洲大陆的各个地方销售。
 
-![1800年英国纺织厂](https://upload.wikimedia.org/wikipedia/commons/6/6c/Marshall%27s_flax-mill%2C_Holbeck%2C_Leeds_-_interior_-_c.1800.jpg)
+![1800年英国纺织厂](https://ts1.cn.mm.bing.net/th/id/R-C.735eddf84cf044e181fb9a2619cc7dde?rik=L2DXAA1tOobBWQ&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fq_70%2cc_zoom%2cw_640%2fimages%2f20181126%2f31c08ba24581413eaa2eeca2bc769e4c.jpeg&ehk=Oz%2bYHEGO70hXDEJQdIXY%2b5T8q95hMnkTHfWV4OQP%2fig%3d)
 
 英格兰使用蒸汽机提高了生产力，劳动剩余越来越多，而且价格便宜，其他国家商品价格根本竞争不过英格兰，其他国家对英格兰都产生了巨大的贸易逆差，黄金大量流入英格兰（资本家的口袋）。
 
