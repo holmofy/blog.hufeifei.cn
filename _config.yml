@@ -197,6 +197,7 @@ nofollow:
     - "*.bcebos.com"
     - "*.githubusercontent.com"
     - "*.marxist.com"
+    - "*.gtimg.com"
   rel:
     - 'external'
     - 'noreferrer'
