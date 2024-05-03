@@ -60,7 +60,7 @@ tags:
 
 ![1800年英国纺织厂](https://ts1.cn.mm.bing.net/th/id/R-C.735eddf84cf044e181fb9a2619cc7dde?rik=L2DXAA1tOobBWQ&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fq_70%2cc_zoom%2cw_640%2fimages%2f20181126%2f31c08ba24581413eaa2eeca2bc769e4c.jpeg&ehk=Oz%2bYHEGO70hXDEJQdIXY%2b5T8q95hMnkTHfWV4OQP%2fig%3d)
 
-牛顿找到了开启工业革命的钥匙，而瓦特拿起这把钥匙，开启了工业革命的大门。从此科学技术称为了生产力进步的重要推动力。
+牛顿找到了开启工业革命的钥匙，而瓦特拿起这把钥匙，开启了工业革命的大门。从此科学技术成为了生产力进步的重要推动力。
 
 ## 生产力的提高促进劳动剩余的积累
 
