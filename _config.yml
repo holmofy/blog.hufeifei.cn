@@ -185,19 +185,21 @@ nofollow:
   elements: ["a", "img"]
   field: post
   include:
-    - "img-blog.csdn.net"
+    - "*.csdn.net"
     - "*.csdnimg.cn"
     - "*.sinaimg.cn"
     - "*.doubanio.com"
-    - "duanple.com"
+    - "*.duanple.com"
     - "*.qq.com"
-    - "p.pstatp.com"
+    - "*.pstatp.com"
     - "*.tqwba.com"
     - "*.qpic.cn"
     - "*.bcebos.com"
     - "*.githubusercontent.com"
     - "*.marxist.com"
     - "*.gtimg.com"
+    - "*.citysbs.com"
+    - "*.com.cn"
   rel:
     - 'external'
     - 'noreferrer'
