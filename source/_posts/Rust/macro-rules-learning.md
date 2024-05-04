@@ -14,7 +14,13 @@ keywords:
 
 宏是一种元编程的方式，和Java1.6引进的AnnotationProcessor类似，它可以在编译时生成源代码。这种元编程技术可以让我们从样板代码中解脱出来，比如Lombok。
 
-Rust对标的是C/C++。C/C++中也有宏（Macro）的概念，可以简单地理解为：宏即编译时将执行的一系列指令。其重点在于「**编译时**」，尽管宏与函数（或方法）形似，**函数是在运行时发生调用的，而宏是在编译时执行的**。
+Java主流的元编程方式是Java1.1就有的运行时反射机制，基于反射可以实现诸如动态代理、序列化/反序列化(如json)等功能。反射机制在[Golang](https://golang.google.cn/blog/laws-of-reflection)、[Modern C++](https://en.cppreference.com/w/cpp/experimental/reflect)(虽然兼容性不好，但有很多[社区实现版本](https://github.com/fffaraz/awesome-cpp?tab=readme-ov-file#reflection))。另外由于Java是介于编译型和解释型之间的语言，所以还可以使用Cglib或更低层的ASM等工具实现运行时生成字节码的功能。
+
+这些运行时的元编程方式，Rust通通没有，甚至早期计划的[反射机制还被干掉了](https://github.com/rust-lang/rfcs/pull/379)。
+
+不要失望，Rust的宏能力很强大。Rust追求的是极致的性能，运行时的反射在性能上具有致命缺陷，这个肯定是Rust要避免的。
+
+Rust对标的是C/C++，C/C++中也有宏（Macro）的概念，可以简单地理解为：宏即编译时将执行的一系列指令。其重点在于「**编译时**」，尽管宏与函数（或方法）形似，**函数是在运行时发生调用的，而宏是在编译时执行的**。
 
 不同于C/C++中的宏，Rust的宏并非简单的文本替换，而是在词法层面甚至语法树层面作替换，其功能更加强大，也更加安全。
 
