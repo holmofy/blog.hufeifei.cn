@@ -111,3 +111,4 @@ tags:
 * [贾康：直接税改革是中国走向现代化的一个历史性考验——求是网](http://qstheory.cn/2018-05/30/c_1122913492.htm)
 * [“十四五”现代财税体制如何加快建立？——来自财政部的权威解读](https://www.gov.cn/xinwen/2021-04/08/content_5598274.htm)
 * [中美税制及税负比较](https://finance.sina.com.cn/review/jcgc/2021-03-29/doc-ikkntian0765223.shtml)
+* [美国个人所得税制度](https://baike.baidu.com/item/美国个人所得税/12649506)
