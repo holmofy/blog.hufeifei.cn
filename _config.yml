@@ -184,24 +184,8 @@ nofollow:
   enable: true
   elements: ["a", "img"]
   field: post
-  include:
-    - "*.csdn.net"
-    - "*.csdnimg.cn"
-    - "*.sinaimg.cn"
-    - "*.doubanio.com"
-    - "*.duanple.com"
-    - "*.qq.com"
-    - "*.baidu.com"
-    - "*.pstatp.com"
-    - "*.tqwba.com"
-    - "*.qpic.cn"
-    - "*.bcebos.com"
-    - "*.360doc.com"
-    - "*.githubusercontent.com"
-    - "*.marxist.com"
-    - "*.gtimg.com"
-    - "*.citysbs.com"
-    - "*.*.com.cn"
+  exclude:
+    - "img.hufeifei.cn"
   rel:
     - 'external'
     - 'noreferrer'
