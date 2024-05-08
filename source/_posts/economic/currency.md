@@ -87,7 +87,7 @@ tags:
 
 英国工业革命也使得大英帝国成为有史以来最大的殖民帝国。
 
-![大英帝国版图](https://www.chinanews.com/2015/0310/20153109582.jpg)
+![1900年新帝国主义时期殖民地图](https://pic3.zhimg.com/v2-576c140d9a7c2cef63e81e4bcb68cdae_r.jpg)
 
 ## 农业资本转向工业资本
 
