@@ -92,7 +92,7 @@ tags:
 
 文艺复兴和资产阶级革命推动了自然科学和人文科学的发展，科学革命孕育了技术革命。英国爆发了第一次工业革命：1764年詹姆斯·哈格里夫斯发明了珍妮纺纱机，为了解决纺纱机的动力问题，1769年瓦特改良了蒸汽机。在接下来的100年间，基于这个蒸汽机人们制造了自动纺织机、轮船、火车。以前需要10个纺织工人10天干的活，现在利用机器一个纺织工人一两天就能干完。有了火车和远洋货轮，这些商品可以运往欧洲大陆的各个地方销售。
 
-![1800年英国纺织厂](https://ts1.cn.mm.bing.net/th/id/R-C.735eddf84cf044e181fb9a2619cc7dde?rik=L2DXAA1tOobBWQ&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fq_70%2cc_zoom%2cw_640%2fimages%2f20181126%2f31c08ba24581413eaa2eeca2bc769e4c.jpeg&ehk=Oz%2bYHEGO70hXDEJQdIXY%2b5T8q95hMnkTHfWV4OQP%2fig%3d)
+![1800年英国纺织厂](https://ts1.cn.mm.bing.net/th/id/R-C.9476ba95667a996e24e0f1cc835e7778?rik=GT7fsevtlTfjGw)
 
 牛顿找到了开启工业革命的钥匙，而瓦特拿起这把钥匙，开启了工业革命的大门。从此科学技术成为了生产力进步的重要推动力。
 
