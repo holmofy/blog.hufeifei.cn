@@ -10,15 +10,15 @@ description: x-forward-for头信息
 
 这篇文章比较长，介绍全面。恐怕很多人读不完，先来一个**T**oo **L**ong **D**on't **R**ead的总结：
 
-* 从Http头中获取“真实客户端IP地址”时，请使用`X-Forwarded-For`列表中最右边的IP。
+* 从Http标头中获取“真实客户端IP地址”时，请使用`X-Forwarded-For`列表中最右边的IP。
 
-* `XFF`中最左边的IP通常被认为是“最接近客户端”和“最真实”的，但它很容易伪造被欺骗。不要将它用于任何与安全相关的事情。
+* `XFF`中最左边的IP通常被认为是“最接近客户端”和“最真实”的，但它很容易伪造。不要将它用于任何与安全相关的事情。
 
-* 选择最右边的`XFF`IP时，请确保使用该标头的最后一个真实地址。
+* 选择最右边的`XFF`IP时，请确保使用该Http标头的最后一个真实地址。
 
 * 使用由反向代理设置的特殊“真实客户端IP”头（如`X-Real-IP`, `True-Client-IP`等）可能很好，但这取决于 a)反向代理实际如何设置它；b)如果它已经存在/欺骗，反向代理是否设置它；c)如果有反向代理，如何配置反向代理。
 
-* 任何非反向代理专门设置的标头都不可信。比如，如果您不检查`X-Real-IP`标头直接在 Nginx 后面追加，那你可能将读取欺骗值。
+* 任何非反向代理专门设置的Http标头都不可信。比如，如果您不检查`X-Real-IP`直接在 Nginx 后面追加，那你可能将读取到伪造的值。
 
 * 许多限速器都使用可欺骗的IP实现，这容易受到绕过限速器导致内存溢出攻击。
 
@@ -32,7 +32,7 @@ description: x-forward-for头信息
 
 在研究了一段时间的限速器之后，我开始关心 IPv6 处理。我写了[一篇文章](https://adam-p.ca/blog/2022/02/ipv6-rate-limiting/)，详细介绍了IPv6限速如何导致速率限制器逃逸和内存溢出。然后，我转而担心限速器在负载均衡（或任何反向代理）后面时，如何确定要限速的IP。正如你所看到的，情况很糟糕。
 
-但这不仅是关于限速器。如果你曾经接触过查看`X-Forwarded-For`标头的代码，或者如果你使用别人的代码去获取所谓的“RealIP”，那么你绝对需要小心谨慎。这篇文章将帮助你理解为什么。
+但这不仅是关于限速器。如果你曾经接触过查看`X-Forwarded-For`头的代码，或者如果你使用别人的代码去获取所谓的“RealIP”，那么你绝对需要小心谨慎。这篇文章将帮助你理解为什么。
 
 ## 获得真正的客户端 IP 不会那么难，对吧？
 
@@ -44,17 +44,17 @@ Web 服务对其客户端的 IP 地址感兴趣的原因有很多：地理统计
 
 * [`X-Forwarded-For`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)是逗号分隔的 IP 列表，每个经过的代理都会将访问者追加到该IP列表。按照这个想法，第一个IP（由第一个代理添加）是真正的客户端IP。每个后续 IP 都是路径上的另一个代理。最后一个代理的 IP 不存在（因为代理不添加自己的 IP，并且因为它直接连接到服务器，因此其 IP 无论如何都可以直接使用）。后面将经常讨论这个问题，所以它将缩写为“XFF”。
 
-* [`Forwarded`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded)是最官方的标头但似乎使用最少。我们将在下面更详细地介绍它，但它实际上只是 XFF 的一个更高级版本，它具有我们将要讨论的相同问题。
+* [`Forwarded`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded)是最官方的头但似乎使用最少。我们将在下面更详细地介绍它，但它实际上只是 XFF 的一个更高级版本，它具有我们将要讨论的相同问题。
 
-* 还有特殊的单 IP 标头，如 X-Real-IP（Nginx）、CF-Connecting-IP（Cloudflare） 或 True-Client-IP（Cloudflare 和 Akamai）。我们将在下面详细讨论这些，但它们不是本文的主要重点。
+* 还有特殊的单 IP 头，如 X-Real-IP（Nginx）、CF-Connecting-IP（Cloudflare） 或 True-Client-IP（Cloudflare 和 Akamai）。我们将在下面详细讨论这些，但它们不是本文的主要重点。
 
 ## 陷阱
 
 在讨论如何正确使用 XFF 之前，我们将讨论使用`X-Forwarded-For`可能出错的多种形式。
 
-### 标头不可信
+### HTTP标头不可信
 
-首先，也是最重要的一点，您必须始终意识到，由不受您控制的任何代理添加（或似乎已经添加）的任何 XFF IP 都是完全不可靠的。任何代理都可以以任何它想要的方式添加、删除或修改标头。客户端也可以最初将标头设置为它想要的任何内容，以使欺骗球滚动。例如，如果您向 AWS 负载均衡器发出此请求：
+首先，也是最重要的一点，您必须始终意识到，由不受您控制的任何代理添加（或似乎已经添加）的任何 XFF IP 都是完全不可靠的。任何代理都可以以任何它想要的方式添加、删除或修改HTTP标头。客户端也可以最初将HTTP标头设置为它想要的任何内容，以使欺骗球滚动。例如，如果您向 AWS 负载均衡器发出此请求：
 
 ```curl
 curl -X POST https://my.load.balanced.domain/login -H "X-Forwarded-For: 1.2.3.4, 11.22.33.44"
@@ -78,11 +78,11 @@ curl -X POST https://my.load.balanced.domain/login -H "X-Forwarded-For: oh, hi,,
 X-Forwarded-For: oh, hi,,127.0.0.1,,,,, <actual client IP>
 ```
 
-正如你所看到的，目前都只是通过，这个标头前面的信息不会被改变也不会被验证。最终的实际 IP 只是附加到已经存在的内容后。
+正如你所看到的，目前都只是通过，这个HTTP标头前面的信息不会被改变也不会被验证。最终的实际 IP 只是附加到已经存在的内容后。
 
-（除了`curl` 和自定义客户端之外，还有类似于ModHeader的[Chrome插件](https://chromewebstore.google.com/detail/x-forwarded-for-header/hkghghbnihliadkabmlcmcgmffllglin)可让您在浏览器请求中设置 XFF 标头。但是，如何设置标头对我们来说并不重要，重要的是攻击者可以利用这一点。
+（除了`curl` 和自定义客户端之外，还有类似于ModHeader的[Chrome插件](https://chromewebstore.google.com/detail/x-forwarded-for-header/hkghghbnihliadkabmlcmcgmffllglin)可让您在浏览器请求中设置 XFF 头信息。但是，如何设置HTTP标头对我们来说并不重要，重要的是攻击者可以利用这一点。
 
-### 多个标头
+### 多个HTTP标头
 
 根据 [HTTP/1.1 RFC （2616）](https://datatracker.ietf.org/doc/html/rfc2616#section-4.2):
 
@@ -90,7 +90,7 @@ X-Forwarded-For: oh, hi,,127.0.0.1,,,,, <actual client IP>
 
 这适用于 XFF，因为它是一个逗号分隔的列表。这可能使获取最右边（甚至最左边）的 IP 容易出错。
 
-例如，Go语言有三种获取标头值的方法：
+例如，Go语言有三种获取HTTP标头值的方法：
 
 * [`http.Header.Get(headerName)`](https://pkg.go.dev/net/http#Header.Get)以字符串形式返回第一个标头值。
 * [`http.Header.Values(headerName)`](https://pkg.go.dev/net/http#Header.Values)返回一个字符串切片（数组），其中包含`headerName`标头的所有实例的值。(在查找之前`headerName`会被规范化)
@@ -261,17 +261,5 @@ Akamai 做了非常错误的事情，但至少对此发出了警告。以下是�
 但是，也有一句话“这不是安全功能”。嗯，这当然是真的。这个警告可以吗？没有大量 Akamai 用户出于安全相关目的使用`True-Client-IP`的可能性有多大？
 
 （我不确定如何解释上面的内容，当它说 XFF 标头“被 Akamai 父服务器覆盖”时。当它说“覆盖”时，它是否意味着“附加到”？还是 Akamai 实际上吹走了现有的标头值？这将违背XFF的精神。
-
-### Fastly
-
-Fastly 添加具有单个 IP 值的 Fastly-Client-IP 标头。我认为它使用了最正确的 XFF IP：
-
-从本质上讲，`Fastly-Client-IP`是向 Fastly 发出请求的非 Fastly 事物。
-
-但是：
-
-该值在 Fastly 网络的边缘不受修改保护，因此如果客户端自己设置此标头，我们将使用它。如果你想防止这种情况[你需要做一些额外的配置]。
-
-因此，默认情况下，它是微不足道的欺骗性的。同样，似乎很有可能有很多人将其默认行为用于与安全相关的目的，并使自己容易受到攻击。Fastly-Client-IP
 
 > 原文地址：https://adam-p.ca/blog/2022/03/x-forwarded-for/
