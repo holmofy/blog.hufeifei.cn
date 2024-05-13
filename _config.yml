@@ -185,7 +185,7 @@ nofollow:
   elements: ["a", "img"]
   field: post
   exclude:
-    - "img.hufeifei.cn"
+    - "www.hufeifei.cn"
   rel:
     - 'external'
     - 'noreferrer'
