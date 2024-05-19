@@ -390,4 +390,41 @@ type: "categories"
             </div>
         </div>
     </div>
+    <div id="item1219329" class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">11</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/34804492/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img9.doubanio.com/view/subject/l/public/s33465396.jpg">
+                </div>
+                <div class="title">
+                    计算广告 第2版
+                </div>
+                <div class="rating">
+                    <span class="allstar50"></span>
+                    <span class="rating_nums">8.8</span>
+                    <span>(484人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: 刘鹏 / 王超
+                    <br>
+                    出版社: 人民邮电出版社
+                    <br>
+                    出品方: 异步图书
+                    <br>
+                    副标题: 互联网商业变现的市场与技术
+                    <br>
+                    页数: 323
+                    <br>
+                    出版年: 2019-9
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
