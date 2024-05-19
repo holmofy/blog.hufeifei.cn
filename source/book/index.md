@@ -397,14 +397,14 @@ type: "categories"
             </div>
             <div class="bd doulist-subject">
                 <div class="source">
-                    <a href="https://book.douban.com/subject/34804492/">来自：豆瓣读书</a>
+                    <a href="https://book.douban.com/subject/36086460/">来自：豆瓣读书</a>
                 </div>
                 <div class="post">
                         <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
-                            src="https://img9.doubanio.com/view/subject/l/public/s33465396.jpg">
+                            src="https://img9.doubanio.com/view/subject/l/public/s34304344.jpg">
                 </div>
                 <div class="title">
-                    计算广告 第2版
+                    计算广告（第3版）
                 </div>
                 <div class="rating">
                     <span class="allstar50"></span>
@@ -420,9 +420,9 @@ type: "categories"
                     <br>
                     副标题: 互联网商业变现的市场与技术
                     <br>
-                    页数: 323
+                    出版年: 2022-8
                     <br>
-                    出版年: 2019-9
+                    <a href="https://study.163.com/course/introduction.htm?courseId=321007">网易课程</a>
                 </div>
             </div>
         </div>
