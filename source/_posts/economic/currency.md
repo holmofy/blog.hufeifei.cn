@@ -1,7 +1,7 @@
 ---
 title: 货币与经济周期
 date: 2023-08-28
-categories: 财税金融
+categories: 经济与金融
 tags: 
 - 经济
 - 货币
