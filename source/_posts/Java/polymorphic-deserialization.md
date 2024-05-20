@@ -73,5 +73,5 @@ public void whenDeserializingPolymorphic_thenCorrect() throws JsonProcessingExce
 ```
 
 > 参考文档：
-> Jackso官方文档：https://github.com/FasterXML/jackson-docs/wiki/JacksonPolymorphicDeserialization
-> Jackson常用注解：https://www.baeldung.com/jackson-annotations#jackson-polymorphic-type-handling-annotations
+> * Jackso官方文档：https://github.com/FasterXML/jackson-docs/wiki/JacksonPolymorphicDeserialization
+> * Jackson常用注解：https://www.baeldung.com/jackson-annotations#jackson-polymorphic-type-handling-annotations
