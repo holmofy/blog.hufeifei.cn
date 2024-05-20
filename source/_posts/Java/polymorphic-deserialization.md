@@ -11,9 +11,9 @@ JSON序列化/反序列化的工具非常多，Google的[Gson](https://github.co
 
 这些库始终都不如Jackson好用。不仅仅因为Jackson具有极致的可扩展性，可以无痛对接文本格式[XML](https://github.com/FasterXML/jackson-dataformat-xml)、[csv, properties, yaml](https://github.com/FasterXML/jackson-dataformats-text)和二进制格式的[avro, cbor, ion, protobuf, smile](https://github.com/FasterXML/jackson-dataformats-binary)，还因为他有简单易用的多态反序列化功能。[Gson等库实现多态反序列化](https://ruediste.github.io/java/gson/2020/04/29/polymorphic-json-with-gson.html)做法非常的不优雅。
 
-多态反序列化可以让应用的设计具有机制的可扩展性。这就像schemaless的MongoDB与schemaful的MySQL的区别。
+多态反序列化可以让应用的设计具有极致的可扩展性。这就像schemaless的MongoDB与schemaful的MySQL的区别。
 
-在MySQL中存储一个多态的JSON字段，可以极大的简化复杂应用的开发。
+在MySQL中存储一个多态的JSON字段即可实现schemaless，可以极大的简化复杂应用的开发。
 
 ## 用法
 
