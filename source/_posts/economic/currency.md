@@ -192,6 +192,7 @@ tags:
 
 历史告诉我们这两个解决方案都不完美，人类社会至今还没有找到最优解。
 
+
 参考链接：
 * 时空地图｜全历史：https://www.allhistory.com/map
 * 殖民地历史：https://zh.wikipedia.org/wiki/殖民地
