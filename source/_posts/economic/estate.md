@@ -1,5 +1,5 @@
 ---
-title: 经济发展与劳动剩余
+title: 国家资本主义：经济发展与劳动剩余
 date: 2020-12-16
 categories: 经济与金融
 tags: 
