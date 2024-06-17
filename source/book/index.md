@@ -470,12 +470,12 @@ type: "categories"
                     出版社: 中国人民大学出版社
                     <br>
                     出版年: 2021-6
+                    <br>
                     <a href="https://marxism-doc.github.io/articles/xuhe/political-economy/">在线版</a>
                 </div>
             </div>
         </div>
     </div>
-    
     <div class="doulist-item">
         <div class="mod">
             <div class="hd">
