@@ -49,6 +49,8 @@ type: "categories"
                     出版社: 中国电力出版社
                     <br>
                     出版年: 2018-9-1
+                    <br>
+                    <a href="https://vonng.gitbooks.io/ddia-cn">在线版</a>
                 </div>
             </div>
         </div>
