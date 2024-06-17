@@ -41,7 +41,7 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar50"></span>
                     <span class="rating_nums">9.7</span>
-                    <span>(923人评价)</span>
+                    <span>(1423人评价)</span>
                 </div>
                 <div class="abstract">
                     作者: Martin Kleppmann
@@ -80,7 +80,7 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar45"></span>
                     <span class="rating_nums">8.7</span>
-                    <span>(45人评价)</span>
+                    <span>(85人评价)</span>
                 </div>
                 <div class="abstract">
                     作者: [英] 拉乌尔-加布里埃尔 • 乌尔玛 / [意] 马里奥 • 富斯科 / [英] 艾伦 • 米克罗夫特
@@ -119,7 +119,7 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar45"></span>
                     <span class="rating_nums">9.3</span>
-                    <span>(942人评价)</span>
+                    <span>(1042人评价)</span>
                 </div>
                 <div class="abstract">
                     作者: 施瓦茨 (Baron Schwartz) / 扎伊采夫 (Peter Zaitsev) / 特卡琴科 (Vadim Tkachenko)
@@ -197,7 +197,7 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar45"></span>
                     <span class="rating_nums">9.3</span>
-                    <span>(329人评价)</span>
+                    <span>(429人评价)</span>
                 </div>
                 <div class="abstract">
                     作者: [日] 结城浩
@@ -218,17 +218,17 @@ type: "categories"
             </div>
             <div class="bd doulist-subject">
                 <div class="source">
-                    <a href="https://book.douban.com/subject/30412517/">来自：豆瓣读书</a>
+                    <a href="https://book.douban.com/subject/36818907/">来自：豆瓣读书</a>
                 </div>
                 <div class="post">
-                    <a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DabHC2PRyGyccQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67mxCtixafqcgrbXOwzJUOFCQw8LqxakrwUUi464EBjgBzSOqtCDq9C%2BWyV8t9sUM8%2FE6ZhHJ4xnXlntEOsmn00zkzhiaLWZJIKVoDoekLDlOfxdHLzxSRxcxjZvliVBdDMLXfepcZhl3cSpj5qSCmbA%3D&scm=null&pvid=null&app_pvid=59590_11.88.164.52_672_1635321104699&ptl=floorId%3A17741&originalFloorId%3A17741&app_pvid%3A59590_11.88.164.52_672_1635321104699&union_lens=lensId%3APUB%401635321097%4021334feb_084b_17cc0bbab52_8604%40025AmLYWdEfVUDDMqEM2uUlz"
+                    <a href="#"
                         target="_blank">
                         <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
-                            src="https://img9.doubanio.com/view/subject/l/public/s32282160.jpg">
+                            src="https://img2.doubanio.com/view/subject/l/public/s34816161.jpg">
                     </a>
                 </div>
                 <div class="title">
-                    <a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DabHC2PRyGyccQipKwQzePOeEDrYVVa64K7Vc7tFgwiHjf2vlNIV67mxCtixafqcgrbXOwzJUOFCQw8LqxakrwUUi464EBjgBzSOqtCDq9C%2BWyV8t9sUM8%2FE6ZhHJ4xnXlntEOsmn00zkzhiaLWZJIKVoDoekLDlOfxdHLzxSRxcxjZvliVBdDMLXfepcZhl3cSpj5qSCmbA%3D&scm=null&pvid=null&app_pvid=59590_11.88.164.52_672_1635321104699&ptl=floorId%3A17741&originalFloorId%3A17741&app_pvid%3A59590_11.88.164.52_672_1635321104699&union_lens=lensId%3APUB%401635321097%4021334feb_084b_17cc0bbab52_8604%40025AmLYWdEfVUDDMqEM2uUlz"
+                    <a href="https://book.douban.com/subject/36818907/"
                         target="_blank">
                         Effective Java中文版（第3版）
                     </a>
@@ -236,14 +236,22 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar45"></span>
                     <span class="rating_nums">9.4</span>
-                    <span>(233人评价)</span>
+                    <span>(17人评价)</span>
                 </div>
                 <div class="abstract">
-                    作者: [美] Joshua Bloch
+                    作者: [美]约书亚·布洛克（Joshua Bloch）
                     <br>
-                    出版社: 机械工业出版社
+                    出版社: 人民邮电出版社
                     <br>
-                    出版年: 2018-12-11
+                    出品方: 异步图书
+                    <br>
+                    副标题: 2024年全新译本
+                    <br>
+                    译者: 臧秀涛
+                    <br>
+                    出版年: 2024-3
+                    <br>
+                    <a href="https://wizardforcel.gitbooks.io/effective-java-3rd-chinese">在线版</a>
                 </div>
             </div>
         </div>
@@ -273,7 +281,7 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar45"></span>
                     <span class="rating_nums">9.0</span>
-                    <span>(1459人评价)</span>
+                    <span>(1559人评价)</span>
                 </div>
                 <div class="abstract">
                     作者: Brian Goetz / Tim Peierls / Joshua Bloch / Joseph Bowbeer / David Holmes / Doug Lea
@@ -312,7 +320,7 @@ type: "categories"
                 <div class="rating">
                     <span class="allstar50"></span>
                     <span class="rating_nums">9.5</span>
-                    <span>(469人评价)</span>
+                    <span>(769人评价)</span>
                 </div>
                 <div class="abstract">
                     作者: 周志明
@@ -333,30 +341,34 @@ type: "categories"
             </div>
             <div class="bd doulist-subject">
                 <div class="source">
-                    <a href="https://book.douban.com/subject/1219329/">来自：豆瓣读书</a>
+                    <a href="https://book.douban.com/subject/4822685/">来自：豆瓣读书</a>
                 </div>
                 <div class="post">
                         <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
-                            src="https://img1.doubanio.com/view/subject/s/public/s1164759.jpg">
+                            src="https://img3.doubanio.com/view/subject/l/public/s27331702.jpg">
                 </div>
                 <div class="title">
-                        Unix/Linux编程实践教程
+                        编码
                 </div>
                 <div class="rating">
-                    <span class="allstar50"></span>
-                    <span class="rating_nums">9.2</span>
-                    <span>(491人评价)</span>
+                    <span class="allstar45"></span>
+                    <span class="rating_nums">9.3</span>
+                    <span>(5372人评价)</span>
                 </div>
                 <div class="abstract">
-                    作者: Bruce Molay
+                    作者: [美] Charles Petzold
                     <br>
-                    译者: 杨宗源 / 黄海涛
+                    出版社: 电子工业出版社
                     <br>
-                    原作名: Understanding UNIX/LINUX Programming
+                    出品方: 博文视点
                     <br>
-                    出版社: 清华大学出版社
+                    副标题: 隐匿在计算机软硬件背后的语言
                     <br>
-                    出版年: 2004-10-1
+                    原作名: Code: The Hidden Language of Computer Hardware and Software
+                    <br>
+                    译者: 左飞 / 薛佟佟
+                    <br>
+                    出版年: 2010
                 </div>
             </div>
         </div>
