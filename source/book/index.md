@@ -517,6 +517,45 @@ type: "categories"
             </div>
         </div>
     </div>
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">3</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/26882283/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                    <a href="#"
+                        target="_blank">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img9.doubanio.com/view/subject/l/public/s29066784.jpg">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="#"
+                        target="_blank">
+                        历代经济变革得失
+                    </a>
+                </div>
+                <div class="rating">
+                    <span class="allstar45"></span>
+                    <span class="rating_nums">8.9</span>
+                    <span>(1647人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: 吴晓波
+                    <br>
+                    出版社: 浙江大学出版社
+                    <br>
+                    出品方: 蓝狮子
+                    <br>
+                    出版年: 2016-11
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
