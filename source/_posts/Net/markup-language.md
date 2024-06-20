@@ -35,7 +35,7 @@ categories: 网络
 
 Unix早期还没有受到贝尔公司的重视，没有商业化，除了在贝尔实验室流行开来，还流传到了大学里。[加州大学][UC]就是其中之一，[加州大学伯克利分校][UC-Berkeley]在Unix基础上进行了二次开发，随着Unix被各大商业公司拿去搞钱弄成了闭源，伯克利重写了Unix操作系统，现在流行的Unix开源版本[Open BSD][BSD]就是这个学校开发的。
 
-当时大学里很多人要写论文，论文里有很多数学公式，为了解决论文的排版问题，1978年~1989年间在斯坦福大学当教授的[唐纳德·克努斯][Donald_Knuth]开发了[Tex][TeX]，斯坦福研究所的[莱斯利·兰波特][https://en.wikipedia.org/wiki/Leslie_Lamport]认为Tex可以通用起来，就自己开发了[Latex][Latex]并在1986年发布问世。[Tex排版系统][Tex-format]现在几乎成了学术界标准的排版软件。后来有人把[Tex][TeX]移植到Unix操作系统上取代了[Troff][Troff]和[Nroff][Nroff]。
+当时大学里很多人要写论文，论文里有很多数学公式，为了解决论文的排版问题，1978年~1989年间在斯坦福大学当教授的[唐纳德·克努斯][Donald_Knuth]开发了[Tex][TeX]，斯坦福研究所的[莱斯利·兰波特][Leslie_Lamport]认为Tex可以通用起来，就自己开发了[Latex][Latex]并在1986年发布问世。[Tex排版系统][Tex-format]现在几乎成了学术界标准的排版软件。后来有人把[Tex][TeX]移植到Unix操作系统上取代了[Troff][Troff]和[Nroff][Nroff]。
 
 ![Tex排版软件](https://pic1.zhimg.com/v2-d56d408d8ff9c02480db5795bb7a20f8_r.jpg)
 
@@ -43,7 +43,7 @@ Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、
 
 ## 互联网让HTML风靡起来
 
-1980年，在欧洲核子研究中心任职的物理学家[伯纳斯-李][Berners-Lee]为了方便研究中心人员共享文档，发明了[HTML][HTML]，并找了个本科生[尼古拉·佩洛][Nicola_Pellow]写了第一个网络浏览器[Line Mode Browser][Line_Mode_Browser]，这个浏览器当时还是在终端运行。后来的1990年[伯纳斯-李][Berners-Lee]开发了第一个Web服务器[CERNhttpd][cern-httpd]。现在还能在欧洲核子研究中心看到世界上第一个网站：[http://info.cern.ch/][https://info.cern.ch/] 和 第一个浏览器[line-mode](Line_Mode)的历史。能翻墙的话也可以到维基百科上看看[万维网的历史][History_of_the_World_Wide_Web]。
+1980年，在欧洲核子研究中心任职的物理学家[伯纳斯-李][Berners-Lee]为了方便研究中心人员共享文档，发明了[HTML][HTML]，并找了个本科生[尼古拉·佩洛][Nicola_Pellow]写了第一个网络浏览器[Line Mode Browser][Line_Mode_Browser]，这个浏览器当时还是在终端运行。后来的1990年[伯纳斯-李][Berners-Lee]开发了第一个Web服务器[CERNhttpd][cern-httpd]。现在还能在欧洲核子研究中心看到世界上第一个网站：[http://info.cern.ch/](https://info.cern.ch/) 和 第一个浏览器[line-mode](Line_Mode)的历史。能翻墙的话也可以到维基百科上看看[万维网的历史][History_of_the_World_Wide_Web]。
 
 ![第一个网络浏览器](https://ts1.cn.mm.bing.net/th/id/R-C.02c1e2425a433d2176da44a046b0fb7e?rik=ELDtCH4JacUGdw)
 
@@ -59,7 +59,7 @@ Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、
 
 ## 轻量标记语言
 
-随着互联网崛起的HTML，有个缺点就是太重了，这是所有XML的通病。早期的Ajax使用XML传输数据，微软的IE提供的Ajax接口就叫做`XMLHttpRequest`，就是因为XML太重了，2001年才基于Javascript开发了`[JSON][JSON]`(JavaScript Object Notation)也叫做JSML(JavaScript Markup Language)，现在几乎成了互联网传输数据的标准。
+随着互联网崛起的HTML，有个缺点就是太重了，这是所有XML的通病。早期的Ajax使用XML传输数据，微软的IE提供的Ajax接口就叫做`XMLHttpRequest`，就是因为XML太重了，2001年才基于Javascript开发了[JSON][JSON]（JavaScript Object Notation），也叫做JSML(JavaScript Markup Language)，现在几乎成了互联网传输数据的标准。
 
 在渲染方面HTML也太重，特别是对于非计算机专业的人士来说，HTML太难懂了，所以发展出了**轻量级标记语言**。
 
@@ -108,7 +108,7 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 
 项目是用haskell写的：https://github.com/jgm/pandoc 。它甚至支持word、ppt的格式转换。
 
-目前来看，最流行的markdown不仅用在写技术文档，还在知乎等社交论坛网站有应用。不过技术文档方面asciidoc更强大，最有名的就是Spring，它的所有文档都是基于asciidoc。github也支持渲染asciidoc文档。
+目前来看，最流行的markdown不仅用在写技术文档，还在知乎等社交论坛网站有应用。不过目前对我来说最大的痛点是无法include外部文件，这个功能2014年在[CommonMark中][talk.commonmark]就有过讨论了，但是一直都没有标准化的实现。所以在技术文档方面asciidoc会更强大一些，最有名的就是Spring，它的所有文档都是基于asciidoc。github也支持渲染asciidoc文档。
 
 
 
@@ -137,6 +137,7 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 [BSD]: https://baike.baidu.com/item/伯克利软件套件/63038897
 [Donald_Knuth]: https://en.wikipedia.org/wiki/Donald_Knuth
 [TeX]: https://en.wikipedia.org/wiki/TeX
+[Leslie_Lamport]: https://en.wikipedia.org/wiki/Leslie_Lamport
 [Tex-format]: https://baike.baidu.com/item/TeX/3794463
 [Latex]: https://en.wikipedia.org/wiki/LaTeX
 [latex.js]: https://latex.js.org/
@@ -164,3 +165,4 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 [CommonMark]: https://commonmark.org/
 [CommonMark-Implementations]: https://github.com/commonmark/commonmark-spec/wiki/List-of-CommonMark-Implementations
 [pandoc]: https://pandoc.org/
+[talk.commonmark]: https://talk.commonmark.org/t/transclusion-or-including-sub-documents-for-reuse/270/8
