@@ -123,7 +123,7 @@ keywords:
 
 不同行业对不同生产资料的依赖程度也不同。
 
-```
+```plantuml
 @startmindmap
 + 产业类别
 ++ 劳动力密集型
