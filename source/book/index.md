@@ -11,11 +11,13 @@ type: "categories"
 <link rel="shortcut icon" href="https://img9.doubanio.com/favicon.ico" type="image/x-icon">
 
 <div id="book-collects">
-  <a class="book-collect" href="#cs">计算机科学</button>
-  <a class="book-collect" href="#ec">经济学</button>
+  <a class="book-collect" href="#computer-science">计算机科学</button>
+  <a class="book-collect" href="#ecnomic">经济学</button>
+  <a class="book-collect" href="#social-biopsychology">社会生物心理学</button>
+  <a class="book-collect" href="#history">历史学</button>
 </div>
 
-<div id="cs" class="books" style="display:block">
+<div id="computer-science" class="books" style="display:block">
     <div class="doulist-item">
         <div class="mod">
             <div class="hd">
@@ -450,7 +452,7 @@ type: "categories"
 </div>
 
 
-<div id="ec" class="books">
+<div id="ecnomic" class="books">
     <div class="doulist-item">
         <div class="mod">
             <div class="hd">
@@ -566,6 +568,219 @@ type: "categories"
                     出品方: 蓝狮子
                     <br>
                     出版年: 2016-11
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="social-biopsychology" class="books">
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">1</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/6784219/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                    <a href="https://book.douban.com/subject/6784219/"
+                        target="_blank">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img1.doubanio.com/view/subject/l/public/s6877818.jpg">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="#"
+                        target="_blank">
+                        生物心理学
+                    </a>
+                </div>
+                <div class="rating">
+                    <span class="allstar50"></span>
+                    <span class="rating_nums">9.2</span>
+                    <span>(408人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: [美]詹姆斯·卡拉特 / James W. Kalat
+                    <br>
+                    出版社: 人民邮电出版社
+                    <br>
+                    副标题: (第10版)
+                    <br>
+                    译者: 苏彦捷
+                    <br>
+                    出版年: 2011-8-10
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">2</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/11445548/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                    <a href="https://book.douban.com/subject/11445548/"
+                        target="_blank">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img9.doubanio.com/view/subject/l/public/s11214645.jpg">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="https://book.douban.com/subject/4929844/"
+                        target="_blank">
+                        自私的基因
+                    </a>
+                </div>
+                <div class="rating">
+                    <span class="allstar45"></span>
+                    <span class="rating_nums">8.4</span>
+                    <span>(18094人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: [英]理查德·道金斯
+                    <br>
+                    出版社: 中信出版社
+                    <br>
+                    出品方: 见识城邦
+                    <br>
+                    原作名: The Selfish Gene
+                    <br>
+                    译者: 卢允中 / 张岱云 / 陈复加 / 罗小舟
+                    <br>
+                    出版年: 2012-9
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">3</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/4929844/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                    <a href="https://book.douban.com/subject/4929844/"
+                        target="_blank">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img3.doubanio.com/view/subject/l/public/s4500502.jpg">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="https://book.douban.com/subject/4929844/"
+                        target="_blank">
+                        怪诞行为学
+                    </a>
+                </div>
+                <div class="rating">
+                    <span class="allstar45"></span>
+                    <span class="rating_nums">8.2</span>
+                    <span>(14597人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: [美] 丹·艾瑞里
+                    <br>
+                    出版社: 中信出版社
+                    <br>
+                    副标题: 可预测的非理性
+                    <br>
+                    原作名: Predictably Irrational: The Hidden Forces That Shape Our Decisions
+                    <br>
+                    译者: 赵德亮 / 夏蓓洁
+                    <br>
+                    出版年: 2010-9
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="history" class="books">
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">1</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/36077941/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                    <a href="https://book.douban.com/subject/36077941/"
+                        target="_blank">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img2.doubanio.com/view/subject/l/public/s29357031.jpg">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="https://book.douban.com/subject/36077941/"
+                        target="_blank">
+                        人类简史
+                    </a>
+                </div>
+                <div class="rating">
+                    <span class="allstar50"></span>
+                    <span class="rating_nums">9.3</span>
+                    <span>(2966人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: [以色列]尤瓦尔·赫拉利
+                    <br>
+                    出版社: 中信出版集团
+                    <br>
+                    副标题: 从动物到上帝
+                    <br>
+                    译者: 林俊宏
+                    <br>
+                    出版年: 2017-2
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">2</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/33385217/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                    <a href="https://book.douban.com/subject/33385217/"
+                        target="_blank">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img3.doubanio.com/view/subject/l/public/s32271437.jpg">
+                    </a>
+                </div>
+                <div class="title">
+                    <a href="https://book.douban.com/subject/33385217/"
+                        target="_blank">
+                        全球科技通史
+                    </a>
+                </div>
+                <div class="rating">
+                    <span class="allstar45"></span>
+                    <span class="rating_nums">8.4</span>
+                    <span>(2558人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: [美] 吴军
+                    <br>
+                    出版社: 中信出版集团
+                    <br>
+                    出版年: 2019-4
                 </div>
             </div>
         </div>
