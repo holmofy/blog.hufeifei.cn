@@ -43,7 +43,7 @@ Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、
 
 最近有一款新的标记语言非常火，[typst](https://github.com/typst/typst)号称要取代Latex。截止2024年5月，这个项目已经有2万多star了，势头很猛。
 
-![typst star history](https://star-history.com/#typst/typst&Date)
+![typst star history](https://api.star-history.com/svg?repos=typst/typst&type=Date)
 
 ## 互联网让HTML风靡起来
 
@@ -81,36 +81,38 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 
 轻量级标记语言已经有很多种了，截止2024年Wikipedia上已经列出了二十多种轻量级标记语言：
 
-| Language                 | HTML export tool | HTML import tool | Tables  | Link titles | class attribute | id attribute | Release date     |
-|--------------------------|------------------|------------------|---------|-------------|-----------------|--------------|------------------|
-| setext                   | Yes              | Yes              | No      | Yes         | No              | No           | 1992         |
-| POD                      | Yes              | ?                | No      | Yes         | ?               | ?            | 1994             |
-| BBCode                   | No               | No               | Yes     | No          | No              | No           | 1998             |
-| txt2tags                 | Yes              | Yes              | Yes     | Yes         | Yes/No          | Yes/No       | 2001-07-26   |
-| MediaWiki                | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2002         |
-| PmWiki                   | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2002-01          |
-| reStructuredText         | Yes              | Yes              | Yes     | Yes         | Yes             | auto         | 2002-04-02   |
-| AsciiDoc                 | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2002-11-25    |
-| Textile                  | Yes              | No               | Yes     | Yes         | Yes             | Yes          | 2002-12-26   |
-| Jira Formatting Notation | Yes              | No               | Yes     | Yes         | No              | No           | 2002+         |
-| Org-mode                 | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2003         |
-| Texy                     | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2004         |
-| Markdown                 | Yes              | Yes              | No      | Yes         | Yes/No          | Yes/No       | 2004-03-19 |
-| TiddlyWiki               | Yes              | No               | Yes     | Yes         | Yes             | No           | 2004-09      |
-| Creole                   | No               | No               | Yes     | No          | No              | No           | 2007-07-04    |
-| MultiMarkdown            | Yes              | No               | Yes     | Yes         | No              | No           | 2009-07-13       |
-| GitHub Flavored Markdown | Yes              | No               | Yes     | Yes         | No              | No           | 2011-04-28+      |
-| Markdown Extra           | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2013-04-11    |
-| Slack                    | No               | No               | No      | Yes         | No              | No           | 2013+    |
-| WhatsApp                 | No               | No               | No      | No          | No              | No           | 2016-03-16   |
-| Gemtext                  | Yes              | ?                | No      | Yes         | No              | No           | 2020             |
-| Djot                     | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2022-07-30    |
+| Language                     | HTML export tool | HTML import tool | Tables  | Link titles | class attribute | id attribute | Release date     |
+|------------------------------|------------------|------------------|---------|-------------|-----------------|--------------|------------------|
+| setext                       | Yes              | Yes              | No      | Yes         | No              | No           | 1992         |
+| POD                          | Yes              | ?                | No      | Yes         | ?               | ?            | 1994             |
+| BBCode                       | No               | No               | Yes     | No          | No              | No           | 1998             |
+| txt2tags                     | Yes              | Yes              | Yes     | Yes         | Yes/No          | Yes/No       | 2001-07-26   |
+| MediaWiki                    | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2002         |
+| PmWiki                       | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2002-01          |
+| reStructuredText             | Yes              | Yes              | Yes     | Yes         | Yes             | auto         | 2002-04-02   |
+| AsciiDoc                     | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2002-11-25    |
+| Textile                      | Yes              | No               | Yes     | Yes         | Yes             | Yes          | 2002-12-26   |
+| Jira Formatting Notation     | Yes              | No               | Yes     | Yes         | No              | No           | 2002+         |
+| Org-mode                     | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2003         |
+| Texy                         | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2004         |
+| **Markdown**                 | Yes              | Yes              | No      | Yes         | Yes/No          | Yes/No       | 2004-03-19 |
+| TiddlyWiki                   | Yes              | No               | Yes     | Yes         | Yes             | No           | 2004-09      |
+| Creole                       | No               | No               | Yes     | No          | No              | No           | 2007-07-04    |
+| MultiMarkdown                | Yes              | No               | Yes     | Yes         | No              | No           | 2009-07-13       |
+| **GitHub Flavored Markdown** | Yes              | No               | Yes     | Yes         | No              | No           | 2011-04-28+      |
+| **Markdown Extra**           | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2013-04-11    |
+| Slack                        | No               | No               | No      | Yes         | No              | No           | 2013+    |
+| WhatsApp                     | No               | No               | No      | No          | No              | No           | 2016-03-16   |
+| Gemtext                      | Yes              | ?                | No      | Yes         | No              | No           | 2020             |
+| Djot                         | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2022-07-30    |
 
 ## 文档的相互转换
 
 大家都知道Markdown可以导出HTML和pdf，实际上有一个[pandoc][pandoc]项目，可以在市面上大多数文档软件格式之间进行转换。
 
 项目是用haskell写的：https://github.com/jgm/pandoc 。它甚至支持word、ppt的格式转换。
+
+![pandoc star history](https://api.star-history.com/svg?repos=jgm/pandoc&type=Date)
 
 目前来看，最流行的markdown不仅用在写技术文档，还在知乎等社交论坛网站有应用。不过目前对我来说最大的痛点是无法include外部文件，这个功能2014年在[CommonMark中][talk.commonmark]就有过讨论了，但是一直都没有标准化的实现。所以在技术文档方面asciidoc会更强大一些，最有名的就是Spring，它的所有文档都是基于asciidoc。github也支持渲染asciidoc文档。
 
