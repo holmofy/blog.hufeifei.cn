@@ -41,6 +41,10 @@ Unix早期还没有受到贝尔公司的重视，没有商业化，除了在贝�
 
 Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、[KaTex.js][katex]。我这个网站上的公式渲染就是用了MathJax。
 
+最近有一款新的标记语言非常火，[typst](https://github.com/typst/typst)号称要取代Latex。截止2024年5月，这个项目已经有2万多star了，势头很猛。
+
+![typst star history](https://star-history.com/#typst/typst&Date)
+
 ## 互联网让HTML风靡起来
 
 1980年，在欧洲核子研究中心任职的物理学家[伯纳斯-李][Berners-Lee]为了方便研究中心人员共享文档，发明了[HTML][HTML]，并找了个本科生[尼古拉·佩洛][Nicola_Pellow]写了第一个网络浏览器[Line Mode Browser][Line_Mode_Browser]，这个浏览器当时还是在终端运行。后来的1990年[伯纳斯-李][Berners-Lee]开发了第一个Web服务器[CERNhttpd][cern-httpd]。现在还能在欧洲核子研究中心看到世界上第一个网站：[http://info.cern.ch/](https://info.cern.ch/) 和 第一个浏览器[line-mode](Line_Mode)的历史。能翻墙的话也可以到维基百科上看看[万维网的历史][History_of_the_World_Wide_Web]。
