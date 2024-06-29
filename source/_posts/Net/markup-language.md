@@ -51,9 +51,9 @@ Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、
 
 ![第一个网络浏览器](https://ts1.cn.mm.bing.net/th/id/R-C.02c1e2425a433d2176da44a046b0fb7e?rik=ELDtCH4JacUGdw)
 
-后来就是图形界面浏览器，以及众所周知的网景与微软的IE浏览器大战了。
+后来就是图形界面浏览器，以及众所周知的网景与微软的IE浏览器大战了。而[CERNhttpd][cern-httpd]逐渐演变为[NCSA_HTTPd](https://en.wikipedia.org/wiki/NCSA_HTTPd)，1995年演变为著名的[Apache httpd](https://en.wikipedia.org/wiki/Apache_HTTP_Server)，这也是1999年Apache基金会成立时的第一个项目。当然现在大家可能用的都是战斗民族在2004年开发的Nginx，不过由于历史原因Apache仍以31.4%的占有率排名第二。而[CERNhttpd][cern-httpd]的原班人马专注于开发Java的Web服务器Jigsaw。
 
-1991年Sun公司开发的Java语言就是乘着这一波互联网东风风靡起来的。1996年IE支持Java Applets本来的想法和今天的微信小程序一样，结果Java在浏览器上没掀起什么波浪，在服务端却大放异彩。1997年IE支持了Ajax，互联网迈入Web2.0时代，[Dynamic HTML][Dynamic_HTML]开始流行。客户端脚本语言Javascript蹭了Java的热度，成了现今浏览器的标准；服务端脚本PHP, Python, Java的JSP 和 后来C#的ASP.NET陆陆续续出现。美国的门户网站雅虎、搜索引擎谷歌，中国的三大门户网易、搜狐、新浪，搜索引擎百度就是这个时候崛起的，腾讯、阿里也是这个时候初创还未成气候。
+Java语言是1991年Sun公司开发的，它就是乘着这一波互联网东风流行起来的。1996年IE支持Java Applets本来的想法和今天的微信小程序一样，结果Java在浏览器上没掀起什么波浪，在服务端却大放异彩。1997年IE支持了Ajax，互联网迈入Web2.0时代，[Dynamic HTML][Dynamic_HTML]开始流行。客户端脚本语言Javascript蹭了Java的热度，成了现今浏览器的标准；服务端脚本PHP, Python, Java的JSP 和 后来C#的ASP.NET陆陆续续出现。美国的门户网站雅虎、搜索引擎谷歌，中国的三大门户网易、搜狐、新浪，搜索引擎百度就是这个时候崛起的，腾讯、阿里也是这个时候初创还未成气候。
 
 2000年互联网泡沫破裂，大量互联网公司因为融不到资，最后资金链断裂倒闭。这场风暴后活下来的公司，很多现在都成了世界五百强。很多以前的网页现在只能通过 https://archive.org/ 互联网档案馆这个网站看到。
 
