@@ -11,6 +11,8 @@ tags:
 
 Rust吸取了C/C++、Java、Javascript、Python、Ruby等语言的优点，没有C++的历史包袱，轻装上阵，是这些新兴语言中唯一有实力与C/C++竞争的语言，有必要好好学一下，这篇文章先简单入个门。
 
+可以用[rust官方的在线运行环境](https://play.rust-lang.org/)进行练习，熟悉Rust的语法特性。
+
 ## 变量
 
 Rust的变量声明吸取了Javascript和Typescript的语法特性，使用`let`关键字。但是和Javascript不同的是，Rust是编译型语言，所以变量类型都是编译期确认，不过Rust的编译器可以根据初始化的变量进行类型推断，所以大部分情况下不需要显示声明类型。
