@@ -197,6 +197,65 @@ println!("float value is: {}", float_value);  // 输出 1.2
 
 > 详细可以参考[rust文档的destructuring一章](https://doc.rust-lang.org/rust-by-example/flow_control/match/destructuring.html)。
 
+## 函数
+
+Rust使用`fn`关键字声明一个函数。Rust中的关键字都极其简短的缩略字，我猜测应该是和Rust大量使用的编译时过程宏有关，为了尽可能快的提高编译速度。
+
+所以如果没有多门编程语言的经验，上来就学Rust可能会一脸懵逼。
+
+```rust
+fn greet() {
+    println!("Hi there!");
+}
+```
+
+使用`->`声明一个有返回值的函数：
+
+```rust
+fn fair_dice_roll() -> i32 {
+    4
+}
+```
+
+这里`4`是一个表达式，是一个隐式的返回值。也可以使用`return`关键字显式声明返回值。
+
+```rust
+fn fair_dice_roll() -> i32 {
+    return 4;
+}
+```
+
+Rust还提供了`async`关键字来支持异步函数，不过Rust没有提供原生的异步运行时，而是由第三方实现，目前有[`tokio`](https://tokio.rs/)和[`async-std`](https://async.rs/)等几个主流的异步运行时。
+
+```rust
+async fn request() -> Response {
+    let res = send_request().await;
+    return res;
+}
+```
+
+## 闭包
+
+Rust也支持函数式编程。在Java中最早是不支持函数式编程的，都是通过匿名类的方式实现回调等功能；到了Java8提供了[`java.util.function`](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)标准函数式接口，并在语法层面支持lambda表达式。
+
+Rust的函数式编程语法借鉴了Ruby的闭包语法，这里的闭包就等价于java的函数式接口。
+
+```rust
+fn for_each_planet<F>(f: F)
+    where F: Fn(&'static str)
+{
+    f("Earth");
+    f("Mars");
+    f("Jupiter");
+}
+
+fn main() {
+    for_each_planet(|planet| println!("Hello, {}", planet));
+}
+```
+
+Rust使用两根竖杠`|`来标明闭包的参数。
+
 
 
 * https://doc.rust-lang.org/stable/book/
