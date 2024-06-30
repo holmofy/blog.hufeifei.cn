@@ -172,28 +172,7 @@ let [.., last] = a;                      // .. 表示忽略掉数组前面的值
 println!("数组最后一个值是: {}", last);     // 输出 5
 ```
 
-甚至可以解构结构体：
-
-```rust
-struct A {
-    int_value: i32,
-    bigint_value: i64,
-    float_value: f64,
-}
-
-let a = A {
-    int_value: 1,
-    bigint_value: 2,
-    float_value: 1.2
-};
-
-let A { int_value, bigint_value, .. } = a;
-println!(int_value);                      // 输出 1
-println!(bigint_value);                   // 输出 2
-
-let A { float_value, .. } = a;
-println!("float value is: {}", float_value);  // 输出 1.2
-```
+甚至可以解构结构体。这个在下面的结构体部分会提到。
 
 > 详细可以参考[rust文档的destructuring一章](https://doc.rust-lang.org/rust-by-example/flow_control/match/destructuring.html)。
 
@@ -256,10 +235,121 @@ fn main() {
 
 Rust使用两根竖杠`|`来标明闭包的参数。
 
+## 结构体
 
+和C语言一样，Rust使用`struct`关键字定义结构体：
+
+```rust
+struct Vec2 {
+    x: f64,
+    y: f64,
+}
+```
+
+结构体变量的初始化如下：
+
+```rust
+// 和C语言一样，结构体变量默认在栈中分配内存
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, x: 4.0 };
+```
+
+Rust的结构体支持和[Javascript的Object更新的Spread语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)。
+
+这个在Rust中称为[struct update syntax](https://rust-lang.github.io/rfcs/2528-type-changing-struct-update-syntax.html)。
+
+```rust
+let v3 = Vec2 {
+    x: 14.0,
+    ..v2
+};
+```
+
+结构体也支持解构：
+
+```rust
+struct A {
+    int_value: i32,
+    bigint_value: i64,
+    float_value: f64,
+}
+
+let a = A {
+    int_value: 1,
+    bigint_value: 2,
+    float_value: 1.2
+};
+
+let A { int_value, bigint_value, .. } = a;
+println!(int_value);                      // 输出 1
+println!(bigint_value);                   // 输出 2
+
+let A { float_value, .. } = a;
+println!("float value is: {}", float_value);  // 输出 1.2
+```
+
+## 在条件语句中进行解构
+
+这个语法是Rust的特色。
+
+### 在`if let`中进行解构
+
+`let`变量声明可以在`if`条件语句中使用。
+
+```rust
+struct Number {
+    odd: bool,
+    value: i32,
+}
+
+fn main() {
+    let one = Number { odd: true, value: 1 };
+    let two = Number { odd: false, value: 2 };
+    print_number(one);
+    print_number(two);
+}
+
+fn print_number(n: Number) {
+    if let Number { odd: true, value } = n {
+        println!("Odd number: {}", value);
+    } else if let Number { odd: false, value } = n {
+        println!("Even number: {}", value);
+    }
+}
+```
+
+### 在`match`语句中进行解构
+
+Rust使用`match`语句实现类似于C/C++、Java等语言的`switch`分支判断功能。区别在于**`match`必须匹配所有可能的结果**，而`switch`使用`default`分支来覆盖未匹配的分支，而且`switch`没有严格要求必须有`default`分支。
+
+解构语句也可以在`match`判断条件中使用：
+
+```rust
+fn print_number(n: Number) {
+    match n {
+        Number { value: 1, .. } => println!("One"),
+        Number { value: 2, .. } => println!("Two"),
+        Number { value, .. } => println!("{}", value),
+        // 如果最后一个分支不存在，将会编译错误
+    }
+}
+```
+
+可以使用`_`来实现类似于`switch`的`default`分支的功能：
+
+```rust
+fn print_number(n: Number) {
+    match n.value {
+        1 => println!("One"),
+        2 => println!("Two"),
+        _ => println!("{}", n.value),
+    }
+}
+```
 
 * https://doc.rust-lang.org/stable/book/
 * https://doc.rust-lang.org/rust-by-example/index.html
+* https://google.github.io/comprehensive-rust/index.html
 * https://course.rs/into-rust.html
 * https://fasterthanli.me/articles/a-half-hour-to-learn-rust
 * https://rust-book.junmajinlong.com/about.html
