@@ -475,6 +475,38 @@ fn main() {
 }
 ```
 
+## 数据范围(Range)
+
+Range这个功能在原生Java中没有提供支持，但是在[Apache Commons](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/Range.html)提供了支持。
+
+Rust在语法层面就支持了Range，语法借鉴自Python：
+
+```rust
+fn main() {
+    // [0, +∞)
+    println!("{:?}", (0..).contains(&0)); // true
+    println!("{:?}", (0..).contains(&100)); // true
+    println!("{:?}", (0..).contains(&-1)); // false
+    println!("{:?}", (0..).typeid); // true
+    // (-∞, 20)
+    println!("{:?}", (..20).contains(&20)); // false
+    println!("{:?}", (..20).contains(&0));  // true
+    println!("{:?}", (..20).contains(&-20));  // true
+    // (-∞, 20]
+    println!("{:?}", (..=20).contains(&20)); // true
+    println!("{:?}", (..=20).contains(&-20)); // true
+    println!("{:?}", (..=20).contains(&21)); // false
+    // [3, 6)
+    println!("{:?}", (3..6).contains(&4)); // true
+    println!("{:?}", (3..6).contains(&6)); // false
+    println!("{:?}", (3..6).sum::<i32>()); // 3+4+5 = 12
+    println!("{:?}", (3..6).last()); // Some(5)
+
+    // [0.0, 1.0)
+    println!("{:?}", (0.0..1.0).contains(&0.5)); // true
+    // 浮点型范围不可遍历，没有sum()、last()等方法
+}
+```
 
 
 * https://doc.rust-lang.org/stable/book/
