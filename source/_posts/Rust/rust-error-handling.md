@@ -548,8 +548,60 @@ pub enum MyCustomError {
 * `#[error(transparent)]`表示该错误只是作为其他错误的容器，它的错误消息将直接代理为“源”错误
 
 
+## Option
 
+在很多现代化编程语言中，为了避免空指针的问题，都提供了Option的功能。C++17提供了[std::optional](https://en.cppreference.com/w/cpp/utility/optional)，Java8也提供了[java.util.Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)。
 
+Rust也有一个[Option](https://doc.rust-lang.org/std/option/)枚举来实现同样的功能。
+
+```rust
+fn divide(numerator: f64, denominator: f64) -> Option<f64> {
+    if denominator == 0.0 {
+        None
+    } else {
+        Some(numerator / denominator)
+    }
+}
+
+fn main() {
+   // 函数的返回值是一个Option
+   let result = divide(2.0, 3.0);
+   
+   // 对Option进行匹配，取出里面包含的值
+   match result {
+       // The division was valid
+       Some(x) => println!("Result: {x}"),
+       // The division was invalid
+       None    => println!("Cannot divide by 0"),
+   }
+}
+```
+
+`Option`也可以用`?`操作符进行简写，比如下面的函数：
+
+```rust
+fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
+    let a = stack.pop();
+    let b = stack.pop();
+
+    match (a, b) {
+        (Some(x), Some(y)) => Some(x + y),
+        _ => None,
+    }
+}
+```
+
+可以简写为：
+
+```rust
+fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
+    Some(stack.pop()? + stack.pop()?)
+}
+```
+
+代码立马清爽了很多。
+
+注意如果必须处理`Option`为`None`的情况，还是要编写判断逻辑。
 
 * https://doc.rust-lang.org/std/result/
 * https://doc.rust-lang.org/std/macro.panic.html
