@@ -8,13 +8,13 @@ tags:
 
 Rust的错误处理机制和其他语言有很大的不同。
 
-在C++、C#、Java、Javascript、Python等语言中，通常使用`throw`抛出异常或者返回成功的值。外部调用的地方使用`try/catch`进行捕获，除了[C++没有`finally`](https://en.cppreference.com/w/cpp/language/try)关键字外，像C#、Python、Java、Javascript都有基本一致的异常处理逻辑。像Java有三类异常：不可恢复的Error(如OutOfMemoryError、StackOverflowError)、受检异常(如IOException)、运行时异常(如NullPointerException)。特别是运行时异常由于隐式传递，运行在线上服务器经常出现令人头疼的问题。
+在C++、C#、Java、Javascript、Python等语言中，通常使用`throw`抛出异常或者返回成功的值。外部调用的地方使用`try/catch`进行捕获，除了[C++没有`finally`](https://en.cppreference.com/w/cpp/language/try)关键字外，C#、Python、Java、Javascript等语言都有基本一致的异常处理逻辑。像Java有三类异常：不可恢复的Error(如OutOfMemoryError、StackOverflowError)、受检异常(如IOException)、运行时异常(如NullPointerException)。特别是运行时异常由于隐式传递，运行在线上服务器经常出现令人头疼的问题。
 
 C语言没有直接提供错误处理机制，通常返回`-1`或`NULL`以及全局错误码[`errno`](https://en.cppreference.com/w/cpp/error/errno)来做错误处理，可读性非常差。
 
 这些语言还支持返回`null`，javascript甚至还有一个`undefined`，这导致大量的空指针异常。编程习惯好的可能会用运行时断言，但是性能上会有所损耗。
 
-golang虽然不使用`throw`异常机制，但是得函数得有[两个返回值](https://go.dev/blog/error-handling-and-go)，而且还得用`if err != nil`语句判断是否存在错误，使用体验非常不好。
+golang虽然不使用`throw`异常机制，但是函数得有[两个返回值](https://go.dev/blog/error-handling-and-go)，而且还得用`if err != nil`语句判断是否存在错误，使用体验非常不好。
 
 Rust的异常处理独辟蹊径用[`Result`](https://doc.rust-lang.org/std/result/)和[`Option`](https://doc.rust-lang.org/std/option/)这两个枚举来解决这些问题。
 
