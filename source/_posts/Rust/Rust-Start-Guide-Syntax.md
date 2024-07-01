@@ -17,7 +17,7 @@ Java和Javascript这类完全GC的语言，除了基本类型和引用变量在�
 
 C#和Java一样都是分代GC，但C#通过struct和class区分值类型和引用类型，使得开发者可以细致地控制应用的内存申请，提高应用性能。而Java则是通过JIT的逃逸分析在运行时将某些特定对象改为栈上分配，但这需要JVM进行预热。
 
-谷歌的golang和微软的C#在内存莫分配上很相似，但golang没有分代GC，它使用简单的标记清除算法，并在编译时将runtime编译进二进制文件。但是标记清除算法，仍然会出现内存碎片的问题，本质上和C#、Java这类GC语言一样，是换汤不换药。特别是Java现在也有[GraalVM](https://www.graalvm.org/)，可以通过AOT方式将运行时编译进二进制文件。golang也就没有什么优势了。
+谷歌的golang和微软的C#在内存分配上很相似，但golang没有分代GC，它使用简单的标记清除算法，并在编译时将runtime编译进二进制文件。但是标记清除算法，仍然会出现内存碎片的问题，本质上和C#、Java这类GC语言一样，是换汤不换药。特别是Java现在也有[GraalVM](https://www.graalvm.org/)，可以通过AOT方式将运行时编译进二进制文件。golang也就没有什么优势了。
 
 Rust直接对标C/C++等系统编程语言，它是系统级编程语言没有GC。Rust在语法层面吸取了C/C++、Java、Javascript、Python、Ruby等语言的优点，同时没有C++的历史包袱，轻装上阵。Rust是这些新兴语言中唯一有实力与C/C++竞争的语言，有必要好好学一下，这篇文章先简单入个门。
 
