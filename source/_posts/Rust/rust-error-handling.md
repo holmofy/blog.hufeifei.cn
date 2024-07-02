@@ -304,7 +304,7 @@ fn get_current_date() -> Result<String, reqwest::Error> {
 当我们想处理多种错误时，使用`Box<dyn std::error::Error>`作为错误类型会非常方便。
 
 * 这里的[`std::error::Error`](https://doc.rust-lang.org/stable/std/error/trait.Error.html)是一个trait；
-* 这里的`dyn std::error::Error`是Rust中的多态，代表的是实现了`std::error::Error`的[Trait object](https://doc.rust-lang.org/reference/types/trait-object.html)
+* 这里的`dyn std::error::Error`是Rust中的动态多态，代表的是实现了`std::error::Error`的[Trait object](https://doc.rust-lang.org/reference/types/trait-object.html)，静态多态和动态多态的内容这里就不展开了；
 * [`Box`](https://doc.rust-lang.org/book/ch15-01-box.html)代表的是指向堆中的数据。
 
 但是`Result<String, Box<dyn std::error::Error>>`这么长的返回值，代码非常不好看。
