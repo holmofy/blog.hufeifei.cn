@@ -520,11 +520,11 @@ impl fmt::Display for MyCustomError {
 
 请注意，与`Box<dyn std::error::Error>`不同，我们实际上可以匹配`MyCustomError`枚举内的变体。
 
-## 使用anyhow + thiserror来处理错误
+## 使用thiserror来定义错误
 
 上面提到了几个第三方库，最推荐的就是[`anyhow`](https://github.com/dtolnay/anyhow)和[`thiserror`](https://github.com/dtolnay/thiserror)。
 
-`thiserror`是用来自定义错误的，适合用在库中；`anyhow`不关心错误类型，适合用在应用中。
+`thiserror`只是用来自定义错误的，适合用在库中；`anyhow`不关心错误类型，适合用在应用中。
 
 我们用`thiserror`来定义错误：
 
@@ -547,6 +547,81 @@ pub enum MyCustomError {
 * `#[from] reqwest::Error`帮我们实现了`From<reqwest::Error>`的转换逻辑
 * `#[error(transparent)]`表示该错误只是作为其他错误的容器，它的错误消息将直接代理为“源”错误
 
+## 报错的上下文
+
+有了`thiserror`定义错误就非常容易了，但是我们把错误往上抛，意味着丢弃了大部分错误的上下文，也会给时候定位问题带来不便。
+
+比如上面的`get_current_date`例子中，如果调用了多个`get`发送请求，其中一个报了IOError，我们最终拿到的就只有一个`I/O error`的报错信息，却不知道到底是哪个请求报的错。
+
+Rust的错误是不包含函数调用栈信息的。说到这，就得先说说CPU是如何进行函数调用的了。
+
+[CPU调度应用程序时都会有函数调用栈](https://cse.unl.edu/~goddard/Courses/CSCE351/IntelArchitecture/IntelInterupts.pdf)。每调用一个函数CPU就会把参数push进调用栈，函数内部的变量默认也是从栈上分配，每个函数所使用的这块内存区域就叫做一个"栈帧"(StackFrame)，函数调用返回时CPU的堆栈寄存器就会回到上一次的栈地址，意味着这个函数的栈帧内存就被回收了，下一次别的什么函数调用时，这块内存又会作为它的栈帧。这也是为什么栈上分配回收内存速度会比堆上要快，因为这是CPU默认的指令操作，不需要操作系统干预；堆上分配内存则需要操作系统找到一块大小匹配的空闲内存，再把地址给你，这个过程就慢很多，特别是当内存碎片化严重时，操作系统像GC算法一样清理一块连续的内存给你，就更慢了。
+
+<img width="668" alt="image" src="https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/3e9dc187-4ac9-4090-a136-24d313140f6e">
+
+使用`try/catch`处理异常的语言在向上抛出异常时，调用栈会随着错误记录下来。比如Java的报错时[打印的调用栈](https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html#printStackTrace--)如下：
+
+```java
+ java.lang.NullPointerException
+         at MyClass.mash(MyClass.java:9)
+         at MyClass.crunch(MyClass.java:6)
+         at MyClass.main(MyClass.java:3)
+```
+
+Java在1.4后还提供了[StackTraceElement](https://docs.oracle.com/javase/8/docs/api/java/lang/StackTraceElement.html)让开发者读取栈帧信息。但是这些函数调用的栈信息也要消耗内存。
+
+Rust提供了[两个环境变量](https://doc.rust-lang.org/std/backtrace/index.html#environment-variables)：`RUST_BACKTRACE`、`RUST_LIB_BACKTRACE`来控制是否去捕获堆栈信息，并在[1.65版](https://blog.rust-lang.org/2022/11/03/Rust-1.65.0.html#stabilized-apis)中提供了`std::backtrace::Backtrace`来查看调用栈。不过API能操作的很有限，不过rust有提供[`backtrace-rs`](https://github.com/rust-lang/backtrace-rs)来增强相应的功能。
+
+那怎么让Rust往上抛的Error包含调用堆栈呢？这就要说到`anyhow`这个库了。
+
+## 使用anyhow处理错误
+
+我们可以使用anyhow提供的Result来作为函数返回值。anyhow在Result中重新定义了Error，并将Backtrace包含其中。
+
+```rust
+pub type Result<T, E = Error> = core::result::Result<T, E>;
+
+#[repr(transparent)]
+pub struct Error {
+    inner: Own<ErrorImpl>,
+}
+
+#[repr(C)]
+pub(crate) struct ErrorImpl<E = ()> {
+    vtable: &'static ErrorVTable,
+    backtrace: Option<Backtrace>,
+    // NOTE: Don't use directly. Use only through vtable. Erased type may have
+    // different alignment.
+    _object: E,
+}
+```
+
+在应用中用`anyhow::Result`替换`std::result::Result`，可以让代码更简洁。
+
+```rust
+use anyhow::Result;
+
+fn get_cluster_info() -> Result<ClusterMap> {
+    let config = std::fs::read_to_string("cluster.json")?;
+    let map: ClusterMap = serde_json::from_str(&config)?;
+    Ok(map)
+}
+```
+
+而且anyhow还扩展了`Result`和`Option`的方法，提供了`context`和`with_context`，可以在向上抛出异常时带上更详细的上下文描述信息。
+
+```rust
+use anyhow::{Context, Result};
+
+fn main() -> Result<()> {
+    ...
+    it.detach().context("Failed to detach the important thing")?;
+
+    let content = std::fs::read(path)
+        .with_context(|| format!("Failed to read instrs from {}", path))?;
+    ...
+}
+```
 
 ## Option
 
