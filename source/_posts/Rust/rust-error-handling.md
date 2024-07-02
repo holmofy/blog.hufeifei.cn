@@ -629,7 +629,7 @@ Rust的错误是不包含函数调用栈信息的。说到这，就得先说说C
 
 Java在1.4后还提供了[StackTraceElement](https://docs.oracle.com/javase/8/docs/api/java/lang/StackTraceElement.html)让开发者读取栈帧信息。但是这些函数调用的栈信息也要消耗内存。
 
-Rust提供了[两个环境变量](https://doc.rust-lang.org/std/backtrace/index.html#environment-variables)：`RUST_BACKTRACE`、`RUST_LIB_BACKTRACE`来控制是否去捕获堆栈信息，并在[1.65版](https://blog.rust-lang.org/2022/11/03/Rust-1.65.0.html#stabilized-apis)中提供了`std::backtrace::Backtrace`来查看调用栈。不过API能操作的很有限，不过rust有提供[`backtrace-rs`](https://github.com/rust-lang/backtrace-rs)来增强相应的功能。
+Rust提供了[两个环境变量](https://doc.rust-lang.org/std/backtrace/index.html#environment-variables)：`RUST_BACKTRACE`、`RUST_LIB_BACKTRACE`来控制是否去捕获堆栈信息，并在[1.65版](https://blog.rust-lang.org/2022/11/03/Rust-1.65.0.html#stabilized-apis)中提供了`std::backtrace::Backtrace`来查看调用栈。由于这个API能操作的很有限，rust另外提供[`backtrace-rs`](https://github.com/rust-lang/backtrace-rs)来增强backtrace的功能。
 
 那怎么让Rust往上抛的Error包含调用堆栈呢？这就要说到`anyhow`这个库了。
 
