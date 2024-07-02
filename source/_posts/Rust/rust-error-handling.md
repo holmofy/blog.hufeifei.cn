@@ -18,6 +18,65 @@ golang虽然不使用`throw`异常机制，但是函数得有[两个返回值](h
 
 Rust的异常处理独辟蹊径用[`Result`](https://doc.rust-lang.org/std/result/)和[`Option`](https://doc.rust-lang.org/std/option/)这两个枚举来解决这些问题。
 
+## Option
+
+先从简单的Option说起。
+
+[Tony Hoare](https://en.wikipedia.org/wiki/Tony_Hoare)曾道歉说空指针异常大约给企业已造成数十亿美元的经济损失。
+
+在很多现代化编程语言中，为了避免空指针的问题，都提供了Option的功能。C++17提供了[std::optional](https://en.cppreference.com/w/cpp/utility/optional)，Java8也提供了[java.util.Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)。
+
+Rust也有一个[Option](https://doc.rust-lang.org/std/option/)枚举来实现同样的功能。
+
+```rust
+fn divide(numerator: f64, denominator: f64) -> Option<f64> {
+    if denominator == 0.0 {
+        None
+    } else {
+        Some(numerator / denominator)
+    }
+}
+
+fn main() {
+   // 函数的返回值是一个Option
+   let result = divide(2.0, 3.0);
+   
+   // 对Option进行匹配，取出里面包含的值
+   match result {
+       // The division was valid
+       Some(x) => println!("Result: {x}"),
+       // The division was invalid
+       None    => println!("Cannot divide by 0"),
+   }
+}
+```
+
+`Option`可以用`?`操作符进行简写，比如下面的函数：
+
+```rust
+fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
+    let a = stack.pop();
+    let b = stack.pop();
+
+    match (a, b) {
+        (Some(x), Some(y)) => Some(x + y),
+        _ => None,
+    }
+}
+```
+
+可以简写为：
+
+```rust
+fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
+    Some(stack.pop()? + stack.pop()?)
+}
+```
+
+代码立马清爽了很多。
+
+注意如果必须处理`Option`为`None`的情况，还是要编写判断逻辑。
+
 ## Result枚举
 
 `Result`用于返回结果和传递错误，它是个枚举，包含两种状态：
@@ -632,61 +691,6 @@ fn main() -> Result<()> {
 github上也有[`eyre`](https://github.com/eyre-rs/eyre)、[`snafu`](https://github.com/shepmaster/snafu)等错误处理库，从他们的文档可以看出本质上就是将`anyhow`+`thiserror`整合了起来。
 
 有一个[`miette`](https://github.com/zkat/miette)提供了比`thiserror`更完善的错误诊断机制，不管是库的开发者，还是应用的开发者都能获得更好的体验。
-
-## Option
-
-在很多现代化编程语言中，为了避免空指针的问题，都提供了Option的功能。C++17提供了[std::optional](https://en.cppreference.com/w/cpp/utility/optional)，Java8也提供了[java.util.Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)。
-
-Rust也有一个[Option](https://doc.rust-lang.org/std/option/)枚举来实现同样的功能。
-
-```rust
-fn divide(numerator: f64, denominator: f64) -> Option<f64> {
-    if denominator == 0.0 {
-        None
-    } else {
-        Some(numerator / denominator)
-    }
-}
-
-fn main() {
-   // 函数的返回值是一个Option
-   let result = divide(2.0, 3.0);
-   
-   // 对Option进行匹配，取出里面包含的值
-   match result {
-       // The division was valid
-       Some(x) => println!("Result: {x}"),
-       // The division was invalid
-       None    => println!("Cannot divide by 0"),
-   }
-}
-```
-
-`Option`也可以用`?`操作符进行简写，比如下面的函数：
-
-```rust
-fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
-    let a = stack.pop();
-    let b = stack.pop();
-
-    match (a, b) {
-        (Some(x), Some(y)) => Some(x + y),
-        _ => None,
-    }
-}
-```
-
-可以简写为：
-
-```rust
-fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
-    Some(stack.pop()? + stack.pop()?)
-}
-```
-
-代码立马清爽了很多。
-
-注意如果必须处理`Option`为`None`的情况，还是要编写判断逻辑。
 
 
 * https://doc.rust-lang.org/std/result/
