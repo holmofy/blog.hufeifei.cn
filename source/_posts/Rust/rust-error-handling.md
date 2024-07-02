@@ -692,6 +692,9 @@ github上也有[`eyre`](https://github.com/eyre-rs/eyre)、[`snafu`](https://git
 
 有一个[`miette`](https://github.com/zkat/miette)提供了比`thiserror`更完善的错误诊断机制，不管是库的开发者，还是应用的开发者都能获得更好的体验。
 
+[![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/e28f9d68-62ae-4c39-9d4f-5a9c19678034)](https://lib.rs/stats#vs)
+
+从lib.rs的统计来看，thiserror+anyhow还是占主导地位的。
 
 * https://doc.rust-lang.org/std/option/
 * https://doc.rust-lang.org/std/result/
