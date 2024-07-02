@@ -693,9 +693,10 @@ github上也有[`eyre`](https://github.com/eyre-rs/eyre)、[`snafu`](https://git
 有一个[`miette`](https://github.com/zkat/miette)提供了比`thiserror`更完善的错误诊断机制，不管是库的开发者，还是应用的开发者都能获得更好的体验。
 
 
+* https://doc.rust-lang.org/std/option/
 * https://doc.rust-lang.org/std/result/
 * https://doc.rust-lang.org/std/macro.panic.html
-* https://doc.rust-lang.org/std/option/
 * https://www.sheshbabu.com/posts/rust-error-handling/
 * https://rustmagazine.github.io/rust_magazine_2021/chapter_2/rust_error_handle.html
 * https://google.github.io/comprehensive-rust/error-handling/thiserror-and-anyhow.html
+* https://developerlife.com/2024/06/10/rust-miette-error-handling/
