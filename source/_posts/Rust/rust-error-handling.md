@@ -684,7 +684,7 @@ fn main() -> Result<()> {
 
 ## 其他错误处理的第三方库
 
-在github上搜索[rust的`error`处理库](https://github.com/search?q=error+language%3Arust&s=stars)，排在首位的还是`anyhow`+`thiserror`。
+在github上搜索[rust的`error`处理库](https://github.com/search?q=error+language%3Arust&s=stars)或者到[lib.rs](https://lib.rs/keywords/error-handling)找error-handling的库，排在首位的还是`anyhow`+`thiserror`。
 
 但是`anyhow`+`thiserror`并不完美，比如我们用了某个第三方库内部有错误，`anyhow`并不能追踪到三方库内部的函数调用栈。我们只能获取到第三方库的错误，但是如果库的开发者错误的提示信息非常有限，那就非常蛋疼。举个例子，加入我们调用一个HTML解析库，报错说HTML格式有问题，但是错误信息没有包含具体多少行多少列格式有问题，这就提高了我们排查问题的难度。错误处理很考验第三方库开发者的水平，库太烂了，我们的使用体验就非常不好。
 
