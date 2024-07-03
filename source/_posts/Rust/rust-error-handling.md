@@ -690,7 +690,7 @@ fn main() -> Result<()> {
 
 **[`snafu`](https://github.com/shepmaster/snafu)**
 
-[`snafu`](https://github.com/shepmaster/snafu)支持派生错误类型（包括单个结构样式，而不仅仅是枚举样式错误）的错误处理功能、用于抛出错误的宏以及使用字符串作为错误。
+[`snafu`](https://github.com/shepmaster/snafu)更像是anyhow和thiserror的组合。支持派生错误类型（包括单个结构样式，而不仅仅是枚举样式错误）的错误处理功能、用于抛出错误的宏以及使用字符串作为错误。
 
 **错误报告库**
 
@@ -724,12 +724,20 @@ rust语言内部也有讨论尝试落地相关的标准解决错误上下文传�
 
 ## 参考资料
 
+英文：
 * https://doc.rust-lang.org/std/option/
 * https://doc.rust-lang.org/std/result/
 * https://doc.rust-lang.org/std/macro.panic.html
 * https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
 * https://www.sheshbabu.com/posts/rust-error-handling/
 * https://www.lpalmieri.com/posts/error-handling-rust/#removing-the-boilerplate-with-thiserror
-* https://rustmagazine.github.io/rust_magazine_2021/chapter_2/rust_error_handle.html
 * https://google.github.io/comprehensive-rust/error-handling/thiserror-and-anyhow.html
+* https://greptime.com/blogs/2024-05-07-error-rust
 * https://developerlife.com/2024/06/10/rust-miette-error-handling/
+* https://www.reddit.com/r/rust/comments/1bb7dco/error_handling_goodbest_practices/
+
+
+中文：
+* https://kaisery.github.io/trpl-zh-cn/ch09-00-error-handling.html
+* https://rustcc.cn/article?id=75dbd87c-df1c-4000-a243-46afc8513074
+* https://rustmagazine.github.io/rust_magazine_2021/chapter_2/rust_error_handle.html
