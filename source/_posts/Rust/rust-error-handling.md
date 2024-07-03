@@ -719,6 +719,9 @@ rust语言内部也有讨论尝试落地相关的标准解决错误上下文传�
 
 * https://internals.rust-lang.org/t/thoughts-on-error-context-in-error-handling-libraries/10349
 * https://internals.rust-lang.org/t/helper-for-passing-extra-context-to-errors/20259/12
+* https://github.com/rust-lang/rust/issues/53487
+* https://github.com/rust-lang/rfcs/pull/2504
+* https://github.com/rust-lang/project-error-handling/issues/24
 
 只能说Rust的错误处理还在发展中，尚未形成统一的标准。
 
@@ -735,6 +738,7 @@ rust语言内部也有讨论尝试落地相关的标准解决错误上下文传�
 * https://greptime.com/blogs/2024-05-07-error-rust
 * https://developerlife.com/2024/06/10/rust-miette-error-handling/
 * https://www.reddit.com/r/rust/comments/1bb7dco/error_handling_goodbest_practices/
+* https://blog.yoshuawuyts.com/error-handling-survey/
 
 
 中文：
