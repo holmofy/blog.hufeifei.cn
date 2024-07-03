@@ -696,9 +696,13 @@ github上也有[`eyre`](https://github.com/eyre-rs/eyre)、[`snafu`](https://git
 
 从lib.rs的统计来看，thiserror+anyhow还是占主导地位的。
 
+
+## 参考资料
+
 * https://doc.rust-lang.org/std/option/
 * https://doc.rust-lang.org/std/result/
 * https://doc.rust-lang.org/std/macro.panic.html
+* https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
 * https://www.sheshbabu.com/posts/rust-error-handling/
 * https://rustmagazine.github.io/rust_magazine_2021/chapter_2/rust_error_handle.html
 * https://google.github.io/comprehensive-rust/error-handling/thiserror-and-anyhow.html
