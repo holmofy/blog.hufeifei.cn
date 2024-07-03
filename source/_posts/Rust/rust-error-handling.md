@@ -635,7 +635,7 @@ Rust提供了[两个环境变量](https://doc.rust-lang.org/std/backtrace/index.
 
 ## 使用anyhow处理错误
 
-我们可以使用anyhow提供的Result来作为函数返回值。anyhow在Result中重新定义了Error，并将Backtrace包含其中。
+我们可以使用anyhow提供的Result来作为函数返回值。anyhow在Result中重新定义了Error，并将Backtrace包含其中，所有实现了`std::error::Error`trait的错误都能转换为`anyhow::Error`。
 
 ```rust
 pub type Result<T, E = Error> = core::result::Result<T, E>;
@@ -684,18 +684,43 @@ fn main() -> Result<()> {
 
 ## 其他错误处理的第三方库
 
-在github上搜索[rust的`error`处理库](https://github.com/search?q=error+language%3Arust&s=stars)或者到[lib.rs](https://lib.rs/keywords/error-handling)找error-handling的库，排在首位的还是`anyhow`+`thiserror`。
+`anyhow`+`thiserror`并不完美，比如我们用了某个第三方库内部有错误，`anyhow`并不能追踪到三方库内部的函数调用栈。我们只能获取到第三方库的错误，但是如果库的开发者错误的提示信息非常有限，那就非常蛋疼。举个例子，加入我们调用一个HTML解析库，报错说HTML格式有问题，但是错误信息没有包含具体多少行多少列格式有问题，这就提高了我们排查问题的难度。错误处理很考验第三方库开发者的水平，库太烂了，我们的使用体验就非常不好。
 
-但是`anyhow`+`thiserror`并不完美，比如我们用了某个第三方库内部有错误，`anyhow`并不能追踪到三方库内部的函数调用栈。我们只能获取到第三方库的错误，但是如果库的开发者错误的提示信息非常有限，那就非常蛋疼。举个例子，加入我们调用一个HTML解析库，报错说HTML格式有问题，但是错误信息没有包含具体多少行多少列格式有问题，这就提高了我们排查问题的难度。错误处理很考验第三方库开发者的水平，库太烂了，我们的使用体验就非常不好。
+在github上搜索[rust的`error`处理库](https://github.com/search?q=error+language%3Arust&s=stars)或者到[lib.rs](https://lib.rs/keywords/error-handling)找error-handling的库，排在首位的还是`anyhow`+`thiserror`。除了`anyhow`+`thiserror`还有其他的错误处理库：
 
-github上也有[`eyre`](https://github.com/eyre-rs/eyre)、[`snafu`](https://github.com/shepmaster/snafu)等错误处理库，从他们的文档可以看出本质上就是将`anyhow`+`thiserror`整合了起来。
+**[`snafu`](https://github.com/shepmaster/snafu)**
 
-有一个[`miette`](https://github.com/zkat/miette)提供了比`thiserror`更完善的错误诊断机制，不管是库的开发者，还是应用的开发者都能获得更好的体验。
+[`snafu`](https://github.com/shepmaster/snafu)支持派生错误类型（包括单个结构样式，而不仅仅是枚举样式错误）的错误处理功能、用于抛出错误的宏以及使用字符串作为错误。
+
+**错误报告库**
+
+这些crates用更漂亮的方式向用户报告错误。它们对于报告输入文本（例如源代码）中的错误特别有用，比如开发解析器或编译器，这些crates在某种程度上受到 rustc 错误报告风格的启发。
+
+[`eyre`](https://github.com/eyre-rs/eyre)是 Anyhow 的一个分支，具有增强的报告功能。以下 crate 仅用于报告，并在需要时与其他错误库一起使用：
+* [`miette`](https://github.com/zkat/miette)
+* [`ariadne`](https://github.com/zesterer/ariadne)
+* [`codespan`](https://github.com/brendanzab/codespan)
+
+**已经废弃的库**
+
+随着 Rust 错误处理的发展，许多错误处理库来来去去。以下内容在他们那个时代很有影响力，但现在有更好的选择。您可能仍然在历史文档中看到这些crates，但不建议再使用它们。
+
+* [~~`error-chain`~~](https://github.com/rust-lang-deprecated/error-chain)
+* [~~`failure`~~](https://github.com/rust-lang-deprecated/failure)
+* [~~`fehler`~~](https://github.com/withoutboats/fehler)
+* [~~`err-derive`~~](https://gitlab.com/torkleyy/err-derive)
+
+
+从lib.rs的统计来看，`thiserror`+`anyhow`目前还是占主导地位的。
 
 [![](https://github.com/holmofy/blog.hufeifei.cn/assets/19494806/e28f9d68-62ae-4c39-9d4f-5a9c19678034)](https://lib.rs/stats#vs)
 
-从lib.rs的统计来看，thiserror+anyhow还是占主导地位的。
+rust语言内部也有讨论尝试落地相关的标准解决错误上下文传递的问题：
 
+* https://internals.rust-lang.org/t/thoughts-on-error-context-in-error-handling-libraries/10349
+* https://internals.rust-lang.org/t/helper-for-passing-extra-context-to-errors/20259/12
+
+只能说Rust的错误处理还在发展中，尚未形成统一的标准。
 
 ## 参考资料
 
@@ -704,6 +729,7 @@ github上也有[`eyre`](https://github.com/eyre-rs/eyre)、[`snafu`](https://git
 * https://doc.rust-lang.org/std/macro.panic.html
 * https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
 * https://www.sheshbabu.com/posts/rust-error-handling/
+* https://www.lpalmieri.com/posts/error-handling-rust/#removing-the-boilerplate-with-thiserror
 * https://rustmagazine.github.io/rust_magazine_2021/chapter_2/rust_error_handle.html
 * https://google.github.io/comprehensive-rust/error-handling/thiserror-and-anyhow.html
 * https://developerlife.com/2024/06/10/rust-miette-error-handling/
