@@ -722,6 +722,7 @@ rust语言内部也有讨论尝试落地相关的标准解决错误上下文传�
 * https://github.com/rust-lang/rust/issues/53487
 * https://github.com/rust-lang/rfcs/pull/2504
 * https://github.com/rust-lang/project-error-handling/issues/24
+* https://github.com/rust-lang/rust/issues/43301
 
 只能说Rust的错误处理还在发展中，尚未形成统一的标准。
 
@@ -732,13 +733,16 @@ rust语言内部也有讨论尝试落地相关的标准解决错误上下文传�
 * https://doc.rust-lang.org/std/result/
 * https://doc.rust-lang.org/std/macro.panic.html
 * https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
+* https://doc.rust-lang.org/rust-by-example/error.html
 * https://www.sheshbabu.com/posts/rust-error-handling/
+* https://blog.burntsushi.net/rust-error-handling/
 * https://www.lpalmieri.com/posts/error-handling-rust/#removing-the-boilerplate-with-thiserror
 * https://google.github.io/comprehensive-rust/error-handling/thiserror-and-anyhow.html
 * https://greptime.com/blogs/2024-05-07-error-rust
 * https://developerlife.com/2024/06/10/rust-miette-error-handling/
 * https://www.reddit.com/r/rust/comments/1bb7dco/error_handling_goodbest_practices/
 * https://blog.yoshuawuyts.com/error-handling-survey/
+
 
 
 中文：
