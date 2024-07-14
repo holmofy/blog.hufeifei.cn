@@ -63,15 +63,82 @@ Java语言是1991年Sun公司开发的，它就是乘着这一波互联网东风
 
 ## 轻量标记语言
 
-随着互联网崛起的HTML，有个缺点就是太重了，这是所有XML的通病。早期的Ajax使用XML传输数据，微软的IE提供的Ajax接口就叫做`XMLHttpRequest`，就是因为XML太重了，2001年才基于Javascript开发了[JSON][JSON]（JavaScript Object Notation），也叫做JSML(JavaScript Markup Language)，现在几乎成了互联网传输数据的标准。
+随着互联网崛起的HTML，有个缺点就是太重了，这是所有XML的通病。随着XML用途越来越广泛，这个弊端也越来越凸显，因此在各个领域都出现了新的轻量级标记语言：
 
-在渲染方面HTML也太重，特别是对于非计算机专业的人士来说，HTML太难懂了，所以发展出了**轻量级标记语言**。
+* **数据存储与传输领域**：早期的Ajax使用XML传输数据，微软的IE提供的Ajax接口就叫做`XMLHttpRequest`，就是因为XML太重了，2001年才基于Javascript开发了[JSON][JSON]（JavaScript Object Notation），也叫做JSML(JavaScript Markup Language)，现在几乎成了互联网传输数据的标准，最新标准已经到了JSON5。同时为了应对存储，JSON还有一个对应的二进制版本[BSON（Binary JSON](BSON)，最早出现在2009年发布的的MongoDB中。
+  ```json
+  {
+    "first_name": "John",
+    "last_name": "Smith",
+    "is_alive": true,
+    "age": 27,
+    "address": {
+      "street_address": "21 2nd Street",
+      "city": "New York",
+      "state": "NY",
+      "postal_code": "10021-3100"
+    },
+    "phone_numbers": [
+      {
+        "type": "home",
+        "number": "212 555-1234"
+      },
+      {
+        "type": "office",
+        "number": "646 555-4567"
+      }
+    ],
+    "children": [
+      "Catherine",
+      "Thomas",
+      "Trevor"
+    ],
+    "spouse": null
+  }
+  ```
+* **配置领域**：古早的应用大多是用XML配置的，比如上面提到的Apache Httpd。90年代Java搭着互联网的快车兴起，Java的很多系统都是用XML做配置的，比如程序构建和依赖管理工具Maven。原本为数据传输设计的JSON，用作配置文件有个天生的缺陷是不支持注释，因此出现了很多JSON的变体。比如2004年发布的[YAML][YAML]、微软专门为VSCode设计的JSONC(JSON with Comments)、CSON（CoffeeScript Object Notation）、HOCON（Human-Optimized Config Object Notation）等。另外还出现了新的配置格式，比如2013年Github创始人兼CEO	[汤姆·维尔纳][Tom]基于Windows的[INI][INI]配置文件扩展的[TOML][TOML]，这个TOML由于简洁、对缩进不敏感而备受Rust、golang、Julia等新兴编程语言青睐，比如Rust的构建和依赖管理工具cargo就是用了TOML作为配置文件。
+  ```toml
+  # 这是一个TOML文件
+  title = "ImpalaPay Co."
+  
+  [database]
+  server = "192.168.1.1"
+  ports = [ 8000, 8001, 8002 ]
+  connection_max = 5000
+  enabled = true
+  
+  # 数组内使用换行符也是ok的
+  hosts = [
+    "alpha",
+    "omega"
+  ]
+  
+  [servers]
+  
+    # 缩进 (tabs 或 spaces) 都可以, 也可以没有缩进。没有严格要求
+    [servers.alpha]
+    ip = "10.0.0.1"
+    dc = "eqdc10"
+  
+    [servers.beta]
+    ip = "10.0.0.2"
+    dc = "eqdc10"
+  ```
+* **渲染领域**：在渲染方面HTML也太重，特别是对于非计算机专业的人士来说，HTML太难懂了，所以也发展出了很多**轻量级标记语言**，下面主要介绍的就是用在渲染领域的标记语言。
+
+## 用于渲染的轻量级标记语言
+
+渲染领域最终还是要生成HTML，轻量级标记语言的出现只要为了方便排版简化HTML的编写。这些语言有以下几个应用场景：
+
+* **BBS社交论坛或社交平台等其他内容管理系统**
+* **电子邮件的渲染**
+* **软件文档的渲染**
 
 最早的轻量级标记语言，主要是用在论坛发布广告栏，管理员不用懂复杂的HTML嵌套语法，在后台直接基于[BBCode][BBCode]或[Textile][Textile]写公告。
 
 ![BBCode](https://fredcrash.com/bbcode/images/exemplebbcode.png)
 
-还有一个应用场景是渲染电子邮件和软件的文档。约1992年开发的[Setext][Setext]就是用来写邮件和评论帖子的轻量标记语言，2002年开发的[ATX][ATX]是用来写博客的，[reStructuredText][ReStructuredText]就是Python用于生成文档的标记语言
+还有一个应用场景是渲染电子邮件和软件的文档。约1992年开发的[Setext][Setext]就是用来写邮件和评论帖子的轻量标记语言，2002年开发的[ATX][ATX]是用来写博客的，[reStructuredText][ReStructuredText]就是Python用于生成文档的标记语言。
 
 现在依然活跃的[Textile][Textile]是2002年开发的，一些博客或CMS网站上还在用。这种轻量级标记语言语法简单，是个人分分钟就能学会。基于这个轻量级标记语言再渲染成HTML，可以节省很多排版工作。
 
@@ -105,6 +172,15 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 | WhatsApp                     | No               | No               | No      | No          | No              | No           | 2016-03-16   |
 | Gemtext                      | Yes              | ?                | No      | Yes         | No              | No           | 2020             |
 | Djot                         | Yes              | Yes              | Yes     | Yes         | Yes             | Yes          | 2022-07-30    |
+
+近十来年，电子邮件为了适应移动端，实现响应式布局，也出现了很多专门用于[邮件的标记语言(email markup language)](https://github.com/jonathandion/awesome-emails?tab=readme-ov-file#misc):
+
+| Language   | Github Stars  | Release Year   |
+| ---------- | ------------- | -------------- |
+|[mjml](https://mjml.io/)|[![mjml](https://img.shields.io/github/stars/mjmlio/mjml)](https://github.com/mjmlio/mjml)|2015|
+|[foundation/inky](https://get.foundation/emails.html)|[![inky](https://img.shields.io/github/stars/foundation/inky)](https://github.com/foundation/inky)|2016|
+|[heml](https://heml.io/)|[![heml](https://img.shields.io/github/stars/SparkPost/heml)](https://github.com/SparkPost/heml)|2017|
+
 
 ## 文档的相互转换
 
@@ -158,6 +234,11 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 [History_of_the_World_Wide_Web]: https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web
 [Dynamic_HTML]: https://en.wikipedia.org/wiki/Dynamic_HTML
 [JSON]: https://en.wikipedia.org/wiki/JSON
+[BSON]: https://en.wikipedia.org/wiki/BSON
+[YAML]: https://en.wikipedia.org/wiki/YAML
+[Tom]: https://en.wikipedia.org/wiki/Tom_Preston-Werner
+[INI]: https://en.wikipedia.org/wiki/INI_file
+[TOML]: https://en.wikipedia.org/wiki/TOML
 [OpenXML]: https://support.microsoft.com/en-us/office/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18
 [Lightweight_markup_language]: https://en.wikipedia.org/wiki/Lightweight_markup_language
 [BBCode]: https://baike.baidu.com/item/BBCode/6814117
