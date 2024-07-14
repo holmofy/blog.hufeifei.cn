@@ -196,7 +196,9 @@ Markdown基本语法还是很简单的，CommonMark标准2024年已经发展到[
 
 ![pandoc star history](https://api.star-history.com/svg?repos=jgm/pandoc&type=Date)
 
-目前来看，最流行的markdown不仅用在写技术文档，还在知乎等社交论坛网站有应用。不过目前对我来说最大的痛点是无法include外部文件，这个功能2014年在[CommonMark中][talk.commonmark]就有过讨论了，但是一直都没有标准化的实现。所以在技术文档方面asciidoc会更强大一些，最有名的就是Spring，它的所有文档都是基于asciidoc。github也支持渲染asciidoc文档。
+目前来看，最流行的markdown不仅用在写技术文档，还在知乎等社交论坛网站有应用。除此之外还有针对特定用于的场景也在用Markdown，比如用Markdown写Changelog，这个已经有了一个[Common-Changelog标准](https://common-changelog.org/)；用markdown写ppt，这个有一个非常牛逼的库[reveal.js](https://github.com/hakimel/reveal.js)。Markdown几乎成了事实上的文档标准了。
+
+不过目前对我来说最大的痛点是Markdown无法include外部文件，这个功能2014年在[CommonMark中][talk.commonmark]就有过讨论了，但是一直都没有标准化的实现。所以在技术文档方面asciidoc会更强大一些，最有名的就是Spring，它的所有文档都是基于asciidoc。github也支持渲染asciidoc文档。
 
 
 
