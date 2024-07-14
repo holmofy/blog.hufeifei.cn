@@ -55,7 +55,7 @@ Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、
 
 后来的1990年[伯纳斯-李][Berners-Lee]开发了第一个Web服务器[CERNhttpd][cern-httpd]。现在还能在欧洲核子研究中心看到世界上第一个网站：[http://info.cern.ch/](https://info.cern.ch/) 和 第一个浏览器[line-mode](Line_Mode)的历史。能翻墙的话也可以到维基百科上看看[万维网的历史][History_of_the_World_Wide_Web]。
 
-![伯纳斯-李](https://www.deutschland.de/sites/default/files/styles/image_container/public/field_visuals/technology-world-wide-web-bernd-pollarmann-thomas-finnern_a.jpg)
+![伯纳斯-李](https://i2.wp.com/img-blog.csdnimg.cn/20200527175753849.jpg)
 
 后来就是图形界面浏览器，以及众所周知的网景与微软的IE浏览器大战了。而[CERNhttpd][cern-httpd]逐渐演变为[NCSA_HTTPd](https://en.wikipedia.org/wiki/NCSA_HTTPd)，1995年演变为著名的[Apache httpd](https://en.wikipedia.org/wiki/Apache_HTTP_Server)，这也是1999年Apache基金会成立时的第一个项目。当然现在大家可能用的都是战斗民族在2004年开发的Nginx，不过由于历史原因Apache仍以31.4%的占有率排名第二。而[CERNhttpd][cern-httpd]的原班人马专注于开发Java的Web服务器Jigsaw。
 
