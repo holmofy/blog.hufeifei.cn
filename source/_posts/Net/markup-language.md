@@ -31,6 +31,8 @@ categories: 网络
 
 大家都知道C语言是[贝尔实验室][Bell-Labs]的[丹尼斯·里奇][Dennis_Ritchie]发明的，他和[肯·汤普森][Ken_Thompson]在参与[Multics][Multics]操作系统研发失败后回到了贝尔实验室。[肯·汤普森][Ken_Thompson]为了用一台废旧的PDP-7小型机玩游戏，开发了[Unix操作系统][Unix]和[B语言][B]。[丹尼斯·里奇][Dennis_Ritchie]为了改进系统，又开发了[C语言][C]重写了[Unix系统][Unix]。
 
+![肯汤普森与丹尼斯里奇在贝尔实验室](https://ask.qcloudimg.com/http-save/7035425/nsz70tikjm.jpeg)
+
 当时的[贝尔实验室][Bell-Labs]大拿云集，很多人被Unix操作系统吸引，在它上面开发各种工具，[Troff][Troff]和[Nroff][Nroff]就是Unix上的排版软件，你可以把这个软件可以类比为Windows上的Word。
 
 Unix早期还没有受到贝尔公司的重视，没有商业化，除了在贝尔实验室流行开来，还流传到了大学里。[加州大学][UC]就是其中之一，[加州大学伯克利分校][UC-Berkeley]在Unix基础上进行了二次开发，随着Unix被各大商业公司拿去搞钱弄成了闭源，伯克利重写了Unix操作系统，现在流行的Unix开源版本[Open BSD][BSD]就是这个学校开发的。
@@ -47,9 +49,13 @@ Tex也有几个Web的移植版本，[Letex.js][latex.js]、[MathJax][mathjax]、
 
 ## 互联网让HTML风靡起来
 
-1980年，在欧洲核子研究中心任职的物理学家[伯纳斯-李][Berners-Lee]为了方便研究中心人员共享文档，发明了[HTML][HTML]，并找了个本科生[尼古拉·佩洛][Nicola_Pellow]写了第一个网络浏览器[Line Mode Browser][Line_Mode_Browser]，这个浏览器当时还是在终端运行。后来的1990年[伯纳斯-李][Berners-Lee]开发了第一个Web服务器[CERNhttpd][cern-httpd]。现在还能在欧洲核子研究中心看到世界上第一个网站：[http://info.cern.ch/](https://info.cern.ch/) 和 第一个浏览器[line-mode](Line_Mode)的历史。能翻墙的话也可以到维基百科上看看[万维网的历史][History_of_the_World_Wide_Web]。
+1980年，在欧洲核子研究中心任职的物理学家[伯纳斯-李][Berners-Lee]为了方便研究中心人员共享文档，发明了[HTML][HTML]和用于传输的HTTP协议，并找了个本科生[尼古拉·佩洛][Nicola_Pellow]写了第一个网络浏览器[Line Mode Browser][Line_Mode_Browser]，这个浏览器当时还是在终端运行。
 
 ![第一个网络浏览器](https://ts1.cn.mm.bing.net/th/id/R-C.02c1e2425a433d2176da44a046b0fb7e?rik=ELDtCH4JacUGdw)
+
+后来的1990年[伯纳斯-李][Berners-Lee]开发了第一个Web服务器[CERNhttpd][cern-httpd]。现在还能在欧洲核子研究中心看到世界上第一个网站：[http://info.cern.ch/](https://info.cern.ch/) 和 第一个浏览器[line-mode](Line_Mode)的历史。能翻墙的话也可以到维基百科上看看[万维网的历史][History_of_the_World_Wide_Web]。
+
+![伯纳斯-李](https://www.deutschland.de/sites/default/files/styles/image_container/public/field_visuals/technology-world-wide-web-bernd-pollarmann-thomas-finnern_a.jpg)
 
 后来就是图形界面浏览器，以及众所周知的网景与微软的IE浏览器大战了。而[CERNhttpd][cern-httpd]逐渐演变为[NCSA_HTTPd](https://en.wikipedia.org/wiki/NCSA_HTTPd)，1995年演变为著名的[Apache httpd](https://en.wikipedia.org/wiki/Apache_HTTP_Server)，这也是1999年Apache基金会成立时的第一个项目。当然现在大家可能用的都是战斗民族在2004年开发的Nginx，不过由于历史原因Apache仍以31.4%的占有率排名第二。而[CERNhttpd][cern-httpd]的原班人马专注于开发Java的Web服务器Jigsaw。
 
