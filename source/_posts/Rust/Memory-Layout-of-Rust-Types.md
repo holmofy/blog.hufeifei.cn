@@ -176,7 +176,7 @@ std::mem::size_of::<T>()
 
 每种数据类型都有一个对齐属性，且分配给该数据类型的总字节数应该是对齐属性的整数倍。不仅 Rust 如此，每个编译器都如此。这样做有助于 CPU 更快更有效地读取数据。`align_of` 函数可以用于展示某种数据类型的对齐属性。
 
-```
+```rust
 use std::mem::{align_of, size_of};
 size_of::<(char, u8, i32)>();    // 12
 align_of::<(char, u8, i32)>();   // 4
