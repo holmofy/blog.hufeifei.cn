@@ -164,7 +164,7 @@ fn heap() -> Box<i32> {
 
 ![基本类型](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyX9YyfFwemKlJAk5fiaqo9wgfrEDibNH866OoPKMavAjZ7dB3Bthr0W5JJWj8ZDWjbINsRK9HFKNBibg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-元组是不同数据类型的集合。例子中变量 `a` 是由 `char`、`u8` 和 `i32` 组成的元组，其内存布局只是将成员彼此相邻地排列在栈上，示例中 `char` 占用 4 字节，`u8` 占用 1 字节，`i32` 占用 4 字节。既然所有成员都是在栈上分配的内存，所以整个元祖也是在栈上分配内存。
+元组是不同数据类型的集合。例子中变量 `a` 是由 `char`、`u8` 和 `i32` 组成的元组，其内存布局只是将成员彼此相邻地排列在栈上，示例中 `char` 占用 4 字节，`u8` 占用 1 字节，`i32` 占用 4 字节。既然所有成员都是在栈上分配的内存，所以整个元组也是在栈上分配内存。
 
 ![元组内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyX9YyfFwemKlJAk5fiaqo9wgnicBH5LLx5B1DltGbzKymMYqhWK8TomleyEZM0DdpibCPy731TlIGNKw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
@@ -213,7 +213,7 @@ let b: &i32 = &a;
 
 ## 数组/Vector/切片引用
 
-**数组**的大小固定，并且该大小也是其数据类型的一部分。此处数组的每个元素会在栈上相邻排列，但是，在数组创建后就不可以再改变它的大小了。切记，只有编译时已知的、大小固定的数据类型才能分配到栈上。
+**数组**的大小固定，并且该大小也是其数据类型的一部分。此处数组的每个元素会在栈上相邻排列，但是，在数组创建后就不可以再改变它的大小了。切记，**只有编译时已知的、大小固定的数据类型才能分配到栈上**。
 
 ![数组的内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVaRY1EowNOADB9icw4KCvIcQOHHibqX4PfFPFMJemVIT188qaoh1IRU51Qr89SczbSs4Qxe5yG5TuQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
@@ -227,7 +227,7 @@ let b: &i32 = &a;
 
 ![切片类型](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVaRY1EowNOADB9icw4KCvIcX5smM2UNhiabNzAXZ8wHFRTwNUOV8pK0GHYt1N3EfS223FQVqibPxOnA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
-此处，`s1` 表示示例数组中的前 2 个元素，而 `s2` 表示堆上 `vector` 的前 2 个元素。切片的问题在于它并不指定元素的个数，也就意味着在编译期，Rust 并不清楚需要使用多少字节来表示切片，换句话说，你不能用变量来存储切片，毕竟它们大小未知，不能分配在函数的栈帧上。这种类型被称为 动态大小类型（DST） 。另外还有一些其它的动态大小类型，如字符串切片和 trait 对象，将在后续内容中讲解。
+此处，`s1` 表示示例数组中的前 2 个元素，而 `s2` 表示堆上 `vector` 的前 2 个元素。切片的问题在于它并不指定元素的个数，也就意味着在编译期，Rust 并不清楚需要使用多少字节来表示切片，换句话说，你不能用变量来存储切片，毕竟它们大小未知，不能分配在函数的栈帧上。这种类型被称为 **动态大小类型（DST）** 。另外还有一些其它的动态大小类型，如字符串切片和 trait 对象，将在后续内容中讲解。
 
 几乎所有时候，我们都只会用到切片的引用。之前的章节已经讲过，引用只是一个指针，并使用 1 个机器字长来存放指向数据的地址。当你用到一个对 DST 的引用时（比如对切片的引用），Rust 会使用额外的 1 个机器字长来存储数据的长度，这种引用也被称为胖指针，因为我们将一些附加信息连同指针一起存储。
 
