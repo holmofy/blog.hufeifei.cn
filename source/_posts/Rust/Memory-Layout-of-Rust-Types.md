@@ -38,17 +38,17 @@ Hello, world!
 
 正在运行的程序称为进程（Process）。从进程的视角来看，它能看到的只是一段连续的从 0 到最大值的地址空间。像 elf 64 这类可执行文件格式，一般都指定了一些“段（segments）”，当二进制文件执行时，内核将它们映射到内存，segment 的数量因编译器而异，在此，仅展示其中一些重要的。
 
-![内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyUK16AjEAKBRyRzCQ4ErPwDMtcdN2IpJob7NH4LKczuILOahMLpXVgNsDgfpiagmfRMVOIxeWx31ag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![内存布局](https://segmentfault.com/img/bVc8qwm)
 
 编译器能够将 Rust 这种高级语言编写的代码转换为 CPU 可以执行的机器指令。 text segment 便包含这些指令。text segment 也被称为 code segment。这些指令因 CPU 架构而异，例如编译给 x86-64 平台使用的可执行文件便无法在 ARM-64 平台 CPU 上运行。text segment 是只读的，运行中的程序无法更改它。data segment 包含已初始化的静态变量（即全局变量）和一些已定义且可以被修改的局部静态变量。bss 的意思是 Block Started by Symbol ，该段包含未初始化的全局变量。内核还会将一些附加数据，例如环境变量、程序运行参数和参数的数量映射到高位地址。
 
 之后，栈（stack）segment 被分配在内存地址高位的末端。我们之前提到过，正在运行的程序称为进程。进程是操作系统用来存储进程名、进程 id 等所有细节的一个抽象。进程至少包含一个执行线程，每个执行线程都包含各自的栈。在 64 位的 Linux 系统中，Rust 程序会为主线程分配 8MB 的栈。而针对用户程序可能创建的任一线程，Rust 标准库则支持指定栈的大小，其默认值为 2MB 。
 
-![内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyUK16AjEAKBRyRzCQ4ErPwDCItGJ7nkFXDw4VnrDO0Ow1s9oWhtHmnvWkd6hzcDVqUkB4BzEMIicCg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![内存布局](https://segmentfault.com/img/bVc8qwn)
 
 尽管主线程栈的大小是 8MB，但这 8MB 并不是立即分配的。只有当程序真正使用它的时候，内核才会进行分配。栈向下增长，即向着低位内存增长。它只能增长到所属线程的最大栈容量，比如主线程只能到 8MB 。如果程序线程试图使用更多的栈内存，内核则会将其终止，你便会得到一个 "stack overflow" 错误。栈内存用于执行函数，关于这一点后续会详细讲。
 
-![内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyUK16AjEAKBRyRzCQ4ErPwDbHjulDDu0icYmNPobG2UGB63ejArEcglSTIWG6ia9XSw6XFeuoiaohiaIw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![内存布局](https://segmentfault.com/img/bVc8qwp)
 
 这里要讲的最后一个分段是堆（heap）内存。和栈不同的是，堆并非是被各个线程所拥有。同一进程的所有线程共享一个通用的堆内存区域。堆内存向上增长。针对运行中程序的这部分内存映射，操作系统通常会提供一些方法来查看它们，如 Linux 中，这些堆内存可以在 /proc 目录的指定进程下的 "maps" 文件中查看。
 
@@ -57,7 +57,7 @@ $ cat /proc/10664/maps
 ```
 你可能已经意识到了，既然栈内存和堆内存向着彼此增长，那么这部分区域会否产生覆盖呢？通过检测堆内存的最高位地址和栈内存的最低位地址之间的距离不难发现，其相距了近 47TB ，因而极不可能会产生内存覆盖的现象。即便覆盖的现象真的即将发生，内核也提供了守卫机制用以及时中断程序。要知道，这些都只是虚拟地址，纵使电脑只有 16GB 的 RAM，内核依然能够使用如此巨大范围的内存地址。虚拟内存仅会在程序使用它们的时候映射为物理内存。
 
-![内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyUK16AjEAKBRyRzCQ4ErPwDfic3lbC6P33XSF19bjK5NKVN9l4vyIRj6nkEeqTIsWlHKMxGYhy50Kg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![内存布局](https://segmentfault.com/img/bVc8qwr)
 
 内存地址的范围由 CPU 字长决定，CPU 字长大体上可以认为是 CPU 一次处理的数据量。64 位 CPU 的字长是 64 位（或 8 字节）。CPU 中大多数甚至所有的寄存器都具有相同的字长。64 位 CPU 的寻址范围是从 0 到 2^(64-1) ，也就是把各位都设为 1 的情况，这是一个非常大的值。过去，32 位 CPU 有一些限制，它最多只能寻址到 2^32 的内存地址，大约为 4 GB。如今，在 64 位 CPU 上，我们只将其中 48 位用于内存寻址，这 48 位大约可寻址到 282 TB 的内存。除此之外，只有前 47 位属于用户空间，意味着大约有 141 TB 的虚拟内存被分配给用户程序，而位于高位的 141 TB 则保留给内核自用。47 位，就是说你可以使用的最大地址是 0x7ffffffffff，因此如果你检查程序的内存映射，应该能在 stack 附近看到这个值。
 
@@ -76,25 +76,25 @@ fn add_one(i: i32) -> i32 {
 ```
 示例中 `main` 函数调用了 `add_one` 函数，我们没有新建其它线程，因此示例中只有一个线程在执行。从上一节的讲解中可以得知，允许为主线程分配的栈的总大小为 8MB，接下来使用一个白框表示这 8MB 内存空间：
 
-![8MB内存空间](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMS8buz2gia6Cib7CK6ibAWiafd3NVlibGFFxYqWYVCS1WTGEM1WUOqia6RdC9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![8MB内存空间](https://segmentfault.com/img/bVc8qws)
 
 仅当程序需要时，内核才会为其分配内存。栈内存的一个主要作用是存储当前正在执行函数的数据，包括函数参数、局部变量以及返回值的地址。为执行一个函数在栈上分配的总内存被称为 **栈帧 (stack frame)** 。
 
 此例中，`main` 函数是入口函数。首先 `main` 函数的栈帧被创建，
 
-![函数栈帧](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMSp17ppM2rf3wZkYXcebh7VzdqeUojibTZnxTPdBVkia7NMVTH4liaibXbVQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![函数栈帧](https://segmentfault.com/img/bVc8qwt)
 
 `main` 中有个局部变量 `a` ，它的值是 `22` 。还有另一个局部变量 `b` ，`b` 也是 `i32` 数据类型。`i32` 数据类型需要 4 个字节，`main` 的栈帧同样需要包含足够的空间来存放它。另外，使用 **栈指针（stack pointer）** 指向当前栈顶。
 
-![函数栈帧](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMSm9Wp1mDBcPoSt2ZmhAtfs5zP3n2ym8gRYEJ1CD0PtxbsOvZibDgypPg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![函数栈帧](https://segmentfault.com/img/bVc8qww)
 
 接下来当 `main` 调用 `add_one` 函数时，会创建一块新的栈帧并包含足够的空间来存放它自己的数据。栈指针的指向也切换到当前最新栈顶。`add_one` 函数接收数据类型为 `i32` 的入参 `i` ，因此需要在栈帧为它保留 4 字节的内存， `add_one` 函数没有局部变量。另外，它还要存储一个返回地址，这是 `main`函数中的下一条指令，当 `add_one` 函数完成时，执行应返回该指令。
 
-![函数栈帧](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMSAvia7pbOQSYibdibujUAhD9Go8kx2yDPicfO1hkhdose4UAMCYFvQJ9M4Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![函数栈帧](https://segmentfault.com/img/bVc8qwx)
 
 当 `add_one` 函数返回之后，返回值 23 就会被存储在 `main` 的局部变量 `b` 中，同时栈指针也会被更新。这里有一点要注意，此时 `add_one` 的栈帧并没有被释放，它会在程序调用下一个函数时被覆盖。
 
-![函数栈帧](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMSxKfiafn1sTicjgQiamp0B4hlFTdbnUzwSj8ibuWedfvneZBAg5nI13u0BA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![函数栈帧](https://segmentfault.com/img/bVc8qwy)
 
 注意一下栈内存的分配方式：分配或释放内存只需要移动栈指针。栈内存的分配速度很快，因为它不需要进行系统调用。当然，它也有一定的局限性，即只有在编译时便已知的、具有固定大小的变量才可以存储在栈上。另外，也不能返回对函数内部局部变量的引用。
 
@@ -118,7 +118,7 @@ error[E0515]: cannot return reference to local variable `result`
 
 现在来看一下堆内存。
 
-![堆内存](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMS8GRcyMM6p83eDDlMUr6AIniaLtiaQEhX0pbHYPwnzIHd8rda3tvRibvuw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![堆内存](https://segmentfault.com/img/bVc8qwA)
 
 该例中 `main` 正在调用 heap 函数，它会为该函数创建一个栈帧。
 
@@ -132,17 +132,17 @@ fn heap() -> Box<i32> {
 }
 ```
 
-![堆内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMSqeuokpkwJzcPh44HSAxXagXMAmQKvsLsNpx8wwIWSGrBX1Mk61JVWQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![堆内存布局](https://segmentfault.com/img/bVc8qwB)
 
 然后我们把值 23 使用 `Box` 分配到堆上，并把它存储在变量 `b` 中，函数 heap 的栈帧将有足够的空间存储该值，这是因为 `Box` 只是一个指针，存储在 `b` 中的值是一个来自堆上的地址，该地址里放着 23 。
 
-![堆内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMSkRTqt7R2rsWQoCvQ1AEibTZTk5GMXRLIdtClkc7VwdIMkeIG7CCiconQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![堆内存布局](https://segmentfault.com/img/bVc8qwC)
 
 在 64 位系统上，指针的大小是 8 字节，所以变量 `b` 的大小也是 8 字节。指针指向的值是 23，其类型为 `i32`，它在堆上需要 4 个字节的大小。heap 函数返回包含 `i32` 的 `Box`，返回值会存储在 `main` 函数的局部变量 `result` 中。
 
 当你将一个变量赋值给另一个变量时，它的栈内存会被复制。在这种情况下，用于存储地址的 8 个字节会从 `heap` 函数的栈帧复制到 `result` 变量。
 
-![堆内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyVHKC0hslmDTcFKePdQucMS2dq6qoiagG51mpjx1VuibpaGKbUeLiaiaic6fuc5iaiadrNG2AiaO8cDDzIzxA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![堆内存布局](https://segmentfault.com/img/bVc8qwF)
 
 现在，就算 `heap` 函数的栈帧被释放，`result` 变量也保存着堆上数据的地址。堆允许你共享数据。之前还提到，每个线程都有自己的栈，但它们共享同一块堆内存。假设，程序在 heap 上分配越来越多的数据，直到堆上分配的内存几乎用完了。通常，程序有一个内存管理器，它会通过系统调用负责向操作系统申请更多堆内存。在 Linux 系统中，这些系统调用通常是 `brk` 或 `sbrk` ，它们会增加程序可用的堆内存大小，从而增加用户程序的总可用内存。
 
@@ -158,15 +158,15 @@ fn heap() -> Box<i32> {
 
 对于有符号整型和无符号整型，只听其名字便可以知道它的大小：例如 `i16` 和 `u16` 在内存中都占用两个字节，它们全部分配在函数的栈帧上。`isize` 和 `usize` 的大小取决于机器字长，在 32 位系统上，其大小是 32 位，也就是 4 个字节。
 
-![基本类型](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyX9YyfFwemKlJAk5fiaqo9wgNIkrlbFCBHf2iaMseO7sC9ZyLgZ4ayIzO1OCf5r8OG6IlriaJZXfqV5w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![基本类型](https://segmentfault.com/img/bVc8qwH)
 
 `char` 数据类型存储 unicode 字符，此处展示了些例子。它们在内存中均占用 4 字节，也分配在栈上。
 
-![基本类型](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyX9YyfFwemKlJAk5fiaqo9wgfrEDibNH866OoPKMavAjZ7dB3Bthr0W5JJWj8ZDWjbINsRK9HFKNBibg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![基本类型](https://segmentfault.com/img/bVc8qwI)
 
 元组是不同数据类型的集合。例子中变量 `a` 是由 `char`、`u8` 和 `i32` 组成的元组，其内存布局只是将成员彼此相邻地排列在栈上，示例中 `char` 占用 4 字节，`u8` 占用 1 字节，`i32` 占用 4 字节。既然所有成员都是在栈上分配的内存，所以整个元组也是在栈上分配内存。
 
-![元组内存布局](https://mmbiz.qpic.cn/mmbiz_png/icHcJ8ricxwyX9YyfFwemKlJAk5fiaqo9wgnicBH5LLx5B1DltGbzKymMYqhWK8TomleyEZM0DdpibCPy731TlIGNKw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![元组内存布局](https://segmentfault.com/img/bVc8qxQ)
 
 注意，该元组虽然看起来在内存中仅占用 9 个字节，但事实并非如此。关于这一点，可以使用标准库提供的 size_of 函数来查看某一数据类型的真实大小。
 
