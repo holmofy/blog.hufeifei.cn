@@ -8,6 +8,7 @@ tags:
 
 > * [Visualizing memory layout of Rust's data types](https://www.youtube.com/watch?v=rDoqT-a6UFg)
 > * [Rust Language Cheat Sheet](https://cheats.rs/)
+> * [rust-memory-container-cs](https://github.com/usagi/rust-memory-container-cs)
 
 ## 二进制文件分段
 
