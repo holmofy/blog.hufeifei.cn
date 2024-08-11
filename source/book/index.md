@@ -419,6 +419,43 @@ type: "categories"
             </div>
             <div class="bd doulist-subject">
                 <div class="source">
+                    <a href="https://book.douban.com/subject/35934902/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img2.doubanio.com/view/subject/l/public/s34245991.jpg">
+                </div>
+                <div class="title">
+                    性能之巅（第2版）
+                </div>
+                <div class="rating">
+                    <span class="allstar50"></span>
+                    <span class="rating_nums">9.4</span>
+                    <span>(28人评价)</span>
+                </div>
+                <div class="abstract">
+                    作者: [美] Brendan Gregg
+                    <br>
+                    出版社: 电子工业出版社
+                    <br>
+                    出品方: 博文视点
+                    <br>
+                    副标题: 系统、企业与云可观测性
+                    <br>
+                    译者: 徐章宁
+                    <br>
+                    出版年: 2022-7
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">12</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
                     <a href="https://book.douban.com/subject/36086460/">来自：豆瓣读书</a>
                 </div>
                 <div class="post">
