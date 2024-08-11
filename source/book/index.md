@@ -445,6 +445,8 @@ type: "categories"
                     译者: 徐章宁
                     <br>
                     出版年: 2022-7
+                    <br>
+                    <a href="https://www.brendangregg.com/" target="_blank">作者博客</a>
                 </div>
             </div>
         </div>
