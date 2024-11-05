@@ -488,6 +488,41 @@ type: "categories"
             </div>
         </div>
     </div>
+    <div class="doulist-item">
+        <div class="mod">
+            <div class="hd">
+                <span class="pos">13</span>
+            </div>
+            <div class="bd doulist-subject">
+                <div class="source">
+                    <a href="https://book.douban.com/subject/35440567/">来自：豆瓣读书</a>
+                </div>
+                <div class="post">
+                        <img rel="external noreferrer nofollow noopener" referrerpolicy="no-referrer"
+                            src="https://img1.doubanio.com/view/subject/s/public/s33879840.jpg">
+                </div>
+                <div class="title">
+                    斯坦福数据挖掘教程（第3版）
+                </div>
+                <div class="rating">
+                    <span class="allstar50"></span>
+                    <span class="rating_nums"></span>
+                    <span> </span>
+                </div>
+                <div class="abstract">
+                    作者: 尤雷 • 莱斯科夫（Jure Leskovec） / 阿南德 • 拉贾拉曼（Anand Rajaraman） / 杰弗里 • 大卫 • 厄尔曼（Jeffrey David Ullman）
+                    <br>
+                    出版社: 人民邮电出版社
+                    <br>
+                    出品方: 图灵教育
+                    <br>
+                    译者: 王斌 / 王达侃
+                    <br>
+                    出版年: 2021-4-12
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
