@@ -519,6 +519,7 @@ type: "categories"
                     译者: 王斌 / 王达侃
                     <br>
                     出版年: 2021-4-12
+                    <a href="https://www.bilibili.com/video/BV11a4y1c7SW/">向量数据库技术鉴赏</a>
                 </div>
             </div>
         </div>
