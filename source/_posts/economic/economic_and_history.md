@@ -325,6 +325,8 @@ tags:
 
 ![魏晋南北朝](https://img1.baidu.com/it/u=2572238324,2825147672&fm=253)
 
+![南北朝大事年表](https://e0.ifengimg.com/10/2018/1219/0774AB1F0916051BD3A7D363DCC9DC24989B9F58_size223_w1080_h1551.jpeg)
+
 ```plantuml
 @startmindmap
 + 南北朝佛教
