@@ -159,7 +159,7 @@ tags:
 
 随着冶炼技术的发展，从青铜器到铁器技术的演进，铁犁等各种工具的出现以及牛马等畜力的驯化使得生产力得到提高。人类也从刀耕火种的粗旷式生产转变为精耕细作。人口也会因为生产力的提高而增多。青铜时代和铁器时代分别代表着材料革命的两个跨时代的技术。
 
-![人类经济社会发展历史](https://ts1.cn.mm.bing.net/th/id/R-C.c5be90e1fd5e9c3ba98857a04dfb9c7a?rik=YkjlQ%2fSHPtyztg&riu=http%3a%2f%2f221.179.172.81%3a8080%2fmnt_manage%2fueditor%2fjsp%2fupload%2fimage%2fB5D361722DA54B338891B6C399181516%2f20190403%2f1554251419649033286.jpg)
+![人类经济社会发展历史](https://ts1.cn.mm.bing.net/th/id/R-C.c5be90e1fd5e9c3ba98857a04dfb9c7a?rik=YkjlQ%2fSHPtyztg)
 
 ## 家庭、私有制与国家的起源
 
