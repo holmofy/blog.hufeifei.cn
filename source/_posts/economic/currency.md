@@ -202,11 +202,11 @@ tags:
 
 当市场上许多人开始借钱消费的时候，经济一片繁荣，大家对未来信心十足，也会催生出更多的借贷，此时市场上的资产价格也会上涨；当大多数人开始还钱时，市场上流通的货币变少，经济开始萎缩，经济周期因此出现。当市场上人们的信心一蹶不振的时候，大家都不敢借贷，不敢过度消费，经济开始萧条。
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=818135877&bvid=BV1qG4y157qp&cid=907519978&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=818135877&bvid=BV1qG4y157qp&cid=907519978&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 ## 马克思与凯恩斯的对决
 
-![马克思主义与凯恩斯主义](https://www.marxist.com/images/stories/britain/2020_May/marxism_Keynesianism_Image_Socialist_Appeal.jpg)
+![马克思主义与凯恩斯主义](https://marxisten.nl/images/keynes_marx.jpg)
 
 马克思最早发现了资本主义雇佣关系的根本矛盾，掌握生产资料的有产阶级会源源不断的积累财富，而不掌握生产资料的无产阶级最终会一贫如洗。所以马克思和恩格斯起草了《共产党宣言》，通过社会革命建立一套生产资料公有制和计划经济的社会分配制度，从根本上解决经济周期性危机的问题。但在计算机技术尚不发达的20世纪，人的需求是无法被计划的，苏联和中国的计划经济实验最终都以失败告终。
 
