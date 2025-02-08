@@ -79,38 +79,37 @@ keywords:
 
 所以你会看到，在[世界500强](https://www.fortunechina.com/fortune500/c/2024-08/05/content_456697.htm)中，中国的大多是国有企业，超大型民营企业多是利用信息技术崛起的新贵们。这些掌握生产资料的企业公司收益远比普通民企能挣钱。
 
-| 排名 | 企业名                                                                             | 营收(百万美元)   | 利润(百万美元)    | 国家       |
-| --- | ---------------------------------------------------------------------------------------------------------------------------- | --------- | --------- | ---------- |
-| 3   | [国家电网有限公司（STATE GRID)](https://www.fortunechina.com/global500/15/2023)                                                 | 530,008.8 | 8,191.9   | 中国       |
-| 5   | [中国石油天然气集团有限公司（CHINA NATIONAL PETROLEUM)](https://www.fortunechina.com/global500/13/2023)                         | 483,019.2 | 21,079.7  | 中国       |
-| 6   | [中国石油化工集团有限公司（SINOPEC GROUP)](https://www.fortunechina.com/global500/9/2023)                                       | 471,154.2 | 9,656.9   | 中国       |
-| 13  | [中国建筑集团有限公司（CHINA STATE CONSTRUCTION ENGINEERING)](https://www.fortunechina.com/global500/292/2023)                  | 305,884.5 | 4,234     | 中国       |
-| 27  | [鸿海精密工业股份有限公司（HON HAI PRECISION INDUSTRY)](https://www.fortunechina.com/global500/109/2023)                        | 222,535.3 | 4,751     | 中国       |
-| 28  | [中国工商银行股份有限公司（INDUSTRIAL & COMMERCIAL BANK OF CHINA)](https://www.fortunechina.com/global500/92/2023)              | 214,766.3 | 53,589.3  | 中国       |
-| 29  | [中国建设银行股份有限公司（CHINA CONSTRUCTION BANK)](https://www.fortunechina.com/global500/125/2023)                           | 202,753.4 | 48,145.1  | 中国       |
-| 32  | [中国农业银行股份有限公司（AGRICULTURAL BANK OF CHINA)](https://www.fortunechina.com/global500/155/2023)                        | 187,061.1 | 38,523.7  | 中国       |
-| 33  | [中国平安保险（集团）股份有限公司（PING AN INSURANCE)](https://www.fortunechina.com/global500/517/2023)                         | 181,565.8 | 12,453.8  | 中国       |
-| 38  | [中国中化控股有限责任公司（SINOCHEM HOLDINGS)](https://www.fortunechina.com/global500/816/2023)                                 | 173,834   | -1.4      | 中国       |
-| 39  | [中国铁路工程集团有限公司（CHINA RAILWAY ENGINEERING GROUP)](https://www.fortunechina.com/global500/662/2023)                   | 171,668.8 | 2,034.7   | 中国       |
-| 42  | [中国海洋石油集团有限公司（CHINA NATIONAL OFFSHORE OIL)](https://www.fortunechina.com/global500/318/2023)                       | 164,761.5 | 16,987.7  | 中国       |
-| 43  | [中国铁道建筑集团有限公司（CHINA RAILWAY CONSTRUCTION)](https://www.fortunechina.com/global500/252/2023)                        | 163,037   | 1,799.6   | 中国       |
-| 44  | [中国宝武钢铁集团有限公司（CHINA BAOWU STEEL GROUP)](https://www.fortunechina.com/global500/220/2023)                           | 161,698.4 | 2,492.8   | 中国       |
-| 49  | [中国银行股份有限公司（BANK OF CHINA)](https://www.fortunechina.com/global500/145/2023)                                         | 156,923.5 | 33,811    | 中国       |
-| 52  | [京东集团股份有限公司（JD.COM)](https://www.fortunechina.com/global500/687/2023)                                                | 155,533.3 | 1,543.1   | 中国       |
-| 54  | [中国人寿保险（集团）公司（CHINA LIFE INSURANCE)](https://www.fortunechina.com/global500/133/2023)                              | 151,487.2 | 6,858.6   | 中国       |
-| 62  | [中国移动通信集团有限公司（CHINA MOBILE COMMUNICATIONS)](https://www.fortunechina.com/global500/99/2023)                        | 139,597.1 | 14,718.3  | 中国       |
-| 63  | [中国交通建设集团有限公司（CHINA COMMUNICATIONS CONSTRUCTION)](https://www.fortunechina.com/global500/341/2023)                 | 138,270.4 | 1,254.9   | 中国       |
-| 65  | [中国五矿集团有限公司（CHINA MINMETALS)](https://www.fortunechina.com/global500/331/2023)                                       | 133,541.3 | 876.9     | 中国       |
-| 68  | [阿里巴巴集团控股有限公司（ALIBABA GROUP HOLDING)](https://www.fortunechina.com/global500/724/2023)                             | 126,812.5 | 10,625    | 中国       |
-| 69  | [厦门建发集团有限公司（XIAMEN C&D)](https://www.fortunechina.com/global500/730/2023)                                            | 125,970.5 | 454.4     | 中国       |
-| 72  | [山东能源集团有限公司（SHANDONG ENERGY GROUP)](https://www.fortunechina.com/global500/595/2023)                                 | 124,088.7 | 32.6      | 中国       |
-| 74  | [中国华润有限公司（CHINA RESOURCES)](https://www.fortunechina.com/global500/518/2023)                                           | 121,642.6 | 4,661.6   | 中国       |
-| 76  | [国家能源投资集团有限责任公司（CHINA ENERGY INVESTMENT)](https://www.fortunechina.com/global500/514/2023)                       | 121,583.6 | 5,699.2   | 中国       |
-| 83  | [中国南方电网有限责任公司（CHINA SOUTHERN POWER GRID)](https://www.fortunechina.com/global500/185/2023)                         | 113,674   | 1,515.5   | 中国       |
-| 84  | [上海汽车集团股份有限公司（SAIC MOTOR)](https://www.fortunechina.com/global500/579/2023)                                        | 110,612.3 | 2,396     | 中国       |
-| 86  | [中国邮政集团有限公司（CHINA POST GROUP)](https://www.fortunechina.com/global500/556/2023)                                      | 110,270.6 | 4,896.7   | 中国       |
-| 87  | [中粮集团有限公司（COFCO)](https://www.fortunechina.com/global500/335/2023)                                                     | 110,222   | 1,765.6   | 中国       |
-| 95  | [厦门国贸控股集团有限公司（XIAMEN ITG HOLDING GROUP)](https://www.fortunechina.com/global500/732/2023)                          | 103,089.7 | 289.5     | 中国       |
-| 100 | [中国中信集团有限公司（CITIC GROUP)](https://www.fortunechina.com/global500/415/2023)                                           | 100,768.7 | 3,903.9   | 中国       |
-
+| 排名 | 企业名                                                                             | 营收(百万美元)   | 利润(百万美元)    | 国家       | 利润率 (%)   |
+| --- | ---------------------------------------------------------------------------------------------------------------------------- | --------- | --------- | ---------- | --------- |
+| 3   | [国家电网有限公司（STATE GRID)](https://www.fortunechina.com/global500/15/2023)                                                 | 530,008.8 | 8,191.9   | 中国       | 1.55      |
+| 5   | [中国石油天然气集团有限公司（CHINA NATIONAL PETROLEUM)](https://www.fortunechina.com/global500/13/2023)                         | 483,019.2 | 21,079.7  | 中国       | 4.36      |
+| 6   | [中国石油化工集团有限公司（SINOPEC GROUP)](https://www.fortunechina.com/global500/9/2023)                                       | 471,154.2 | 9,656.9   | 中国       | 2.05      |
+| 13  | [中国建筑集团有限公司（CHINA STATE CONSTRUCTION ENGINEERING)](https://www.fortunechina.com/global500/292/2023)                  | 305,884.5 | 4,234     | 中国       | 1.38      |
+| 27  | [鸿海精密工业股份有限公司（HON HAI PRECISION INDUSTRY)](https://www.fortunechina.com/global500/109/2023)                        | 222,535.3 | 4,751     | 中国       | 2.14      |
+| 28  | [中国工商银行股份有限公司（INDUSTRIAL & COMMERCIAL BANK OF CHINA)](https://www.fortunechina.com/global500/92/2023)              | 214,766.3 | 53,589.3  | 中国       | 24.95     |
+| 29  | [中国建设银行股份有限公司（CHINA CONSTRUCTION BANK)](https://www.fortunechina.com/global500/125/2023)                           | 202,753.4 | 48,145.1  | 中国       | 23.74     |
+| 32  | [中国农业银行股份有限公司（AGRICULTURAL BANK OF CHINA)](https://www.fortunechina.com/global500/155/2023)                        | 187,061.1 | 38,523.7  | 中国       | 20.59     |
+| 33  | [中国平安保险（集团）股份有限公司（PING AN INSURANCE)](https://www.fortunechina.com/global500/517/2023)                         | 181,565.8 | 12,453.8  | 中国       | 6.86      |
+| 38  | [中国中化控股有限责任公司（SINOCHEM HOLDINGS)](https://www.fortunechina.com/global500/816/2023)                                 | 173,834   | -1.4      | 中国       | -0.00     |
+| 39  | [中国铁路工程集团有限公司（CHINA RAILWAY ENGINEERING GROUP)](https://www.fortunechina.com/global500/662/2023)                   | 171,668.8 | 2,034.7   | 中国       | 1.19      |
+| 42  | [中国海洋石油集团有限公司（CHINA NATIONAL OFFSHORE OIL)](https://www.fortunechina.com/global500/318/2023)                       | 164,761.5 | 16,987.7  | 中国       | 10.31     |
+| 43  | [中国铁道建筑集团有限公司（CHINA RAILWAY CONSTRUCTION)](https://www.fortunechina.com/global500/252/2023)                        | 163,037   | 1,799.6   | 中国       | 1.10      |
+| 44  | [中国宝武钢铁集团有限公司（CHINA BAOWU STEEL GROUP)](https://www.fortunechina.com/global500/220/2023)                           | 161,698.4 | 2,492.8   | 中国       | 1.54      |
+| 49  | [中国银行股份有限公司（BANK OF CHINA)](https://www.fortunechina.com/global500/145/2023)                                         | 156,923.5 | 33,811    | 中国       | 21.54     |
+| 52  | [京东集团股份有限公司（JD.COM)](https://www.fortunechina.com/global500/687/2023)                                                | 155,533.3 | 1,543.1   | 中国       | 0.99      |
+| 54  | [中国人寿保险（集团）公司（CHINA LIFE INSURANCE)](https://www.fortunechina.com/global500/133/2023)                              | 151,487.2 | 6,858.6   | 中国       | 4.53      |
+| 62  | [中国移动通信集团有限公司（CHINA MOBILE COMMUNICATIONS)](https://www.fortunechina.com/global500/99/2023)                        | 139,597.1 | 14,718.3  | 中国       | 10.54     |
+| 63  | [中国交通建设集团有限公司（CHINA COMMUNICATIONS CONSTRUCTION)](https://www.fortunechina.com/global500/341/2023)                 | 138,270.4 | 1,254.9   | 中国       | 0.91      |
+| 65  | [中国五矿集团有限公司（CHINA MINMETALS)](https://www.fortunechina.com/global500/331/2023)                                       | 133,541.3 | 876.9     | 中国       | 0.66      |
+| 68  | [阿里巴巴集团控股有限公司（ALIBABA GROUP HOLDING)](https://www.fortunechina.com/global500/724/2023)                             | 126,812.5 | 10,625    | 中国       | 8.38      |
+| 69  | [厦门建发集团有限公司（XIAMEN C&D)](https://www.fortunechina.com/global500/730/2023)                                            | 125,970.5 | 454.4     | 中国       | 0.36      |
+| 72  | [山东能源集团有限公司（SHANDONG ENERGY GROUP)](https://www.fortunechina.com/global500/595/2023)                                 | 124,088.7 | 32.6      | 中国       | 0.03      |
+| 74  | [中国华润有限公司（CHINA RESOURCES)](https://www.fortunechina.com/global500/518/2023)                                           | 121,642.6 | 4,661.6   | 中国       | 3.83      |
+| 76  | [国家能源投资集团有限责任公司（CHINA ENERGY INVESTMENT)](https://www.fortunechina.com/global500/514/2023)                       | 121,583.6 | 5,699.2   | 中国       | 4.69      |
+| 83  | [中国南方电网有限责任公司（CHINA SOUTHERN POWER GRID)](https://www.fortunechina.com/global500/185/2023)                         | 113,674   | 1,515.5   | 中国       | 1.33      |
+| 84  | [上海汽车集团股份有限公司（SAIC MOTOR)](https://www.fortunechina.com/global500/579/2023)                                        | 110,612.3 | 2,396     | 中国       | 2.17      |
+| 86  | [中国邮政集团有限公司（CHINA POST GROUP)](https://www.fortunechina.com/global500/556/2023)                                      | 110,270.6 | 4,896.7   | 中国       | 4.44      |
+| 87  | [中粮集团有限公司（COFCO)](https://www.fortunechina.com/global500/335/2023)                                                     | 110,222   | 1,765.6   | 中国       | 1.60      |
+| 95  | [厦门国贸控股集团有限公司（XIAMEN ITG HOLDING GROUP)](https://www.fortunechina.com/global500/732/2023)                          | 103,089.7 | 289.5     | 中国       | 0.28      |
+| 100 | [中国中信集团有限公司（CITIC GROUP)](https://www.fortunechina.com/global500/415/2023)                                           | 100,768.7 | 3,903.9   | 中国       | 3.87      | 
 
