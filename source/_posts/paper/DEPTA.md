@@ -2,6 +2,7 @@
 title: DEPTA
 date: 2023-01-26
 categories: 算法
+mathjax: true
 tags: 
 - 算法
 - Web挖掘
