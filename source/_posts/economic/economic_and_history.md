@@ -2,6 +2,7 @@
 title: 唯物主义历史观
 date: 2023-08-06
 categories: 经济与金融
+mathjax: true
 tags: 
 - 经济
 - 历史
