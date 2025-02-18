@@ -50,30 +50,29 @@ tags:
 +++++_ 如草履虫、眼虫、变形虫
 ++++ 原生菌类
 +++ 多细胞生物：细胞分工
-+++ 寒武纪生命大爆发
-++++ 门类大爆发
-+++++_ 植物
-++++++_ [[https://baike.baidu.com/item/裸藻门/2948175 裸藻门]]
-++++++_ [[https://baike.baidu.com/item/金藻门/1584161 金藻门]]
-++++++_ [[https://baike.baidu.com/item/甲藻门/1584123 甲藻门]]
-++++++_ [[https://baike.baidu.com/item/黄藻门/1584223 黄藻门]]
-++++++_ [[https://baike.baidu.com/item/硅藻门/1584241 硅藻门]]
-++++++_ [[https://baike.baidu.com/item/绿藻门/714651 绿藻门]]
-++++++_ [[https://baike.baidu.com/item/轮藻门/1653690 轮藻门]]
-++++++_ [[https://baike.baidu.com/item/褐藻门/2518539 褐藻门]]
-++++++_ [[https://baike.baidu.com/item/红藻门/2526237 红藻门]]
-++++++_ [[https://baike.baidu.com/item/隐藻门/6478716 隐藻门]]
-+++++_ 动物
-++++++ [[https://baike.baidu.com/item/无脊椎动物/149803 无脊椎动物]]
-+++++++_ [[https://baike.baidu.com/item/刺胞动物门 刺胞动物门(腔肠动物)]]: 水螅、水母、珊瑚
-+++++++_ [[https://baike.baidu.com/item/扁形动物门 扁形动物门]]: 血吸虫、绦虫
-+++++++_ [[https://baike.baidu.com/item/线形动物门 线形动物门]]: 铁线虫
-+++++++_ [[https://baike.baidu.com/item/环节动物 环节动物门]]: 蚯蚓、水蛭、蚂蝗
-+++++++_ [[https://baike.baidu.com/item/软体动物 软体动物门]]: 章鱼、鹦鹉螺、蜗牛
-+++++++_ [[https://baike.baidu.com/item/节肢动物门 节肢动物门]]: 蝎子、蜘蛛、蚂蚁
-+++++++_ [[https://baike.baidu.com/item/棘皮动物门 棘皮动物门]]: 海星、海胆、海参
-++++++ [[https://baike.baidu.com/item/脊索动物门 脊索动物门]]
-+++++++_ 文昌鱼
++++ 寒武纪生命门类大爆发
+++++_ 植物
++++++_ [[https://baike.baidu.com/item/裸藻门/2948175 裸藻门]]
++++++_ [[https://baike.baidu.com/item/金藻门/1584161 金藻门]]
++++++_ [[https://baike.baidu.com/item/甲藻门/1584123 甲藻门]]
++++++_ [[https://baike.baidu.com/item/黄藻门/1584223 黄藻门]]
++++++_ [[https://baike.baidu.com/item/硅藻门/1584241 硅藻门]]
++++++_ [[https://baike.baidu.com/item/绿藻门/714651 绿藻门]]
++++++_ [[https://baike.baidu.com/item/轮藻门/1653690 轮藻门]]
++++++_ [[https://baike.baidu.com/item/褐藻门/2518539 褐藻门]]
++++++_ [[https://baike.baidu.com/item/红藻门/2526237 红藻门]]
++++++_ [[https://baike.baidu.com/item/隐藻门/6478716 隐藻门]]
+++++_ 动物
++++++ [[https://baike.baidu.com/item/无脊椎动物/149803 无脊椎动物]]
+++++++_ [[https://baike.baidu.com/item/刺胞动物门 刺胞动物门(腔肠动物)]]: 水螅、水母、珊瑚
+++++++_ [[https://baike.baidu.com/item/扁形动物门 扁形动物门]]: 血吸虫、绦虫
+++++++_ [[https://baike.baidu.com/item/线形动物门 线形动物门]]: 铁线虫
+++++++_ [[https://baike.baidu.com/item/环节动物 环节动物门]]: 蚯蚓、水蛭、蚂蝗
+++++++_ [[https://baike.baidu.com/item/软体动物 软体动物门]]: 章鱼、鹦鹉螺、蜗牛
+++++++_ [[https://baike.baidu.com/item/节肢动物门 节肢动物门]]: 蝎子、蜘蛛、蚂蚁
+++++++_ [[https://baike.baidu.com/item/棘皮动物门 棘皮动物门]]: 海星、海胆、海参
++++++ [[https://baike.baidu.com/item/脊索动物门 脊索动物门]]
+++++++_ 文昌鱼
 +++ 生物矿化
 ++++_ 生物体内控制合成无机矿物
 ++++ 原生生物界
@@ -85,6 +84,8 @@ tags:
 ++++ [[https://baike.baidu.com/item/脊椎动物亚门 脊椎动物亚门]]
 +++++_ 通过生物矿化形成由磷酸钙（主要是羟基磷灰石）组成的骨骼和牙齿
 +++++ [[https://baike.baidu.com/item/鱼类/524517 鱼类]]
++++ 感官进化
+
 ++ 生物登陆
 +++ 植物先锋
 ++++_ 苔藓植物→蕨类植物→种子植物(裸子植物→被子植物)
