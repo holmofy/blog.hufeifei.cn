@@ -76,5 +76,5 @@ tags:
 @endmindmap
 ```
 
-![生物进化谱系树](http://www.dindon.com.tw/userfile/358/m-014.gif)
+![生物进化谱系树](https://oss.zhiwugushi.com/Z/Z1wBBXNxiGKU0=VNQPrHIGnyL3c-GsOUcPSirfIJUQYLs_Iv5OfXteEcXTH-e_uRsghQ==.jpg)
 
