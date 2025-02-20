@@ -150,7 +150,7 @@ $$
 
 更多税制改革的文章：
 
-* [万税之王增值税](https://finance.ifeng.com/a/20180903/16522897_0.shtml)
+* [万税之王增值税](https://ressrc.com/2018/08/31/紫竹张先生-万税之王增值税/)
 * [贾康：直接税改革是中国走向现代化的一个历史性考验——求是网](http://qstheory.cn/2018-05/30/c_1122913492.htm)
 * [贺铿：加快税制改革进程 实现税赋公平](http://www.npc.gov.cn/zgrdw/npc//////xinwen/2011-04/22/content_1653221.htm)
 * [“十四五”现代财税体制如何加快建立？——来自财政部的权威解读](https://www.gov.cn/xinwen/2021-04/08/content_5598274.htm)
