@@ -49,8 +49,8 @@ categories: 哲学
 **[#Orange] 溯因推理(Abductive)
 **[#Orange] 类比推理(Analogical)
 legend left
-  绿色 必然性推理
-  橙色 可能性推理
+  <font color="green">绿色 必然性推理</font>
+  <font color="orange">橙色 可能性推理</font>
 endlegend
 @endmindmap
 ```
