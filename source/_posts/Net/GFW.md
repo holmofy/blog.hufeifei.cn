@@ -106,7 +106,3 @@ V2Ray有一个变体[XRay](https://github.com/XTLS)，优化了性能和隐蔽�
 | **ShadowsocksX-NG** | 2017年   | Shadowsocks, ShadowsocksR   | [GitHub](https://github.com/shadowsocks/ShadowsocksX-NG) | macOS平台的Shadowsocks客户端，功能完善 |
 | **FlClash** | 2024年   | Clash, V2ray, Vless, Hysteria   | [GitHub](https://github.com/hiddify/hiddify-app) | Dart语言开发，支持Android, iOS, Windows, macOS, Linux等多平台，功能完善 |
 | **hiddify** | 2024年   | Vless, Vmess, Reality, TUIC, Hysteria, Wireguard, SSH   | [GitHub](https://github.com/hiddify/hiddify-app) | Dart语言开发，支持Android, iOS, Windows, macOS, Linux等多平台，功能完善 |
-
-### 总结
-
-这些翻墙客户端软件支持的协议各不相同，有的专注于隐蔽性和安全性（如Trojan和V2Ray），有的则侧重于易用性和跨平台支持（如Outline和Lantern）。用户可以根据自己的需求选择合适的客户端。
