@@ -11,11 +11,15 @@ categories: 哲学
 
 ```plantuml
 @startmindmap
+<style>
+node {
+    HorizontalAlignment center
+    RoundCorner 40
+}
+</style>
 * 推理
-**[#LightGreen] 演绎推理(Deductive)
-***_ 一般到特殊
-** 归纳推理(Inductive)
-***_ 特殊到一般
+**[#LightGreen] 演绎推理(Deductive)\n一般到特殊
+** 归纳推理(Inductive)\n特殊到一般
 ***[#LightGreen] 完全归纳
 ***[#Orange] 不完全归纳
 **[#Orange] 类比推理(Analogical)
