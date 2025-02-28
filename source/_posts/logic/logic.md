@@ -7,6 +7,24 @@ tags:
 categories: 哲学
 ---
 
+## 推理的分类
+
+```plantuml
+@startmindmap
+* 推理
+**[#LightGreen] 演绎推理(Deductive)
+** 归纳推理(Inductive)
+***[#LightGreen] 完全归纳
+***[#Orange] 不完全归纳
+**[#Orange] 溯因推理(Abductive)
+**[#Orange] 类比推理(Analogical)
+legend left
+  <font color="green">绿色 必然性推理</font>
+  <font color="orange">橙色 可能性推理</font>
+endlegend
+@endmindmap
+```
+
 ## 命题的种类
 
 ```plantuml
@@ -34,24 +52,6 @@ categories: 哲学
 ****_ 充分条件假言命题
 ****_ 必要条件假言命题
 ****_ 充要条件假言命题
-@endmindmap
-```
-
-## 推理的分类
-
-```plantuml
-@startmindmap
-* 推理
-**[#LightGreen] 演绎推理(Deductive)
-** 归纳推理(Inductive)
-***[#LightGreen] 完全归纳
-***[#Orange] 不完全归纳
-**[#Orange] 溯因推理(Abductive)
-**[#Orange] 类比推理(Analogical)
-legend left
-  <font color="green">绿色 必然性推理</font>
-  <font color="orange">橙色 可能性推理</font>
-endlegend
 @endmindmap
 ```
 
