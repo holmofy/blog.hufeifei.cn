@@ -63,7 +63,7 @@ endlegend
 @startuml
 skinparam componentStyle rectangle
 
-[所有A都是B] . [所有A都不是B]:反对
+[所有A都是B] . [所有A都不是B]:上反对
 [所有A都是B] -- (矛盾)
 (矛盾) -- [有的A不是B]
 [所有A都不是B] -- (矛盾)
@@ -89,7 +89,7 @@ hide b
 @startuml
 skinparam componentStyle rectangle
 
-[A必然是B] . [A必然不是B]:反对
+[A必然是B] . [A必然不是B]:上反对
 [A必然是B] -- (矛盾)
 (矛盾) -- [A可能不是B]
 [A必然不是B] -- (矛盾)
