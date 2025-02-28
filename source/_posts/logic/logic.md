@@ -22,8 +22,7 @@ node {
 ** 归纳推理(Inductive)\n特殊到一般
 ***[#LightGreen] 完全归纳
 ***[#Orange] 不完全归纳
-**[#Orange] 类比推理(Analogical)
-***_ 特殊到特殊
+**[#Orange] 类比推理(Analogical)\n特殊到特殊
 **[#Orange] 溯因推理(Abductive)
 legend left
   <font color="green">绿色 必然性推理</font>
