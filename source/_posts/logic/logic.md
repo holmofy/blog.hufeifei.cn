@@ -18,12 +18,12 @@ node {
 }
 </style>
 * 推理
-**[#LightGreen] 演绎推理(Deductive)\n一般到特殊
+**[#LightGreen] 演绎推理(Deductive)\n一般到特殊\n原因到结果
 ** 归纳推理(Inductive)\n特殊到一般
 ***[#LightGreen] 完全归纳
 ***[#Orange] 不完全归纳
 **[#Orange] 类比推理(Analogical)\n特殊到特殊
-**[#Orange] 溯因推理(Abductive)
+**[#Orange] 溯因推理(Abductive)\n结果到原因
 legend left
   <font color="green">绿色 必然性推理</font>
   <font color="orange">橙色 可能性推理</font>
