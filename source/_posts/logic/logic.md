@@ -13,11 +13,14 @@ categories: 哲学
 @startmindmap
 * 推理
 **[#LightGreen] 演绎推理(Deductive)
+***_ 一般到特殊
 ** 归纳推理(Inductive)
+***_ 特殊到一般
 ***[#LightGreen] 完全归纳
 ***[#Orange] 不完全归纳
-**[#Orange] 溯因推理(Abductive)
 **[#Orange] 类比推理(Analogical)
+***_ 特殊到特殊
+**[#Orange] 溯因推理(Abductive)
 legend left
   <font color="green">绿色 必然性推理</font>
   <font color="orange">橙色 可能性推理</font>
