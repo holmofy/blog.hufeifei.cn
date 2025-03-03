@@ -7,6 +7,12 @@ tags:
 categories: 哲学
 ---
 
+形式逻辑可以追溯到古希腊的亚里士多德时期，他在《工具论》中系统阐述三段论，因此被称为“形式逻辑之父”。后来的斯多葛学派又提出逻辑连接词（如“且”“或”“非”）的形式分析，充实了形式逻辑。
+
+在中国则主要是名家与墨家（战国时期），墨家提出“辩”的概念，在《[墨辩](https://baike.baidu.com/item/墨辩)》中探讨“名实关系”与逻辑悖论（如“白马非马”）；名家惠施、公孙龙关注概念分析与语言逻辑。
+
+近代文艺复兴后，莱布尼茨首次用代数符号表达逻辑关系，因此他也被视为“数理逻辑”先驱。19世纪布尔创立“布尔代数”为计算机逻辑电路奠定数学基础。二战时期，图灵提出“图灵机”模型，将逻辑与计算理论结合，直接影响计算机科学。
+
 ## 推理的分类
 
 ```plantuml
@@ -39,25 +45,38 @@ endlegend
 ** 简单命题
 *** [[#categorical-proposition 直言命题]]
 ****_ 全称命题
+*****_ <latex>\forall x \in M</latex>
 ****_ 特称命题
+*****_ <latex>\exists x \in M</latex>
 ****_ 单称命题
+*****_ <latex>X \in M</latex>
 *** [[#modal-proposition 模态命题]]
 ****_ 必然性命题
+*****_ <latex>\Box x \in M</latex>
 ****_ 事实性命题
+*****_ <latex>X \in M</latex>
 ****_ 可能性命题
+*****_ <latex>\Diamond x \in M</latex>
 *** [[#relational-proposition 关系命题]]
 ****_ 传递性关系命题
 ****_ 对称性关系命题
 ** 复合命题
 *** 负命题(非)
+****_ <latex>\neg x</latex>
 *** [[#and-or 联言命题(与)]]
+****_ <latex>x \land y</latex>
 *** [[#and-or 选言命题(或)]]
 ****_ 相容选言命题
+*****_ <latex>x \lor y</latex>
 ****_ 不相容选言命题(异或)
+*****_ <latex>\bar{x \lor y}</latex>
 *** [[#if-then 假言命题]]
 ****_ 充分条件假言命题
+*****_ <latex>x \to y</latex>
 ****_ 必要条件假言命题
+*****_ <latex>x \gets y</latex>
 ****_ 充要条件假言命题
+*****_ <latex>x \leftrightarrow y</latex>
 @endmindmap
 ```
 
@@ -140,3 +159,4 @@ HorizontalAlignment center
 ## 三段论的格式
 
 ![三段论的格式](https://bkimg.cdn.bcebos.com/pic/902397dda144ad348afa2597d3a20cf431ad855d)
+
