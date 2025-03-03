@@ -4,6 +4,7 @@ date: 2025-02-27
 tags:
     - 逻辑
     - 哲学
+mathjax: true
 categories: 哲学
 ---
 
