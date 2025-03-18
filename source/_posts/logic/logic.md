@@ -180,22 +180,28 @@ HorizontalAlignment center
 **_ 论据错误
 *** 论据不充分
 *** 论据不相干
-**** 诉诸权威
-**** 诉诸众人
-**** 诉诸无知
-**** 诉诸情感
+**** [[https://baike.baidu.com/item/诉诸权威 诉诸权威]]
+**** [[https://baike.baidu.com/item/诉诸大众 诉诸众人]]
+**** [[https://baike.baidu.com/item/诉诸无知 诉诸无知]]
+**** [[https://baike.baidu.com/item/诉诸情感 诉诸情感]]
+*****_ 诉诸怜悯
+*****_ 诉诸仇恨
+*****_ 诉诸恐惧
+*****_ 诉诸厌恶
 **** 诉诸动机
-*** 预期理由
+*** [[https://baike.baidu.com/item/预期理由 预期理由]]
 **_ 论证错误
 *** 归纳不当
-**** 以偏概全
-**** 统计学谬误
+**** [[https://baike.baidu.com/item/以偏概全 以偏概全]]
+**** [[https://baike.baidu.com/item/统计陷阱/3778566 统计学谬误]]
+*****_ [[https://baike.baidu.com/item/幸存者偏差/10313799 幸存者偏差]]
+*****_ [[https://baike.baidu.com/item/区群谬误 区群谬误(以全概偏)]]
 *** 类比不当
 *** 因果不当
 **** 强拉因果
-**** 因果倒置
+**** [[https://baike.baidu.com/item/因果倒置 因果倒置]]
 **** 因果矛盾
-**** 滑坡谬误
+**** [[https://baike.baidu.com/item/滑坡谬误 滑坡谬误]]
 *** 非黑即白
 @endmindmap
 ```
