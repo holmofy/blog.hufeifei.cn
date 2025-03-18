@@ -175,7 +175,7 @@ HorizontalAlignment center
 @startmindmap
 * 论证谬误
 **_ 论点错误
-*** 偷换概念
+*** [[https://baike.baidu.com/item/偷换概念/6714008 偷换概念]]
 *** 绝对化表述
 **_ 论据错误
 *** 论据不充分
@@ -184,6 +184,7 @@ HorizontalAlignment center
 **** 诉诸众人
 **** 诉诸无知
 **** 诉诸情感
+**** 诉诸动机
 *** 预期理由
 **_ 论证错误
 *** 归纳不当
@@ -199,4 +200,4 @@ HorizontalAlignment center
 @endmindmap
 ```
 
-
+> [謬誤列表](https://zh.wikipedia.org/wiki/謬誤列表)
