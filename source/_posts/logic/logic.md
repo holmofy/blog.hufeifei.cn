@@ -168,24 +168,24 @@ node {
 **_ 论据错误
 *** 论据不充分
 *** 论据不相干
-**** [[https://baike.baidu.com/item/诉诸权威 诉诸权威\n(迷信权威)]]
-**** [[https://baike.baidu.com/item/诉诸大众 诉诸众人\n(盲目从众)]]
+**** [[https://baike.baidu.com/item/诉诸权威 诉诸权威]]\n(迷信权威)
+**** [[https://baike.baidu.com/item/诉诸大众 诉诸众人]]\n(盲目从众)
 **** [[https://baike.baidu.com/item/诉诸无知 诉诸无知]]
-**** [[https://baike.baidu.com/item/诉诸情感 诉诸情感\n(情感绑架)]]
+**** [[https://baike.baidu.com/item/诉诸情感 诉诸情感]]\n(情感绑架)
 *****_ 诉诸怜悯
 *****_ 诉诸仇恨
 *****_ 诉诸恐惧
 *****_ 诉诸厌恶
-**** 诉诸人身\n(人身攻击)
+**** 诉诸人身\n([[https://baike.baidu.com/item/人身攻击 人身攻击]])
 ***** 诉诸动机
 ***** 诉诸人格
-*** [[https://baike.baidu.com/item/预期理由 预期理由\n(不当预设)]]
+*** [[https://baike.baidu.com/item/预期理由 预期理由]]\n(不当预设)
 **_ 论证错误
 *** 归纳不当
 **** [[https://baike.baidu.com/item/以偏概全 以偏概全]]
 **** [[https://baike.baidu.com/item/统计陷阱/3778566 统计学谬误]]
 *****_ [[https://baike.baidu.com/item/幸存者偏差/10313799 幸存者偏差]]
-*****_ [[https://baike.baidu.com/item/区群谬误 区群谬误\n(以全概偏)]]
+*****_ [[https://baike.baidu.com/item/区群谬误 区群谬误]]\n(以全概偏)
 *** 类比不当
 *** 因果不当
 **** 强拉因果
