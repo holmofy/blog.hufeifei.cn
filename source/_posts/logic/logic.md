@@ -145,25 +145,7 @@ hide b
 
 ## 逆命题与否命题
 
-```plantuml
-@startuml
-skinparam componentStyle rectangle
-<style>
-component{
-HorizontalAlignment center
-}
-</style>
-
-[原命题\n若p，则q] <-right-> [逆命题\n若q，则p]:互逆命题，真假无关
-[原命题\n若p，则q] <-- (互为\n逆否)
-(互为\n逆否) --> [逆否命题\n若非q，则非p]
-[逆命题\n若q，则p] <-- (互为\n逆否)
-(互为\n逆否) --> [否命题\n若非p，则非q]
-[否命题\n若非p，则非q] <-right-> [逆否命题\n若非q，则非p]:互逆命题，真假无关
-[原命题\n若p，则q] <-down-> [否命题\n若非p，则非q]:互否命题\n真假无关
-[逆命题\n若q，则p] <-down-> [逆否命题\n若非q，则非p]:互否命题\n真假无关
-@enduml
-```
+![逆命题与否命题](https://p3-sdbk2-media.byteimg.com/tos-cn-i-xv4ileqgde/af8239e48b3e406dab32c34757b806aa~tplv-xv4ileqgde-image.image)
 
 ## 三段论的格式
 
