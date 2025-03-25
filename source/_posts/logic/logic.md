@@ -189,7 +189,7 @@ HorizontalAlignment center
 *****_ 诉诸恐惧
 *****_ 诉诸厌恶
 **** 诉诸动机
-*** [[https://baike.baidu.com/item/预期理由 预期理由]]
+*** [[https://baike.baidu.com/item/预期理由 预期理由(不当预设)]]
 **_ 论证错误
 *** 归纳不当
 **** [[https://baike.baidu.com/item/以偏概全 以偏概全]]
