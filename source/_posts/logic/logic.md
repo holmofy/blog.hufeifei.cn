@@ -155,6 +155,12 @@ hide b
 
 ```plantuml
 @startmindmap
+<style>
+node {
+    HorizontalAlignment center
+    RoundCorner 10
+}
+</style>
 * 常\n见\n论\n证\n谬\n误
 **_ 论点错误
 *** [[https://baike.baidu.com/item/偷换概念/6714008 偷换概念]]
