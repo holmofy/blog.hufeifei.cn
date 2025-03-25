@@ -158,7 +158,7 @@ hide b
 <style>
 node {
     HorizontalAlignment center
-    RoundCorner 10
+    RoundCorner 20
 }
 </style>
 * 常\n见\n论\n证\n谬\n误
@@ -179,13 +179,13 @@ node {
 **** 诉诸人身\n(人身攻击)
 ***** 诉诸动机
 ***** 诉诸人格
-*** [[https://baike.baidu.com/item/预期理由 预期理由(不当预设)]]
+*** [[https://baike.baidu.com/item/预期理由 预期理由\n(不当预设)]]
 **_ 论证错误
 *** 归纳不当
 **** [[https://baike.baidu.com/item/以偏概全 以偏概全]]
 **** [[https://baike.baidu.com/item/统计陷阱/3778566 统计学谬误]]
 *****_ [[https://baike.baidu.com/item/幸存者偏差/10313799 幸存者偏差]]
-*****_ [[https://baike.baidu.com/item/区群谬误 区群谬误(以全概偏)]]
+*****_ [[https://baike.baidu.com/item/区群谬误 区群谬误\n(以全概偏)]]
 *** 类比不当
 *** 因果不当
 **** 强拉因果
