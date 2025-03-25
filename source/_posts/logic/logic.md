@@ -155,17 +155,17 @@ hide b
 
 ```plantuml
 @startmindmap
-* 论证谬误
+* 常\n见\n论\n证\n谬\n误
 **_ 论点错误
 *** [[https://baike.baidu.com/item/偷换概念/6714008 偷换概念]]
 *** 绝对化表述
 **_ 论据错误
 *** 论据不充分
 *** 论据不相干
-**** [[https://baike.baidu.com/item/诉诸权威 诉诸权威]]
-**** [[https://baike.baidu.com/item/诉诸大众 诉诸众人]]
+**** [[https://baike.baidu.com/item/诉诸权威 诉诸权威\n(迷信权威)]]
+**** [[https://baike.baidu.com/item/诉诸大众 诉诸众人\n(盲目从众)]]
 **** [[https://baike.baidu.com/item/诉诸无知 诉诸无知]]
-**** [[https://baike.baidu.com/item/诉诸情感 诉诸情感]]
+**** [[https://baike.baidu.com/item/诉诸情感 诉诸情感\n(情感绑架)]]
 *****_ 诉诸怜悯
 *****_ 诉诸仇恨
 *****_ 诉诸恐惧
