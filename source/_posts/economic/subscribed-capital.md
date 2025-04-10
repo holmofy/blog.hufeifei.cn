@@ -5,6 +5,7 @@ categories: 经济与金融
 tags: 
 - 经济
 - 法律
+- 商业
 ---
 
 岁末年初，法律界和社会热议的话题，必然包括[2023年新修订的《公司法》](https://www.gov.cn/yaowen/liebiao/202312/content_6923395.htm)（以下简称“新《公司法》”）正式颁布。
