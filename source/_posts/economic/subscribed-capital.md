@@ -162,5 +162,5 @@ tags:
 refs:
 * [认缴和实缴的区别？一文读懂注册资本制度全貌（含2024新规）](https://zhuanlan.zhihu.com/p/1891888435641442952)
 * [我国公司出资认缴制度的“昨是”与“今非”？——对新《公司法》注册资本限期认缴新规的思考](https://www.kwm.com/cn/zh/insights/latest-thinking/time-limit-of-registered-capital-subscription-in-the-revised-company-law.html)
-* [公司注册资本认缴制的“十年之痒”](https://www.zingerlaw.com/CN/08/99acbda076cc0e68.aspx
+* [公司注册资本认缴制的“十年之痒”](https://www.zingerlaw.com/CN/08/99acbda076cc0e68.aspx)
 * [新《公司法》完善认缴登记制——引导创业者理性投资](https://www.samr.gov.cn/djzcj/gzdt/art/2024/art_6097c00bf4fd49e7889d522d33d438b8.html)
