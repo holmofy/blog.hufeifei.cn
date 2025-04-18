@@ -22,7 +22,7 @@ tags:
 
 为什么政府这么喜欢增值税，那是因为增值税的特性决定的。中国向来喜欢间接税，不喜欢收取直接税。
 
-![中国间接税占比仍较高](https://cdn.hangyan.co/charts/84/8469ec4394f825409e5eceeafc8859e7d0dc9799fa8e57f2a15b4029829084d6-p-14-c-0.png)
+![中国间接税占比仍较高](https://pic2.zhimg.com/v2-bc5cbd459ded3515e3bfaac1e3bc5587_r.jpg)
 
 比如2000年前后由于基层[三提五统](https://www.moa.gov.cn/ztzl/lhnyjj_1/2004/200503/t20050302_327318.htm)乱收费，于是2006年中央把延续了几千年的[农业税废除](https://www.gov.cn/test/2006-03/06/content_219801.htm)了，这里的农业税就是一种直接税，直接税税痛非常明显。
 
