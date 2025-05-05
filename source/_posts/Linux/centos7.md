@@ -85,7 +85,53 @@ Loading mirror speeds from cached hostfile
 
 最后在CentOS官网终于找到一个解决方案：https://wiki.centos.org/AdditionalResources/Repositories
 
-CentOS列出了可用的软件源以及第三方软件仓库，除了[epel](https://fedoraproject.org/wiki/EPEL)外还有[`ELRepo`](http://elrepo.org/tiki/HomePage)、[`ius`](https://ius.io/)等十来个社区软件仓库。看了一下ius是最活跃的(官网颜值最高)，而且清华、阿里、腾讯都有ius的镜像同步。
+CentOS列出了可用的软件源以及第三方软件仓库，除了[epel](https://fedoraproject.org/wiki/EPEL)外还有[`ELRepo`](http://elrepo.org/tiki/HomePage)、[`ius`](https://ius.io/)等十来个社区软件仓库。
+
+这些仓库有各自的侧重点，可以**大致分为以下几类**：
+
+ 🧱 一、**官方和半官方扩展仓库**
+
+| 仓库                                            | 说明                                            |
+| --------------------------------------------- | --------------------------------------------- |
+| **EPEL**（Extra Packages for Enterprise Linux） | 由 Fedora 项目维护，提供额外常用软件，是最常用的仓库之一。             |
+| **CentOSPlus**                                | 提供比默认 CentOS 更“激进”的包（如新版内核、增强功能），官方维护，但启用要谨慎。 |
+| **CentOS Extras**                             | 默认启用，包含非核心但有用的工具，例如安装 Docker 所需依赖。            |
+
+🧰 二、**软件增强和工具类仓库**
+
+| 仓库                                   | 说明                                                                           |
+| ------------------------------------ | ---------------------------------------------------------------------------- |
+| **IUS**（Inline with Upstream Stable） | 由 Rackspace 维护，提供与 RHEL 保持一致命名策略的**新版软件包**（如新版 Python、PHP、Git 等）。避免覆盖系统默认版本。 |
+| **Nux Dextop**                       | 提供桌面相关和多媒体软件，如 VLC、ffmpeg 等，常用于桌面或媒体服务器。                                     |
+| **ELRepo**                           | 提供内核、驱动等与硬件相关的软件，如新版网络/显卡驱动、新内核等。                                            |
+| **RPMForge**（已废弃）                    | 过去曾很流行，现已被弃用，不推荐使用。                                                          |
+
+🖥️ 三、**桌面环境或图形支持类**
+
+| 仓库                           | 说明                                  |
+| ---------------------------- | ----------------------------------- |
+| **ATRpms**                   | 提供音视频、TV、驱动类软件，但近年来更新少，存在安全风险，谨慎使用。 |
+| **RepoForge**（RPMForge 的继任者） | 目前活跃度不高，已逐渐边缘化。                     |
+
+📦 四、**开发者工具和语言环境支持**
+
+| 仓库                                    | 说明                                                   |
+| ------------------------------------- | ---------------------------------------------------- |
+| **Remi Repo**                         | 著名 PHP 软件源，维护多个 PHP 分支（如 5.6 到 8.3）。很多 LAMP 堆栈部署会使用。 |
+| **SoftwareCollections.org (SCL)**     | 支持多个语言环境并存（如 Python 3.6 / PHP 7 等），适合需要新旧版本共存的企业环境。  |
+| **Nginx、MariaDB、Percona、MongoDB 官方源** | 这些不是由 CentOS 提供，但常被添加使用，提供最新版数据库和服务端软件。              |
+
+用表格总结大致的分类
+
+| 类别       | 仓库示例                     | 用途说明      |
+| -------- | ------------------------ | --------- |
+| 官方 / 半官方 | EPEL、CentOSPlus、Extras   | 常规扩展、安全稳定 |
+| 新版工具软件   | IUS、Remi、SCL、Nux Dextop  | 获取更现代版本   |
+| 硬件驱动     | ELRepo                   | 新内核、新驱动   |
+| 多媒体      | Nux Dextop、ATRpms        | 音视频、桌面体验  |
+| 特定软件官方源  | Docker、MariaDB、MongoDB 等 | 安装最新官方版本  |
+
+看了一下ius是最活跃的(官网颜值最高)，而且清华、阿里、腾讯都有ius的镜像同步。
 
 根据ius提供的[安装文档](https://ius.io/setup)，将rpm包替换成腾讯镜像
 ```sh
