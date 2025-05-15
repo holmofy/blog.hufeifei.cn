@@ -184,8 +184,12 @@ node {
 *** 归纳不当
 **** [[https://baike.baidu.com/item/以偏概全 以偏概全]]
 **** [[https://baike.baidu.com/item/统计陷阱/3778566 统计学谬误]]
-*****_ [[https://baike.baidu.com/item/幸存者偏差/10313799 幸存者偏差]]
-*****_ [[https://baike.baidu.com/item/区群谬误 区群谬误]]\n(以全概偏)
+*****_ 数据偏差
+******_ [[https://baike.baidu.com/item/幸存者偏差/10313799 幸存者偏差]]\n(样本选择偏差)
+******_ [[https://baike.baidu.com/item/观察者偏差 观察者偏差]]\n(无意识的双重标准)
+*****_ 数据分析偏差
+******_ [[https://baike.baidu.com/item/区群谬误 区群谬误]]\n(以全概偏)
+******_ [[https://baike.baidu.com/item/合成谬误 合成谬误]]\n(以偏概全)
 *** 类比不当
 *** 因果不当
 **** 强拉因果\n([[https://baike.baidu.com/item/基本归因错误 错误归因]])
