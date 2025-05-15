@@ -170,7 +170,7 @@ node {
 *** 论据不相干
 **** [[https://baike.baidu.com/item/诉诸权威 诉诸权威]]\n(迷信权威)
 **** [[https://baike.baidu.com/item/诉诸大众 诉诸众人]]\n(盲目从众)
-**** [[https://baike.baidu.com/item/诉诸无知 诉诸无知]]
+**** [[https://baike.baidu.com/item/诉诸无知 诉诸无知]]\n(以无知为据)
 **** [[https://baike.baidu.com/item/诉诸情感 诉诸情感]]\n(情感绑架)
 *****_ 诉诸怜悯
 *****_ 诉诸仇恨
