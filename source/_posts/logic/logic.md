@@ -188,7 +188,7 @@ node {
 *****_ [[https://baike.baidu.com/item/区群谬误 区群谬误]]\n(以全概偏)
 *** 类比不当
 *** 因果不当
-**** 强拉因果
+**** 强拉因果\n([[https://baike.baidu.com/item/基本归因错误 错误归因]])
 **** [[https://baike.baidu.com/item/因果倒置 因果倒置]]
 **** 因果矛盾
 **** [[https://baike.baidu.com/item/滑坡谬误 滑坡谬误]]
