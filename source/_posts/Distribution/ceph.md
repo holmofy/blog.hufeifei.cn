@@ -73,3 +73,4 @@ Ceph本身三个层次的抽象都支持，块存储（RBD）、文件存储（C
 * 直接使用 Ceph（你自己搭建、管理 Ceph 集群，再通过 [Ceph-CSI](https://github.com/ceph/ceph-csi) 接入 K8S）
 * 使用 Rook-Ceph（通过 Kubernetes Operator 部署和管理 Ceph，完全云原生）
 
+![Rook架构图](https://rook.io/docs/rook/latest-release/Getting-Started/ceph-storage/Rook%20High-Level%20Architecture.png)
