@@ -1,6 +1,6 @@
 ---
-title: 从Ceph俯瞰文件系统
-date: 2025-05-11
+title: 从Ceph俯瞰分布式文件系统
+date: 2025-04-21
 categories: 分布式
 tags: 
 - Distributed
