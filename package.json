@@ -34,7 +34,6 @@
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
     "hexo-tabbed-code-block": "github:holmofy/hexo-tabbed-code-block",
-    "hexo-web-push-notification": "^0.4.0",
-    "swiper": "^11.2.8"
+    "hexo-web-push-notification": "^0.4.0"
   }
 }
