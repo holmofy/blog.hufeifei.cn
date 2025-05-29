@@ -26,3 +26,27 @@ Oracle官方提供了MySQL集群方案——[InnoDBCluster](https://dev.mysql.co
 MySQL-Router会暴露读写、读写分离等多个端口，以及一个监控router状态的http探针端口：
 
 ![MySQL Router服务暴露端口](https://github.com/user-attachments/assets/5864bbd0-3a8d-44b8-96e6-58962867ba68)
+
+如果要把数据存储在[Ceph等分布式存储系统](https://blog.hufeifei.cn/2025/04/Distribution/ceph/)上，实现存算分离，可以在创建InnoDBCluster时指定StorageClass
+
+```yaml
+apiVersion: mysql.oracle.com/v2
+kind: InnoDBCluster
+metadata:
+  name: my-innodb-cluster
+spec:
+  secretName: mypwds
+  tlsUseSelfSigned: true
+  instances: 3
+  version: 9.3.0
+  router:
+    instances: 2
+    version: 9.3.0
+  datadirVolumeClaimTemplate:
+    accessModes:
+      - ReadWriteOnce
+    storageClassName: csi-rbd-sc
+    resources:
+      requests:
+        storage: 100Gi
+```
