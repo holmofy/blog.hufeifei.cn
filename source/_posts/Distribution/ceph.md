@@ -10,7 +10,7 @@ tags:
 
 ## Ceph
 
-Ceph 是一个分布式存储系统，提供块、文件和对象存储三个层次的抽象，并已部署在大规模生产集群中。
+Ceph 是一个Linux 的 PB 级分布式文件系统，提供块、文件和对象存储三个层次的抽象，并已部署在大规模生产集群中。
 
 ```lua
 +------------------------+
@@ -45,12 +45,12 @@ skinparam ArrowColor Black
 skinparam FontSize 14
 
 start
-:2004 - Sage Weil 开始 Ceph 项目;
-:2006 - 博士论文发布，设计 CRUSH 算法;
-:2010 - Ceph 开源发布;
+:2004 - [[https://github.com/liewegas Sage Weil]] 开始 Ceph 项目;
+:2006 - 博士论文发布，设计 CRUSH 数据分布算法;
+:2010 - [[https://github.com/ceph/ceph Ceph]] 开源发布;
 :2011 - 创建 Inktank 公司，商业化支持;
-:2014 - Red Hat 收购 Inktank;
-:2015~2020 - 云原生集成（如 Rook）、功能日趋成熟;
+:2014 - [[https://ceph.io/en/news/blog/2014/red-hat-to-acquire-inktank/ Red Hat 收购 Inktank]];
+:2015~2020 - 云原生集成（如 [[https://github.com/rook/rook Rook]]）、功能日趋成熟;
 :2020~至今 - 聚焦云原生与多租户、Cephadm 成熟;
 stop
 @enduml
@@ -80,3 +80,7 @@ Ceph本身三个层次的抽象都支持，块存储（RBD）、文件存储（C
 * [cephfs](https://github.com/ceph/ceph-csi/blob/devel/docs/cephfs/deploy.md)，官方仓库有相应的[K8S配置文件](https://github.com/ceph/ceph-csi/tree/devel/deploy/cephfs/kubernetes)
 
 
+refs: 
+* https://www.infoq.cn/article/B5VpI6e66leBUbIISap4
+* https://www.xinfinite.net/t/topic/8743
+* https://ceph.io/en/news/blog/2014/red-hat-to-acquire-inktank/
