@@ -75,10 +75,13 @@ Ceph本身三个层次的抽象都支持，块存储（RBD）、文件存储（C
 
 ![Rook架构图](https://rook.io/docs/rook/latest-release/Getting-Started/ceph-storage/Rook%20High-Level%20Architecture.png)
 
-使用Ceph-CSI插件自己搭建的有几种模式：
+使用Ceph-CSI插件自己搭建的有几种模式，分别对应的ceph提供的几个抽象层次：
 * [rbd](https://github.com/ceph/ceph-csi/blob/devel/docs/rbd/deploy.md)，官方仓库有相应的[K8S配置文件](https://github.com/ceph/ceph-csi/tree/devel/deploy/rbd/kubernetes)
 * [cephfs](https://github.com/ceph/ceph-csi/blob/devel/docs/cephfs/deploy.md)，官方仓库有相应的[K8S配置文件](https://github.com/ceph/ceph-csi/tree/devel/deploy/cephfs/kubernetes)
 
+另一种是通过Rook方式部署，Rook是社区实现的用来管理Ceph集群的Kubernetes Operator。Kubernetes Operator 是 Kubernetes 生态系统中的一个重要组件，它允许开发者将应用程序的部署、管理和运维任务自动化。Operator 基于 Kubernetes 的资源和控制器概念，通过自定义资源（CRD）和自定义控制器来实现对应用的管理。
+
+![CRD自定义资源](https://github.com/user-attachments/assets/2cbc1a4f-1937-4159-be97-b51ad101fb45)
 
 refs: 
 * https://www.infoq.cn/article/B5VpI6e66leBUbIISap4
