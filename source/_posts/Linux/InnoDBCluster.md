@@ -50,3 +50,7 @@ spec:
       requests:
         storage: 100Gi
 ```
+
+集群创建完成后，把原数据迁移到InnoDBCluster。把原来的jdbc链接改成InnoDBCluster service的dns地址
+
+![image](https://github.com/user-attachments/assets/1697e259-f415-4cde-9fe7-9b731b004912)
