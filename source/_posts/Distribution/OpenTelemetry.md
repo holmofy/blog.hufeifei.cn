@@ -105,6 +105,12 @@ Logging：提供系统/进程最精细化的信息，例如某个关键变量、
 - 多种维度的关联基于Tag（或者叫meta）信息实现，Tag内容由业务确定，例如：通过TrafficType来区别是生产流量还是压测流量、通过DeviceType来分析各个设备类型的数据...
 - 提供分布式的Context传播方式，例如通过W3C的traceparent/tracestate头、GRPC协议等
 
+> 线上的分布式环境通常会遇到问题很难调试，可以用这个@WithSpan注解，他会把方法的调用加入到调用链路，用@SpanAttribute注解可以把方法的入参也加入到链路中
+> ![Java注解](https://github.com/user-attachments/assets/ca80ceb9-2e3e-4246-97c9-eb2b4c2e38a9)
+> ![链路报错](https://github.com/user-attachments/assets/ba8121cb-08e2-4d2a-b124-d5fbe8d37b88)
+> ![链路的属性](https://github.com/user-attachments/assets/7d3a6bcd-3af8-4e63-8323-9010b8be321b)
+
+
 ### 当前状态以及后续路线
 
 目前OpenTelemetry还处于策划和原型阶段，很多细节的点还在讨论当中，目前官方给的时间节奏是：
