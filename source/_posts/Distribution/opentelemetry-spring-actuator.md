@@ -12,7 +12,7 @@ keywords:
 - Skywalking
 ---
 
-最近给所有的[java应用加了就绪探针和存货探针](https://docs.spring.io/spring-boot/docs/3.1.0/reference/htmlsingle/#features.spring-application.application-availability)，并且通过`kubectl rollout status deploy`命令让Gitlab流水线能检测应用是否已经就绪。
+最近给所有的[java应用加了就绪探针和存活探针](https://docs.spring.io/spring-boot/docs/3.1.0/reference/htmlsingle/#features.spring-application.application-availability)，并且通过`kubectl rollout status deploy`命令让Gitlab流水线能检测应用是否已经就绪。
 
 ```sh
 kubectl rollout status deploy $DOCKER_APP_NAME --context=dev-admin@cluster.dev -n recircle-industry-platform-dev
@@ -50,7 +50,11 @@ kubectl rollout status deploy $DOCKER_APP_NAME --context=dev-admin@cluster.dev -
 
 ## 通过opentelemetry-spring-boot-starter过滤actuator请求
 
-第二种方式是通过[opentelemetry-spring-boot-starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/sdk-configuration/#exclude-actuator-endpoints-from-tracing)过滤掉actuator请求，但是这种方式需要侵入代码，比较好的方式是把这个功能和spring-boot-actuator一起封装成二方包。但是需要对业务开发人员灌输这个二方包的作用，仍然不够优雅。
+opentelemetry有一个三方提供的[samplers](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers)包，可以做到过滤[actuator](https://github.com/open-telemetry/opentelemetry-java-examples/blob/main/javaagent/sdk-config.yaml#L101)请求。
+
+还有一种方式是通过[opentelemetry-spring-boot-starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/sdk-configuration/#exclude-actuator-endpoints-from-tracing)过滤掉actuator请求。
+
+但是这种方式需要侵入代码，比较好的方式是把这个功能和spring-boot-actuator一起封装成二方包。但是需要对业务开发人员灌输这个二方包的作用，仍然不够优雅。
 
 ## 通过opentelemetry-collector丢弃掉actuator请求
 
