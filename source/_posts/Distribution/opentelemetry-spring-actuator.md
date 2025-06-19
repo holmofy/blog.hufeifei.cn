@@ -24,7 +24,7 @@ kubectl rollout status deploy $DOCKER_APP_NAME --context=dev-admin@cluster.dev -
 
 ![image](https://github.com/user-attachments/assets/fbff209b-e8b6-424d-9805-d3a0f6ca6cc7)
 
-由于探针请求的频率有点高，而且每个应用都会有探针请求，结果导致OpenObserver处理不过来：
+由于探针请求的频率有点高，而且每个应用都会有探针请求，结果导致OpenObserver处理不过来，报MemoryTableOverflowError：
 
 ```sh
  2025-06-18T07:40:22.074188063+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
@@ -42,7 +42,7 @@ kubectl rollout status deploy $DOCKER_APP_NAME --context=dev-admin@cluster.dev -
  2025-06-18T07:40:25.120251549+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError
 ```
 
-目前找到集中解决方法。
+目前找到几种解决方法。
 
 ## java-agent上报时过滤掉actuator的请求
 
