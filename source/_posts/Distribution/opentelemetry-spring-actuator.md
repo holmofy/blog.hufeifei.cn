@@ -48,9 +48,9 @@ kubectl rollout status deploy $DOCKER_APP_NAME --context=dev-admin@cluster.dev -
 
 [opentelemetry-java-instrumentation#1060](https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/1060)和[discussions#6605](https://github.com/open-telemetry/opentelemetry-java-instrumentation/discussions/6605)中提到了这个问题，但是agent并不打算实现Exclude URL的功能。
 
-## 通过opentelemetry-spring-boot-starter过滤actuator请求
+opentelemetry有一个三方提供的[samplers](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers)包，可以做到过滤[actuator](https://github.com/open-telemetry/opentelemetry-java-examples/blob/main/javaagent/sdk-config.yaml#L101)请求。需要你将其打包成[`java-agent-extension`](https://github.com/open-telemetry/opentelemetry-java-examples/blob/main/javaagent/build.gradle.kts#L30)，并对[`java-agent-extension`](https://opentelemetry.io/docs/zero-code/java/agent/configuration/#extensions)进行配置
 
-opentelemetry有一个三方提供的[samplers](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/samplers)包，可以做到过滤[actuator](https://github.com/open-telemetry/opentelemetry-java-examples/blob/main/javaagent/sdk-config.yaml#L101)请求。
+## 通过opentelemetry-spring-boot-starter过滤actuator请求
 
 还有一种方式是通过[opentelemetry-spring-boot-starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/sdk-configuration/#exclude-actuator-endpoints-from-tracing)过滤掉actuator请求。
 
