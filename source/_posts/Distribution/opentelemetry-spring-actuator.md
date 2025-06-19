@@ -80,7 +80,8 @@ processors:
       span:
         - attributes["http.route"] != nil and IsMatch(attributes["http.route"], ".*actuator.*")
         - attributes["http.target"] != nil and IsMatch(attributes["http.target"], ".*/healthz")
-        - IsMatch(attributes["url.path"], ".*actuator.*")
+        - attributes["http.user_agent"] != nil and IsMatch(attributes["http.user_agent"], "^kube-probe.*")
+        - attributes["url.path"] != nil IsMatch(attributes["url.path"], ".*actuator.*")
 
 exporters:
   otlphttp/openobserve:
