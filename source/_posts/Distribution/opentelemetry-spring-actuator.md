@@ -78,10 +78,12 @@ processors:
     error_mode: ignore
     traces:
       span:
+        # 丢弃包含actuator或healthz请求
         - attributes["http.route"] != nil and IsMatch(attributes["http.route"], ".*actuator.*")
         - attributes["http.target"] != nil and IsMatch(attributes["http.target"], ".*/healthz")
-        - attributes["http.user_agent"] != nil and IsMatch(attributes["http.user_agent"], "^kube-probe.*")
         - attributes["url.path"] != nil IsMatch(attributes["url.path"], ".*actuator.*")
+        # 丢弃kube-probe发出的探针请求
+        - attributes["http.user_agent"] != nil and IsMatch(attributes["http.user_agent"], "^kube-probe.*")
 
 exporters:
   otlphttp/openobserve:
