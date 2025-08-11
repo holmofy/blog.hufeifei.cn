@@ -12,11 +12,27 @@ keywords:
 - OpenObserve
 ---
 
-OpenObserve是目前用过的性能最好的观测行平台，底层基于Rust写的，采用的是parquet列式存储，数据压缩效率极高，单机版的性能就已经超过很多市面上其他技术了。
+OpenObserve是目前用过的性能最好的观测性平台，底层基于Rust写的，采用的是parquet列式存储，数据压缩效率极高，单机版的性能就已经超过很多市面上其他技术了。
 
 <img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/78c979be-eceb-4577-95f4-45fe6d7a90ef" />
 
-观测性数据属于时序数据范畴，所以OpenObserve和大多数时序数据库一样使用的是LSM-Tree的存储数据结构。这就导致数据采集量过大的时候，经常出现memtableOverflow的问题。
+观测性数据属于时序数据范畴，所以OpenObserve和大多数时序数据库一样使用的是LSM-Tree的存储数据结构。这就导致数据并发采集量过大的时候，经常出现MemoryTableOverflowError的问题。
+
+```sh
+2025-06-18T07:40:22.074188063+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
+2025-06-18T07:40:22.074317749+00:00 INFO actix_web::middleware::logger: 10.233.71.119 "POST /api/default/v1/traces HTTP/1.1" 503 74 "1706" "-" "OTel-OTLP-Exporter-Java/1.40.0" 0.000299    
+2025-06-18T07:40:22.449896048+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
+2025-06-18T07:40:22.450004619+00:00 INFO actix_web::middleware::logger: 10.233.80.211 "POST /api/default/v1/traces HTTP/1.1" 503 74 "2230" "-" "OTel-OTLP-Exporter-Java/1.40.0" 0.000270    
+2025-06-18T07:40:22.517553812+00:00 INFO actix_web::middleware::logger: 10.233.71.0 "POST /api/default/v1/metrics HTTP/1.0" 503 74 "3826" "-" "OpenTelemetry Collector Contrib/0.111.0 (linux/amd64)" 0.000867    
+2025-06-18T07:40:23.572270669+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
+2025-06-18T07:40:23.572416843+00:00 INFO actix_web::middleware::logger: 10.233.71.1 "POST /api/default/v1/traces HTTP/1.1" 503 74 "2278" "-" "OTel-OTLP-Exporter-Java/1.40.0" 0.000371    
+2025-06-18T07:40:23.657375098+00:00 INFO actix_web::middleware::logger: 10.233.71.247 "POST /api/default/v1/metrics HTTP/1.1" 503 74 "20634" "-" "OTel-OTLP-Exporter-Java/1.40.0" 0.000578    
+2025-06-18T07:40:23.803923763+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
+2025-06-18T07:40:24.635078516+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
+2025-06-18T07:40:24.635189325+00:00 INFO actix_web::middleware::logger: 10.233.71.223 "POST /api/default/v1/traces HTTP/1.1" 503 74 "2162" "-" "OTel-OTLP-Exporter-Java/1.40.0" 0.000268    
+2025-06-18T07:40:25.119413710+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError    
+2025-06-18T07:40:25.120251549+00:00 ERROR openobserve::service::traces: [TRACES:OTLP] ingestion error while checking memtable size: MemoryTableOverflowError
+```
 
 所以不得不迁移到[集群版的OpenObserve](https://openobserve.ai/docs/architecture/#high-availability-ha-mode)。
 
