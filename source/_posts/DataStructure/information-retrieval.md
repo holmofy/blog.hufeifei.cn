@@ -50,7 +50,6 @@ keywords:
        * TF-IDF 最终分数
          $\mathrm{tfidf}(t, d, D) = \mathrm{tf}(t, d) \times \mathrm{idf}(t, D)$
 
-
     2. **BM25 公式**
     BM25 在 TF-IDF 基础上引入了**词频饱和控制**和**文档长度归一化**。
     完整 BM25 分数
