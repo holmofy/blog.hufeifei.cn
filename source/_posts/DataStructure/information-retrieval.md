@@ -22,6 +22,8 @@ keywords:
 
 ## 1. 稀疏检索
 
+![tf-idf](https://editor.analyticsvidhya.com/uploads/20933Screenshot%202021-06-15%20at%205.45.05%20PM.png)
+
 *   **核心思想**：
     *   使用高维、稀疏的向量来表示查询和文档。
     *   向量的维度通常对应于词汇表中的所有词项（Term）。
@@ -51,6 +53,8 @@ keywords:
 ---
 
 ## 2. 稠密检索
+
+![Embedding](https://cosminsanda.com/assets/images/pgvector-seaorm/embedded-intuition.png)
 
 *   **核心思想**：
     *   使用低维、稠密的向量（通常称为嵌入向量）来表示查询和文档。
@@ -82,6 +86,8 @@ keywords:
 ---
 
 ## 3. 知识图谱增强检索
+
+![RAG vs. GraphRAG](https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8b4ee6fd-fcc2-4e02-9f6c-472615c77730_800x830.gif)
 
 *   **核心思想**：
     *   **不是独立的检索模型，而是利用外部结构化的知识图谱来增强现有的检索模型（稀疏或稠密）。**
