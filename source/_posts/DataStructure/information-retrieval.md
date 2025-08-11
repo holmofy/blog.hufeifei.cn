@@ -22,7 +22,7 @@ keywords:
 
 ## 1. 稀疏检索
 
-![tf-idf](https://editor.analyticsvidhya.com/uploads/20933Screenshot%202021-06-15%20at%205.45.05%20PM.png)
+![tf-idf](https://miro.medium.com/v2/resize:fit:1400/1*lGwuTdBuX3Jnzz4Mi9gSTA.png)
 
 *   **核心思想**：
     *   使用高维、稀疏的向量来表示查询和文档。
