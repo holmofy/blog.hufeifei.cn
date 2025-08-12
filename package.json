@@ -20,6 +20,7 @@
     "hexo-filter-mathjax": "github:holmofy/hexo-filter-mathjax",
     "hexo-filter-nofollow": "github:holmofy/hexo-filter-nofollow#add-glob-support",
     "hexo-filter-plantuml": "github:holmofy/hexo-filter-plantuml#add-element-class",
+    "hexo-filter-mermaid-diagrams": "^1.0.5",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-baidu-sitemap": "^0.1.9",
     "hexo-generator-category": "^1.0.0",
