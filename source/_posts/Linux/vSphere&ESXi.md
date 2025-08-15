@@ -12,7 +12,7 @@ tags:
 
 但是如果是自己买的硬件资源，现在的服务器硬件都非常便宜，几万块就能买一台配置相当高的刀片机，但是这么大的资源不可能直接装操作系统去管理，出了问题回滚、销毁的成本太高了，怎么做虚拟化，把硬件虚拟成多台服务器就非常重要了。
 
-目前主流的就是用VMWare家的套件。VMWare有ESXi的单机管理工具，也有高可用集群vSphere的管理工具。
+目前主流的就是用VMWare家的套件。VMWare有ESXi的单机管理工具，也有高可用集群[vSphere](https://www.vmware.com/products/cloud-infrastructure/vsphere)的管理工具。
 
 ![VMware & vSphere](https://i.ibb.co/21jQMzCK/image.png)
 
