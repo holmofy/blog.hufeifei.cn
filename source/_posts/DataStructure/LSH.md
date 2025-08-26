@@ -1,5 +1,5 @@
 ---
-title: 局部敏感哈希、SimHash、MinHash
+title: 局部敏感哈希、SimHash、MinHash、ImgHash
 date: 2025-04-20
 categories: 数据结构与算法
 mathjax: true
@@ -11,6 +11,9 @@ keywords:
 - SimHash
 - MinHash
 - LSH
+- aHash
+- dHash
+- pHash
 ---
 
 局部敏感哈希是为了解决一个核心问题：在海量数据中快速找到相似或近似的项目，避免进行代价高昂的“两两比较”。
@@ -148,6 +151,176 @@ keywords:
 
 rust开源实现：https://github.com/serega/gaoya
 
+## ImgHash: aHash、dHash、pHash、Blockhash
+
+MinHash和SimHash是针对文本的LSH算法，但是用在图片上会有问题：
+
+如果我们把图像像素直接当作特征，塞进 SimHash，有几个问题：
+
+1. 高维且稠密
+   * 图像动辄几十万像素，每个像素都是实数（RGB），不是稀疏的离散词。
+   * SimHash 对这种输入会“淹没”在噪声里，无法得到稳定的签名。
+2. 不具备语义稳定性
+   * 一张图亮度调高 10%，像素整体偏大，但语义完全没变。
+   * SimHash 会得到完全不同的 bit 向量（不鲁棒）。
+3. 缺乏视觉先验
+   * 文本中“词序变化”对语义影响小，SimHash 能容忍。
+   * 图像中旋转、缩放、裁剪很常见，SimHash 没有机制去消除这种变化。
+
+### aHash (Average Hash, 平均哈希)
+
+![ahash](https://erdogant.github.io/undouble/pages/html/_images/ahash.png)
+   
+**原理**
+
+1. 将图片缩小为 8×8（或其他固定尺寸），转为灰度图。
+2. 计算所有像素的平均灰度值。
+3. 大于等于平均值 → 记 1；小于 → 记 0。
+4. 得到一个 64-bit 的签名。
+
+**特点**
+
+* 简单快速，鲁棒性好（缩放、轻微压缩）。
+* 对亮度、对比度调整比较敏感。
+
+**适用场景**
+
+* 快速去重、找完全相同或轻微编辑的图。
+
+### pHash (Perceptual Hash, 感知哈希)
+
+![phash](https://erdogant.github.io/undouble/pages/html/_images/phash.png)
+
+**原理**
+
+1. 将图片缩小为 32×32，转为灰度。
+2. 计算 **DCT（离散余弦变换）**。
+3. 取左上角 8×8 的低频部分（去掉 DC 分量）。
+4. 比较每个系数与平均值 → 得到 64-bit 哈希。
+
+**特点**
+
+* 提取频域信息，更关注图像结构而不是亮度。
+* 对亮度/对比度变化鲁棒。
+* 更复杂计算，但效果好。
+
+**适用场景**
+
+* 相似图片检测（不同颜色、轻微编辑、加水印）。
+
+### dHash (Difference Hash, 差异哈希)
+
+![dhash](https://erdogant.github.io/undouble/pages/html/_images/dhash.png)
+
+**原理**
+
+1. 将图片缩小为 9×8，转为灰度。
+2. 按行比较相邻像素：如果左像素 > 右像素 → 1，否则 0。
+3. 得到 64-bit 哈希。
+
+**特点**
+
+* 捕捉边缘/梯度特征，比 aHash 更鲁棒。
+* 对旋转敏感。
+* 算法简单，速度快。
+
+**适用场景**
+
+* 图片去重、快速相似度检索。
+
+在开源的[imgHash](https://github.com/abonander/img_hash)库中提供了三类dHash的实现
+
+#### 🔹 1. `Gradient` （水平差异哈希，类似 dHash）
+
+**原理**
+
+1. 把图缩小为 **9×8**，转为灰度。
+2. **逐行**比较相邻像素：如果 `左 > 右` → 1，否则 → 0。
+3. 得到 8×8 = **64 bit 哈希**。
+
+**特点**
+
+* 捕捉 **水平边缘** 信息。
+* 类似经典的 **dHash**。
+* 对缩放、亮度变化鲁棒，但对 **旋转** 较敏感。
+
+#### 🔹 2. `VertGradient` （垂直差异哈希）
+
+**原理**
+
+1. 把图缩小为 **8×9**，转为灰度。
+2. **逐列**比较相邻像素：如果 `上 > 下` → 1，否则 → 0。
+3. 得到 8×8 = **64 bit 哈希**。
+
+**特点**
+
+* 捕捉 **垂直边缘** 信息。
+* 能弥补 `Gradient` 的不足。
+* 对垂直翻转/上下裁剪更鲁棒。
+
+#### 🔹 3. `DoubleGradient` （双向差异哈希）
+
+**原理**
+
+* 直接结合了 `Gradient` 和 `VertGradient`。
+* 得到 **128 bit 哈希**（水平 64bit + 垂直 64bit）。
+
+**特点**
+
+* 综合水平与垂直信息，更稳健。
+* 相比单一梯度，更抗旋转、抗噪声。
+* 计算稍慢，但信息量更丰富。
+
+#### 📊 总结表
+
+| 算法                 | 对应概念     | 提取特征  | 哈希长度    | 优点       | 缺点    |
+| ------------------ | -------- | ----- | ------- | -------- | ----- |
+| **Gradient**       | dHash    | 水平梯度  | 64 bit  | 简单、快     | 对旋转敏感 |
+| **VertGradient**   | 垂直 dHash | 垂直梯度  | 64 bit  | 补充水平不足   | 单向信息  |
+| **DoubleGradient** | dHash 组合 | 水平+垂直 | 128 bit | 更稳健、信息丰富 | 比较慢   |
+
+
+* `Gradient` = 水平版 dHash
+* `VertGradient` = 垂直版 dHash
+* `DoubleGradient` = 两者拼接，效果更强
+
+### Blockhash
+
+**原理**
+
+1. 将图像划分为 n×n 块。
+2. 计算每个块的平均灰度。
+3. 和全图的平均灰度或局部比较，生成 bit。
+4. 得到一个更长的指纹（一般 256bit 或 1024bit）。
+
+**特点**
+
+* 通过块结构提高鲁棒性，能适应更复杂的场景。
+* 比 aHash/dHash/pHash 更“精细”，但计算更慢。
+
+**适用场景**
+
+* 大规模图片库去重（比如几千万张图）。
+* 需要更高精度的场景（比如图库版权检测）。
+
+### 总结对比表
+
+| 算法            | 核心思路   | 长度          | 优点         | 缺点    | 场景     |
+| ------------- | ------ | ----------- | ---------- | ----- | ------ |
+| **aHash**     | 平均灰度   | 64bit       | 快速、简单      | 对亮度敏感 | 基础去重   |
+| **pHash**     | DCT 低频 | 64bit       | 结构特征强、鲁棒性好 | 较慢    | 相似图检测  |
+| **dHash**     | 邻像素差   | 64bit       | 快速、边缘特征    | 旋转敏感  | 相似度检索  |
+| **Blockhash** | 分块均值   | 256–1024bit | 鲁棒性强、精度高   | 计算量大  | 海量图库去重 |
+
+👉 可以这么理解：
+
+* **aHash**：像“全局亮度签名”
+* **dHash**：像“边缘签名”
+* **pHash**：像“图像结构签名”
+* **Blockhash**：像“局部块特征签名”
+
+
 * https://en.wikipedia.org/wiki/Locality-sensitive_hashing
 * https://en.wikipedia.org/wiki/MinHash
 * https://en.wikipedia.org/wiki/SimHash
+* https://erdogant.github.io/undouble/pages/html/hash_functions.html
