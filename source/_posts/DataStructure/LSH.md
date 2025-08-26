@@ -321,6 +321,7 @@ MinHash和SimHash是针对文本的LSH算法，但是用在图片上会有问题
 
 
 * https://en.wikipedia.org/wiki/Locality-sensitive_hashing
+* https://en.wikipedia.org/wiki/Perceptual_hashing
 * https://en.wikipedia.org/wiki/MinHash
 * https://en.wikipedia.org/wiki/SimHash
 * https://erdogant.github.io/undouble/pages/html/hash_functions.html
