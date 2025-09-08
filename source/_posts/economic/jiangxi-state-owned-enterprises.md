@@ -29,15 +29,24 @@ tags:
 2. **江西省国有资本运营控股集团有限公司（简称“省国控”）**
 
    * 定位为 **国有资本投资、运营公司试点**，承担资本运作、股权管理职能。
-   * 类似北京的“[首都国资公司](https://baike.baidu.com/item/北京市国有资产经营有限责任公司/9548997)”、广东的“[粤科金控](https://baike.baidu.com/item/广东省粤科金融集团有限公司/19976794)”。
+   * 类似央企里的国新控股、北京的“[首都国资公司](https://baike.baidu.com/item/北京市国有资产经营有限责任公司/9548997)”、广东的“[粤科金控](https://baike.baidu.com/item/广东省粤科金融集团有限公司/19976794)”。
    * 偏向于“管资本”，比如金融股权、混改股权投资平台。
+   * 下属大部分是 大型、垄断性国企，比如能源、电信、金融、医药等。
+   * 这些企业 利润率高、现金流稳定，是江西的“利润奶牛”。
+   * 国控集团通过持股、资本运作来对这些企业进行“管资本”，而不是直接去管经营。
+   * 把强势行业的优质企业集中到国控下面，有两个目的：
+     * 财政分红：省国控每年能给省财政贡献稳定收益。
+     * 资本运作：便于混改、上市、股权转让，增强国资的资本流动性。
    <img width="1398" height="604" alt="image" src="https://github.com/user-attachments/assets/bb2296d8-3706-4aeb-b08e-48e379b8a17c" />
 
 3. **江西省投资集团有限公司**
 
    * 原来是以“能源、交通、重大基建投资”为核心的综合投资集团。
    * 早期承担很多省里的 **重点工程投融资** 任务。
-   * 下属企业通常与电力、交通、基建、金融投资相关。
+   * 下属企业通常与电力、交通、基建、金融投资相关的城投类公司（基建投融资平台）。
+   * 这些公司承担了很多地方政府基建融资职能，也就是典型的“城投债”主体。
+   * 省投在某种程度上成了 全省城投资源的二级整合平台，既帮助地方融资，又形成了一个债务池。
+   * 逻辑：城投公司本身盈利能力差，多靠财政兜底，放在“投资集团”下面，契合其“基建融资工具”的定位。
    <img width="1405" height="616" alt="image" src="https://github.com/user-attachments/assets/ac6906da-5b40-4b1d-ae84-f3fe01787663" />
 
 4. **江西省农业发展集团有限公司**
@@ -59,6 +68,9 @@ tags:
 *   **江西国控**是“**总账房**”和“**操盘手**”，管着最大的资本盘子，进行战略性投资。
 *   **江投集团**是“**基础建设者**”，负责能源、交通等“硬”基础设施。
 *   **省农发集团**是“**现代农业领军者**”，负责农业这个“软”的基础产业。
+
+> “高风险、低收益”的城投平台 → 丢给省投，作为投融资职能的一部分。省投更像一个 债务池 + 基建融资工具。基建融资平台，承接大量城投公司，风险偏高，功能性强。
+> “高收益、低风险”的垄断企业 → 放到省国控，作为财政收入和资本运作的抓手。省国控则是 利润中心 + 股权运作平台。持股运营优质垄断企业，收益稳定，是财政的现金牛。
 
 ### 三、为什么要这么划分？
 
@@ -96,7 +108,19 @@ tags:
 3. **对标中央做法**
 
    * 中央有[国新控股](https://baike.baidu.com/item/中国国新控股有限责任公司/10276514)（资产管理）、[诚通控股](https://baike.baidu.com/item/中国诚通控股集团有限公司/5526939)（资本运营）、[中投](https://baike.baidu.com/item/中国投资有限责任公司/7966238)/[国投](https://baike.baidu.com/item/国家开发投资集团有限公司/22417501)（重大投资）、[中粮](https://baike.baidu.com/item/中粮集团有限公司/9195362)/[中储粮](https://baike.baidu.com/item/中国储备粮管理集团有限公司/22229125)（农业粮食）。
+     <img width="1387" height="611" alt="image" src="https://github.com/user-attachments/assets/fb00cc5c-f6ee-4b76-8542-b042de337f9a" />
+     <img width="1402" height="616" alt="image" src="https://github.com/user-attachments/assets/63f134ec-2e94-49f5-8f92-00ea61bb2e2f" />
+     <img width="1392" height="607" alt="image" src="https://github.com/user-attachments/assets/25d872d4-dfcf-4614-a8bb-80a08bdb5d31" />
+     <img width="1378" height="603" alt="image" src="https://github.com/user-attachments/assets/7c5f7ad5-cc06-45da-84e0-da968c7de8b5" />
+     <img width="1377" height="621" alt="image" src="https://github.com/user-attachments/assets/fd48c926-b327-428a-a7f1-17ecf03cf706" />
+     <img width="1381" height="621" alt="image" src="https://github.com/user-attachments/assets/3dec4c1b-c6fc-4bb4-b2de-276e49ae948a" />
+
    * 江西这几个集团，基本上是地方版的对应关系。
+   
+   > 比如“两桶油”、三大电信、电网、航运、军工等是由国务院国资委直接管理全国性的大型垄断性企业。
+   > 这些企业通常是 战略性行业、关系国计民生，而且规模极大，单个集团的总资产可能就超过一个省的全部省属国企，所以保持“国资委—央企集团”的直管模式。
+   > <img width="1401" height="615" alt="image" src="https://github.com/user-attachments/assets/d4df55c7-69af-4832-9a3b-1833852b8ba7" />
+
 
 ### 四、子公司众多的原因
 
