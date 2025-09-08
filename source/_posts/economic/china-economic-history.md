@@ -67,7 +67,7 @@ keywords:
 
 ## 四大制度
 
-![四大制度](https://image.guayunfan.com/attached/image/20200207/124215/54bd411fe4b0f325656ea15e.jpg)
+![四大制度](https://pic1.zhimg.com/v2-05ad748cc21ec0bc6be47aa6eb101338_r.jpg)
 
 书中还提到了四大制度。这四大制度分别对应着地方政治制度(郡县制度)、思想文化制度(尊儒制度)、官吏选拔制度(科举制度)、经济制度(国有专营制度)，撑起了中央集权的大厦。
 
