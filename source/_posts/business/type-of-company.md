@@ -38,7 +38,7 @@ tags:
 *** 特点：人合性强
 ** 有限责任公司
 *** 法律依据
-**** [[https://www.pkulaw.com/chl/8ba805acd08846d7bdfb.html《公司法》]]
+**** 《[[https://www.pkulaw.com/chl/8ba805acd08846d7bdfb.html 公司法]]》
 *** 责任承担：有限责任
 *** 出资人：1-50股东
 *** 税收
