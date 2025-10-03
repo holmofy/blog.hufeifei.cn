@@ -1,5 +1,5 @@
 ---
-title: 企业的特点——人合性与资合性
+title: 企业的类型——人合性与资合性
 date: 2025-05-04
 categories: 商业
 tags: 
