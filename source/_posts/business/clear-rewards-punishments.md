@@ -111,3 +111,6 @@ tags:
 
 5. **Scrum Master 的文化守护者角色**
    Scrum Master要负责防止考核制度异化为“绩效内卷”。
+
+> refs:
+> 敏捷团队绩效考核: https://zhuanlan.zhihu.com/p/568575458
