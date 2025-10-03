@@ -14,7 +14,7 @@ tags:
 ** 个体工商户
 *** 法律依据
 ****《民法典》
-**** [[http://gongbao.court.gov.cn/Details/295032b03a4b3333ca9755b0c7b3f0.html《个体工商户条例》]]
+**** 《[[http://gongbao.court.gov.cn/Details/295032b03a4b3333ca9755b0c7b3f0.html 个体工商户条例]]》
 *** 责任承担：无限责任
 *** 出资人：个人/家庭
 *** 税收：个人所得税
