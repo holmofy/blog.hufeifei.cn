@@ -113,6 +113,6 @@ tags:
    Scrum Master要负责防止考核制度异化为“绩效内卷”。
 
 > refs:
-> 敏捷团队绩效考核: https://zhuanlan.zhihu.com/p/568575458
-> 深入浅出了解 OKR（一）：揭开 OKR 的神秘面纱: https://zhuanlan.zhihu.com/p/130722558
-> OKR与Scrum: https://www.zhihu.com/column/OKRScrum
+> * 敏捷团队绩效考核: https://zhuanlan.zhihu.com/p/568575458
+> * 深入浅出了解 OKR（一）：揭开 OKR 的神秘面纱: https://zhuanlan.zhihu.com/p/130722558
+> * OKR与Scrum: https://www.zhihu.com/column/OKRScrum
