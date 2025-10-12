@@ -294,3 +294,4 @@ readmore:
   allowMobile: true
   # 每篇文章随机添加引流工具的概率，范围在 0.1 ~ 1.0 之间，代表 10% ~ 100%，其中 1.0 表示所有文章默认都添加引流工具
   random: 1.0
+  articleContentId: ''
