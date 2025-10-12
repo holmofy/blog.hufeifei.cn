@@ -266,3 +266,31 @@ webPushNotification:
   webpushrKey: "df5d99e7437d3ed74084a178d285cebf"
   webpushrAuthToken: "39510"
   trackingCode: "BPJzNs1QEtbYa3Bn0gMAQHBAzX3Jm71llGUKHTkKEUs3D9xiDYZ0DWJ3S9sfCAAJHxXEoBkUANFyONjeIlgrJUo'"
+
+readmore:
+  # 是否启用
+  enable: true
+  # 已申请的博客 ID
+  blogId: '23326-7874450061938-923'
+  # 已申请的微信公众号名称
+  name: 'holmofy'
+  # 已申请的微信公众号回复关键词
+  keyword: '解锁博客'
+  # 已申请的微信公众号二维码图片
+  qrcode: 'https://www.hufeifei.cn/wechat-public-account.jpg'
+  # 自定义的 JS 资源链接，可用于 CDN 加速
+  libUrl: 'https://qiniu.techgrow.cn/readmore/dist/readmore.js'
+  # 自定义的 CSS 资源链接，可用于适配不同风格的博客
+  cssUrl: 'https://qiniu.techgrow.cn/readmore/dist/hexo.css'
+  # 文章内容的预览高度(例如 300)，设置值为 auto 则表示预览高度自适应
+  height: 'auto'
+  # 命令行终端是否输出日志信息
+  debug: true
+  # 文章解锁后凭证的有效天数
+  expires: 365
+  # 定时校验凭证有效性的时间间隔（秒）
+  interval: 60
+  # 是否添加微信公众号引流工具到移动端页面
+  allowMobile: true
+  # 每篇文章随机添加引流工具的概率，范围在 0.1 ~ 1.0 之间，代表 10% ~ 100%，其中 1.0 表示所有文章默认都添加引流工具
+  random: 1.0
