@@ -16,3 +16,7 @@ categories: 网络
 [官方文档7](https://fess.codelibs.org/articles/7/document.html)还提到了内网中需要带认证的系统如何爬取。
 
 [具体可以看一下官方的教程](https://fess.codelibs.org/articles.html#list-of-published-articles)，在公司里部署一个这个搜索引擎，就可以对企业内部所有的文档做索引，方便员工进行信息检索。这就相当于公司内网的百度，可以指定爬取的网站必须是内网的域名或ip。
+
+<img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/dbd03890-a287-4e45-b217-3523a84792d5" />
+
+<img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/3c84ffea-d1b8-4d3a-bfd2-aebbec0b1df6" />
