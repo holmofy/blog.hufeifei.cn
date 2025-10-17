@@ -17,6 +17,10 @@ categories: 网络
 
 [具体可以看一下官方的教程](https://fess.codelibs.org/articles.html#list-of-published-articles)，在公司里部署一个这个搜索引擎，就可以对企业内部所有的文档做索引，方便员工进行信息检索。这就相当于公司内网的百度，可以指定爬取的网站必须是内网的域名或ip。
 
+fess在[github](https://github.com/codelibs/docker-fess)有提供docker方式的部署文件，底层的存储使用elasticsearch或者开源替代品opensearch。
+
 <img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/dbd03890-a287-4e45-b217-3523a84792d5" />
+
+部署完成后需要配置爬虫规则，目前系统支持web爬虫和文件爬虫等多种爬网方式。
 
 <img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/3c84ffea-d1b8-4d3a-bfd2-aebbec0b1df6" />
