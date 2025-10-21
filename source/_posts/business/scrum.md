@@ -151,7 +151,7 @@ graph TD
 
 **看板与每日站会**
 
-![看板](https://img-blog.csdnimg.cn/img_convert/4d010d4515f18b36ac77b158c2492359.png)
+![看板](https://rococo.net.cn/wp-content/plugins/UEditor-xiumi-for-wordpress/uploads/20230926/1695730304-9901.png)
 
 每日站会时长≤15分钟，内容包括：
 - 昨天完成了什么任务？
