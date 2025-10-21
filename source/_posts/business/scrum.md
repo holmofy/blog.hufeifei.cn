@@ -149,6 +149,23 @@ graph TD
 | **故事点膨胀**  | 开发中新增未评估复杂度 → 即时标记`风险点`，在每日站会同步      |
 | **变更控制**    | 迭代开始后禁止新增需求（紧急需求需消耗团队`故事点储备池`）       |
 
+**看板与每日站会**
+
+![看板](https://img-blog.csdnimg.cn/img_convert/4d010d4515f18b36ac77b158c2492359.png)
+
+每日站会时长≤15分钟，内容包括：
+- 昨天完成了什么任务？
+- 今天计划做什么任务？
+- 有什么阻碍需要帮助解决吗？
+
+> 任务的完成进度通过看板进行可视化
+> 
+> ![看板](https://cdn.easycorp.cn/hardenx/upload/202207/f_8b8ad35ae031e57ec6b7a8eeacfc8fd5.jpg)
+> 
+> ![完成任务](https://cdn.easycorp.cn/hardenx/upload/202207/f_f3dc82feba2ecc12c84e6cad2cdfabbe.jpg)
+>
+> ![开始任务](https://cdn.easycorp.cn/hardenx/upload/202207/f_ee9159981c0ccb09b5b5123406668a84.jpg)
+
 ### 四、迭代回顾会（核心数据闭环）
 
 1. **故事点重估**
