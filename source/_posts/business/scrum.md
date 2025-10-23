@@ -160,6 +160,7 @@ graph TD
 - 有什么阻碍需要帮助解决吗？
 
 > 任务的完成进度通过敏捷看板进行可视化
+> 
 > ![看板](https://cdn.easycorp.cn/hardenx/upload/202207/f_8b8ad35ae031e57ec6b7a8eeacfc8fd5.jpg)
 > 
 > ![完成任务](https://cdn.easycorp.cn/hardenx/upload/202207/f_f3dc82feba2ecc12c84e6cad2cdfabbe.jpg)
