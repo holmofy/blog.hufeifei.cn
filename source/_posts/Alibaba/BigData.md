@@ -241,3 +241,5 @@ Google BigTable论文：http://blog.bizcloudsoft.com/wp-content/uploads/Google-B
 Awesome BigData：https://github.com/onurakpolat/awesome-bigdata
 
 Awesome MachineLearning：https://github.com/josephmisiti/awesome-machine-learning
+
+Microsoft Lakehouse reference architectures: https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reference
