@@ -200,3 +200,4 @@ Outbox模式的缺点和CDC的优点正好互补。所以不难得出一个集�
 [7]: https://docs.aws.amazon.com/zh_cn/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html "AWS 事务发件箱模式"
 [8]: https://wiki.hugogu.cn/tech/patterns/outbox "outbox模式"
 [9]: https://wiki.hugogu.cn/tech/design/dual-writes "双写问题"
+[10]: https://btree.dev/outbox-pattern "Outbox Pattern using change data capture (CDC) with Dabezium"
