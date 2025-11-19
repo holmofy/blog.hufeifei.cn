@@ -130,7 +130,17 @@ CDC(Change Data Capture)本质上是对Outbox模式的泛化实现，能在不�
 * 并不是所有的事件，都会有数据变更。每个数据变更，也并不一定由一个事件引起。本质上，领域事件是业务对象，而CDC采集的是存储层数据。想要让其发布的事件真正符合领域模型，本质上是要做一次ORM的逆运算。
 * CDC可以屏蔽下游依赖。但是并不是所有的依赖都应该被屏蔽掉。比如针对，Order和Payment，这是一个业务强依赖，我们并不一定希望要用如此松的模式，把本来可以存在的依赖强行消解掉。
 
-CDC会依赖于数据库本身的能力，所以可以处理的场景会受到限制。比如，PostgreSQL的Logical Replication可以被用来实现CDC，但是会受制于PostgreSQL本身的约束[6]。如：
+CDC会依赖于数据库本身的能力，所以可以处理的场景会受到限制。
+
+| 插件 / 扩展             | 功能 /用途                           | 特点与适用场景                                                                                                                                               |
+| ------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`pgoutput`**      | Postgres 原生的 logical 解码插件        | 从 Postgres 10+ 自带，无需额外安装。适合用于 Kafka / Debezium 等逻辑复制。Debezium 官方也支持 `pgoutput`。([debezium.io][1]) <br>缺点：输出是 Postgres 的 internal 协议格式，可能不像 JSON 那么直观。 |
+| **`wal2json`**      | 输出变更为 JSON                       | 非常常用：插件把 WAL 的变更行用 JSON 序列化，方便做事件消费。([GitHub][2]) <br>适合做 CDC + 业务事件 (Event) 层面。<br>缺点：因为是 JSON，性能开销较大。                                               |
+| **`test_decoding`** | Postgres 官方示例解码插件                | 是 Postgres 源码自带的一个最简单插件，通常用于测试或入门。([PostgreSQL][3]) <br>不推荐用于生产复杂场景，不过对于简单场景或 PoC 可以用。                                                                |
+| **`decoderbufs`**   | 二进制格式 (Protobuf) 的逻辑解码           | Debezium 支持 `decoderbufs`，可把变更数据编码为 Protobuf，适合高效传输。([debezium.io][4]) <br>优点是序列化性能好；缺点是对消费者要求比较高 (需要解析 Protobuf)。                                    |
+| **`pglogical`**     | Postgres 扩展，用于逻辑复制 (Replication) | 适合比较复杂的跨实例复制、订阅/发布 (publish-subscribe) 场景。([GitHub][5]) <br>功能强大，可做跨库复制、部分表订阅、冲突解决等。适用于 DB 级别复制，不只是做 CDC 事件流。                                         |
+
+比如，PostgreSQL的Logical Replication可以被用来实现CDC，但是会受制于PostgreSQL本身的约束[6]。如：
 
 * 只支持普通表生效，不支持序列、视图、物化视图、外部表、分区表和大对象
 * 只支持普通表的DML(INSERT、UPDATE、DELETE)操作,不支持truncate、DDL操作
@@ -157,7 +167,12 @@ Outbox模式的缺点和CDC的优点正好互补。所以不难得出一个集�
 
 更常见的消息中间件，如RabbitMQ, ActiveMQ及Kafka，均不支持事务。原因也很简单：影响性能。
 
-[1]: https://debezium.io/blog/2019/02/19/reliable-microservices-data-exchange-with-the-outbox-pattern/ "Reliable Microservices Data Exchange With the Outbox Pattern"
-[2]: https://docs.aws.amazon.com/zh_cn/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html "AWS 事务发件箱模式"
-[3]: https://wiki.hugogu.cn/tech/patterns/outbox
-[4]: https://wiki.hugogu.cn/tech/design/dual-writes
+[1]: https://debezium.io/documentation/reference/stable/connectors/postgresql.html "Debezium connector for PostgreSQL :: Debezium Documentation"
+[2]: https://github.com/eulerto/wal2json "GitHub - eulerto/wal2json: JSON output plugin for changeset extraction"
+[3]: https://www.postgresql.org/docs/current/logicaldecoding-output-plugin.html "PostgreSQL: Documentation: 18: 47.6. Logical Decoding Output Plugins"
+[4]: https://debezium.io/documentation/reference/1.9/connectors/postgresql.html "Debezium connector for PostgreSQL :: Debezium Documentation"
+[5]: https://github.com/2ndQuadrant/pglogical "GitHub - 2ndQuadrant/pglogical: Logical Replication extension for PostgreSQL 17, 16, 15, 14, 13, 12, 11, 10, 9.6, 9.5, 9.4 (Postgres), providing much faster replication than Slony, Bucardo or Londiste, as well as cross-version upgrades."
+[6]: https://debezium.io/blog/2019/02/19/reliable-microservices-data-exchange-with-the-outbox-pattern/ "Reliable Microservices Data Exchange With the Outbox Pattern"
+[7]: https://docs.aws.amazon.com/zh_cn/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html "AWS 事务发件箱模式"
+[8]: https://wiki.hugogu.cn/tech/patterns/outbox "outbox模式"
+[9]: https://wiki.hugogu.cn/tech/design/dual-writes "双写问题"
