@@ -80,8 +80,29 @@ tags:
 | `id`            | `uuid`         | 唯一 ID，用于消费者做重复检测。                                          |
 | `aggregatetype` | `varchar(255)` | 聚合根类型，比如 “Order” 或 “Customer”。用来路由到不同的 Kafka topic。        |
 | `aggregateid`   | `varchar(255)` | 聚合根 ID（例如订单 ID），用于作为 Kafka 消息 key，这样关联的事件会落在同一个 partition。 |
-| `type`          | `varchar(255)` | 事件类型，比如 “OrderCreated” 或 “OrderLineCanceled”。              |
+| `event_type`    | `varchar(255)` | 事件类型，比如 “OrderCreated” 或 “OrderLineCanceled”。              |
 | `payload`       | `jsonb`        | 事件具体内容（订单详情、行项目等）。                                         |
+
+典型的outbox表设计如下：
+
+```sql
+CREATE TABLE outbox (
+    id UUID PRIMARY KEY,
+    aggregate_type VARCHAR NOT NULL,
+    aggregate_id VARCHAR NOT NULL,
+    event_type VARCHAR NOT NULL,
+    payload JSONB NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT now(),
+    processed BOOLEAN NOT NULL DEFAULT false
+);
+
+-- 索引：快速查询未处理的消息
+create index if not exists idx_outbox_unprocessed on outbox(created) 
+where processed is null;
+```
+
+aggregate_type = 事件属于哪个业务对象
+event_type     = 这个业务对象发生了什么事情
 
 这种模式的缺点也很明显：Outbox的主要问题是，它有**额外的数据库负担**，而且非常容易成为瓶颈。
 
