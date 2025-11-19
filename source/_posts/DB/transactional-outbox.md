@@ -112,6 +112,7 @@ tags:
 | [confluentinc/bottledwater-pg](https://github.com/confluentinc/bottledwater-pg)![](https://img.shields.io/github/stars/confluentinc/bottledwater-pg) | C                         | Change data capture from PostgreSQL into Kafka |
 | [uber/storagetapper](https://github.com/uber/storagetapper)![](https://img.shields.io/github/stars/uber/storagetapper) | Go                        | StorageTapper is a scalable realtime MySQL change data streaming, logical backup and logical replication service |
 | [moiot/gravity](https://github.com/moiot/gravity)![](https://img.shields.io/github/stars/moiot/gravity) | Go | A Data Replication Center |
+| [wal-listener](https://github.com/ihippik/wal-listener)![](https://img.shields.io/github/stars/ihippik/wal-listener) | Go | PostgreSQL WAL listener |
 | [whitesock/open-replicator](https://github.com/whitesock/open-replicator)![](https://img.shields.io/github/stars/whitesock/open-replicator) | Java                | Open Replicator is a high performance MySQL binlog parser written in Java. It unfolds the possibilities that you can parse, filter and broadcast the binlog events in a real time manner. |
 | [mardambey/mypipe](https://github.com/mardambey/mypipe)![](https://img.shields.io/github/stars/mardambey/mypipe) | Scala                   | Reads MySQL event stream, and emits events corresponding to INSERTs, DELETEs, UPDATEs. Written in Scala. Emits Avro to Kafka. |
 | [Yelp/mysql_streamer](https://github.com/Yelp/mysql_streamer)![](https://img.shields.io/github/stars/Yelp/mysql_streamer) | Python                  | MySQLStreamer is a database change data capture and publish system. It’s responsible for capturing each individual database change, enveloping them into messages and publishing to Kafka. |
@@ -119,6 +120,8 @@ tags:
 | [krowinski/php-mysql-replication](https://github.com/krowinski/php-mysql-replication)![](https://img.shields.io/github/stars/krowinski/php-mysql-replication) | PHP        | Pure PHP Implementation of MySQL replication protocol. This allow you to receive event like insert, update, delete with their data and raw SQL queries. |
 | [dianping/puma](https://github.com/dianping/puma)![](https://img.shields.io/github/stars/dianping/puma) | Java | 本系统还会实现数据库同步（同构和异构），以满足数据库冗余备份，数据迁移的需求。 |
 | [JarvusInnovations/Lapidus](https://github.com/JarvusInnovations/lapidus)![](https://img.shields.io/github/stars/JarvusInnovations/Lapidus) | Javascript        | Streams data from MySQL, PostgreSQL and MongoDB as newline delimited JSON. Can be run as a daemon or included as a Node.js module. |
+| [supabase/etl](https://github.com/supabase/etl)![](https://img.shields.io/github/stars/supabase/etl) | Rust | Stream your Postgres data anywhere in real-time. Simple Rust building blocks for change data capture (CDC) pipelines. |
+| [ape-dts](https://github.com/apecloud/ape-dts)![](https://img.shields.io/github/stars/apecloud/ape-dts) | Rust | ApeCloud's Data Transfer Suite, written in Rust. Provides ultra-fast data replication between MySQL, PostgreSQL, Redis, MongoDB, Kafka and ClickHouse, ideal for disaster recovery (DR) and migration scenarios. |
 
 我之前写过[Debezium](https://blog.hufeifei.cn/2021/03/DB/mysql-binlog-parser/)和[Canal](https://blog.hufeifei.cn/2025/10/DB/canal-in-k8s/)相关的文章。
 
