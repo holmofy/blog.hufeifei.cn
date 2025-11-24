@@ -138,5 +138,3 @@ docker启动的话可以通过环境变量进行设置
 - ARROYO__PIPELINE__COMPACTION__ENABLED=true  
 - ARROYO__PIPELINE__COMPACTION__CHECKPOINTS_TO_COMPACT=4
 ```
-
-然后还要设置一下`CHECKPOINTS_TO_KEEP`来确定arroyo要保留多少个checkpoint文件。
