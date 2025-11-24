@@ -59,6 +59,8 @@ overlay        2621440 2620957    483   100% /var/lib/docker/overlay2/1b29e04028
 tmpfs           251772       3 251769     1% /var/lib/docker/containers/255be73d1a8a7d9d14c49a6c29e900a7717ef9518e6c90c1de054e309d2548f9/mounts/secrets
 ```
 
+一般出现这种情况就是创建了大量的小文件导致linux操作系统耗尽了。
+
 深入检查后发现是arroyo创建了大量的checkpoint文件
 
 ```sh
@@ -94,3 +96,47 @@ checkpoint-0000016  checkpoint-0005496	checkpoint-0010976  checkpoint-0016456	ch
 checkpoint-0000017  checkpoint-0005497	checkpoint-0010977  checkpoint-0016457	checkpoint-0021937  checkpoint-0027417	checkpoint-0032897
 checkpoint-0000018  checkpoint-0005498	checkpoint-0010978  checkpoint-0016458	checkpoint-0021938  checkpoint-0027418	checkpoint-0032898
 ```
+
+把这个docker的overlay2文件夹删掉，立马清爽了：
+
+```sh
+root@gateway:~# df -i
+文件系统        Inodes  已用I   可用I 已用I% 挂载点
+udev            245913    343  245570     1% /dev
+tmpfs           251772    884  250888     1% /run
+/dev/vda1      2621440 227508 2393932     9% /
+tmpfs           251772      7  251765     1% /dev/shm
+tmpfs           251772      3  251769     1% /run/lock
+tmpfs            50354     21   50333     1% /run/user/0
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/63203e0c37460d7a69334b0668eae9aaae178982aaa3c469aa3e907fc7f898f0/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/2a520537cee59aafb67a8114d533755ef51848ce40d48baace86b7b462738a23/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/3b65d999278fa90e41008d4f411eadec6eefa83c75f621060663fe8e11a475b6/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/2fe9d6e5296d6d45f65e4276533e87260c63ce6e1bab657156ea6941c1f1c74d/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/8881672477f731dd0f0dbf75645a0bb26a4f479352aa1b195627526eb4e944e5/merged
+tmpfs           251772      2  251770     1% /var/lib/docker/containers/c264e6398fed6066e3df74e2791ce0a382812602d216c5de342c1a5fb4c03ae5/mounts/secrets
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/9eac45b64505face3650ec66f380eeed4e4f09c013192c0fe1e971f2e1e87271/merged
+tmpfs           251772      2  251770     1% /var/lib/docker/containers/f823d2fdf4aafb87baa214547e7b992c5983492b19a0b22254a074ebd9afb9f3/mounts/secrets
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/59c16c23f0656b48c249fa378fd9108f7b393a8b4a6504f6a6fc1eaa8ce297dd/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/9117355cb7c22323fe4ac4fc97afebe6365f2c9259e5fa7c13d2ebb626720d9c/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/b6a567a82e1be55b820e9951cf2f6ea712de163a3f24ed05ff65ee981b842c81/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/76f0fbf65b59f955d396489e34966e38478df451c00c2def7a2b66699c6ddc8b/merged
+overlay        2621440 227508 2393932     9% /var/lib/docker/overlay2/1b29e0402874d514ee14fb82a2f965255dcfd1cba81d3ec78da1ff3f931c9b1e/merged
+tmpfs           251772      3  251769     1% /var/lib/docker/containers/255be73d1a8a7d9d14c49a6c29e900a7717ef9518e6c90c1de054e309d2548f9/mounts/secrets
+```
+
+查了一下[arroyo的相关文档](https://github.com/ArroyoSystems/arroyo/blob/ccfb58f5/crates/arroyo-rpc/default.toml#L15)，需要把checkpoint的compact功能开启
+
+```toml
+[pipeline.compaction]  
+enabled = true  
+checkpoints-to-compact = 4
+```
+
+docker启动的话可以通过环境变量进行设置
+
+```sh
+- ARROYO__PIPELINE__COMPACTION__ENABLED=true  
+- ARROYO__PIPELINE__COMPACTION__CHECKPOINTS_TO_COMPACT=4
+```
+
+然后还要设置一下`CHECKPOINTS_TO_KEEP`来确定arroyo要保留多少个checkpoint文件。
