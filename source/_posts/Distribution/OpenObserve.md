@@ -61,4 +61,17 @@ OpenObserve高可用架构中分以下几个角色：
 
 <img width="1912" height="954" alt="image" src="https://github.com/user-attachments/assets/bd61829b-2744-42fb-aad1-6311751dd1e2" />
 
+## 修改OpenObserver数据默认保留天数
+
+[LSM-Tree这个数据结构的删除操作是异步的](https://openobserve.ai/docs/api/stream/delete/#behavior)，不会立即执行：
+
+* Compactor 的后台服务默认每 10 分钟检查一次待删除的请求。
+* Compactor 运行时，根据数据流包含的数据量开始删除数据流。
+
+可以通过[环境变量](https://openobserve.ai/docs/environment-variables/#compaction-and-data-retention)调整这个行为：
+
+可以修改Compactor运行间隔：`ZO_COMPACT_INTERVAL=600`。单位为秒。默认值为 10 分钟。
+
+也可以配置数据生命周期以自动删除旧数据：`ZO_COMPACT_DATA_RETENTION_DAYS=30`。系统将在 30 天后自动删除数据。默认值为 3650 天，即 10 年。
+
 
