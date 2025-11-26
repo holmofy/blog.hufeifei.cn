@@ -16,7 +16,7 @@ tags:
 
 ![税种分类](https://appwk.baidu.com/naapi/doc/view?ih=774&o=jpg_6_0_______&iw=1111&ix=0&iy=0&aimw=1111&rn=1&doc_id=6d711518a300a6c30c229f18&pn=1&sign=cd485ab3f552b04bb863439a70fda5e6&type=1)
 
-[2021年财政收支情况](https://www.gov.cn/xinwen/2022-01/29/content_5671104.htm)显示增值税收入63519亿元，占全国税收收入36.7%，而第二位的企业所得税42041亿元，占比只有24.3%。尤其是[2012到2016年执行营改增(取消营业税改为增值税)](https://www.gov.cn/gongbao/content/2016/content_5088782.htm)之后，增值税进一步扩大了管辖范围。可以说在现在的中国增值税独霸天下，堪称万税之王。
+[2021年财政收支情况](https://gks.mof.gov.cn/tongjishuju/202201/t20220128_3785692.htm)显示增值税收入63519亿元，占全国税收收入36.7%，而第二位的企业所得税42041亿元，占比只有24.3%。尤其是[2012到2016年执行营改增(取消营业税改为增值税)](https://www.gov.cn/gongbao/content/2016/content_5088782.htm)之后，增值税进一步扩大了管辖范围。可以说在现在的中国增值税独霸天下，堪称万税之王。
 
 ![营改增后增值税占比变化](https://iknow-pic.cdn.bcebos.com/7af40ad162d9f2d3311ba193b9ec8a136327cc40)
 
@@ -24,7 +24,7 @@ tags:
 
 ![中国间接税占比仍较高](https://pic2.zhimg.com/v2-bc5cbd459ded3515e3bfaac1e3bc5587_r.jpg)
 
-比如2000年前后由于基层[三提五统](https://www.moa.gov.cn/ztzl/lhnyjj_1/2004/200503/t20050302_327318.htm)乱收费，于是2006年中央把延续了几千年的[农业税废除](https://www.gov.cn/test/2006-03/06/content_219801.htm)了，这里的农业税就是一种直接税，直接税税痛非常明显。
+比如2000年前后由于基层[三提五统](https://www.moa.gov.cn/ztzl/lhnyjj_1/2004/200503/t20050302_327318.htm)乱收费，于是2006年中央把延续了几千年的[农业税废除](https://www.moa.gov.cn/ztzl/nyfzhjsn/hyfzsn/201209/t20120903_2919611.htm)了，这里的农业税就是一种直接税，直接税税痛非常明显。
 
 英国经济学家[柯尔贝尔](https://baike.baidu.com/item/让-巴普蒂斯特·柯尔贝尔/5269358)曾把征税的艺术概况为：拔最多的鹅毛，听最少的鹅叫。中国也有“民不加赋而国用饶”的统治理念。直接税痛感很明显无法实现这一目标。
 
