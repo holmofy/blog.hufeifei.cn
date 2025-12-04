@@ -58,23 +58,20 @@ Google 把内部的 [Borg](https://research.google/pubs/large-scale-cluster-mana
 
 # 三、2015–2016：OCI 标准出现（Linux 基金会介入）
 
-Docker 的强势让大家担心它垄断整个生态，所以 Linux 基金会牵头成立：
-
-### OCI（Open Container Initiative）
+Docker 的强势让大家担心它垄断整个生态，所以 [2015年6月22日 Linux 基金会牵头成立**OCI（Open Container Initiative）**](https://opencontainers.org/about/overview/)
 
 制定两个行业标准：
 
-1. **运行时标准 runtime-spec**（container 的 rootfs + process 如何运行）
-2. **镜像标准 image-spec**（镜像层的格式）
+1. [**运行时标准 runtime-spec**](https://github.com/opencontainers/runtime-spec)（container 的 rootfs + process 如何运行）
+2. [**镜像标准 image-spec**](https://github.com/opencontainers/image-spec)（镜像层的格式）
 
-并把 Docker 的 containerd 和 runC 捐出作为：
+> 2018年又加入了一个[镜像分发规范](https://github.com/opencontainers/distribution-spec): 该规范用于标准化镜像的分发标准，使 OCI 的生态覆盖镜像的全生态链路，从而成为一种跨平台的容器镜像分发标准
 
-* runC → OCI Runtime 的参考实现
-* containerd → 统一的容器底层组件
+Docker 将其容器格式和运行时 runC 捐赠给 OCI ：runC → OCI Runtime 的参考实现
 
-这一步非常重要：
+这一步非常重要： **容器行业第一次从 Docker → 标准化。** 
 
-> **容器行业第一次从 Docker → 标准化。**
+> 目前OCI运行时也有[很多其他实现](https://github.com/topics/oci)
 
 # 四、2016–2017：Containerd 独立于 Docker
 
