@@ -231,5 +231,7 @@ Kubernetes 的理念：所有东西都模块化，runtime 也模块化。
 * 最后，Kubelet 通过 CRI 运行时服务 API 调用 cri 插件，使用拉取的容器镜像在 Pod 内创建并启动应用程序容器。
 * 最后，cri 使用 containerd 内部工具创建应用程序容器，将其放入 pod 的 cgroups 和命名空间中，然后启动 pod 的新应用程序容器。完成这些步骤后，pod 及其对应的应用程序容器就创建完成并开始运行。
 
+![Containerd变化历史](https://velog.velcdn.com/images/chan9708/post/9ba8e1e7-4b60-4eb1-9163-1bfa4988fcb9/image.png)
+
 refs：
 * https://www.cnblogs.com/hahaha111122222/p/15802334.html
