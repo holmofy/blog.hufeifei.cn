@@ -185,7 +185,7 @@ Kubernetes 推荐的 runtime 是：
 
 ![container cri](https://img2020.cnblogs.com/blog/794174/202201/794174-20220114162034000-1785646580.png)
 
-与此同时 Kubernetes 社区也做了一个专门用于 Kubernetes 的 CRI 运行时 CRI-O，直接兼容 CRI 和 OCI 规范。
+与此同时 Kubernetes 社区的RedHat也做了一个专门用于 Kubernetes 的 CRI 运行时 CRI-O，直接兼容 CRI 和 OCI 规范。
 
 ![cri-o](https://img2020.cnblogs.com/blog/794174/202201/794174-20220114162045509-544787859.png)
 
