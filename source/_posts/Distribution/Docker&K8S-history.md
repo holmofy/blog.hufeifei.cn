@@ -189,14 +189,14 @@ Kubernetes 推荐的 runtime 是：
 
 ![cri-o](https://img2020.cnblogs.com/blog/794174/202201/794174-20220114162045509-544787859.png)
 
-> [k8s支持的容器运行时](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)：
+这个方案和 containerd 的方案显然比默认的 dockershim 简洁很多，不过由于大部分用户都比较习惯使用 Docker，所以大家还是更喜欢使用 dockershim 方案。
+
+> 截至2025年年底，[k8s支持的容器运行时](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)：
 > 
 > * containerd
 > * CRI-O
 > * Docker Engine
 > * Mirantis Container Runtime
-
-这个方案和 containerd 的方案显然比默认的 dockershim 简洁很多，不过由于大部分用户都比较习惯使用 Docker，所以大家还是更喜欢使用 dockershim 方案。
 
 但是随着 CRI 方案的发展，以及其他容器运行时对 CRI 的支持越来越完善，Kubernetes 社区[在2020年7月份就开始着手移除 dockershim 方案了](https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/2221-remove-dockershim)，现在的移除计划是在 1.20 版本中将 kubelet 中内置的 dockershim 代码分离，将内置的 dockershim 标记为维护模式，当然这个时候仍然还可以使用 dockershim，目标是在 1.23⁄1.24 版本发布没有 dockershim 的版本（代码还在，但是要默认支持开箱即用的 docker 需要自己构建 kubelet，会在某个宽限期过后从 kubelet 中删除内置的 dockershim 代码）。 那么这是否就意味这 Kubernetes 不再支持 Docker 了呢？当然不是的，这只是废弃了内置的 dockershim 功能而已，Docker 和其他容器运行时将一视同仁，不会单独对待内置支持，如果我们还想直接使用 Docker 这种容器运行时应该怎么办呢？可以将 dockershim 的功能单独提取出来独立维护一个 cri-dockerd 即可，就类似于 containerd 1.0 版本中提供的 CRI-Containerd，当然还有一种办法就是 Docker 官方社区将 CRI 接口内置到 Dockerd 中去实现。
 
@@ -213,47 +213,23 @@ Kubernetes 的理念：所有东西都模块化，runtime 也模块化。
 
 对应的：
 
-| 领域   | 抽象规范    | 实现                           |
+| 领域   | 抽象规范    | 实现                      |
 | ---- | ------- | ---------------------------- |
 | 容器运行 | **CRI** | containerd / CRI-O           |
 | 容器网络 | **CNI** | Calico/Cilium/Flannel/Multus |
 | 容器存储 | **CSI** | Ceph/NFS/Longhorn            |
 
+![](https://img2024.cnblogs.com/blog/2888294/202404/2888294-20240416094938372-556859999.jpg)
 
-# 八、2023–2024：Containerd 2.0 移除内置 CRI
+让我们通过一个例子来演示 cri 插件在 Kubelet 创建单容器 Pod 时的工作原理：
 
-containerd 2.x 把 CRI 从内置插件变为外部独立仓库：
-
-* **让 containerd 更加纯粹（只负责容器生命周期）**
-* CRI 成为外部项目（containerd/cri）
-
-原因：
-
-* 内置 CRI 太重，影响 containerd 的维护
-* containerd 越来越通用（也服务 VM、WASM、Serverless）
-* K8s 才是 CRI 的主要用户，不要绑死 containerd 核心
-
-```
-┌────────────── Kubernetes ───────────────┐
-│                 Kubelet                 │
-│                     │(CRI)              │
-└─────────────────────┼───────────────────┘
-                      ▼
-            Container Runtime
-      (containerd / CRI-O / others)
-                      │(OCI)
-                      ▼
-                 runc / kata
-──────────────────────────────────────────
-CNI ← Pod 网络     |     CSI ← 存储插件
-```
-
-容器生态的演化路线：
-
-* **Docker** → 第一代，一体化
-* **OCI 标准化** → 第二代，解耦镜像格式和运行时
-* **K8s + CRI** → 第三代，解耦集群管理与 runtime
-* **containerd 主导** → 第四代，统一的云原生容器基础设施
+* Kubelet 通过 CRI 运行时服务 API 调用 cri 插件来创建 Pod；
+* cri 创建 Pod 的网络命名空间，然后使用 CNI 对其进行配置；
+* cri 使用 containerd 内部组件创建并启动一个特殊的暂停容器（沙箱容器），并将该容器放入 Pod 的 cgroups 和命名空间中（为简洁起见，省略了部分步骤）；
+* 随后，Kubelet 通过 CRI 镜像服务 API 调用 cri 插件来拉取应用程序容器镜像；
+* 如果节点上不存在该镜像，cri 会进一步使用 containerd 来拉取镜像；
+* 最后，Kubelet 通过 CRI 运行时服务 API 调用 cri 插件，使用拉取的容器镜像在 Pod 内创建并启动应用程序容器。
+* 最后，cri 使用 containerd 内部工具创建应用程序容器，将其放入 pod 的 cgroups 和命名空间中，然后启动 pod 的新应用程序容器。完成这些步骤后，pod 及其对应的应用程序容器就创建完成并开始运行。
 
 refs：
 * https://www.cnblogs.com/hahaha111122222/p/15802334.html
