@@ -172,12 +172,21 @@ Kubernetes 推荐的 runtime 是：
 > 
 > | 工具         | 层级                                  | 面向谁                   | 控制什么                          |
 > | ---------- | ----------------------------------- | --------------------- | ----------------------------- |
-> | **crictl** | **Kubernetes 层（调用 CRI 接口）**         | 面向 Kubelet / K8s 运维   | 通过 **CRI** 控制容器运行时            |
-> | **ctr**    | **containerd 内部层（直接操作 containerd）** | 面向 containerd 开发/调试人员 | 直接操作 containerd 内部 API，不走 CRI |
+> | [**crictl**](https://github.com/kubernetes-sigs/cri-tools) | **Kubernetes 层（调用 CRI 接口）**         | 面向 Kubelet / K8s 运维   | 通过 **CRI** 控制容器运行时            |
+> | [**ctr**](https://github.com/containerd/containerd/tree/main/cmd/ctr)    | **containerd 内部层（直接操作 containerd）** | 面向 containerd 开发/调试人员 | 直接操作 containerd 内部 API，不走 CRI |
 >
 > crictl = kubelet 的”手工版“（K8s 调试工具）
 > 
 > ctr = containerd 的”内部调试工具“（不推荐生产用）
+>
+> [nerdctl](https://github.com/containerd/nerdctl)是containerd打造的兼容Docker CLI的命令行工具，底层仍然通过调用containerd API实现。不像containerd自带的ctr命令，nerdctl需要另外安装。
+>
+> 可以为nerdctl设置别名：
+>
+> ```sh
+> # 在 ~/.bashrc 或 ~/.zshrc 中添加  
+> alias docker=nerdctl  
+> ```
 
 从上图可以看出在 containerd 1.0 中，对 CRI 的适配是通过一个单独的 CRI-Containerd 进程来完成的，这是因为最开始 containerd 还会去适配其他的系统（比如 swarm），所以没有直接实现 CRI，所以这个对接工作就交给 CRI-Containerd 这个 shim 了。
 
