@@ -60,3 +60,4 @@ refs:
 * https://zhuanlan.zhihu.com/p/466113622
 * https://help.aliyun.com/zh/ack/ack-managed-and-ack-dedicated/user-guide/work-with-terway
 * https://qingwave.github.io/how-to-write-k8s-cni/
+* https://ranchermanager.docs.rancher.com/zh/faq/container-network-interface-providers
