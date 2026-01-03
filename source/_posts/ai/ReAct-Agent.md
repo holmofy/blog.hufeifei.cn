@@ -258,6 +258,13 @@ DAG / 状态机 / 有向图
 
 ## 目前各大厂的Agent框架
 
+RAG相关开源项目：
+* https://github.com/microsoft/graphrag
+* https://github.com/infiniflow/ragflow
+* https://github.com/HKUDS/LightRAG
+* https://github.com/Tencent/WeKnora
+
+Agent框架：
 * https://github.com/microsoft/autogen
 * https://github.com/google/adk-python
 * https://github.com/openai/openai-agents-python
