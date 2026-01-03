@@ -270,6 +270,6 @@ DAG / 状态机 / 有向图
 
 ## Rust社区相关库
 
-* https://github.com/zavora-ai/adk-rust 对标谷歌的adk：https://github.com/google/adk-python
-* https://github.com/Abraxas-365/langchain-rust 对标官方langchain: https://github.com/langchain-ai/langchain
+* https://github.com/zavora-ai/adk-rust
+* https://github.com/Abraxas-365/langchain-rust
 * https://github.com/sobelio/llm-chain
