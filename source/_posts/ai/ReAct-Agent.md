@@ -281,3 +281,114 @@ Agent框架：
 * https://github.com/zavora-ai/adk-rust
 * https://github.com/Abraxas-365/langchain-rust
 * https://github.com/sobelio/llm-chain
+
+不管你用的是 **AutoGen / ADK / LangChain / Dify / AgentScope**，本质都在做同一件事：
+
+```
+目标 → 思考 → 调用工具 → 得到结果 → 判断是否完成 → 重复
+```
+
+差异 **不在有没有这条链路**，而在于：**谁帮你做？做多深？做多“重”？侧重哪个维度？**
+
+```
+提示词层
+  ↓
+链式编排层
+  ↓
+Agent 运行时
+  ↓
+多 Agent 协作系统
+  ↓
+Agent 平台 / 产品
+```
+
+### ① 提示词 / Chain 层（最轻）：最早的提示词工程层面
+
+代表：
+
+* **llm-chain**
+* 早期 **LangChain（只用 LCEL）**
+
+特点：
+
+* 本质是 **Prompt Engineering + 顺序调用**
+* 没有“自主性”
+* 没有长期状态
+* 不会自己决定“下一步干啥”
+
+### ② Agent Runtime（单 Agent 自循环）
+
+代表：
+
+* **Google ADK**
+* **[OpenAI Swarm](https://github.com/openai/swarm)（早期）**
+* LangChain 的 Agent 模块
+
+特点：
+
+* 有明确的 Agent 抽象
+* 有 tool calling
+* 有 **loop（直到完成）**
+* 但通常是**单 Agent**
+
+适合：
+
+* 写一个「能自己做完一件事」的智能体
+* 比如：分析需求 → 查资料 → 输出报告
+
+> **这是“一个会自己思考的 while 循环”**
+> ```
+> 生成提示词 → 调用 AI → 解析响应 → 执行工具 → 重复直到完成
+> ```
+> ADK 就是把这件事工程化、标准化
+
+### ③ 多 Agent 协作（角色社会）
+
+代表：
+
+* **Microsoft AutoGen**
+* **AgentScope**
+
+* 不强调“一个 Agent 多聪明”
+* 强调 **多个角色怎么协作**
+* 有：
+
+  * Planner
+  * Executor
+  * Critic
+  * Reviewer
+
+适合：
+
+* 复杂任务
+* 多步骤决策
+* 需要自检、自修正的场景
+
+### ④ Agent Platform / 产品化框架（最重）
+
+代表：
+
+* **Dify**
+* **FastGPT**
+* **Manus（产品）**
+
+特点：
+
+* 不只是 Agent
+* 还包括：
+
+  * UI
+  * 权限
+  * 数据源
+  * 日志
+  * 工作流
+* 很多是 **给非工程师用的**
+
+**Agent 还没稳定范式**
+
+就像：
+
+* Web 早期：CGI / PHP / JSP / ASP 混战
+* 前端：jQuery / Angular / React / Vue
+
+**Agent 现在处在 2012 年前端的状态**
