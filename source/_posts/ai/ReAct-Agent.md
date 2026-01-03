@@ -256,6 +256,18 @@ DAG / 状态机 / 有向图
 * permission
 * policy enforcement
 
+## 目前各大厂的Agent框架
+
+* https://github.com/microsoft/autogen
+* https://github.com/google/adk-python
+* https://github.com/openai/openai-agents-python
+* https://github.com/anthropics/anthropic-sdk-python
+* https://github.com/crewaiinc/crewai
+
+国内大厂的：
+* https://github.com/agentscope-ai/agentscope
+* https://github.com/TencentCloudADP/youtu-agent
+
 ## Rust社区相关库
 
 * https://github.com/zavora-ai/adk-rust 对标谷歌的adk：https://github.com/google/adk-python
