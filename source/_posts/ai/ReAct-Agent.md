@@ -270,6 +270,7 @@ Agent框架：
 * https://github.com/openai/openai-agents-python
 * https://github.com/anthropics/anthropic-sdk-python
 * https://github.com/crewaiinc/crewai
+* https://github.com/pydantic/pydantic-ai
 
 国内大厂的：
 * https://github.com/agentscope-ai/agentscope
