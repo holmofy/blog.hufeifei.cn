@@ -69,7 +69,7 @@ ReAct就是结合Reasoning和Action，将推理的内容转化成可实践的任
 * 解析失败 → 让 LLM 重试 / 修正格式
 * 结果不满足目标 → 自我反思（self-critique）
 
-### 🔹 4. 终止条件（Done / Stop）
+### 4. 终止条件（Done / Stop）
 
 终止不只是：
 
