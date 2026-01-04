@@ -127,6 +127,7 @@ while not done:
   state.update(observation)
 ```
 
+> 我这里有rust版本实现的[ReAct-Loop](https://github.com/holmofy/ReAct-Loop)可以运行起来看一看
 
 ### 模型输出不稳定（这是第一个地狱）
 
