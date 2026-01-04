@@ -181,7 +181,7 @@ Thought → Action → Observation
 
 ---
 
-### 一旦任务变复杂，你的 while 直接崩
+### 一旦任务变复杂，while 直接崩
 
 简单任务：
 
