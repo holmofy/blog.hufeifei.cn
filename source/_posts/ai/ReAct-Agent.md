@@ -174,7 +174,7 @@ Thought → Action → Observation
 
 * max_steps
 * stop condition
-* budget / token 上限
+* budget / token 上下文上限
 * 失败终止策略
 
 ---
