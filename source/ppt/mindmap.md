@@ -449,3 +449,652 @@ type: "mindmap"
 *** https://github.com/sindresorhus/awesome
 @endmindmap
 ```
+
+```plantuml
+@startmindmap
+* 数据库
+** RDB
+*** 索引结构
+**** B+树
+***** 范围查询性能比较好
+**** hash索引
+***** 能精确查询，但不支持范围查询，而且冲突较多时性能不是很好
+**** 位图索引
+***** 只适合性别，是否活跃状态等只有两种状态的字段
+*** Join原理
+**** NestedLoopJoin
+***** 暴力两层循环
+***** block-based NestedLoopJoin
+****** 小表放在外层循环，优化IO
+**** SortMergeJoin
+***** 先把两个表排序，再merge 2 sort list
+**** HashJoin
+*** MySQL
+**** 存储引擎
+***** InnoDB/MyISAM/Memory/CSV/...
+**** 数据类型
+***** 数值型
+****** bit(1b)/tinyint(1B)/smallint(2B)/mediumint(3B)/int(4B)/bigint(8B)
+***** 字符型
+****** char/varchar/tinytext/text/mediumtext/longtext binary/varbinary/tinyblob/blob/mediumblob/longblob
+***** 日期型
+****** date/time/datetime/timestamp
+**** InnoDB
+***** 表空间文件名以.idb为后缀
+***** 聚簇索引
+****** 主键为聚簇索引，二级索引的叶子节点会存主键值，这样减少了数据行移动或者叶分裂时的二级索引维护工作
+****** 使用二级索引查找会进行两次B+树查找，先从二级索引找到主键，再从主键索引找到数据行
+***** 优点
+****** 聚簇索引将索引和数据行保存在一个B+树中，查询聚簇索引可以直接获取数据，而非聚簇索引需要多次IO，所以聚簇索引比非聚簇索引查找更快
+****** 因为聚簇索引是按主键排列的，索引对于主键的范围查找效率很高
+****** 二级索引使用覆盖索引可以直接使用叶子节点中的主键值
+***** 缺点
+****** 插入速度严重依赖插入顺序。按主键自增顺序往InnoDB插入是最快的
+****** 聚簇索引插入时，可能导致页分裂。页分裂会导致表占用更多的表空间(不要用UUID这样的随机值做主键，而应该用单调递增的值做主键)
+****** 二级索引访问数据需要两次B+树查找，而且二级索引保存了主键列，二级索引可能会占用更多空间(索引选择一个短的主键列是有利的)
+***** ACID
+****** Atomicity
+******* undo log
+******** 实现原子性的关键，是当事务回滚时能够撤销所有已经成功执行的sql语句
+******** InnoDB实现回滚，靠的是undo log：当事务对数据库进行修改时，InnoDB会生成对应的undo log；如果事务执行失败或调用了rollback，导致事务需要回滚，便可以利用undo log中的信息将数据回滚到修改之前的样子。
+****** Durability
+******* redo log
+******** InnoDB作为MySQL的存储引擎，数据是存放在磁盘中的，但如果每次读写数据都需要磁盘IO，效率会很低。为此，InnoDB提供了缓存(Buffer Pool)，Buffer Pool中包含了磁盘中部分数据页的映射，作为访问数据库的缓冲： 当从数据库读取数据时，会首先从Buffer Pool中读取，如果Buffer Pool中没有，则从磁盘读取后放入Buffer Pool；当向数据库写入数据时，会首先写入Buffer Pool，Buffer Pool中修改的数据会定期刷新到磁盘中（这一过程称为刷脏）。
+******** Buffer Pool的使用大大提高了读写数据的效率，但是也带了新的问题：如果MySQL宕机，而此时Buffer Pool中修改的数据还没有刷新到磁盘，就会导致数据的丢失，事务的持久性无法保证。
+******** redo log采用的是WAL（Write-ahead logging，预写式日志），所有修改先写入日志，再更新到Buffer Pool，保证了数据不会因MySQL宕机而丢失，从而满足了持久性要求。
+******** redo log与bin log区别
+********* 作用不同
+********** redo log(crash recovery) | bin log(point-in-time recovery/replication)
+********* 层次不同
+********** redo log(InnoDB引擎) ｜ bin log(MySQL server)
+********* 内容格式不同
+********** redo log(物理数据) | bin log(binlog_format指定是sql还是数据本身或者两者混合)
+********* 写入时机不同
+********** redo log(innodb_flush_log_at_trx_commit指定是否在事务提交时刷盘，master线程也会定时刷盘) ｜ bin log(事务提交时写入)
+****** Isolation
+******* 保证事务执行尽可能不受其他事务影响；InnoDB默认的隔离级别是RR，RR的实现主要基于锁机制（包含next-key lock）、MVCC（包括数据的隐藏列、基于undo log的版本链、ReadView）
+******* Read Uncommitted
+******* Read Committed
+******** 解决了脏读
+********* 读取了其他事务还未提交的内容
+******* Repeatable Read
+******** 解决了不可重复度
+********* 事务重复读取前后不一致，读取到另一个事务提交的修改
+******** InnoDB的RR隔离级别通过Next-Key Lock解决了幻读问题
+******* Serializable
+******** 完全串行，并发性差
+******* InnoDB默认RR，MS SqlServer和Oracle默认都是RC
+****** Consistency
+******* 数据库的完整性约束没有被破坏，事务执行的前后都是合法的数据状态
+***** 覆盖索引
+****** 查询的所有列都在索引中，不需要回表查询
+***** MySQL5.6索引条件下推(ICP)优化
+***** MVCC
+****** DATA_TRX_ID、DATA_ROLL_PTR
+******* DATA_ROLL_PTR来串起undo log中的版本链表
+******* 在RC级别下，MVCC的快照读解决了不可重复读的问题
+***** 锁
+****** https://dev.mysql.com/doc/refman/8.0/en/innodb-locking.html
+****** 共享锁(S)： 读锁 普通的select  排他锁(X)： 写锁 update/delete/insert
+****** 意向共享锁(IS)： SELECT ... FOR SHARE 意向独占锁(IX)： SELECT ... FOR UPDATE
+******* 意向锁是表锁，用于指明事务稍后要对表中的行进行哪些(S | X)锁定
+******* 在事务申请S锁之前,它必须先在表上申请IS锁或更强的锁
+******* 在事务申请X锁之前, 它必须在表上申请IX锁
+******* InnoDB支持行级锁，所以意向锁不会阻塞除了全表扫描以外的任何请求
+****** 表锁
+******* https://dev.mysql.com/doc/refman/8.0/en/lock-tables.html
+****** 行锁
+******* Record Lock
+******* Gap Lock
+******* Next-Key Lock
+******** 解决幻读的问题
+****** 解决死锁的方法
+******* timeout
+******** FIFO，会导致权重大的事务被回滚了，更新了很多行
+******* wait-for graph
+****** 乐观锁
+******* 通过版本号比较并交换
+**** MyISAM
+***** 索引文件为.myi，数据文件为.myd
+***** MyISAM的主键索引和二级索引一样，叶子节点存储的是数据行在.myd文件中的偏移量
+*** PostgreSQL
+** NoSQL
+*** Redis
+**** 特点
+***** 单线程，使用IO多路复用处理请求，因为数据都在内存中，所以速度比较快
+**** 5种数据类型
+***** string
+****** <=512M
+****** 原子性自增自减(incr | incrby)
+******* Spring Data Redis种的RedisAtomicXxx
+****** 支持bit操作(getbit | setbit)
+******* 实现BloomFilter
+****** 分布式锁
+*******  SET resource_name my_random_value NX PX 30000
+******** https://redis.io/topics/distlock
+***** list
+****** quicklist = linkedlist(双向链表)+ziplist(数组)
+******* 结合了链表和数组的优点
+****** 应用场景
+******* 分布式阻塞队列
+******** lpush | rpush | blpop | brpop
+******* 双端队列
+******** lpush | lpop | rpush | rpop | lset | lrem | ltrim | lrange | lindex | llen
+***** hash
+***** set
+***** sort-set
+****** 跳跃链表
+******* 根据key对应的score排序
+****** 可以实现阻塞的优先级队列
+******* bzpopmax ｜ bzpopmin
+**** 持久化
+***** RDB(默认)
+****** fork子进程定时将数据快照保存到dump.rdb文件中
+****** save/bgsave命令可以保存快照，前者同步，后者fork子进程
+****** 优点
+******* 数据紧凑，适合数据备份
+***** AOF
+****** 记录服务接收的每一个写操作追加到日志文件中，启动时再次执行一遍恢复原始数据
+**** 过期淘汰策略
+***** 惰性删除
+****** 问题是有些可能永远不会访问
+***** 定期采样删除
+****** 每100ms随机测试20个key，删除已过期的。如果采样中超过1/4已过期，再执行一次
+**** 坑
+***** keys查找key，在大数据量下会阻塞，要该用scan
+*** MongoDB
+**** 基于B树存储
+**** WiredTiger存储引擎基于LSM-Tree结构
+*** HBase
+**** 基于LSM-Tree结构
+*** ElasticSearch
+**** Lucene
+***** 基于LSM-Tree结构，分段存储，后台线程按照一定的策略Merge分段
+****** Merge策略
+******* LogMergePolicy(指数分级策略)
+******** LogDocMergePolicy(以分段文档数为指标)
+******** LogByteSizeMergePolicy(以分段字节数为指标)
+***** 全文索引
+****** 词典(.tim | .tip)
+******* FST
+******** 前后缀都压缩的有穷状态级
+****** 倒排表(.doc|.pos|.pay)
+******* SkipList
+******** 使用跳跃链表优化“与”查询
+***** PointValue(.dim|.dii)
+****** BKD-Tree
+******* 索引数值类型字段，且支持多维数据类型
+******** Lucene6.0之前，数值类型都转换成字符串类型进行全文索引
+***** StoredFields(.fdt|.fdx)
+****** 以压缩格式存储实际的	文档字段值
+***** DocValues(.dvm|.dvd)
+****** 字段的列式存储
+******* 便于文档排序和聚合统计
+**** ES严重依赖于操作系统的文件缓存技术，所以给ES的Java进程分配的堆大小不能太大，给操作系统预留内存来缓存文件内容，1:1
+**** bulk大数据量到ES时，将refresh间隔设为-1关闭
+** NewSQL
+*** TiDB
+* 分布式
+** 理论
+*** CAP理论
+**** https://zhuanlan.zhihu.com/p/33999708
+**** 舍弃分区容错性，保证一致性和高可用
+***** 传统单机SQL数据库，或单机房同步
+**** 舍弃一致性，保证高可用和分区容错性
+***** NoSQL
+****** 最终一致性
+**** 舍弃可用性，保证强一致性和分区容错
+***** 传统分布式事务，数据同步时间无限延迟
+****** 银行等交易型业务必须保证强一致性
+*** BASE理论
+**** Basically Available
+*** 一致性hash
+*** 2PC
+*** 3PC
+*** Paxos
+*** Raft
+** MQ
+*** 作用
+**** 削峰填谷，异步解耦
+*** ActiveMQ
+**** 基于数据库的队列表实现
+***** 堆积能力一般
+*** Kafka
+**** 基于磁盘文件高性能顺序读写的特性来设计的存储结构
+**** 利用操作系统的 PageCache 来缓存数据，减少 IO 并提升读性能
+**** 使用批量处理的方式来提升系统吞吐能力
+**** pull
+***** 在 push-based 的系统中，当消费速率低于生产速率时，consumer 往往会不堪重负
+***** 它可以大批量生产要发送给 consumer 的数据
+****** push-based 系统必须选择立即发送请求或者积累更多的数据，然后在不知道下游的 consumer 能否立即处理它的情况下发送这些数据
+*** RocketMQ
+**** 优化Kafka多个topic的性能问题，topic多意味着随机写越多
+**** 所有的topic共用同一个Log，topic队列只存储每个消息在Log文件的偏移量
+**** 事务性消息
+***** 实现TransactionListener接口
+***** 接口中executeLocalTransaction执行本地事务
+***** 接口中checkLocalTransaction提供RocketMQ回查状态
+*** 重发
+**** 异常或超时，返回重发状态
+*** 重复消费问题
+**** 保证消费端的幂等性
+** 网关
+*** Zuul
+** RPC
+*** Dubbo
+*** 一个服务可能有多个实例，你在调用时，要如何获取这些实例的地址呢
+**** 注册中心
+*** 选哪个调用好呢？
+**** 负载均衡
+***** 客户端负载均衡
+*** 避免每次调用都访问注册中心，注册中心宕机也能保证服务通信
+**** 缓存容灾
+*** 接口修改，不可能让多个调用方一次性改掉，要保证老接口还能用
+**** 版本控制
+** 注册中心/服务发现
+*** Zookeeper ｜ Eureka｜ Consul ｜Etcd
+** 配置中心
+*** Nacos ｜ Spring Cloud Config
+*** 作用
+**** 配置区分环境(开发｜测试｜生产)
+**** 静态配置动态化
+**** 避免配置过于分散
+** 高并发
+*** 缓存
+**** BloomFilter避免缓存击穿
+*** 限流
+**** 保证自己的服务不超过一定的负载，超过则拒绝
+*** 熔断
+*** 降级
+** 事务
+*** Seata
+** 链路追踪
+*** Jaeger | Zipkin
+** 调度
+*** SchedulerX
+** 监控
+@endmindmap
+```
+
+```
+@startmindmap
+* Java
+** 基础
+*** 集合
+**** List
+***** ArrayList
+****** 1.5倍扩容，初始容量为10(Java7有延迟初始化)
+***** Vector
+****** 默认两倍扩容，初始容量为10
+******* 可用Collections.synchronizedList(new ArrayList())替代
+***** LinkedList
+****** 双向链表
+***** CopyOnWriteArrayList
+****** 写时拷贝，保证并发时读写分离，不适合写频繁的场景
+**** Map
+***** HashMap
+****** 容量为2的幂，初始容量为16 负载因子(元素数量与容量比)大于0.75时扩容
+******* 用位运算代替取余：index=hash&(length-1)
+******* rehash时元素计算的newIndex=hash&(length*2-1)                                             =hash&(length-1)+hash&length                                             =oldIndex+hash&length 也就是看元素hash值高一位是0还是1，决定是否移动到新桶
+****** 拉链法解决hash冲突
+******* java8进行了优化，当元素数量超过64个会有红黑树优化：当拉链增长到8会进化成红黑树，当链表缩短到6退化成链表
+***** LinkedHashMap
+****** 在HashMap的基础上加了一条链表存储元素的插入顺序
+****** 可以通过重载removeEldestEntry方法实现LRU缓存
+***** WeakHashMap
+****** Entry持有key的弱引用，当外部的key被回收时，Entry会加入到回收队列，下次读写会把这个Entry从表中移除
+***** IdentityHashMap
+****** 语义上相等(equals)的不同对象被认为是不同的key
+******* 不看对象重载的hashCode()和equals()方法
+***** Hashtable
+****** 可用Collections.synchronizedMap(new HashMap())替代
+***** TreeMap
+****** 基于红黑树实现的有序Map，红黑树查找类似于二分查找，所以红黑树的增删改查时间复杂度是O(logn)
+***** ConcurrentHashMap
+****** 解决HashMap并发问题，比如多个线程同时resize会导致环路
+****** 并发版本的HashMap，Java7用分段锁减小锁的粒度提高并发度，Java8通过CAS+synchronized控制并发
+***** ConcurrentSkipListMap
+****** 使用跳跃链表实现，跳跃链表是与二叉搜索树相当的数据结构，基于多级并联的链表实现 相较二叉查找树消耗更多的内存资源，但是实现比二叉查找树简单，而且支持并发
+**** Set
+***** HashSet/LinkedHashSet/TreeSet/CopyOnWriteArraySet/ConcurrentSkipListSet
+**** Queue
+***** PriorityQueue
+****** 基于二叉堆实现
+***** ConcurrentLinkedQueue
+****** 使用CAS实现并发操作
+**** BlockingQueue
+***** ArrayBlockingQueue/LinkedBlockingQueue/SynchronousQueue/DelayQueue/PriorityBlockingQueue
+**** Deque
+***** ArrayDeque/LinkedList/ConcurrentLinkedDeque
+**** BlockingDeque
+***** LinkedBlockingDeque
+**** TransferQueue
+***** LinkedTransferQueue
+**** Collections
+***** unmodifiable/synchronized/checked
+***** fill/reverse/frequency/disjoint/max/min/sort/binarySearch/shuffle/rotate
+***** newSetFromMap/asLifoQueue
+****** Collections.newSetFromMap(new ConcurrentHashMap())  => ConcurrentHashSet
+*** 并发
+**** Java内存模型
+***** 对称多处理机(SMP)的内存可见性
+****** volatile与synchronized
+**** CAS
+***** 底层调用CPU同步元语实现
+****** Intel的cmpxchg指令
+**** 进程
+***** Runtime.exec()/ProcessBuilder
+**** 线程
+***** 线程中段机制
+****** interrupted()与isInterrupted()的区别
+***** 线程局部变量
+****** ThreadLocal
+******* ThreadLocalMap开放地址法解决hash冲突
+**** 线程池
+***** ThreadPoolExecutor
+****** 1、当有任务提交时，会创建核心线程去执行任务(即使有核心线程空闲也会创建)； 2、当核心线程数达到corePoolSize时，后续提交的任务都会进入BlockingQueue中排队； 3、当BlockingQueue满了(offer()失败)，就会创建临时线程处理任务(临时线程空闲一定时间后，会被销毁)； 4、当线程总数达到maximumPoolSize时，后续提交的任务会被RejectedExecutionHandler拒绝。
+****** allowsCoreThreadTimeOut()可以让核心线程空闲后销毁 prestartAllCoreThreads()可以预先创建所有的核心线程
+****** 如何选择线程数
+******* FixedThreadPool和CacheThreadPool的区别
+******** 计算密集型还是IO密集型任务
+****** 如何选择队列
+******* ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue的区别
+***** ScheduledThreadPoolExecutor
+****** 内部是一个基于时间排序的优先级队列
+****** fixRate和fixDelay区别
+******* fixRate是以任务开始时刻计算间隔，fixDelay是以任务结束时刻计算间隔
+***** ForkJoinPool
+****** 适合比较大的可拆分的计算型任务
+******* java8 Stream api
+******** Spliterator
+******** CountedCompleter extends ForkJoinTask
+**** 并发工具
+***** 锁
+****** ReentrantLock
+******* 重入锁
+******** 公平锁
+********* 线程需要排队，先来先服务
+********** 排队意味着大概率会挂起线程
+******** 非公平锁
+********* 新来的线程可以抢占已经排队的锁
+********** 性能更好，避免无谓的线程挂起
+****** ReentrantReadWriteLock
+******* 读写锁
+******** 读共享，写互斥
+****** StampedLock
+******* 读取支持乐观锁
+******* 不支持重入
+***** 同步工具
+****** CyclicBarrier
+******* 多个线程await()等待，达到一定数量后一起执行
+******** 赛马
+****** CountDownLatch
+******* 若干线程countDown()直到latch为0后await线程启动
+******** 点火箭
+********* countDown()
+********* await()
+****** Exchanger
+******* 可理解为双向的SynchronousQueue
+******** 一手交钱一手交货
+****** Phaser
+**** synchronized实现
+***** JVM规范
+****** monitorenter ｜ monitorexit
+***** Hotspot实现
+****** 重量级锁
+******* 会放弃CPU，会导致线程切换，比较耗时
+****** 轻量级锁
+******* 使用CAS操作尝试将头字段存入栈中的lock_record （可以用洗手间等待大小便形象比喻）
+****** 偏向锁
+******* 优化同一个线程多次申请同一个锁的竞争 一旦出现其他线程竞争资源，偏向锁就会被撤销
+******** -XX:-UseBiasedLocking 禁用偏向锁
+*** IO
+**** 传统IO
+***** InputStream&OutputStream(字节流) ｜ Reader&Writer(字符流)
+**** NIO
+***** 文件读写
+****** Files&Paths
+***** Buffer
+****** 0<=mark<=position<=limit<=capacity
+****** flip() / rewind()
+****** heap(Java堆内存) / direct(操作系统内存映射)
+***** Selector
+****** I/O多路复用
+******* select()/pool() [POSIX]
+******** 基于轮询实现，复杂度O(n)
+******* epoll(Linux) | kqueue(BSD)
+******** 类似于阻塞队列，复杂度O(1)
+***** AIO
+****** AsynchronousChannel
+******* aio_read() / aio_write() [POSIX]
+******* IOCP [Windows]
+**** 序列化
+***** 二进制
+****** Java序列化
+******* ObjectInputStream/ObjectOutputStream
+***** 字符
+****** xml
+******* SAX
+******** push
+********* SAXParser
+******** pull
+********* XMLEventFactory | XMLInputFactory | XMLOutputFactory
+******* DOM
+******** DocumentBuilder
+******* Bind
+******** JAXB
+****** json
+******* Jackson | Gson | FastJson
+**** 网络
+***** 链路层
+****** NetworkInterface ｜ InterfaceAddress
+***** 传输层
+****** InetAddress
+******* Inet4Address(IPv4) | Inet6Address(IPv6)
+***** 传输层
+****** 套接字
+******* SocketAddress
+******** InetSocketAddress
+****** UDP
+******* DatagramSocket ｜ DatagramPacket DatagramChannel(nio)
+****** TCP
+******* ServerSocket | Socket SSLServerSocket | SSLSocket ServerSocketChannel | SocketChannel
+***** 应用层
+****** 万维网三要素
+******* URL ｜ HTML ｜ HTTP
+****** HTTP
+******* HttpURLConnection
+**** RPC
+***** RMI ｜ JWS
+*** 安全
+**** 加密(Cipher)
+***** 对称加密
+****** KeyGenerator ｜ SecretKey
+****** SecretKeyFactory
+***** 非对称加密
+****** KeyFactory ｜ KeyPairGenerator ｜ KeyPair ｜ PublicKey ｜ PrivateKey
+**** 单向散列
+***** MessageDigest(消息摘要)
+***** Mac(消息认证码)
+**** 伪随机数
+***** Random ｜ SecureRandom ｜ ThreadLocalRandom
+**** 签名与证书
+***** Signature ｜ Certificate ｜ CertificateFactory
+*** 反射
+**** 动态代理
+***** Proxy ｜ InvocationHandler
+**** 内省机制
+***** Introspector ｜ PropertyDescriptor ｜ PropertyEditor
+**** 字节码操作
+***** Cglib
+****** Enhancer
+***** Javasist ｜ ByteBuddy ｜ ASM
+** JVM
+*** 工作原理
+**** 解释执行
+***** 由javac编译器翻译成与平台无关的字节码，执行时再由java解释器将字节码翻译成对应平台的机器码
+**** 编译执行
+***** Hotspot的JIT即时编译器支持三种模式
+****** interpreted-only
+******* 完全解释执行
+****** compilation
+******* 每次调用方法都会强制编译成机器码，并将机器码缓存起来，但代码缓存大小有限
+****** mixed(默认)
+******* 热点方法编译成机器码，其他方法有解释器临时解释执行
+**** 逃逸分析
+***** 将函数范围内的小对象分配在栈上，减少GC运行频率
+*** JVM规范定义的内存结构
+**** pc寄存器
+***** 当前线程执行JVM指令的位置
+**** 虚拟机堆栈
+***** 当前线程的函数执行栈
+****** -Xss=-XX:ThreadStackSize
+**** Java堆
+***** Java对象存放地
+**** 方法区
+***** 类结构和代码块的字节码存放地
+**** 运行时常量池
+***** 编译时已知的字面量，运行时解析的方法引用和字段引用
+**** 本地方法栈
+***** C/C++语言实现的native代码的执行堆栈
+*** GC
+**** 如何判断垃圾对象
+***** 引用计数
+****** 循环引用问题
+***** 可达性分析
+****** 引用树遍历
+******* GC Root
+******** 栈里的参数和局部变量 类的静态字段
+**** 如何回收对象
+***** 基础GC算法
+****** 标记清除算法(Mark-Sweep)
+******* 缺点
+******** 大量内存碎片，导致后面创建的大对象无法申请连续内存
+****** 拷贝算法(Copying)
+******* 缺点
+******** 移动对象后需要更新对象引用
+******** 1、内存使用率高的对象 2、内存使用率不高，会有一半的内存空闲 3、对于存活率高的对象，会产生大量的拷贝操作
+****** 标记整理(Mark-Compact)
+******* 缺点
+******** 前面有一块内存是垃圾对象，后面的对象都需要往前移动 存活对象较多时，移动耗时基本与内存大小成正比。
+***** 分代GC
+****** 新生代(Minor GC)
+******* Eden
+******** 新建对象的地方，经过一轮新生代GC后会被拷贝到幸存者区
+******* Survivor
+******** 两个幸存者区来回拷贝，若干次GC后被移入老年代
+****** 老年代(Major GC)
+****** 永久代
+*** Hotspot GC
+**** 串行收集器
+***** Serial ｜ Serial Old(Mark-Compact)
+****** Stop The World
+**** 并行收集器
+***** ParNew | Parallel Scavenge | ParOld(Mark-Compact)
+****** Stop The World
+**** 并发收集器
+***** CMS
+****** 阶段
+******* 初始标记
+******** 标记GC Roots能直接关联到的对象，速度很快
+******* 并发标记
+******** 和用户线程并发进行标记，时间长
+******* 重新标记
+******** 修正并发标记过程中变动的对象
+******* 并发清理
+******** 和用户线程并发进行清理，可能会产生浮动垃圾
+****** 优点
+******* 只有初始标记和重新标记阶段会StopTheWorld， 停顿时间比较短，适合响应速度有要求的应用
+****** 缺点
+******* 使用标记清除算法，会产生大量内存碎片， 当无法找到连续的内存时会提前出发一次FullGC
+******* 无法处理浮动垃圾，可能出现浮动垃圾在未清除前又把老年代塞满了， 导致“Concurrent Mode Failure”从而触发另一次FullGC
+***** G1
+****** 分区
+******* 
+*** 分析工具
+**** jdk自带
+***** CLI
+****** jps
+******* 查看Java进程
+****** jstack
+******* 线程栈
+****** jmap
+******* 内存使用情况，内存dump信息
+****** jstat
+******* JVM的统计信息，内存使用情况
+****** jhat
+******* 内存分析工具，分析dump文件
+***** GUI
+****** jconsole
+****** visualVM
+**** 第三方
+***** Alibaba arthas
+***** Eclipse memory analyzer
+*** 常见参数
+**** -XX:+HeapDumpOnOutOfMemory
+***** 内存溢出时导出堆内存信息
+**** -XX:HeapDumpPath=path
+***** 堆dump文件路径
+**** -XX:ParallelGCThreads=threads
+***** 年轻代和老年代并行GC线程数
+**** -XX:ConcGCThreads=threads
+***** 并发GC线程数
+**** -XX:+DisableExplicitGC
+***** 禁止显示调用System.gc()
+**** -Xmn == -XX:NewSize
+***** 年轻代堆区初始容量
+**** -XX:MaxNewSize=size
+***** 年轻代堆区最大容量
+**** -Xms == -XX:InitialHeapSize
+***** 堆区初始容量
+**** -Xmx == -XX:MaxHeapSize
+***** 堆区最大容量
+**** -XX:MaxTenuringThreshold=threshold
+***** 最大老化年龄
+**** -XX:SurvivorRatio=ratio
+***** eden/survivor区的比例
+** 社区框架
+*** Spring
+**** ioc
+***** 容器
+****** BeanFactory
+******* XmlBeanFactory / DefaultListableBeanFactory
+****** ApplicationContext
+******* GenericApplicationContext
+***** 扩展接口
+****** BeanPostProcessor (Bean创建后，对Bean进行额外处理)
+******* AsyncAnnocationBeanPostProcessor
+******* CommonAnnotationBeanPostProcessor
+****** BeanFactoryPostProcessor (BeanFactory创建后，此时Bean还未创建)
+******* ConfigurationClassPostProcessor
+***** Bean生命周期
+****** 实例化
+******* IABPP.beforeInstantiation() -> 实例化 -> IABPP.afterInstantiation()
+****** 属性注入
+******* IABPP.properties() -> 注入
+****** 初始化
+******* Invoke XxxAware(BeanFactoryAware...)  -> BPP.beforeInitialization() -> 初始化 -> InitializingBean.afterPropertiesSet() -> init-method -> BPP.afterInitialization()
+****** running
+****** 销毁
+******* DABPP.beforeDestruction() -> DisposiableBean.destroy() -> destroy-method
+**** aop
+***** 动态代理
+****** JDK基于接口的动态代理
+******* Proxy | InvokeHandler
+****** Cglib基于类的动态代理
+******* Enhancer ｜ MethodInterceptor
+**** mvc
+**** tx
+***** 传递性
+**** SpringBoot
+***** Spring4.0中的@Conditional(ConditionEvaluator)
+***** SpringBoot中的@EnableAutoConfiguration会从所有类路径下的jar包里的 META-INF/spring.factories中读取所有的EnableAutoConfiuration
+*** data access
+**** Hibernate ORM
+***** 懒加载问题
+****** N+1问题
+******* for循环里懒加载关联对象
+**** MyBatis
+**** Spring Data
+@endmindmap
+```
