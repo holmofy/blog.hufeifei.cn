@@ -720,6 +720,10 @@ type: "mindmap"
 
 ![JVM偏向锁](https://github.com/user-attachments/assets/dac61922-5e68-4a99-8aab-d6e8bb04a65e)
 
+![RocketMQ的文件存储原理](https://github.com/user-attachments/assets/ea371242-4e66-44cc-9661-c53ecfb18be2)
+
+![RocketMQ事务性消息流程图](https://github.com/user-attachments/assets/9039212f-845e-4110-a0e0-119d6342a56b)
+
 ```plantuml
 @startmindmap
 * Java
