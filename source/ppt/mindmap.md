@@ -450,6 +450,8 @@ type: "mindmap"
 @endmindmap
 ```
 
+<img width="700" height="537" alt="InnoDB内存和磁盘布局" src="https://github.com/user-attachments/assets/cc7a53e3-dd94-4943-a0d6-b53bcad81914" />
+
 ```plantuml
 @startmindmap
 * 数据库
@@ -716,7 +718,9 @@ type: "mindmap"
 @endmindmap
 ```
 
-```
+![JVM偏向锁](https://github.com/user-attachments/assets/dac61922-5e68-4a99-8aab-d6e8bb04a65e)
+
+```plantuml
 @startmindmap
 * Java
 ** 基础
