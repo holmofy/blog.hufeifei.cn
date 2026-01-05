@@ -4,6 +4,7 @@ date: 2022-04-15
 type: "mindmap"
 ---
 
+```plantuml
 @startmindmap
 * 数据结构与算法
 ** 线性结构
@@ -182,7 +183,9 @@ type: "mindmap"
 ****_ 用认证机构(CA)的私钥对个人或企业的公钥进行签名
 ****_ 上层认证机构(CA)对认证机构(CA)的公钥进行签名，从而产生证书链
 @endmindmap
+```
 
+```plantuml
 @startmindmap
 * 操作系统
 ** 什么是操作系统
@@ -202,6 +205,7 @@ type: "mindmap"
 ** 用户软件
 *** 通过操作系统提供的接口使用硬件设备
 @endmindmap
+```
 
 ![TCP报文格式](https://github.com/user-attachments/assets/8a6bf8ec-de9c-48d3-89a1-804f092f62b5)
 
@@ -209,6 +213,7 @@ type: "mindmap"
 
 ![DNS工作原理](https://github.com/user-attachments/assets/9447e275-7ef7-4370-a038-ea73d72ce5cd)
 
+```plantuml
 @startmindmap
 * 计算机网络
 ** 网络协议分层
@@ -359,4 +364,5 @@ type: "mindmap"
 **** XSS
 **** SQL注入
 @endmindmap
+```
 
