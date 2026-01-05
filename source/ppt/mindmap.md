@@ -366,3 +366,86 @@ type: "mindmap"
 @endmindmap
 ```
 
+```plantuml
+@startmindmap
+* 软件工程
+** 面向对象原则
+*** 单一职责
+****_ 每个类实现的功能应该尽可能单一，不要啥都做。笼统地把功能放在一个类中，就退化成面向过程编程
+*** 开闭原则
+****_ 对扩展开放，对修改关闭
+*** 里氏替换
+****_ 基类是子类的抽象化，基类出现的地方可以用子类的实现替换
+*** 依赖倒置
+****_ 应该依赖于抽象，而不应该依赖实现细节，也就是面向接口编程
+*** 接口隔离
+****_ 接口设计粒度应该细，这样系统才能更灵活
+*** 迪米特法则
+****_ 一个类应该尽可能少的了解另一个类的实现，降低类与类之间的耦合
+** 设计模式
+*** 创建型
+**** 单例模式 / 原型模式 / 工厂方法 / 抽象工厂 / 建造者模式
+*** 结构型
+**** 代理模式
+***** JDK的Proxy
+**** 适配器模式
+***** SpringMVC的HandlerAdapter
+**** 桥接模式
+**** 装饰模式
+***** FilterInputStream/FilterOutputStream
+**** 外观模式
+**** 享元模式
+***** StandardCharsets
+*** 行为型
+**** 模版方法
+***** ThreadPoolExecutor.beforeExecute/afterExecute   LInkedHashMap.removeEldestEntry
+**** 策略模式
+**** 命令模式
+**** 责任链模式
+***** SpringMVC的HandlerInterceptor Servlet的Filter
+**** 状态模式
+**** 观察者模式
+***** 各种Listener响应事件
+**** 访问者模式
+***** Files.walkFileTree
+**** 中介者模式
+**** 迭代器模式
+**** 备忘录模式
+**** 解释器模式
+** 系统工程
+*** 系统设计与架构
+**** https://github.com/donnemartin/system-design-primer
+**** SOA与微服务
+***** https://github.com/aphyr/distsys-class
+***** https://github.com/mfornos/awesome-microservices
+***** https://github.com/binhnguyennus/awesome-scalability
+*** 数据库选型
+**** https://github.com/igorbarinov/awesome-data-engineering
+*** https://github.com/AlaaAttya/software-architect-roadmap
+** 测试
+*** 测试用例管理
+*** 集成测试
+*** 单元测试
+*** 测试自动化
+**** https://github.com/atinfo/awesome-test-automation/blob/master/java-test-automation.md
+*** https://github.com/fityanos/Quality-Assurance-Road-Map
+** 运维
+*** docker
+**** docker compose
+***** 单机容器编排
+**** docker swarm
+***** 多机容器编排
+**** k8s
+***** 集群容器编排
+** 持续集成(Continuous integration)
+*** Jenkins
+**** https://github.com/ligurio/awesome-ci
+** 团队管理
+*** 敏捷开发
+**** Scrum
+***** https://github.com/lorabv/awesome-agile
+** 职业生涯发展规划
+*** https://github.com/orsanawwad/awesome-roadmaps
+*** https://github.com/sindresorhus/awesome
+@endmindmap
+```
