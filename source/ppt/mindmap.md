@@ -213,6 +213,9 @@ type: "mindmap"
 
 ![DNS工作原理](https://github.com/user-attachments/assets/9447e275-7ef7-4370-a038-ea73d72ce5cd)
 
+![Java8GC算法总结](https://github.com/user-attachments/assets/0ec369df-8cec-4f64-83d0-f84f52127b7d)
+
+
 ```plantuml
 @startmindmap
 * 计算机网络
@@ -1106,3 +1109,21 @@ type: "mindmap"
 **** Spring Data
 @endmindmap
 ```
+
+| 特性         | G1 GC                            | ZGC                         | Shenandoah GC                 |
+| ---------- | -------------------------------- | --------------------------- | ----------------------------- |
+| **引入版本**   | JDK 7（实验），JDK 9+ 默认              | JDK 11（实验），JDK 17+ 稳定       | JDK 12+                       |
+| **目标**     | 平衡吞吐与延迟                          | 极低停顿，几乎不随堆增大                | 极低停顿，减少压缩停顿                   |
+| **暂停时间**   | 10ms~200ms（取决于堆和负载）              | <10ms（通常）                   | 10ms~50ms（取决于堆大小）             |
+| **堆大小支持**  | 中大型（几十 GB）                       | 多 TB                        | 中大型（几十 GB）                    |
+| **内存回收策略** | 分代 + 区域划分（Region）                | 并发 + 分段压缩（Colored Pointers） | 并发标记压缩（Concurrent Relocation） |
+| **停顿控制**   | 可设目标停顿时间（Pause Time Goal）        | 自动控制，几乎不受堆大小影响              | 可配置停顿时间，实时压缩                  |
+| **并发特性**   | 并发标记阶段                           | 大部分并发，标记/重定位几乎无停顿           | 大部分并发，压缩并发执行                  |
+| **调优难度**   | 中等，常用调优参数：`-XX:MaxGCPauseMillis` | 低，需要的调优参数少                  | 中等，需要关注压缩策略                   |
+| **吞吐影响**   | 中等，适合大多数应用                       | 极小，低延迟优先                    | 中等，稍微影响吞吐                     |
+| **适用场景**   | 延迟敏感不极端，大多数企业应用                  | 高并发、低延迟、超大堆（TB级）            | 延迟敏感、堆大、企业服务或中大型 JVM 服务       |
+| **默认启用**   | JDK 9+ 默认                        | 不默认，需要 `-XX:+UseZGC`        | 不默认，需要 `-XX:+UseShenandoahGC` |
+
+JDK 9 起：官方标记 CMS 已废弃（deprecated） JDK 14+：正式移除 CMS
+
+官方推荐：对大多数场景 → G1 GC； 对低延迟 / 大堆 → ZGC 或 Shenandoah
