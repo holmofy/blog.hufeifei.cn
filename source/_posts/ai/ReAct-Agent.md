@@ -159,7 +159,7 @@ while not done:
 * self-heal prompt
 * function calling 兜底
 
-> 否则你 80% 的代码都在 `try / catch + retry`
+> 否则 80% 的代码都在 `try / catch + retry`
 
 ### 无限循环（新手 100% 会踩）
 
