@@ -134,8 +134,9 @@ PC 技术栈快速完整化：
 
 | 技术层 | 互联网时代标志                 |
 | ----- | ----------------------- |
+| 硬件层 | Intel x86芯片进军服务器市场 |
 | 系统软件层 | Linux乘着互联网东风流行 |
-| 平台层 | MySQL、Apache、PHP(LAMP开源套件) ｜
+| 平台层 | MySQL、Apache、PHP(LAMP开源套件) |
 | 网络层 | HTML / HTTP / 浏览器 / CDN |
 | 数据层 | 搜索索引、日志分析、大规模爬虫数据       |
 | 应用层 | 搜索、电商、门户、论坛             |
@@ -145,7 +146,13 @@ PC 技术栈快速完整化：
 
 ![LAMP开源服务套件](https://teddysun.com/wp-content/uploads/2017/lamp.jpg)
 
-Windows Server因为收费闭源，而且GUI占用大量硬件资源；UNIX系列商业收费的System V 和 学术系的 BSD碎片化严重；所以基于Minix开发的免费开源的Linux成了互联网时代的“隐形操作系统”，也是LAMP开源套件里的核心。用户不关心你的服务端程序师运行在GUI还是CLI的服务器，返回的HTML最终都会在浏览器端渲染。
+在系统软件层：Windows Server因为收费闭源，而且GUI占用大量硬件资源；UNIX系列商业收费的System V 和 学术系的 BSD碎片化严重；所以基于Minix开发的免费开源的Linux成了互联网时代的“隐形操作系统”，也是LAMP开源套件里的核心。用户不关心你的服务端程序师运行在GUI还是CLI的服务器，返回的HTML最终都会在浏览器端渲染。Intel 也是乘着互联网的东风从桌面市场真正进入服务器领域，Intel第一款专为服务器市场设计的芯片是[Pentium Pro‌](https://baike.baidu.com/item/Pentium%20Pro/8447660)，它于1995年发布，标志着Intel在服务器工作站领域迈出关键一步；1998–2001年：Xeon + Linux，x86 正式成为主流服务器架构；2006年后：Intel 基本统治通用服务器 CPU 市场。
+
+可以说**互联网不仅重塑了应用形态，也彻底改变了服务器的形态**。
+
+在互联网之前，服务器的默认形态是：UNIX 操作系统、RISC 架构 CPU（SPARC、POWER、PA-RISC、Alpha）、昂贵的小型机 / 大型机、纵向扩展（Scale Up）。
+
+而互联网带来的，是一类完全不同的计算需求：大量并发 Web 请求、单个请求计算量很小、容忍单机故障、依赖集群而非单机可靠性。
 
 ---
 
