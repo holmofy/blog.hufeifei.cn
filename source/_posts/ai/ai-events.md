@@ -54,3 +54,4 @@ tags:
 > * [Manus更新日志](https://manus.im/zh-cn/updates)
 > * [Copilot Changelog](https://github.blog/changelog/label/copilot/)
 > * [OpenAI Changelog](https://platform.openai.com/docs/changelog)
+> * [Anthropic Changelog](https://platform.claude.com/docs/en/release-notes/overview)
