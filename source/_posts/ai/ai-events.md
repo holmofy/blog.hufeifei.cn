@@ -38,8 +38,19 @@ tags:
 |------|------|--------|--------|------|
 | 2025.01 | DeepSeek | 中国开源模型进入全球第一梯队 | DeepSeek App和DeepSeek-R1开源模型发布 | [DeepSeek-R1 发布，性能对标 OpenAI o1 正式版](https://api-docs.deepseek.com/zh-cn/news/news250120) |
 | 2025.01 | Spec-Driven Development (SDD) | 先写规范（Spec），AI 自动生成并维护代码 | AWS 推出 Kiro，GitHub 推出 Spec-kit | [AWS Kiro Announcement (re:Invent 2024)](https://aws.amazon.com/cn/blogs/china/use-kiro-specification-driven-development-to-accelerate-data-quality-construction/)<br>[GitHub Spec-kit Docs](https://github.com/github/spec-kit) |
-| 2025.03 | Skills (技能) | 模块化、可共享的 Agent 能力包 | Anthropic 在 Claude Code 中正式支持 Skills | [Anthropic Skills Guide](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) |
 | 2025.05 | MCP (Model Communication Protocol) | 统一 LLM 与外部工具通信的标准协议 | 类似“AI 的 USB-C”，被 Cursor、Continue、Claude 采纳 | [MCP Specification (GitHub)](https://github.com/modelcontextprotocol/modelcontextprotocol) |
 | 2025.07 | Agentic IDE | IDE 内置自主编程智能体（非仅补全） | Cursor Pro、Trae、Qoder 支持“自然语言建项目” | [Cursor Agentic Mode](https://cursor.com/cn/docs/agent/modes#agent)<br>[Trae.ai](https://trae.ai/)<br>[Alibaba Qoder](https://qoder.com/) |
 | 2025.09 | AI Factories / AI DevOps | 用 AI 自动构建、测试、部署其他 AI 应用 | Microsoft 提出“AI 生产 AI”范式 | [Microsoft Build 2025 Keynote](https://news.microsoft.com/build-2025/) |
+| 2025.10 | Skills (技能) | 模块化、可共享的 Agent 能力包 | Anthropic 在 Claude Code 中正式支持 Skills | [Introducing Agent Skills](https://claude.com/blog/skills) |
 | 2025.11 | 光子芯片 + 脑机接口突破 | 算力瓶颈缓解，人机交互进入新阶段 | Lightmatter 光子芯片商用；脑机校准缩至 1 小时 | [Lightmatter Passage Chip](https://lightmatter.co/products/passage)<br>[Neuralink Human Trial Update (Nov 2025)](https://neuralink.com/updates/) |
+
+
+
+> * [Cursor Changelog](https://cursor.com/cn/changelog)
+> * [Claude Code Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+> * [OpenCode Changelog](https://opencode.ai/changelog)
+> * [Kiro Changelog](https://kiro.dev/changelog/)
+> * [Qoder Changelog](https://qoder.com/changelog)
+> * [Manus更新日志](https://manus.im/zh-cn/updates)
+> * [Copilot Changelog](https://github.blog/changelog/label/copilot/)
+> * [OpenAI Changelog](https://platform.openai.com/docs/changelog)
