@@ -152,118 +152,49 @@ while not done:
 
 大模型并不像传统应用程序一样是“严格执行指令的程序”，大模型的本质是基于概率的token权重模型：在给定上下文的情况下，预测下一个 token 的概率最大值，从而组合成最终的文本返回。即使是相同prompt，相同上下文，重复调用也不一定得到相同的返回，有篇文章专门介绍了《[在LLM推断中击败非确定性](https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/)》。你要求大模型严格按json格式输出，但模型会觉得加一句解释，或者返回markdown更友好，人类友好性 vs 机器友好性冲突时，模型常选前者。
 
-**框架做的第一件事：**
+### Tool的模式
 
-* schema 校验
-* 自动重试
-* self-heal prompt
-* function calling 兜底
+Agent开发的核心就是提供Tool供大模型决策调用。目前Agent的Tool有三个运行模式：Function Call、MCP、SubAgent。
 
-> 否则 80% 的代码都在 `try / catch + retry`
+1、 Function Call
 
-### 无限循环（新手 100% 会踩）
+我写的[ReAct-Loop](https://github.com/holmofy/ReAct-Loop)这个例子就是Function Call，这是最简单的模式：就是Agent自身提供一个函数调用作为“Tool”丢给大模型。对于有参数的函数还要把参数和返回值的schema喂给大模型。
 
-LLM 很擅长：
+2、 MCP
 
-* “我再试试”
-* “换个方式”
-* “继续思考”
+MCP相当于把Function Call做成了可被调用的JSON-RPC服务，这样的好处是Agent与Tool解耦。MCP-Server通过标准的协议定义并暴露自己提供的服务：
 
-结果就是：
-
-```
-Thought → Action → Observation
-Thought → Action → Observation
-Thought → Action → Observation
-（永不结束）
-```
-
-框架提供：
-
-* max_steps
-* stop condition
-* budget / token 上下文上限
-* 失败终止策略
-
----
-
-### 一旦任务变复杂，while 直接崩
-
-简单任务：
-
-> “查天气”
-
-真实任务：
-
-* 先拆任务
-* 子任务并行
-* 中途失败回滚
-* 依赖前序结果
-
-你会从：
-
-```rust
-while !done {}
+```json
+{
+  "name": "create_order",
+  "description": "Create an order",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "order_id": { "type": "number" }
+    }
+  }
+}
 ```
 
-进化到：
+Agent注册MCP服务供大模型调用。
 
-```text
-DAG / 状态机 / 有向图
-```
+> MCP 本质上就是把「function call」标准化、外部化、服务化
 
-**这就是 LangGraph 存在的原因。**
+3、 SubAgent
 
-### 你需要“记忆”，而不是无限 prompt
+SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么做的目的是把复杂性问题拆分成子问题交给SubAgent解决，解决上下文复杂度，防止主问题prompt爆炸。
 
-新手常见做法：
+![SubAgent](https://cdn.sanity.io/images/2mc9cv2v/production/721e44474051c62156e15b5ffb1a249c996f0607-1404x1228.png)
 
-* 把所有历史拼进 prompt
+> 这里有篇文章专门讲了[多Agent架构](https://cognition.ai/blog/dont-build-multi-agents)
 
-结果：
+| 概念            | 本质                        |
+| ------------- | ------------------------- |
+| Function tool | **无推理的原子能力**              |
+| MCP tool      | **远程、标准化的 function tool** |
+| Sub-agent     | **有推理能力的复合 tool**         |
 
-* token 爆炸
-* 成本失控
-* 模型开始胡说
-
-框架提供：
-
-* short-term memory
-* long-term memory（向量库）
-* summarization
-* selective recall
-
-### 可观测性 & Debug（这是工程分水岭）
-
-你一定会遇到：
-
-> “这次为什么不调用工具了？”
-
-如果没有框架：
-
-* 看 prompt 猜
-* 重放成本极高
-
-框架能：
-
-* trace 每一步 Thought / Action
-* replay agent
-* 打 log、指标、耗时
-
-### 安全 & 可控（上线必须）
-
-现实世界里你不能让 LLM：
-
-* 随便 exec
-* 调未知 API
-* 访问不该访问的数据
-
-框架提供：
-
-* tool 白名单
-* sandbox
-* permission
-* policy enforcement
 
 ## 目前各大厂的Agent框架
 
@@ -291,113 +222,6 @@ Agent框架：
 * https://github.com/Abraxas-365/langchain-rust
 * https://github.com/sobelio/llm-chain
 
-不管你用的是 **AutoGen / ADK / LangChain / Dify / AgentScope**，本质都在做同一件事：
-
-```
-目标 → 思考 → 调用工具 → 得到结果 → 判断是否完成 → 重复
-```
-
-差异 **不在有没有这条链路**，而在于：**谁来做？做多深？做多“重”？侧重哪个维度？**
-
-```
-提示词层
-  ↓
-链式编排层
-  ↓
-Agent 运行时
-  ↓
-多 Agent 协作系统
-  ↓
-Agent 平台 / 产品
-```
-
-### ① 提示词 / Chain 层（最轻）：最早的提示词工程层面
-
-代表：
-
-* **llm-chain**
-* 早期 **LangChain（只用 LCEL）**
-
-特点：
-
-* 本质是 **Prompt Engineering + 顺序调用**
-* 没有“自主性”
-* 没有长期状态
-* 不会自己决定“下一步干啥”
-
-### ② Agent Runtime（单 Agent 自循环）
-
-代表：
-
-* **Google ADK**
-* **[OpenAI Swarm](https://github.com/openai/swarm)（早期）**
-* LangChain 的 Agent 模块
-
-特点：
-
-* 有明确的 Agent 抽象
-* 有 tool calling
-* 有 **loop（直到完成）**
-* 但通常是**单 Agent**
-
-适合：
-
-* 写一个「能自己做完一件事」的智能体
-* 比如：分析需求 → 查资料 → 输出报告
-
-> **这是“一个会自己思考的 while 循环”**
-> ```
-> 生成提示词 → 调用 AI → 解析响应 → 执行工具 → 重复直到完成
-> ```
-> ADK 就是把这件事工程化、标准化
-
-### ③ 多 Agent 协作（角色社会）
-
-代表：
-
-* **Microsoft AutoGen**
-* **AgentScope**
-
-* 不强调“一个 Agent 多聪明”
-* 强调 **多个角色怎么协作**
-* 有：
-
-  * Planner
-  * Executor
-  * Critic
-  * Reviewer
-
-适合：
-
-* 复杂任务
-* 多步骤决策
-* 需要自检、自修正的场景
-
-### ④ Agent Platform / 产品化框架（最重）
-
-代表：
-
-* **Dify**
-* **FastGPT**
-* **Manus（产品）**
-
-特点：
-
-* 不只是 Agent
-* 还包括：
-
-  * UI
-  * 权限
-  * 数据源
-  * 日志
-  * 工作流
-* 很多是 **给非工程师用的**
-
-**Agent 还没稳定范式**
-
-就像：
-
-* Web 早期：CGI / PHP / JSP / ASP 混战
-* 前端：jQuery / Angular / React / Vue
-
-**Agent 现在处在 2012 年前端的状态**
+> 推荐阅读：
+> * https://www.blog.langchain.com/context-engineering-for-agents/
+> * https://cognition.ai/blog/dont-build-multi-agents
