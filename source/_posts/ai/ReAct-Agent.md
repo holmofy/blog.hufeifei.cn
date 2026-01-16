@@ -219,6 +219,8 @@ Agent框架：
 国内大厂的：
 * https://github.com/agentscope-ai/agentscope
 * https://github.com/TencentCloudADP/youtu-agent
+* https://github.com/spring-ai-alibaba/DataAgent
+* https://github.com/alibaba/spring-ai-alibaba/tree/main/spring-ai-alibaba-agent-framework
 
 ## Rust社区相关库
 
