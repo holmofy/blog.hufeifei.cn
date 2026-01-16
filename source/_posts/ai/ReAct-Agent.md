@@ -185,7 +185,7 @@ Agent注册MCP服务供大模型调用。
 
 > MCP 本质上就是把「function call」标准化、外部化、服务化
 
-3、 SubAgent
+3、 SubAgent / MultiAgent
 
 SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么做的目的是把复杂性问题拆分成子问题交给SubAgent，这主要是解决上下文复杂度，防止主问题prompt爆炸。
 
@@ -193,11 +193,23 @@ SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么
 
 > 这里有篇文章专门讲了[多Agent架构](https://cognition.ai/blog/dont-build-multi-agents) / [选择合适的多Agent架构](https://www.blog.langchain.com/choosing-the-right-multi-agent-architecture/)
 
-| 概念            | 本质                        |
-| ------------- | ------------------------- |
-| Function tool | **无推理的原子能力**              |
-| MCP tool      | **远程、标准化的 function tool** |
-| Sub-agent     | **有推理能力的复合 tool**         |
+4、 A2A：Agent间的远程协议
+
+和MCP类似，Agent间为了解耦也搞了个JSON-RPC协议。[A2A协议](https://a2a-protocol.org/latest/)由[Google于2025年4月提出的](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)，这和微服务很像：Agent-to-Agent (A2A) 协议支持在运行于不同服务器上的 Agent 之间进行对话转移，这些服务器可能位于不同的数据中心或由不同的组织管理。此能力支持分布式 Agent 架构和微服务部署。
+
+> A2A官网有句话定位很准：<p>Build with
+<strong><a href="https://google.github.io/adk-docs/"><img alt="ADK Logo" height="19" src="https://google.github.io/adk-docs/assets/agent-development-kit.png"> ADK</a></strong> <em>(or any framework)</em>,
+equip with <strong><a href="https://modelcontextprotocol.io"><img alt="MCP Logo" height="19" src="https://modelcontextprotocol.io/mcp.png"> MCP</a></strong> <em>(or any tool)</em>,
+and communicate with
+<strong><img alt="A2A Logo" height="19" src="https://a2a-protocol.org/latest/assets/a2a-logo-black.svg"> A2A</strong>,
+to remote agents, local agents, and humans.</p>
+
+| 概念            | 本质                                        |
+| ------------- | ----------------------------------------- |
+| Function tool | **无推理的原子能力**                              |
+| MCP tool      | **远程、标准化的 function tool**                 |
+| Sub-agent     | **有推理能力的复合 tool**                         |
+| A2A           | **多个 Sub-agent 之间的组织与协作机制（复合 tool 的编排层）** |
 
 
 ## 目前各大厂的Agent框架
