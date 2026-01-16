@@ -193,9 +193,11 @@ SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么
 
 > 这里有篇文章专门讲了[多Agent架构](https://cognition.ai/blog/dont-build-multi-agents) / [选择合适的多Agent架构](https://www.blog.langchain.com/choosing-the-right-multi-agent-architecture/)
 
-4、 A2A：Agent间的远程协议
+4、 A2A：Agent间的远程编排协议
 
 和MCP类似，Agent间为了解耦也搞了个JSON-RPC协议。[A2A协议](https://a2a-protocol.org/latest/)由[Google于2025年4月提出的](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)，这和微服务很像：Agent-to-Agent (A2A) 协议支持在运行于不同服务器上的 Agent 之间进行对话转移，这些服务器可能位于不同的数据中心或由不同的组织管理。此能力支持分布式 Agent 架构和微服务部署。
+
+你可能和我一样有个疑问：既然Agent可以作为Tool，那自然也可以通过MCP远程暴露给调用方，为什么还多此一举再搞个A2A协议？
 
 > A2A官网有句话定位很准：<p>Build with
 <strong><a href="https://google.github.io/adk-docs/"><img alt="ADK Logo" height="19" src="https://google.github.io/adk-docs/assets/agent-development-kit.png"> ADK</a></strong> <em>(or any framework)</em>,
