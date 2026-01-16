@@ -60,11 +60,11 @@ tags:
 
 ---
 
-# **二、大型机与 UNIX：系统软件成为新中心**
+# **二、小型机与 UNIX：系统软件成为新中心**
 
 > **1970s—1980s：操作系统层第一次觉醒**
 
-![](https://bkimg.cdn.bcebos.com/pic/622762d0f703918fa0ec8369db6b319759ee3d6d6e43)
+![Unix历史](https://bkimg.cdn.bcebos.com/pic/622762d0f703918fa0ec8369db6b319759ee3d6d6e43)
 
 IBM 推出大型机，AT&T 推出 UNIX(C语言也因此诞生)。
 第一次，计算机具备了现代意义上的操作系统：
@@ -197,7 +197,7 @@ iPhone + App Store = 移动互联网最强方程式。
 
 > **2010—2020：平台层统治企业计算**
 
-![阿里云](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage109.360doc.com%2FDownloadImg%2F2025%2F02%2F2417%2F294698841_1_20250224052848295.png&refer=http%3A%2F%2Fimage109.360doc.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1765863941&t=b07f4dceecfd7aa92a8ee97a944a414e)
+![阿里云](https://q7.itc.cn/images01/20241208/0576c0b620d648cc9851c154282dfef7.png)
 
 云计算把基础设施彻底抽象化：
 
