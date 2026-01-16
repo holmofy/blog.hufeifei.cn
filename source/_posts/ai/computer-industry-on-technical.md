@@ -66,7 +66,7 @@ tags:
 
 ![Unix历史](https://bkimg.cdn.bcebos.com/pic/622762d0f703918fa0ec8369db6b319759ee3d6d6e43)
 
-IBM 推出大型机和小型机，AT&T 推出 UNIX(C语言也因此诞生)。
+IBM 推出大型机IBM System 360和370，DEC推出PDP系列小型机，AT&T 推出 UNIX(C语言也因此诞生)。
 第一次，计算机具备了现代意义上的操作系统：
 
 * 多任务调度
