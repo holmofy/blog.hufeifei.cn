@@ -7,7 +7,9 @@ tags:
 - Rust
 ---
 
-近十年来，golang、Swift、Kotlin、Typescript等新兴编程语言异军突起。在系统编程领域也出现了Rust和Zig等语言。
+近十年来，golang、Swift、Kotlin、Typescript等新兴编程语言异军突起。在系统编程领域也出现了Rust和Zig等语言。Rust已经在[linux](https://github.com/Rust-for-Linux/linux)内核接受，linux部分代码已由[rust编写](https://github.com/torvalds/linux/tree/master/rust)；Google在[android系统也开始应用rust](https://source.android.google.cn/setup/build/rust/building-rust-modules/overview?hl=zh-cn)，还下场写了个[Rust教程](https://github.com/google/comprehensive-rust)。
+
+Rust和C/C++等系统语言类似，想学会系统级语言，必须对堆内存和执行栈有充分了解。这个我在[Rust类型的内存布局](https://blog.hufeifei.cn/2024/07/Rust/Memory-Layout-of-Rust-Types/)这块讲的很清楚，有个[cheats.rs](https://cheats.rs/)里面的图片也非常直观。
 
 栈上分配的内存在函数出栈后就直接被回收了，堆上的内存需要手动回收，而且由于堆上分配和释放内存需要与操作系统交互。所以一般来说，栈上分配回收速度会比较快，堆上分配回收速度会稍慢一些。但是栈上分配内存要求结构体对象等类型的大小是编译期就知道的，所以无法分配动态大小的内存；堆上分配就没有这个约束。
 
