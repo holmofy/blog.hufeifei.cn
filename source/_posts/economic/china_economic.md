@@ -12,7 +12,7 @@ keywords:
 
 《[解读中国经济](https://book.douban.com/subject/30329810/)》是最近在读的非常有感触的一本经济类书籍，把中国近现代经济发展的逻辑理的很清楚。这里记录一下部分章节的读后感。
 
-![解读中国经济](https://img2.doubanio.com/view/subject/l/public/s26544493.jpg)
+![解读中国经济](https://img14.360buyimg.com/pop/jfs/t18670/70/1745355605/146528/4e979a40/5ad5c161N7f9f1d81.jpg)
 
 ## 李约瑟问题：为什么中国近代落后于西方
 
