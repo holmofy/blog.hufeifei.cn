@@ -166,7 +166,7 @@ Agent开发的核心就是提供Tool供大模型决策调用。目前Agent的Too
 
 2、 MCP
 
-MCP相当于把Function Call做成了可被调用的JSON-RPC服务，这样的好处是Agent与Tool解耦。MCP-Server通过标准的协议定义并暴露自己提供的服务：
+[MCP](https://modelcontextprotocol.io/)是‌[Anthropic公司‌于‌2024年11月提出来的](https://www.anthropic.com/news/model-context-protocol)。MCP相当于把Function Call做成了可被调用的JSON-RPC服务，这样的好处是Agent与Tool解耦。MCP-Server通过标准的协议定义并暴露自己提供的服务：
 
 ```json
 {
