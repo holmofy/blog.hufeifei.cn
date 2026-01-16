@@ -202,7 +202,7 @@ SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么
 你可能和我一样有个疑问：既然Agent可以作为Tool，那自然也可以通过MCP远程暴露给调用方，为什么还多此一举再搞个A2A协议？
 
 > A2A官网有句话定位很准：
-> <p>Build with <strong><a href="https://google.github.io/adk-docs/"><img alt="ADK Logo" height="19" src="https://google.github.io/adk-docs/assets/agent-development-kit.png"> ADK</a></strong> <em>(or any framework)</em>, equip with <strong><a href="https://modelcontextprotocol.io"><img alt="MCP Logo" height="19" src="https://modelcontextprotocol.io/mcp.png"> MCP</a></strong> <em>(or any tool)</em>, and communicate with <strong><img alt="A2A Logo" height="19" src="https://a2a-protocol.org/latest/assets/a2a-logo-black.svg"> A2A</strong>, to remote agents, local agents, and humans.</p>
+> <p>Build with <strong><a href="https://google.github.io/adk-docs/"><img alt="ADK Logo" style="display:inline-block;height:19px" src="https://google.github.io/adk-docs/assets/agent-development-kit.png"> ADK</a></strong> <em>(or any framework)</em>, equip with <strong><a href="https://modelcontextprotocol.io"><img alt="MCP Logo" style="display:inline-block;height:19px" src="https://modelcontextprotocol.io/mcp.png"> MCP</a></strong> <em>(or any tool)</em>, and communicate with <strong><img style="display:inline-block;height:19px" src="https://a2a-protocol.org/latest/assets/a2a-logo-black.svg"> A2A</strong>, to remote agents, local agents, and humans.</p>
 
 | 概念            | 本质                                        |
 | ------------- | ----------------------------------------- |
