@@ -99,8 +99,10 @@ PC 技术栈快速完整化：
 
 * 硬件：集成电路的发明使得 CPU 可以量产。CPU指令集标准化，x86成为 PC 时代的事实标准。
 * OS：图形界面变成主流，施乐公司发明的鼠标也有了用武之地。
+  > 1983年Borland基于Pascal语言开发Turbo Pascal，1987年基于C语言开发了Turbo C成了IBM PC上首个C语言IDE，1990年Turbo C++取代了Turbo C，1995年Turbo Pascal被Delphi取代。
+  > 另一边微软在1983年也推出了Microsoft C由于不符合ANSI C标准只在微软内部使用，直到1985年才作为产品发布，1993年C++也被微软应用到自己的图形软件开发(VC++/MFC)。
 * 网络：TCP/IP 占据互联网基座
-* 平台：关系数据库、Visual Studio、JVM
+* 平台：关系数据库、Visual Studio
 * 应用：Office、金山WPS、QQ、杀毒软件
 * 用户：计算机进入千家万户
 
@@ -136,7 +138,7 @@ PC 技术栈快速完整化：
 | ----- | ----------------------- |
 | 硬件层 | Intel x86芯片进军服务器市场 |
 | 系统软件层 | Linux乘着互联网东风流行 |
-| 平台层 | MySQL、Apache、PHP(LAMP开源套件) |
+| 平台层 | MySQL、Apache、PHP(LAMP开源套件)、Java、JavaScript |
 | 网络层 | HTML / HTTP / 浏览器 / CDN |
 | 数据层 | 搜索索引、日志分析、大规模爬虫数据       |
 | 应用层 | 搜索、电商、门户、论坛             |
@@ -146,15 +148,13 @@ PC 技术栈快速完整化：
 
 ![LAMP开源服务套件](https://teddysun.com/wp-content/uploads/2017/lamp.jpg)
 
-在系统软件层：Windows Server因为收费闭源，而且GUI占用大量硬件资源；UNIX系列商业收费的System V 和 学术系的 BSD碎片化严重；所以基于Minix开发的免费开源的Linux成了互联网时代的“隐形操作系统”，也是LAMP开源套件里的核心。用户不关心你的服务端程序师运行在GUI还是CLI的服务器，返回的HTML最终都会在浏览器端渲染。Intel 也是乘着互联网的东风从桌面市场真正进入服务器领域，Intel第一款专为服务器市场设计的芯片是[Pentium Pro‌](https://baike.baidu.com/item/Pentium%20Pro/8447660)，它于1995年发布，标志着Intel在服务器工作站领域迈出关键一步；1998–2001年：Xeon + Linux，x86 正式成为主流服务器架构；2006年后：Intel 基本统治通用服务器 CPU 市场。
+在系统软件层：Windows Server因为收费闭源，而且GUI占用大量硬件资源；UNIX系列商业收费的System V 和 学术系的 BSD碎片化严重；所以基于Minix开发的免费开源的Linux成了互联网时代的“隐形操作系统”，也是LAMP开源套件里的核心。用户不关心你的服务端程序师运行在GUI还是CLI的服务器，返回的HTML最终都会在浏览器端渲染，所以。Intel 也是乘着互联网的东风从桌面市场真正进入服务器领域，Intel第一款专为服务器市场设计的芯片是[Pentium Pro‌](https://baike.baidu.com/item/Pentium%20Pro/8447660)，它于1995年发布，标志着Intel在服务器工作站领域迈出关键一步；1998–2001年：Xeon + Linux，x86 正式成为主流服务器架构；2006年后：Intel 基本统治通用服务器 CPU 市场。
 
 可以说**互联网不仅重塑了应用形态，也彻底改变了服务器的形态**。
 
 在互联网之前，服务器的默认形态是：UNIX 操作系统、RISC 架构 CPU（SPARC、POWER、PA-RISC、Alpha）、昂贵的小型机 / 大型机、纵向扩展（Scale Up）。
 
 而互联网带来的，是一类完全不同的计算需求：大量并发 Web 请求、单个请求计算量很小、容忍单机故障、依赖集群而非单机可靠性。
-
----
 
 # **五、移动互联网：终端硬件 + 分发平台重写应用层**
 
@@ -164,18 +164,20 @@ PC 技术栈快速完整化：
 
 iPhone + App Store = 移动互联网最强方程式。
 
-另一边基于Linux内核开发的Android又因为开源免费，迅速风靡全球，与闭源的iPhone iOS分庭抗礼。
-
-![Android与Linux](https://q1.itc.cn/q_70/images03/20250422/138b713c2e384cb3a720dbe8d61ea834.png)
-
-> iOS 赢得了利润（Apple 拿走行业 80%+ 利润），Android 赢得了用户（覆盖全球 30 亿+ 智能手机用户）——这是两种不同的“胜利”。
-
 **硬件层改变了交互方式：**
 
 * ARM 架构配合 SoC 高度集成，使单位能耗计算能力大幅提升，高通等芯片厂商在移动终端计算领域取代了以 x86 为核心的 Intel 体系，成为移动互联网时代的主导芯片。
 * 多点触控改变用户输入方式，语音、摄像头等硬件被整合进终端。过去只能打电话发短信的手机变成更加“智能”的移动终端，重塑了应用层软件形态。
 
 ![高通芯片](https://n.sinaimg.cn/sinakd20220325s/728/w1455h873/20220325/ccd5-817b5aa3bb0fb30bb419d746924c095c.jpg)
+
+**系统层：开源与闭源之争**
+
+另一边基于Linux内核开发的Android又因为开源免费，迅速风靡全球，与闭源的iPhone iOS分庭抗礼。Java因其庞大的生态被Android选为应用层开发语言，得以再次繁荣。
+
+![Android与Linux](https://q1.itc.cn/q_70/images03/20250422/138b713c2e384cb3a720dbe8d61ea834.png)
+
+> iOS 赢得了利润（Apple 拿走行业 80%+ 利润），Android 赢得了用户（覆盖全球 30 亿+ 智能手机用户）——这是两种不同的“胜利”。
 
 **分发层改变了应用生态：**
 
@@ -207,11 +209,11 @@ iPhone + App Store = 移动互联网最强方程式。
 
 ![Docker与K8S](https://picx.zhimg.com/v2-4d1ec0720e585aa21c45a9f5d025669b_720w.jpg)
 
-这意味着：
-
-> **系统软件层的一部分与平台层融合成“云操作系统”。**
+这意味着：**系统软件层的一部分与平台层融合成“云操作系统”。**
 
 应用从单体 → 分布式 → 微服务，IT 架构全面升级。
+
+> 谷歌选择开发Golang并作为Kubernetes的实现语言，Golang得以在云原生时代成为基础设施级语言。
 
 ---
 
