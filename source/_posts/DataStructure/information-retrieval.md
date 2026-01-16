@@ -213,7 +213,12 @@ keywords:
     *   需要理解实体间复杂关系的场景。
     *   任何希望利用结构化知识提升纯文本检索效果的领域。
 
----
+> 在RAG中Embdding Model不存在“绝对最好”，只有“最合适”：
+> * 中文为主的 RAG：BGE 系列（bge-m3 / bge-large-zh）是目前性价比和效果最均衡的选择
+> * 中英混合 / 通用检索：bge-m3 或 text-embedding-3-large（OpenAI）
+> * 极致效果、不差钱：OpenAI embedding（text-embedding-3-large）
+>
+> 目前北京智源人工智能研究院的BGE几乎是当前检索领域开源 Embedding 的事实标准，中文语义检索明显强于 sentence-transformers
 
 ## 总结对比表
 
