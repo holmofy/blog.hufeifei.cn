@@ -185,7 +185,7 @@ Agent注册MCP服务供大模型调用。
 
 3、 SubAgent
 
-SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么做的目的是把复杂性问题拆分成子问题交给SubAgent解决，解决上下文复杂度，防止主问题prompt爆炸。
+SubAgent ≈ 把一个 agent 封装成一个 tool，供主 agent 调用。这么做的目的是把复杂性问题拆分成子问题交给SubAgent，这主要是解决上下文复杂度，防止主问题prompt爆炸。
 
 ![SubAgent](https://cdn.sanity.io/images/2mc9cv2v/production/721e44474051c62156e15b5ffb1a249c996f0607-1404x1228.png)
 
@@ -227,3 +227,4 @@ Agent框架：
 > 推荐阅读：
 > * https://www.blog.langchain.com/context-engineering-for-agents/
 > * https://cognition.ai/blog/dont-build-multi-agents
+> * https://www.blog.langchain.com/choosing-the-right-multi-agent-architecture/
