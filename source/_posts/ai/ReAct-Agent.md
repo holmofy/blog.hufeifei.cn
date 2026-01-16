@@ -23,7 +23,9 @@ tags:
 
 现在的大模型更像是一个知识渊博的学者，他读了全世界文档、书籍、论文，但是大模型的知识只停留在训练完成前采集的数据，没有新的数据喂给他。
 
-所以在此之前大模型的方向是通过RAG去检索外部的文档数据，这在[之前的一篇文章](https://blog.hufeifei.cn/2025/07/DataStructure/information-retrieval/)中有过记录。RAG就是在模型生成答案前，先从外部系统检索相关知识，再把这些知识作为上下文交给模型生成。
+所以在此之前大模型的方向是通过RAG去检索外部的文档数据，这在[之前的一篇文章](https://blog.hufeifei.cn/2025/07/DataStructure/information-retrieval/)中有过记录。RAG就是在模型生成答案前，先从外部系统检索相关知识，再把这些知识作为上下文交给模型生成回答返回给用户。
+
+![RAG与GraphRAG](https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8b4ee6fd-fcc2-4e02-9f6c-472615c77730_800x830.gif)
 
 但是RAG仍然只是停留在信息的检索，没有对外部世界产生影响。即使是[GraphRAG](https://github.com/microsoft/graphrag) 本质上仍然是在解决“回答得更准”的问题，而不是“把事情做完”。
 
