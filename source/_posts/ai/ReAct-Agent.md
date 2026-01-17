@@ -244,3 +244,12 @@ Agent框架：
 > * https://www.blog.langchain.com/context-engineering-for-agents/
 > * https://cognition.ai/blog/dont-build-multi-agents
 > * https://www.blog.langchain.com/choosing-the-right-multi-agent-architecture/
+
+## 国内外大厂开源的GUI-Agent
+
+* https://github.com/TencentQQGYLab/AppAgent
+* https://github.com/X-PLUG/MobileAgent
+* https://github.com/bytedance/UI-TARS-desktop
+* https://deepwiki.com/microsoft/UFO
+* https://github.com/droidrun/droidrun
+* https://github.com/web-infra-dev/midscene
