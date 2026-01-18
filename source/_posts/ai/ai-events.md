@@ -19,14 +19,14 @@ tags:
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 | --- | --- | --- | --- | --- |
 | 2016.03 | 强化学习突破 | 深度学习与强化学习结合，处理极端复杂的博弈空间 | AlphaGo 以 4:1 击败人类顶尖棋手李世石 | [DeepMind: AlphaGo](https://www.google.com/search?q=https://www.google.com/deepmind/blog/alphago-the-first-computer-program-to-ever-beat-a-professional-player-at-the-game-of-go/) |
-| 2017.06 | Transformer 诞生 | 抛弃 RNN，采用“注意力机制”并行处理数据，LLM 的核心架构 | Google 发布《Attention Is All You Need》 | [Transformer Paper (2017)](https://arxiv.org/abs/1706.03762) |
+| 2017.06 | **Transformer 诞生** | 抛弃 RNN，采用“注意力机制”并行处理数据，LLM 的核心架构 | Google 发布《Attention Is All You Need》 | [Transformer Paper (2017)](https://arxiv.org/abs/1706.03762) |
 | 2018.10 | BERT (预训练双向编码) | 引入“遮罩语言模型”，极大提升 NLP 任务的理解能力 | Google 发布 BERT，刷新 11 项 NLP 纪录 | [BERT Paper (2018)](https://arxiv.org/abs/1810.04805) |
 
 ## 2019 - 2021 年：参数爆炸与生成预热
 
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 | --- | --- | --- | --- | --- |
-| 2020.05 | GPT-3 (千亿级参数) | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper. Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) |
+| 2020.05 | **GPT-3 (千亿级参数)** | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper. Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) |
 | 2020.10 | ViT (Vision Transformer) | 抛弃卷积网络(CNN)，将图像切块后像文本一样处理 | Google 发布《An Image is Worth 16x16 Words》，视觉架构转向 Transformer，挑战 CNN 霸主地位 | [ViT Paper](https://arxiv.org/abs/2010.11929) |
 | 2021.01 | CLIP & DALL-E | 借助 ViT 架构将图文关联，实现多模态理解与生成 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
 | 2021.06 | GitHub Copilot | 基于 OpenAI Codex 的代码补全，AI 辅助编程商业化 | GitHub 推出 Copilot 预览版 | [GitHub Blog: Introducing Copilot](https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/) |
