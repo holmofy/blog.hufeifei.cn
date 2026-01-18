@@ -6,6 +6,30 @@ tags:
 - AI
 ---
 
+## 2012 - 2015 年：深度学习大爆炸
+
+| 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
+| --- | --- | --- | --- | --- |
+| 2012.09 | CNN 崛起 (AlexNet) | 深度卷积神经网络首次在 ImageNet 夺冠，准确率远超传统算法 | AlexNet 开启深度学习革命 | [AlexNet Paper (NIPS 2012)](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) |
+| 2014.06 | GANs (生成对抗网络) | 通过“生成器”与“判别器”博弈，开创生成式 AI 先河 | Ian Goodfellow 提出 GANs 概念 | [GANs Paper (2014)](https://arxiv.org/abs/1406.2661) |
+| 2015.12 | ResNet (残差网络) | 解决深层网络退化问题，使训练百层甚至千层网络成为可能 | 微软发布 ResNet，斩获 ILSVRC 五项第一 | [ResNet Paper (2015)](https://arxiv.org/abs/1512.03385) |
+
+## 2016 - 2018 年：感知到理解的飞跃
+
+| 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
+| --- | --- | --- | --- | --- |
+| 2016.03 | 强化学习突破 | 深度学习与强化学习结合，处理极端复杂的博弈空间 | AlphaGo 以 4:1 击败人类顶尖棋手李世石 | [DeepMind: AlphaGo](https://www.google.com/search?q=https://www.google.com/deepmind/blog/alphago-the-first-computer-program-to-ever-beat-a-professional-player-at-the-game-of-go/) |
+| 2017.06 | Transformer 诞生 | 抛弃 RNN，采用“注意力机制”并行处理数据，LLM 的核心架构 | Google 发布《Attention Is All You Need》 | [Transformer Paper (2017)](https://arxiv.org/abs/1706.03762) |
+| 2018.10 | BERT (预训练双向编码) | 引入“遮罩语言模型”，极大提升 NLP 任务的理解能力 | Google 发布 BERT，刷新 11 项 NLP 纪录 | [BERT Paper (2018)](https://arxiv.org/abs/1810.04805) |
+
+## 2019 - 2021 年：参数爆炸与生成预热
+
+| 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
+| --- | --- | --- | --- | --- |
+| 2020.05 | GPT-3 (千亿级参数) | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper](https://arxiv.org/abs/2005.14165) |
+| 2021.01 | CLIP & DALL-E | 将图像与文本关联，实现“文生图”的初步飞跃 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
+| 2021.06 | GitHub Copilot | 基于 OpenAI Codex 的代码补全，AI 辅助编程商业化 | GitHub 推出 Copilot 预览版 | [GitHub Blog: Introducing Copilot](https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/) |
+
 ## 2022 年：大模型觉醒之年
 
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
@@ -42,7 +66,6 @@ tags:
 | 2025.07 | Agentic IDE | IDE 内置自主编程智能体（非仅补全） | Cursor Pro、Trae、Qoder 支持“自然语言建项目” | [Cursor Agentic Mode](https://cursor.com/cn/docs/agent/modes#agent)<br>[Trae.ai](https://trae.ai/)<br>[Alibaba Qoder](https://qoder.com/) |
 | 2025.09 | AI Factories / AI DevOps | 用 AI 自动构建、测试、部署其他 AI 应用 | Microsoft 提出“AI 生产 AI”范式 | [Microsoft Build 2025 Keynote](https://news.microsoft.com/build-2025/) |
 | 2025.10 | Skills (技能) | 模块化、可共享的 Agent 能力包 | Anthropic 在 Claude Code 中正式支持 Skills | [Introducing Agent Skills](https://claude.com/blog/skills) |
-| 2025.11 | 光子芯片 + 脑机接口突破 | 算力瓶颈缓解，人机交互进入新阶段 | Lightmatter 光子芯片商用；脑机校准缩至 1 小时 | [Lightmatter Passage Chip](https://lightmatter.co/products/passage)<br>[Neuralink Human Trial Update (Nov 2025)](https://neuralink.com/updates/) |
 
 
 
