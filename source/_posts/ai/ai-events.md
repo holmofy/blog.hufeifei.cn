@@ -27,13 +27,17 @@ tags:
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 | --- | --- | --- | --- | --- |
 | 2020.05 | GPT-3 (千亿级参数) | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper. Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) |
-| 2021.01 | CLIP & DALL-E | 将图像与文本关联，实现“文生图”的初步飞跃 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
+| 2020.10 | ViT (Vision Transformer) | 抛弃卷积网络(CNN)，将图像切块后像文本一样处理 | Google 发布《An Image is Worth 16x16 Words》，视觉架构转向 Transformer，挑战 CNN 霸主地位 | [ViT Paper](https://arxiv.org/abs/2010.11929) |
+| 2021.01 | CLIP & DALL-E | 借助 ViT 架构将图文关联，实现多模态理解与生成 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
 | 2021.06 | GitHub Copilot | 基于 OpenAI Codex 的代码补全，AI 辅助编程商业化 | GitHub 推出 Copilot 预览版 | [GitHub Blog: Introducing Copilot](https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/) |
 
 ## 2022 年：大模型觉醒之年
 
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 |------|------|--------|--------|------|
+| 2022.01 | CoT (思维链) | 通过 "Let's think step by step" 诱导模型输出中间推理步骤 | Google 发布思维链研究，大幅提升模型逻辑推理能力 | [CoT Paper (Google Brain)](https://arxiv.org/abs/2201.11903) |
+| 2022.03 | Chinchilla Scaling Laws | 提出参数量与数据量的最佳平衡比例（约 1:20） | DeepMind 发布 Chinchilla，70B 模型击败了 175B 的 GPT-3 | [Chinchilla Paper](https://arxiv.org/abs/2203.15556) |
+| 2022.10 | ReAct 框架 | 将“推理(Reason)”与“行动(Act)”结合，允许模型在思考过程中调用搜索等外部工具 | Google & Princeton 发布 ReAct，奠定了 LLM Agent 的底层逻辑 | [ReAct Paper](https://arxiv.org/abs/2210.03629) |
 | 2022.11 | ChatGPT 爆发 | 基于 GPT-3.5 的对话 AI，首次让公众体验“类人对话” | OpenAI 发布 ChatGPT，5 天破百万用户 | [OpenAI Blog: Introducing ChatGPT](https://openai.com/blog/chatgpt) |
 | 2022.Q4 | Prompt Engineering（提示工程） | 通过精心设计输入指令引导 LLM 输出 | 成为早期 AI 使用者的核心技能 | [Google Developers: Prompt Design Guide](https://cloud.google.com/discover/what-is-prompt-engineering) |
 
@@ -66,7 +70,6 @@ tags:
 | 2025.07 | Agentic IDE | IDE 内置自主编程智能体（非仅补全） | Cursor Pro、Trae、Qoder 支持“自然语言建项目” | [Cursor Agentic Mode](https://cursor.com/cn/docs/agent/modes#agent)<br>[Trae.ai](https://trae.ai/)<br>[Alibaba Qoder](https://qoder.com/) |
 | 2025.09 | AI Factories / AI DevOps | 用 AI 自动构建、测试、部署其他 AI 应用 | Microsoft 提出“AI 生产 AI”范式 | [Microsoft Build 2025 Keynote](https://news.microsoft.com/build-2025/) |
 | 2025.10 | Skills (技能) | 模块化、可共享的 Agent 能力包 | Anthropic 在 Claude Code 中正式支持 Skills | [Introducing Agent Skills](https://claude.com/blog/skills) |
-
 
 
 > * [Cursor Changelog](https://cursor.com/cn/changelog)
