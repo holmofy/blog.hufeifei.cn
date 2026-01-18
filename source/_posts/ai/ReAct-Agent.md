@@ -102,6 +102,9 @@ ReAct结合Reasoning和Action，将推理的内容转化成可实践的任务，
 
 这就是 **Agent Loop（ReAct / Tool-Use Loop）**。
 
+> [The Rise and Potential of Large Language Model Based Agents: A Survey](https://arxiv.org/abs/2309.07864)
+> [中文版：大型语言模型智能体的兴起与潜力的调查](https://zhuanlan.zhihu.com/p/1947265763078562006)
+
 真实 Agent 一定比这几步复杂，这只是 **“能跑起来的最小 Agent”**，工业级通常会加这些层：
 
 ### 1. 状态（State / Memory）
