@@ -41,6 +41,8 @@ AI 并不认识“苹果”或“开心”这些词。在它的世界里，一�
 * GPT的text-embedding-ada-002: 1536 维
 * GPT的text-embedding-3-large: 3072 维
 
+既然是“炼金术”，训练模型的数据质量也决定了模型的智能程度，也就是计算机领域常说的“Garbage in, Garbage out”。DeepSeek训练成本低的原因出了极其省钱的架构 (MLA/MoE)和极致的硬件压榨，还有关键的一点是高质量数据。
+
 ### 2. 核心引擎：Transformer 架构与注意力机制
 
 2017 年 Google 提出的Transformer是现在所有大模型的基石。
