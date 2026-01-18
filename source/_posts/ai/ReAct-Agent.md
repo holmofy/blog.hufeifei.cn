@@ -19,6 +19,48 @@ tags:
 
 > **AI Agent = LLM 作为决策器（Planner） + 工具执行循环（Act Loop）**
 
+## AI本质是基于统计的经验主义的概率模型
+
+### 1. 数据的“炼金术”：词嵌入 (Word Embeddings)
+
+AI 并不认识“苹果”或“开心”这些词。在它的世界里，一切都是数字。
+
+* **向量空间：** AI 会把每一个词转化成一串长长的数字坐标（向量）。
+* **语义相近：** 在这个高维空间里，“猫”和“狗”的坐标离得很近，而“猫”和“手机”就离得很远。
+* **逻辑运算：** 著名的例子是：$国王 - 男人 + 女人 = 女王$。AI 通过这种数学关系来理解人类世界的逻辑。
+
+![词向量](https://cosminsanda.com/assets/images/pgvector-seaorm/embedded-intuition.png)
+
+只不过这个向量是在高维空间中表示，比如常见的预训练模型：
+
+* BERT-base: 768 维
+* BERT-large: 1024 维
+* BGE-small (v1.5): 384 维
+* BGE-base (v1.5): 768 维
+* BGE-large (v1.5/M3): 1024 维
+* GPT的text-embedding-ada-002: 1536 维
+* GPT的text-embedding-3-large: 3072 维
+
+### 2. 核心引擎：Transformer 架构与注意力机制
+
+2017 年 Google 提出的Transformer是现在所有大模型的基石。
+
+* **注意力机制 (Attention)：** 当 AI 读到“他把苹果给了小明，因为它熟透了”时，它能精准地通过“注意力”判断出“它”指代的是“苹果”而不是“小明”。
+* **并行处理：** 以前的 AI 是一字一句读，现在的 AI 是把整篇文章“瞬间”吞下，同时分析所有词与词之间的联系。
+
+![Transformer](https://api.ibos.cn/v4/weapparticle/accesswximg?aid=84785&url=aHR0cHM6Ly9tbWJpei5xcGljLmNuL3N6X21tYml6X3BuZy83VFdSaGg0eGlja21NajNBdElJOUVVWk00dHdkMzcyaWFaRXF4b2FCNk5lQWd2R1VBMGpTN1FxdGxvUDVESjlLWndiUGVVWERoOHJiRVJYZ2xxVjViYkxnLzY0MD93eF9mbXQ9b3RoZXImYW1w;from=appmsg&wxfrom=5&wx_lazy=1&wx_co=1&tp=webp)
+
+### 3. 本质：超级“接龙”游戏
+
+不管外表看起来多么像人类，AI 的底层逻辑始终是**预测概率**。
+
+* **概率预测：** 当你问“今天天气”，AI 并不是在“思考”，而是在计算：在“今天天气”后面，出现“不错”的概率是 80%，出现“火星”的概率是 0.001%。
+* **涌现能力：** 当模型规模大到一定程度（比如几千亿个参数）时，这种简单的“接龙”突然表现出了推理、编程、甚至幽默感。科学家管这叫“涌现”（Emergence）。
+
+![大模型文本预测](https://image.woshipm.com/2024/05/28/36df96da-1cac-11ef-b503-00163e142b65.jpg)
+
+**AI 工作流程 = 将文字变数字 → 在高维空间找关系 → 计算下一个字出现的最高概率。**
+
 ## ReAct
 
 现在的大模型更像是一个知识渊博的学者，他读了全世界文档、书籍、论文，但是大模型的知识只停留在训练完成前采集的数据，没有新的数据喂给他。
