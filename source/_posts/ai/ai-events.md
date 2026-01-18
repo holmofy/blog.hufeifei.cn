@@ -26,7 +26,7 @@ tags:
 
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 | --- | --- | --- | --- | --- |
-| 2020.05 | GPT-3 (千亿级参数) | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper](https://arxiv.org/abs/2005.14165) |
+| 2020.05 | GPT-3 (千亿级参数) | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper. Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) |
 | 2021.01 | CLIP & DALL-E | 将图像与文本关联，实现“文生图”的初步飞跃 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
 | 2021.06 | GitHub Copilot | 基于 OpenAI Codex 的代码补全，AI 辅助编程商业化 | GitHub 推出 Copilot 预览版 | [GitHub Blog: Introducing Copilot](https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/) |
 
