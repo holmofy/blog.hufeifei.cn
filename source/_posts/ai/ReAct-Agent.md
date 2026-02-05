@@ -295,6 +295,9 @@ Agent框架：
 * https://github.com/crewaiinc/crewai
 * https://github.com/pydantic/pydantic-ai
 
+AI时代的UI：
+* https://github.com/google/A2UI
+
 国内大厂的：
 * https://github.com/agentscope-ai/agentscope
 * https://github.com/TencentCloudADP/youtu-agent
