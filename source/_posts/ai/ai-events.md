@@ -27,6 +27,7 @@ tags:
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 | --- | --- | --- | --- | --- |
 | 2020.05 | **GPT-3 (千亿级参数)** | 1750 亿参数，首次展现“上下文学习（In-context Learning）”能力 | OpenAI 发布 GPT-3，AI 开始展现惊人的创作潜力 | [OpenAI: GPT-3 Paper. Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165) |
+| 2020.05 | DETR | 抛弃 NMS、锚框等手工设计，首次将 Transformer 引入物体检测 | Facebook (Meta) 发布 Transformer架构的DETR挑战CNN架构的YOLO，开启视觉检测新范式 | [DETR Paper (ECCV 2020)](https://arxiv.org/abs/2005.12872) |
 | 2020.10 | ViT (Vision Transformer) | 抛弃卷积网络(CNN)，将图像切块后像文本一样处理 | Google 发布《An Image is Worth 16x16 Words》，视觉架构转向 Transformer，挑战 CNN 霸主地位 | [ViT Paper](https://arxiv.org/abs/2010.11929) |
 | 2021.01 | CLIP & DALL-E | 借助 ViT 架构将图文关联，实现多模态理解与生成 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
 | 2021.06 | GitHub Copilot | 基于 OpenAI Codex 的代码补全，AI 辅助编程商业化 | GitHub 推出 Copilot 预览版 | [GitHub Blog: Introducing Copilot](https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/) |
