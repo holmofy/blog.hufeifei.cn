@@ -12,6 +12,7 @@ tags:
 | --- | --- | --- | --- | --- |
 | 2012.09 | CNN 崛起 (AlexNet) | 深度卷积神经网络首次在 ImageNet 夺冠，准确率远超传统算法 | AlexNet 开启深度学习革命 | [AlexNet Paper (NIPS 2012)](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) |
 | 2014.06 | GANs (生成对抗网络) | 通过“生成器”与“判别器”博弈，开创生成式 AI 先河 | Ian Goodfellow 提出 GANs 概念 | [GANs Paper (2014)](https://arxiv.org/abs/1406.2661) |
+| 2015.06 | YOLO 诞生 (v1) | 提出“You Only Look Once”，将检测视为回归问题，实现实时目标检测 | Joseph Redmon 发布 YOLO，改变了视觉检测效率 | [YOLO v1 Paper](https://arxiv.org/abs/1506.02640) |
 | 2015.12 | ResNet (残差网络) | 解决深层网络退化问题，使训练百层甚至千层网络成为可能 | 微软发布 ResNet，斩获 ILSVRC 五项第一 | [ResNet Paper (2015)](https://arxiv.org/abs/1512.03385) |
 
 ## 2016 - 2018 年：感知到理解的飞跃
