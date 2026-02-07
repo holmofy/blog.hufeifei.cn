@@ -86,7 +86,7 @@ tags:
 > * [Huggingface 论文排行榜](https://huggingface.co/papers/trending)
 
 
-## 视觉检测演进专项（2013 - 2024）
+## 视觉检测演进专项
 
 | 时间 | 概念 | 核心内容 | 代表事件 | 链接 |
 | --- | --- | --- | --- | --- |
