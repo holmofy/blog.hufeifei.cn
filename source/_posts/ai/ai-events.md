@@ -31,6 +31,7 @@ tags:
 | 2020.05 | DETR | 抛弃 NMS、锚框等手工设计，首次将 Transformer 引入物体检测 | Facebook (Meta) 发布 Transformer架构的DETR挑战CNN架构的YOLO，开启视觉检测新范式 | [DETR Paper (ECCV 2020)](https://arxiv.org/abs/2005.12872) |
 | 2020.10 | ViT (Vision Transformer) | 抛弃卷积网络(CNN)，将图像切块后像文本一样处理 | Google 发布《An Image is Worth 16x16 Words》，视觉架构转向 Transformer，挑战 CNN 霸主地位 | [ViT Paper](https://arxiv.org/abs/2010.11929) |
 | 2021.01 | CLIP & DALL-E | 借助 ViT 架构将图文关联，实现多模态理解与生成 | OpenAI 发布 DALL-E，开启多模态生成元年 | [OpenAI Blog: DALL-E](https://openai.com/blog/dall-e/) |
+| 2021.01** | **MoE & Switch Transformer** | 仅激活模型的一部分参数进行计算，实现“稀疏性”，让模型规模突破万亿 | Google 发布 Switch Transformer，参数量达 1.6 万亿 | [Switch Transformer Paper](https://arxiv.org/abs/2101.03961) |
 | 2021.06 | GitHub Copilot | 基于 OpenAI Codex 的代码补全，AI 辅助编程商业化 | GitHub 推出 Copilot 预览版 | [GitHub Blog: Introducing Copilot](https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/) |
 
 ## 2022 年：大模型觉醒之年
