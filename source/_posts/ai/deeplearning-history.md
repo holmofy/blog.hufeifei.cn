@@ -124,7 +124,11 @@ Transformer还引入了多头注意力(Multi-Head Attention)，让模型能够�
 
 更令人惊讶的是，Transformer的通用性超出了所有人的预期。2020年，Google提出的Vision Transformer（ViT）把图片切成小块，当作序列来处理，在图像分类任务上超越了CNN。这打破了"CNN是视觉任务专用架构"的认知。随后，Transformer被应用到语音识别、视频理解、蛋白质结构预测、强化学习等各个领域，几乎无往不利。
 
+<img width="850" height="362" alt="image" src="https://github.com/user-attachments/assets/4d76ade6-f024-4cc2-9e18-e6988acd9098" />
+
 原本为不同任务设计的专用架构——CNN处理图像、RNN处理序列、GNN处理图结构——正在被Transformer这个统一架构逐步替代。这种"大一统"的趋势背后，是一个深刻的洞察：无论是文本、图像还是语音，本质上都是数据序列，都可以用注意力机制来建模关系。
+
+<img width="640" height="400" alt="image" src="https://github.com/user-attachments/assets/5a41941a-c444-4a03-ad43-20403c2e57cd" />
 
 更重要的是，Transformer的可扩展性极强。通过增加层数、增大隐藏维度、使用更多数据，模型性能可以持续提升。这种"scaling law"（规模定律）为后来的大语言模型奠定了基础。OpenAI的研究表明，只要有足够的计算资源和数据，Transformer的性能可以预测性地提升，不会遇到明显的瓶颈。这让"暴力美学"成为可能——用更大的模型、更多的数据，就能获得更强的能力。
 
