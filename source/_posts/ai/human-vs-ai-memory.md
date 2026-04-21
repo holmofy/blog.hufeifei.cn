@@ -72,3 +72,8 @@ tags:
 比如你问AI：“我们上周讨论的那个项目预算是多少？”它会先把问题“向量化”，用语义搜索在长期记忆库（通常是向量数据库）里，找和问题最相关的信息片段；然后把检索到的预算相关内容，作为新上下文“塞进”短期记忆；最后结合问题和历史记忆，生成精准回答。
 
 更前沿的智能体设计，还会让模型“自主管理记忆”：把检索、添加、总结、遗忘当成工具，让AI自己判断什么时候该找历史记忆、什么时候该压缩对话腾空间、什么时候该存重要信息。这就像给AI装上了“主动思考”的能力，是通往更智能AI的关键一步。
+
+refs:
+* 神奇数字7±2: https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two
+* 工作记忆模型: https://en.wikipedia.org/wiki/Baddeley%27s_model_of_working_memory
+* Lost in the Middle: 语言模型如何用长上下文: https://zhuanlan.zhihu.com/p/645690934
