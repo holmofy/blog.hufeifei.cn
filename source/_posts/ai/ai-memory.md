@@ -25,7 +25,7 @@ tags:
 
 就像人类的“意识层”。
 
-# 🗂️ 2. 长期记忆 = 外部知识库（Long-term Memory）
+# 2. 长期记忆 = 外部知识库（Long-term Memory）
 
 可能包含：
 
