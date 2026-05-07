@@ -141,7 +141,7 @@ tags:
 | **2024.04** | **Vidu (生数科技)** | 基于 **U-ViT** 架构（融合 Diffusion 与 Transformer），支持一键生成高清长视频。 | 紧随 Sora 之后，代表了中国在**视觉生成大模型（Vidu）**领域的顶尖水平，因其背后的清华系背景及高效迭代，被社区昵称为 "HappyHorse" 相关的代号。 | [Vidu官网](https://www.vidu.cn/) |
 | **2025.06** | **Seedance (希奇点)** | 专注于**极高一致性**的视频生成，通过自研模型解决视频中人物“脸崩”、物体变形等痛点。 | 推出了 **SeedEdit** 等工具，将视频生成的精度提升到了**可商用**的电影/广告级别，是“像素重组”迈向“精细化工业生产”的典型。 | [Seedance 1.0官网](https://seed.bytedance.com/zh/seedance) |
 | 2025.12 | **World Models (世界模型)** | AI 不仅生成画面，还能预测物体碰撞、重力等物理反馈 | 视觉生成模型与物理引擎彻底融合，用于机器人预训练 | [World Models Research](https://worldmodelresearch.com/) |
-| **2026.02** | **Seedance 2.0** | **统一多模态音视频联合架构** | 字节跳动正式发布 Seedance 2.0 | 实现**音画对齐**、**多人竞技模拟**及**长视频编导能力** | [seedance 2.0官网](https://seed.bytedance.com/zh/seedance2_0) |
+| **2026.02** | **Seedance 2.0** | **统一多模态音视频联合架构** | 字节跳动正式发布 Seedance 2.0 实现**音画对齐**、**多人竞技模拟**及**长视频编导能力** | [seedance 2.0官网](https://seed.bytedance.com/zh/seedance2_0) |
 
 ### 具身智能 (Embodied AI) 专项：AI 走进现实世界
 
