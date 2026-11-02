@@ -398,7 +398,7 @@ service:
 
 另外，100% 采集是采样策略的目标，不代表系统在内存不足、网络中断或 Collector 故障时绝对不会丢失数据。
 
-官方参考：[Tail Sampling with OpenTelemetry](https://opentelemetry.io/blog/2022/tail-sampling/)<sup>[3](#ref-3)</sup>。
+官方参考：[Tail Sampling with OpenTelemetry](https://opentelemetry.io/blog/2022/tail-sampling/)<sup>[3](#ref-3)</sup> 和 [Tail Sampling Processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md)<sup>[7](#ref-7)</sup>。
 
 ## 5. Rust 应用如何接入 OpenTelemetry？
 
@@ -703,3 +703,5 @@ Metrics 中不要使用：
 4. <a id="ref-4"></a>[OpenTelemetry Rust](https://opentelemetry.io/docs/languages/rust/)
 5. <a id="ref-5"></a>[OpenTelemetry Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/)
 6. <a id="ref-6"></a>Pelkonen, T., Franklin, S., Teller, J., Cavallaro, P., Huang, Q., Meza, J., Veeraraghavan, K. "Gorilla: A Fast, Scalable, In-Memory Time Series Database." *Proceedings of the VLDB Endowment*, Vol. 8, No. 12, 2015. [论文 PDF](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf)（XOR 数值编码与 delta-of-delta 时间戳编码的出处，实测平均约 1.37 字节/样本；Prometheus TSDB 的 chunk 编码亦源于此）
+7. https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/README.md
+8. https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/tailsamplingprocessor/documentation.md
