@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry 分布式可观测性体系最佳实践
-date: 2025-07-11
+date: 2026-07-30
 categories: 分布式
 tags: 
 - Distributed
